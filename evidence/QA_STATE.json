@@ -75,6 +75,15 @@
   "human_review_required": false,
   "native_review_required": false,
   "release_closed": true,
-  "external_publication_complete": false,
+  "external_publication_complete": true,
+  "public_readback": {
+    "verified_on": "2026-08-14",
+    "github_release": "https://github.com/KokunoYumeto/OpenLogic-id/releases/tag/id-olp-0722-20260814",
+    "zenodo_record": "https://zenodo.org/records/21932787",
+    "exact_doi": "10.5281/zenodo.21932787",
+    "concept_doi": "10.5281/zenodo.21932786",
+    "github_files_downloaded_and_sha256_matched": 4,
+    "zenodo_files_downloaded_and_sha256_matched": 4
+  },
   "closure_reason": "Translation coverage is 722/722 and all defined source/hash/build/text/render gates passed. Independent-review receipt coverage is nonuniform and explicitly disclosed."
 }

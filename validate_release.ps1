@@ -29,6 +29,23 @@ foreach ($jsonRel in @('.zenodo.json','evidence\SOURCE_AUTHORITY.json','evidence
   catch { $errors.Add("INVALID_JSON $jsonRel") }
 }
 
+$artifactRows = Import-Csv -LiteralPath (Join-Path $root 'evidence\ARTIFACT_SHA256.tsv') -Delimiter ([char]9)
+foreach ($row in $artifactRows) {
+  $artifact = Join-Path $root ($row.relative_path -replace '/', '\')
+  if (-not (Test-Path -LiteralPath $artifact -PathType Leaf)) {
+    $errors.Add("ARTIFACT_MISSING $($row.relative_path)")
+    continue
+  }
+  $item = Get-Item -LiteralPath $artifact
+  if ($item.Length -ne [long]$row.bytes) {
+    $errors.Add("ARTIFACT_BYTES $($row.relative_path)")
+  }
+  $artifactHash = (Get-FileHash -LiteralPath $artifact -Algorithm SHA256).Hash
+  if ($artifactHash -cne $row.sha256) {
+    $errors.Add("ARTIFACT_HASH $($row.relative_path)")
+  }
+}
+
 $content = Get-ChildItem -LiteralPath (Join-Path $root 'source\locale\id\content') -Filter '*.tex' -File -Recurse
 if ($content.Count -ne 722) { $errors.Add("CONTENT_TEX_COUNT expected=722 observed=$($content.Count)") }
 

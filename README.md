@@ -17,6 +17,7 @@ Edisi ini adalah **terjemahan Bahasa Indonesia dari** (DataCite:
 - DOI konsep Bahasa Indonesia: [10.5281/zenodo.21932786](https://doi.org/10.5281/zenodo.21932786)
 - Rekaman Zenodo: [zenodo.org/records/21932787](https://zenodo.org/records/21932787)
 - Repositori: [KokunoYumeto/OpenLogic-id](https://github.com/KokunoYumeto/OpenLogic-id)
+- Rilis GitHub: [id-olp-0722-20260814](https://github.com/KokunoYumeto/OpenLogic-id/releases/tag/id-olp-0722-20260814)
 - Tag rilis: `id-olp-0722-20260814`
 - Versi: `OLP-0722-20260814`
 - Bahasa: Bahasa Indonesia (BCP 47 `id`; Zenodo `ind`)
@@ -59,6 +60,9 @@ build, render, keputusan, dan temuan terhadap sumber tersedia di
 [`evidence/`](evidence/). Daftar ringkas temuan yang dapat ditinjau maintainer
 upstream tersedia di
 [`evidence/UPSTREAM_FINDINGS.md`](evidence/UPSTREAM_FINDINGS.md).
+Delapan kandidat paling ringkas telah disampaikan kepada maintainer upstream
+dalam [OpenLogicProject/OpenLogic#432](https://github.com/OpenLogicProject/OpenLogic/issues/432);
+daftar penuh dan semua penarikan temuan tetap berada dalam bukti rilis.
 
 ## Struktur publik
 

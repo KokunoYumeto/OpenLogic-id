@@ -10,7 +10,11 @@
   "zenodo_record_id": 21932787,
   "zenodo_record_url": "https://zenodo.org/records/21932787",
   "github_repository": "https://github.com/KokunoYumeto/OpenLogic-id",
-  "planned_release_tag": "id-olp-0722-20260814",
+  "github_release": "https://github.com/KokunoYumeto/OpenLogic-id/releases/tag/id-olp-0722-20260814",
+  "release_tag": "id-olp-0722-20260814",
+  "tagged_commit": "34af65419e4c5c5580dae60a48454c485ddf504c",
+  "annotated_tag_object": "d8e0ec7b9a171edf773088609ad8a17cba3a9523",
+  "upstream_issue": "https://github.com/OpenLogicProject/OpenLogic/issues/432",
   "reserved_on": "2026-08-14",
-  "publication_state": "DOI reserved; public readback pending"
+  "publication_state": "PUBLIC_VERIFIED"
 }
