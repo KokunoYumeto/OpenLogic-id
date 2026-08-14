@@ -10,18 +10,18 @@
   "source_content_lines": 75578,
   "source_content_files": 722,
   "source_git_tree": "f67757bb9305b173634082ab4cefd5601a707a34",
-  "source_closure_manifest": "evidence/CLOSURE_0722.csv",
+  "source_closure_manifest": "evidence/CLOSURE_0722.csv (combined source/target translation inventory, not a source-only census)",
   "source_closure_rows": 722,
   "source_closure_manifest_bytes": 252486,
   "source_closure_manifest_sha256": "964A274B418C06C99130AD33E8326629D5C35BF677D7C9A6166C19A6F91A033B",
   "target_content_bytes": 3222301,
   "target_content_lines": 77789,
   "target_aggregate_sha256": "3C5A420771CF6A5119357D04471089797B7A8AB22C741D0D49D0178FB1175C33",
-  "coverage_and_topology": "722-file content closure; 642 complete-reader-reachable modules and 80 retained non-reader modules; Indonesian targets complete and admitted 722/722; build/render PASS applies to the complete 1,116-page reader and is not applicable to the 80 retained non-reader targets",
+  "coverage_and_topology": "722-file content closure; 642 complete-reader-reachable modules and 80 retained non-reader modules; Indonesian target inventory is complete and hash-replayed 722/722; retained consolidated independent batch-review receipts run through OLP-0321; build/render PASS applies to the complete 1,116-page reader and is not applicable to the 80 retained non-reader targets",
   "authority_hierarchy": [
     "Official OpenLogicProject/OpenLogic Git commit and tree",
     "Frozen 722-row per-source/per-target SHA-256 inventory",
-    "Batch replay scripts, independent model reviews, aggregate build, text QA, and all-page render review"
+    "Writer/model batch checks for production, retained independent batch-review receipts through OLP-0321, aggregate closure replay, build, text QA, and all-page render review"
   ],
   "excluded_scope": [
     "later upstream commits",

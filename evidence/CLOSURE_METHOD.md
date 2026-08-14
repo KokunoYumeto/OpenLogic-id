@@ -1,5 +1,11 @@
 # Open Logic Bahasa Indonesia closure measurement receipt
 
+> Superseded scheduling receipt. This file describes the initial 8/722 state
+> and its then-current manifest hash. The manifest later evolved in place as
+> translation progressed, so its historical hash does not describe the final
+> 722-row artifact. For the final source/target inventory use CLOSURE_0722.csv
+> and COMPLETE_0722_CLOSURE_REPLAY.json.
+
 Date: 2026-08-12  
 Frozen English authority: `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`  
 Repository: `C:\Users\Floris\Documents\interlanguage\04_mirrors\id\openlogic`

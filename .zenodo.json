@@ -9,7 +9,7 @@
   "version": "OLP-0722-20260814",
   "publication_date": "2026-08-14",
   "access_right": "open",
-  "description": "<p><strong>Edisi lengkap Bahasa Indonesia / Complete Indonesian edition:</strong> all 722/722 frozen Open Logic Project content modules are translated. The 1,116-page linked reader covers the 642 canonical-reader-reachable modules; 80 retained non-reader modules remain in the editable corpus and are explicitly outside build/render applicability. Frozen authority: commit <code>9620cc73f9c8e0ad003c514a5d3748f29611c4c0</code>, tree <code>f67757bb9305b173634082ab4cefd5601a707a34</code>, under CC BY 4.0.</p><p>All 722 targets passed exact source/hash replay and model-review admission. The reader passed a deterministic build, text-layer checks, and all-page visual inspection. Editable source and evidence packages preserve terminology, translation decisions, source-backed emendations, build/render receipts, hashes, closure records, and hostile-compaction recovery state.</p><p>Exact release DOI: <a href=\"https://doi.org/10.5281/zenodo.21932787\">10.5281/zenodo.21932787</a>. Stable Indonesian concept DOI: <a href=\"https://doi.org/10.5281/zenodo.21932786\">10.5281/zenodo.21932786</a>. Repository: <a href=\"https://github.com/KokunoYumeto/OpenLogic-id\">KokunoYumeto/OpenLogic-id</a>.</p><p>Performed at the direction of Floris by <q>OpenAI 5.6 Sol, Ultra mode</q> (<q>OpenAI's current flagship model for complex work</q>). No Open Logic Project endorsement is implied.</p>",
+  "description": "<p><a href=\"https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf\"><strong>Download the complete 1,116-page Indonesian reader / Unduh pembaca lengkap Bahasa Indonesia.</strong></a></p><p><strong>Edisi lengkap Bahasa Indonesia / Complete Indonesian edition:</strong> all 722/722 frozen Open Logic Project content modules are translated. This edition <strong>IsTranslationOf</strong> the English Open Logic Project at commit <a href=\"https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0\"><code>9620cc73f9c8e0ad003c514a5d3748f29611c4c0</code></a>, tree <code>f67757bb9305b173634082ab4cefd5601a707a34</code>, under CC BY 4.0. The reader covers 642 canonical-reader-reachable modules; 80 retained non-reader modules remain in the editable corpus and are explicitly outside build/render applicability.</p><p>All 722 targets passed exact existence and hash replay, and the complete reader passed a source-frozen build, text-layer checks, and visual inspection of all pages. The toolchain package graph is not fully pinned, so byte-identical rebuilds on every machine are not claimed. The evidence package retains consolidated independent batch-review receipts through OLP-0321; the later 401 units are not represented as having equivalent retained independent receipts. Editable sources and evidence preserve terminology, decisions, source-backed emendations, build/render receipts, hashes, closure records, and adverse evidence.</p><p>Exact release DOI: <a href=\"https://doi.org/10.5281/zenodo.21932787\">10.5281/zenodo.21932787</a>. Stable Indonesian concept DOI: <a href=\"https://doi.org/10.5281/zenodo.21932786\">10.5281/zenodo.21932786</a>. Repository and matching release: <a href=\"https://github.com/KokunoYumeto/OpenLogic-id/releases/tag/id-olp-0722-20260814\">KokunoYumeto/OpenLogic-id</a>.</p><p>Performed at the direction of Floris by <q>OpenAI 5.6 Sol, Ultra mode</q> (<q>OpenAI's current flagship model for complex work</q>). No Open Logic Project endorsement is implied.</p>",
   "related_identifiers": [
     {
       "identifier": "https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
@@ -19,6 +19,11 @@
     {
       "identifier": "https://github.com/KokunoYumeto/OpenLogic-id",
       "relation": "isSupplementTo",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://github.com/KokunoYumeto/OpenLogic-id/releases/tag/id-olp-0722-20260814",
+      "relation": "isIdenticalTo",
       "resource_type": "software"
     }
   ],

@@ -22,27 +22,33 @@
     "semantic_token_base_sequence_files": 65,
     "disposition": "Explicit review surfaces arising from localization grammar, declared source repairs, or reviewed structural corrections; exact IDs are retained in COMPLETE_0722_CLOSURE_REPLAY.json and batch receipts."
   },
-  "model_or_agent_checks": "ADMITTED_AGGREGATE_MODEL_REVIEW_722_OF_722",
+  "model_or_agent_checks": {
+    "translation_and_writer_batch_checks": "722/722",
+    "retained_consolidated_independent_batch_receipts": "OLP-0001 through OLP-0321",
+    "later_units_without_equivalent_retained_independent_receipts": 401,
+    "claim_boundary": "No claim is made that every one of the 722 units has a separate retained independent semantic-review receipt; all units are covered by source/target hash replay and the reader build/render gates."
+  },
   "deterministic_build": {
     "status": "PASS",
     "exit_code": 0,
     "fatal_or_error_diagnostics": 0,
     "missing_file_or_glyph_diagnostics": 0,
     "unresolved_references_or_citations": 0,
-    "overfull_hbox_warnings": 557,
+    "overfull_hbox_warnings": 559,
     "underfull_hbox_warnings": 22,
     "underfull_vbox_warnings": 38,
-    "log_sha256": "74CD54FDC23D0FF30D4DAABF0A32832D05115889A0FFF68E79CF0A2CE02E2937"
+    "log_sha256": "4B8244B1A5451D4C539719193D7C0DC6F654F96DB994CF9594C8E99F8AC86560",
+    "reproducibility_claim": "The upstream commit is frozen and the reference PDF hash is fixed. The MiKTeX package graph and SOURCE_DATE_EPOCH are not fully pinned, so byte-identical output on every machine is not claimed."
   },
   "reader_filename": "00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf",
   "reader_pages": 1116,
-  "reader_bytes": 5591857,
-  "reader_sha256": "FE6174AFFBB3174CEC813630E4D7608ACDAFA89FE044BFFC486B62E66E6A161C",
+  "reader_bytes": 5593664,
+  "reader_sha256": "BF538D5E1994A7A7600703C9D24616696F77E43E9312FB51078095FF0C963C0A",
   "text_layer": {
     "status": "PASS",
-    "bytes": 2288540,
-    "lines": 47036,
-    "sha256": "DD22475047913AA92C23E51B6F04A9C5B6388550D930CE94FBBD624C53F42468",
+    "bytes": 2288829,
+    "lines": 47041,
+    "sha256": "BEF04F870ED05732B8AAE02DB2640F71DEC9ED66BA107C272E6BA5CB5EE03F64",
     "replacement_glyphs_or_question_pairs": 0,
     "raw_localization_tokens": 0,
     "undefined_or_placeholder_markers": 0,
@@ -54,7 +60,8 @@
     "pages_inspected": 1116,
     "dpi": 144,
     "body_defects_observed": 0,
-    "footer_correction_replay": "100 no-footer pages pixel-identical; 1,016 changed pages confined to raster rows 1380-1397; zero changes outside footer band 1370-1400"
+    "footer_correction_replay": "100 no-footer pages pixel-identical; 1,016 changed pages confined to raster rows 1380-1397; zero changes outside footer band 1370-1400",
+    "publication_metadata_rebuild": "Opening page visually inspected at 144 dpi; pages 2-1116 have byte-identical extracted text to the prior fully reviewed PDF; representative rendered pages 2, 50, 500, and 1116 are pixel-identical."
   },
   "accessibility": {
     "fonts_embedded": "29/29",
@@ -69,5 +76,5 @@
   "native_review_required": false,
   "release_closed": true,
   "external_publication_complete": false,
-  "closure_reason": "All 722/722 modules and every defined deterministic reader gate passed; remaining caveats are explicitly disclosed."
+  "closure_reason": "Translation coverage is 722/722 and all defined source/hash/build/text/render gates passed. Independent-review receipt coverage is nonuniform and explicitly disclosed."
 }

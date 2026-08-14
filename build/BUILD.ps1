@@ -8,7 +8,7 @@ $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 
 $authority = '9620cc73f9c8e0ad003c514a5d3748f29611c4c0'
-$expectedPdfSha256 = 'FE6174AFFBB3174CEC813630E4D7608ACDAFA89FE044BFFC486B62E66E6A161C'
+$expectedPdfSha256 = 'BF538D5E1994A7A7600703C9D24616696F77E43E9312FB51078095FF0C963C0A'
 $repoRoot = Split-Path -Parent $PSScriptRoot
 $localeSource = Join-Path $repoRoot 'source\locale\id'
 

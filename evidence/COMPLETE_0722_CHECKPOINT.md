@@ -1,5 +1,10 @@
 # Open Logic Project -> Bahasa Indonesia: complete local checkpoint
 
+> Historical local checkpoint. Publication metadata was subsequently added to
+> the reader without changing the 722 translated targets. See
+> PUBLICATION_METADATA_REBUILD_0722.md and the public QA_STATE.json for the
+> controlling reader hash and honest independent-review evidence boundary.
+
 Checkpoint date: 2026-08-14  
 Status: `COMPLETE_FROZEN_CLOSURE_LOCAL`  
 Publication status: not committed, pushed, released, or externally announced

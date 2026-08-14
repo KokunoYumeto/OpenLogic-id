@@ -14,6 +14,7 @@ $required = @(
   'source\locale\id\TARGET_SHA256SUMS.txt',
   'evidence\SOURCE_AUTHORITY.json', 'evidence\COMPONENT_COVERAGE.tsv',
   'evidence\QA_STATE.json', 'evidence\UNRESOLVED_ITEMS.tsv',
+  'evidence\ARTIFACT_SHA256.tsv', 'evidence\REVIEW_COVERAGE_0722.md',
   'evidence\DATACITE_RELATIONS.json', 'evidence\DOI_IDENTITY.json',
   'build\BUILD.ps1'
 )
@@ -45,8 +46,8 @@ foreach ($row in $manifest) {
 }
 
 $reader = Join-Path $root 'reader\00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf'
-if ((Get-Item -LiteralPath $reader).Length -ne 5591857) { $errors.Add('READER_BYTES') }
-if ((Get-FileHash -LiteralPath $reader -Algorithm SHA256).Hash -cne 'FE6174AFFBB3174CEC813630E4D7608ACDAFA89FE044BFFC486B62E66E6A161C') { $errors.Add('READER_HASH') }
+if ((Get-Item -LiteralPath $reader).Length -ne 5593664) { $errors.Add('READER_BYTES') }
+if ((Get-FileHash -LiteralPath $reader -Algorithm SHA256).Hash -cne 'BF538D5E1994A7A7600703C9D24616696F77E43E9312FB51078095FF0C963C0A') { $errors.Add('READER_HASH') }
 
 $placeholderHits = @(Get-ChildItem -LiteralPath $root -Recurse -File |
   Where-Object Name -notin @('validate_release.ps1','03_OPENLOGIC_id_SHA256_MANIFEST_OLP-0722.txt') |

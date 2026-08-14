@@ -1,5 +1,12 @@
 # Bahasa Indonesia Open Logic Build and QA
 
+> Publication-metadata supersession (2026-08-14): the body reviewed below is
+> unchanged, but the public reader was rebuilt once to place the version,
+> 722/642/80 scope, exact DOI, concept DOI, repository, and IsTranslationOf
+> statement on its opening page. The controlling public hash is recorded in
+> PUBLICATION_METADATA_REBUILD_0722.md; the older PDF hash below is retained as
+> historical pre-publication evidence.
+
 Date: 2026-08-14
 Repository: `C:\Users\Floris\Documents\interlanguage\04_mirrors\id\openlogic`  
 Authority commit: `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`
