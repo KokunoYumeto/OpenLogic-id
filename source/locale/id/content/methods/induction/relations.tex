@@ -1,0 +1,191 @@
+% Part: methods
+% Chapter: induction
+% Section: relations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mth}{ind}{rel}
+
+\olsection{Relasi dan Fungsi}
+
+Ketika kita telah mendefinisikan suatu himpunan objek (seperti bilangan asli
+atau suku rapi) secara induktif, kita juga dapat mendefinisikan
+\emph{relasi pada} objek-objek tersebut melalui induksi. Misalnya,
+perhatikan gagasan berikut: suatu suku rapi~$t_1$ adalah subsuku dari suku
+rapi~$t_2$ jika suku pertama muncul sebagai bagian dari suku kedua. Mari kita gunakan
+simbol untuk menyatakannya: $t_1 \sqsubseteq t_2$. Tentu saja, setiap suku
+rapi merupakan subsuku dari dirinya sendiri: $t \sqsubseteq t$. Kita dapat
+memberikan definisi induktif bagi relasi ini sebagai berikut:
+
+\begin{defn}
+  Relasi bahwa suatu suku rapi~$t_1$ merupakan subsuku dari~$t_2$,
+  $t_1 \sqsubseteq t_2$, didefinisikan melalui induksi pada~$t_2$ sebagai
+  berikut:
+  \begin{enumerate}
+  \item Jika $t_2$ adalah sebuah huruf, maka $t_1 \sqsubseteq t_2$ jika dan
+    hanya jika $t_1 = t_2$.
+  \item Jika $t_2$ adalah $[s_1 \circ s_2]$, maka $t_1 \sqsubseteq t_2$
+    jika dan hanya jika $t_1 = t_2$, $t_1 \sqsubseteq s_1$, atau
+    $t_1 \sqsubseteq s_2$.
+  \end{enumerate}
+\end{defn}
+
+Definisi ini, misalnya, memberi tahu kita bahwa $\mathrm{a}
+\sqsubseteq [\mathrm{b} \circ \mathrm{a}]$. Sebab, (2) menyatakan bahwa
+$\mathrm{a} \sqsubseteq [\mathrm{b} \circ \mathrm{a}]$ jika dan hanya jika
+$\mathrm{a} = [\mathrm{b} \circ \mathrm{a}]$, atau $\mathrm{a}
+\sqsubseteq \mathrm{b}$, atau $\mathrm{a} \sqsubseteq \mathrm{a}$. Dua
+yang pertama salah: jelas bahwa $\mathrm{a}$ tidak identik dengan
+$[\mathrm{b} \circ \mathrm{a}]$, dan menurut~(1), $\mathrm{a}
+\sqsubseteq \mathrm{b}$ jika dan hanya jika $\mathrm{a} = \mathrm{b}$,
+yang juga salah. Namun, juga menurut~(1), $\mathrm{a} \sqsubseteq
+\mathrm{a}$ jika dan hanya jika $\mathrm{a} = \mathrm{a}$, dan ini benar.
+
+Penting untuk diperhatikan bahwa keberhasilan definisi ini bergantung pada
+suatu fakta yang belum kita buktikan: setiap suku rapi~$t$ hanya berupa
+sebuah huruf, atau terdapat suku rapi $s_1$ dan $s_2$ yang
+\emph{ditentukan secara unik} sedemikian sehingga $t = [s_1 \circ s_2]$.
+Di sini, ``ditentukan secara unik'' berarti bahwa jika $t = [s_1 \circ
+s_2]$, tidak \emph{sekaligus} berlaku $= [r_1 \circ r_2]$ dengan
+$s_1 \neq r_1$ atau $s_2 \neq r_2$. Jika hal itu dapat terjadi,
+klausa~(2) mungkin bertentangan dengan dirinya sendiri: dengan membaca
+$t_2$ sebagai $[s_1 \circ s_2]$, kita mungkin memperoleh $t_1 \sqsubseteq
+t_2$, tetapi dengan membaca $t_2$ sebagai $[r_1 \circ r_2]$, kita mungkin
+memperoleh bahwa bukan $t_1 \sqsubseteq t_2$. Sebelum membuktikan bahwa hal
+ini tidak dapat terjadi, mari kita lihat contoh ketika hal itu
+\emph{dapat} terjadi.
+
+\begin{defn}
+  Definisikan \emph{suku tanpa kurung} secara induktif sebagai berikut:
+  \begin{enumerate}
+  \item Setiap huruf merupakan suku tanpa kurung.
+  \item Jika $s_1$ dan $s_2$ merupakan suku tanpa kurung, maka
+    $s_1 \circ s_2$ merupakan suku tanpa kurung.
+  \item Tidak ada yang lain yang merupakan suku tanpa kurung.
+  \end{enumerate}
+\end{defn}
+
+Contoh suku tanpa kurung ialah $\mathrm{a}$, $\mathrm{b} \circ
+\mathrm{d}$, dan $\mathrm{b} \circ \mathrm{a} \circ \mathrm{b}$. Jika
+kita mendefinisikan ``subsuku'' bagi suku tanpa kurung seperti di atas,
+klausa keduanya akan berbunyi
+\begin{center}
+  Jika $t_2 = s_1 \circ s_2$, maka $t_1 \sqsubseteq t_2$ jika dan hanya
+  jika $t_1 = t_2$, $t_1 \sqsubseteq s_1$, atau $t_1 \sqsubseteq s_2$.
+\end{center}
+
+Sekarang $\mathrm{b} \circ \mathrm{a} \circ \mathrm{b}$ berbentuk
+$s_1 \circ s_2$ dengan
+\begin{align*}
+  s_1 & = \mathrm{b} \text{ dan} & s_2 & = \mathrm{a} \circ \mathrm{b}.
+\intertext{Untai itu juga berbentuk $r_1 \circ r_2$ dengan}
+  r_1 & = \mathrm{b} \circ \mathrm{a} \text{ dan} & r_2 &= \mathrm{b}.
+\end{align*}
+Apakah $\mathrm{a} \circ \mathrm{b}$ merupakan subsuku dari $\mathrm{b}
+\circ \mathrm{a} \circ \mathrm{b}$? Jawabannya ya menurut pembacaan
+pertama dan tidak menurut pembacaan kedua.
+
+Sifat bahwa cara suatu suku rapi dibangun dari suku-suku rapi lain bersifat
+unik disebut \emph{keterbacaan unik}. Karena definisi induktif bagi relasi
+pada objek-objek yang didefinisikan secara induktif semacam ini penting,
+kita harus membuktikan bahwa sifat tersebut berlaku.
+
+\begin{prop}
+  Andaikan $t$ merupakan suku rapi. Maka $t$ hanya berupa sebuah huruf, atau
+  terdapat suku rapi $s_1$, $s_2$ yang ditentukan secara unik sedemikian
+  sehingga~$t = [s_1 \circ s_2]$.
+\end{prop}
+
+\begin{proof}
+  Jika $t$ hanya berupa sebuah huruf, syarat tersebut terpenuhi. Jadi,
+  andaikan $t$ bukan hanya berupa sebuah huruf. Dari definisi induktif kita
+  dapat mengetahui bahwa $t$ harus berbentuk $[s_1 \circ s_2]$ untuk suatu
+  suku rapi $s_1$ dan~$s_2$. Tinggal ditunjukkan bahwa keduanya ditentukan
+  secara unik, yakni jika $t = [r_1 \circ r_2]$, maka $s_1 = r_1$ dan
+  $s_2 = r_2$.
+
+  Jadi, andaikan $t = [s_1 \circ s_2]$ dan juga $t = [r_1 \circ r_2]$
+  bagi suku rapi $s_1$, $s_2$, $r_1$, $r_2$. Kita harus menunjukkan bahwa
+  $s_1 = r_1$ dan $s_2 = r_2$. Pertama, $s_1$ dan $r_1$ harus identik;
+  sebab jika tidak, yang satu merupakan segmen awal sejati dari yang lain.
+  Namun, menurut \olref[sti]{prop:initial}, hal itu mustahil jika $s_1$
+  dan~$r_1$ keduanya merupakan suku rapi. Jika $s_1 = r_1$, jelas pula
+  bahwa $s_2 = r_2$.
+\end{proof}
+
+Kita juga dapat mendefinisikan fungsi secara induktif. Misalnya, kita dapat
+mendefinisikan fungsi~$f$ yang memetakan sebarang suku rapi ke kedalaman
+maksimum $[\dots]$ yang tersarang di dalamnya sebagai berikut:
+
+\begin{defn}
+  \ollabel{defn:depth} \emph{Kedalaman} suatu suku rapi, $f(t)$,
+  didefinisikan secara induktif sebagai berikut:
+  \[
+  f(t) = \begin{cases}
+    0 & \text{ jika $t$ adalah sebuah huruf}\\
+    \max(f(s_1), f(s_2)) + 1 & \text{ jika $t = [s_1 \circ s_2]$.}
+  \end{cases}
+  \]
+\end{defn}
+
+Misalnya,
+\begin{align*}
+  f([\mathrm{a} \circ \mathrm{b}]) & =
+    \max(f(\mathrm{a}),f(\mathrm{b})) + 1 = \\
+  &= \max(0, 0) + 1 = 1, \text{ dan}\\
+  f([[\mathrm{a} \circ \mathrm{b}] \circ \mathrm{c}]) & =
+    \max(f([\mathrm{a} \circ \mathrm{b}]), f(\mathrm{c})) + 1 = \\
+  & = \max(1,0) + 1 = 2.
+\end{align*}
+
+Di sini, tentu saja, kita mengasumsikan bahwa $s_1$ dan $s_2$ merupakan
+suku rapi dan menggunakan fakta bahwa setiap suku rapi hanya berupa sebuah
+huruf atau berbentuk $[s_1 \circ s_2]$. Sekali lagi, penting bahwa suatu
+suku dapat memiliki bentuk ini hanya dengan satu cara. Untuk melihat
+alasannya, perhatikan kembali suku tanpa kurung yang didefinisikan di atas.
+``Definisi'' yang bersesuaian ialah:
+\[
+  g(t) =
+  \begin{cases}
+    0 & \text{ jika $t$ adalah sebuah huruf}\\
+   \max(g(s_1), g(s_2)) + 1 & \text{ jika $t = s_1 \circ s_2$.}
+  \end{cases}
+\]
+Sekarang perhatikan suku tanpa kurung $\mathrm{a} \circ \mathrm{b} \circ
+\mathrm{c} \circ \mathrm{d}$. Suku itu dapat dibaca dengan lebih dari satu
+cara, misalnya sebagai $s_1 \circ s_2$ dengan
+\begin{align*}
+  s_1 & = \mathrm{a} \text{ dan} &
+  s_2 & = \mathrm{b} \circ \mathrm{c} \circ \mathrm{d},
+\intertext{atau sebagai $r_1 \circ r_2$ dengan}
+  r_1 & = \mathrm{a} \circ \mathrm{b} \text{ dan} &
+  r_2 &= \mathrm{c} \circ \mathrm{d}.
+\end{align*}
+Menghitung $g$ menurut pembacaan pertama akan memberikan
+\begin{align*}
+  g(s_1 \circ s_2) & =
+  \max(g(\mathrm{a}), g(\mathrm{b} \circ \mathrm{c} \circ \mathrm{d})) + 1 =\\ & =
+  \max(0,2) + 1 = 3
+  \intertext{sedangkan menurut pembacaan lainnya kita memperoleh}
+  g(r_1 \circ r_2) & =
+  \max(g(\mathrm{a} \circ \mathrm{b}), g(\mathrm{c} \circ \mathrm{d})) + 1=\\ &
+  = \max(1,1) + 1 = 2.
+\end{align*}
+Namun, suatu fungsi harus selalu menghasilkan nilai yang unik; jadi,
+``definisi'' kita bagi~$g$ sama sekali tidak mendefinisikan suatu fungsi.
+
+\begin{prob}
+  Berikan definisi induktif bagi fungsi $l$, dengan $l(t)$ merupakan
+  banyaknya simbol dalam suku rapi~$t$.
+\end{prob}
+
+\begin{prob}
+  Buktikan melalui induksi struktural pada suku rapi $t$ bahwa $f(t) < l(t)$
+  (dengan $l(t)$ merupakan banyaknya simbol dalam~$t$ dan $f(t)$ merupakan
+  kedalaman $t$ sebagaimana didefinisikan dalam
+  \olref[mth][ind][rel]{defn:depth}).
+\end{prob}
+
+\end{document}

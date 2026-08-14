@@ -1,0 +1,249 @@
+% Part: many-valued-logic
+% Chapter: three-valued-logics
+% Section: lukasiewicz
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{thr}{luk}
+
+\olsection{Logika \L ukasiewicz}
+
+Salah satu usulan logika bernilai banyak pertama yang diterbitkan dan
+dikembangkan secara terperinci diajukan oleh filsuf Polandia Jan
+\L ukasiewicz pada tahun 1921. \L ukasiewicz dimotivasi oleh masalah
+pertempuran laut Aristoteles: tampaknya, \emph{hari ini}, kalimat
+``Besok akan terjadi pertempuran laut'' tidak benar maupun salah; nilai
+kebenarannya belum ditentukan. \L ukasiewicz mengusulkan nilai kebenaran
+ketiga bagi kalimat ``kontingen masa depan'' semacam itu.
+\begin{quote}
+Saya dapat mengandaikan tanpa kontradiksi bahwa keberadaan saya di Warsawa
+pada suatu saat tertentu tahun depan, misalnya pada tengah hari tanggal
+21~Desember, pada saat ini tidak ditentukan secara positif maupun negatif.
+Jadi, mungkin saja saya berada di Warsawa pada waktu tersebut, tetapi hal itu
+tidak niscaya. Berdasarkan pengandaian ini, proposisi ``Saya akan berada di
+Warsawa pada tengah hari tanggal 21~Desember tahun depan'' pada saat ini tidak
+benar maupun salah. Sebab, jika proposisi itu sekarang benar, keberadaan saya
+kelak di Warsawa haruslah niscaya, yang bertentangan dengan pengandaian. Di
+pihak lain, jika proposisi itu sekarang salah, keberadaan saya kelak di
+Warsawa haruslah mustahil, yang juga bertentangan dengan pengandaian. Karena
+itu, proposisi yang dibahas pada saat ini tidak benar maupun salah dan harus
+mempunyai nilai ketiga, yang berbeda dari ``0'' atau kesalahan dan ``1'' atau
+kebenaran. Nilai ini dapat kita lambangkan dengan~``$\frac{1}{2}$.'' Nilai
+tersebut merepresentasikan ``yang mungkin'', dan menyertai ``yang benar'' dan
+``yang salah'' sebagai nilai ketiga.
+\end{quote}
+Kita akan menggunakan $\Undef$ bagi nilai kebenaran ketiga
+\L ukasiewicz.\footnote{Di sini \L ukasiewicz menggunakan ``mungkin'' dengan
+arti yang tidak lazim dewasa ini, yakni mungkin tetapi tidak niscaya.}
+
+Fungsi kebenaran bagi konektif $\lnot$, $\land$, dan~$\lor$ mudah ditentukan
+berdasarkan penafsiran ini: negasi suatu kalimat kontingen masa depan juga
+merupakan kalimat kontingen masa depan, sehingga
+$\tf{\lnot}(\Undef)=\Undef$. Jika salah satu konjung dari suatu konjungsi
+belum ditentukan dan konjung lainnya benar, konjungsi tersebut juga belum
+ditentukan---bagaimanapun, bergantung pada hasil konjung kontingen masa depan,
+konjungsi itu kelak mungkin benar dan mungkin pula salah. Jadi
+\[
+    \tf{\land}(\True,\Undef)=
+\tf{\land}(\Undef,\True)=
+\Undef.
+\]
+Namun, jika konjung lainnya salah, konjungsi tersebut tidak mungkin menjadi
+benar, sehingga
+\[\tf{\land}(\False,\Undef)=
+\tf{\land}(\Undef,\False)=\False.\]
+Nilai-nilai lainnya, yaitu ketika argumennya merupakan nilai kebenaran yang
+sudah ditentukan, $\True$ atau~$\False$, sama seperti dalam logika klasik.
+
+Bagi implikasi, keadaannya sedikit lebih rumit. Andaikan $q$ merupakan
+pernyataan kontingen masa depan. Jika $p$ salah, maka $p\lif q$ akan benar
+bagaimanapun hasil~$q$, sehingga kita harus menetapkan
+$\tf{\lif}(\False,\Undef)=\True$. Jika $p$ benar, maka $q\lif p$ akan benar
+bagaimanapun hasil~$q$, sehingga $\tf{\lif}(\Undef,\True)=\True$. Jika $p$
+benar, maka $p\lif q$ mungkin menjadi benar atau salah, sehingga
+$\tf{\lif}(\True,\Undef)=\Undef$. Serupa dengan itu, jika $p$ salah, maka
+$q\lif p$ mungkin menjadi benar atau salah, sehingga
+$\tf{\lif}(\Undef,\False)=\Undef$. Tersisa kasus ketika $p$ dan~$q$
+keduanya merupakan kontingen masa depan. Berdasarkan motivasinya, dalam kasus
+ini kita seharusnya menetapkan~$\Undef$. Namun, hal itu akan membuat
+$!A\lif !A$ \emph{bukan} suatu tautologi. \L ukasiewicz tidak keberatan
+melepaskan $!A\lor\lnot !A$ dan $\lnot(!A\land\lnot !A)$, tetapi enggan
+melepaskan $!A\lif !A$. Karena itu, ia menetapkan
+$\tf{\lif}(\Undef,\Undef)=\True$.
+
+\begin{defn}\ollabel{def:lukasiewicz}
+Logika \L ukasiewicz bernilai tiga didefinisikan dengan menggunakan matriks
+berikut:
+\begin{enumerate}
+  \item Bahasa proposisional baku~$\Lang L_0$ dengan $\lnot$, $\land$,
+  $\lor$, $\lif$.
+  \item Himpunan nilai kebenaran~$V=\{\True,\Undef,\False\}$.
+  \item $\True$ merupakan satu-satunya nilai yang ditetapkan, yakni
+  $V^+=\{\True\}$.
+  \item Fungsi kebenaran diberikan oleh tabel-tabel berikut:
+  \begin{center}
+    \begin{tabular}{c|c}
+      $\tf{\lnot}$ & \\
+      \hline
+      $\True$ & $\False$ \\
+      $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc}
+      $\tf{\land}[\LogLuk[3]]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\
+      $\Undef$ & $\Undef$ & $\Undef$ & $\False$\\
+      $\False$ & $\False$ & $\False$ & $\False$
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc}
+      $\tf{\lor}[\LogLuk[3]]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\True$ & $\True$ \\
+      $\Undef$ & $\True$ & $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ & $\Undef$ & $\False$
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc}
+      $\tf{\lif}[\LogLuk[3]]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\
+      $\Undef$ & $\True$ & $\True$ & $\Undef$  \\
+      $\False$ & $\True$ & $\True$ & $\True$
+    \end{tabular}
+  \end{center}
+\end{enumerate}
+\end{defn}
+
+Mudah dilihat bahwa setiap !!{formula}~$!A$ yang hanya memuat $\lnot$,
+$\land$, dan~$\lor$ akan bernilai~$\Undef$ jika semua
+!!{propositional variable}s di dalamnya diberi nilai~$\Undef$. Jadi, misalnya,
+tautologi klasik
+$p\lor\lnot p$ dan $\lnot(p\land\lnot p)$ bukan tautologi
+dalam~$\LogLuk[3]$, karena $\pValue{v}(!A)=\Undef$ setiap kali
+$\pAssign v(p)=\Undef$.
+
+Pada !!{valuation}s dengan $\pAssign v(p)=\True$ atau~$\False$,
+$\pValue v(!A)$ sama dengan nilai kebenaran klasiknya.
+
+\begin{prop}
+  Jika $\pAssign v(p)\in\{\True,\False\}$ bagi semua $p$ dalam~$!A$, maka
+  $\pValue v(!A)[\LogLuk[3]]=\pValue v(!A)[\LogCL]$.
+\end{prop}
+
+\begin{prob}\label{mvl:thr:luk:prob:luk-iff} Andaikan kita mendefinisikan
+  $\pValue v(!A\liff !B)=\pValue v((!A\lif !B)\land(!B\lif
+  !A))$ dalam~$\LogLuk[3]$. Tabel kebenaran apakah yang akan dimiliki
+  oleh~$\liff$?
+\end{prob}
+
+Banyak tautologi klasik \emph{juga} merupakan tautologi dalam~\LogLuk[3],
+misalnya $\lnot p\lif(p\lif q)$. Sama seperti dalam logika klasik, kita dapat
+memverifikasinya dengan tabel kebenaran:
+\begin{center}
+\begin{tabular}{cc|cccccc}
+  $p$ & $q$ & $\lnot$ & $p$ & $\lif$ & $\smash{(}p$ & $\lif$ & $q\smash{)}$ \\ \hline
+  \True & \True & \False & \True & \True & \True & \True & \True \\
+  \True & \Undef & \False & \True & \True & \True & \Undef & \Undef \\
+  \True & \False & \False & \True & \True & \True & \False & \False \\
+  \Undef & \True & \Undef & \Undef & \True & \Undef & \True & \True \\
+  \Undef & \Undef & \Undef & \Undef & \True & \Undef & \True & \Undef \\
+  \Undef & \False & \Undef & \Undef & \True & \Undef & \Undef & \False \\
+  \False & \True & \True & \False & \True & \False & \True & \True \\
+  \False & \Undef & \True & \False & \True & \False & \True & \Undef \\
+  \False & \False & \True & \False & \True & \False & \True & \False \\
+\end{tabular}
+\end{center}
+
+\begin{prob}
+  Tunjukkan bahwa formula-formula berikut merupakan tautologi
+  dalam~\LogLuk[3]:
+  \begin{enumerate}
+    \item $p\lif(q\lif p)$
+    \item\label{mvl:thr:luk:prob:luk-taut-2} $\lnot(p\land q)\liff(\lnot p\lor\lnot q)$
+    \item\label{mvl:thr:luk:prob:luk-taut-3} $\lnot(p\lor q)\liff(\lnot p\land\lnot q)$
+  \end{enumerate}
+  (Dalam \olref[mvl][thr][luk]{prob:luk-taut-2} dan
+  \olref[mvl][thr][luk]{prob:luk-taut-3}, gunakan $!A\liff !B$ sebagai
+  singkatan bagi $(!A\lif !B)\land(!B\lif !A)$, atau rujuk jawaban Anda
+  atas \olref[mvl][thr][luk]{prob:luk-iff}.)
+\end{prob}
+
+\begin{prob}
+  Tunjukkan bahwa tautologi-tautologi klasik berikut bukan tautologi
+  dalam~\LogLuk[3]:
+  \begin{enumerate}
+    \item $(\lnot p\land p)\lif q$
+    \item $((p\lif q)\lif p)\lif p$
+    \item $(p\lif(p\lif q))\lif(p\lif q)$
+  \end{enumerate}
+\end{prob}
+
+Karena itu, mungkin orang akan menduga bahwa meskipun tidak semua tautologi
+klasik merupakan tautologi dalam~$\LogLuk[3]$, setiap tautologi klasik
+setidaknya harus bernilai~$\True$ atau~$\Undef$ pada setiap !!{valuation}.
+Namun, dugaan ini salah. Suatu contoh penyangkal diberikan oleh
+\[
+  \lnot(p\lif\lnot p)\lor\lnot(\lnot p\lif p)
+\]
+yang bernilai~$\False$ jika $p$ bernilai~$\Undef$.
+
+\begin{prob}
+  Manakah di antara relasi-relasi berikut yang berlaku dalam logika
+  \L ukasiewicz? Berikan tabel kebenaran bagi masing-masing relasi.
+  \begin{enumerate}
+    \item $p,p\lif q\Entails q$
+    \item $\lnot\lnot p\Entails p$
+    \item $p\land q\Entails p$
+    \item $p\Entails p\land p$
+    \item $p\Entails p\lor q$
+  \end{enumerate}
+\end{prob}
+
+\L ukasiewicz berharap dapat membangun suatu logika kemungkinan berdasarkan
+sistem bernilai tiganya dengan memperkenalkan konektif uner
+$\Diamond !A$ (untuk ``$!A$ mungkin'') dan konektif yang bersesuaian
+$\Box !A$ (untuk ``$!A$ niscaya''):
+\begin{center}
+  \begin{tabular}{c|c}
+    $\tf{\Diamond}$ & \\
+    \hline
+    $\True$ & $\True$ \\
+    $\Undef$ & $\True$ \\
+    $\False$ & $\False$
+  \end{tabular}
+  \quad
+  \begin{tabular}{c|c}
+    $\tf{\Box}$ & \\
+    \hline
+    $\True$ & $\True$ \\
+    $\Undef$ & $\False$ \\
+    $\False$ & $\False$
+  \end{tabular}
+\end{center}
+Dengan kata lain, $p$ mungkin jika dan hanya jika nilainya belum ditetapkan
+sebagai salah; dan $p$ niscaya jika dan hanya jika nilainya sudah ditetapkan
+sebagai benar.
+
+\begin{prob}
+  Tunjukkan bahwa $\Box p\liff\lnot\Diamond\lnot p$ dan
+  $\Diamond p\liff\lnot\Box\lnot p$ merupakan tautologi dalam~\LogLuk[3]
+  yang diperluas dengan tabel kebenaran bagi $\Box$ dan~$\Diamond$.
+\end{prob}
+
+Akan tetapi, kekurangan usulan logika modal ini segera tampak: bagaimanapun
+keadaan akhirnya, $p\land\lnot p$ tidak pernah mungkin menjadi benar. Jadi,
+meskipun nilainya sekarang belum ditetapkan (dan karena itu bernilai tak tentu),
+formula tersebut seharusnya dianggap mustahil; dengan kata lain,
+$\lnot\Diamond(p\land\lnot p)$ seharusnya merupakan tautologi. Namun, jika
+$\pAssign v(p)=\Undef$, maka
+$\pValue v(\lnot\Diamond(p\land\lnot p))=\False$. Meskipun \L ukasiewicz
+benar bahwa dua nilai kebenaran tidak cukup untuk menampung pembedaan modal
+seperti kemungkinan dan keniscayaan, memperkenalkan nilai kebenaran ketiga
+juga belum cukup.
+
+\end{document}

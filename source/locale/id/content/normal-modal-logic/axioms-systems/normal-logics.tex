@@ -1,0 +1,122 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: normal-logics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{prf}{nor}
+
+\olsection{Logika Modal Normal}
+
+Tidak setiap himpunan !!{formula}s modal dapat dengan mudah dicirikan sebagai
+himpunan !!{formula}s yang dapat diturunkan dari suatu himpunan aksioma. Kita
+menginginkan logika modal yang berperilaku baik. Pertama-tama, semua yang dapat
+kita !!{derive} dalam logika proposisional klasik tentu harus tetap
+!!{derivable}, dengan memperhitungkan bahwa !!{formula}s kini juga dapat
+memuat \iftag{prvBox}{$\Box$\iftag{prvDiamond}{ dan~}{}}{}
+\iftag{prvDiamond}{$\Diamond$}{}. Untuk itu, kita mensyaratkan agar suatu
+logika modal memuat semua instansiasi tautologis dan tertutup di bawah modus
+ponens.
+
+\begin{defn}
+  Suatu \emph{logika modal} merupakan himpunan~$\Sigma$ dari !!{formula}s
+  modal yang
+  \begin{enumerate}
+  \item memuat semua tautologi;
+  \item tertutup di bawah substitusi, yakni jika $!A\in\Sigma$ dan
+    $!D_1$, \dots, $!D_n$ merupakan !!{formula}s, maka
+    \[
+    \SSubst{!A}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}}\in\Sigma;
+    \]
+  \item tertutup di bawah \emph{modus ponens}, yakni jika $!A$ dan
+    $!A\lif !B\in\Sigma$, maka $!B\in\Sigma$.
+  \end{enumerate}
+\end{defn}
+
+Untuk menggunakan semantik relasional bagi logika modal, kita juga harus
+mensyaratkan agar semua !!{formula}s yang valid dalam semua model modal
+tercakup. Ternyata, syarat ini terpenuhi begitu semua instansiasi
+\Ax{K}\iftag{prvDiamond}{ dan~\Dual{}}{} !!{derivable}, dan setiap kali
+!!a{formula}~$!A$ !!{derivable}, demikian pula~$\Box !A$. Logika modal
+yang memenuhi kondisi-kondisi ini disebut \emph{normal}. (Tentu saja ada pula
+logika modal nonnormal, tetapi model relasional biasa tidak memadai baginya.)
+
+\begin{defn}
+  Suatu logika modal~$\Sigma$ \emph{normal} jika logika itu memuat
+  \begin{align*}
+    \tag{\Ax{K}} & \Box(p \lif q) \lif (\Box p \lif \Box q),
+    \iftag{prvDiamond}{\\
+      \tag{\Dual} & \Diamond p \liff \lnot\Box\lnot p}{}
+  \end{align*}
+  dan tertutup di bawah \emph{nesesitasi}, yakni jika $!A\in\Sigma$, maka
+  $\Box !A\in\Sigma$.
+\end{defn}
+
+Perhatikan bahwa sementara implikasi tautologis cukup ``terperinci'' untuk
+mempertahankan \emph{kebenaran pada suatu dunia}, aturan~\Nec{} hanya
+mempertahankan \emph{kebenaran dalam suatu model} (dan karena itu juga
+validitas pada suatu kerangka atau kelas kerangka).
+
+\begin{prop}\ollabel{prop:rk}
+  Setiap logika modal normal tertutup di bawah aturan~\RK,
+  \begin{prooftree}
+    \AxiomC{$!A_1 \lif (!A_2 \lif \cdots (!A_{n-1} \lif !A_n)\cdots)$}
+    \RightLabel{\RK}
+    \UnaryInfC{$\Box!A_1 \lif (\Box!A_2 \lif \cdots (\Box!A_{n-1}
+      \lif \Box!A_n)\cdots).$}
+  \end{prooftree}
+\end{prop}
+
+\begin{proof}
+  Melalui induksi pada~$n$. Jika $n=1$, aturan tersebut tidak lain dari~\Nec,
+  dan setiap logika modal normal tertutup di bawah~\Nec.
+
+  Sekarang andaikan hasilnya berlaku bagi $n-1$; kita tunjukkan bahwa hasil itu
+  berlaku bagi~$n$.
+
+  Andaikan
+  \begin{align*}
+  & !A_1 \lif (!A_2 \lif \cdots (!A_{n-1} \lif !A_n)\cdots) \in \Sigma
+  \intertext{Menurut hipotesis induksi, kita mempunyai}
+  & \Box!A_1 \lif (\Box!A_2 \lif \cdots \Box(!A_{n-1} \lif !A_n)\cdots)
+  \in \Sigma
+  \intertext{Karena $\Sigma$ suatu logika modal normal, logika itu memuat
+    semua instansiasi~$\Ax{K}$, khususnya}
+  & \Box(!A_{n-1} \lif !A_n) \lif (\Box!A_{n-1} \lif \Box!A_n) \in \Sigma
+  \intertext{Dengan menggunakan modus ponens dan instansiasi tautologis yang sesuai,
+    kita memperoleh}
+  & \Box!A_1 \lif (\Box!A_2 \lif \cdots (\Box!A_{n-1}
+  \lif \Box!A_n)\cdots) \in \Sigma.
+  \end{align*}
+\end{proof}
+
+\begin{prop}\ollabel{prop:notDiamondBot}
+  Setiap logika modal normal~$\Sigma$ memuat~$\lnot\Diamond\lfalse$.
+\end{prop}
+
+\begin{prob}
+  Buktikan \olref[nml][prf][nor]{prop:notDiamondBot}.
+\end{prob}
+
+\begin{prop}
+  Misalkan $!A_1$, \dots, $!A_n$ merupakan !!{formula}s. Maka terdapat logika
+  modal normal terkecil~$\Sigma$ yang memuat semua instansiasi dari
+  $!A_1$, \dots, $!A_n$.
+\end{prop}
+
+\begin{proof}
+  Bagi $!A_1$, \dots, $!A_n$ yang diberikan, definisikan~$\Sigma$ sebagai
+  irisan semua logika modal normal yang memuat semua instansiasi dari
+  $!A_1$, \dots, $!A_n$. Keluarga yang diiris tidak kosong, sebab $\Frm[L]$,
+  himpunan semua !!{formula}s, merupakan logika modal semacam itu.
+\end{proof}
+
+\begin{defn}
+Logika modal normal terkecil yang memuat $!A_1$, \dots, $!A_n$ disebut suatu
+\emph{sistem modal} dan dilambangkan dengan $\Log{K} !A_1 \dots !A_n$.
+Logika modal normal terkecil dilambangkan dengan~\Log{K}.
+\end{defn}
+
+\end{document}

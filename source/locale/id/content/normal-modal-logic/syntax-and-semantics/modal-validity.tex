@@ -1,0 +1,78 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: modal-validity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{syn}{val}
+
+\olsection{Validitas}
+
+\begin{explain}
+  !!^{formula}s yang bernilai benar dalam semua model, yakni bernilai benar
+  pada setiap dunia dalam setiap model, sangatlah menarik. Formula-formula
+  ini merepresentasikan proposisi modal yang benar tanpa bergantung pada cara
+  $\Box$ dan $\Diamond$ ditafsirkan, selama penafsirannya ``normal'' dalam
+  arti bahwa penafsiran tersebut dihasilkan oleh suatu relasi aksesibilitas
+  pada dunia-dunia mungkin. Kita menyebut !!{formula}s semacam itu
+  \emph{valid}. Sebagai contoh, $\Box(p \land q) \lif \Box p$ valid. Namun,
+  beberapa !!{formula}s yang mungkin kita harapkan valid berdasarkan
+  penafsiran aletik atas $\Box$, seperti $\Box p \lif p$, ternyata tidak
+  valid. Salah satu daya tarik model relasional ialah bahwa penafsiran
+  berbeda atas $\Box$ dan $\Diamond$ dapat ditangkap oleh jenis relasi
+  aksesibilitas yang berbeda. Hal ini menyarankan agar kita mendefinisikan
+  validitas bukan hanya relatif terhadap \emph{semua} model, melainkan relatif
+  terhadap semua model \emph{dari jenis tertentu}. Sebagai contoh, akan
+  ternyata bahwa $\Box p \lif p$ bernilai benar dalam semua model tempat
+  setiap dunia dapat diakses dari dirinya sendiri, yakni tempat $R$
+  refleksif. Mendefinisikan validitas secara relatif terhadap kelas-kelas
+  model memungkinkan kita merumuskan hal ini secara ringkas: $\Box p \lif p$
+  valid dalam kelas model refleksif.
+\end{explain}
+
+\begin{defn}
+  !!^a{formula}~$!A$ \emph{valid} dalam suatu kelas model $\mClass{C}$ jika
+  formula itu bernilai benar dalam setiap model dalam~$\mClass{C}$ (yakni
+  bernilai benar pada setiap dunia dalam setiap model dalam~$\mClass{C}$).
+  Jika $!A$ valid dalam~$\mClass{C}$, kita menulis
+  $\mClass{C} \Entails !A$, dan kita menulis $\Entails !A$ jika $!A$ valid
+  dalam kelas \emph{semua} model.
+\end{defn}
+
+\begin{prop}\ollabel{prop:subset-class}
+  Jika $!A$ valid dalam $\mClass{C}$, formula itu juga valid dalam setiap
+  kelas $\mClass{C}' \subseteq \mClass{C}$.
+\end{prop}
+
+\begin{prop}\ollabel{prop:Nec-rule}
+  Jika $!A$ valid, maka $\Box!A$ juga valid. 
+\end{prop}
+
+\begin{proof}
+  Andaikan $\Entails !A$. Untuk menunjukkan $\Entails \Box!A$, ambillah
+  suatu model $\mModel{M} = \tuple{W, R, V}$ dan $w \in W$. Jika $Rww'$,
+  maka $\mSat{M}{!A}[w']$, karena $!A$ valid, sehingga
+  $\mSat{M}{\Box!A}[w]$ juga. Karena $\mModel{M}$ dan $w$ sebarang,
+  $\Entails \Box!A$.
+\end{proof}
+
+\begin{prob}
+  Tunjukkan bahwa formula-formula berikut valid:
+  \begin{enumerate}
+  \item $\Box p \lif \Box (q \lif p)$;
+  \item $\Box \lnot \lfalse$;
+  \item $\Box p \lif (\Box q \lif \Box p)$.
+  \end{enumerate}
+\end{prob}
+
+\begin{prob}
+  Tunjukkan bahwa $!A \lif \Box!A$ valid dalam kelas $\mClass{C}$ yang
+  beranggotakan model-model $\mModel{M} = \tuple{W, R, V}$ dengan
+  $W = \{w\}$. Demikian pula, tunjukkan bahwa $!B \lif \Box !A$ dan
+  $\Diamond !A \lif !B$ valid dalam kelas model-model
+  $\mModel{M} = \tuple{W, R, V}$ dengan $R = \emptyset$.
+\end{prob}
+
+\end{document}

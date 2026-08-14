@@ -1,0 +1,82 @@
+% Bagian: counterfactuals
+% Bab: minimal-change-semantics
+% Subbagian: transitivity
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cnt}{min}{tra}
+
+\olsection{Transitivitas}
+
+Bagi kondisional material berlaku aturan rantai: $!A \lif !B, !B \lif !C
+\Entails !A \lif !C$. Dengan kata lain, kondisional material bersifat
+transitif. Apakah hal yang sama berlaku bagi kontrafaktual? Perhatikan contoh
+berikut dari Stalnaker.
+\begin{quote}
+  Seandainya J.~Edgar Hoover lahir sebagai orang Rusia, ia akan menjadi
+  seorang Komunis.
+
+  Seandainya J.~Edgar Hoover seorang Komunis, ia akan menjadi pengkhianat.
+
+  Oleh karena itu, seandainya J.~Edgar Hoover lahir sebagai orang Rusia, ia
+  akan menjadi pengkhianat.
+\end{quote}
+Seandainya Hoover lahir (pada waktu yang sama dengan waktu kelahirannya yang
+sebenarnya), bukan di Amerika Serikat, melainkan di Rusia, ia akan tumbuh di
+Uni Soviet dan menjadi seorang Komunis (mari kita andaikan demikian). Jadi,
+premis pertama benar. Demikian pula, premis kedua benar jika dipertimbangkan
+secara terpisah. Namun, kesimpulannya salah: seandainya lahir di Uni Soviet,
+besar kemungkinan Hoover akan menjadi seorang Komunis yang bersemangat dan
+bukan pengkhianat (terhadap negaranya). Pemberian nilai kebenaran secara
+intuitif ini didukung oleh penjelasan Stalnaker--Lewis. Dunia mungkin yang
+paling dekat dengan dunia kita dan hanya berbeda dalam hal tempat kelahiran
+Hoover ialah dunia tempat Hoover tumbuh menjadi warga Uni Soviet yang baik.
+Inilah dunia mungkin terdekat tempat anteseden premis pertama dan anteseden
+kesimpulan benar, dan di dunia itu Hoover merupakan anggota Partai Komunis
+yang setia sehingga bukan pengkhianat. Akan tetapi, untuk menilai premis
+kedua, kita harus melihat dunia yang berbeda: dunia terdekat tempat Hoover
+seorang Komunis, yaitu dunia tempat ia lahir di Amerika Serikat, beralih
+menjadi Komunis, dan dengan demikian menjadi pengkhianat.\footnote{Tentu saja,
+  untuk memahami kekuatan contoh ini kita harus menerima beberapa asumsi
+  metafisis dan politis, misalnya bahwa Hoover mungkin saja lahir dari orang
+  tua Rusia, atau bahwa kaum Komunis di Amerika Serikat pada dasawarsa 1950-an
+  merupakan pengkhianat terhadap negara mereka.}
+
+\begin{prob}
+  Temukan contoh intuitif yang meyakinkan bagi kegagalan transitivitas
+  kontrafaktual.
+\end{prob}
+
+\begin{ex}\ollabel{ex:trans-counterex}
+  Semantik bola membuat inferensi tersebut tidak valid, yakni kita mempunyai
+  $p \cif q, q \cif r \Entails/ p \cif r$. Perhatikan model $\mModel{M}
+  = \tuple{W, O, V}$ dengan $W = \{w, w_1, w_2\}$, $O_w = \{\{w\}, \{w,
+  w_1\}, \{w, w_1, w_2\}\}$, $V(p) = \{w_2\}$, $V(q) = \{w_1, w_2\}$,
+  dan $V(r) = \{w_1\}$. Terdapat bola yang memuat dunia-$p$, yaitu $S =
+  \{w, w_1, w_2\}$, dan $p \lif q$ benar pada semua dunia di dalamnya,
+  sehingga $\mSat{M}{p \cif q}[w]$. Terdapat pula bola yang memuat dunia-$q$,
+  yaitu $S' = \{w, w_1\}$, dan $\mSat{M}{q \lif r}$ berlaku pada semua dunia di
+  dalamnya, sehingga $\mSat{M}{q \cif r}[w]$. Namun, bola yang memuat
+  dunia-$p$, $\{w, w_1, w_2\}$, memuat suatu dunia, yaitu~$w_2$, tempat
+  $\mSat/{M}{p \lif r}[w_2]$.
+\end{ex}
+
+\begin{prob}
+Gambarlah diagram bola yang bersesuaian dengan model tandingan dalam
+\olref[cnt][min][tra]{ex:trans-counterex}.
+\end{prob}
+
+\begin{prob}
+  Dalam \olref[cnt][min][tra]{ex:trans-counterex}, dunia $w_2$ adalah dunia
+  tempat Hoover lahir di Rusia, menjadi komunis, dan bukan pengkhianat,
+  sedangkan $w_1$ adalah dunia tempat Hoover lahir di Amerika Serikat,
+  menjadi komunis, dan menjadi pengkhianat. Dalam model ini, $w_1$ lebih
+  dekat dengan~$w$ daripada $w_2$. Apakah hal ini perlu? Dapatkah Anda
+  memberikan model tandingan yang tidak mengandaikan bahwa kelahiran Hoover
+  di Rusia merupakan kemungkinan yang lebih jauh daripada keberadaan Hoover
+  sebagai seorang Komunis?
+\end{prob}
+
+\end{document}

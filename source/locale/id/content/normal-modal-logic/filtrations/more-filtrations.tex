@@ -1,0 +1,137 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: more-filtrations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{fil}{acc}
+
+\olsection{Filtrasi dan Sifat Relasi Aksesibilitas}
+
+Seperti telah dicatat, filtrasi dari model universal, serial, dan refleksif
+selalu juga bersifat universal, serial, dan refleksif, berturut-turut. Namun,
+tidak setiap filtrasi dari model simetris atau transitif juga bersifat
+simetris atau transitif, berturut-turut. Meskipun demikian, dalam beberapa kasus kita dapat
+mendefinisikan filtrasi agar sifat-sifat itu tetap berlaku. Untuk
+melakukannya, kita mengikuti definisi filtrasi terkasar, tetapi menambahkan
+syarat-syarat lain pada definisi~$R^*$. Misalkan $\Gamma$ tertutup terhadap
+sub-!!{formula}s. Tinjau relasi~$C_i(u,v)$ dalam
+\olref{tab:Cn-filtrations} antara dunia $u$, $v$ dalam suatu model
+$\mModel{M} =\tuple{W, R, V}$. Kita dapat mendefinisikan $R^*[u][v]$
+berdasarkan kombinasi syarat-syarat tersebut. Sebagai contoh, jika kita
+menetapkan bahwa $R^*[u][v]$ jika dan hanya jika syarat $C_1(u,v)$ berlaku,
+kita memperoleh tepat filtrasi terkasar. Jika kita menetapkan bahwa
+$R^*[u][v]$ jika dan hanya jika $C_1(u,v)$ dan $C_2(u, v)$ keduanya berlaku,
+kita memperoleh filtrasi yang berbeda. Filtrasi itu ``lebih halus'' daripada
+filtrasi terkasar karena lebih sedikit pasangan dunia yang memenuhi
+$C_1(u,v)$ dan $C_2(u,v)$ daripada yang memenuhi $C_1(u,v)$ saja.
+
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{|ll|}
+    \hline
+    \multirow{2}{*}{$C_1(u,v)$:}
+    \iftag{prvBox}{&
+      jika $\Box!A \in \Gamma$ dan $\mSat{M}{\Box!A}[u]$,
+      maka $\mSat{M}{!A}[v]$;\iftag{prvDiamond}{ dan}{}\\}{}
+    \iftag{prvDiamond}{&
+      jika $\Diamond!A \in \Gamma$ dan $\mSat{M}{!A}[v]$,
+      maka $\mSat{M}{\Diamond!A}[u]$; \\}{}
+    \hline
+    \multirow{2}{*}{$C_2(u,v)$:}
+    \iftag{prvBox}{&
+      jika $\Box!A \in \Gamma$ dan $\mSat{M}{\Box!A}[v]$,
+      maka $\mSat{M}{!A}[u]$;\iftag{prvDiamond}{ dan}{}\\}{}
+    \iftag{prvDiamond}{&
+      jika $\Diamond!A \in \Gamma$ dan $\mSat{M}{!A}[u]$,
+      maka $\mSat{M}{\Diamond!A}[v]$; \\}{}
+    \hline
+    \multirow{2}{*}{$C_3(u,v)$:}
+    \iftag{prvBox}{&
+      jika $\Box!A \in \Gamma$ dan $\mSat{M}{\Box!A}[u]$,
+      maka $\mSat{M}{\Box!A}[v]$;\iftag{prvDiamond}{ dan}{}\\}{}
+    \iftag{prvDiamond}{&
+      jika $\Diamond!A \in \Gamma$ dan $\mSat{M}{\Diamond!A}[v]$,
+      maka $\mSat{M}{\Diamond!A}[u]$; \\}{}
+    \hline
+    \multirow{2}{*}{$C_4(u,v)$:}
+    \iftag{prvBox}{&
+      jika $\Box!A \in \Gamma$ dan $\mSat{M}{\Box!A}[v]$,
+      maka $\mSat{M}{\Box!A}[u]$;\iftag{prvDiamond}{ dan}{}\\}{}
+    \iftag{prvDiamond}{&
+      jika $\Diamond!A \in \Gamma$ dan $\mSat{M}{\Diamond!A}[u]$,
+      maka $\mSat{M}{\Diamond!A}[v]$; \\}{}
+    \hline
+    \end{tabular}
+  \caption{Syarat pada dunia mungkin untuk mendefinisikan filtrasi.}
+  \ollabel{tab:Cn-filtrations}
+\end{table}
+
+\begin{thm}\ollabel{thm:more-filtrations}
+  Misalkan $\mModel{M} =\tuple{W,R,V}$ suatu model dan $\Gamma$ tertutup
+  terhadap sub-!!{formula}s. Misalkan $W^*$ dan $V^*$ didefinisikan seperti
+  dalam \olref[fil]{defn:filtration}. Maka:
+  \begin{enumerate}
+  \item Andaikan $R^*[u][v]$ jika dan hanya jika $C_1(u, v) \land
+    C_2(u,v)$. Maka $R^*$ simetris, dan
+    $\mModel{M^*} = \tuple{W^*,R^*,V^*}$ merupakan filtrasi jika
+    $\mModel{M}$ simetris.
+  \item Andaikan $R^*[u][v]$ jika dan hanya jika $C_1(u, v)
+    \land C_3(u,v)$. Maka $R^*$ transitif, dan
+    $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ merupakan filtrasi jika
+    $\mModel{M}$ transitif.
+  \item Andaikan $R^*[u][v]$ jika dan hanya jika $C_1(u, v) \land C_2(u,v)
+    \land C_3(u,v) \land C_4(u,v)$. Maka $R^*$ simetris dan transitif, dan
+    $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ merupakan filtrasi jika
+    $\mModel{M}$ simetris dan transitif.
+  \item Andaikan $R^*$ didefinisikan dengan $R^*[u][v]$ jika dan hanya jika
+    $C_1(u, v) \land C_3(u,v) \land C_4(u,v)$. Maka $R^*$ transitif dan
+    Euklidean, dan $\mModel{M^*}=\tuple{W^*,R^*,V^*}$ merupakan filtrasi jika
+    $\mModel{M}$ transitif dan Euklidean.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Langsung terlihat bahwa $R^*$ simetris, sebab $C_1(u,v)
+      \Leftrightarrow C_2(v,u)$ dan $C_2(u,v) \Leftrightarrow
+      C_1(v,u)$. Jadi, tinggal ditunjukkan bahwa jika $\mModel{M}$ simetris,
+      maka $\mModel{M^*}$ merupakan filtrasi melalui~$\Gamma$. Syarat
+      $C_1(u,v)$ menjamin bahwa
+      \iftag{prvBox}{%
+        \iftag{prvDiamond}{%
+          \olref[fil]{defn:filtration-R2} dan
+          \olref[fil]{defn:filtration-R3} dari
+          \olref[fil]{defn:filtration}}{%
+          \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R2}}}{%
+        \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R3}}
+      terpenuhi. Jadi, kita hanya perlu memverifikasi
+      \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R1},
+      yakni bahwa $Ruv$ mengimplikasikan $R^*[u][v]$.
+
+      Jadi, andaikan $Ruv$. Untuk menunjukkan $R^*[u][v]$, kita harus
+      menetapkan bahwa $C_1(u,v)$ dan $C_2(u,v)$ berlaku. Untuk $C_1$:
+      \iftag{prvBox}{jika $\Box!A \in\Gamma$ dan
+        $\mSat{M}{\Box!A}[u]$, maka berlaku pula $\mSat{M}{!A}[v]$ (sebab
+        $Ruv$).\iftag{prvDiamond}{ Demikian pula, }{}}{}\iftag{prvDiamond}{
+        jika $\Diamond!A \in \Gamma$ dan $\mSat{M}{!A}[v]$, maka
+        $\mSat{M}{\Diamond!A}[u]$ karena $Ruv$.}{} Untuk $C_2$:
+      \iftag{prvBox}{jika $\Box!A \in \Gamma$ dan
+        $\mSat{M}{\Box!A}[v]$, maka berdasarkan simetri $Ruv$
+        mengimplikasikan $Rvu$, sehingga $\mSat{M}{!A}[u]$.
+        \iftag{prvDiamond}{ Demikian pula, }{}}{}\iftag{prvDiamond}{jika
+        $\Diamond!A \in\Gamma$ dan $\mSat{M}{!A}[u]$, maka
+        $\mSat{M}{\Diamond!A}[v]$ (sebab berdasarkan simetri $Rvu$).}{}
+    \item Latihan.
+    \item Latihan.
+    \item Latihan.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[nml][fil][acc]{thm:more-filtrations}.
+\end{prob}
+
+\end{document}

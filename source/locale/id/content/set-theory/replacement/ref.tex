@@ -1,0 +1,46 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{replacement}{ref}
+\olsection{Penggantian dan Refleksi}
+
+Upaya terakhir kita untuk membenarkan Penggantian melalui \stagesinex
+berawal dari suatu hasil yang mendalam dan indah:\footnote{Pengingat: semua
+formula dapat mempunyai parameter (kecuali dinyatakan sebaliknya secara
+eksplisit).}
+%In this, I will use overlining, such as $x_1, \ldots, x_n$, to
+%abbreviate ``$x_1, \ldots, x_n$'': 
+\begin{thm}[Skema Refleksi]\ollabel{reflectionschema}
+Untuk sebarang formula~$\phi$:
+\[
+\forall \alpha \exists \beta > \alpha (\forall x_1 \ldots, x_n \in
+V_\beta)(\phi(x_1, \ldots, x_n) \liff \phi^{V_\beta}(x_1, \ldots, x_n))
+\]
+\end{thm}
+\noindent
+Seperti dalam \olref[sth][replacement][strength]{formularelativization},
+$\phi^{V_\beta}$ merupakan hasil membatasi setiap kuantor dalam~$\phi$ pada
+himpunan~$V_\beta$. Jadi, secara intuitif, Refleksi mengatakan hal berikut:
+jika $\phi$ benar dalam seluruh hierarki, maka $\phi$ benar dalam
+\emph{segmen-segmen awal} hierarki pada ketinggian yang tak berbatas.
+
+\citet{Montague1961} dan \citet{Levy1960} menunjukkan bahwa (rumusan yang
+sesuai dari) Penggantian dan Refleksi ekuivalen modulo~$\Z$, sehingga
+menambahkan salah satunya menghasilkan~$\ZF$. (Kita membuktikan hasil-hasil
+ini dalam \olref[sth][replacement][refproofs]{sec}.) Mengingat ekuivalensi
+ini, orang mungkin berharap dapat membenarkan Refleksi dan Penggantian melalui
+\stagesinex{} sebagai berikut: berdasarkan \stagesinex, hierarki seharusnya
+sangat, sangat tinggi---begitu tinggi sehingga tidak ada sesuatu pun yang
+dapat kita katakan mengenainya yang cukup untuk membatasi ketinggiannya. Kita
+dapat memahami hal ini sebagai gagasan bahwa, jika suatu kalimat~$\phi$ benar
+dalam seluruh hierarki, maka kalimat itu benar dalam segmen-segmen awal
+hierarki pada ketinggian yang tak berbatas. Itulah persis Refleksi.
+
+Sekali lagi, ini tampak sebagai upaya yang sungguh menjanjikan untuk memberi
+Penggantian suatu pembenaran intrinsik. Namun, ada terlalu banyak hal yang
+perlu dikatakan untuk membahasnya di sini. Sekarang Anda harus memutuskan
+sendiri apakah upaya itu berhasil.\footnote{Meskipun demikian, Anda mungkin
+ingin melanjutkan dengan membaca \citet[95--100]{Incurvati2020}.}
+
+\end{document}

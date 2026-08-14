@@ -1,0 +1,145 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: interpretation-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{seq}{irl}
+
+\olsection{Interpretasi Aturan}
+
+Ingat kembali interpretasi sekuen: sekuen $\Gamma\Sequent\Delta$ benar
+dalam !!a{structure}~$\Struct{M}$ jika sekurang-kurangnya satu
+$!A\in\Gamma$ salah atau sekurang-kurangnya satu $!A\in\Delta$ benar. Kita
+dapat membaca aturan-aturan logis \Log{G3c} sebagai pengodean syarat
+kebenaran !!{formula}s utamanya. Tinjau \RightR{\lif}. !!^{formula} utamanya
+adalah $!A\lif !B$. Formula itu benar jika $!A$ salah atau $!B$ benar. Maka
+sekuen $\ \Sequent !A\lif !B$ benar jika dan hanya jika
+$!A\Sequent !B$ benar. Jika kita menambahkan !!{formula}s konteks
+$\Gamma$, $\Delta$ masing-masing pada anteseden dan sukseden sekuen-sekuen
+tersebut, kita memperoleh tepat kesimpulan dan premis aturan
+\RightR{\lif}. Situasinya serupa bagi~\LeftR{\lif}. Formula
+$!A\lif !B$ salah jika $!A$ benar dan $!B$ salah. Jadi,
+$!A\lif !B\Sequent\ $ benar jika dan hanya jika baik $\ \Sequent !A$
+maupun $!B\Sequent\ $ benar. Kesimpulan \LeftR{\lif} ekuivalen dengan
+konjungsi premis-premisnya. Pola ini memastikan bahwa aturan \Log{G3c}
+sahih (jika semua premis benar, kesimpulannya benar). Pola itu juga
+memastikan kelengkapan.
+
+Bahkan, syarat kebenaran setiap perangkai fungsional-kebenaran dapat
+dideskripsikan dengan cara ini sebagai himpunan sekuen. Hal ini mengikuti
+fakta bahwa setiap fungsi kebenaran dalam logika klasik dapat dideskripsikan
+oleh !!a{formula} dalam bentuk normal konjungtif: konjungsi dari disjungsi
+!!{formula}s atomik dan negasi formula atomik. Misalnya, tetapkan
+$!A\oplus !B$ benar jika dan hanya jika tepat salah satu dari $!A$ dan $!B$
+benar, yakni ``atau eksklusif''. Maka $!A\oplus !B$ benar jika dan hanya jika
+$(!A\lor !B)\land(\lnot !A\lor\lnot !B)$ benar, dan formula itu salah jika
+$(\lnot !A\lor !B)\land(!A\lor\lnot !B)$ benar. Karena itu, kita dapat
+memperkenalkan aturan kalkulus sekuen bagi $\oplus$ sebagai
+\begin{align*}
+&
+\Axiom$\Gamma \fCenter \Delta, !A, !B$
+\Axiom$!A, !B, \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\oplus}}
+\BinaryInf$\Gamma \fCenter \Delta, !A \oplus !B$
+\DisplayProof
+\\
+& \Axiom$!A, \Gamma \fCenter \Delta, !B$
+\Axiom$!B, \Gamma \fCenter \Delta, !A$
+\RightLabel{\LeftR{\oplus}}
+\BinaryInf$!A \oplus !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\end{align*}
+dan aturan-aturan ini juga sahih dan lengkap. Kesimpulan setiap aturan benar
+jika dan hanya jika semua premisnya benar.
+
+\begin{prob}
+Andaikan $!A\downarrow !B$ benar jika dan hanya jika baik $!A$ maupun $!B$
+tidak benar (``NOR''). Bagaimanakah aturan \Log{G3c} bagi perangkai tersebut?
+(Temukan dua sekuen yang benar secara bersamaan jika dan hanya jika
+$!A\downarrow !B$ benar. Hal itu memberikan aturan \RightR{\downarrow}.
+Kemudian temukan satu sekuen yang benar jika dan hanya jika
+$!A\downarrow !B$ salah. Hal itu memberikan aturan \LeftR{\downarrow}.)
+\end{prob}
+
+Dalam \Log{G3c}, setiap perangkai dan kuantor mempunyai tepat dua aturan:
+aturan kiri dan aturan kanan. Namun, dalam \Log{G1c} terdapat dua aturan
+\LeftR{\land} dan dua aturan \RightR{\lor}. Alasannya, sistem asal Gentzen
+\Log{LK}, yang menjadi model bagi \Log{G1c}, mempunyai varian~\Log{LJ} bagi
+suatu logika nonklasik yang penting, yaitu logika intuisionistik. Untuk
+mendapatkan sistem yang sahih dan lengkap bagi logika intuisionistik,
+sukseden setiap sekuen dalam~\Log{LJ} dibatasi agar memuat paling banyak satu
+!!{formula}. Hal ini membuat aturan \RightR{\lor} dari~\Log{G3c} tidak dapat
+digunakan, karena premisnya memuat baik $!A$ maupun $!B$ dalam sukseden.
+Karena itu, Gentzen menggunakan sepasang aturan \RightR{\lor} bagi
+\Log{LJ}, dan menggunakan aturan yang sama bagi~\Log{LK}. Versi
+intuisionistik~\Log{G1i} juga hanya merupakan~\Log{G1c} dengan semua sukseden
+dibatasi agar memuat paling banyak satu !!{formula}. (\Log{G3c} juga
+mempunyai versi intuisionistik, tetapi beberapa aturannya berbeda dari aturan
+yang bersesuaian dalam~\Log{G3c}. Misalnya, versi itu juga menggunakan
+sepasang aturan \RightR{\lor}.)
+
+Bahwa aturan-aturan struktural \Log{G1c} sahih mudah dilihat. Misalnya, jika
+$\Gamma\Sequent\Delta$ memuat !!{formula} salah di sebelah kiri atau
+!!{formula} benar di sebelah kanan, maka $\Gamma\Sequent\Delta,!A$ juga
+memuat formula yang sama; benar atau salahnya $!A$ tidak relevan. Jadi, jika
+premis \RightR{\Weakening} benar, kesimpulannya juga benar. Perhatikan bahwa
+konversnya tidak benar. Kesimpulan mungkin benar karena $!A$ benar, sedangkan
+premisnya tidak dijamin benar.
+
+Mengapa aturan struktural diperlukan? Kontraksi
+(\RightR{\Contraction}, \LeftR{\Contraction}), misalnya, diperlukan untuk
+!!{prove} $\ \Sequent !A\lor\lnot !A$. Jika kita mulai dengan
+$!A\Sequent !A$, mula-mula kita memperoleh $\Sequent !A,\lnot !A$ melalui
+\RightR{\lnot}. Kemudian kita dapat menggunakan dua versi
+\RightR{\lor} secara berurutan: sekali untuk memperoleh
+$!A\lor\lnot !A$ dari $\lnot !A$, dan sekali untuk memperoleh
+$!A\lor\lnot !A$ dari~$!A$. Hasilnya adalah
+$\ \Sequent !A\lor\lnot !A,!A\lor\lnot !A$. Jadi, untuk memperoleh
+$\Sequent !A\lor\lnot !A$ dalam~\Log{G1c}, kita harus dapat
+``mengontraksikan'' dua kemunculan !!{formula} yang sama dalam !!a{proof}:
+\[
+\Axiom$!A \fCenter !A$
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\fCenter !A, \lnot !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$\fCenter !A, !A \lor \lnot !A$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$\fCenter !A \lor \lnot !A, !A \lor \lnot !A$
+\RightLabel{\RightR{\Contraction}}
+\UnaryInf$\fCenter !A \lor \lnot !A$
+\DisplayProof
+\]
+Memang terdapat sekuen valid yang tidak dapat kita !!{prove} dalam~\Log{G1c}
+tanpa pelemahan atau kontraksi. Misalnya, !!a{proof} bagi sekuen
+$!A\Sequent !B\lif !A$ dalam~\Log{G1c} harus berakhir dengan
+\RightR{\lif} (karena hanya $!B\lif !A$ yang dapat menjadi formula utama),
+dan aturan itu memerlukan $!B,!A\Sequent !A$ sebagai premis. Premis tersebut
+pada gilirannya memerlukan \LeftR{\Weakening} agar dapat diperoleh dari
+aksioma $!A\Sequent !A$:
+\[
+\Axiom$!A \fCenter !A$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!B, !A \fCenter !A$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$!A \fCenter !B \lif !A$
+\DisplayProof
+\]
+
+Dalam \Log{G3c}, aturan kontraksi dan pelemahan sama sekali tidak diperlukan.
+Pelemahan sudah tercakup dalam aksioma. Kontraksi sebagian besar dapat
+dihindari dengan menggabungkan dua salinan konteks $\Gamma$, $\Delta$ dalam
+aturan berpremis dua menjadi satu. Baik \Log{G1c} maupun \Log{G3c} mempunyai
+aturan ``berbagi konteks'' semacam itu. Dalam aturan berpremis satu, kontraksi
+hanya diperlukan bagi \RightR{\lor}, \LeftR{\land}, \RightR{\lexists},
+dan~\LeftR{\lforall}. Versi aturan-aturan tersebut dalam~\Log{G3c} membuat
+kontraksi sepenuhnya berlebihan. Terdapat sistem \Log{G2c} (lihat
+\olref{tab:G2c}) yang aturan-aturan berpremis duanya mempunyai konteks
+independen. Dalam \Log{G2c}, kontraksi bahkan lebih penting daripada
+dalam~\Log{G1c}.
+
+\subfile{rules-G2c}
+
+\end{document}

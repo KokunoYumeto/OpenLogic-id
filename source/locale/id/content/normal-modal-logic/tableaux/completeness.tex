@@ -1,0 +1,241 @@
+% Bagian: normal-modal-logic
+% Bab: tableaux
+% Subbagian: completeness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{tab}{cpl}
+
+\olsection{Kelengkapan bagi \Log{K}}
+
+\begin{explain}
+  Untuk menunjukkan bahwa metode !!{tableau} lengkap, kita harus
+  menunjukkan bahwa setiap kali tidak terdapat !!{tableau} tertutup yang
+  menunjukkan $\Gamma \Proves !A$, berlaku $\Gamma \Entails/ !A$, yakni
+  terdapat suatu model tandingan. Namun, ``tidak terdapat !!{tableau}
+  tertutup'' berarti bahwa setiap cara yang dapat kita coba untuk
+  membangunnya pasti gagal tertutup. Kiatnya ialah melihat bahwa jika setiap
+  cara tersebut gagal tertutup, maka suatu cara tertentu yang
+  \emph{sistematis dan menyeluruh} juga gagal tertutup. Cara yang sistematis
+  dan menyeluruh ini akan tertutup jika terdapat !!{tableau} tertutup.
+  Tableau tunggal tersebut, di antara cabang-cabang terbukanya, akan memuat
+  semua informasi yang diperlukan untuk mendefinisikan suatu model tandingan.
+  Model tandingan yang diberikan oleh suatu cabang terbuka dalam tableau ini
+  akan memuat semua prefiks yang digunakan pada cabang tersebut sebagai
+  dunia-dunianya, dan !!a{propositional variable}~$p$ benar pada $\sigma$
+  jika dan hanya jika $\sFmla{\True}{p}[\sigma]$ muncul pada cabang tersebut.
+\end{explain}
+
+\begin{defn}
+  Suatu cabang dalam !!a{tableau} disebut lengkap jika, setiap kali cabang
+  itu memuat !!{formula} berprefiks $\sFmla{S}{!A}[\sigma]$ yang dapat
+  dikenai suatu aturan, cabang itu juga memuat
+  \begin{enumerate}
+    \item !!{formula}s berprefiks yang merupakan kesimpulan-kesimpulan
+      aturan yang bersesuaian, dalam kasus aturan proposisional yang
+      menumpuk formula;
+    \item salah satu !!{formula} kesimpulan yang bersesuaian, dalam kasus
+      aturan proposisional yang mencabangkan tableau;
+    \item sekurang-kurangnya satu kesimpulan yang mungkin, dalam kasus aturan
+      modal yang mensyaratkan prefiks baru;
+    \item kesimpulan yang bersesuaian bagi setiap prefiks yang muncul pada
+      cabang tersebut, dalam kasus aturan modal yang mensyaratkan prefiks
+      yang sudah digunakan.
+  \end{enumerate}
+\end{defn}
+
+\begin{explain}
+Sebagai contoh, suatu cabang lengkap memuat
+$\sFmla{\True}{!B}[\sigma]$ dan $\sFmla{\True}{!C}[\sigma]$ setiap kali
+cabang itu memuat $\sFmla{\True}{!B \land !C}[\sigma]$. Jika cabang itu
+memuat $\sFmla{\True}{!B \lor !C}[\sigma]$, cabang itu memuat sekurang-kurangnya
+salah satu dari $\sFmla{\True}{!B}[\sigma]$ dan
+$\sFmla{\True}{!C}[\sigma]$. Jika cabang itu memuat \iftag{prvBox}
+{$\sFmla{\False}{\Box !B}[\sigma]$}
+{$\sFmla{\True}{\Diamond !B}[\sigma]$}, cabang itu juga memuat
+\iftag{prvBox}{$\sFmla{\False}{!B}[\sigma.n]$}
+{$\sFmla{\True}{!B}[\sigma.n]$} untuk sekurang-kurangnya satu~$n$. Dan
+setiap kali cabang itu memuat \iftag{prvBox}
+{$\sFmla{\True}{\Box !B}[\sigma]$}
+{$\sFmla{\False}{\Diamond !B}[\sigma]$}, cabang itu juga memuat
+\iftag{prvBox}{$\sFmla{\True}{!B}[\sigma.n]$}
+{$\sFmla{\False}{!B}[\sigma.n]$} untuk setiap~$n$ sedemikian sehingga
+$\sigma.n$ sudah digunakan pada cabang tersebut.
+\end{explain}
+
+\begin{prop}\ollabel{prop:complete-tableau}
+  Setiap $\Gamma$ berhingga mempunyai !!a{tableau} yang setiap cabangnya
+  lengkap.
+\end{prop}
+
+\begin{proof}
+  Perhatikan suatu cabang terbuka dalam !!a{tableau} bagi~$\Gamma$. Terdapat
+  berhingga banyak !!{formula} berprefiks pada cabang tersebut yang dapat
+  dikenai suatu aturan. Dalam suatu urutan tetap (misalnya, dari atas ke
+  bawah), bagi setiap !!{formula} berprefiks tersebut yang belum memenuhi
+  syarat (1)--(4), terapkan aturan yang dapat dikenakan padanya untuk
+  memperluas cabang. Dalam beberapa kasus, hal ini akan menghasilkan
+  percabangan; terapkan aturan pada ujung setiap cabang yang dihasilkan bagi
+  semua !!{formula} berprefiks yang tersisa. Karena banyaknya !!{formula}
+  berprefiks berhingga, dan banyaknya prefiks yang sudah digunakan pada
+  cabang itu juga berhingga, prosedur ini akhirnya menghasilkan (mungkin
+  banyak) cabang yang memperluas cabang semula. Terapkan prosedur tersebut
+  pada masing-masing cabang dan ulangi. Berdasarkan konstruksi, setiap cabang
+  lengkap.
+\end{proof}
+
+\begin{thm}[Kelengkapan]
+  \ollabel{thm:tableau-completeness}
+  Jika $\Gamma$ tidak mempunyai !!{tableau} tertutup, maka $\Gamma$ dapat
+  dipenuhi.
+\end{thm}
+
+\begin{proof}
+Menurut proposisi tersebut, $\Gamma$ mempunyai !!a{tableau} yang setiap
+cabangnya lengkap. Karena himpunan tersebut tidak mempunyai !!{tableau}
+tertutup, himpunan itu mempunyai !!a{tableau} dengan sekurang-kurangnya satu
+cabang yang terbuka dan lengkap. Misalkan $\Delta$ adalah himpunan
+!!{formula} berprefiks pada cabang
+itu, dan $P(\Delta)$ adalah himpunan prefiks yang muncul di dalamnya.
+
+Kita mendefinisikan model~$\mModel{M(\Delta)} = \tuple{P(\Delta), R, V}$,
+dengan dunia-dunia berupa prefiks yang muncul dalam~$\Delta$, relasi
+aksesibilitas diberikan oleh
+\[
+R\sigma\sigma' \quad \text{jika dan hanya jika} \quad
+\sigma'=\sigma.n \quad \text{untuk suatu~$n$},
+\]
+dan
+\[
+V(p) = \Setabs{\sigma}{\sFmla{\True}{p}[\sigma] \in \Delta}.
+\]
+Kita menunjukkan dengan induksi atas~$!A$ bahwa jika
+$\sFmla{\True}{!A}[\sigma] \in \Delta$, maka
+$\mSat{M(\Delta)}{!A}[\sigma]$, dan jika
+$\sFmla{\False}{!A}[\sigma] \in \Delta$, maka
+$\mSat/{M(\Delta)}{!A}[\sigma]$.
+
+\begin{enumerate}
+  \item \indcase{!A}{p}{Jika $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$,
+    maka $\sigma \in V(p)$ (menurut definisi~$V$), sehingga
+    $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+    Jika $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, maka
+    $\sFmla{\True}{\indfrm}[\sigma] \notin \Delta$, sebab jika tidak,
+    cabang tersebut akan tertutup. Jadi, $\sigma \notin V(p)$, sehingga
+    $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}
+  \item \indcase{!A}{\lnot !B}{\iftag{probNot}{Latihan.}{Jika
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, maka
+      $\sFmla{\False}{!B}[\sigma] \in \Delta$ karena cabang tersebut
+      lengkap. Menurut hipotesis induksi,
+      $\mSat/{M(\Delta)}{!B}[\sigma]$, sehingga
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+      Jika $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, maka
+      $\sFmla{\True}{!B}[\sigma] \in \Delta$ karena cabang tersebut
+      lengkap. Menurut hipotesis induksi,
+      $\mSat{M(\Delta)}{!B}[\sigma]$, sehingga
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
+  \item \indcase{!A}{!B \land !C}{\iftag{probAnd}{Latihan.}{Jika
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, maka sekaligus
+      $\sFmla{\True}{!B}[\sigma] \in \Delta$ dan
+      $\sFmla{\True}{!C}[\sigma] \in \Delta$ karena cabang tersebut
+      lengkap. Menurut hipotesis induksi,
+      $\mSat{M(\Delta)}{!B}[\sigma]$ dan
+      $\mSat{M(\Delta)}{!C}[\sigma]$. Jadi,
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+      Jika $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, maka entah
+      $\sFmla{\False}{!B}[\sigma] \in \Delta$ atau
+      $\sFmla{\False}{!C}[\sigma] \in \Delta$ karena cabang tersebut
+      lengkap. Menurut hipotesis induksi, entah
+      $\mSat/{M(\Delta)}{!B}[\sigma]$ atau
+      $\mSat/{M(\Delta)}{!C}[\sigma]$. Jadi,
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
+  \item \indcase{!A}{!B \lor !C}{\iftag{probOr}{Latihan.}{Jika
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, maka entah
+      $\sFmla{\True}{!B}[\sigma] \in \Delta$ atau
+      $\sFmla{\True}{!C}[\sigma] \in \Delta$ karena cabang tersebut
+      lengkap. Menurut hipotesis induksi, entah
+      $\mSat{M(\Delta)}{!B}[\sigma]$ atau
+      $\mSat{M(\Delta)}{!C}[\sigma]$. Jadi,
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+      Jika $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, maka sekaligus
+      $\sFmla{\False}{!B}[\sigma] \in \Delta$ dan
+      $\sFmla{\False}{!C}[\sigma] \in \Delta$ karena cabang tersebut
+      lengkap. Menurut hipotesis induksi, sekaligus
+      $\mSat/{M(\Delta)}{!B}[\sigma]$ dan
+      $\mSat/{M(\Delta)}{!C}[\sigma]$. Jadi,
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
+  \item \indcase{!A}{!B \lif !C}{\iftag{probIf}{Latihan.}{Jika
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, maka entah
+      $\sFmla{\False}{!B}[\sigma] \in \Delta$ atau
+      $\sFmla{\True}{!C}[\sigma] \in \Delta$ karena cabang tersebut
+      lengkap. Menurut hipotesis induksi, entah
+      $\mSat/{M(\Delta)}{!B}[\sigma]$ atau
+      $\mSat{M(\Delta)}{!C}[\sigma]$. Jadi,
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+      Jika $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, maka sekaligus
+      $\sFmla{\True}{!B}[\sigma] \in \Delta$ dan
+      $\sFmla{\False}{!C}[\sigma] \in \Delta$ karena cabang tersebut
+      lengkap. Menurut hipotesis induksi, sekaligus
+      $\mSat{M(\Delta)}{!B}[\sigma]$ dan
+      $\mSat/{M(\Delta)}{!C}[\sigma]$. Jadi,
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
+  \item \indcase{!A}{\Box !B}{\iftag{probBox}{Latihan.}{Jika
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, maka, karena cabang
+      tersebut lengkap, $\sFmla{\True}{!B}[\sigma.n] \in \Delta$ bagi
+      setiap $\sigma.n$ yang sudah digunakan pada cabang, yakni bagi setiap
+      $\sigma' \in P(\Delta)$ sedemikian sehingga $R\sigma\sigma'$.
+      Menurut hipotesis induksi,
+      $\mSat{M(\Delta)}{!B}[\sigma']$ bagi setiap $\sigma'$ sedemikian
+      sehingga $R\sigma\sigma'$. Oleh karena itu,
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+      Jika $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, maka untuk suatu
+      $\sigma.n$, berlaku $\sFmla{\False}{!B}[\sigma.n] \in \Delta$ karena
+      cabang tersebut lengkap. Menurut hipotesis induksi,
+      $\mSat/{M(\Delta)}{!B}[\sigma.n]$. Karena $R\sigma(\sigma.n)$,
+      terdapat suatu~$\sigma'$ sedemikian sehingga
+      $\mSat/{M(\Delta)}{!B}[\sigma']$. Jadi,
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
+  \item \indcase{!A}{\Diamond !B}{\iftag{probDiamond}{Latihan.}{Jika
+      $\sFmla{\True}{\indfrm}[\sigma] \in \Delta$, maka untuk suatu
+      $\sigma.n$, berlaku $\sFmla{\True}{!B}[\sigma.n] \in \Delta$ karena
+      cabang tersebut lengkap. Menurut hipotesis induksi,
+      $\mSat{M(\Delta)}{!B}[\sigma.n]$. Karena $R\sigma(\sigma.n)$,
+      terdapat suatu~$\sigma'$ sedemikian sehingga
+      $\mSat{M(\Delta)}{!B}[\sigma']$. Jadi,
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.
+
+      Jika $\sFmla{\False}{\indfrm}[\sigma] \in \Delta$, maka, karena
+      cabang tersebut lengkap, $\sFmla{\False}{!B}[\sigma.n] \in \Delta$
+      bagi setiap $\sigma.n$ yang sudah digunakan pada cabang, yakni bagi
+      setiap $\sigma' \in P(\Delta)$ sedemikian sehingga
+      $R\sigma\sigma'$. Menurut hipotesis induksi,
+      $\mSat/{M(\Delta)}{!B}[\sigma']$ bagi setiap $\sigma'$ sedemikian
+      sehingga $R\sigma\sigma'$. Oleh karena itu,
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}}
+\end{enumerate}
+Karena $\Gamma \subseteq \Delta$, berlaku $\mSat{M(\Delta)}{\Gamma}$.
+\end{proof}
+
+\begin{prob}
+Lengkapi pembuktian \olref[nml][tab][cpl]{thm:tableau-completeness}.
+\end{prob}
+
+\begin{cor}
+\ollabel{cor:entailment-completeness}
+Jika $\Gamma \Entails !A$, maka $\Gamma \Proves !A$.
+\end{cor}
+
+\begin{cor}
+\ollabel{cor:weak-completeness}
+Jika $!A$ benar dalam semua model, maka $\Proves !A$.
+\end{cor}
+
+\end{document}

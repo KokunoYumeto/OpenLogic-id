@@ -1,0 +1,226 @@
+% Part: many-valued-logic
+% Chapter: three-valued-logics
+% Section: multiple-designation
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{thr}{mul}
+
+\olsection{Menetapkan Bukan Hanya~$\True$}
+
+Sejauh ini, semua logika yang kita lihat mempunyai himpunan nilai kebenaran
+yang ditetapkan $V^+=\{\True\}$; yakni, sesuatu dianggap benar jika dan hanya
+jika nilai kebenarannya adalah~$\True$. Akan tetapi, sesuatu dapat pula
+dianggap benar asalkan tidak bernilai~$\False$. Dalam hal itu, kita memperoleh
+suatu logika dengan menetapkan dalam matriksnya, misalnya,
+$V^+=\{\True,\Undef\}$.
+
+\begin{defn}
+\emph{Logika paradoks}~$\LogLP$ didefinisikan dengan menggunakan matriks
+berikut:
+\begin{enumerate}
+  \item Bahasa proposisional baku~$\Lang L_0$ dengan $\lnot$, $\land$,
+  $\lor$, $\lif$.
+  \item Himpunan nilai kebenaran~$V=\{\True,\Undef,\False\}$.
+  \item $\True$ dan~$\Undef$ ditetapkan, yakni
+  $V^+=\{\True,\Undef\}$.
+  \item Fungsi kebenarannya sama seperti dalam logika Kleene kuat.
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+\emph{Logika ketakbermaknaan} Halld\'en~$\LogHal$ didefinisikan dengan
+menggunakan matriks berikut:
+\begin{enumerate}
+  \item Bahasa proposisional baku~$\Lang L_0$ dengan $\lnot$, $\land$,
+  $\lor$, $\lif$, dan suatu konektif $1$-tempat~$+$.
+  \item Himpunan nilai kebenaran~$V=\{\True,\Undef,\False\}$.
+  \item $\True$ dan~$\Undef$ ditetapkan, yakni
+  $V^+=\{\True,\Undef\}$.
+  \item Fungsi kebenarannya sama seperti dalam logika Kleene lemah, ditambah
+  dengan operator ``tidak bermakna'':
+  \begin{center}
+    \begin{tabular}{c|c}
+    $\tf{+}$ & \\
+    \hline
+    $\True$ & $\False$ \\
+    $\Undef$ & $\True$ \\
+    $\False$ & $\False$
+    \end{tabular}
+  \end{center}
+\end{enumerate}
+\end{defn}
+
+Berbeda dari logika Kleene yang tabel kebenarannya digunakan oleh kedua logika
+ini, kedua logika ini \emph{memang} mempunyai tautologi.
+
+\begin{prop}\ollabel{prop:LP-taut-CL} Tautologi dari~$\LogLP$ sama dengan
+  tautologi logika proposisional klasik.
+\end{prop}
+
+\begin{proof}
+  Berdasarkan \olref[syn][sub]{prop:mvl-cl}, jika
+  $\Entails[\LogLP]!A$, maka $\Entails[\LogCL]!A$. Untuk menunjukkan arah
+  sebaliknya, kita akan membuktikan bahwa jika terdapat
+  !!a{valuation}~$\pAssign v\colon\PVar\to\{\False,\True,\Undef\}$
+  sedemikian sehingga $\pValue v(!A)[\LogKs]=\False$, maka terdapat
+  !!a{valuation}~$\pAssign{v'}\colon\PVar\to\{\False,\True\}$ sedemikian
+  sehingga $\pValue{v'}(!A)[\LogCL]=\False$. Hal ini membuktikan hasil bagi
+  $\LogLP$, sebab $\LogKs$ dan~$\LogLP$ mempunyai fungsi kebenaran
+  karakteristik yang sama, sedangkan $\False$ merupakan satu-satunya nilai
+  kebenaran~$\LogLP$ yang tidak ditetapkan (itulah satu-satunya perbedaan
+  antara $\LogLP$ dan~$\LogKs$). Jadi, jika
+  $\Entails/[\LogLP]!A$, maka untuk suatu !!{valuation}~$\pAssign v$ berlaku
+  $\pValue v(!A)[\LogLP]=\pValue v(!A)[\LogKs]=\False$. Berdasarkan klaim
+  yang sedang kita buktikan, $\pValue{v'}(!A)[\LogCL]=\False$; yakni,
+  $\Entails/[\LogCL]!A$.
+
+  Untuk membuktikan klaim tersebut, mula-mula kita definisikan $\pAssign{v'}$
+  dengan
+  \[
+    \pAssign {v'}(p) =
+    \begin{cases}
+    \True & \text{jika } \pAssign {v}(p) \in \{\True, \Undef\}\\
+    \False & \text{dalam kasus lainnya.}
+  \end{cases}
+  \]
+  Sekarang kita buktikan dengan induksi pada~$!A$ bahwa (a)~jika
+  $\pValue v(!A)[\LogKs]=\False$, maka
+  $\pValue{v'}(!A)[\LogCL]=\False$, dan (b)~jika
+  $\pValue v(!A)[\LogKs]=\True$, maka
+  $\pValue{v'}(!A)[\LogCL]=\True$.
+  \begin{enumerate}
+    \item Dasar induksi: $!A\ident p$. Berdasarkan
+    \olref[syn][val]{defn:pValue}, jika $\pValue v(!A)[\LogKs]=\False$,
+    maka $\pAssign v(p)=\False$, sehingga menurut definisi~$\pAssign{v'}$,
+    $\pValue{v'}(!A)[\LogCL]=\pAssign{v'}(p)=\False$. Jika
+    $\pValue v(!A)[\LogKs]=\True$, maka $\pAssign v(p)=\True$, sehingga
+    $\pValue{v'}(!A)[\LogCL]=\pAssign{v'}(p)=\True$. Jadi, (a) dan~(b)
+    keduanya berlaku.
+
+    Untuk langkah induksi, bahas kasus-kasus berikut:
+    \item $!A\ident\lnot !B$.
+    \begin{enumerate}
+      \item Andaikan $\pValue v(\lnot!B)[\LogKs]=\False$. Menurut definisi
+      $\tf{\lnot}[\LogKs]$, $\pValue v(!B)[\LogKs]=\True$. Berdasarkan
+      hipotesis induksi dalam kasus~(b), kita memperoleh
+      $\pValue{v'}(!B)[\LogCL]=\True$, sehingga
+      $\pValue{v'}(\lnot !B)[\LogCL]=\False$.
+      \item Andaikan $\pValue v(\lnot!B)[\LogKs]=\True$. Menurut definisi
+      $\tf{\lnot}[\LogKs]$, $\pValue v(!B)[\LogKs]=\False$. Berdasarkan
+      hipotesis induksi dalam kasus~(a), kita memperoleh
+      $\pValue{v'}(!B)[\LogCL]=\False$, sehingga
+      $\pValue{v'}(\lnot !B)[\LogCL]=\True$.
+    \end{enumerate}
+
+    \item $!A\ident(!B\land !C)$.
+    \begin{enumerate}
+      \item Andaikan $\pValue v(!B\land !C)[\LogKs]=\False$. Menurut
+      definisi $\tf{\land}[\LogKs]$, $\pValue v(!B)[\LogKs]=\False$ atau
+      $\pValue v(!C)[\LogKs]=\False$. Berdasarkan hipotesis induksi dalam
+      kasus~(a), kita memperoleh $\pValue{v'}(!B)[\LogCL]=\False$ atau
+      $\pValue{v'}(!C)[\LogCL]=\False$, sehingga
+      $\pValue{v'}(!B\land !C)[\LogCL]=\False$.
+      \item Andaikan $\pValue v(!B\land !C)[\LogKs]=\True$. Menurut definisi
+      $\tf{\land}[\LogKs]$, $\pValue v(!B)[\LogKs]=\True$ dan
+      $\pValue v(!C)[\LogKs]=\True$. Berdasarkan hipotesis induksi dalam
+      kasus~(b), kita memperoleh $\pValue{v'}(!B)[\LogCL]=\True$ dan
+      $\pValue{v'}(!C)[\LogCL]=\True$, sehingga
+      $\pValue{v'}(!B\land !C)[\LogCL]=\True$.
+    \end{enumerate}
+  \end{enumerate}
+
+  Kedua kasus lainnya serupa dan ditinggalkan sebagai latihan. Sebagai
+  alternatif, pembuktian di atas menetapkan hasil bagi semua !!{formula}s yang
+  hanya memuat $\lnot$ dan~$\land$. Selanjutnya kita dapat menggunakan fakta
+  bahwa, baik dalam $\LogKs$ maupun~$\LogCL$, bagi setiap $\pAssign v$ berlaku
+  $\pValue v(!B\lor !C)=\pValue v(\lnot(\lnot!B\land\lnot !C))$ dan
+  $\pValue v(!B\lif !C)=\pValue v(\lnot(!B\land\lnot !C))$.
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[mvl][thr][mul]{prop:LP-taut-CL}; yakni,
+  buktikan (a) dan~(b) untuk kasus $!A\ident(!B\lor !C)$ dan
+  $!A\ident(!B\lif !C)$.
+\end{prob}
+
+\begin{prob}
+Buktikan bahwa setiap tautologi klasik merupakan tautologi dalam~$\LogHal$.
+\end{prob}
+
+Meskipun mempunyai tautologi yang sama dengan logika klasik, kedua logika ini
+mempunyai relasi konsekuensi yang berbeda. Sebagai contoh, $\LogLP$ bersifat
+\emph{parakonsisten}, sebab $\lnot p,p\Entails/ q$; jadi, prinsip ledakan
+$\lnot !A,!A\Entails !B$ tidak berlaku secara umum. (Prinsip itu berlaku pada
+beberapa kasus $!A$ dan~$!B$, misalnya jika $!B$ merupakan tautologi.)
+
+\begin{prob}
+  Manakah di antara relasi-relasi berikut yang berlaku dalam (a)~$\LogLP$ dan
+  (b)~$\LogHal$? Berikan tabel kebenaran bagi masing-masing relasi.
+  \begin{enumerate}
+    \item $p,p\lif q\Entails q$
+    \item $\lnot q,p\lif q\Entails\lnot p$
+    \item $p\lor q,\lnot p\Entails q$
+    \item $\lnot p,p\Entails q$
+    \item $p\Entails p\lor q$
+    \item $p\lif q,q\lif r\Entails p\lif r$
+  \end{enumerate}
+\end{prob}
+
+Apa yang terjadi jika $\Undef$ ditetapkan dalam~$\LogLuk[3]$?
+
+\begin{defn}
+  \emph{R-Mingle bernilai~$3$}~$\LogRM[3]$ didefinisikan dengan menggunakan
+  matriks berikut:
+  \begin{enumerate}
+    \item Bahasa proposisional baku~$\Lang L_0$ dengan $\lfalse$, $\lnot$,
+    $\land$, $\lor$, $\lif$.
+    \item Himpunan nilai kebenaran~$V=\{\True,\Undef,\False\}$.
+    \item $\True$ dan~$\Undef$ ditetapkan, yakni
+    $V^+=\{\True,\Undef\}$.
+    \item Fungsi kebenarannya sama seperti dalam logika
+    \L ukasiewicz~$\LogLuk[3]$.
+  \end{enumerate}
+\end{defn}
+
+\begin{prob}
+  Manakah di antara relasi-relasi berikut yang berlaku dalam~$\LogRM[3]$?
+  \begin{enumerate}
+    \item $p,p\lif q\Entails q$
+    \item $p\lor q,\lnot p\Entails q$
+    \item $\lnot p,p\Entails q$
+    \item $p\Entails p\lor q$
+  \end{enumerate}
+\end{prob}
+
+Tabel kebenaran yang berbeda kadang-kadang dapat menghasilkan logika yang sama
+(relasi perikutan yang sama) hanya dengan mengubah nilai-nilai yang ditetapkan.
+Sebagai contoh, hal ini terjadi jika dalam logika G\"odel kita menggunakan
+$V^+=\{\True,\Undef\}$ alih-alih~$\{\True\}$.
+
+\begin{prop}\ollabel{prop:gl-udes}
+  Matriks dengan $V=\{\False,\Undef,\True\}$,
+  $V^+=\{\True,\Undef\}$, dan fungsi kebenaran logika G\"odel bernilai~$3$
+  mendefinisikan logika klasik.
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[mvl][thr][mul]{prop:gl-udes} dengan menunjukkan bahwa bagi
+  logika~$\Log L$ yang didefinisikan sama seperti logika G\"odel tetapi dengan
+  $V^+=\{\True,\Undef\}$, jika $\Gamma\Entails/[\Log L]!B$, maka
+  $\Gamma\Entails/[\LogCL]!B$. Gunakan gagasan dalam
+  \olref[mvl][thr][mul]{prop:LP-taut-CL}; tetapi alih-alih membuktikan sifat
+  (a) dan~(b), tunjukkan bahwa $\pValue v(!A)[\LogGod]=\False$ jika dan hanya
+  jika $\pValue{v'}(!A)[\LogCL]=\False$ (dan karena itu
+  $\pValue v(!A)[\LogGod]\in\{\True,\Undef\}$ jika dan hanya jika
+  $\pValue{v'}(!A)[\LogCL]=\True$). Jelaskan mengapa hal ini membuktikan
+  proposisi tersebut.
+\end{prob}
+
+\end{document}

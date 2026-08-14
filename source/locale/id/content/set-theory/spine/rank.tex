@@ -1,0 +1,139 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{spine}{rank}
+\olsection{Peringkat}
+
+Sekarang kita telah mendefinisikan tahap-tahap sebagai $V_\alpha$, dan kita
+tahu bahwa setiap himpunan merupakan himpunan bagian dari suatu tahap, kita
+dapat mendefinisikan \emph{peringkat} suatu himpunan. Secara intuitif,
+peringkat $A$ adalah tahap pertama tempat $A$ terbentuk. Lebih tepatnya:
+
+\begin{defn}\ollabel{defnsetrank}
+Untuk setiap himpunan $A$, $\setrank{A}$ merupakan ordinal terkecil $\alpha$
+sedemikian sehingga $A \subseteq V_\alpha$.
+\end{defn}
+\begin{prop}\ollabel{ranksexist}
+	$\setrank{A}$ ada, untuk sebarang $A$.
+\end{prop}
+\begin{proof}
+	Ditinggalkan sebagai latihan.
+\end{proof}
+\begin{prob}
+	Buktikan \olref[sth][spine][rank]{ranksexist}.
+\end{prob}
+\noindent
+Pengurutan baik peringkat memungkinkan kita membuktikan beberapa hasil
+penting:
+\begin{prop}\ollabel{valphalowerrank}
+Untuk setiap ordinal $\alpha$,
+$V_\alpha = \Setabs{x}{\setrank{x} \in \alpha}$.
+\end{prop}
+
+\begin{proof}
+Jika $\setrank{x} \in \alpha$, maka
+$x \subseteq V_{\setrank{x}} \in V_\alpha$, sehingga $x \in V_\alpha$
+karena $V_\alpha$ bersifat poten (dengan menggunakan
+\olref[Valphabasic]{Valphabasicprops} beberapa kali). Sebaliknya, jika
+$x \in V_\alpha$, maka $x \subseteq V_\alpha$, sehingga
+$\setrank{x} \leq \alpha$; sekarang induksi transfinit sederhana menunjukkan
+bahwa $x \notin V_{\setrank{x}}$.
+\end{proof}
+\begin{prob}
+	Lengkapi induksi transfinit sederhana yang disebutkan dalam
+	\olref[sth][spine][rank]{valphalowerrank}.
+\end{prob}
+
+\begin{prop}\ollabel{rankmemberslower}
+Jika $B \in A$, maka $\setrank{B} \in \setrank{A}$.
+\end{prop}
+
+\begin{proof}
+$A \subseteq V_{\setrank{A}} = \Setabs{x}{\setrank{x} \in
+\setrank{A}}$ berdasarkan \olref{valphalowerrank}.
+\end{proof}
+\noindent
+Dengan menggunakan fakta ini, kita dapat menetapkan suatu hasil yang
+memungkinkan kita membuktikan berbagai hal tentang \emph{semua himpunan}
+melalui suatu bentuk induksi:
+
+\begin{thm}[Skema Induksi-$\in$]
+Untuk sebarang formula $\phi$:
+\[
+	\forall A((\forall x \in A)\phi(x) \lif \phi(A)) \lif \forall A \phi(A).
+\]
+\end{thm}
+
+\begin{proof}
+Kita akan membuktikan kontraposisinya. Andaikan
+$\lnot \forall A \phi(A)$. Berdasarkan Induksi Transfinit
+(\olref[ordinals][basic]{ordinductionschema}), terdapat suatu objek yang
+tidak bersifat $\phi$ dan peringkatnya sekecil mungkin; yakni suatu $A$ sedemikian
+sehingga $\lnot \phi(A)$ dan
+$\forall x(\setrank{x} \in \setrank{A} \lif \phi(x))$. Sekarang, jika
+$x \in A$, maka $\setrank{x} \in \setrank{A}$ berdasarkan
+\olref{rankmemberslower}, sehingga $\phi(x)$; yakni
+$(\forall x \in A)\phi(x) \land \lnot \phi(A)$.
+\end{proof}\noindent
+Berikut cara informal untuk menjelaskan hasil yang kuat ini. Katakan bahwa
+$\phi$ bersifat \emph{herediter} jika dan hanya jika, setiap kali semua
+!!{element} suatu himpunan bersifat $\phi$, himpunan itu sendiri juga
+bersifat $\phi$. Maka Induksi-$\in$ memberi tahu Anda hal berikut: jika
+$\phi$ bersifat herediter, setiap himpunan bersifat $\phi$.
+
+Untuk mengakhiri pembahasan peringkat (untuk saat ini), kita akan membuktikan
+beberapa klaim yang telah beberapa kali kita singgung sebelumnya.
+
+\begin{prop}\ollabel{ranksupstrict}
+$\setrank{A} = \supstrict_{x \in A}\setrank{x}$.
+\end{prop}
+
+\begin{proof}
+Misalkan $\alpha = \supstrict_{x \in A}\setrank{x}$. Berdasarkan
+\olref{rankmemberslower}, $\alpha \leq \setrank{A}$. Namun, jika $x \in A$,
+maka $\setrank{x} \in \alpha$, sehingga $x \in V_\alpha$ berdasarkan
+\olref{valphalowerrank}, dan karenanya $A \subseteq V_\alpha$, yakni
+$\setrank{A} \leq \alpha$. Maka $\setrank{A} = \alpha$.
+\end{proof}
+
+\begin{cor}\ollabel{ordsetrankalpha}
+Untuk setiap ordinal $\alpha$, $\setrank{\alpha} = \alpha$.
+\end{cor}
+
+\begin{proof}
+Untuk induksi transfinit, andaikan $\setrank{\beta} = \beta$ bagi semua
+$\beta \in \alpha$. Sekarang
+$\setrank{\alpha} = \supstrict_{\beta \in \alpha}\setrank{\beta} =
+\supstrict_{\beta \in \alpha}\beta = \alpha$ berdasarkan
+\olref{ranksupstrict}.
+%	First note that $\setrank{\alpha} \neq \beta$ for any $\beta \in
+%	\alpha$. For otherwise we would have $\beta = \setrank{\beta} \in
+%	\setrank{\alpha} = \beta$ by \olref{rankmemberslower}, i.e.,
+%	$\beta \in \beta$, a contradiction.
+%
+%	Now note that $\alpha \subseteq V_\alpha$. For $\alpha =
+%	\Setabs{\beta}{\beta \in \alpha}$ by
+%	\olref[sfr][ordinals][basic]{ordissetofsmallerord}. And if
+%	$\beta \in \alpha$ then $\beta \subseteq V_{\setrank{\beta}} =
+%	V_\beta \in V_\alpha$, hence $\beta \in V_\alpha$, by
+%	\olref[sfr][spine][Valphabasic]{Valphabasicprops} twice.
+\end{proof}
+
+Terakhir, berikut bukti singkat bagi hasil yang dijanjikan pada akhir
+\olref[foundation]{sec}, bahwa $\ZFminus$ membuktikan implikasi
+$\emph{Regularitas} \Rightarrow \emph{Fondasi}$. (Perhatikan bahwa gagasan
+``peringkat'' dan \olref{rankmemberslower} tersedia untuk digunakan dalam
+bukti ini karena---sebagaimana disebutkan pada awal bagian ini---keduanya
+dapat disajikan dengan menggunakan $\ZFminus + \text{Regularitas}$.)
+
+\begin{prop}[dengan bekerja dalam $\ZFminus + \text{Regularitas}$]\ollabel{zfminusregularityfoundation} Fondasi berlaku.
+\end{prop}
+
+\begin{proof}
+Tetapkan $A \neq \emptyset$, dan suatu $B \in A$ yang peringkatnya sekecil
+mungkin. Jika $c \in B$, maka $\setrank{c} \in \setrank{B}$ berdasarkan
+\olref{rankmemberslower}, sehingga $c \notin A$ berdasarkan pemilihan $B$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,74 @@
+% Bagian: counterfactuals
+% Bab: introduction
+% Subbagian: material-conditional
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cnt}{int}{mat}
+
+\olsection{Kondisional Material}
+
+Dalam bentuknya yang paling sederhana, kondisional dalam bahasa Indonesia
+adalah kalimat berbentuk ``Jika \dots, maka \dots,'' dengan bagian-bagian
+yang ditunjukkan oleh \dots{} itu sendiri merupakan kalimat, seperti ``Jika
+kepala pelayan yang melakukannya, maka tukang kebun tidak bersalah.'' Dalam
+kuliah logika pengantar, kita belajar menyimbolkan kondisional dengan
+menggunakan konektif~$\lif$: bagian-bagian yang ditunjukkan oleh \dots
+disimbolkan, misalnya, dengan !!{formula}~$!A$ dan~$!B$, lalu seluruh
+kondisional disimbolkan dengan $!A \lif !B$.
+
+Konektif~$\lif$ bersifat \emph{fungsional-kebenaran}, yakni nilai kebenaran---
+$\True$ atau $\False$---dari $!A \lif !B$ ditentukan oleh nilai kebenaran
+$!A$ dan~$!B$: $!A \lif !B$ benar jika dan hanya jika $!A$ salah atau $!B$
+benar, dan salah dalam keadaan lainnya. Secara relatif terhadap suatu
+penetapan nilai kebenaran~$\pAssign v$, kita mendefinisikan
+$\pSat{v}{!A \lif !B}$ jika dan hanya jika $\pSat/{v}{!A}$ atau
+$\pSat{v}{!B}$. Konektif~$\lif$ dengan semantik ini disebut
+\emph{kondisional material}.
+
+Definisi ini menghasilkan sejumlah fakta logis dasar. Pertama-tama, teorema
+deduksi berlaku bagi kondisional material:
+\begin{align}
+  \text{Jika } \Gamma, !A \Entails !B \text{, maka }
+  \Gamma \Entails !A \lif !B
+\end{align}
+Kondisional ini bersifat fungsional-kebenaran: $!A \lif !B$ dan
+$\lnot !A \lor !B$ ekuivalen:
+\begin{align}
+  !A \lif !B & \Entails \lnot !A \lor !B\\
+  \lnot !A \lor !B & \Entails !A \lif !B
+  \intertext{Kondisional material diikutkan oleh konsekuennya dan oleh
+    negasi antesedennya:}
+  !B & \Entails !A \lif !B\\
+  \lnot !A & \Entails !A \lif !B
+  \intertext{Kondisional material yang salah ekuivalen dengan konjungsi
+    antesedennya dan negasi konsekuennya: jika $!A \lif !B$ salah, maka
+    $!A \land \lnot !B$ benar, dan sebaliknya:}
+  \lnot(!A \lif !B) & \Entails !A \land \lnot !B\\
+  !A \land \lnot !B & \Entails \lnot(!A \lif !B)
+  \intertext{Kondisional material mendukung modus ponens:}
+  !A, !A \lif !B & \Entails !B
+  \intertext{Kondisional material memungkinkan aglomerasi:}
+  !A \lif !B,  !A \lif !C & \Entails !A \lif (!B \land !C)
+  \intertext{Kita selalu dapat memperkuat anteseden; yakni, kondisional
+    tersebut \emph{monoton}:}
+  !A \lif !B & \Entails (!A \land !C) \lif !B
+  \intertext{Kondisional material bersifat transitif; yakni, aturan rantai
+    valid:}
+  !A \lif !B, !B \lif !C & \Entails !A \lif !C
+  \intertext{Kondisional material ekuivalen dengan kontraposisinya:}
+  !A \lif !B & \Entails \lnot !B \lif \lnot !A\\
+  \lnot !B \lif \lnot !A & \Entails !A \lif !B
+\end{align}
+
+Semua inferensi ini berguna dan tidak bermasalah dalam penalaran matematis.
+Namun, literatur filsafat dan linguistik penuh dengan contoh tandingan yang
+dikemukakan terhadap inferensi-inferensi sepadan dalam konteks
+nonmatematis. Contoh-contoh tersebut menyiratkan bahwa kondisional
+material~$\lif$ bukan---atau setidaknya tidak selalu merupakan---konektif
+yang tepat untuk digunakan ketika menyimbolkan pernyataan bahasa alamiah
+berbentuk ``jika \dots, maka \dots.''
+
+\end{document}

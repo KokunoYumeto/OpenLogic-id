@@ -1,0 +1,295 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{choice}{vitali}
+\olsection{Lampiran: Paradoks Vitali}
+
+Untuk benar-benar memahami apakah konstruksi Banach--Tarski dapat diterima,
+kita perlu memeriksa \emph{buktinya}. Sayangnya, hal itu memerlukan jauh
+lebih banyak aljabar daripada yang dapat kita sajikan di sini. Namun, kita
+dapat memberikan beberapa catatan singkat yang mungkin memperjelas bukti
+Banach--Tarski,\footnote{Untuk pembahasan yang jauh lebih lengkap, lihat
+\cite{Weston2003} atau \cite{Wagon2016}.} dengan berfokus pada hasil berikut:
+
+\begin{thm}[Paradoks Vitali (dalam $\ZFC$)]\ollabel{vitaliparadox}
+Sebarang lingkaran dapat diuraikan menjadi sejumlah terhitung kepingan yang
+dapat disusun kembali (melalui rotasi dan translasi) untuk membentuk dua
+salinan lingkaran tersebut.
+\end{thm}
+
+Paradoks Vitali jauh lebih mudah dibuktikan daripada Paradoks Banach--Tarski.
+Kita menyebutnya ``Paradoks Vitali'' karena ia mengikuti konstruksi suatu
+himpunan tak terukur oleh Vitali pada \citeyear{Vitali1905}. Namun, aspek
+teori-himpunan dari bukti Paradoks Vitali dan Paradoks Banach--Tarski sangat
+serupa. Perbedaan mendasar antara kedua hasil itu hanyalah bahwa
+Banach--Tarski mempertimbangkan suatu penguraian \emph{hingga}, sedangkan
+Paradoks Vitali mempertimbangkan suatu penguraian \emph{tak hingga
+terhitung}. Sebagaimana dikatakan \citet{Weston2003}, Paradoks Vitali
+``tentu tidak semencolok paradoks Banach--Tarski, tetapi ia memang
+menunjukkan bahwa paradoks geometris dapat terjadi bahkan dalam situasi
+yang sederhana.''
+
+Paradoks Vitali menyangkut suatu bangun dua dimensi, yakni lingkaran. Jadi,
+kita akan bekerja pada bidang $\Real^2$. Misalkan $\rotationsgroup$ himpunan
+rotasi titik (searah jarum jam) mengelilingi titik asal dengan besar sudut
+radian \emph{rasional} dalam interval $[0,2\pi)$. Berikut beberapa fakta
+aljabar mengenai $\rotationsgroup$ (jika Anda tidak memahami pernyataan
+hasilnya, bukti akan memperjelas maknanya):
+
+\begin{lem}\ollabel{rotationsgroupabelian}
+$\rotationsgroup$ membentuk suatu grup abelian di bawah komposisi fungsi.
+\end{lem}
+
+\begin{proof}
+Dengan menulis $0_{\rotationsgroup}$ untuk rotasi sebesar $0$ radian, rotasi
+ini merupakan unsur identitas bagi $\rotationsgroup$, sebab
+$\comp{0_{\rotationsgroup}}{\rho} = \comp{\rho}{0_{\rotationsgroup}} =
+\rho$ bagi sebarang $\rho \in \rotationsgroup$.
+
+Setiap anggota mempunyai invers. Jika $\rho \in \rotationsgroup$ berotasi
+sebesar $r$ radian, maka $\rho^{-1} \in \rotationsgroup$ berotasi sebesar
+$(-r)\bmod 2\pi$ radian, sehingga
+$\rho \circ \rho^{-1} = 0_\rotationsgroup$.
+
+Komposisi bersifat asosiatif:
+$\comp{\rho}{(\comp{\sigma}{\tau})} =
+\comp{(\comp{\rho}{\sigma})}{\tau}$ bagi sebarang
+$\rho,\sigma,\tau\in\rotationsgroup$.
+
+Komposisi bersifat komutatif:
+$\comp{\rho}{\sigma}=\comp{\sigma}{\rho}$ bagi sebarang
+$\rho,\sigma\in\rotationsgroup$.
+\end{proof}
+
+Bahkan, kita dapat membelah grup $\rotationsgroup$ menjadi dua, lalu
+menggunakan salah satu belahan untuk memulihkan seluruh grup:
+
+\begin{lem}\ollabel{disjointgroup}
+Terdapat suatu partisi $\rotationsgroup$ menjadi dua himpunan saling lepas,
+$\rotationsgroup_{1}$ dan $\rotationsgroup_{2}$, yang masing-masing
+merupakan basis bagi $\rotationsgroup$.
+\end{lem}
+
+\begin{proof}
+Misalkan $\rotationsgroup_{1}$ terdiri atas rotasi dengan besar sudut radian
+rasional dalam $[0,\pi)$; misalkan
+$\rotationsgroup_{2}=\rotationsgroup\setminus\rotationsgroup_1$. Berdasarkan
+aljabar elementer,
+$\Setabs{\comp{\rho}{\rho}}{\rho\in\rotationsgroup_1}=\rotationsgroup$.
+Hasil serupa dapat diperoleh bagi $\rotationsgroup_2$.
+\end{proof}
+
+Kita akan menggunakan fakta tentang grup ini untuk menetapkan
+\olref{vitaliparadox}. Misalkan $\onesphere$ lingkaran satuan, yakni himpunan
+titik yang berjarak tepat $1$ satuan dari titik asal bidang, yaitu
+$\Setabs{\tuple{r,s}\in\Real^2}{\sqrt{r^2+s^2}=1}$. Kita akan membagi
+$\onesphere$ menjadi beberapa bagian dengan mempertimbangkan relasi berikut
+pada $\onesphere$:
+\[
+	r \sim s \emph{ jika dan hanya jika }
+	(\exists \rho \in \rotationsgroup)\rho(r) = s.
+\]
+Artinya, titik-titik pada $\onesphere$ dihubungkan oleh relasi ini jika dan
+hanya jika kita dapat berpindah dari satu titik ke titik lain melalui rotasi
+bernilai rasional mengelilingi titik asal. Tidak mengejutkan bahwa:
+
+\begin{lem}
+$\sim$ merupakan suatu relasi ekuivalensi.
+\end{lem}
+
+\begin{proof}
+Trivial, dengan menggunakan \olref{rotationsgroupabelian}.
+\end{proof}
+
+Sekarang kita menggunakan Pilihan untuk memperoleh suatu himpunan $C$ yang
+memuat tepat satu anggota dari setiap kelas ekuivalensi $\onesphere$ di bawah
+$\sim$. Artinya, kita mempertimbangkan suatu fungsi pilihan $f$ pada
+himpunan kelas-kelas ekuivalensi,\footnote{Karena $\rotationsgroup$
+!!{enumerable}, setiap !!{element} dari $E$ juga !!{enumerable}. Karena
+$\onesphere$ !!{nonenumerable}, berdasarkan \olref{vitalicover} dan
+\olref[card-arithmetic][simp]{kappaunionkappasize}, $E$ juga
+!!{nonenumerable}. Jadi, ini merupakan penggunaan Pilihan \emph{tak}
+terhitung.}
+\[
+	E = \Setabs{\equivrep{r}{\sim}}{r \in \onesphere},
+\]
+dan menetapkan $C=\ran{f}$. Bagi setiap rotasi
+$\rho\in\rotationsgroup$, himpunan $\funimage{\rho}{C}$ terdiri atas
+titik-titik yang diperoleh dengan menerapkan rotasi $\rho$ kepada setiap
+titik dalam~$C$. Dua hasil berikut menunjukkan bahwa himpunan-himpunan ini
+menutupi lingkaran secara lengkap dan tanpa tumpang tindih:
+
+\begin{lem}\ollabel{vitalicover}
+$\onesphere = \bigcup_{\rho \in \rotationsgroup} \funimage{\rho}{C}$.
+\end{lem}
+
+\begin{proof}
+Tetapkan $s\in\onesphere$; terdapat suatu $r\in C$ sedemikian sehingga
+$r\in\equivrep{s}{\sim}$, yakni $r\sim s$, yakni
+$\rho(r)=s$ bagi suatu $\rho\in\rotationsgroup$.
+\end{proof}
+
+\begin{lem}\ollabel{vitalinooverlap}
+Jika $\rho_1 \neq \rho_2$, maka
+$\funimage{\rho_1}{C} \cap \funimage{\rho_2}{C} = \emptyset$.
+\end{lem}
+
+\begin{proof}
+Andaikan
+$s\in\funimage{\rho_{1}}{C}\cap\funimage{\rho_{2}}{C}$. Jadi,
+$s=\rho_{1}(r_{1})=\rho_{2}(r_{2})$ bagi suatu $r_{1},r_{2}\in C$.
+Karena itu, $\rho^{-1}_2(\rho_1(r_1))=r_2$, dan
+$\comp{\rho_1}{\rho^{-1}_2}\in\rotationsgroup$, sehingga
+$r_1\sim r_2$. Jadi, $r_1=r_2$, sebab $C$ memilih tepat satu anggota dari
+setiap kelas ekuivalensi di bawah $\sim$. Maka
+$s=\rho_1(r_1)=\rho_2(r_1)$, sehingga $\rho_1=\rho_2$.
+\end{proof}
+
+Sekarang kita menerapkan fakta-fakta aljabar sebelumnya pada lingkaran kita:
+
+\begin{lem}\ollabel{pseudobanachtarski}
+Terdapat suatu partisi $\onesphere$ menjadi dua himpunan saling lepas,
+$D_{1}$ dan $D_{2}$, sedemikian sehingga $D_{1}$ dapat dipartisi menjadi
+sejumlah terhitung himpunan yang dapat dirotasi untuk membentuk suatu salinan
+$\onesphere$ (dan demikian pula bagi $D_{2}$).
+\end{lem}
+
+\begin{proof}
+Dengan menggunakan $\rotationsgroup_{1}$ dan $\rotationsgroup_{2}$ dari
+\olref{disjointgroup}, tetapkan:
+\begin{align*}
+	D_{1} &= \bigcup_{\rho \in \rotationsgroup_1} \funimage{\rho}{C} &
+	D_{2} &= \bigcup_{\rho \in \rotationsgroup_2} \funimage{\rho}{C}
+\end{align*}
+Ini merupakan suatu partisi $\onesphere$ berdasarkan
+\olref{vitalicover}, dan $D_1$ serta $D_2$ saling lepas berdasarkan
+\olref{vitalinooverlap}. Berdasarkan konstruksi, $D_1$ dapat dipartisi
+menjadi sejumlah terhitung himpunan $\funimage{\rho}{C}$, satu bagi setiap
+$\rho\in\rotationsgroup_1$. Himpunan-himpunan ini dapat dirotasi untuk
+membentuk suatu salinan $\onesphere$, sebab
+$\onesphere=\bigcup_{\rho\in\rotationsgroup}\funimage{\rho}{C}
+=\bigcup_{\rho\in\rotationsgroup_1}
+\funimage{(\comp{\rho}{\rho})}{C}$ berdasarkan \olref{disjointgroup} dan
+\olref{vitalicover}. Penalaran yang sama berlaku bagi~$D_2$.
+\end{proof}
+\noindent
+Hal ini langsung mengakibatkan Paradoks Vitali. Kita dapat menghasilkan
+\emph{dua} salinan $\onesphere$ dari $\onesphere$ hanya dengan membaginya
+menjadi sejumlah terhitung kepingan (berbagai
+$\funimage{\rho}{C}$) lalu menggerakkannya secara kaku (cukup rotasikan
+setiap kepingan $D_1$, serta translasikan lalu rotasikan setiap kepingan
+$D_2$).
+
+Mari kita rangkum strategi buktinya. Kita mulai dengan beberapa fakta aljabar
+tentang grup rotasi pada bidang. Kita menggunakan grup ini untuk mempartisi
+$\onesphere$ menjadi kelas-kelas ekuivalensi. Kemudian kita memperoleh suatu
+``paradoks'' dengan menggunakan Pilihan untuk memilih anggota dari setiap
+kelas.
+
+Kita menggunakan strategi yang persis sama untuk membuktikan Banach--Tarski.
+Perbedaan utamanya ialah bahwa fakta-fakta aljabar yang digunakan untuk
+membuktikan Banach--Tarski jauh lebih rumit daripada yang digunakan untuk
+membuktikan Paradoks Vitali. Namun, fakta-fakta aljabar tersebut tidak
+berhubungan dengan Pilihan. Kita akan merangkumnya dengan cepat.
+
+Untuk membuktikan Banach--Tarski, kita mulai dengan menetapkan suatu analog
+dari \olref{disjointgroup}: sebarang \emph{grup bebas} dapat dibagi menjadi
+empat kepingan yang secara intuitif dapat kita ``gerakkan'' untuk
+memulihkan dua salinan seluruh grup.\footnote{Fakta bahwa kita dapat
+menggunakan \emph{empat} kepingan berasal dari \cite{Robinson1947}. Untuk
+suatu bukti baru-baru ini, lihat \citet[Teorema 5.2]{Wagon2016}. Kita
+mengikuti \citet[hlm.~3]{Weston2003} dengan menyebutnya sebagai
+``menggerakkan'' kepingan-kepingan grup.} Kemudian kita menunjukkan bahwa
+kita dapat menggunakan dua rotasi tertentu mengelilingi titik asal
+$\Real^3$ untuk menghasilkan suatu grup bebas rotasi, $F$.\footnote{Lihat
+\citet[Teorema 2.1]{Wagon2016}.} (Belum ada Pilihan.) Sekarang kita
+menganggap titik-titik pada permukaan bola ``serupa'' jika dan hanya jika
+salah satunya dapat diperoleh dari yang lain melalui suatu rotasi dalam~$F$.
+Kemudian kita \emph{menggunakan Pilihan} untuk memilih tepat satu titik dari
+setiap kelas ekuivalensi titik-titik ``serupa''. Dengan menerapkan
+pembagian $F$ pada permukaan bola seperti dalam
+\olref{pseudobanachtarski}, kita membagi permukaan itu menjadi empat
+kepingan yang dapat kita ``gerakkan'' untuk memperoleh dua salinan
+permukaan bola. Hal ini menetapkan \citep{Hausdorff1914}:
+
+\begin{thm}[Paradoks Hausdorff (dalam $\ZFC$)]
+Permukaan sebarang bola dapat diuraikan menjadi sejumlah hingga kepingan yang
+dapat disusun kembali (melalui rotasi dan translasi) untuk membentuk dua
+salinan saling lepas dari bola tersebut.
+\end{thm}
+
+Beberapa trik aljabar tambahan diperlukan untuk memperoleh Teorema
+Banach--Tarski sepenuhnya (yang menyangkut bukan hanya permukaan bola,
+melainkan juga bagian dalamnya). Terus terang, hal ini hanya merupakan
+hiasan di atas kue aljabar. Karena itu, Weston menulis:
+\begin{quote}
+  [\ldots] hasil tentang grup bebas merupakan \emph{langkah kunci} dalam
+  bukti paradoks Banach--Tarski. Dari sudut pandang ini, paradoks
+  Banach--Tarski bukanlah pernyataan mengenai $\Real^3$ sebagaimana ia
+  merupakan pernyataan mengenai kompleksitas grup [translasi dan rotasi
+  dalam $\Real^3$]. \cite[hlm.~16]{Weston2003}
+\end{quote}
+Artinya, apakah kita dapat memberikan suatu penguraian \emph{hingga} (seperti
+dalam Banach--Tarski) atau penguraian \emph{tak hingga terhitung} (seperti
+dalam Paradoks Vitali) ditentukan oleh fakta-fakta teori grup tertentu
+tentang bekerja dalam dua atau tiga dimensi.
+
+Memang, pengamatan terakhir ini sedikit merusak lelucon pada akhir
+\olref[banach]{sec}. Karena bersifat dua dimensi, ``Banach--Tarski'' harus
+dibagi menjadi sejumlah \emph{tak hingga} terhitung kepingan jika orang ingin
+menyusun ulang kepingan-kepingan itu untuk membentuk
+``Banach--Tarski Banach--Tarski''. Untuk memperbaiki leluconnya, orang
+harus menulis dalam tiga dimensi. Kita serahkan hal ini sebagai latihan
+kepada pembaca.
+
+Satu komentar terakhir. Dalam \olref[banach]{sec}, kita menyebutkan bahwa
+``kepingan-kepingan'' bola yang diperoleh tidak dapat \emph{terukur},
+melainkan harus merupakan ``hamburan-hamburan tak hingga'' yang tidak
+dapat digambarkan. Hal yang sama berlaku pada penggunaan Pilihan untuk
+memperoleh \olref{pseudobanachtarski}. Pokok ini patut dijelaskan.
+
+Sekali lagi, kita harus menguraikan sedikit latar belakang (tetapi ini
+\emph{hanya} sebuah uraian ringkas; Anda mungkin ingin membaca entri buku
+teks tentang \emph{ukuran}). Mendefinisikan ukuran bagi suatu himpunan $X$
+berarti menetapkan suatu nilai $\mu(E)\in\Real$ kepada setiap $E$ dalam
+suatu ``aljabar-$\sigma$'' pada~$X$. Perinciannya tidak penting di sini,
+kecuali bahwa fungsi $\mu$ harus memenuhi prinsip aditivitas terhitung:
+ukuran suatu gabungan terhitung dari himpunan-himpunan saling lepas merupakan
+jumlah ukuran masing-masing, yakni
+$\mu(\bigcup_{n < \omega} X_n) = \sum_{n < \omega}\mu(X_n)$ jika
+himpunan-himpunan $X_n$ saling lepas. Mengatakan bahwa suatu himpunan
+``tak terukur'' berarti tidak ada ukuran yang dapat ditetapkan kepadanya
+secara semestinya. Sekarang, dengan menggunakan $\rotationsgroup$ di atas:
+
+\begin{cor}[Vitali]
+Misalkan $\mu$ suatu ukuran sedemikian sehingga $\mu(\onesphere)=1$ dan
+$\mu(X)=\mu(Y)$ jika $X$ dan $Y$ kongruen. Maka
+$\funimage{\rho}{C}$ tak terukur bagi semua
+$\rho\in\rotationsgroup$.
+\end{cor}
+
+\begin{proof}
+Untuk reductio, andaikan sebaliknya. Misalkan
+$\mu(\funimage{\sigma}{C})=r$ bagi suatu
+$\sigma\in\rotationsgroup$ dan suatu $r\in\Real$. Bagi sebarang
+$\rho\in\rotationsgroup$, $\funimage{\rho}{C}$ dan
+$\funimage{\sigma}{C}$ kongruen; karena itu,
+$\mu(\funimage{\rho}{C})=r$ bagi sebarang
+$\rho\in\rotationsgroup$. Berdasarkan \olref{vitalicover} dan
+\olref{vitalinooverlap},
+$\onesphere=\bigcup_{\rho\in\rotationsgroup}\funimage{\rho}{C}$ merupakan
+suatu gabungan terhitung dari himpunan-himpunan saling lepas berpasangan.
+Jadi, aditivitas terhitung mengharuskan bahwa $\mu(\onesphere)=1$ merupakan
+jumlah ukuran setiap $\funimage{\rho}{C}$, yakni:
+\[
+	1 = \mu(\onesphere) =
+	\sum_{\rho \in \rotationsgroup}\mu(\funimage{\rho}{C}) =
+	\sum_{\rho \in \rotationsgroup}r
+\]
+Namun, jika $r=0$, maka
+$\sum_{\rho\in\rotationsgroup}r=0$; dan jika $r>0$, maka
+$\sum_{\rho\in\rotationsgroup}r=\infty$.
+\end{proof}
+
+\end{document}

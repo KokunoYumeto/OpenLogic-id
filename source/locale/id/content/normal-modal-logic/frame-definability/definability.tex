@@ -1,0 +1,169 @@
+% Part: normal-modal-logic
+% Chapter: frame-definability
+% Section: definability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{frd}{def}
+
+\olsection{Keterdefinisian Kerangka}
+
+Meskipun implikasi konvers dari \olref[acc]{thm:soundschemas} gagal, implikasi
+itu berlaku jika ``model'' diganti dengan ``kerangka'': bagi sifat-sifat yang
+dibahas dalam \olref[acc]{thm:soundschemas}, \emph{memang} benar bahwa jika
+!!a{formula} valid pada suatu \emph{kerangka}, maka relasi aksesibilitas
+kerangka tersebut mempunyai sifat yang bersesuaian. Jadi, !!{formula}s yang
+dibahas \emph{mendefinisikan} kelas kerangka yang mempunyai sifat
+bersesuaian.
+
+\begin{defn}
+  Jika $\mClass{F}$ merupakan suatu kelas kerangka, kita mengatakan bahwa
+  $!A$ \emph{mendefinisikan}~$\mClass{F}$ jika dan hanya jika
+  $\mModel{F}\Entails !A$ tepat bagi semua kerangka
+  $\mModel{F}\in\mClass{F}$.
+\end{defn}
+
+Sekarang kita akan membuktikan hasil keterdefinisian penuh bagi kerangka.
+
+\begin{thm}\ollabel{thm:fullCorrespondence}
+Jika !!{formula} pada sisi kanan \olref[acc]{tab:five} valid pada suatu
+kerangka~$\mModel{F}$, maka $\mModel{F}$ mempunyai sifat pada sisi kiri.
+\end{thm}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Andaikan \Ax{D} valid pada $\mModel{F}=\tuple{W,R}$; yakni,
+    $\mModel{F}\Entails\Box p\lif\Diamond p$. Misalkan
+    $\mModel{M}=\tuple{W,R,V}$ suatu model yang berbasis pada~$\mModel{F}$,
+    dan $w\in W$. Kita harus menunjukkan bahwa terdapat suatu~$v$ sedemikian
+    sehingga $Rwv$. Andaikan tidak. Maka bagi sebarang~$!A$, termasuk~$p$,
+    berlaku $\mSat{M}{\Box !A}[w]$ dan
+    $\mSat/{M}{\Diamond !A}[w]$. Namun, hal ini menghasilkan
+    $\mSat/{M}{\Box p\lif\Diamond p}[w]$, bertentangan dengan asumsi bahwa
+    $\mModel{F}\Entails\Box p\lif\Diamond p$.
+  \item Andaikan \Ax{T} valid pada~$\mModel{F}$; yakni,
+    $\mModel{F}\Entails\Box p\lif p$. Misalkan $w\in W$ suatu dunia
+    sebarang; kita harus menunjukkan~$Rww$. Tetapkan $u\in V(p)$ jika dan
+    hanya jika $Rwu$ (jika $q$ berbeda dari~$p$, $V(q)$ dipilih sebarang,
+    misalnya $V(q)=\emptyset$). Misalkan $\mModel{M}=\tuple{W,R,V}$. Menurut
+    konstruksi, bagi semua~$u$ sedemikian sehingga $Rwu$, berlaku
+    $\mSat{M}{p}[u]$, sehingga $\mSat{M}{\Box p}[w]$. Namun, berdasarkan
+    hipotesis, $\Box p\lif p$ benar pada~$w$, sehingga $\mSat{M}{p}[w]$;
+    dan menurut definisi~$V$, hal ini hanya mungkin jika~$Rww$.
+  \item Kita membuktikan kontraposisinya. Andaikan $\mModel{F}$ tidak
+    simetris; kita akan menunjukkan bahwa \Ax{B}, yakni
+    $p\lif\Box\Diamond p$, tidak valid pada
+    $\mModel{F}=\tuple{W,R}$. Karena $\mModel{F}$ tidak simetris, terdapat
+    $u,v\in W$ sedemikian sehingga $Ruv$ tetapi bukan~$Rvu$. Definisikan~$V$
+    sedemikian sehingga $w\in V(p)$ jika dan hanya jika bukan~$Rvw$ (dan
+    $V$ dipilih sebarang dalam hal lainnya). Misalkan
+    $\mModel{M}=\tuple{W,R,V}$. Menurut definisi~$V$,
+    $\mSat{M}{p}[w]$ bagi semua~$w$ sedemikian sehingga bukan~$Rvw$;
+    khususnya, $\mSat{M}{p}[u]$ karena bukan~$Rvu$. Selain itu, karena $Rvw$
+    jika dan hanya jika $w\notin V(p)$, tidak ada~$w$ sedemikian sehingga
+    $Rvw$ dan $\mSat{M}{p}[w]$, sehingga
+    $\mSat/{M}{\Diamond p}[v]$. Karena~$Ruv$, kita juga mempunyai
+    $\mSat/{M}{\Box\Diamond p}[u]$. Akibatnya,
+    $\mSat/{M}{p\lif\Box\Diamond p}[u]$, sehingga \Ax{B} tidak valid
+    pada~$\mModel{F}$.
+  \item Andaikan \Ax{4} valid pada $\mModel{F}=\tuple{W,R}$; yakni,
+    $\mModel{F}\Entails\Box p\lif\Box\Box p$. Misalkan $u,v,w\in W$
+    dunia-dunia sebarang dengan $Ruv$ dan~$Rvw$; kita harus menunjukkan
+    $Ruw$. Definisikan~$V$ sedemikian sehingga $z\in V(p)$ jika dan hanya
+    jika $Ruz$ (dan $V$ dipilih sebarang dalam hal lainnya). Misalkan
+    $\mModel{M}=\tuple{W,R,V}$. Menurut definisi~$V$, $\mSat{M}{p}[z]$ bagi
+    semua~$z$ dengan~$Ruz$, sehingga $\mSat{M}{\Box p}[u]$. Namun,
+    berdasarkan hipotesis~\Ax{4}, $\Box p\lif\Box\Box p$ benar pada~$u$,
+    sehingga $\mSat{M}{\Box\Box p}[u]$. Karena $Ruv$ dan~$Rvw$, kita
+    memperoleh $\mSat{M}{p}[w]$; menurut definisi~$V$, hal ini hanya mungkin
+    jika $Ruw$, seperti yang diinginkan.
+  \item Kita melanjutkan secara kontrapositif: andaikan kerangka
+    $\mModel{F}=\tuple{W,R}$ tidak Euklidean, dan tunjukkan bahwa kerangka itu
+    memfalsifikasi~\Ax{5}; yakni,
+    $\mModel{F}\Entails/\Diamond p\lif\Box\Diamond p$. Andaikan terdapat
+    dunia $u,v,w\in W$ sedemikian sehingga $Rwu$ dan~$Rwv$, tetapi bukan
+    $Ruv$. Definisikan~$V$ sedemikian sehingga bagi semua dunia~$z$,
+    $z\in V(p)$ jika dan hanya jika \emph{bukan}~$Ruz$. Misalkan
+    $\mModel{M}=\tuple{W,R,V}$. Berdasarkan hipotesis,
+    $\mSat{M}{p}[v]$, dan karena $Rwv$, berlaku pula
+    $\mSat{M}{\Diamond p}[w]$. Akan tetapi, tidak ada dunia~$y$ sedemikian
+    sehingga $Ruy$ dan $\mSat{M}{p}[y]$; jadi
+    $\mSat/{M}{\Diamond p}[u]$. Karena~$Rwu$, diperoleh
+    $\mSat/{M}{\Box\Diamond p}[w]$, sehingga \Ax{5}, yakni
+    $\Diamond p\lif\Box\Diamond p$, gagal pada~$w$.
+  \end{enumerate}
+\end{proof}
+
+Perhatikan suatu perbedaan antara pembuktian bagi \Ax{D} dan kasus-kasus lain:
+tidak disebutkan sama sekali valuasi~$V$. Pada dasarnya, kita membuktikan bahwa
+jika $\mSat{M}{\Ax{D}}$, maka $\mModel{M}$ serial. Jadi, \Ax{D}
+mendefinisikan kelas \emph{model} serial, bukan hanya kerangka.
+
+\begin{cor}\ollabel{prop:D-serial}
+  Setiap model tempat \Ax{D} benar bersifat serial.
+\end{cor}
+
+\begin{cor}
+Setiap !!{formula} pada sisi kanan \olref[acc]{tab:five} mendefinisikan kelas
+kerangka yang mempunyai sifat pada sisi kiri.
+\end{cor}
+
+\begin{proof}
+  Dalam \olref[acc]{thm:soundschemas}, kita membuktikan bahwa jika suatu model
+  mempunyai sifat pada sisi kiri, !!{formula} pada sisi kanan benar dalam
+  model tersebut. Jadi, jika suatu kerangka~$\mModel{F}$ mempunyai sifat pada
+  sisi kiri, !!{formula} pada sisi kanan valid pada~$\mModel{F}$. Dalam
+  \olref{thm:fullCorrespondence}, kita membuktikan implikasi konversnya: jika
+  !!a{formula} pada sisi kanan valid pada~$\mModel{F}$, maka $\mModel{F}$
+  mempunyai sifat pada sisi kiri.
+\end{proof}
+
+\begin{prob}
+Tunjukkan bahwa jika !!{formula} pada sisi kanan
+\olref[nml][frd][acc]{tab:anotherfive} valid pada suatu
+kerangka~$\mModel{F}$, maka $\mModel{F}$ mempunyai sifat pada sisi kiri.
+Untuk melakukannya, pertimbangkan suatu kerangka yang \emph{tidak} memenuhi
+sifat pada sisi kiri, lalu definisikan~$V$ yang sesuai sehingga !!{formula}
+pada sisi kanan salah pada suatu dunia.
+\end{prob}
+
+\olref{thm:fullCorrespondence} juga menunjukkan bahwa sifat-sifat tersebut
+dapat digabungkan. Sebagai contoh, jika \Ax{B} dan~\Ax{4} sama-sama valid
+pada~$\mModel{F}$, kerangka itu sekaligus simetris dan transitif. Banyak logika
+modal penting dicirikan sebagai himpunan !!{formula}s yang valid pada semua
+kerangka yang menggabungkan beberapa sifat kerangka; jadi kita dapat
+mencirikannya sebagai himpunan !!{formula}s yang valid pada semua kerangka
+tempat !!{formula}s pendefinisi yang bersesuaian juga valid. Misalnya, sistem
+klasik~\Log{S4} merupakan himpunan semua !!{formula}s yang valid pada semua
+kerangka refleksif dan transitif, yakni semua kerangka tempat \Ax{T} dan
+\Ax{4} valid. \Log{S5} merupakan himpunan semua formula yang valid pada semua
+kerangka refleksif, simetris, dan Euklidean, yakni semua kerangka tempat
+\Ax{T}, \Ax{B}, dan~\Ax{5} valid.
+
+Hubungan logis antarsifat~$R$ pada umumnya bersesuaian dengan hubungan antara
+!!{formula}s pendefinisi yang bersesuaian. Sebagai contoh, setiap relasi
+refleksif bersifat serial; karena itu, setiap kali \Ax{T} valid pada suatu
+kerangka, \Ax{D} juga valid. (Perhatikan bahwa hubungan ini \emph{bukan}
+perikutan. Tidak benar bahwa setiap kali $\mSat{M}{\Ax{T}}[w]$, berlaku pula
+$\mSat{M}{\Ax{D}}[w]$.) Kita mencatat beberapa hubungan semacam itu.
+
+\begin{prop}\ollabel{prop:relation-facts}
+  Misalkan $R$ suatu relasi biner pada himpunan~$W$; maka:
+  \begin{enumerate}
+  \item Jika $R$ refleksif, maka $R$ serial.
+  \item Jika $R$ simetris, maka $R$ transitif jika dan hanya jika $R$
+    Euklidean.
+  \item Jika $R$ simetris atau Euklidean, maka $R$ terarah lemah (mempunyai
+    ``sifat wajik'').
+  \item Jika $R$ Euklidean, maka $R$ terhubung lemah.
+  \item Jika $R$ fungsional, maka $R$ serial.
+  \end{enumerate}
+\end{prop}
+
+\begin{prob}
+  Buktikan \olref[nml][frd][def]{prop:relation-facts}.
+\end{prob}
+
+\end{document}

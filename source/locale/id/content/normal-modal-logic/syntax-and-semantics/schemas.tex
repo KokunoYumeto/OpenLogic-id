@@ -1,0 +1,186 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: schemas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{syn}{sch}
+
+\olsection{Skema dan Validitas}
+
+\begin{defn}
+  Suatu \emph{skema} adalah himpunan !!{formula}s yang terdiri atas semua
+  dan hanya instans substitusi dari suatu !!{formula} modal~$!C$, yakni
+  \[
+  \Setabs{!B}{\lexists[!D_1], \dots, \lexists[!D_n] \left(!B =
+  \SSubst{!C}{\subst{!D_1}{p_1}, \dots, \subst{!D_n}{p_n}} \right) }.
+  \]
+  !!{formula}~$!C$ disebut \emph{!!{formula} karakteristik} skema tersebut,
+  dan formula ini unik hingga penamaan ulang !!{propositional
+  variable}s.
+  !!^a{formula}~$!A$ merupakan suatu \emph{instans} dari suatu skema jika
+  formula itu merupakan anggota himpunan tersebut.
+\end{defn}
+
+Skema dapat dengan mudah dinyatakan dengan ekspresi metabahasa yang diperoleh
+dengan menyubstitusikan `$!A$', `$!B$',~\dots, untuk komponen-komponen atomik
+dari~$!C$. Jadi, sebagai contoh, ungkapan berikut menyatakan skema-skema:
+`$!A$', `$!A \lif \Box!A$', `$!A \lif (!B \lif !A)$'. Skema-skema itu
+bersesuaian dengan !!{formula}s karakteristik $p$, $p \lif \Box p$, $p \lif
+(q \lif p)$. Skema `$!A$' menyatakan himpunan \emph{semua} !!{formula}s.
+
+\begin{defn}
+  Suatu skema \emph{benar} dalam suatu model jika dan hanya jika semua
+  instansnya benar; dan suatu skema \emph{valid} jika dan hanya jika skema itu
+  benar dalam setiap model.
+\end{defn}
+
+\begin{prop}\ollabel{prop:Kvalid}
+  Skema \Ax{K} berikut valid:
+  \begin{equation*}
+  \Box(!A \lif !B) \lif (\Box !A \lif \Box !B). \tag{\Ax{K}}
+  \end{equation*}
+\end{prop}
+
+\begin{proof}
+  Kita perlu menunjukkan bahwa semua instans skema tersebut bernilai benar
+  pada setiap dunia dalam setiap model. Jadi, misalkan
+  $\mModel{M} = \tuple{W,R,V}$ dan $w \in W$ sebarang. Untuk menunjukkan
+  bahwa suatu kondisional bernilai benar pada suatu dunia, kita mengandaikan
+  bahwa antesedennya bernilai benar untuk menunjukkan bahwa konsekuennya juga
+  bernilai benar. Dalam kasus ini, andaikan
+  $\mSat{M}{\Box(!A \lif !B)}[w]$ dan $\mSat{M}{\Box !A}[w]$. Kita perlu
+  menunjukkan $\mSat{M}{\Box !B}[w]$. Jadi, ambil sebarang $w'$ sedemikian
+  sehingga $Rww'$. Berdasarkan asumsi pertama, $\mSat{M}{!A \lif !B}[w']$,
+  dan berdasarkan asumsi kedua, $\mSat{M}{!A}[w']$. Dengan demikian,
+  $\mSat{M}{!B}[w']$. Karena $w'$ sebarang, $\mSat{M}{\Box !B}[w]$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:Dual-valid}
+  Skema \Dual{} berikut valid:
+  \begin{equation*}
+  \Diamond !A \liff \lnot\Box\lnot !A. \tag{\Dual}
+  \end{equation*}
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[nml][syn][sch]{prop:Dual-valid}.
+\end{prob}
+
+\begin{prop}\ollabel{prop:soundMP}
+  Jika $!A$ dan $!A \lif !B$ benar pada suatu dunia dalam suatu model,
+  maka $!B$ juga benar. Karena itu, !!{formula}s yang valid tertutup di bawah
+  modus ponens.
+\end{prop}
+
+\begin{prop}\ollabel{prop:valid-instances}
+  !!^a{formula}~$!A$ valid jika dan hanya jika semua instans substitusinya
+  valid. Dengan kata lain, suatu skema valid jika dan hanya jika
+  !!{formula} karakteristiknya valid.
+\end{prop}
+
+\begin{proof}
+  Arah ``jika'' sudah jelas karena $!A$ merupakan instans substitusi dari
+  dirinya sendiri.
+
+  Untuk membuktikan arah ``hanya jika'', kita menunjukkan hal berikut:
+  Andaikan $\mModel{M} = \tuple{W, R, V}$ merupakan suatu model modal, dan
+  $!B \ident \SSubst{!A}{\subst{!D_1}{p_1},\dots,\subst{!D_n}{p_n}}$
+  merupakan instans substitusi dari~$!A$. Definisikan
+  $\mModel{M'} = \tuple{W, R, V'}$ dengan
+  $V'(p_i) = \Setabs{w}{\mSat{M}{!D_i}[w]}$. Maka
+  $\mSat{M}{!B}[w]$ jika dan hanya jika $\mSat{M'}{!A}[w]$, untuk sebarang
+  $w \in W$. (Buktinya kita tinggalkan sebagai latihan.) Sekarang, andaikan
+  $!A$ valid, tetapi suatu instans substitusi $!B$ dari~$!A$ tidak valid.
+  Maka, untuk suatu $\mModel{M} = \tuple{W, R, V}$ dan suatu $w \in W$,
+  $\mSat/{M}{!B}[w]$. Namun, berdasarkan klaim tersebut,
+  $\mSat/{M'}{!A}[w]$, sehingga $!A$ tidak valid, suatu kontradiksi.
+\end{proof}
+
+\begin{prob}
+  Buktikan klaim pada bagian ``hanya jika'' dalam pembuktian
+  \olref[nml][syn][sch]{prop:valid-instances}. (Petunjuk: gunakan induksi
+  pada~$!A$.)
+\end{prob}
+
+Namun, perhatikan bahwa tidak benar bahwa suatu skema benar dalam sebuah
+model jika dan hanya jika formula karakteristiknya benar. Tentu saja,
+arah ``hanya jika'' berlaku: jika setiap instans $!A$ benar
+dalam~$\mModel{M}$, maka $!A$~sendiri benar dalam~$\mModel{M}$. Namun, bisa
+saja $!A$ benar dalam~$\mModel{M}$ tetapi suatu instans dari~$!A$ bernilai
+salah pada suatu dunia dalam~$\mModel{M}$. Sebagai contoh tandingan yang
+sangat sederhana, tinjaulah~$p$ dalam suatu model yang hanya memiliki satu
+dunia~$w$ dan $V(p) = \{w\}$, sehingga $p$ bernilai benar pada~$w$. Namun,
+$\lfalse$ merupakan suatu instans dari~$p$ dan tidak bernilai benar pada~$w$.
+
+\begin{prob}
+  Tunjukkan bahwa tidak satu pun dari !!{formula}s berikut valid:
+  \begin{enumerate}
+    \item[\Ax{D}:] \quad $\Box p \lif \Diamond p$;
+    \item[\Ax{T}:] \quad $\Box p \lif p$;
+    \item[\Ax{B}:] \quad $p \lif \Box\Diamond p$;
+    \item[\Ax{4}:] \quad $\Box p \lif \Box \Box p$;
+    \item[\Ax{5}:] \quad $\Diamond p \lif \Box \Diamond
+      p$.
+  \end{enumerate}
+\end{prob}
+
+\begin{table}[t]
+    \centering
+    \begin{tabular}{| l || l |}
+      \hline
+      {\emph{Skema Valid}} & {\emph{Skema Tidak Valid}} \\
+      \hline\hline
+      $\Box(!A \lif !B) \lif (\Diamond !A \lif \Diamond !B)$
+      & $\Box (!A \lor !B) \lif (\Box !A \lor \Box !B)$ \\
+      $\Diamond (!A \lif !B) \lif (\Box !A \lif \Diamond
+      !B)$
+      & $(\Diamond !A \land \Diamond !B) \lif \Diamond (!A
+      \land !B)$\\
+      $\Box (!A \land !B) \liff (\Box !A \land \Box !B)$
+      & $!A \lif \Box !A$ \\
+      $\Box !A \lif \Box (!B \lif !A)$
+      & $\Box \Diamond !A \lif !B$ \\
+      $\lnot \Diamond !A \lif \Box (!A \lif !B)$
+      & $\Box \Box !A \lif \Box !A$ \\
+      $\Diamond (!A \lor !B) \liff (\Diamond !A \lor
+      \Diamond !B)$
+      & $\Box \Diamond !A \lif \Diamond \Box !A$. \\
+      \hline
+    \end{tabular}
+    \caption{Skema valid dan (atau?) tidak valid.}
+    \ollabel{tab:valid-invalidSchemas}
+\end{table}
+
+\begin{prob}%\ollabel{ex:in/validSchemas}
+  Buktikan bahwa skema-skema dalam kolom pertama pada
+  \olref[nml][syn][sch]{tab:valid-invalidSchemas} valid dan skema-skema
+  dalam kolom kedua tidak valid.
+\end{prob}
+
+\begin{prob}
+  Tentukan apakah skema-skema berikut valid atau tidak valid:
+  \begin{enumerate}
+  \item $(\Diamond !A \lif \Box !B) \lif (\Box !A \lif \Box
+    !B)$;
+  \item $\Diamond(!A \lif !B) \lor \Box(!B \lif !A)$.
+  \end{enumerate}
+\end{prob}
+
+\begin{prob}
+  Untuk setiap skema berikut, carilah suatu model $\mModel{M}$ sedemikian
+  sehingga setiap instans dari !!{formula} tersebut benar dalam
+  $\mModel{M}$:
+  \begin{enumerate}
+  \item $p \lif \Diamond\Diamond p$;
+  \item $\Diamond p \lif \Box p$.
+  \end{enumerate}
+\end{prob}
+
+\end{document}

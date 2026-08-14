@@ -1,0 +1,123 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{ord-arithmetic}{using-addition}
+\olsection{Menggunakan Penjumlahan Ordinal}
+
+Dengan menggunakan penjumlahan pada ordinal, kita dapat menghitung secara
+eksplisit peringkat berbagai himpunan, dalam pengertian
+\olref[spine][rank]{defnsetrank}:
+
+\begin{lem}\ollabel{rankcomputation}
+Jika $\setrank{A} = \alpha$ dan $\setrank{B} = \beta$, maka:
+\begin{enumerate}
+	\item\ollabel{exrankpow} $\setrank{\Pow{A}} = \alpha\ordplus 1$
+	\item\ollabel{exrankpair} $\setrank{\{A, B\}} = \max(\alpha,
+	\beta) \ordplus 1$
+	\item\ollabel{exrankcup} $\setrank{A \cup B} = \max(\alpha,
+	\beta)$
+	\item\ollabel{exranktuple} $\setrank{\tuple{A,B}} = \max(\alpha,
+	\beta) \ordplus  2$
+	\item\ollabel{exranktimes} $\setrank{A \times B} \leq \max(\alpha,
+	\beta) \ordplus  2$
+	\item\ollabel{exrankunion} $\setrank{\bigcup A} = \alpha$ jika
+	$\alpha$ kosong atau merupakan ordinal limit; $\setrank{\bigcup A} = \gamma$
+	jika $\alpha = \gamma\ordplus 1$
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Sepanjang bukti ini, kita berulang kali menggunakan
+\olref[spine][rank]{ranksupstrict}.
+
+\emph{\olref{exrankpow}.} Jika $x \subseteq A$, maka $\setrank{x} \leq
+\setrank{A}$. Jadi $\setrank{\Pow{A}} \leq \alpha \ordplus  1$. Karena
+khususnya $A \in \Pow{A}$, maka $\setrank{\Pow{A}} = \alpha \ordplus  1$.
+
+\emph{\olref{exrankpair}.} Berdasarkan \olref[spine][rank]{ranksupstrict}.
+
+\emph{\olref{exrankcup}.} Berdasarkan \olref[spine][rank]{ranksupstrict}.
+
+\emph{\olref{exranktuple}.} Berdasarkan \olref{exrankpair}, diterapkan dua
+kali.
+
+\emph{\olref{exranktimes}.} Perhatikan bahwa $A \times B \subseteq
+\Pow{\Pow{A \cup B}}$, lalu gunakan \olref{exrankpow} dua kali bersama
+\olref{exrankcup}.
+
+\emph{\olref{exrankunion}.} Jika $\alpha = \gamma\ordplus 1$, terdapat
+suatu $c \in A$ dengan $\setrank{c} = \gamma$, dan tidak ada !!{element}
+dari $A$ yang berperingkat lebih tinggi; jadi $\setrank{\bigcup A} =
+\gamma$. Jika $\alpha$ merupakan ordinal limit, maka $A$ mempunyai
+!!{element}s dengan peringkat yang sedekat apa pun dengan $\alpha$ (tetapi
+tetap lebih kecil darinya). Karena itu, $\bigcup A$ juga mempunyai
+!!{element}s dengan peringkat yang sedekat apa pun dengan $\alpha$ (tetapi
+tetap lebih kecil darinya), sehingga $\setrank{\bigcup A} = \alpha$.
+\end{proof}
+\noindent
+Kita serahkan sebagai latihan penjelasan mengapa \olref{exranktimes}
+melibatkan suatu \emph{per}taksamaan.
+
+\begin{prob}
+Berikan himpunan $A$ dan $B$ sedemikian sehingga $\setrank{A \times B}=
+\max(\setrank{A}, \setrank{B})$. Berikan himpunan $A$ dan $B$ sedemikian
+sehingga $\setrank{A \times B}=\max(\setrank{A}, \setrank{B}) \ordplus
+2$. Apakah ada peringkat lain yang mungkin?
+\end{prob}
+
+Sekarang kita juga dapat menunjukkan bahwa beberapa pengertian wajar tentang
+apa artinya menyebut suatu ordinal ``hingga'' atau ``tak hingga'' ternyata
+bertepatan:
+
+\begin{lem}\ollabel{ordinfinitycharacter}
+Untuk sebarang ordinal $\alpha$, pernyataan-pernyataan berikut ekuivalen:
+\begin{enumerate}
+	\item\ollabel{ord:notinomega} $\alpha\notin \omega$, yakni $\alpha$
+	bukan bilangan asli
+	\item\ollabel{ord:omegaplus} $\omega \leq \alpha$
+	\item\ollabel{ord:oneplus} $1 \ordplus  \alpha = \alpha$
+	%\alpha \approx \alpha \ordplus 1$
+	\item\ollabel{ord:plusone} $\alpha \approx \alpha\ordplus 1$,
+	yakni $\alpha$ dan $\alpha\ordplus 1$ sama banyak
+	\item\ollabel{ord:infinite} $\alpha$ bersifat tak hingga Dedekind
+	\end{enumerate}
+\end{lem}
+\noindent
+Jadi, kita mempunyai lima cara yang terbukti ekuivalen untuk memahami syarat
+agar suatu ordinal bersifat (tak) hingga.
+
+\begin{proof}
+\emph{\olref{ord:notinomega} $\Rightarrow$ \olref{ord:omegaplus}.}
+Berdasarkan Trikotomi.
+
+\emph{\olref{ord:omegaplus} $\Rightarrow$ \olref{ord:oneplus}.} Tetapkan
+$\alpha \geq \omega$. Berdasarkan Induksi Transfinit, terdapat suatu ordinal
+terkecil $\gamma$ (mungkin $0$) sedemikian sehingga terdapat ordinal limit
+$\beta$ dengan $\alpha = \beta \ordplus \gamma$. Sekarang:
+\[
+	1 \ordplus \alpha =
+	1 \ordplus (\beta \ordplus \gamma) =
+	(1 \ordplus \beta) \ordplus \gamma =
+	\supstrict_{\delta < \beta} (1 \ordplus  \delta) \ordplus  \gamma =
+	\beta \ordplus  \gamma =
+	\alpha.
+\]
+\emph{\olref{ord:oneplus} $\Rightarrow$ \olref{ord:plusone}.} Jelas
+terdapat !!a{bijection} $f \colon (\alpha \disjointsum 1) \to (1
+\disjointsum \alpha)$. Jika $1 \ordplus \alpha = \alpha$, terdapat suatu
+isomorfisme $g \colon (1 \disjointsum \alpha) \to \alpha$. Sekarang
+perhatikan $\comp{f}{g}$.
+
+\emph{\olref{ord:plusone} $\Rightarrow$ \olref{ord:infinite}.} Jika
+$\alpha \approx \alpha \ordplus 1$, terdapat !!a{bijection} $f \colon
+(\alpha \disjointsum 1) \to \alpha$. Definisikan $g(\gamma) = f(\gamma,
+0)$ bagi setiap $\gamma < \alpha$; !!{injection} ini menyaksikan bahwa
+$\alpha$ bersifat tak hingga Dedekind, sebab $f(0,1) \in \alpha \setminus
+\ran{g}$.
+
+\emph{\olref{ord:infinite} $\Rightarrow$ \olref{ord:notinomega}.} Ini
+merupakan \olref[z][infinity-again]{naturalnumbersarentinfinite}.
+\end{proof}
+
+\end{document}

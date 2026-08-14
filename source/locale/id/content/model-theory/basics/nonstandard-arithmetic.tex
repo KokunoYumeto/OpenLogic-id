@@ -1,0 +1,231 @@
+% Part: first-order-logic
+% Chapter: model-theory
+% Section: nonstandard-arithmetic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{bas}{nsa}
+\section{Model Aritmetika Tak Standar}
+
+\begin{defn}
+Misalkan $\Lang{L_N}$ adalah !!{language} aritmetika, yang terdiri atas
+!!{constant} $\Obj{0}$, !!{predicate} dua-tempat $<$, !!{function}
+satu-tempat $\prime$, serta !!{function}s dua-tempat $+$ dan $\times$.
+\begin{enumerate}
+\item \emph{Model standar} aritmetika adalah !!{structure} $\Struct{N}$
+  untuk $\Lang{L_N}$ dengan $\Nat = \{0, 1, 2, \dots\}$, yang
+  menafsirkan $\Obj{0}$ sebagai $0$, $<$ sebagai relasi kurang-dari
+  pada~$\Nat$, serta $\prime$, $+$, dan $\times$ masing-masing sebagai
+  operasi penerus, penjumlahan, dan perkalian pada~$\Nat$.
+\item \emph{Aritmetika benar} adalah teori $\Theory{N}$.
+\end{enumerate}
+\end{defn}
+
+Ketika bekerja dalam $\Lang{L_N}$, setiap suku berbentuk
+$\Obj{0}^{\prime\dots\prime}$, dengan $n$ kali penerapan fungsi penerus
+pada $\Obj{0}$, kita singkat sebagai~$\num{n}$.
+
+\begin{defn}
+Suatu !!{structure}~$\Struct{M}$ untuk $\Lang{L_N}$ bersifat
+\emph{standar} jika dan hanya jika $\Struct{N} \iso \Struct{M}$.
+\end{defn}
+
+\begin{thm}\ollabel{thm:non-std}
+Terdapat model-model !!{enumerable} tak standar dari aritmetika benar.
+\end{thm}
+
+\begin{proof}
+Perluas $\Lang{L_N}$ dengan memperkenalkan !!{constant} baru~$c$, dan
+perhatikan teori
+\[
+\Theory{N} \cup \Setabs{\num{n} < c}{n \in \Nat}.
+\]
+Teori tersebut dapat dipenuhi secara berhingga, sehingga menurut kekompakan teori
+itu mempunyai suatu model $\Struct{M}$, yang menurut teorema
+L\"owenheim--Skolem Menurun dapat dipilih !!{enumerable}. Jika
+$\Domain{M}$ adalah ranah $\Struct{M}$, misalkan $\Struct{M}$ menafsirkan
+konstanta-konstanta nonlogis dari $\Lang{L}$ sebagai $\mathbf{z} =
+\Assign{\Obj{0}}{M} \in \Domain{M}$, ${\prec} = \Assign{<}{M} \subseteq
+M^2$, $* = \Assign{\prime}{M} \colon \Domain{M} \to \Domain{M}$, serta
+$\oplus = \Assign{+}{M}, \otimes = \Assign{\times}{M} \colon
+\Domain{M}^2 \to \Domain{M}$. Untuk setiap $x \in \Domain{M}$, kita
+menulis $x^*$ bagi unsur $\Domain{M}$ yang diperoleh dari $x$ dengan
+menerapkan~$*$.
+
+Sekarang, seandainya $h$ merupakan suatu isomorfisme antara $\Struct{N}$
+dan $\Struct{M}$, akan ada $n \in \Nat$ sedemikian sehingga $h(n) =
+\Assign{c}{M}$. Jadi, ambil sebarang penetapan $s$ dalam $\Struct{N}$
+sedemikian sehingga $s(x) = n$. Maka $\Sat{N}{\eq[\num{n}][x]}[s]$;
+menurut bukti \olref[iso]{thm:isom}, juga
+$\Sat{M}{\eq[\num{n}][x]}[h \circ s]$, sehingga $\Assign{c}{M} =
+\mathbf{z}^{*\cdots *}$ (dengan $*$ diiterasikan $n$ kali). Namun, hal ini
+mustahil karena menurut asumsi $\Sat{M}{\num{n} < c}$ dan $\prec$
+irefleksif. Jadi, $\Struct{M}$ tak standar.
+\end{proof}
+
+\begin{prob}
+Suatu relasi $R$ pada himpunan $X$ \emph{berdasar-baik} jika dan hanya jika
+tidak terdapat rantai menurun tak hingga dalam~$R$, yakni jika tidak ada
+$x_0$, $x_1$, $x_2$,~\dots dalam $X$ sedemikian sehingga
+$\dots x_2Rx_1Rx_0$. Dengan mengasumsikan teori himpunan
+Zermelo--Fraenkel~$ZF$ konsisten, tunjukkan bahwa terdapat model-model $ZF$
+yang tidak berdasar-baik, yakni model $\mathfrak{M}$ sedemikian sehingga
+$\dots x_2 \in x_1 \in x_0$.
+\end{prob}
+
+Karena model tak standar $\Struct{M}$ dari \olref{thm:non-std} ekuivalen
+elementer dengan model standar, sejumlah sifat $\Struct{M}$ dapat
+diturunkan. Sisa bagian ini ditujukan pada tugas tersebut, yang akan
+memungkinkan kita memperoleh pencirian tepat atas model-model !!{enumerable}
+tak standar dari $\Theory{N}$.
+
+\begin{enumerate}
+\item Tidak ada anggota $\Domain{M}$ yang $\prec$-kurang dari dirinya
+  sendiri: kalimat $\lforall[x][\lnot x < x]$ benar dalam $\Struct{N}$ dan
+  karena itu benar pula dalam $\Struct{M}$.
+\item Dengan penalaran serupa, kita memperoleh bahwa $\prec$ merupakan
+  \emph{pengurutan linear} atas $\Domain{M}$, yakni relasi total, irefleksif,
+  dan transitif pada $\Domain{M}$.
+\item Unsur $\mathbf{z}$ adalah unsur $\prec$-terkecil dari $\Domain{M}$.
+\item Setiap anggota $\Domain{M}$ $\prec$-kurang dari penerus-$*$-nya, dan
+  $x^*$ adalah anggota $\prec$-terkecil dari $\Domain{M}$ yang lebih besar
+  daripada $x$.
+\item $\Struct{M}$ memuat suatu segmen awal (dari $\prec$) yang isomorfik
+  dengan $\Nat$: $\mathbf{z}, \mathbf{z}^*, \mathbf{z}^{**}, \dots$, yang
+  kita sebut \emph{bagian standar} dari $\Domain{M}$. Setiap anggota lain
+  dari $\Domain{M}$ bersifat \emph{tak standar}. Harus terdapat anggota tak
+  standar dari $\Domain{M}$; jika tidak, fungsi $h$ dari bukti
+  \olref{thm:non-std} merupakan isomorfisme. Kita menggunakan $n, m, \dots$
+  sebagai !!{variable}s yang menjangkau bagian standar $\Struct{M}$ ini.
+\item Setiap unsur tak standar lebih besar daripada setiap unsur standar;
+  sebab, untuk setiap $n \in \Nat$,
+  \[
+  \Sat{N}{\lforall[z][(\lnot(\eq[z][\Obj{0}] \lor
+  \dots \lor \eq[z][\num{n}]) \lif \num{n} < z)]},
+  \]
+  sehingga jika $z \in \Domain{M}$ berbeda dari semua unsur standar, maka
+  unsur itu harus \emph{lebih besar} daripada semuanya.
+\item Setiap anggota $\Domain{M}$ selain $\mathbf{z}$ merupakan
+  penerus-$*$ dari suatu unsur tunggal $\Domain{M}$, yang dilambangkan
+  dengan $^*x$. Jika $x = y^*$, maka $x$ dan $y$ keduanya standar apabila
+  salah satunya standar (dan keduanya tak standar apabila salah satunya tak
+  standar).
+\item Definisikan relasi ekuivalensi $\approx$ pada $\Domain{M}$ dengan
+  menyatakan bahwa $x \approx y$ jika dan hanya jika, untuk suatu $n$
+  \emph{standar}, berlaku $x \oplus n = y$ atau $y \oplus n =x$. Dengan
+  kata lain, $x \approx y$ jika dan hanya jika $x$ dan $y$ terpisah oleh
+  jarak berhingga. Jika $n$ dan $m$ standar, maka $n \approx m$. Definisikan
+  \emph{blok} dari $x$ sebagai kelas ekuivalensi $[x] = \Setabs{y}{x
+  \approx y}$.
+\item Andaikan $x \prec y$ dengan $x \not\approx y$. Karena
+  $\Sat{N}{\lforall[x][\lforall[y][(x < y \lif (x' < y \lor x' =
+      y))]]}$, berlaku $x^* \prec y$ atau $x^* = y$. Yang terakhir mustahil
+  karena menyiratkan $x \approx y$, sehingga $x^* \prec y$. Serupa dengan
+  itu, jika $x \prec y$ dan $x \not\approx y$, maka $x \prec {^*y}$.
+  Karena itu, jika $x \prec y$ dan $x \not\approx y$, maka setiap
+  $w \approx x$ $\prec$-kurang dari setiap $v \approx y$. Dengan demikian,
+  setiap blok $[x]$ membentuk rantai tak hingga ganda
+  \[
+  \cdots \prec {^{**}x} \prec {^*}x \prec x \prec x^* \prec x^{**}
+  \prec \cdots
+  \]
+  yang disebut rantai-$Z$ karena memiliki tipe urutan bilangan bulat.
+\item Pengurutan $\prec$ dapat diangkat ke blok-blok: jika $x \prec y$,
+  maka blok $x$ lebih kecil daripada blok $y$. Suatu blok bersifat
+  \emph{tak standar} jika memuat unsur tak standar. Blok standar adalah
+  blok terkecil.
+\item Tidak ada blok tak standar terkecil: jika $y$ tak standar, terdapat
+  $x \prec y$ dengan $x$ juga tak standar dan $x \not\approx y$. Bukti:
+  dalam model standar $\Struct{N}$, setiap bilangan habis dibagi dua,
+  mungkin dengan sisa satu, yakni
+  $\Sat{N}{\lforall[y][\lexists[x][(y = x + x \lor y = x + x +
+        \Obj{0}')]]}$. Menurut ekuivalensi elementer, untuk setiap $y \in
+  \Domain{M}$ terdapat $x \in \Domain{M}$ sedemikian sehingga berlaku
+  $x \oplus x = y$ atau $x \oplus x \oplus \mathbf{z}^*= y$. Jika $x$
+  standar, maka $y$ pun standar; jadi $x$ tak standar. Selain itu, $x$ dan
+  $y$ termasuk dalam blok yang berbeda, yakni $x \not\approx y$. Untuk
+  melihatnya, andaikan keduanya termasuk dalam blok yang sama, yakni
+  $x \oplus n = y$ untuk suatu $n$ standar. Jika $y = x \oplus x$, maka
+  $x \oplus n = x \oplus x$, sehingga $x = n$ menurut hukum pembatalan
+  untuk penjumlahan (yang berlaku dalam $\Struct{N}$ dan karena itu juga
+  dalam $\Struct{M}$), dan ternyata $x$ standar. Demikian pula jika
+  $y = x \oplus x \oplus \mathbf{z}^*$.
+\item Dengan argumen serupa, tidak ada blok terbesar.
+\item Pengurutan blok-blok tersebut rapat: jika $[x]$ lebih kecil daripada
+  $[y]$ (dengan $x \not\approx y$), maka terdapat blok $[z]$ yang berbeda
+  dari keduanya dan terletak di antaranya. Andaikan $x \prec y$. Seperti
+  sebelumnya, $x \oplus y$ habis dibagi dua (mungkin dengan sisa), sehingga
+  terdapat $u \in \Domain{M}$ sedemikian sehingga berlaku $x \oplus y =
+  u \oplus u$ atau $x \oplus y = u \oplus u \oplus \mathbf{z}^*$. Unsur
+  $u$ adalah nilai tengah $x$ dan $y$, sehingga terletak di antara keduanya.
+  Andaikan $x \oplus y = u \oplus u$ (kasus lain serupa): jika
+  $u \approx x$, maka untuk suatu $n$ standar,
+  \[
+  x \oplus y = x \oplus n \oplus x \oplus n,
+  \]
+  sehingga $y = x \oplus n \oplus n$ dan akan berlaku $x \approx y$,
+  berlawanan dengan asumsi. Kita menyimpulkan bahwa $u \not\approx x$.
+  Argumen serupa memberikan $u \not\approx y$.
+\end{enumerate}
+Dengan demikian, blok-blok tak standar terurut seperti bilangan rasional:
+blok-blok tersebut membentuk !!a{enumerable} pengurutan linear tanpa titik
+ujung. Akibatnya, untuk setiap dua model !!{enumerable} tak standar
+$\Struct{M}_1$ dan $\Struct{M_2}$ dari aritmetika benar, reduk keduanya ke
+bahasa yang hanya memuat $<$ dan $=$ adalah isomorfik. Memang, suatu
+isomorfisme $h$ dapat didefinisikan sebagai berikut: bagian standar dari
+$\Struct{M_1}$ dan $\Struct{M_2}$ isomorfik dengan model standar
+$\Struct{N}$, dan karenanya satu sama lain. Blok-blok yang membentuk bagian
+tak standar sendiri terurut seperti bilangan rasional dan oleh karena itu,
+menurut \olref[dlo]{thm:cantorQ}, isomorfik; suatu isomorfisme antarblok
+dapat diperluas menjadi isomorfisme \emph{di dalam} blok dengan memasangkan
+unsur-unsur sebarang dalam masing-masing blok, kemudian menetapkan citra
+penerus $x$ dalam $\Struct{M_1}$ sebagai penerus citra $x$ dalam
+$\Struct{M_2}$. Perhatikan bahwa \emph{tidak} berarti $\mathfrak{M}_1$ dan
+$\mathfrak{M}_2$ isomorfik dalam bahasa penuh aritmetika (memang,
+isomorfisme selalu relatif terhadap suatu tanda tangan), karena penjumlahan
+dan perkalian pada $\Domain{M_1}$ dan $\Domain{M_2}$ dapat didefinisikan
+dengan cara-cara yang tidak isomorfik. (Hal ini juga mengikuti dari teorema
+terkenal Vaught bahwa banyaknya model terhitung dari suatu teori lengkap
+tidak mungkin~2.)
+
+\begin{prob}
+Tunjukkan bahwa tidak mungkin ada blok terbesar dalam model aritmetika tak
+standar.
+\end{prob}
+
+\begin{prob}
+Misalkan $\Lang{L}$ adalah !!{language} orde pertama yang hanya memuat $<$
+sebagai !!{predicate} (selain $\eq$), dan misalkan $\Struct{N} = (\Nat,
+<)$. Semua himpunan bagian berhingga atau kofinit dari $\Struct{N}$ dapat
+didefinisikan. Tunjukkan bahwa \emph{hanya} himpunan-himpunan bagian inilah
+yang dapat didefinisikan dalam $\Struct{N}$.
+
+(Petunjuk: Pertama, misalkan $\Obj{prc}(x,y)$ adalah rumus $\Lang{L}$ yang
+menyingkat ``$x$ adalah pendahulu langsung dari $y$:''
+\[
+x<y \land \lnot \lexists[z][(x<z \land z < y)].
+\]
+Sekarang, setiap himpunan bagian $\Struct{N}$ yang dapat didefinisikan
+bersesuaian dengan rumus $!A(x)$ dalam $\Lang{L}$. Untuk setiap $!A$ semacam
+itu, perhatikan kalimat $!D$:
+\[
+\lexists[x][\lforall[y][\lforall[z][((x<y \land x<z \land \Obj{prc}(y,z)
+  \land !A(y)) \lif !A(z))]]].
+\]
+Tunjukkan bahwa $\Sat{N}{!D}$ jika dan hanya jika himpunan bagian
+$\Struct{N}$ yang didefinisikan oleh $!A$ berhingga atau kofinit.
+
+Sekarang, misalkan $\Struct{M}$ adalah model tak standar yang ekuivalen
+elementer dengan $\Struct{N}$. Jika $a \in \Domain{M}$ tak standar,
+misalkan $b, c \in \Domain{M}$ lebih besar daripada $a$, dan misalkan $b$
+adalah pendahulu langsung dari~$c$. Maka terdapat automorfisme $h$ dari
+$\Domain{M}$ sedemikian sehingga $h(b)=c$ (mengapa?). Karena itu, jika $b$
+memenuhi $!A$, maka $c$ juga memenuhinya (mengapa?). Akibatnya, $!D$ benar
+dalam $\Struct{M}$, dan karenanya juga dalam $\Struct{N}$. Namun, ini
+menyiratkan bahwa himpunan bagian $\Struct{N}$ yang didefinisikan oleh $!A$
+berhingga atau kofinit.
+\end{prob}
+
+\end{document}

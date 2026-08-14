@@ -1,0 +1,329 @@
+% Part: proof-theory
+% Chapter: normalization
+% Section: translations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{nor}{tr}
+
+\olsection{Menerjemahkan antara \usetoken{P}{proof} Normal \Log{N2i} dan \Log{G2i}}
+
+!!^{proof}s dalam \Log{N2i} dapat diterjemahkan menjadi !!{proof}s dalam
+\Log{G2i}, dan sebaliknya. Pertama-tama, penerjemahan !!{proof}s bebas-potongan
+\Log{G2i} menghasilkan !!{proof}s normal~\Log{N2i}.
+
+Untuk menyatakan hasilnya, kita memerlukan sedikit istilah agar anteseden
+sekuen dalam~\Log{N2i} dan~\Log{G2i} dapat dikaitkan dengan lebih mudah:
+suatu himpunan~$\Gamma'$ dari !!{formula}s berlabel \emph{bersesuaian dengan}
+multihimpunan~$\Gamma$ dari !!{formula}s tanpa label jika, bagi setiap
+!!{formula}~$!A$, banyaknya !!{element}s dalam~$\Gamma'$ yang berbentuk
+$x : !A$ kurang dari atau sama dengan multiplisitas~$!A$ dalam~$\Gamma$.
+
+\begin{cor}
+Jika $\Log{G2i} \Proves \Gamma \Sequent \Delta$, maka terdapat
+!!{proof} normal~\Log{N2i}~$\delta$ bagi $\Gamma' \Sequent !C$, dengan
+$!C \ident \lfalse$ jika $\Delta$ kosong dan $\Delta = \{!C\}$ jika tidak,
+serta
+himpunan~$\Gamma'$ dari !!{formula}s berlabel yang bersesuaian dengan
+multihimpunan~$\Gamma$; yakni, bagi setiap !!{formula}~$!A$, banyaknya
+!!{element}s dalam~$\Gamma'$ yang berbentuk $x : !A$ kurang dari atau sama
+dengan multiplisitas~$!A$ (yakni banyaknya salinan~$!A$) dalam~$\Gamma$.
+\end{cor}
+
+\begin{proof}
+Hal ini terlihat dengan memeriksa bukti
+\olref[nat][tgi]{prop:G2i-to-N2i}: kita menambahkan aturan
+!!{introduction} pada akhir !!{proof}s dan aturan !!{elimination} hanya pada
+bagian atas !!{proof}s, sehingga kita tidak pernah memperkenalkan
+!!{introduction} di atas !!a{elimination}.
+\end{proof}
+
+Namun, terjemahan aturan \Cut{} yang diberikan dalam
+\olref[nat][tgi]{prop:G2i-to-N2i} dapat memperkenalkan potongan dalam
+!!{proof}~\Log{N2i}~$\delta$. Jika suatu !!{proof}~\Log{G2i} berakhir dengan
+\Cut{} dan mempunyai sub-!!{proof}s langsung $\pi_1$ dan $\pi_2$ masing-masing
+bagi $\Gamma_1 \Sequent !A$ dan $!A, \Gamma_2 \Sequent \Delta_2$, kita
+mencangkokkan terjemahan $\delta_1$ dari~$\pi_1$ pada aksioma-aksioma
+$x:!A \Sequent !A$ yang muncul dalam terjemahan~$\delta_2$ dari~$\pi_2$.
+Jika $\delta_1$ berakhir dengan !!a{introduction} dengan !!{formula}
+utama~$!A$ dan
+aksioma $x:!A \Sequent !A$ dalam~$\delta_2$ merupakan premis utama
+!!a{elimination}, hasilnya adalah suatu potongan dalam~$\delta$.
+
+Kita juga dapat menerjemahkan !!{proof}s dalam \Log{N2i} menjadi
+!!{proof}s dalam~\Log{G2i}. Dalam bukti
+\olref[nat][tni]{prop:N2-to-G2}, terjemahan \Elim{\land}, \Elim{\lif},
+\Elim{\lnot}, dan \Elim{\lforall} menghasilkan inferensi~\Cut{} dalam
+!!{proof}~\Log{G2i} yang dihasilkan. Akan tetapi, hal ini dapat dihindari
+jika !!{proof}~\Log{N2i} yang menjadi titik awal kita bersifat normal.
+
+Sebutlah suatu daftar $S_1$, \dots,~$S_n$ dari kemunculan sekuen dalam
+!!{proof}~\Log{N2i}~$\delta$ sebagai \emph{cabang} jika $S_1$ adalah
+aksioma, dan setiap kali $S_i$ merupakan premis utama suatu inferensi,
+$S_{i+1}$ adalah kesimpulannya. Dengan kata lain, suatu cabang menelusuri
+sekuen ke bawah dalam~$\delta$ dari aksioma, tetapi berhenti pada premis
+minor aturan !!{elimination}. Suatu \emph{cabang utama}~$\delta$ adalah
+cabang dengan $S_n$ sebagai sekuen akhir. Setiap !!{proof}~$\delta$ harus
+mempunyai sekurang-kurangnya satu cabang utama karena setiap aturan mempunyai
+sekurang-kurangnya satu premis utama (hanya \Intro{\land} yang mempunyai dua).
+
+\begin{prop}\ollabel{prop:normal-N2i-to-G2i} Jika $\delta$ merupakan
+!!{proof} normal~$\Log{N2c}$ atau~$\Log{N2i}$ bagi
+$\Gamma \Sequent !A$, maka terdapat !!{proof} (bebas-potongan)~$\Log{G2c}$
+(!!{proof}~$\Log{G2i}$)~$\pi$ bagi $\Gamma' \Sequent \Delta$, dengan
+$\Gamma'$ sebagai multihimpunan !!{formula}s yang diperoleh dari $\Gamma$
+dengan menghapus label, serta $\Delta = \{!A\}$ jika $!A$ bukan~$\lfalse$,
+dan $\Delta = \emptyset$ jika $!A$ adalah~$\lfalse$.
+\end{prop}
+
+\begin{proof}
+Kali ini, induksi dilakukan pada banyaknya inferensi dalam
+!!{proof}~$\delta$ bagi $\Gamma \Sequent !A$. Jika tidak ada inferensi
+dalam~$\delta$, maka $\delta$ adalah aksioma $x:!A \Sequent !A$, dan $\pi$
+adalah aksioma bersesuaian $!A \Sequent !A$, atau
+$\lfalse \Sequent \ $ jika $!A \ident \lfalse$.
+
+Jika $\delta$ berakhir dengan suatu aturan inferensi, kita membedakan
+beberapa kasus:
+\begin{enumerate}
+  \item Jika $R$ adalah !!a{introduction} atau~\FalseInt, terjemahannya
+  berlangsung tepat seperti dalam bukti
+  \olref[nat][tni]{prop:N2-to-G2} dan tidak memerlukan~\Cut.
+
+  Jika aturan terakhir~$R$ dari~$\delta$ adalah !!a{elimination}, perhatikan
+  hal-hal berikut:
+  \begin{enumerate}
+    \item Cabang utama~$\delta$ tidak melewati aturan !!{introduction},
+    sebab jika tidak demikian, terdapat !!a{introduction} atau~\FalseInt{}
+    yang diikuti !!a{elimination} di sepanjang cabang utama, sehingga
+    $\delta$ tidak normal.
+    \item Karena tidak ada aturan !!{introduction} di sepanjang cabang utama
+    $\delta$, hanya terdapat satu cabang utama. (Hanya \Intro{\land} yang
+    mempunyai dua premis utama, sehingga beberapa cabang utama harus
+    melewati premis-premis suatu aturan \Intro{\land}.)
+    \item Jika cabang utama memuat premis utama \Elim{\lor} atau
+    \Elim{\lexists}, hanya terdapat satu aturan seperti itu dan aturan itu
+    merupakan aturan terakhir, yakni~$R$. (Jika tidak, cabang utama memuat
+    aturan \Elim{\lor} atau \Elim{\lexists} yang kesimpulannya menjadi
+    premis utama !!a{elimination}; bukti tersebut tidak normal karena kita
+    dapat menerapkan konversi permutasi.)
+  \item Tidak ada aturan !!{elimination} selain \Elim{\lor} dan
+  \Elim{\lexists} yang melepaskan asumsi, yakni mengubah konteks kiri sekuen.
+  \Elim{\lor} dan \Elim{\lexists} hanya melepaskan asumsi di atas premis
+  minor, yakni hanya mengubah konteks kiri premis minornya. Dengan kata lain,
+  jika suatu sekuen $S_i$ pada cabang utama~$\delta$ mempunyai
+  konteks~$\Gamma_1$, maka kesimpulan~$S_{i+1}$ dari inferensi yang premis
+  utamanya adalah $S_i$ mempunyai konteks
+  $\Gamma_1' \supseteq \Gamma_1$.
+  \item Akibatnya, jika $x: !C \Sequent !C$ merupakan sekuen paling
+  atas~$S_1$ pada cabang utama, maka $x:!C \in \Gamma$.
+  \end{enumerate}
+  Sekarang kita membedakan kasus menurut bentuk~$!C$. Karena setiap $S_i$
+  pada cabang utama merupakan premis utama !!a{elimination}, hal ini juga
+  berlaku bagi $x:!C \Sequent !C$.
+
+  \item $!C \ident !D \land !E$. Maka $\delta$ berbentuk
+  \[
+  \Axiom$x:!D \land !E \fCenter !D \land !E$
+  \RightLabel{\Elim{\land}[1]}
+  \UnaryInf$x:!D \land !E \fCenter !D$
+  \Deduce$x:!D \land !E, \Gamma_1 \fCenter !A$
+  \DisplayProof
+  \]
+  Cabang utama yang memuat $x:!D \land !E \Sequent !D$ tidak melewati
+  \Intro{\lif} atau \Intro{\lnot}, dan tidak satu pun sekuennya merupakan
+  premis minor \Elim{\lor} atau \Elim{\lexists}; karena itu, !!{formula}s
+  konteks dalam $x:!D \land !E$ tetap tidak berubah di sepanjang cabang
+  utama. Hal ini menjelaskan mengapa konteks sekuen akhir harus
+  memuat~$x:!D \land !E$. Selain itu, kita dapat mengubah !!{proof}~$\delta$
+  menjadi !!{proof}~$\delta_1$ dengan mengganti sub-!!{proof} yang berakhir
+  pada \Elim{\land} dengan $x:!D \Sequent !D$, dan mengganti
+  $x:!D \land !E$ dalam konteks setiap sekuen di sepanjang cabang utama
+  dengan $x:!D$; yakni, mengubah
+  \[
+  \bottomAlignProof
+  \Axiom$x:!D \land !E \fCenter !D \land !E$
+  \RightLabel{\Elim{\land}[1]}
+  \UnaryInf$x:!D \land !E \fCenter !D$
+  \Deduce$x:!D \land !E, \Gamma_1 \fCenter !A$
+  \DisplayProof
+  \quad\text{menjadi}\quad
+  \bottomAlignProof
+  \Axiom$x:!D \fCenter !D$
+  \Deduce$x:!D, \Gamma_1 \fCenter !A$
+  \DisplayProof
+  \]
+  Hipotesis induksi berlaku bagi $\delta_1$ karena banyaknya inferensi dalam
+  $\delta$ sama dengan banyaknya inferensi dalam $\delta_1$ ditambah~$1$.
+
+  Berdasarkan hipotesis induksi, terdapat !!{proof}~\Log{G2i}~$\pi_1$ bagi
+  $!D, \Gamma_1' \Sequent !A$. Kita memperoleh !!{proof}~$\pi$ dengan
+  menerapkan \LeftR{\land}:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!D, \Gamma_1' \fCenter !A$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!D \land !E, \Gamma_1' \fCenter !A$
+  \DisplayProof
+  \]
+  Jika $!A \ident \lfalse$, kita menyisipkan
+  \RightR{\Weakening}, misalnya,
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!D, \Gamma_1' \fCenter $
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!D \land !E, \Gamma_1' \fCenter $
+  \RightLabel{\RightR{\Weakening}}
+  \UnaryInf$!D \land !E, \Gamma_1' \fCenter !A$
+  \DisplayProof
+  \]
+  \item Jika $!C \ident !D \lor !E$, kemunculan itu harus merupakan premis
+  utama \Elim{\lor}, dan inferensi ini harus merupakan inferensi terakhir~$R$
+  pada cabang utama. Dengan kata lain, $\delta$ berbentuk:
+  \[
+  \Axiom$x:!D \lor !E \fCenter !D \lor !E$
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$y:!D, \Gamma_1 \fCenter!A$
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \Deduce$z:!E, \Gamma_2 \fCenter !A$
+  \DischargeRule{\Elim{\lor}}{y\,z}
+  \TrinaryInf$x:!D \lor !E, \Gamma_1, \Gamma_2 \fCenter !A$
+  \DisplayProof
+  \]
+  Hipotesis induksi berlaku bagi !!{proof}s $\delta_1$ dan $\delta_2$; kita
+  memperoleh !!{proof}s~\Log{G2i} $\pi_1$ dan $\pi_2$ masing-masing bagi
+  $!D, \Gamma_1' \Sequent !A$ dan $!E, \Gamma_2' \Sequent !A$. Kita
+  menerapkan $\LeftR{\lor}$ untuk memperoleh~$\pi$:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!D, \Gamma_1' \fCenter !A$
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$!E, \Gamma_2' \fCenter !A$
+  \RightLabel{\LeftR{\lor}}
+  \BinaryInf$!D \lor !E, \Gamma_1', \Gamma_2' \fCenter !A$
+  \DisplayProof
+  \]
+  Jika $\Elim{\lor}$ tidak melepaskan $y:!D$ atau $z:!E$ (yakni, asumsi
+  tersebut tidak terdapat dalam konteks premis minor), atau jika~$!A$
+  ternyata adalah $\lfalse$, kita harus menambahkan beberapa
+  \LeftR{\Weakening} dan \RightR{\Weakening}. Sebagai contoh,
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\Gamma_1' \fCenter $
+  \RightLabel{\LeftR{\Weakening}}
+  \UnaryInf$!D, \Gamma_1' \fCenter $
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$\Gamma_2' \fCenter $
+  \RightLabel{\LeftR{\Weakening}}
+  \UnaryInf$!E, \Gamma_2' \fCenter $
+  \RightLabel{\LeftR{\lor}}
+  \BinaryInf$!D \lor !E, \Gamma_1', \Gamma_2' \fCenter $
+  \RightLabel{\RightR{\Weakening}}
+  \UnaryInf$!D \lor !E, \Gamma_1', \Gamma_2' \fCenter !A$
+  \DisplayProof
+  \]
+
+  \item $!C \ident !D \lif !E$. Maka $\delta$ berbentuk
+  \[
+  \Axiom$x:!D \lif !E \fCenter !D \lif !E$
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$\Gamma_1 \fCenter!D$
+  \RightLabel{\Elim{\lif}}
+  \BinaryInf$x:!D \lif !E, \Gamma_1 \fCenter !E$
+  \RightLabel{$\delta_2$}
+  \Deduce$x:!D \lif !E, \Gamma_1, \Gamma_2 \fCenter !A$
+  \DisplayProof
+  \]
+  Di sini, perhatikan bahwa cabang utama yang memuat
+  $x:!D \lif !E, \Gamma_1 \Sequent !E$ tidak melewati \Intro{\lif} atau
+  \Intro{\lnot}, dan tidak satu pun sekuennya merupakan premis minor
+  \Elim{\lor} atau \Elim{\lexists}; karena itu, !!{formula}s konteks dalam
+  $x:!D \lif !E, \Gamma_1$ tetap tidak berubah di sepanjang cabang utama.
+  Hal ini menjelaskan mengapa konteks sekuen akhir harus memuat
+  $x:!D \lif !E, \Gamma_1$. Selain itu, kita dapat mengubah fragmen
+  !!{proof}~$\delta_2$ menjadi !!{proof} yang benar~$\delta_2'$ dengan
+  mengganti sub-!!{proof} yang berakhir pada \Elim{\lif} dengan
+  $x:!E \Sequent !E$, dan mengganti $x:!D \lif !E, \Gamma_1$ dalam konteks
+  setiap sekuen di sepanjang cabang utama dengan $x:!E$; yakni, mengubah
+  \[
+  \bottomAlignProof
+  \Axiom$x:!D \lif !E, \Gamma_1 \fCenter !E$
+  \RightLabel{$\delta_2$}
+  \Deduce$x:!D \lif !E, \Gamma_1, \Gamma_2 \fCenter !A$
+  \DisplayProof
+  \quad\text{menjadi}\quad
+  \bottomAlignProof
+  \Axiom$x:!E \fCenter !E$
+  \RightLabel{$\delta_2'$}
+  \Deduce$x:!E, \Gamma_2 \fCenter !A$
+  \DisplayProof
+  \]
+  Hipotesis induksi berlaku bagi $\delta_1$ dan $\delta_2'$ karena banyaknya
+  inferensi dalam $\delta$ sama dengan jumlah banyaknya inferensi dalam
+  $\delta_1$ dan~$\delta_2$, ditambah~$1$ untuk inferensi \Elim{\lif} pada
+  awal cabang utama. (Jika inferensi tersebut juga merupakan inferensi
+  terakhir~$R$ dalam $\delta$, maka $\delta_2'$ memuat $0$ inferensi.)
+
+  Berdasarkan hipotesis induksi, terdapat !!{proof}s~\Log{G2i}, yakni
+  $\pi_1$ bagi $\Gamma_1' \Sequent !D$ dan $\pi_2$ bagi
+  $!E, \Gamma_2' \Sequent !A$. Kita memperoleh !!{proof}~$\pi$ dengan
+  menerapkan \LeftR{\lif}:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\Gamma_1' \fCenter !D$
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$!E, \Gamma_2' \fCenter !A$
+  \RightLabel{\LeftR{\lif}}
+  \BinaryInf$!D \lif !E, \Gamma_1', \Gamma_2' \fCenter !A$
+  \DisplayProof
+  \]
+  Jika $!D$ dan/atau $!A \ident \lfalse$, kita menyisipkan satu atau dua
+  \RightR{\Weakening}, misalnya,
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\Gamma_1' \fCenter $
+  \RightLabel{\RightR{\Weakening}}
+  \UnaryInf$\Gamma_1' \fCenter !D$
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$!E, \Gamma_2' \fCenter $
+  \RightLabel{\RightR{\Weakening}}
+  \UnaryInf$!E, \Gamma_2' \fCenter !A$
+  \RightLabel{\LeftR{\lif}}
+  \BinaryInf$!D \lif !E, \Gamma_1', \Gamma_2' \fCenter !A$
+  \DisplayProof
+  \]
+
+\end{enumerate}
+Kasus-kasus lainnya ditangani dengan cara serupa dan dibiarkan sebagai
+latihan.
+\end{proof}
+
+\begin{cor}
+Setiap !!{formula} yang muncul dalam !!{proof} normal~\Log{N1i} atau
+\Log{N2i} merupakan sub!!{formula} dari !!{formula} akhir atau sekuen akhir.
+\end{cor}
+
+\begin{proof}
+  Berdasarkan \olref{prop:normal-N2i-to-G2i}, setiap !!{proof}
+  normal~\Log{N2i} dapat diterjemahkan menjadi !!{proof}~\Log{G2i}.
+  Pemeriksaan bukti menunjukkan bahwa setiap !!{formula} yang muncul dalam
+  !!{proof}~\Log{N2i} juga muncul dalam !!{proof}~\Log{G2i}. Karena tidak
+  mempunyai aturan \Cut{}, \Log{G2i} mempunyai sifat sub!!{formula}.
+\end{proof}
+
+\end{document}

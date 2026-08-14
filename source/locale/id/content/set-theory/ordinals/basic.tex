@@ -1,0 +1,227 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{ordinals}{basic}
+\olsection{Sifat-Sifat Dasar Ordinal}
+
+Kita telah mengamati bahwa beberapa ordinal pertama merupakan bilangan asli.
+Alasan utama untuk mengembangkan teori ordinal adalah memperluas prinsip
+induksi yang berlaku pada bilangan asli. Kita akan menuju hasil ini melalui
+serangkaian hasil elementer.
+
+\begin{lem}\ollabel{ordmemberord}
+Setiap !!{element} dari suatu ordinal merupakan suatu ordinal.
+\end{lem}
+
+\begin{proof}
+Misalkan $\alpha$ suatu ordinal dengan $b \in \alpha$. Karena $\alpha$
+bersifat transitif, $b \subseteq \alpha$. Jadi, $\in$ mengurutkan $b$ dengan
+baik karena $\in$ mengurutkan $\alpha$ dengan baik.
+
+Untuk melihat bahwa $b$ bersifat transitif, andaikan $x \in c \in b$. Jadi,
+$c \in \alpha$ karena $b \subseteq \alpha$. Sekali lagi, karena $\alpha$
+bersifat transitif, $c \subseteq \alpha$, sehingga $x \in \alpha$. Jadi $x,
+c, b \in \alpha$. Namun, $\in$ mengurutkan $\alpha$ dengan baik, sehingga
+$\in$ merupakan relasi transitif pada $\alpha$ menurut
+\olref[sth][ordinals][wo]{wo:strictorder}. Karena itu, dari $x \in c \in b$
+kita memperoleh $x \in b$. Dengan menggeneralisasi, $c \subseteq b$.
+\end{proof}
+
+\begin{cor}\ollabel{ordissetofsmallerord}
+$\alpha = \Setabs{\beta \in \alpha}{\beta \text{ merupakan suatu ordinal}}$,
+untuk setiap ordinal~$\alpha$.
+\end{cor}
+
+\begin{proof}
+Langsung dari \olref{ordmemberord}.
+\end{proof}
+
+Gagasan kasar di balik dua hasil utama berikut,
+\olref{ordinductionschema} dan \olref{ordtrichotomy}, adalah bahwa
+ordinal-ordinal itu sendiri diurutkan dengan baik oleh relasi keanggotaan:
+
+\begin{thm}[Induksi Transfinit]\ollabel{ordinductionschema}
+Untuk sembarang formula $\phi(x)$:
+\[
+	\text{jika }\exists \alpha \phi(\alpha)\text{, maka }\exists \alpha(\phi(\alpha)
+	\land  (\forall \beta \in \alpha) \lnot \phi(\beta))
+\]
+dengan kuantor-kuantor yang ditampilkan secara implisit dibatasi pada
+ordinal.
+\end{thm}
+
+\begin{proof}
+%\olref{ordinductionschema1}.
+Andaikan $\phi(\alpha)$ untuk suatu ordinal $\alpha$. Jika $(\forall \beta
+\in \alpha) \lnot \phi(\beta)$, maka pembuktian selesai. Jika tidak, karena
+$\alpha$ merupakan suatu ordinal, terdapat suatu !!{element} terkecil
+menurut $\in$ yang memenuhi $\phi$, dan anggota ini merupakan
+suatu ordinal menurut \olref{ordmemberord}.
+%	\olref{ordinductionschema2}. Suppose there is some ordinal
+%	$\gamma$ such that $\lnot\phi(\gamma)$. Then by
+%	\olref{ordinductionschema1}, there is an $\in$-minimal ordinal
+%	$\alpha$ for which $\lnot\phi(\alpha)$. So $(\forall \beta <
+%	\alpha) \phi(\beta)$, rendering the antecedent of the conditional
+%	false.
+\end{proof}
+\noindent
+Perhatikan bahwa kita juga dapat mengungkapkan \olref{ordinductionschema}
+sebagai skema:
+\[
+\text{jika }\forall \alpha((\forall \beta \in \alpha)\phi(\beta) \lif
+\phi(\alpha))\text{, maka }\forall \alpha\phi(\alpha)
+\]
+cukup dengan mengambil $\lnot\phi(\alpha)$ dalam
+\olref{ordinductionschema}, lalu melakukan manipulasi logis elementer.
+
+\begin{thm}[Trikotomi]\ollabel{ordtrichotomy}
+$\alpha \in \beta \lor \alpha = \beta \lor \beta \in \alpha$, untuk
+sembarang ordinal $\alpha$ dan $\beta$.
+\end{thm}
+
+\begin{proof}
+Pembuktian dilakukan dengan induksi ganda, yakni dengan menggunakan
+\olref{ordinductionschema} dua kali. Katakan bahwa $x$ \emph{dapat
+dibandingkan} dengan $y$ jika dan hanya jika $x \in y \lor x = y \lor y \in
+x$.
+
+Untuk induksi, andaikan setiap ordinal dalam~$\alpha$ dapat dibandingkan
+dengan \emph{setiap} ordinal. Untuk induksi berikutnya, andaikan $\alpha$
+dapat dibandingkan dengan setiap ordinal dalam~$\beta$. Kita akan
+menunjukkan bahwa $\alpha$ dapat dibandingkan dengan~$\beta$. Dengan induksi
+pada~$\beta$, akan mengikuti bahwa $\alpha$ dapat dibandingkan dengan setiap
+ordinal; kemudian, dengan induksi pada~$\alpha$, \emph{setiap} ordinal dapat
+dibandingkan dengan \emph{setiap} ordinal, sebagaimana diperlukan. Cukup
+andaikan bahwa $\alpha \notin \beta$ dan $\beta \notin \alpha$, lalu
+tunjukkan bahwa $\alpha = \beta$.
+
+Untuk menunjukkan bahwa $\alpha \subseteq \beta$, tetapkan $\gamma \in
+\alpha$; ini merupakan suatu ordinal menurut \olref{ordmemberord}. Jadi,
+menurut hipotesis induksi pertama, $\gamma$ dapat dibandingkan dengan
+$\beta$. Namun, jika $\gamma = \beta$ ataupun $\beta \in \gamma$, maka
+$\beta \in \alpha$ (dengan menggunakan fakta bahwa $\alpha$ bersifat
+transitif jika diperlukan), berlawanan dengan pengandaian kita; jadi $\gamma
+\in \beta$. Dengan menggeneralisasi, $\alpha \subseteq \beta$.
+
+Penalaran yang persis serupa, dengan menggunakan hipotesis induksi kedua,
+menunjukkan bahwa $\beta \subseteq \alpha$. Jadi $\alpha = \beta$.
+\end{proof}\noindent
+Dengan demikian, terkadang kita akan menulis $\alpha <\beta$ alih-alih
+$\alpha \in \beta$, karena $\in$ berperilaku sebagai relasi pengurutan. Tidak
+ada alasan mendalam untuk hal ini, selain kelazimannya dan karena lebih mudah
+menulis $\alpha \leq \beta$ daripada $\alpha \in \beta \lor \alpha =
+\beta$.\footnote{Kita dapat menulis $\alpha
+\mathrel{\underline{\in}} \beta$; tetapi notasi itu sama sekali tidak
+standar.}
+
+Berikut dua konsekuensi singkat dari hasil-hasil terakhir kita; yang pertama
+menerapkan notasi baru kita:
+
+\begin{cor}\ollabel{ordordered}
+Jika $\exists \alpha\phi(\alpha)$, maka $\exists \alpha(\phi(\alpha)
+\land \forall \beta(\phi(\beta) \lif \alpha \leq \beta))$.
+Selain itu, untuk sembarang ordinal $\alpha, \beta, \gamma$, berlaku baik
+$\alpha \notin \alpha$ maupun $\alpha \in \beta \in \gamma \lif \alpha
+\in \gamma$.
+\end{cor}
+
+\begin{proof}
+Sama seperti \olref[wo]{wo:strictorder}.
+\end{proof}
+
+\begin{prob}
+Lengkapi ``penalaran yang persis serupa'' dalam pembuktian
+\olref[sth][ordinals][basic]{ordtrichotomy}.
+\end{prob}
+
+\begin{cor}\ollabel{corordtransitiveord}
+$A$ merupakan suatu ordinal jika dan hanya jika $A$ merupakan suatu himpunan
+transitif dari ordinal-ordinal.
+\end{cor}
+
+\begin{proof}
+\emph{Dari kiri ke kanan.} Menurut \olref{ordmemberord}.
+\emph{Dari kanan ke kiri.} Jika $A$ merupakan suatu himpunan transitif dari
+ordinal-ordinal, maka $\in$ mengurutkan $A$ dengan baik menurut
+\olref{ordinductionschema} dan \olref{ordtrichotomy}.
+\end{proof}
+
+Di atas, kita menyarikan
+\olref{ordinductionschema} dan \olref{ordtrichotomy} sebagai pernyataan bahwa
+$\in$ mengurutkan ordinal-ordinal dengan baik. Namun, kita harus
+\emph{sangat berhati-hati} terhadap pernyataan semacam ini karena hasil
+berikut:
+
+\begin{thm}[Paradoks Burali--Forti]\ollabel{buraliforti}
+Tidak ada himpunan semua ordinal.
+\end{thm}
+
+\begin{proof}
+Untuk reductio, andaikan $O$ merupakan himpunan semua ordinal. Jika $\alpha
+\in \beta \in O$, maka $\alpha$ merupakan suatu ordinal menurut
+\olref{ordmemberord}, sehingga $\alpha \in O$. Jadi $O$ bersifat transitif,
+dan karena itu $O$ merupakan suatu ordinal menurut
+\olref{corordtransitiveord}. Maka $O \in O$, bertentangan dengan
+\olref{ordordered}.
+\end{proof}
+\noindent
+Hasil ini dinamai menurut \citeauthor{Burali-Forti1897}. Namun, Cantor-lah
+yang pada tahun 1899---dalam sebuah surat kepada Dedekind---pertama kali
+melihat dengan jelas \emph{kontradiksi} dalam pengandaian bahwa terdapat
+suatu himpunan semua ordinal. Sebagaimana dijelaskan van Heijenoort:
+\begin{quote}
+  Burali-Forti sendiri menganggap kontradiksi tersebut menetapkan, melalui
+  \emph{reductio ad absurdum}, hasil bahwa pengurutan alami ordinal hanyalah
+  suatu urutan parsial.
+  \citep[p.~105]{Heijenoort1967}
+\end{quote}
+Dengan mengesampingkan kekeliruan Burali-Forti, kita dapat merangkum uraian
+di atas sebagai berikut. Ordinal merupakan himpunan-himpunan yang secara
+individual diurutkan dengan baik oleh keanggotaan, dan secara kolektif
+diurutkan dengan baik oleh keanggotaan (tanpa secara kolektif membentuk suatu
+himpunan).
+
+Sebagai penutup, berikut beberapa sifat dasar lain tentang ordinal yang
+mengikuti dari \olref{ordinductionschema} dan \olref{ordtrichotomy}.
+
+\begin{prop}
+Setiap barisan ordinal yang menurun secara ketat bersifat hingga.
+\end{prop}
+
+\begin{proof}
+Setiap barisan ordinal tak hingga yang menurun secara ketat $\alpha_0 >
+\alpha_1 > \alpha_2 > \ldots$ tidak mempunyai anggota minimal menurut $<$,
+bertentangan dengan \olref{ordinductionschema}.
+\end{proof}
+
+\begin{prop}\ollabel{ordinalsaresubsets}
+$\alpha \subseteq \beta \lor \beta \subseteq \alpha$, untuk sembarang
+ordinal $\alpha, \beta$.
+\end{prop}
+
+\begin{proof}
+Jika $\alpha \in \beta$, maka $\alpha \subseteq \beta$ karena $\beta$
+bersifat transitif. Serupa dengan itu, jika $\beta \in \alpha$, maka $\beta
+\subseteq \alpha$. Jika $\alpha = \beta$, maka $\alpha \subseteq \beta$ dan
+$\beta \subseteq \alpha$. Jadi, menurut \olref{ordtrichotomy}, pembuktian
+selesai.
+\end{proof}
+
+\begin{prop}\ollabel{ordisoidentity}
+$\alpha = \beta$ jika dan hanya jika $\ordeq{\alpha}{\beta}$, untuk
+sembarang ordinal $\alpha, \beta$.
+\end{prop}
+
+\begin{proof}
+Ordinal-ordinal merupakan pengurutan baik; jadi, hasil ini langsung mengikuti
+dari Trikotomi (\olref[basic]{ordtrichotomy}) dan
+\olref[iso]{wellordnotinitial}.
+\end{proof}
+
+\begin{prob}\ollabel{probunionordinalsordinal}
+Buktikan bahwa, jika setiap anggota $X$ merupakan suatu ordinal, maka
+$\bigcup X$ merupakan suatu ordinal.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,101 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{choice}{woproblem}
+\olsection{Masalah Pengurutan Baik}
+
+Jelas bahwa cukup banyak hal bergantung pada apakah kita menerima Pengurutan
+Baik. Namun, pembahasan prinsip ini cenderung berfokus pada suatu prinsip yang
+ekuivalen, yaitu Aksioma Pilihan. Karena itu, sekarang kita akan mengalihkan
+perhatian kepadanya (dan membuktikan ekuivalensinya).
+
+Pada \citeyear{Cantor1883}, Cantor menyatakan dukungannya terhadap Aksioma
+Pengurutan Baik dengan menyebutnya ``suatu hukum pikiran yang bagi saya
+tampak mendasar, kaya akan konsekuensi, dan khususnya luar biasa karena
+keberlakuannya yang umum'' (dikutip dalam \citeauthor{Potter2004}
+\citeyear[hlm.~243]{Potter2004}). Namun, pada akhirnya Cantor menjadi yakin
+bahwa ``Aksioma'' itu memerlukan bukti. Komunitas matematika pun
+berpandangan demikian.
+
+Masalah tersebut ``dipecahkan'' oleh Zermelo pada
+\citeyear{Zermelo1904}. Untuk menjelaskan penyelesaiannya, kita memerlukan
+beberapa definisi.
+
+\begin{defn}
+Suatu fungsi $f$ merupakan \emph{fungsi pilihan} jika dan hanya jika
+$f(x) \in x$ bagi semua $x \in \dom{f}$. Kita mengatakan bahwa $f$
+merupakan \emph{fungsi pilihan bagi $A$} jika dan hanya jika $f$ merupakan
+fungsi pilihan dengan $\dom{f} = A \setminus \{\emptyset\}$.
+\end{defn}
+
+Secara intuitif, bagi setiap himpunan (tak kosong) $x \in A$, suatu fungsi
+pilihan bagi $A$ \emph{memilih} satu anggota tertentu, $f(x)$, dari~$x$.
+Aksioma Pilihan kemudian berbunyi:
+
+\begin{axiom}[Pilihan]
+	Setiap himpunan mempunyai suatu fungsi pilihan.
+\end{axiom}
+
+Zermelo menunjukkan bahwa Pilihan mengakibatkan pengurutan baik, dan
+sebaliknya:
+
+\begin{thm}[dalam $\ZF$]\ollabel{thmwochoice}
+Pengurutan Baik dan Pilihan ekuivalen.
+\end{thm}
+
+\begin{proof}
+\emph{Dari kiri ke kanan.} Misalkan $A$ suatu himpunan yang
+anggota-anggotanya juga himpunan. Berdasarkan Aksioma Gabungan,
+$\bigcup A$ ada; jadi, berdasarkan Pengurutan Baik, terdapat suatu $<$ yang
+mengurutkan baik $\bigcup A$. Sekarang tetapkan
+$f(x)=\text{anggota terkecil-$<$ dari }x$. Ini merupakan fungsi pilihan
+bagi~$A$.
+
+\emph{Dari kanan ke kiri.} Tetapkan $A$. Jika $A=\emptyset$, pengurutan
+kosong mengurutkan baik~$A$; jadi, andaikan $A\neq\emptyset$. Berdasarkan
+Pilihan, terdapat suatu fungsi pilihan $f$ bagi
+$\Pow{A} \setminus \{\emptyset\}$. Dengan menggunakan Rekursi Transfinit,
+definisikan:
+\begin{align*}
+	g(0) &= f(A)\\
+	g(\alpha) &=
+		\begin{cases}
+			\text{berhenti!{}} &\text{jika }A = \funimage{g}{\alpha}\\
+			f(A \setminus \funimage{g}{\alpha}) & \text{jika tidak}\\
+		\end{cases}
+\end{align*}
+Instruksi untuk ``berhenti!'' hanya merupakan singkatan bagi definisi
+yang lebih panjang: rekursi dilanjutkan selama
+$A\neq\funimage{g}{\alpha}$, lalu $g$ diambil sebagai pembatasannya pada
+ordinal terkecil $\alpha$ dengan $A=\funimage{g}{\alpha}$. Pada mulanya, kita
+hanya dapat memastikan bahwa hal ini mendefinisikan suatu \emph{suku}
+(lihat catatan sesudah
+\olref[sth][spine][recursion]{transrecursionschema}); tetapi kita akan
+menunjukkan bahwa kita memang memperoleh suatu fungsi.
+
+Karena $f$ merupakan fungsi pilihan, bagi setiap $\alpha$ sebelum konstruksi
+berhenti berlaku
+$g(\alpha)=f(A\setminus\funimage{g}{\alpha})\in
+A\setminus\funimage{g}{\alpha}$; yakni
+$g(\alpha)\notin\funimage{g}{\alpha}$. Jadi, jika
+$g(\alpha)=g(\beta)$, maka $g(\beta)\notin\funimage{g}{\alpha}$, yakni
+$\beta\notin\alpha$, dan secara serupa $\alpha\notin\beta$. Berdasarkan
+Trikotomi, $\alpha=\beta$. Jadi, $g$ bersifat !!{injective}.
+
+Selanjutnya, perhatikan bahwa konstruksi memang berhenti; yakni terdapat
+suatu ordinal terkecil $\alpha$ sedemikian sehingga
+$A=\funimage{g}{\alpha}$. Andaikan sebaliknya. Karena $g$ bersifat
+!!{injective}, kita akan memperoleh $\cardless{\alpha}{A}$ bagi setiap
+ordinal $\alpha$, bertentangan dengan \olref[hartogs]{HartogsLemma}. Karena
+itu, $\ran{g}=A$.
+
+Dengan menggabungkan fakta-fakta ini, $g$ merupakan !!a{bijection} dari
+suatu ordinal ke~$A$. Sekarang $g$ dapat digunakan untuk mengurutkan
+baik~$A$.
+\end{proof}
+
+Jadi, Pengurutan Baik dan Pilihan berdiri atau runtuh bersama-sama. Namun,
+pertanyaannya tetap ada: apakah keduanya berdiri atau runtuh?
+
+\end{document}

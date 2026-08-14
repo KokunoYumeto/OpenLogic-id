@@ -1,0 +1,112 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{his}{set}{pathology}
+\olsection{Patologi}
+
+Namun, ternyata definisi \emph{limit} memungkinkan beberapa konstruksi yang
+cukup ``patologis''.
+
+Sekitar dasawarsa 1830-an, Bolzano menemukan suatu fungsi yang
+\emph{kontinu di mana-mana}, tetapi \emph{tidak dapat didiferensialkan di
+mana pun}. (Sayangnya, Bolzano tidak pernah menerbitkan hasil ini; para
+matematikawan baru menjumpai gagasan tersebut pada 1872 berkat penemuan
+independen Weierstrass atas gagasan yang sama.)\footnote{Sejarahnya
+didokumentasikan dengan sangat menyeluruh dalam catatan-catatan kaki artikel
+Wikipedia tentang
+\href{http://en.wikipedia.org/wiki/Weierstrass_function}{fungsi
+Weierstrass}.} Setidaknya, hasil ini cukup mengejutkan. Mudah menemukan
+fungsi seperti $|x|$ yang kontinu di mana-mana tetapi tidak dapat
+didiferensialkan pada satu titik tertentu. Namun, suatu fungsi yang kontinu
+di mana-mana tetapi \emph{tidak dapat didiferensialkan di mana pun} sungguh
+merupakan makhluk yang sangat berbeda. Bayangkan sejenak bagaimana Anda
+mencoba menggambar fungsi seperti itu. Untuk menjamin kontinuitasnya, Anda
+harus dapat menggambarnya tanpa pernah mengangkat pena dari halaman; tetapi
+untuk menjamin bahwa ia tidak dapat didiferensialkan di mana pun, Anda harus
+terus-menerus mengubah arah pena secara mendadak.
+
+``Patologi'' lain menyusul. Pada 5 Januari 1874, Cantor menulis surat
+kepada Dedekind dan mengajukan masalah berikut:
+\begin{quote}
+Dapatkah suatu permukaan (misalnya suatu persegi beserta batasnya)
+dikorelasikan satu-satu dengan suatu garis (misalnya suatu garis lurus
+beserta titik-titik ujungnya), sehingga setiap titik permukaan berpadanan
+dengan suatu titik garis dan, sebaliknya, setiap titik garis berpadanan
+dengan suatu titik permukaan?
+
+Saat ini masih tampak bagi saya bahwa jawaban atas pertanyaan ini sangat
+sulit---meskipun di sini pun orang begitu terdorong untuk menjawab
+\emph{tidak}, sehingga orang ingin menganggap pembuktiannya hampir tidak
+perlu. [Dikutip dalam \citealt{Gouvea2011}]
+\end{quote}
+Namun, pada 1877, Cantor membuktikan bahwa ia keliru. Sesungguhnya, suatu
+garis dan suatu persegi mempunyai jumlah titik yang tepat sama. Pada
+29 Juni 1877, ia menulis kepada Dedekind,
+``\emph{je le vois, mais je ne le crois pas}''; yakni,
+``Saya melihatnya, tetapi saya tidak memercayainya''. Dalam
+``sejarah yang lazim diterima'' mengenai matematika, ucapan ini sering
+dianggap menunjukkan betapa \emph{sungguh sulit dipercayanya} hasil-hasil
+baru tersebut bagi para matematikawan pada masa itu. (Korespondensinya
+disajikan dalam \citet{Gouvea2011}, dan kita kembali membahasnya dalam
+\olref[his][set][mythology]{sec}. Bukti Cantor diuraikan secara ringkas
+dalam \olref[his][set][cantorplane]{sec}.)
+
+Terinspirasi oleh hasil Cantor, Peano mulai mempertimbangkan apakah mungkin
+memetakan suatu garis \emph{secara kontinu} ke seluruh bidang. Ini akan
+menjadi suatu \emph{kurva pengisi ruang}. Pada \citeyear{Peano1890}, Peano
+mengonstruksi tepat kurva seperti itu. Hasil ini benar-benar berlawanan
+dengan intuisi: Euclid mendefinisikan garis sebagai ``panjang tanpa
+lebar'' (Buku I, Definisi 2), tetapi Peano menunjukkan bahwa dengan
+melengkungkan suatu garis secara tepat, panjangnya dapat diubah menjadi
+lebar. Pada \citeyear{Hilbert1891}, Hilbert menguraikan suatu kurva pengisi
+ruang yang agak lebih intuitif, beserta beberapa gambar yang
+mengilustrasikannya. Kurva itu dikonstruksi secara berurutan; berikut enam
+tahap pertama konstruksinya:
+\begin{center}
+\begin{tikzpicture}
+\begin{scope}[xshift=20pt, yshift=20pt]
+	\draw [oldiagcolorC, l-system={Hilbert curve, step=40pt, angle=90, axiom=L, order=1}] lindenmayer system;
+\end{scope}
+\begin{scope}[xshift=110pt, yshift=10pt]
+	\draw [oldiagcolorC, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=2}] lindenmayer system;
+\end{scope}
+\begin{scope}[xshift=205pt, yshift=5pt]
+	\draw [oldiagcolorC, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=3}] lindenmayer system;
+\end{scope}
+\begin{scope}[xshift=2.5pt, yshift=-97.5pt]
+	\draw [oldiagcolorC, l-system={Hilbert curve, step=5pt, angle=90, axiom=L, order=4}] lindenmayer system;
+\end{scope}
+\begin{scope}[xshift=101.25pt, yshift=-98.75pt]
+	\draw [oldiagcolorC, l-system={Hilbert curve, step=2.5pt, angle=90, axiom=L, order=5}] lindenmayer system;
+\end{scope}
+\begin{scope}[xshift=200.625pt, yshift=-99.375pt]
+	\draw [oldiagcolorC, l-system={Hilbert curve, step=1.25pt, angle=90, axiom=L, order=6}] lindenmayer system;
+\end{scope}
+\draw[gray] (0pt,0pt) rectangle (80pt, 80pt);
+\draw[gray] (100pt,0pt) rectangle (180pt, 80pt);
+\draw[gray] (200pt,0pt) rectangle (280pt, 80pt);
+\draw[gray] (0pt,-100pt) rectangle (80pt, -20pt);
+\draw[gray] (100pt,-100pt) rectangle (180pt, -20pt);
+\draw[gray] (200pt,-100pt) rectangle (280pt, -20pt);
+\end{tikzpicture}
+\end{center}
+Pada limit---suatu pengertian yang saat itu telah menerima definisi
+ketat---seluruh persegi terisi penuh dengan !!{colorC}. Sebagai catatan,
+kurva Hilbert kontinu di mana-mana tetapi tidak dapat didiferensialkan di
+mana pun; secara intuitif karena, pada limit tak hingga, fungsi itu mengubah
+arah secara mendadak pada setiap saat. (Kita akan menguraikan konstruksi
+Hilbert secara lebih terperinci dalam
+\olref[his][set][hilbertcurve]{sec}.)
+
+Entah baik atau buruk, konstruksi geometris ``patologis'' ini diperlakukan
+sebagai alasan untuk meragukan penggunaan intuisi geometris. Konstruksi itu
+menjadi sesuatu yang mendekati \emph{propaganda} bagi cara baru mengerjakan
+matematika, yang kelak memuncak pada teori himpunan. Dalam pembentukan mitos
+tentang bidang ini pada masa berikutnya, sering diulangi bahwa hasil-hasil
+tersebut sepenuhnya ketat sekaligus sepenuhnya mengejutkan. Karena itu,
+hasil-hasil tersebut melayani dua tujuan: sebagai peringatan agar tidak
+bergantung pada intuisi geometris, dan sebagai demonstrasi kesuburan cara
+berpikir baru.
+
+\end{document}

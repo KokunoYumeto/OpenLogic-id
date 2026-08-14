@@ -1,0 +1,110 @@
+% Bagian: counterfactuals
+% Bab: introduction
+% Subbagian: strict-conditional
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cnt}{int}{str}
+
+\olsection{Kondisional Ketat}
+
+Lewis memperkenalkan \emph{kondisional ketat}~$\strictif$ dan berpendapat
+bahwa kondisional inilah, bukan kondisional material, yang bersesuaian dengan
+implikasi. Dalam logika modal aletik, $!A \strictif !B$ dapat didefinisikan
+sebagai $\Box(!A \lif !B)$. Jadi, suatu kondisional ketat benar (pada suatu
+dunia) jika dan hanya jika kondisional material yang bersesuaian bersifat
+niscaya.
+
+Bagaimana kondisional ketat menghadapi paradoks-paradoks kondisional
+material? Kondisional ketat dengan anteseden yang salah, maupun kondisional
+ketat dengan konsekuen yang benar, mungkin benar atau mungkin salah. Selain
+itu, $(!A \strictif !B) \lor (!B \strictif !A)$ tidak valid. Kondisional
+ketat $!A \strictif !B$ juga tidak ekuivalen dengan $\lnot !A \lor !B$;
+jadi, kondisional itu tidak bersifat fungsional-kebenaran.
+
+Kita mempunyai:
+\begin{align}
+  !A \strictif !B & \Entails \lnot !A \lor !B\\
+  \intertext{tetapi:}
+  \lnot !A \lor !B & \Entails/ !A \strictif !B\\
+  !B & \Entails/ !A \strictif !B\\
+  \lnot !A & \Entails/ !A \strictif !B\\
+  \lnot(!A \strictif !B) & \Entails/ !A \land \lnot !B\\
+  \intertext{tetapi:}
+  !A \land \lnot !B & \Entails \lnot(!A \strictif !B)
+  \intertext{Namun, kondisional ketat tetap mendukung modus ponens:}
+  !A, !A \strictif !B & \Entails !B
+  \intertext{Kondisional ketat memungkinkan aglomerasi:}
+  !A \strictif !B,  !A \strictif !C & \Entails !A \strictif (!B \land !C)
+  \intertext{Penguatan anteseden berlaku bagi kondisional ketat:}
+  !A \strictif !B & \Entails (!A \land !C) \strictif !B
+  \intertext{Kondisional ketat juga bersifat transitif:}
+  !A \strictif !B, !B \strictif !C & \Entails !A \strictif !C
+  \intertext{Akhirnya, kondisional ketat ekuivalen dengan kontraposisinya:}
+  !A \strictif !B & \Entails \lnot !B \strictif \lnot !A\\
+  \lnot !B \strictif \lnot !A & \Entails !A \strictif !B
+\end{align}
+
+\begin{prob}
+  Berikan contoh tandingan dalam~\Log{S5} bagi relasi perikutan yang tidak
+  berlaku untuk kondisional ketat, yakni bagi:
+  \begin{enumerate}
+  \item $\lnot p \Entails/ \Box(p \lif q)$
+  \item $q \Entails/ \Box(p \lif q)$
+  \item $\lnot\Box(p \lif q) \Entails/ p \land \lnot q$
+  \item $\Entails/ \Box(p \lif q) \lor \Box(q \lif p)$
+  \end{enumerate}
+\end{prob}
+
+\begin{prob}
+  Tunjukkan bahwa relasi-relasi perikutan yang valid berlaku bagi
+  kondisional ketat dengan memberikan bukti-bukti dalam~\Log{S5} bagi:
+  \begin{enumerate}
+  \item  $\Box(!A \lif !B) \Entails \lnot !A \lor !B$
+  \item $!A \land \lnot !B \Entails \lnot\Box(!A \lif !B)$
+  \item $!A, \Box(!A \lif !B) \Entails !B$
+  \item $\Box(!A \lif !B), \Box(!A \lif !C) \Entails \Box(!A \lif (!B
+    \land !C))$
+  \item $\Box(!A \lif !B) \Entails \Box((!A \land !C) \lif !B)$
+  \item $\Box(!A \lif !B), \Box(!B \lif !C) \Entails \Box(!A
+    \lif !C)$
+  \item $\Box(!A \lif !B) \Entails \Box(\lnot !B \lif \lnot !A)$
+  \item $\Box(\lnot !B \lif \lnot !A) \Entails \Box(!A \lif !B)$
+  \end{enumerate}
+\end{prob}
+
+Namun, kondisional ketat tetap mempunyai ``paradoksnya'' sendiri. Sebagaimana
+kondisional material dengan anteseden salah atau konsekuen benar adalah
+benar, kondisional ketat dengan anteseden yang \emph{niscaya} salah atau
+konsekuen yang niscaya benar adalah benar. Selain itu, setiap kondisional
+ketat yang benar bersifat niscaya benar, dan setiap kondisional ketat yang
+salah bersifat niscaya salah. Dengan kata lain, kita mempunyai
+\begin{align}
+  \Box \lnot !A & \Entails !A \strictif !B\\
+  \Box !B & \Entails !A \strictif !B\\
+  !A \strictif !B& \Entails \Box(!A \strictif !B)\\
+  \lnot(!A \strictif !B) & \Entails \Box\lnot(!A \strictif !B)
+\end{align}
+Hal-hal ini bukan masalah jika Anda memandang $\strictif$ sebagai
+``mengimplikasikan.'' Bagaimanapun, relasi perikutan logis merupakan fakta
+matematis sehingga tidak mungkin bersifat kontingen. Namun, hal-hal tersebut
+memang menimbulkan persoalan jika Anda hendak menggunakan $\strictif$ sebagai
+konektif logis yang dimaksudkan untuk menangkap ``jika \dots, maka \dots,''
+terutama dua yang terakhir. Tentulah ada pernyataan ``jika \dots, maka
+\dots'' yang benar secara kontingen atau salah secara kontingen---bahkan,
+pernyataan semacam itu pada umumnya tidak niscaya maupun mustahil.
+
+\begin{prob}
+  Berikan bukti dalam~\Log{S5} bagi:
+  \begin{enumerate}
+    \item  $\Box \lnot !A \Entails !A \strictif !B$
+    \item $!A \strictif !B \Entails \Box(!A \strictif !B)$
+    \item $\lnot(!A \strictif !B)  \Entails
+      \Box\lnot(!A \strictif !B)$
+  \end{enumerate}
+  Gunakan definisi $\strictif$ untuk melakukannya.
+\end{prob}
+
+\end{document}

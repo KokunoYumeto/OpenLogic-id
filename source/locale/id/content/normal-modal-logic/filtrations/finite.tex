@@ -1,0 +1,46 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: finite
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{fil}{fin}
+
+\olsection{Filtrasi Bersifat Berhingga}
+
+Kita telah mendefinisikan filtrasi bagi setiap himpunan~$\Gamma$ yang tertutup
+terhadap sub-!!{formula}s. Definisi itu sendiri sama sekali tidak menjamin
+bahwa filtrasi bersifat berhingga. Bahkan, ketika $\Gamma$ tak berhingga
+(misalnya, ketika himpunan itu terdiri atas semua !!{formula}s),
+filtrasinya sangat mungkin tak berhingga. Namun, jika $\Gamma$ berhingga
+(misalnya, ketika himpunan itu merupakan himpunan sub-!!{formula}s dari suatu
+!!{formula}~$!A$ tertentu), setiap filtrasi melalui~$\Gamma$ juga berhingga.
+
+\begin{prop}\ollabel{prop:filt-are-finite}
+  Jika $\Gamma$ berhingga, maka setiap filtrasi $\mModel{M^*}$ dari suatu
+  model $\mModel{M}$ melalui $\Gamma$ juga berhingga.
+\end{prop}
+
+\begin{proof}
+  Ukuran $W^*$ adalah banyaknya kelas~$[w]$ yang berbeda di bawah relasi
+  ekuivalensi~$\equiv$. Sebarang dua dunia $u$, $v$ dalam kelas semacam
+  itu---yakni sebarang $u$ dan $v$ sedemikian sehingga~$u \equiv v$---
+  bersepakat mengenai semua !!{formula}s~$!A$ dalam~$\Gamma$: bagi setiap
+  $!A \in \Gamma$, $!A$ bernilai benar pada $u$ dan $v$ sekaligus, atau
+  tidak bernilai benar pada keduanya. Jadi, setiap kelas~$[w]$ bersesuaian
+  dengan suatu himpunan bagian dari~$\Gamma$, yaitu himpunan semua
+  $!A \in \Gamma$ sedemikian sehingga $!A$ bernilai benar pada dunia-dunia
+  dalam~$[w]$. Tidak ada dua kelas berbeda $[u]$ dan $[v]$ yang bersesuaian
+  dengan himpunan bagian
+  yang sama dari~$\Gamma$. Sebab, jika himpunan !!{formula}s yang bernilai
+  benar pada $u$ sama dengan himpunan !!{formula}s yang bernilai benar pada
+  $v$, maka $u$ dan $v$ bersepakat mengenai semua formula dalam~$\Gamma$, yakni
+  $u \equiv v$. Namun, dengan demikian $[u] = [v]$. Jadi, terdapat fungsi
+  yang !!a{injective} dari $W^*$ ke $\Pow{\Gamma}$, sehingga
+  $\card{W^*} \le \card{\Pow{\Gamma}}$. Karena itu, jika $\Gamma$ memuat $n$
+  formula, kardinalitas $W^*$ tidak lebih besar daripada~$2^n$.
+\end{proof}
+
+\end{document}

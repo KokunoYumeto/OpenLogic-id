@@ -1,0 +1,50 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: relational-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{aml}{el}{rel}
+
+\olsection{Model Relasional}
+
+Konsep semantik dasar bagi logika epistemik sama dengan konsep bagi logika
+modal biasa. Model relasional tetap terdiri atas himpunan dunia dan suatu
+penetapan yang menentukan !!{propositional variable}s mana yang dianggap
+``benar'' pada dunia mana. Jika kita hanya menangani satu agen, seperti biasa
+kita mempunyai satu relasi aksesibilitas. Akan tetapi, jika kita mempunyai
+logika epistemik multiagen, relasi aksesibilitas tunggal tersebut menjadi
+himpunan relasi aksesibilitas, satu bagi setiap $a$ dalam himpunan simbol
+agen~$G$.
+
+Suatu \emph{model relasional} terdiri atas himpunan dunia yang dihubungkan
+oleh relasi aksesibilitas biner---satu bagi setiap agen---beserta suatu
+penetapan yang menentukan !!{propositional variable}s mana yang benar pada
+dunia mana.
+
+\begin{defn}
+  Suatu \emph{model} bagi bahasa epistemik multiagen ialah tripel
+  $\mModel{M}=\tuple{W,R,V}$, dengan
+  \begin{enumerate}
+  \item $W$ merupakan himpunan ``dunia'' yang tak kosong,
+  \item untuk setiap $a\in G$, ${R}_a$ merupakan relasi aksesibilitas biner
+    pada~$W$, dan
+  \item $V$ merupakan fungsi yang menetapkan kepada setiap !!{propositional
+    variable}~$p$ suatu himpunan~$V(p)$ yang terdiri atas dunia mungkin.
+  \end{enumerate}
+  Jika $R_a ww'$, kita mengatakan bahwa $w'$ \emph{dapat diakses oleh agen
+    a dari}~$w$. Jika $w\in V(p)$, kita mengatakan bahwa $p$
+  \emph{benar pada}~$w$.
+\end{defn}
+
+Mekanismenya sama persis dengan mekanisme logika modal normal, hanya saja
+lebih banyak relasi aksesibilitas ditambahkan. Bagi suatu agen, pada umumnya
+kita menafsirkan relasi aksesibilitasnya sebagai sesuatu yang
+merepresentasikan keadaan informasinya. Sebagai contoh, kita sering
+memperlakukan $R_a ww'$ sebagai pernyataan bahwa $w'$ konsisten dengan
+informasi agen~$a$ pada~$w$. Dengan kata lain, pada~$w$, agen tersebut tidak
+dapat membedakan dunia~$w$ dari dunia~$w'$.
+
+\end{document}

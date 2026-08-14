@@ -1,0 +1,136 @@
+% Part: applied-modal-logics
+% Chapter: temporal-logic
+% Section: language-epistemic-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{aml}{tl}{sem}
+
+\olsection{Semantik bagi Logika Temporal}
+
+\begin{defn}
+Bahasa dasar logika temporal memuat
+\begin{enumerate}
+  \tagitem{prvFalse}{Konstanta proposisional untuk !!{falsity}~$\lfalse$.}{}
+  \tagitem{prvTrue}{Konstanta proposisional untuk !!{truth}~$\ltrue$.}{}
+  \item Suatu himpunan yang !!{denumerable}s, yang terdiri atas
+    !!{propositional variable}s: $\Obj p_0$, $\Obj p_1$, $\Obj p_2$, \dots
+  \item Konektif proposisional: \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (negasi)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (konjungsi)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (disjungsi)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}.
+  \item Operator masa lampau $\Ptemp$ dan $\Htemp$.
+  \item Operator masa depan $\Ftemp$ dan $\Gtemp$.
+\end{enumerate}
+\end{defn}
+
+Kelak, kita akan membahas kemungkinan penambahan jenis operator modal lain.
+
+\begin{defn}
+\emph{!!^{formula}s} dalam bahasa temporal didefinisikan secara induktif
+sebagai berikut:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$ merupakan !!{formula} atomik.}{}
+
+\tagitem{prvTrue}{$\ltrue$ merupakan !!{formula} atomik.}{}
+
+\item Setiap variabel proposisional $\Obj p_i$ merupakan !!{formula}
+  (atomik).
+
+\tagitem{prvNot}{Jika $!A$ merupakan !!a{formula}, maka $\lnot !A$
+  merupakan !!a{formula}.}{}
+
+\tagitem{prvAnd}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \land !B)$ merupakan !!a{formula}.}{}
+
+\tagitem{prvOr}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \lor !B)$ merupakan !!a{formula}.}{}
+
+\tagitem{prvIf}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \lif !B)$ merupakan !!a{formula}.}{}
+
+\tagitem{prvIff}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \liff !B)$ merupakan !!a{formula}.}{}
+
+\item Jika $!A$ merupakan !!a{formula}, maka $\Ptemp !A$, $\Htemp !A$,
+  $\Ftemp !A$, dan $\Gtemp !A$ semuanya merupakan !!{formula}s.
+
+\tagitem{limitClause}{Tidak ada hal lain yang merupakan !!a{formula}.}{}
+\end{enumerate}
+\end{defn}
+
+Semantik logika temporal diberikan dalam bentuk model relasional, seperti
+pada jenis logika intensional lainnya.
+
+\begin{defn}
+  Suatu \emph{model} bagi bahasa temporal ialah tripel
+  $\mModel{M}=\tuple{T,\prec,V}$, dengan
+  \begin{enumerate}
+  \item $T$ merupakan himpunan tak kosong yang ditafsirkan sebagai titik-titik
+    waktu.
+  \item $\prec$ merupakan relasi biner pada~$T$.
+  \item $V$ merupakan fungsi yang menetapkan kepada setiap !!{propositional
+    variable}~$p$ suatu himpunan~$V(p)$ yang terdiri atas titik-titik waktu.
+  \end{enumerate}
+  Jika $t\prec t'$, kita mengatakan bahwa $t$ \emph{mendahului}~$t'$.
+  Jika $t\in V(p)$, kita mengatakan bahwa $p$ \emph{benar pada}~$t$.
+\end{defn}
+
+Untuk sementara, perhatikan bahwa kita tidak mengenakan syarat apa pun pada
+relasi urutan waktu~$\prec$. Jadi, saat ini tidak ada pembatasan terhadap
+struktur model temporal kita: kita dapat mempunyai model yang waktunya
+linear, bercabang, melingkar, atau berstruktur apa pun.
+
+Seperti pada logika modal normal, setiap model temporal menentukan
+!!{formula}s mana yang benar pada titik mana di dalamnya. Kita menggunakan
+notasi yang sama, yakni ``model~$\mModel{M}$ membuat !!{formula}~$!A$ benar
+pada titik~$t$,'' bagi gagasan dasar semantik relasional. Relasi ini
+didefinisikan secara induktif dan identik dengan kasus modal normal untuk
+semua operator nonmodal.
+
+\begin{defn}\ollabel{defn:tmodels}
+  \emph{Kebenaran !!a{formula}~$!A$ pada~$t$} dalam~$\mModel M$, dengan
+  simbol $\mSat{M}{!A}[t]$, didefinisikan secara induktif sebagai berikut:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{Tidak pernah
+    $\mSat{M}{\lfalse}[t]$}.}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{Selalu
+    $\mSat{M}{\ltrue}[t]$}.}{}
+  \item $\mSat{M}{p}[t]$ jika dan hanya jika $t\in V(p)$
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[t]$ jika dan
+    hanya jika $\mSat/{M}{!B}[t]$}.}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[t]$ jika
+    dan hanya jika $\mSat{M}{!B}[t]$ dan $\mSat{M}{!C}[t]$}.}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[t]$ jika
+    dan hanya jika $\mSat{M}{!B}[t]$ atau $\mSat{M}{!C}[t]$} (atau
+    keduanya).}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[t]$ jika
+    dan hanya jika $\mSat/{M}{!B}[t]$ atau $\mSat{M}{!C}[t]$}.}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[t]$ jika
+    dan hanya jika $\mSat{M}{!B}[t]$ dan $\mSat{M}{!C}[t]$ keduanya berlaku,
+    atau baik $\mSat{M}{!B}[t]$ maupun $\mSat{M}{!C}[t]$ tidak berlaku}.}{}
+  \item\ollabel{defn:sub:mmodels-p}
+    \indcase{!A}{\Ptemp !B}{$\mSat{M}{\indfrm}[t]$ jika dan hanya jika
+    $\mSat{M}{!B}[t']$ untuk suatu $t'\in T$ dengan $t'\prec t$}
+  \item\ollabel{defn:sub:mmodels-h}
+    \indcase{!A}{\Htemp !B}{$\mSat{M}{\indfrm}[t]$ jika dan hanya jika
+    $\mSat{M}{!B}[t']$ untuk setiap $t'\in T$ dengan $t'\prec t$}
+  \item\ollabel{defn:sub:mmodels-f}
+    \indcase{!A}{\Ftemp !B}{$\mSat{M}{\indfrm}[t]$ jika dan hanya jika
+    $\mSat{M}{!B}[t']$ untuk suatu $t'\in T$ dengan $t\prec t'$}
+  \item\ollabel{defn:sub:mmodels-g}
+    \indcase{!A}{\Gtemp !B}{$\mSat{M}{\indfrm}[t]$ jika dan hanya jika
+    $\mSat{M}{!B}[t']$ untuk setiap $t'\in T$ dengan $t\prec t'$}
+  \end{enumerate}
+\end{defn}
+
+Berdasarkan semantiknya, dapat terlihat bahwa operator $\Ptemp$ dan~$\Htemp$
+bersifat dual, demikian pula operator $\Ftemp$ dan~$\Gtemp$. Karena itu, kita
+dapat mendefinisikan $\Htemp !A$ sebagai $\lnot\Ptemp\lnot !A$, dan melakukan
+hal yang sama untuk $\Gtemp$ dan~$\Ftemp$.
+
+\end{document}

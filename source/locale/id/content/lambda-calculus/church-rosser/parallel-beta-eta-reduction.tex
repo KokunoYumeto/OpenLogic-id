@@ -1,0 +1,101 @@
+% Part: lambda-calculus
+% Chapter: church-rosser
+% Section: parallel-beta-eta-reduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{cr}{pbe}
+
+\olsection{Reduksi-$\beta\eta$ Paralel}
+
+Dalam bagian ini kita membuktikan sifat Church--Rosser bagi
+reduksi-$\beta\eta$ paralel, yaitu gagasan reduksi paralel yang bersesuaian
+dengan reduksi-$\beta\eta$.
+
+\begin{defn}[Reduksi-$\beta\eta$ paralel, $\beredpar$] \ollabel{defn:beredpar}
+  \emph{Reduksi-$\beta\eta$ paralel} ($\beredpar$) pada suku didefinisikan
+  secara induktif sebagai berikut:
+  \begin{enumerate}
+    \item \ollabel{defn:beredpar1} $x \beredpar x$.
+    \item \ollabel{defn:beredpar2} Jika $N \beredpar N'$, maka
+      $\lambd[x][N]\beredpar\lambd[x][N']$.
+    \item \ollabel{defn:beredpar3} Jika $P\beredpar P'$ dan $Q\beredpar Q'$,
+      maka $PQ\beredpar P'Q'$.
+    \item \ollabel{defn:beredpar4} Jika $N\beredpar N'$ dan $Q\beredpar Q'$,
+      maka $(\lambd[x][N])Q\beredpar\Subst{N'}{Q'}{x}$.
+    \item \ollabel{defn:beredpar5} Jika $N\beredpar N'$, maka
+      $\lambd[x][Nx]\beredpar N'$, dengan syarat $x\notin\FV{N}$.
+  \end{enumerate}
+\end{defn}
+
+\begin{thm}\ollabel{thm:refl}
+  $M \beredpar M$.
+\end{thm}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[lam][cr][pbe]{thm:refl}.
+\end{prob}
+
+\begin{defn}[Pengembangan lengkap-$\beta\eta$]\ollabel{defn:becd}
+  \emph{Pengembangan lengkap-$\beta\eta$}~$\becd{M}$ dari~$M$ didefinisikan
+  sebagai berikut:
+  \begin{align}
+    \becd{x} &= x \ollabel{defn:becd1} \\
+    \becd{(\lambd[x][N])} &= \lambd[x][\becd{N}] \ollabel{defn:becd2}\\
+    \becd{(PQ)} &= \becd{P}\becd{Q} && \text{jika $P$ bukan abstrak-$\lambd$}
+    \ollabel{defn:becd3} \\
+    \becd{((\lambd[x][N])Q)} &= \Subst{\becd{N}}{\becd{Q}}{x}
+                             \ollabel{defn:becd4} \\
+    \becd{(\lambd[x][Nx])} &= \becd{N} \ollabel{defn:becd5} &
+    \text{jika $x\notin\FV{N}$}
+  \end{align}
+\end{defn}
+
+\begin{lem}\ollabel{lem:comp}
+  Jika $M\beredpar M'$ dan $R\beredpar R'$, maka $\Subst{M}{R}{y}
+  \beredpar\Subst{M'}{R'}{y}$.
+\end{lem}
+
+\begin{proof}
+  Dengan induksi pada !!{derivation} $M\beredpar M'$.
+
+  Empat kasus pertama tepat sama dengan kasus-kasus dalam
+  \olref[pb]{lem:comp}. Jika aturan terakhir adalah
+  \olref{defn:beredpar5}, maka $M=\lambd[x][Nx]$ dan $M'=N'$ untuk suatu
+  $x$, $N$, dan~$N'$ dengan $x\notin\FV{N}$ serta $N\beredpar N'$. Kita ingin
+  menunjukkan
+  $\Subst{(\lambd[x][Nx])}{R}{y}\beredpar\Subst{N'}{R'}{y}$, yaitu
+  $\lambd[x][\Subst{N}{R}{y}x]\beredpar\Subst{N'}{R'}{y}$. Hal ini mengikuti
+  dari \olref{defn:beredpar}\olref{defn:beredpar5} dan hipotesis induksi.
+\end{proof}
+
+\begin{lem}\ollabel{lem:cont}
+  Jika $M\beredpar M'$, maka $M'\beredpar\becd{M}$.
+\end{lem}
+
+\begin{proof}
+  Dengan induksi pada !!{derivation} $M\beredpar M'$.
+
+  Empat kasus pertama sama dengan kasus-kasus dalam \olref[pb]{lem:cont}. Jika
+  aturan terakhir adalah \olref{defn:beredpar5}, maka
+  $M=\lambd[x][Nx]$ dan $M'=N'$ untuk suatu $x$, $N$, dan~$N'$ dengan
+  $x\notin\FV{N}$ serta $N\beredpar N'$. Kita ingin menunjukkan
+  $N'\beredpar\becd{(\lambd[x][Nx])}$, yaitu $N'\beredpar\becd{N}$, yang
+  langsung mengikuti hipotesis induksi.
+\end{proof}
+
+\begin{thm}\ollabel{thm:cr}
+  $\beredpar$ mempunyai sifat Church--Rosser.
+\end{thm}
+
+\begin{proof}
+  Langsung dari \olref{lem:cont}.
+\end{proof}
+
+\end{document}

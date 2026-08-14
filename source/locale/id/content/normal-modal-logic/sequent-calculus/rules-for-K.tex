@@ -1,0 +1,132 @@
+% Part: normal-modal-logic
+% Chapter: sequent-calculus
+% Section: rules-for-K
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{seq}{rul}
+
+\olsection{Aturan bagi \Log{K}}
+
+Aturan bagi konektif proposisional biasa sama dengan aturan bagi kalkulus
+sekuen biasa~$\Log{LK}$. Aksiomanya juga sama: setiap sekuen yang berbentuk
+$!A\Sequent !A$ dihitung sebagai aksioma.
+
+Bagi operator modal\iftag{prvBox}{\iftag{prvDiamond}{~$\Box$
+dan}{~$\Box$}}{}\iftag{prvDiamond}{~$\Diamond$}{}, kita mempunyai
+\iftag{notprvBox,notprvDiamond}{aturan}{aturan-aturan} tambahan berikut:
+\[
+  \iftag{prvBox}{\iftag{prvDiamond}{% <> and [] primitive
+    \Axiom$\Gamma \fCenter \Delta, !A$
+    \RightLabel{$\Box$}
+    \UnaryInf$\Box\Gamma \fCenter \Diamond\Delta, \Box!A$
+    \DisplayProof
+    \qquad
+    \Axiom$!A, \Gamma \fCenter \Delta$
+    \RightLabel{$\Diamond$}
+    \UnaryInf$\Diamond!A, \Box\Gamma \fCenter \Diamond\Delta$
+    \DisplayProof
+}{% only Box primitive
+\Axiom$\Gamma \fCenter !A$
+\RightLabel{$\Box$}
+\UnaryInf$\Box\Gamma \fCenter \Box!A$
+\DisplayProof
+}}{% only <> primitive
+  \Axiom$!A \fCenter \Delta$
+  \RightLabel{$\Diamond$}
+  \UnaryInf$\Diamond!A \fCenter \Diamond\Delta$
+  \DisplayProof
+}
+\]
+Di sini, \iftag{prvBox}{$\Box\Gamma$ berarti barisan !!{formula}s yang
+dihasilkan dari~$\Gamma$ dengan menempatkan $\Box$ di depan setiap
+!!{formula} dalam~$\Gamma$\iftag{prvDiamond}{ dan
+}{}}{}\iftag{prvDiamond}{$\Diamond\Delta$ merupakan barisan !!{formula}s yang
+dihasilkan dari~$\Delta$ dengan menempatkan $\Diamond$ di depan setiap
+!!{formula} dalam~$\Delta$}{}. \iftag{notprvDiamond}{Sisi kanan premis aturan
+$\Box$ boleh memuat paling banyak satu !!{formula}~$!A$. }{}%
+\iftag{notprvBox}{Sisi kiri premis aturan~$\Diamond$ boleh memuat paling
+banyak satu !!{formula}~$!A$. }{}%
+\iftag{prvBox}{$\Gamma$\iftag{prvDiamond}{ dan~}{}}{}
+\iftag{prvDiamond}{$\Delta$}{} boleh kosong; dalam hal itu, bagian yang
+bersesuaian
+\iftag{prvBox}{$\Box\Gamma$\iftag{prvDiamond}{ dan~}{}}{}
+\iftag{prvDiamond}{$\Diamond\Delta$}{} dalam sekuen kesimpulan juga kosong.
+
+Pembatasan bahwa penambahan
+\iftag{prvBox}{$\Box$ pada sisi kanan\iftag{prvDiamond}{ dan
+}{}}{}\iftag{prvDiamond}{$\Diamond$ pada sisi kiri}{} hanya diterapkan pada
+satu !!{formula}~$!A$ memang diperlukan. Jika kita mengizinkan
+\iftag{prvBox}{penambahan $\Box$ pada sebarang banyak !!{formula}s di sisi
+kanan\iftag{prvDiamond}{ atau }{}}{}\iftag{prvDiamond}{penambahan $\Diamond$
+pada sebarang banyak !!{formula}s di sisi kiri}{}, kita akan dapat !!{derive}:
+  \[
+    \iftag{prvBox}{
+      \Axiom$!A \fCenter !A$
+      \RightLabel{\RightR{\lnot}}
+      \UnaryInf$\fCenter !A, \lnot !A$
+      \RightLabel{$\Box*$}
+      \UnaryInf$\fCenter \Box!A, \Box\lnot !A$
+      \doubleLine
+      \RightLabel{\RightR{\lor}}
+      \UnaryInf$\fCenter \Box!A \lor \Box \lnot !A$
+      \DisplayProof}{}
+    \iftag{notprvBox,notprvDiamond}{}{\qquad}
+    \iftag{prvDiamond}{
+      \Axiom$!A \fCenter !A$
+      \RightLabel{\LeftR{\lnot}}
+      \UnaryInf$\lnot !A, !A \fCenter$
+      \RightLabel{$\Diamond*$}
+      \UnaryInf$\Diamond\lnot !A,\Diamond!A \fCenter $
+      \RightLabel{\RightR{\lnot}}
+      \UnaryInf$\Diamond!A \fCenter \lnot\Diamond\lnot !A$
+      \RightLabel{\RightR{\lif}}
+      \UnaryInf$ \fCenter \Diamond!A \lif \lnot\Diamond\lnot !A$
+      \DisplayProof}{}
+  \]
+Akan tetapi, \iftag{prvBox}{$\Box!A\lor\Box\lnot !A$
+\iftag{prvDiamond}{ dan $\Diamond!A\lif\lnot\Diamond\lnot !A$
+tidak}{tidak}}{$\Diamond!A\lif\lnot\Diamond\lnot !A$ tidak} valid
+dalam~$\Log{K}$.
+
+Jika kita mengizinkan formula samping selain~$!A$ dalam premis dan
+mengizinkan \iftag{prvBox}{aturan~$\Box$ menambahkan $\Box$ hanya pada~$!A$
+di sisi kanan\iftag{prvDiamond}{, atau mengizinkan }{}}{}
+\iftag{prvDiamond}{aturan~$\Diamond$ menambahkan $\Diamond$ hanya pada~$!A$
+di sisi kiri}{} (tetapi tidak melakukan apa pun pada formula samping), kita
+akan dapat !!{derive}:
+\[
+  \iftag{prvBox}{
+    \Axiom$!A \fCenter !A$
+    \RightLabel{\RightR{\lnot}}
+    \UnaryInf$\fCenter !A, \lnot !A$
+    \RightLabel{\RightR{\Exchange}}
+    \UnaryInf$\fCenter \lnot !A, !A$
+    \RightLabel{$\Box*$}
+    \UnaryInf$\fCenter \lnot!A, \Box !A$
+    \doubleLine
+    \RightLabel{\RightR{\lor}}
+    \UnaryInf$\fCenter \lnot!A \lor \Box !A$
+    \DisplayProof}{}
+  \iftag{notprvBox,notprvDiamond}{}{\qquad}
+  \iftag{prvDiamond}{
+    \Axiom$!A \fCenter !A$
+    \RightLabel{\LeftR{\lnot}}
+    \UnaryInf$\lnot !A, !A \fCenter$
+    \RightLabel{$\Diamond*$}
+    \UnaryInf$\Diamond\lnot !A, !A \fCenter $
+    \RightLabel{\RightR{\lnot}}
+    \UnaryInf$!A \fCenter \lnot\Diamond\lnot !A$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$ \fCenter !A \lif \lnot\Diamond\lnot !A$
+    \DisplayProof}{}
+\]
+Akan tetapi, \iftag{prvBox}{$\lnot!A\lor\Box !A$ (yang ekuivalen dengan
+$!A\lif\Box!A$)\iftag{prvDiamond}{ dan
+$!A\lif\lnot\Diamond\lnot !A$ tidak}{tidak}}{$!A\lif
+\lnot\Diamond\lnot !A$ tidak} valid dalam~$\Log{K}$.
+
+\end{document}
+

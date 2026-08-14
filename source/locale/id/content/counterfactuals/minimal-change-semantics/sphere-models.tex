@@ -1,0 +1,116 @@
+% Bagian: conditional-logics
+% Bab: minimal-change-semantics
+% Subbagian: sphere-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{con}{min}{sph}
+
+\olsection{Model Bola}
+
+Salah satu cara memberikan semantik formal bagi kontrafaktual adalah mengubah
+penjelasan informal Lewis menjadi suatu struktur matematis. Bola-bola di
+sekitar suatu dunia~$w$ kemudian merupakan himpunan dunia. Karena bola-bola
+tersebut bersarang, himpunan-himpunan dunia di sekitar~$w$ harus terurut
+linear oleh relasi himpunan bagian.
+
+\begin{defn}
+  Suatu \emph{model bola} adalah tripel~$\mModel{M} = \tuple{W, O, V}$
+  dengan $W$ suatu himpunan dunia takkosong, $V\colon \PVar \to \Pow{W}$
+  suatu valuasi, dan $O\colon W \to \Pow{\Pow{W}}$ menetapkan kepada setiap
+  dunia~$w$ suatu \emph{sistem bola}~$O_w$. Untuk setiap $w$, $O_w$ adalah
+  suatu himpunan dari himpunan-himpunan dunia dan harus memenuhi:
+  \begin{enumerate}
+  \item $O_w$ \emph{berpusat} pada~$w$: $\{w\} \in O_w$.
+  \item $O_w$ \emph{bersarang}: kapan pun $S_1$, $S_2 \in O_w$, berlaku $S_1
+    \subseteq S_2$ atau $S_2 \subseteq S_1$, yakni $O_w$ terurut linear
+    oleh~$\subseteq$.
+  \item $O_w$ tertutup terhadap gabungan takkosong.
+  \item $O_w$ tertutup terhadap irisan takkosong.
+  \end{enumerate}
+\end{defn}
+
+Intuisi di balik $O_w$ ialah bahwa dunia-dunia ``di sekitar'' $w$
+terstratifikasi menurut jaraknya dari~$w$. Bola terdalam hanyalah $w$ itu
+sendiri, yakni himpunan~$\{w\}$: $w$ lebih dekat dengan~$w$ daripada
+dunia-dunia dalam bola lainnya. Jika $S \subsetneq S'$, maka dunia-dunia
+dalam $S' \setminus S$ lebih jauh dari $w$ daripada dunia-dunia dalam~$S$:
+$S' \setminus S$ merupakan ``lapisan'' antara $S$ dan dunia-dunia di luar
+$S'$. Secara khusus, kita harus memandang bola-bola tersebut sebagai memuat
+semua dunia di dalam permukaan luarnya; bola-bola itu bukan sekadar setiap
+lapisan secara terpisah.
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[layerwidth=1.5,scale=.6]\tiny
+  \spheresystem{3}
+  \propositionintersect{0}{3}{60}{6}
+  \path (0,0) node[world] {$w$};
+  \spherepos{-30}{2}{node[world] {$w_2$}}
+  \spherepos{220}{2}{node[world] {$w_3$}}
+  \spherepos{90}{2}{node[world] {$w_1$}}
+  \spherepos[shift={(.1,0)}]{10}{3}{node[world] {$w_5$}}
+  \spherepos[shift={(.1,0)}]{-10}{3}{node[world] {$w_6$}}
+  \spherepos{225}{3}{node[world] {$w_4$}}
+  \spherepos{20}{4}{node[world] {$w_7$}}
+  \path (5,0) node[left] {$p$};
+\end{tikzpicture}
+\caption{Diagram suatu model bola}
+\ollabel{fig:sphere-model}
+\end{center}
+\end{figure}
+
+Diagram dalam \olref{fig:sphere-model} bersesuaian dengan model bola yang
+mempunyai $W = \{w, w_1, \dots, w_7\}$ dan $V(p) = \{w_5, w_6,
+w_7\}$. Bola terdalam adalah $S_1 = \{w\}$. Dunia-dunia yang paling dekat
+dengan $w$ ialah $w_1, w_2, w_3$, sehingga bola lebih besar berikutnya
+adalah $S_2 = \{w, w_1, w_2, w_3\}$. Dunia-dunia yang lebih jauh ialah
+$w_4$, $w_5$, $w_6$, sehingga bola terluar adalah $S_3 = \{w, w_1,
+\dots, w_6\}$. Sistem bola di sekitar $w$ adalah $O_w = \{S_1, S_2,
+S_3\}$. Dunia~$w_7$ tidak berada dalam bola mana pun di sekitar~$w$.
+Dunia-dunia terdekat tempat $p$~benar ialah $w_5$ dan~$w_6$, sehingga bola
+terkecil yang memuat dunia-$p$ adalah~$S_3$.
+
+Untuk mendefinisikan keterpenuhan suatu formula~$!A$ pada dunia~$w$ dalam
+model bola~$\mModel M$, $\mSat{M}{!A}[w]$, kita memperluas definisi bagi
+!!{formula}s modal dengan menyertakan satu klausa untuk $!B \cif !C$:
+
+\begin{defn}
+  $\mSat{M}{!B \cif !C}[w]$ jika dan hanya jika salah satu dari yang berikut
+  berlaku:
+  \begin{enumerate}
+  \item\ollabel{sphere-vac} Untuk semua $u \in \bigcup O_w$,
+    $\mSat/{M}{!B}[u]$, atau
+  \item\ollabel{sphere-nonvac} Untuk suatu $S \in O_w$,
+    \begin{enumerate}
+      \item $\mSat{M}{!B}[u]$ untuk suatu $u \in S$, dan
+      \item untuk semua $v \in S$, berlaku salah satu dari
+        $\mSat/{M}{!B}[v]$ atau $\mSat{M}{!C}[v]$.
+    \end{enumerate}
+  \end{enumerate}
+\end{defn}
+
+Menurut definisi ini, $\mSat{M}{!B \cif !C}[w]$ jika dan hanya jika
+anteseden~$!B$ salah di semua bola di sekitar~$w$, atau terdapat suatu
+bola~$S$ tempat $!B$ benar dan kondisional material $!B \lif !C$ benar pada
+semua dunia dalam bola yang ``memuat dunia-$!B$'' itu. Perhatikan bahwa
+dalam definisi tersebut kita tidak mensyaratkan $S$ sebagai bola
+\emph{terdalam} yang memuat dunia-$!B$, berbeda dari apa yang mungkin
+diperkirakan berdasarkan penjelasan intuitif. Namun, jika syarat
+dalam~\olref{sphere-nonvac} dipenuhi oleh suatu bola~$S$, syarat itu juga
+dipenuhi oleh setiap bola yang termuat dalam~$S$ dan masih memuat dunia yang
+membuat anteseden benar, sehingga khususnya dipenuhi oleh bola terdalam
+semacam itu.
+
+Perhatikan pula bahwa definisi model bola tidak mensyaratkan bahwa
+\emph{terdapat} bola
+terdalam yang memuat dunia-$!B$: kita mungkin mempunyai barisan tak hingga
+$S_1 \supsetneq S_2 \supsetneq \dots \supsetneq \{w\}$ yang terdiri atas
+bola-bola yang memuat dunia-$!B$, sehingga tidak ada bola terdalam yang
+memuat dunia-$!B$. Dalam hal itu, $\mSat{M}{!B \cif !C}[w]$ jika dan hanya
+jika $!B \lif !C$ berlaku di seluruh bola $S_i$, $S_{i+1}$, \dots, untuk
+suatu~$i$.
+
+\end{document}

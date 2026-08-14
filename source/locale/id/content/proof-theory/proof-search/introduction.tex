@@ -1,0 +1,122 @@
+% Part: proof-theory
+% Chapter: proof-search
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{ps}{int}
+
+\olsection{Pendahuluan}
+
+Aksioma dan aturan inferensi sistem !!{proof}, seperti \Log{G3c} atau
+\Log{N1i}, menentukan pohon sekuen atau !!{formula}s mana yang dihitung
+sebagai !!{proof}s yang benar. Jika diberikan pohon sekuen atau !!{formula}s
+seperti itu (mungkin dengan informasi tambahan, misalnya aturan mana yang
+diterapkan pada setiap langkah, atau label bagi asumsi dan aturan inferensi
+yang melepaskannya), definisi aksioma dan aturan memungkinkan kita memeriksa
+apakah pohon tersebut merupakan !!{proof} yang benar. Masalah yang berbeda,
+dan biasanya lebih sulit, ialah \emph{menemukan} !!a{proof} bagi suatu sekuen
+atau bagi suatu !!{formula} tertentu dari asumsi-asumsi yang diberikan.
+Itulah masalah \emph{pencarian bukti}.
+
+Terdapat prosedur yang sangat sederhana bagi pencarian bukti. Kita dapat
+memandang !!{formula}s sebagai barisan simbol dari alfabet berhingga. Sekuen
+dan pohon sekuen atau !!{formula}s juga dapat dipandang sebagai barisan
+!!{formula}s (mungkin dengan tanda kurung khusus untuk menunjukkan
+percabangan pohon). Aksioma dan aturan memungkinkan kita memeriksa secara
+mekanis apakah suatu barisan simbol merepresentasikan !!{proof} yang benar.
+Akibatnya, kita dapat secara mekanis menghasilkan \emph{semua} !!{proof}s
+yang mungkin dan benar (dengan menghasilkan semua barisan simbol dari
+alfabet yang dipakai untuk merepresentasikan !!{proof}s, lalu memeriksa
+setiap barisan calon untuk menentukan apakah ia merepresentasikan
+!!{proof} yang benar). Prosedur pencarian bukti yang sederhana itu ialah:
+hasilkan semua !!{proof}s yang benar sampai kita menemukan !!{proof} bagi
+sekuen yang diberikan (atau bagi !!{formula} yang diberikan dengan asumsi
+terbuka di antara asumsi-asumsi yang diberikan).
+
+Metode yang lebih baik ialah menggunakan metode naif yang dipakai untuk
+menemukan !!a{proof} dengan tangan: mulai dari sekuen akhir, pilih
+!!a{formula}, lalu terapkan suatu aturan inferensi secara ``terbalik'' untuk
+menghasilkan satu atau beberapa premis yang, jika mempunyai !!{proof}s,
+dapat digabungkan dengan inferensi terakhir untuk membentuk !!a{proof} bagi
+sekuen yang diberikan. Metode serupa (meskipun lebih rumit) digunakan untuk
+menemukan !!a{proof} dalam sistem deduksi alami.
+
+Namun, metode ini belum menjamin keberhasilan: jika Anda memilih aturan yang
+keliru, atau !!{formula}s dalam urutan yang keliru, Anda dapat menemui jalan
+buntu. Metode itu juga belum ditentukan secara lengkap: pada setiap tahap,
+mungkin terdapat lebih dari satu !!{formula} yang dapat dipilih, atau lebih
+dari satu aturan yang dapat diterapkan secara terbalik. Suatu
+\emph{algoritma pencarian bukti} adalah prosedur yang ditentukan sepenuhnya
+dan akan menemukan !!a{proof} jika bukti itu ada.
+
+Beberapa sistem !!{proof} lebih cocok bagi algoritma pencarian bukti yang
+sederhana daripada sistem lainnya. Dalam sistem sekuen, !!{main operator}
+suatu !!{formula}, beserta sisi tempat formula itu muncul, menentukan aturan
+mana yang diterapkan secara terbalik. Misalnya, jika Anda hendak menemukan
+!!a{proof} bagi $\Gamma \Sequent \Delta, !A \land !B$ dengan
+$!A \land !B$ muncul di sebelah kanan, terapkan \RightR{\land} secara
+terbalik dan hasilkan dua premis bersesuaian
+$\Gamma \Sequent \Delta, !A$ dan $\Gamma \Sequent \Delta, !B$. Namun, jika
+sistem Anda adalah \Log{G1c}, adanya kontraksi membuat persoalan lebih sulit
+karena memberi lebih banyak pilihan. Anda juga dapat menerapkan
+\RightR{\Contraction} secara terbalik dan menghasilkan premis
+$\Gamma \Sequent \Delta, !A \land !B, !A \land !B$. Setelah itu muncul
+premis $\Gamma \Sequent \Delta, !A \land !B, !A \land !B, !A \land !B$,
+dan seterusnya. Dalam \Log{G2c}, persoalannya bahkan lebih buruk. Menerapkan
+aturan \RightR{\land} secara terbalik juga berarti bahwa Anda harus menebak
+$\Gamma_1$, $\Gamma_2$ sedemikian sehingga
+$\Gamma = \Gamma_1 \cup \Gamma_2$, serta $\Delta_1$, $\Delta_2$ sedemikian
+sehingga $\Delta = \Delta_1 \cup \Delta_2$, lalu mencoba premis
+$\Gamma_1 \Sequent \Delta_1, !A$ dan
+$\Gamma_2 \Sequent \Delta_2, !B$. Tebakan yang keliru dapat membawa Anda
+ke jalan buntu, sehingga Anda harus menelusur balik ke awal dan memilih
+$\Gamma_1$, $\Gamma_2$, $\Delta_1$, $\Delta_2$ yang berbeda. Jika
+!!{formula} tersebut adalah $!A \lor !B$, Anda harus memilih salah satu dari
+dua kemungkinan bagi \RightR{\lor}, yang menghasilkan salah satu dari dua
+premis $\Gamma \Sequent \Delta, !A$ atau
+$\Gamma \Sequent \Delta, !B$. Pilihan yang keliru kembali mengharuskan
+penelusuran balik.
+
+Sistem \Log{G3c} tidak mempunyai masalah-masalah ini. Sistem itu tidak
+mempunyai aturan struktural, dan pilihan aturan inferensi ditentukan oleh
+!!{main operator} serta sisi tempat !!{formula} tersebut muncul. Karena itu,
+\Log{G3c} lebih cocok bagi pencarian bukti daripada \Log{G1c} atau
+\Log{G2c}. Pencarian yang berhasil menghasilkan !!a{proof} dalam
+\Log{G3c}, dan !!{proof} tersebut kemudian dapat diterjemahkan ke \Log{G1c}
+atau \Log{G2c} (atau bahkan \Log{N1c}). Jadi, algoritma pencarian bukti bagi
+\Log{G3c}, bersama algoritma penerjemahan !!{proof}s~\Log{G3c} menjadi
+!!{proof}s dalam sistem lain, juga memecahkan masalah pencarian bukti bagi
+sistem-sistem tersebut.
+
+Bagaimana kita mengetahui bahwa suatu algoritma pencarian bukti menjamin
+keberhasilan? Kita harus menunjukkan bahwa jika algoritma gagal menemukan
+!!a{proof}, tidak mungkin ada !!{proof}. Bagaimanapun, algoritma yang buruk
+dapat gagal menemukan bukti walaupun bukti itu ada. Masalah ini tidak
+dihadapi algoritma sederhana di atas karena algoritma tersebut menelusuri
+semua !!{proof}s yang mungkin. Namun, algoritma pencarian bukti seharusnya
+efisien dan mengeluarkan usaha sesedikit mungkin.
+
+Gagasan kunci untuk menunjukkan bahwa algoritma pencarian bukti menjamin
+keberhasilan ialah menunjukkan bahwa, jika algoritma gagal, cara kegagalan
+itu sendiri memungkinkan kita membuktikan bahwa sekuen tersebut tidak
+mungkin mempunyai !!a{proof}. Caranya ialah menunjukkan bahwa sekuen itu
+tidak valid. Dalam logika orde pertama klasik, sekuen valid
+$\Gamma \Sequent \Delta$ adalah sekuen yang pada setiap !!{structure},
+sekurang-kurangnya satu !!{formula} dalam $\Gamma$ salah atau
+sekurang-kurangnya satu !!{formula} dalam~$\Delta$ benar. \Log{G3c}
+\emph{sahih}, yakni hanya !!{prove}s sekuen valid. Hal ini dibuktikan melalui
+induksi pada !!{proof}s: aksioma jelas valid, dan jika premis-premis suatu
+aturan valid, kesimpulannya juga valid. Untuk menunjukkan bahwa algoritma
+pencarian bukti menjamin keberhasilan, kita menunjukkan bahwa jika pencarian
+!!a{proof} bagi $\Gamma \Sequent \Delta$ gagal, kita dapat mendefinisikan
+!!a{structure} yang membuat semua !!{formula}s dalam $\Gamma$ benar dan
+semua !!{formula}s dalam~$\Delta$ salah. Hal ini juga menetapkan bahwa
+\Log{G3c} \emph{lengkap}: jika $\Gamma \Sequent \Delta$ valid, terdapat
+!!{proof}~\Log{G3c} baginya. Karena setiap pencarian bukti yang gagal
+menunjukkan bahwa $\Gamma \Sequent \Delta$ tidak valid, setiap pencarian
+bukti bagi sekuen valid harus berhasil.
+
+\end{document}

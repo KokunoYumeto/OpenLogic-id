@@ -1,0 +1,58 @@
+% Bagian: second-order-logic
+% Bab: metatheory
+% Subbagian: loewenheim-skolem
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{met}{lst}
+
+\olsection{Teorema L\"owenheim--Skolem Tidak Berlaku bagi Logika Orde Kedua}
+
+\begin{explain}
+Teorema L\"owenheim--Skolem (ke Bawah) menyatakan bahwa setiap himpunan
+!!{sentence} yang mempunyai model tak hingga mempunyai model
+!!{enumerable}. Teorema ini pun merupakan konsekuensi dari teorema
+kelengkapan: pembuktian kelengkapan menghasilkan suatu model bagi setiap
+himpunan !!{sentence} yang konsisten, dan model tersebut !!{enumerable}.
+Terdapat pula Teorema L\"owenheim--Skolem ke Atas, yang menjamin bahwa jika
+suatu himpunan !!{sentence} mempunyai model !!{denumerable}, maka himpunan
+itu juga mempunyai model !!{nonenumerable}. Kedua teorema tersebut tidak
+berlaku dalam logika orde kedua.
+\end{explain}
+
+
+\begin{thm}
+\ollabel{thm:sol-no-ls} Teorema L\"owenheim--Skolem tidak berlaku bagi
+logika orde kedua: terdapat !!{sentence} yang mempunyai model tak hingga,
+tetapi tidak mempunyai model !!{enumerable}.
+\end{thm}
+
+\begin{proof}
+Ingat bahwa
+\[
+\fn{Count} \ident \lexists[z][\lexists[u][\lforall[X][((X(z) \land
+      \lforall[x][(X(x) \lif X(u(x)))]) \lif \lforall[x][X(x)])]]]
+\]
+benar dalam !!a{structure}~$\Struct{M}$ jika dan hanya jika $\Domain{M}$
+!!{enumerable}, sehingga $\lnot\fn{Count}$ benar dalam~$\Struct{M}$ jika dan
+hanya jika $\Domain{M}$ !!{nonenumerable}. Terdapat !!{structure} semacam
+itu---ambil sembarang himpunan !!{nonenumerable} sebagai !!{domain}, misalnya
+$\Pow{\Nat}$ atau~$\Real$. Jadi, $\lnot \fn{Count}$ mempunyai model tak
+hingga, tetapi tidak mempunyai model !!{enumerable}.
+\end{proof}
+
+\begin{thm}
+Terdapat !!{sentence} yang mempunyai model !!{denumerable}, tetapi tidak
+mempunyai model !!{nonenumerable}.
+\end{thm}
+
+\begin{proof}
+$\fn{Count} \land \fn{Inf}$ benar dalam $\Nat$, tetapi tidak benar dalam
+  !!a{structure}~$\Struct{M}$ mana pun dengan $\Domain{M}$
+!!{nonenumerable}.
+\end{proof}
+
+
+\end{document}

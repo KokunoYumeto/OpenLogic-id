@@ -1,0 +1,51 @@
+% Bagian: lambda-calculus
+% Bab: lambda-definability
+% Subbagian: lists
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{ldf}{lst}
+\olsection{Daftar}
+
+Daftar $[M_1, M_2, \ldots, M_n]$ dapat didefinisikan sebagai berikut:
+\[
+  [M_1, M_2, \ldots, M_n] \ident \lambd[sz][s M_1 (s M_2 (\ldots (s M_n z)))]
+\]
+Secara informal, suku yang merepresentasikan suatu daftar merupakan fungsi
+``akumulator'' daftar itu: fungsi yang menerima dua suku; suku pertama ialah
+fungsi yang menerima nilai terakumulasi beserta suatu elemen baru dan
+mengembalikan nilai terakumulasi yang baru; suku kedua ialah nilai
+terakumulasi awal. Fungsi tersebut mengakumulasikan elemen satu per satu dan
+pada akhirnya mengembalikan hasilnya.
+
+\begin{digress}
+  Jika Anda mengenal pemrograman fungsional, definisi ini akan tampak serupa
+  dengan \emph{lipatan kanan}: suatu daftar didefinisikan
+  sebagai fungsi lipatan kanan atas elemen-elemen yang dikandungnya.
+\end{digress}
+
+Kita dapat dengan mudah mendefinisikan beberapa fungsi berguna berdasarkan
+pengodean ini:
+\begin{align*}
+  \fn{Sum} & \ident
+  \lambd[l][l \, (\lambd[xa][\fn{Add} \, x \, a])\,  \num{0}]\\
+  \fn{Len} & \ident
+  \lambd[l][l \, (\lambd[xa][\fn{Add} \, a \, \num{1}]) \num{0}]
+\end{align*}
+
+$\fn{Sum}$ menghitung jumlah suatu daftar numeral Church. Fungsi ini bekerja
+dengan melakukan akumulasi pada daftar tersebut: nilai awalnya ialah
+$\num{0}$ dan, bagi setiap elemen, fungsi mengembalikan $\fn{Add} \, x\, a$
+sebagai nilai baru (dengan $x$ sebagai elemen saat ini dan $a$ sebagai nilai
+terakumulasi). Hasilnya ialah jumlah semua elemen.
+
+\begin{prob}
+  Apa yang dilakukan $\fn{Len}$? Jelaskan.
+\end{prob}
+
+\begin{prob}
+  Definisikan fungsi yang membalikkan suatu daftar.
+\end{prob}
+\end{document}

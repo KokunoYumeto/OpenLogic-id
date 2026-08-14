@@ -1,0 +1,156 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{card-arithmetic}{ch}
+
+\olsection{Hipotesis Kontinuum}
+
+Hasil sebelumnya mengisyaratkan (secara tepat) bahwa eksponensiasi kardinal
+akan cukup \emph{mudah} jika kardinal tak hingga dijamin ``berinteraksi
+secara langsung'' dengan pangkat $2$, yakni (berdasarkan
+\olref[opps]{lem:SizePowerset2Exp}) dengan operasi mengambil himpunan kuasa.
+Namun, kita tidak dapat mengandaikan bahwa kardinal tak hingga \emph{memang}
+berinteraksi secara langsung dengan himpunan kuasa.
+
+Untuk mulai menguraikan persoalan ini, kita memperkenalkan suatu notasi yang
+berguna.
+
+\begin{defn}
+Jika $\cardsucc{\cardfont{a}}$ merupakan kardinal terkecil yang secara ketat
+lebih besar daripada $\cardfont{a}$, kita mendefinisikan dua barisan tak
+hingga:
+\begin{align*}
+	\aleph_{0} &\defis \omega & 		
+	\beth_{0} &\defis \omega\\
+	\aleph_{\alpha \ordplus 1} &\defis \cardsucc{(\aleph_{\alpha})} &
+	\beth_{\alpha+1} &\defis \cardexpo{2}{\beth_{\alpha}}\\
+	\aleph_{\alpha} &\defis \bigcup_{\beta< \alpha} \aleph_{\beta} &
+	\beth_{\alpha} &\defis \bigcup_{\beta < \alpha}\beth_{\beta} & \text{jika $\alpha$ merupakan ordinal limit}.
+	\end{align*}
+\end{defn}
+
+Definisi $\cardsucc{\cardfont{a}}$ terbentuk dengan baik, sebab
+\olref[cardinals][classing]{lem:NoLargestCardinal} memberi tahu kita bahwa,
+untuk setiap kardinal $\cardfont{a}$, terdapat suatu kardinal yang lebih
+besar daripada $\cardfont{a}$, dan Induksi Transfinit menjamin bahwa terdapat
+suatu kardinal \emph{terkecil} yang lebih besar daripada $\cardfont{a}$.
+Sisa definisi kedua barisan tersebut diberikan melalui rekursi transfinit.
+
+Cantor memperkenalkan notasi ``$\aleph$'' ini; lambang tersebut ialah
+\emph{aleph}, huruf pertama dalam alfabet Ibrani dan huruf pertama dalam kata
+Ibrani untuk ``tak hingga''. Peirce memperkenalkan notasi ``$\beth$'';
+lambang tersebut ialah \emph{beth}, huruf kedua dalam alfabet
+Ibrani.\footnote{Peirce menggunakan notasi ini dalam sepucuk surat kepada
+Cantor pada Desember 1900. Sayangnya, dalam surat tersebut Peirce juga
+memberikan argumen yang keliru bahwa $\beth_\alpha$ tidak ada untuk
+$\alpha \geq \omega$.} Notasi-notasi ini memberi kita kardinal tak hingga.
+
+\begin{prop}
+$\aleph_\alpha$ dan $\beth_\alpha$ merupakan kardinal, untuk setiap ordinal
+$\alpha$.
+\end{prop}
+
+\begin{proof}
+Kedua hasil berlaku berdasarkan suatu induksi transfinit sederhana.
+$\aleph_0 = \beth_0 = \omega$ merupakan suatu kardinal berdasarkan
+\olref[cardinals][classing]{omegaisacardinal}. Dengan mengandaikan bahwa
+$\aleph_\alpha$ dan $\beth_\alpha$ keduanya merupakan kardinal,
+$\aleph_{\alpha+1}$ dan $\beth_{\alpha+1}$ secara eksplisit didefinisikan
+sebagai kardinal. Selain itu, gabungan suatu himpunan kardinal merupakan suatu
+kardinal berdasarkan
+\olref[cardinals][classing]{unioncardinalscardinal}.
+\end{proof}
+\noindent
+Lebih jauh, setiap kardinal tak hingga merupakan suatu $\aleph$:
+
+\begin{prop}
+Jika $\cardfont{a}$ suatu kardinal tak hingga, maka
+$\cardfont{a} = \aleph_\gamma$ bagi suatu $\gamma$ yang unik.
+\end{prop}
+
+\begin{proof}
+Berdasarkan induksi transfinit atas kardinal. Untuk induksi, andaikan bahwa
+jika $\cardfont{b} < \cardfont{a}$, maka
+$\cardfont{b} = \aleph_{\gamma_\cardfont{b}}$. Jika
+$\cardfont{a} = \cardsucc{\cardfont{b}}$ bagi suatu $\cardfont{b}$, maka
+$\cardfont{a} = \cardsucc{(\aleph_{\gamma_\cardfont{b}})}=
+\aleph_{\gamma_\cardfont{b}+1}$. Jika $\cardfont{a}$ bukan penerus dari
+sebarang kardinal, maka karena kardinal merupakan ordinal,
+$\cardfont{a} = \bigcup_{\cardfont{b} < \cardfont{a}} \cardfont{b} =
+\bigcup_{\cardfont{b} < \cardfont{a}}{\aleph_{\gamma_\cardfont{b}}}$,
+sehingga $\cardfont{a} = \aleph_\gamma$ dengan
+$\gamma = \bigcup_{\cardfont{b} < \cardfont{a}}\gamma_\cardfont{b}$.
+\end{proof}
+
+Karena setiap kardinal tak hingga merupakan suatu $\aleph$, hal ini mendorong
+kita untuk bertanya: apakah setiap kardinal tak hingga merupakan
+suatu~$\beth$? Tentu saja, seandainya \emph{memang} demikian, kardinal-kardinal tak
+hingga akan ``berinteraksi secara langsung'' dengan operasi mengambil
+himpunan kuasa. Bahkan, kita akan memperoleh pernyataan berikut:
+
+\begin{defish}
+\emph{Hipotesis Kontinuum Terampat} (GCH). $\aleph_\alpha = \beth_\alpha$,
+untuk semua $\alpha$.
+\end{defish}
+
+Lebih jauh, jika GCH berlaku, kita dapat membuat beberapa penyederhanaan
+besar pada eksponensiasi kardinal. Secara khusus, kita dapat menunjukkan bahwa
+ketika $\cardfont{b} < \cardfont{a}$, nilai
+$\cardexpo{\cardfont{a}}{\cardfont{b}}$ dibatasi oleh
+$\cardfont{a}\leq \cardexpo{\cardfont{a}}{\cardfont{b}} \leq
+\cardsucc{\cardfont{a}}$. Selanjutnya, kita dapat memberikan syarat-syarat
+tepat yang menentukan mana dari kedua kemungkinan yang berlaku (yakni,
+apakah $\cardfont{a} = \cardexpo{\cardfont{a}}{\cardfont{b}}$ atau
+$\cardexpo{\cardfont{a}}{\cardfont{b}} =
+\cardsucc{\cardfont{a}}$).\footnote{Syarat tersebut ditentukan oleh
+\emph{kofinalitas}.}
+
+Namun, GCH merupakan suatu \emph{hipotesis}, bukan suatu \emph{teorema}.
+Pada kenyataannya, \citet{Godel1938} membuktikan bahwa jika $\ZFC$ konsisten,
+maka $\ZFC + \text{GCH}$ juga konsisten. Akan tetapi, kemudian terbukti bahwa
+kita juga dapat menambahkan $\lnot$GCH pada $\ZFC$. Perhatikan \emph{instans} GCH
+tak-sepele yang paling sederhana, yakni:
+
+\begin{defish}
+\emph{Hipotesis Kontinuum} (CH). $\aleph_1 = \beth_1$.
+\end{defish}
+
+\citet{Cohen1963} membuktikan bahwa jika $\ZFC$ konsisten, maka
+$\ZFC + \lnot\text{CH}$ juga konsisten. Jadi, Hipotesis Kontinuum independen
+dari $\ZFC$.
+
+Nama Hipotesis Kontinuum digunakan karena ``kontinuum'' merupakan nama lain
+bagi garis bilangan real, $\Real$.
+\olref[opps]{continuumis2aleph0} memberi tahu kita bahwa
+$\card{\Real} = \beth_1$. Jadi, Hipotesis Kontinuum menyatakan bahwa tidak
+terdapat suatu kardinal di antara kardinalitas bilangan asli,
+$\aleph_0 = \beth_0$, dan kardinalitas kontinuum, $\beth_1$.
+
+Mengingat \emph{independensi} (G)CH dari $\ZFC$, apa yang harus kita katakan
+tentang \emph{kebenaran} keduanya? Ada \emph{banyak} hal yang dapat dikatakan.
+Memang, banyak penelitian mutakhir yang produktif dalam teori himpunan telah
+diarahkan untuk menyelidiki persoalan-persoalan ini. Namun, dua hal singkat
+berikut tentu patut ditekankan.
+
+Pertama, hasil-hasil independensi formal ini tidak \emph{langsung}
+menyiratkan bahwa nilai kebenaran GCH atau CH \emph{tak tentu}. Mungkin saja
+kita hanya perlu menambahkan lebih banyak aksioma yang terasa alami bagi
+kita dan yang akan menentukan jawaban atas persoalan tersebut. G\"odel sendiri
+mengusulkan bahwa inilah tanggapan yang tepat.
+
+Kedua, independensi CH dari $\ZFC$ tentu \emph{mencolok}, tetapi jelas bukan
+sesuatu yang \emph{mustahil dipercaya} (dalam arti harfiah). Pokoknya hanyalah
+bahwa, sejauh yang dinyatakan oleh $\ZFC$, berpindah dari kardinal ke
+penerusnya mungkin memerlukan alat yang lebih halus daripada sekadar
+mengambil himpunan kuasa.
+ %The operation of taking powersets moves us from one stage of the
+ %hierarchy to its successor stage (from $V_{\alpha}$ to
+ %$V_{\alpha+1}$).
+
+Setelah dua pengamatan tersebut, jika Anda ingin mengetahui lebih lanjut,
+Anda kini harus beralih kepada berbagai filsuf dan matematikawan yang
+mempunyai kepentingan dalam perdebatan ini.\footnote{Namun, Anda mungkin ingin
+memulai dengan membaca \citet[\S15.6]{Potter2004}.}
+
+\end{document}

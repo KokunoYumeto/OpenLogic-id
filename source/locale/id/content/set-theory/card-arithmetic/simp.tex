@@ -1,0 +1,151 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+\olfileid[id]{sth}{card-arithmetic}{simp}
+
+\olsection{Menyederhanakan Penjumlahan dan Perkalian}
+
+Ternyata penjumlahan dan perkalian kardinal transfinit \emph{sangat} mudah.
+Hal ini mengikuti dari fakta bahwa kardinal merupakan ordinal (tertentu),
+sehingga terurut baik dan dapat dimanipulasi dengan cara tertentu. Namun,
+menunjukkan hal ini \emph{tidak} begitu mudah. Sebagai permulaan, kita
+memerlukan suatu definisi yang agak rumit:
+
+\begin{defn}
+Kita mendefinisikan suatu \emph{pengurutan kanonik}, $\canonord$, pada
+pasangan ordinal dengan menetapkan bahwa
+$\tuple{\alpha_1, \alpha_2} \canonord
+\tuple{\beta_1, \beta_2}$ jika dan hanya jika salah satu dari hal-hal berikut
+berlaku:
+\begin{enumerate}
+	\item $\max(\alpha_1, \alpha_2) < \max(\beta_1, \beta_2)$; atau
+	\item $\max(\alpha_1, \alpha_2) = \max(\beta_1, \beta_2)$ dan
+	$\alpha_1 < \beta_1$; atau
+	\item $\max(\alpha_1, \alpha_2) = \max(\beta_1, \beta_2)$ dan
+	$\alpha_1 = \beta_1$ dan $\alpha_2 < \beta_2$
+\end{enumerate}
+\end{defn}
+
+\begin{lem}
+$\tuple{\alpha \times \alpha, \canonord}$ merupakan suatu pengurutan baik
+untuk sebarang ordinal $\alpha$.
+\end{lem}
+
+\begin{proof}
+Jelas bahwa $\canonord$ terhubung pada $\alpha \times \alpha$. Andaikan
+baik $\tuple{\alpha_1, \alpha_2}$ maupun $\tuple{\beta_1, \beta_2}$ tidak
+$\canonord$-lebih kecil daripada yang lain. Maka
+$\max(\alpha_1, \alpha_2) = \max(\beta_1, \beta_2)$,
+$\alpha_1 = \beta_1$, dan $\alpha_2 = \beta_2$, sehingga
+$\tuple{\alpha_1, \alpha_2} = \tuple{\beta_1,  \beta_2}$.
+
+Untuk menunjukkan pengurutan baik, misalkan
+$X \subseteq \alpha\times\alpha$ tak kosong. Karena $\alpha$ suatu ordinal,
+terdapat suatu $\delta$ yang merupakan anggota terkecil dari
+$\Setabs{\max(\gamma_1, \gamma_2)}{\tuple{\gamma_1, \gamma_2} \in X}$.
+Sekarang, dari
+$\Setabs{\tuple{\gamma_1,\gamma_2} \in X}{\max(\gamma_1, \gamma_2) =
+\delta}$, singkirkan semua pasangan selain yang mempunyai koordinat pertama
+terkecil; dari pasangan-pasangan yang tersisa, pasangan dengan koordinat
+kedua terkecil merupakan anggota $\canonord$-terkecil dari $X$.
+\end{proof}
+\noindent
+Sekarang untuk suatu pengamatan kecil dan sederhana:
+
+\begin{prop}\ollabel{simplecardproduct}
+Jika $\cardeq{\alpha}{\beta}$, maka
+$\cardeq{\alpha \times \alpha}{\beta \times \beta}$.
+\end{prop}
+
+\begin{proof}
+Cukup misalkan $f \colon \alpha \to \beta$ menginduksi pemetaan
+$\tuple{\gamma_1, \gamma_2} \mapsto
+\tuple{f(\gamma_1), f(\gamma_2)}$.
+\end{proof}
+\noindent
+Sekarang kita akan menggunakan semua ini untuk membuktikan suatu lema
+penting:
+\begin{lem}\ollabel{alphatimesalpha}
+$\cardeq{\alpha}{\alpha \times \alpha}$, untuk sebarang ordinal tak hingga
+$\alpha$
+\end{lem}
+
+\begin{proof}
+Untuk memperoleh kontradiksi, misalkan $\alpha$ ordinal tak hingga terkecil
+yang tidak memenuhi pernyataan tersebut.
+\olref[sfr][siz][zigzag]{natsquaredenumerable} menunjukkan bahwa
+$\cardeq{\omega}{\omega\times\omega}$, sehingga $\omega \in \alpha$.
+Selain itu, $\alpha$ merupakan suatu kardinal. Untuk memperoleh kontradiksi,
+andaikan bukan demikian; maka $\card{\alpha} \in \alpha$, sehingga
+$\cardeq{\card{\alpha}}{\card{\alpha} \times \card{\alpha}}$ berdasarkan
+hipotesis minimalitas; dan $\cardeq{\card{\alpha}}{\alpha}$ berdasarkan
+definisi; sehingga $\cardeq{\alpha}{\alpha\times\alpha}$ berdasarkan
+\olref{simplecardproduct}.
+
+Sekarang, untuk setiap
+$\tuple{\gamma_1, \gamma_2} \in \alpha \times \alpha$, perhatikan segmen:
+\begin{align*}
+	\text{Seg}(\gamma_1, \gamma_2) &= \Setabs{\tuple{\delta_1, \delta_2} \in \alpha \times \alpha}{\tuple{\delta_1, \delta_2} \canonord \tuple{\gamma_1, \gamma_2}}
+\end{align*}
+Dengan menetapkan $\gamma = \max(\gamma_1, \gamma_2)$, perhatikan bahwa
+$\tuple{\gamma_1, \gamma_2} \canonord
+\tuple{\gamma+1, \gamma + 1}$. Jadi, ketika $\gamma$ tak hingga, perhatikan:
+\begin{align*}
+	\text{Seg}(\gamma_1, \gamma_2) & 
+	\precsim ((\gamma \ordplus 1)\ordtimes (\gamma \ordplus 1))\\
+	&\approx (\gamma \ordtimes \gamma)
+	\text{, berdasarkan \olref[ord-arithmetic][using-addition]{ordinfinitycharacter} dan 
+	\olref{simplecardproduct}}\\
+	&\approx \gamma \text{, berdasarkan hipotesis induksi}\\
+	& \prec \alpha\text{, sebab $\alpha$ merupakan suatu kardinal}
+\end{align*}
+Jadi $\ordtype{\alpha\times \alpha, \canonord} \leq \alpha$, dan dengan
+demikian $\cardle{\alpha \times \alpha}{\alpha}$. Karena tentu saja
+$\cardle{\alpha}{\alpha \times \alpha}$, hasilnya mengikuti dari
+Schr\"oder--Bernstein.
+\end{proof}
+
+Akhirnya, kita memperoleh hasil penyederhanaan kita:
+
+\begin{thm}\ollabel{cardplustimesmax}
+Jika $\cardfont{a}, \cardfont{b}$ merupakan kardinal tak hingga, maka:
+\[
+	\cardfont{a}
+\cardtimes \cardfont{b} = \cardfont{a} \cardplus \cardfont{b} =
+\text{max}(\cardfont{a}, \cardfont{b}).
+\]
+\end{thm}
+
+\begin{proof}
+Tanpa mengurangi keumuman, andaikan
+$\cardfont{a} = \max(\cardfont{a}, \cardfont{b})$. Kemudian, dengan
+menggunakan \olref{alphatimesalpha},
+$\cardfont{a}\cardtimes\cardfont{a} = \cardfont{a} \leq \cardfont{a}
+\cardplus \cardfont{b} \leq \cardfont{a} \cardplus \cardfont{a} \leq
+\cardfont{a} \cardtimes \cardfont{a}$. \end{proof}\noindent Serupa dengan
+itu, jika $\cardfont{a}$ tak hingga, suatu gabungan berukuran
+$\cardfont{a}$ dari himpunan-himpunan yang masing-masing berukuran
+$\leq\cardfont{a}$ mempunyai ukuran $\leq\cardfont{a}$:
+
+\begin{prop}\ollabel{kappaunionkappasize}
+Misalkan $\cardfont{a}$ suatu kardinal tak hingga. Untuk setiap ordinal
+$\beta \in \cardfont{a}$, misalkan $X_\beta$ suatu himpunan dengan
+$\card{X_\beta} \leq \cardfont{a}$. Maka
+$\card{\bigcup_{\beta \in \cardfont{a}} X_\beta} \leq \cardfont{a}$.
+\end{prop}
+
+\begin{proof}
+Untuk setiap $\beta \in \cardfont{a}$, tetapkan !!a{injection}
+$f_\beta \colon X_\beta \to \cardfont{a}$.\footnote{Bagaimana semuanya
+``ditetapkan''? Lihat \olref[sth][choice][countablechoice]{sec}.} Definisikan
+!!a{injection} $g \colon
+\bigcup_{\beta \in \cardfont{a}} X_\beta \to \cardfont{a} \times
+\cardfont{a}$ dengan $g(v) = \tuple{\beta, f_\beta(v)}$, di mana
+$v \in X_\beta$ dan $v \notin X_\gamma$ untuk setiap
+$\gamma \in \beta$. Sekarang
+$\bigcup_{\beta \in \cardfont{a}} X_\beta \preceq \cardfont{a} \times
+\cardfont{a} \approx \cardfont{a}$ berdasarkan
+\olref{cardplustimesmax}.
+\end{proof}
+
+\end{document}

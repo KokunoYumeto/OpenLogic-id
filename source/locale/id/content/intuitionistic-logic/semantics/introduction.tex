@@ -1,0 +1,74 @@
+% Bagian: intuitionistic-logic
+% Bab: semantics
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{sem}{int}
+
+\olsection{Pendahuluan}
+
+Tidak ada logika yang diuraikan secara memuaskan tanpa semantik, dan logika
+intuisionistik bukanlah pengecualian. Dalam logika klasik, semantik berdasarkan
+!!{valuation}s bersifat kanonis, sedangkan logika intuisionistik mempunyai
+beberapa semantik yang saling bersaing. Tidak satu pun sepenuhnya memuaskan
+dalam arti memberikan penjelasan tentang makna konektif yang dapat diterima
+secara intuisionistik.
+
+Semantik berdasarkan !!{relational model}s, yang serupa dengan semantik bagi
+logika modal, mungkin merupakan semantik yang paling populer. Dalam semantik
+ini, !!{propositional variable}s ditetapkan kepada dunia-dunia, dan dunia-dunia
+tersebut dihubungkan oleh relasi keterjangkauan. Relasi itu selalu merupakan
+urutan parsial; yakni, relasi itu refleksif, antisimetris, dan transitif.
+
+Secara intuitif, dunia-dunia ini dapat dipandang sebagai keadaan pengetahuan
+atau ``situasi evidensial''. Suatu keadaan~$w'$ terjangkau dari~$w$ jika dan
+hanya jika, sejauh yang kita ketahui, $w'$ merupakan keadaan pengetahuan
+(masa depan) yang mungkin; yakni, keadaan yang selaras dengan apa yang
+diketahui pada~$w$. Setelah suatu proposisi diketahui, pengetahuan itu tidak
+dapat hilang; yakni, jika $!A$ diketahui pada~$w$ dan~$Rww'$, maka $!A$ juga
+diketahui pada~$w'$. Jadi, ``pengetahuan'' bersifat monoton terhadap relasi
+keterjangkauan.
+
+Jika kita mendefinisikan ``$!A$ diketahui'', sebagaimana dalam logika
+epistemik, sebagai ``benar di semua alternatif epistemik'', maka $!A \land !B$
+diketahui pada~$w$ jika di semua alternatif epistemik, baik $!A$ maupun~$!B$
+diketahui. Namun, karena pengetahuan bersifat monoton dan $R$ refleksif, hal
+ini berarti bahwa $!A \land !B$ diketahui pada $w$ jika dan hanya jika $!A$
+dan $!B$ diketahui pada~$w$. Dengan alasan yang sama, $!A \lor !B$ diketahui
+pada $w$ jika dan hanya jika sekurang-kurangnya salah satunya diketahui. Jadi,
+bagi $\land$ dan $\lor$, syarat kebenaran konektif tersebut bertepatan dengan
+syarat dalam logika klasik.
+
+Namun, syarat kebenaran bagi kondisional berbeda dari syarat dalam logika
+klasik. $!A \lif !B$ diketahui pada~$w$ jika dan hanya jika tidak ada $w'$
+dengan $Rww'$ tempat $!A$ diketahui tanpa~$!B$ juga diketahui. Syarat ini tidak
+sama dengan syarat bahwa $!A$ tidak diketahui atau $!B$ diketahui pada~$w$.
+Sebab, jika baik $!A$ maupun $!B$ tidak kita ketahui pada~$w$, mungkin ada
+keadaan epistemik masa depan~$w'$ dengan $Rww'$ sedemikian sehingga pada $w'$,
+$!A$ diketahui tanpa~$!B$ juga diketahui.
+
+Kita mengetahui $\lnot !A$ hanya jika tidak ada keadaan epistemik masa depan
+yang mungkin tempat kita mengetahui~$!A$. Gagasannya ialah bahwa jika $!A$
+dapat diketahui, maka pada suatu keadaan epistemik masa depan yang mungkin,
+$!A$ menjadi diketahui. Karena kita tidak dapat mengetahui $\lfalse$, pada
+keadaan epistemik masa depan itu kita akan mengetahui $!A$, tetapi tidak
+mengetahui~$\lfalse$.
+
+Dalam interpretasi ini, prinsip tiada jalan tengah gagal. Sebab, ada beberapa
+$!A$ yang belum kita ketahui, tetapi mungkin kelak kita ketahui. Bagi
+!!a{formula}~$!A$ semacam itu, baik $!A$ maupun~$\lnot !A$ tidak diketahui,
+sehingga $!A \lor \lnot !A$ tidak diketahui. Namun, misalnya, kita mengetahui
+bahwa $\lnot(!A \land \lnot !A)$. Tidak ada keadaan masa depan yang mungkin
+tempat kita mengetahui baik $!A$ maupun $\lnot !A$, dan hal ini kita ketahui
+secara terlepas dari apakah kita mengetahui~$!A$ atau $\lnot !A$.
+
+!!^{relational model}s bukanlah satu-satunya semantik yang tersedia bagi
+logika intuisionistik. Semantik topologis merupakan pilihan lain: dalam
+semantik ini, proposisi ditafsirkan sebagai himpunan terbuka dalam suatu ruang
+topologis, dan konektif ditafsirkan sebagai operasi pada himpunan-himpunan
+tersebut (misalnya, $\land$ bersesuaian dengan irisan).
+
+\end{document}

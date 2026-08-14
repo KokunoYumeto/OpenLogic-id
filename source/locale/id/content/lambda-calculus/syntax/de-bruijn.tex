@@ -1,0 +1,82 @@
+% Part: lambda-calculus
+% Chapter: syntax
+% Section: de-bruijn
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{syn}{deb}
+
+\olsection{Indeks de Bruijn}
+
+Ekuivalensi-$\alpha$ sangatlah wajar, karena suku-suku yang
+$\alpha$-ekuivalen ``bermakna sama.'' Bahkan, kita dapat memberikan sintaksis
+bagi suku lambda yang tidak membedakan suku-suku yang dapat
+dikonversi-$\alpha$ satu sama lain. Sintaksis yang paling dikenal mengganti
+variabel dengan \emph{indeks de Bruijn}.
+
+Ketika menulis $\lambd[x][M]$, kita menyatakan secara eksplisit bahwa $x$
+adalah parameter fungsi, sehingga kita dapat menggunakan $x$ dalam $M$ untuk
+merujuk kepada parameter tersebut. Akan tetapi, dalam indeks de Bruijn,
+parameter tidak mempunyai nama dan acuan kepadanya dalam badan fungsi
+dinyatakan oleh sebuah bilangan yang menunjukkan banyaknya tingkat abstraksi
+antara acuan tersebut dan parameternya. Sebagai contoh, perhatikan
+$\lambd[x][\lambd[y][y x]]$:
+abstraksi luar mengikat variabel~$x$; abstraksi dalam mengikat variabel~$y$;
+subsuku $y x$ berada dalam lingkup abstraksi dalam. Tidak ada abstraksi antara
+$y$ dan abstraksinya, $\lambd[y]$, tetapi terdapat satu abstraksi antara $x$
+dan abstraksinya, $\lambd[x]$. Jadi, kita menulis $0\, 1$ untuk $y x$, dan
+$\lambd[][\lambd[][01]]$ untuk seluruh suku tersebut.
+
+\begin{defn}
+  Suku de Bruijn didefinisikan secara induktif sebagai berikut:
+  \begin{enumerate}
+  \item $n$, dengan $n$ sebarang bilangan asli.
+  \item $PQ$, dengan $P$ dan $Q$ keduanya suku de Bruijn.
+  \item $\lambd[][N]$, dengan $N$ suatu suku de Bruijn.
+  \end{enumerate}
+\end{defn}
+
+Penerjemahan formal dari suku lambda biasa ke suku berindeks de Bruijn adalah
+sebagai berikut:
+\begin{defn}
+  \begin{align*}
+    F_\Gamma(x) &= \Gamma(x) \\
+    F_\Gamma(PQ) &= F_\Gamma(P)F_\Gamma(Q) \\
+    F_\Gamma(\lambd[x][N]) &= \lambd[][F_{x,\Gamma}(N)]
+  \end{align*}
+  dengan $\Gamma$ suatu daftar variabel yang diindeks mulai dari nol, dan
+  $\Gamma(x)$ menyatakan posisi variabel $x$ dalam $\Gamma$. Sebagai contoh,
+  jika $\Gamma$ adalah $x,y,z$, maka $\Gamma(x)$ adalah $0$ dan $\Gamma(z)$
+  adalah $2$.
+
+  $x,\Gamma$ menyatakan daftar yang dihasilkan dengan menambahkan $x$ ke awal
+  $\Gamma$; misalnya, dengan melanjutkan $\Gamma$ dalam contoh terakhir,
+  $w,\Gamma$ adalah $w,x,y,z$.
+\end{defn}
+
+Pemulihan suku lambda standar dari suku de Bruijn dilakukan sebagai berikut:
+
+\begin{defn}
+  \begin{align*}
+    G_\Gamma(n) &= \Gamma[n] \\
+    G_\Gamma(PQ) &= G_\Gamma(P) G_\Gamma(Q) \\
+    G_\Gamma(\lambd[][N]) &= \lambd[x][G_{x,\Gamma}(N)]
+  \end{align*}
+  dengan $\Gamma$ sekali lagi suatu daftar variabel yang diindeks mulai dari
+  nol, dan $\Gamma[n]$ menyatakan variabel pada posisi~$n$. Sebagai contoh,
+  jika $\Gamma$ adalah $x,y,z$, maka $\Gamma[1]$ adalah $y$.
+
+  Variabel $x$ dalam persamaan terakhir dipilih sebagai sebarang variabel
+  yang tidak terdapat dalam $\Gamma$.
+\end{defn}
+
+Di sini kita memberikan beberapa hasil tanpa pembuktian:
+
+\begin{prop}
+  Jika $M \aconvone M'$, dan $\Gamma$ adalah sebarang daftar yang memuat
+  $\FV{M}$, maka $F_\Gamma(M) \eqs F_\Gamma(M')$.
+\end{prop}
+
+\end{document}

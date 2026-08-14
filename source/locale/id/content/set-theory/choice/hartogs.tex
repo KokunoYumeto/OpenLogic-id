@@ -1,0 +1,95 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{choice}{hartogs}
+\olsection{Keterbandingan dan Lema Hartogs}
+
+Itulah sisi positifnya. Berikut sisi negatifnya. Tanpa Pilihan, keadaan
+menjadi \emph{rumit}. Untuk melihat alasannya, berikut suatu hasil bagus dari
+\cite{Hartogs1915}:
+
+\begin{lem}[\emph{dalam $\ZF$}]\ollabel{HartogsLemma}
+Untuk sebarang himpunan $A$, terdapat suatu ordinal $\alpha$ sedemikian
+sehingga $\cardnless{\alpha}{A}$.
+\end{lem}
+
+\begin{proof}
+Jika $B \subseteq A$ dan $R \subseteq B^2$, maka $\tuple{B, R} \subseteq
+V_{\setrank{A}+4}$ berdasarkan
+\olref[ord-arithmetic][using-addition]{rankcomputation}. Jadi, dengan
+menggunakan Pemisahan, pertimbangkan:
+\[
+	C = \Setabs{\tuple{B, R} \in V_{\setrank{A}+5}}{B\subseteq A
+	\text{ dan $\tuple{B, R}$ merupakan pengurutan baik}}
+\]
+Dengan menggunakan Penggantian dan
+\olref[ordinals][ordtype]{thmOrdinalRepresentation}, bentuk himpunan:
+\[
+	\alpha = \Setabs{\ordtype{B, R}}{\tuple{B, R} \in C}.
+\]
+Berdasarkan \olref[ordinals][basic]{corordtransitiveord}, $\alpha$
+merupakan ordinal karena ia merupakan himpunan transitif ordinal-ordinal.
+Memang, jika $\gamma \in \beta \in \alpha$, maka
+$\beta = \ordtype{B, R}$ bagi suatu $B \subseteq A$. Selanjutnya,
+$\gamma = \ordtype{B_b, R_b}$ bagi suatu $b \in B$ berdasarkan
+\olref[ordinals][iso]{wellordinitialsegment}, sehingga
+$\gamma \in \alpha$.
+
+Untuk reductio, andaikan terdapat !!a{injection}
+$f \colon \alpha \to A$. Tetapkan:
+\begin{align*}
+	B &= \ran{f}\\
+	R &= \Setabs{\tuple{f(\gamma), f(\delta)} \in A \times A}
+	{\gamma \in \delta}.
+\end{align*}
+Jelas bahwa $\alpha = \ordtype{B, R}$ dan $\tuple{B, R} \in C$. Jadi,
+$\alpha \in \alpha$, suatu kontradiksi.
+\end{proof}
+
+Hal ini mengakibatkan suatu hasil yang mendalam:
+
+\begin{thm}[\emph{dalam $\ZF$}]
+Klaim-klaim berikut ekuivalen:
+\begin{enumerate}
+	\item\ollabel{equivwo} Aksioma Pengurutan Baik
+	\item\ollabel{equivcompare} $\cardle{A}{B}$ atau
+	$\cardle{B}{A}$, bagi sebarang himpunan $A$ dan $B$
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+\emph{\olref{equivwo} $\Rightarrow$ \olref{equivcompare}.} Tetapkan $A$ dan
+$B$. Dengan menggunakan \olref{equivwo}, terdapat pengurutan baik
+$\tuple{A, R}$ dan $\tuple{B, S}$. Dengan menggunakan
+\olref[ordinals][ordtype]{thmOrdinalRepresentation}, misalkan
+$f \colon \alpha \to \tuple{A, R}$ dan
+$g \colon \beta \to \tuple{B, S}$ isomorfisme. Berdasarkan
+\olref[sth][ordinals][basic]{ordinalsaresubsets}, berlaku
+$\alpha \subseteq \beta$ atau $\beta \subseteq \alpha$. Jika
+$\alpha \subseteq \beta$, maka
+$\comp{f^{-1}}{g} \colon A \to B$ merupakan !!a{injection}, sehingga
+$\cardle{A}{B}$; demikian pula, jika $\beta \subseteq \alpha$, maka
+$\cardle{B}{A}$.
+
+\emph{\olref{equivcompare} $\Rightarrow$ \olref{equivwo}.} Tetapkan $A$;
+berdasarkan \olref{HartogsLemma}, terdapat suatu ordinal $\beta$ sedemikian
+sehingga $\cardnless{\beta}{A}$. Dengan menggunakan \olref{equivcompare},
+kita memperoleh $\cardle{A}{\beta}$. Jadi, terdapat suatu !!{injection}
+$f \colon A \to \beta$, dan kita dapat menggunakan injeksi ini untuk
+mengurutkan baik anggota-anggota $A$ dengan mendefinisikan pengurutan
+$\Setabs{\tuple{a, b} \in A \times A}{f(a) \in f(b)}$.
+\end{proof}
+\noindent
+Sebagai konsekuensi langsung, jika Pengurutan Baik gagal, beberapa himpunan
+secara \emph{harfiah tidak dapat dibandingkan} menurut ukurannya. Jadi, jika
+Pengurutan Baik gagal, aritmetika kardinal transfinit akan menjadi rumit.
+Sebagai contoh, kita harus meninggalkan gagasan bahwa, jika $A$ dan $B$ tak
+hingga, maka $\cardeq{A \disjointsum B}{M}$ dan
+$\cardeq{A \times B}{M}$, dengan $M$ himpunan yang lebih besar di antara
+$A$ dan $B$ (lihat
+\olref[card-arithmetic][simp]{cardplustimesmax}). Masalahnya sederhana: jika
+kita tidak dapat \emph{membandingkan} ukuran $A$ dan $B$, tidak masuk akal
+untuk bertanya mana yang lebih besar.
+
+\end{document}

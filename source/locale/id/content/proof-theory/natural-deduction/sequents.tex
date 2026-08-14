@@ -1,0 +1,168 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: sequents
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{nat}{seq}
+
+\olsection{Deduksi Alami dengan Sekuen: \Log{N2c} dan~\Log{N2i}}
+
+!!^a{proof}~$\delta$ dalam \Log{N1c} atau \Log{N1i} menunjukkan bahwa
+!!{formula} akhirnya~$!A$ mengikuti dari asumsi-asumsi terbukanya. Jika
+$\Gamma$ adalah himpunan !!{formula}~$!B$ sedemikian sehingga $!B^x$
+muncul sebagai asumsi terbuka dalam~$\delta$, kita dapat menuliskannya
+sebagai $\delta \Proves \Gamma \Sequent !A$. Hal ini menyarankan bahwa
+kita juga dapat merumuskan sistem deduksi alami untuk sekuen. Dalam
+sistem semacam itu, setiap sekuen membawa informasi tentang asumsi terbuka
+mana yang menjadi tempat bergantungnya !!{formula} di sebelah kanan;
+yakni, asumsi mana yang terbuka dalam sub-!!{proof} yang berakhir pada
+sekuen tersebut. Inilah deduksi alami dengan sekuen, atau deduksi alami
+``bergaya sekuen,'' dan sistem yang dihasilkan kita sebut
+\Log{N2c} dan~\Log{N2i}.
+
+Agar korespondensi antara \Log{N1} dan \Log{N2} lebih dekat, mari kita
+ambil himpunan~$\Gamma$ di sebelah kiri sebagai himpunan yang terdiri
+atas !!{formula} berlabel~$x:!B$. Karena aturan dalam \Log{N1} hanya
+bekerja pada !!{formula} dalam premis, yakni !!{formula} akhir dari
+sub-!!{proof} langsung, aturan \Log{N2} hanya bekerja pada sukseden
+sekuen. Dengan demikian, kita dapat menyebut formula berlabel di
+sebelah kiri sekuen cukup sebagai konteks.
+
+Sebagai pengganti asumsi, bukti \Log{N2} memiliki sekuen-sekuen
+teratas berupa aksioma berbentuk
+\[x:!A \Sequent !A.\]
+Aturannya bersesuaian tepat dengan aturan \Log{N1} dan diberikan dalam
+\olref{tab:N2}.
+
+\subfile{rules-N2}
+
+Karena kita harus mengizinkan (seperti dalam \Log{N1c} dan \Log{N1i})
+bahwa aturan \Intro{\lif}, \Intro{\lnot}, \Elim{\lor}, dan
+\Elim{\lexists} boleh, tetapi tidak harus, benar-benar melepaskan
+asumsi, kita juga mengizinkan penerapan yang benar atas aturan-aturan
+yang bersesuaian dalam \Log{N2c} dan~\Log{N2i} ketika
+!!{formula} konteks $!A$, $!B$, dan $!A(a)$ yang
+bersesuaian tidak terdapat dalam konteks premis terkait.
+
+\begin{prop}
+Jika $\delta$ adalah !!a{proof} dalam~\Log{N1c} atau \Log{N1i}
+atas~$!A$, maka terdapat !!a{proof}~$\delta'$ atas
+$\Gamma \Sequent !A$ dalam~\Log{N2c} (atau \Log{N2i}), dengan
+$\Gamma$ sebagai himpunan semua~$x:!B$ sedemikian sehingga $!B^x$
+merupakan asumsi terbuka dari~$\delta$.
+\end{prop}
+
+\begin{proof}
+  Melalui induksi pada $n=\pheight{\delta}$. Jika $n=0$, $\delta$
+  adalah satu asumsi terbuka~$!A^x$. Maka $\Gamma=\{x:!A\}$ dan
+  $\Gamma \Sequent !A$ merupakan aksioma \Log{N2c}
+  atau~\Log{N2i}.
+
+  Jika $n>0$, kita membedakan kasus menurut inferensi terakhir
+  dalam~$\delta$. Kita hanya membahas satu kasus; sisanya ditinggalkan
+  sebagai latihan.
+
+  Andaikan inferensi terakhir adalah $\Intro{\lif}$. Maka $\delta$
+  berakhir pada
+  \[
+  \AxiomC{$\Discharge{!B}{x}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C$}
+  \DischargeRule{\Intro{\lif}}{x}
+  \UnaryInfC{$!B \lif !C$}
+  \DisplayProof
+  \]
+  Berdasarkan hipotesis induksi, terdapat !!a{proof}~$\delta_1'$
+  dalam~\Log{N2c} (atau \Log{N2i}) atas
+  $\Gamma' \Sequent !C$, dengan $\Gamma'$ sebagai himpunan asumsi
+  berlabel yang terbuka dalam~$\delta_1$. Jika $!B^x$ merupakan asumsi
+  terbuka dari $\delta_1$, asumsi itu dilepaskan pada inferensi
+  \Intro{\lif}, dan asumsi-asumsi terbuka dari~$\delta$ adalah
+  $\Gamma=\Gamma'\setminus\{x:!B\}$. Dengan kata lain, $\delta_1'$
+  merupakan !!a{proof} atas~$x:!B,\Gamma\Sequent !C$, dan kita dapat
+  mengambil $\delta'$ sebagai
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1'$}
+  \Deduce$x:!B, \Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \]
+  Jika $!B^x$ bukan asumsi terbuka dari~$\delta_1$, maka
+  \Intro{\lif} tidak melepaskan asumsi, dan asumsi-asumsi terbuka
+  dari $\delta$ dan $\delta_1$ sama. Karena formula konteks $x:!B$
+  tidak disyaratkan hadir dalam premis \Intro{\lif} pada \Log{N2c}
+  dan~\Log{N2i}, kita dapat mengambil $\delta'$ sebagai
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1'$}
+  \Deduce$\Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \]
+
+  Kasus ketika $\delta$ berakhir pada aturan lain serupa.
+\end{proof}
+
+\begin{prop}
+Jika $\delta$ adalah !!a{proof} dalam \Log{N2c} atau \Log{N2i}
+atas $\Gamma \Sequent !A$, maka terdapat !!a{proof}~$\delta'$ dalam
+\Log{N1c} (atau \Log{N1i}) dengan !!{formula} akhir~$!A$ dan asumsi
+terbuka $!B^x$ untuk setiap $x:!B\in\Gamma$.
+\end{prop}
+
+\begin{proof}
+  Kita kembali menggunakan induksi pada !!{height}~$n$ dari~$\delta$.
+  Jika $n=0$, $\delta$ adalah aksioma $x:!A \Sequent !A$.
+  !!{proof}~$\delta'$ adalah asumsi~$!A^x$.
+
+  Jika $n>0$, kita membedakan kasus menurut inferensi terakhir
+  dalam~$\delta$. Misalnya, jika inferensi tersebut adalah
+  \Intro{\lif}, maka $\delta$ berakhir pada
+  \[
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$x:!B, \Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \quad\text{ atau }\quad
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \Deduce$\Gamma \fCenter !C$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter !B \lif !C$
+  \DisplayProof
+  \]
+  Berdasarkan hipotesis induksi, terdapat !!a{proof}~$\delta_1'$
+  dalam~\Log{N1c} (atau \Log{N1i}) atas~$!C$. Dalam kasus pertama,
+  $!B^x$ merupakan asumsi terbuka dari~$\delta_1'$; dalam kasus kedua
+  tidak. Kita dapat mengambil !!{proof}~$\delta'$ sebagai
+  \[
+  \bottomAlignProof
+  \AxiomC{$\Discharge{!B}{x}$}
+  \RightLabel{$\delta_1'$}
+  \DeduceC{$!C$}
+  \DischargeRule{\Intro{\lif}}{x}
+  \UnaryInfC{$!B \lif !C$}
+  \DisplayProof
+  \quad\text{ atau }\quad
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_1'$}
+  \DeduceC{$!C$}
+  \RightLabel{\Intro{\lif}}
+  \UnaryInfC{$!B \lif !C$}
+  \DisplayProof
+  \]
+  secara berurutan.
+\end{proof}
+
+\end{document}

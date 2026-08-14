@@ -1,0 +1,60 @@
+% Part: lambda-calculus
+% Chapter: lambda-definability
+% Section: lambda-definable-recursive
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{dfl}{ldr}
+\olsection{Fungsi yang \usetoken{S}{lambda definable} Bersifat Rekursif}
+
+Bukan hanya semua fungsi rekursif parsial bersifat !!{lambda definable};
+konversnya juga benar. Artinya, semua fungsi yang !!{lambda definable}
+bersifat rekursif parsial.
+
+\begin{thm}
+  \ollabel{thm:lambda-computable} Jika suatu fungsi parsial $f$ bersifat
+  !!{lambda definable}, maka fungsi itu rekursif parsial.
+\end{thm}
+
+\begin{proof}
+  Kita hanya memberikan garis besar bukti. Pertama, kita mengaritmetisasi
+  suku-$\lambd$, yakni secara sistematis menetapkan bilangan G\"odel bagi
+  suku-$\lambd$ dengan menggunakan pengodean barisan melalui perpangkatan
+  bilangan prima yang lazim. Kemudian kita mendefinisikan fungsi rekursif
+  parsial $\fn{normalize}(t)$ dengan argumen berupa bilangan G\"odel~$t$.
+  Dengan pengodean ini, relasi bahwa suatu bilangan mengodekan barisan
+  berhingga reduksi satu-langkah yang dimulai dengan suku masukan dan
+  berakhir pada suatu bentuk normal bersifat rekursif primitif. Melalui
+  minimisasi tak berbatas atas kode barisan semacam itu, fungsi tersebut
+  mengembalikan bilangan G\"odel bentuk normal jika bentuk normal itu ada;
+  jika tidak, pencariannya tidak berhenti dan fungsi tersebut tidak
+  terdefinisi.
+
+  Selanjutnya, definisikan dua fungsi rekursif parsial
+  $\fn{toChurch}$ dan $\fn{fromChurch}$ dengan arah yang tegas: fungsi pertama
+  memetakan bilangan asli ke bilangan G\"odel numeral Church yang
+  bersesuaian, sedangkan fungsi kedua memetakan kode semacam itu kembali ke
+  bilangan asli yang direpresentasikannya dan tidak terdefinisi pada kode yang
+  tidak mengodekan numeral Church.
+
+  Dengan menggunakan fungsi-fungsi rekursif tersebut, kita dapat
+  merepresentasikan fungsi~$f$ sebagai fungsi rekursif parsial. Terdapat suatu
+  suku-$\lambd$~$F$ yang !!{lambda define}s~$f$. Untuk menghitung
+  $f(n_1, \dots, n_k)$, mula-mula peroleh bilangan G\"odel numeral Church yang
+  bersesuaian dengan menggunakan $\fn{toChurch}(n_i)$. Kemudian, berdasarkan
+  $\Gn{F}$ dan kode-kode numeral tersebut, gunakan operasi rekursif primitif
+  untuk pengodean aplikasi suku guna membentuk bilangan G\"odel dari
+  $F \num{n_1}\dots\num{n_k}$. Sekarang terapkan $\fn{normalize}$ pada bilangan
+  G\"odel ini. Jika $f(n_1, \dots, n_k)$ terdefinisi,
+  $F \num{n_1}\dots\num{n_k}$ mempunyai bentuk normal, yang harus berupa suatu
+  numeral Church. Jika tidak, suku tersebut tidak mempunyai bentuk normal,
+  sehingga
+  \[\fn{normalize}(\Gn{F\num{n_1}\dots\num{n_k}})\]
+  tidak terdefinisi. Terakhir, terapkan $\fn{fromChurch}$ pada bilangan
+  G\"odel suku yang telah dinormalisasi. Seluruh langkah ini merupakan
+  komposisi fungsi rekursif parsial, sehingga fungsi semula rekursif parsial.
+\end{proof}
+
+\end{document}

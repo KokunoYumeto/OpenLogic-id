@@ -1,0 +1,41 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: duals
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{prf}{dua}
+
+\olsection{\usetoken{P}{formula} Dual}
+
+\begin{defn}\ollabel{def:duals}
+  Setiap !!{formula} \Ax{T}, \Ax{B}, \Ax{4}, dan~\Ax{5} mempunyai suatu
+  \emph{dual}, yang dilambangkan dengan wajik bersubskrip, sebagai berikut:
+  \begin{align}
+    \tag{\Ax{T_\Diamond}} p & \lif \Diamond p\\
+    \tag{\Ax{B_\Diamond}} \Diamond\Box p & \lif p\\
+    \tag{\Ax{4_\Diamond}} \Diamond\Diamond p & \lif \Diamond p\\
+    \tag{\Ax{5_\Diamond}} \Diamond\Box p & \lif \Box p
+    \end{align}
+\end{defn}
+
+Setiap !!{formula} dual di atas diperoleh dari !!{formula} yang bersesuaian
+dengan menyubstitusikan $\lnot p$ bagi~$p$, melakukan kontraposisi,
+mengganti $\lnot\Box\lnot$ dengan~$\Diamond$, dan mengganti
+$\lnot\Diamond\lnot$ dengan~$\Box$. \Ax{D}, yakni
+$\Box!A\lif\Diamond!A$, merupakan dualnya sendiri dalam pengertian tersebut.
+
+\begin{prop}\ollabel{prop:dualsys}
+  Bagi setiap !!{formula}~$!A$ dalam \olref[nml][prf][dua]{def:duals}:
+  $\Log{K}!A=\Log{K}!A_{\Diamond}$.
+\end{prop}
+\begin{proof}
+  Latihan.
+\end{proof}
+\begin{prob}
+  Buktikan \olref[nml][prf][dua]{prop:dualsys}.
+\end{prob}
+
+\end{document}

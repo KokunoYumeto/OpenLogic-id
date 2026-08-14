@@ -1,0 +1,332 @@
+% Bagian: first-order-logic
+% Bab: axiomatic-deduction
+% Subbagian: provability
+
+% Verifikasi sifat-sifat keterbuktian yang diperlukan untuk himpunan
+% konsisten maksimal dalam bab kelengkapan.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\iftag{FOL}
+      {\olfileid[id]{fol}{axd}{prv}}
+      {\olfileid[id]{pl}{axd}{prv}}
+
+\olsection{Sifat-Sifat \usetoken{S}{derivability}}
+
+\begin{prop}[Monotonisitas] Jika $\Gamma \subseteq \Delta$ dan
+$\Gamma \Proves !A$, maka $\Delta \Proves !A$ juga.
+\end{prop}
+
+\begin{proof} Setiap $\Gamma_0 \subseteq \Gamma$ yang berhingga juga
+merupakan subhimpunan berhingga dari~$\Delta$, sehingga !!a{derivation} atas
+$\Gamma_0 \Proves !A$ juga menunjukkan $\Delta \Proves !A$.
+\end{proof}
+
+\begin{prop}\ollabel{prop:provability} $\Gamma \Proves !A$ jika dan hanya
+jika $\Gamma\cup \{\lnot!A \}$ tak konsisten.
+\end{prop}
+
+\begin{prop} \begin{enumerate}
+\item \ollabel{prop:provability-contr} Jika $\Gamma \Proves !A$ dan
+$\Gamma \cup \{ !A\} \Proves \lfalse$, maka $\Gamma$ tak konsisten.
+
+\item \ollabel{prop:provability-lnot} Jika $\Gamma \cup \{!A\}
+\Proves \lfalse$, maka $\Gamma \Proves \lnot !A$.
+
+\item \ollabel{prop:provability-exhaustive} Jika $\Gamma \cup \{!A\}
+\Proves \lfalse$ dan $\Gamma \cup \{\lnot !A\} \Proves
+\lfalse$, maka $\Gamma \Proves \lfalse$.
+
+\tagitem{prvOr}{\ollabel{prop:provability-lor-left} Jika
+$\Gamma \cup \{!A\} \Proves \lfalse$ dan $\Gamma \cup \{!B\}
+\Proves \lfalse$, maka $\Gamma \cup \{!A \lor !B\} \Proves \lfalse$.}{}
+
+\tagitem{prvOr}{\ollabel{prop:provability-lor-right} Jika
+$\Gamma \Proves !A$ atau $\Gamma \Proves !B$, maka
+$\Gamma \Proves !A \lor !B$.}{}
+
+\tagitem{prvAnd}{\ollabel{prop:provability-land-left} Jika
+$\Gamma \Proves !A \land !B$, maka $\Gamma \Proves !A$ dan
+$\Gamma \Proves !B$.}{}
+
+\tagitem{prvAnd}{\ollabel{prop:provability-land-right} Jika
+$\Gamma \Proves !A$ dan $\Gamma \Proves !B$, maka
+$\Gamma \Proves !A \land !B$.}{}
+
+\tagitem{prvIf}{\ollabel{prop:provability-mp} Jika $\Gamma \Proves !A$
+dan $\Gamma \Proves !A \lif !B$, maka $\Gamma \Proves !B$.}{}
+
+\tagitem{prvIf}{\ollabel{prop:provability-lif} Jika
+$\Gamma \Proves \lnot !A$ atau $\Gamma \Proves !B$, maka
+$\Gamma \Proves !A \lif !B$.}{}
+\end{enumerate} \end{prop}
+
+\begin{proof}
+\begin{enumerate}
+\item Andaikan $\Gamma_0 \cup \{!A\} \Proves \lfalse$.
+
+\begin{derivation}
+1. & $\Gamma_0 \cup \{!A\} \Proves \lfalse$ & hip. \\
+2. & $\Gamma_1 \Proves !A$ & hip.\\
+3. & $\Gamma_0 \cup \Gamma_1 \Proves \lfalse$ & Cut \\
+\end{derivation}
+
+Karena $\Gamma_0 \subseteq \Gamma$ dan $\Gamma_1 \subseteq \Gamma$,
+$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$; jadi,
+$\Gamma \Proves \lfalse$.
+
+\item Andaikan $\Gamma_0 \cup\{!A\} \Proves \lfalse$.
+
+\begin{derivation}
+1. & $\Gamma_0 \cup\{!A\} \Proves \lfalse$ & hip. \\
+2. & $\Gamma_0 \Proves !A \lif \lfalse$ & Teorema Deduksi\\
+3. & $\Gamma_0 \Proves (!A \lif \lfalse) \lif \lnot !A$ & Ax0\\
+4. & $\Gamma_0 \Proves \lnot !A$ & MP 2, 3 \\
+\end{derivation}
+
+\item Andaikan $\Gamma_0 \cup \{ !A \} \Proves \lfalse$ dan
+$\Gamma_1 \cup \{\lnot !A \} \Proves \lfalse$.
+
+\begin{derivation}
+1. & $\Gamma_0 \cup\{!A\} \Proves \lfalse$ & hip. \\
+2. & $\Gamma_0 \Proves !A \lif \lfalse$ & Teorema Deduksi \\
+3. & $\Gamma_1 \cup \{\lnot !A \} \Proves \lfalse$ & hip.\\
+4. & $\Gamma_0 \Proves (!A \lif \lfalse) \lif \lnot !A$ & Ax0\\
+5. & $\Gamma_0 \Proves \lnot !A$ & MP 2, 4\\
+6. & $\Gamma_0 \cup \Gamma_1 \Proves \lfalse$ & Cut 3, 5 \\
+\end{derivation}
+
+Karena $\Gamma_0 \subseteq \Gamma$ dan $\Gamma_1 \subseteq \Gamma$,
+$\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$. Jadi,
+$\Gamma \Proves \lfalse$.
+
+% prop:provability-lor-left
+\tagitem{defOr}{}{
+\iftag{probOr}{Latihan.}{Latihan.}}
+
+% prop:provability-lor-right
+\tagitem{defOr}{}{ \iftag{probOr}{Latihan.}{
+Andaikan $\Gamma_0 \Proves !A$.
+
+\begin{derivation}
+1. & $\Gamma_0 \Proves !A$ & hip. \\
+2. & $\Gamma_0 \Proves !A \lif (!A \lor !B)$ & Ax0\\
+3. & $\Gamma_0 \Proves !A \lor !B$ & MP 1, 2 \\
+\end{derivation}
+
+Jadi, $\Gamma \Proves !A \lor !B$. Pembuktian untuk kasus ketika
+$\Gamma \Proves !B$ serupa.}}
+
+% prop:provability-land-left
+\tagitem{defAnd}{}{ \iftag{probAnd}{Latihan}{
+Andaikan $\Gamma_0 \Proves !A \land !B$.
+
+\begin{derivation}
+1. & $\Gamma_0 \Proves !A \land !B$ & hip. \\
+2. & $\Gamma_0 \Proves (!A\land !B) \lif !A $ & Ax0\\
+3. & $\Gamma_0 \Proves !A$ & MP 1, 2 \\
+\end{derivation}
+
+Jadi, $\Gamma \Proves !A$. !!a{derivation} yang serupa menunjukkan bahwa
+$\Gamma \Proves !B$.}}
+
+% prop:provability-land-right
+\tagitem{defAnd}{}{\iftag{probAnd}{Latihan.}{Latihan.}}
+
+% prop:provability-mp
+\tagitem{defIf}{}{ \iftag{probIf}{Latihan.}{
+Andaikan $\Gamma_0 \Proves !A$ dan $\Gamma_1 \Proves !A \lif !B$.
+
+\begin{derivation}
+1. & $\Gamma_0 \Proves !A$ & hip. \\
+2. & $\Gamma_1 \Proves !A \lif !B $ & hip.\\
+3. & $\Gamma_0 \cup \Gamma_1 \Proves !B$ & MP 1, 2\\
+\end{derivation}
+
+Karena $\Gamma_0 \cup \Gamma_1 \subseteq \Gamma$, ini berarti bahwa
+$\Gamma \Proves !B$.}}
+
+% prop:provability-lif
+\tagitem{defIf}{}{\iftag{probIf}{Latihan.}{Pertama-tama andaikan
+$\Gamma \Proves \lnot !A$.
+
+\begin{derivation}
+1. & $\Gamma_0 \Proves \lnot !A$ & hip. \\
+2. & $\Gamma_0 \Proves \lnot !A \lif (!A \lif !B) $ & Ax0\\
+3. & $\Gamma_0 \Proves !A \lif !B$ & MP 1, 2\\
+\end{derivation}
+
+Pembuktian untuk $\Gamma \Proves !B$ serupa:
+
+\begin{derivation}
+1. & $\Gamma_0 \Proves !B$ & hip. \\
+2. & $\Gamma_0 \Proves !B \lif (!A \lif !B) $ & Ax0\\
+3. & $\Gamma_0 \Proves !A \lif !B$ & MP 1, 2\\
+\end{derivation}}}
+
+\end{enumerate}
+\end{proof}
+
+\begin{probtag}{probOr,probAnd,probIf} Lengkapi pembuktian
+\olref[fol][axd][prv]{prop:provability}.
+\end{probtag}
+
+\begin{thm}[Generalisasi] \ollabel{thm:Generalization} Jika
+$\Gamma \Proves !A$ dan $x$ tidak bebas dalam !!{formula} mana pun dalam
+$\Gamma$, maka $\Gamma \Proves \lforall[x][!A]$.
+\end{thm}
+
+\begin{proof} Dengan induksi pada $\mathsf{Thm}_\Gamma$: jika $!A$ merupakan
+aksioma, maka $\lforall[x][!A]$ juga merupakan aksioma. Jika
+$!A\in \Gamma$, maka $x$ tidak bebas dalam $!A$, sehingga
+$!A \lif \lforall[x][!A]$ merupakan aksioma (\textbf{Ax3}), dan melalui MP
+kita memperoleh $\Gamma \Proves \lforall[x][!A]$. Sekarang andaikan $!A$
+diperoleh melalui MP karena $\Gamma \Proves !B$ dan
+$\Gamma \Proves !B \lif !A$. Menurut hipotesis induksi,
+$\Gamma \Proves \lforall[x][!B]$ dan
+$\Gamma \Proves \lforall[x][( !B \lif !A)]$. Namun, menurut
+\textbf{Ax2} kita juga mempunyai
+\[
+\Gamma \Proves
+\lforall[x][( !B \lif !A)] \lif (\lforall[x][ !B] \lif \lforall[x][!A]),
+\]
+dan dua penerapan MP memberikan $\Gamma \Proves \lforall[x][!A]$, seperti
+yang diinginkan.
+\end{proof}
+
+\begin{thm}\ollabel{thm:WeakGen} (\emph{Generalisasi Lemah atas Konstanta})
+Jika $\Gamma \Proves !A$ dan $c$ merupakan !!a{constant} yang tidak muncul
+dalam $\Gamma$, maka terdapat variabel~$x$ yang tidak muncul dalam $!A$
+sedemikian sehingga $\Gamma \Proves \lforall[x][\Subst{!A}{x}{c}]$, dan
+pembuktiannya tidak melibatkan~$c$.
+\end{thm}
+
+\begin{proof} Misalkan $!A_1,\ldots,!A_n$ merupakan pembuktian $!A$ dari
+$\Gamma$, sehingga $!A=!A_n$. Pilih variabel~$x$ yang tidak muncul dalam
+$!A_1,\ldots,!A_n$, dan tinjau barisan baru
+$\Subst{!A_1}{x}{c},\ldots,\Subst{!A_n}{x}{c}$. Barisan semacam itu merupakan
+pembuktian $\Subst{!A}{x}{c}$ dari $\Gamma$. Bahkan, bagi setiap
+$i=1,\ldots,n$:
+\begin{itemize}
+\item jika $!A_i$ merupakan aksioma, maka $\Subst{!A_i}{x}{c}$ juga
+merupakan aksioma;
+\item jika $!A_i \in \Gamma$, maka, karena $c$ tidak muncul dalam
+$\Gamma$, kita mempunyai $\Subst{!A_i}{x}{c} = !A_i \in \Gamma$;
+\item jika $!A_i$ diperoleh dari $!A_j$ dan $!A_j \lif !A_i$, maka
+$\Subst{!A_i}{x}{c}$ diperoleh melalui MP dari $\Subst{!A_j}{x}{c}$ dan
+$\Subst{(!A_j \lif !A_i)}{x}{c}
+= \Subst{!A_j}{x}{c} \lif \Subst{!A_i}{x}{c}$.
+\end{itemize}
+Jelas bahwa !!{constant}~$c$ tidak lagi muncul dalam barisan baru tersebut.
+Sekarang misalkan $\Gamma'$ terdiri atas !!{formula} dalam $\Gamma$ yang
+muncul dalam !!{derivation} atas $\Subst{!A}{x}{c}$; maka $x$ tidak bebas
+dalam !!{formula} mana pun dalam $\Gamma'$ dan
+$\Gamma' \Proves \Subst{!A}{x}{c}$. Menurut generalisasi
+(\olref{thm:Generalization}),
+$\Gamma' \Proves \lforall[x][\Subst{!A}{x}{c}]$; jadi, menurut
+monotonisitas, $\Gamma \Proves \lforall[x][\Subst{!A}{x}{c}]$, seperti
+yang diinginkan.
+\end{proof}
+
+\begin{explain}
+Tujuan kita ialah mengganti syarat dalam \olref{thm:WeakGen} bahwa $x$ sama
+sekali tidak muncul dalam $!A$ dengan syarat yang lebih lemah bahwa $x$ tidak
+bebas dalam $!A$ dan !!{free for} $c$ dalam $!A$. Jelas bahwa hal ini dapat
+dicapai dengan mengganti !!{variable} terikat---jadi, itulah yang mula-mula
+akan kita buktikan.
+\end{explain}
+
+\begin{lem}
+\ollabel{lem:free-for}
+Jika $x$ bebas untuk $c$ dalam $!A$ dan $y$ tidak bebas dalam $!A$, maka
+$x$ !!{free for} $y$ dalam $\Subst{!A}{y}{c}$.
+\end{lem}
+
+\begin{proof} Jika $x$ tidak !!{free for} $y$ dalam
+$\Subst{!A}{y}{c}$, maka suatu kemunculan bebas $y$ dalam
+$\Subst{!A}{y}{c}$ berada dalam cakupan kuantor~$\lforall[x]$. Namun,
+menurut hipotesis, $y$ tidak bebas dalam $!A$, sehingga semua kemunculan
+semacam itu berasal dari substitusi~$\Subst{}{y}{c}$. Jadi, suatu kemunculan
+$c$ berada dalam cakupan $\lforall[x]$, dan $x$ tidak !!{free for} $c$
+dalam $!A$.
+\end{proof}
+
+\begin{lem}[Penggantian Variabel Terikat]
+\ollabel{lem:ChangeBdVar}
+Jika $x$ dan $y$ tidak bebas dalam $!A$ dan keduanya !!{free for} $c$
+dalam $!A$, maka $\Proves \lforall[x][\Subst{!A}{x}{c}] \equiv
+\lforall[y][\Subst{!A}{y}{c}]$ (dan pembuktiannya tidak melibatkan $c$).
+\end{lem}
+
+\begin{proof}
+Dari hipotesis, $y$ !!{free for} $c$ dalam $!A$ dan $x$ tidak bebas dalam
+$!A$; jadi, menurut \olref{lem:free-for} sebelumnya, $y$ !!{free for} $x$
+dalam $\Subst{!A}{x}{c}$. Akibatnya,
+$\lforall[x][\Subst{!A}{x}{c} \lif \Subst{!A}{x}{c} \Subst{}{y}{x}]$
+merupakan aksioma (\textbf{Ax1}). Karena $x$ tidak bebas dalam $!A$, kita
+mempunyai
+$\Subst{!A}{x}{c} \Subst{}{y}{x} = \Subst{!A}{y}{c}$, sehingga
+\[
+\Proves \lforall[x][\Subst{!A}{x}{c}] \lif \Subst{!A}{y}{c},
+\]
+dan menurut Teorema Deduksi,
+$\lforall[x][\Subst{!A}{x}{c}] \Proves \Subst{!A}{y}{c}$. Karena $y$
+tidak bebas dalam $!A$, variabel tersebut juga tidak bebas dalam
+$\lforall[x][\Subst{!A}{x}{c}]$; jadi, menurut Generalisasi,
+$\lforall[x][\Subst{!A}{x}{c}] \Proves
+\lforall[y][\Subst{!A}{y}{c}]$, dan Teorema Deduksi kembali memberikan
+$\Proves \lforall[x][\Subst{!A}{x}{c}] \lif
+\lforall[y][\Subst{!A}{y}{c}]$. Pembuktian
+$\Proves \lforall[y][\Subst{!A}{y}{c}] \lif
+\lforall[x][\Subst{!A}{x}{c}]$ sepenuhnya simetris, sehingga kesimpulan
+mengikuti menurut Taut.
+\end{proof}
+
+\begin{thm}[Generalisasi Kuat atas Konstanta]
+\ollabel{thm:StrongGen}
+Jika $\Gamma \Proves !A$, !!{constant}~$c$ tidak muncul dalam $\Gamma$,
+dan $x$ tidak bebas dalam $!A$ tetapi !!{free for} $c$ dalam $!A$, maka
+$\Gamma \Proves \lforall[x][\Subst{!A}{x}{c}]$.
+\end{thm}
+
+\begin{proof}
+Karena $\Gamma \Proves !A$ dan $c$ tidak muncul dalam $\Gamma$, menurut
+Generalisasi Lemah terdapat !!a{variable}~$y$ yang tidak muncul dalam $!A$
+sedemikian sehingga $\Gamma \Proves \lforall[y][\Subst{!A}{y}{c}]$.
+Karena $y$ sama sekali tidak muncul dalam $!A$, variabel tersebut tidak bebas dalam $!A$
+dan juga !!{free for} $c$ dalam $!A$. Jika, selain itu (menurut hipotesis),
+$x$ tidak bebas dalam $!A$ dan !!{free for} $c$ dalam $!A$, maka syarat
+untuk penggantian !!{variable} terikat terpenuhi, sehingga
+$\Proves \lforall[x][\Subst{!A}{x}{c}] \equiv
+\lforall[y][\Subst{!A}{y}{c}]$; akibatnya,
+$\Gamma \Proves \lforall[x][\Subst{!A}{x}{c}]$.
+\end{proof}
+
+\begin{thm}
+\ollabel{thm:provability-quantifiers}
+\begin{tagenumerate}{prvEx,prvAll}
+\tagitem{prvEx}{Jika $\Gamma \Proves !A(t)$, maka $\Gamma \Proves
+  \lexists[x][!A(x)]$.}{}
+\tagitem{prvAll}{Jika $\Gamma \Proves \lforall[x][!A(x)]$, maka $\Gamma
+  \Proves !A(t)$.}{}
+\end{tagenumerate}
+\end{thm}
+
+\begin{proof}
+\begin{tagenumerate}{prvEx,prvAll}
+%% Memerlukan aksioma bagi kuantor eksistensial
+\tagitem{prvEx}{Latihan.}{}
+\tagitem{prvAll}{Andaikan $\Gamma_0 \Proves \lforall[x][!A(x)]$.
+
+\begin{derivation}
+1. & $\Gamma_0 \Proves \lforall[x][!A(x)]$ & hip. \\
+2. & $\Gamma_0 \Proves \lforall[x][!A(x)] \lif \Subst{!A}{t}{x}$ & Ax1 \\
+3. & $\Gamma_0 \Proves \Subst{!A}{t}{x}$ & MP 1, 2 \\
+\end{derivation}}{}
+
+\end{tagenumerate}
+\end{proof}
+
+\end{document}

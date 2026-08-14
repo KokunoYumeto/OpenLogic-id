@@ -1,0 +1,84 @@
+% Part: lambda-calculus
+% Chapter: church-rosser
+% Section: definitions-and-properties
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{cr}{dap}
+
+\olsection{Definisi dan Sifat}
+
+Dalam bab ini kita memperkenalkan konsep sifat Church--Rosser dan beberapa
+sifat umumnya.
+
+\begin{defn}[Sifat Church--Rosser, CR] Suatu relasi $\xredone$ pada suku
+  dikatakan memenuhi \emph{sifat Church--Rosser} jika dan hanya jika, setiap
+  kali $M \xredone P$ dan $M \xredone Q$, terdapat suatu~$N$ sedemikian
+  sehingga $P \xredone N$ dan $Q \xredone N$.
+\end{defn}
+
+Kalkulus lambda dapat dipandang sebagai model komputasi yang memperlakukan
+suku-suku dalam bentuk normal sebagai ``nilai'' dan relasi ketereduksian pada
+suku sebagai ``aturan perhitungan.'' Sifat Church--Rosser menyatakan bahwa
+apabila terdapat lebih dari satu cara untuk melanjutkan suatu perhitungan,
+ekspresi itu tetap hanya mempunyai satu nilai akhir.
+
+Sebagai contoh dari aljabar elementer, terdapat lebih dari satu cara untuk
+menghitung $4 \times (1+2)+3$. Ekspresi ini dapat direduksi menjadi
+$4\times3+3$ (jika kita mula-mula mereduksi $1+2$ menjadi~$3$), atau menjadi
+$4\times1+4\times2+3$ (jika kita mula-mula menggunakan distributivitas pada
+$4\times(1+2)$). Namun, keduanya dapat direduksi lebih lanjut menjadi~$12+3$.
+
+Jika $\xredone$ diambil sebagai reduksi-$\beta$, mudah terlihat bahwa salah
+satu konsekuensi sifat Church--Rosser ialah bahwa, jika suatu suku mempunyai
+bentuk normal, bentuk itu tunggal. Andaikan $M$ dapat direduksi menjadi $P$
+dan $Q$, yang keduanya berbentuk normal. Berdasarkan sifat Church--Rosser,
+terdapat suatu $N$ yang menjadi hasil reduksi baik dari $P$ maupun dari $Q$.
+Karena menurut asumsi $P$ dan $Q$ berbentuk normal, reduksi dari $P$ dan $Q$
+ke $N$ hanya mungkin merupakan reduksi trivial; yaitu, $P$, $Q$, dan $N$
+identik. Hal ini membenarkan penggunaan istilah \emph{bentuk normal} suatu
+suku.
+
+Dalam pandangan kalkulus lambda sebagai model komputasi, bentuk normal suatu
+suku dapat dianggap sebagai ``hasil akhir'' komputasi yang dimulai dari suku
+itu. Korolari di atas berarti bahwa suatu komputasi mempunyai paling banyak
+satu hasil akhir, sama seperti perhitungan $4\times(1+2)+3$ hanya mempunyai
+satu hasil, yaitu~$15$.
+
+\begin{thm} \ollabel{thm:str}
+  Jika suatu relasi $\xredone$ memenuhi sifat Church--Rosser dan $\xred$
+  adalah relasi transitif terkecil yang memuat $\xredone$, maka $\xred$ juga
+  memenuhi sifat Church--Rosser.
+\end{thm}
+
+\begin{proof}
+  Andaikan
+  \begin{align*}
+    M & \xredone P_1 \xredone \dots \xredone P_m \text{ dan}\\
+    M & \xredone Q_1 \xredone \dots \xredone Q_n.
+  \end{align*}
+  Kita membuktikan teorema dengan membangun kisi $N$ yang terdiri atas suku,
+  dengan tinggi $m+1$ dan lebar $n+1$. Kita menggunakan $N_{i,j}$ untuk
+  menyatakan suku pada baris ke-$i$ dan kolom ke-$j$.
+
+  Kita membangun $N$ sedemikian sehingga $N_{i,j}\xredone N_{i+1,j}$ dan
+  $N_{i,j}\xredone N_{i,j+1}$. Kisi itu didefinisikan sebagai berikut:
+  \begin{align*}
+    N_{0,0} &= M \\
+    N_{i,0} &= P_i && \text{jika } 1 \le i \le m \\
+    N_{0,j} &= Q_j && \text{jika } 1 \le j \le n
+  \intertext{dan dalam kasus lainnya:}
+    N_{i,j} &= R,
+  \end{align*}
+  dengan $R$ suatu suku sedemikian sehingga $N_{i-1,j}\xredone R$ dan
+  $N_{i,j-1}\xredone R$. Berdasarkan sifat Church--Rosser bagi $\xredone$,
+  suku semacam itu selalu ada.
+
+  Sekarang kita mempunyai $N_{m,0}\xredone\dots\xredone N_{m,n}$ dan
+  $N_{0,n}\xredone\dots\xredone N_{m,n}$. Perhatikan bahwa $N_{m,0}=P$
+  dan $N_{0,n}=Q$. Teorema mengikuti dari definisi~$\xred$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,195 @@
+% Bagian: proof-theory
+% Bab: sequent-calculus
+% Subbagian: rules-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{seq}{rp}
+
+\olsection{Aturan dan \usetoken{P}{proof}}
+
+Kita mulai dengan memberikan beberapa definisi dan menetapkan sejumlah
+terminologi.
+
+Sebagai contoh, tinjaulah dua aturan dalam \Log{G3c} yang memungkinkan kita
+!!{proving} sekuen yang memuat $!A \land !B$ dari sekuen yang memuat $!A$
+dan~$!B$:
+\[
+\Axiom$ !A, !B, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$ !A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\qquad
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$ \Gamma \fCenter \Delta, !B$
+\RightLabel{\RightR{\land}}
+\BinaryInf$ \Gamma \fCenter \Delta, !A \land !B $
+\DisplayProof
+\]
+Sekuen-sekuen di atas garis disebut \emph{premis}, sedangkan sekuen di bawah
+garis disebut \emph{kesimpulan}. !!{formula}s dalam $\Gamma$ dan $\Delta$
+pada setiap aturan disebut \emph{konteks} atau \emph{!!{formula}s samping}.
+!!{formula} dalam kesimpulan yang bukan bagian dari konteks disebut
+!!{formula} \emph{utama}, sedangkan !!{formula}s dalam premis yang bukan
+bagian dari konteks disebut !!{formula}s \emph{aktif} (atau
+\emph{tambahan}).
+
+Aturan kuantor sedikit lebih rumit. Sebagai contoh, aturan untuk
+$\lforall$ dalam \Log{G1c} ialah:
+\[\Axiom$ !A(t), \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$ \lforall[x][!A(x)],\Gamma \fCenter \Delta$
+\DisplayProof
+\qquad
+\Axiom$ \Gamma \fCenter \Delta, !A(a) $
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$ \Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+\DisplayProof
+\]
+Dalam aturan \LeftR{\lforall}, !!{formula} aktifnya ialah~$!A(t)$, dengan
+$t$~suatu suku tertutup, yakni suku tanpa variabel. Inferensi semacam itu
+benar---yakni, cocok dengan aturan skematis \LeftR{\lforall}---jika terdapat
+suatu !!{formula}~$!A$, suatu variabel~$x$, dan suatu suku tertutup~$t$
+sedemikian sehingga !!{formula} utama dalam kesimpulan ialah
+$\lforall[x][!A]$ dan !!{formula} aktif dalam premis ialah~$\Subst{!A}{t}{x}$.
+Aturan \RightR{\lforall} bekerja dengan cara yang sama, kecuali bahwa, alih-alih
+sembarang suku~$t$, !!{formula} aktif dalam premis harus berupa
+$\Subst{!A}{a}{x}$, dengan $a$ suatu !!a{constant}. Konstanta ini disebut
+\emph{variabel eigen} dari inferensi \RightR{\lforall}. Inferensi tersebut
+hanya benar jika sekuen bawah tidak memuat~$a$, yakni jika $a$ tidak muncul
+dalam $\Gamma$, $\Delta$, maupun~$!A$. Syarat ini disebut \emph{syarat
+variabel eigen}.
+
+Sistem sekuen seperti \Log{G1c} dan \Log{G3c} terdiri atas sekumpulan aturan
+yang ditentukan secara skematis seperti itu, beserta sejumlah sekuen yang
+juga ditentukan secara skematis dan diperlakukan sebagai aksioma.
+!!^{proof}s dalam sistem semacam itu merupakan pohon berhingga dari sekuen
+yang dibangkitkan secara induktif dari aksioma dengan menggunakan aturan
+inferensi. Setiap daun merupakan aksioma, dan setiap sekuen lain mengikuti
+dari sekuen-sekuen tepat di atasnya melalui salah satu aturan inferensi
+sistem tersebut.
+
+\begin{defn}\ollabel{defn:proof}
+\emph{!!^{proof}s} dalam suatu sistem sekuen merupakan pohon berhingga dari
+sekuen yang didefinisikan secara induktif sebagai berikut:
+\begin{enumerate}
+  \item\ollabel{defn:prf:axiom} Setiap aksioma merupakan !!a{proof}.
+  \item\ollabel{defn:prf:one-prem} Jika $\pi_1$ merupakan !!a{proof} yang
+  berakhir pada sekuen~$S_1$, dan $S$ ialah sekuen yang mengikuti dari~$S_1$
+  melalui aturan satu-premis~$R$, maka
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \DeduceC{$S_1$}
+  \RightLabel{$R$}
+  \UnaryInfC{$S$}
+  \DisplayProof
+  \]
+  merupakan !!a{proof}.
+  \item\ollabel{defn:prf:two-prem} Jika $\pi_1$ dan $\pi_2$ merupakan
+  !!{proof}s yang masing-masing berakhir pada sekuen~$S_1$ dan~$S_2$, dan $S$
+  ialah sekuen yang mengikuti dari~$S_1$ dan~$S_2$ melalui aturan
+  dua-premis~$R$, maka
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \DeduceC{$S_1$}
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \DeduceC{$S_2$}
+  \RightLabel{$R$}
+  \BinaryInfC{$S$}
+  \DisplayProof
+  \]
+  merupakan !!a{proof}.
+\end{enumerate}
+\end{defn}
+
+\Olref{defn:proof} mendefinisikan !!{proof}s sebagai pohon sekuen. Kita
+membayangkan pohon-pohon ini tumbuh ``ke atas.'' Simpul-simpul (daun) paling
+atas pada pohon ini merupakan aksioma dan disebut \emph{sekuen awal}. Sekuen
+paling bawah disebut \emph{sekuen akhir}. Jika $\pi$ merupakan !!a{proof}
+dengan sekuen akhir~$S$, kita juga menulis $\pi \Proves S$. Jika terdapat
+!!a{proof} bagi suatu sekuen~$S$, kita menulis $\Proves S$, dengan sistem
+tempat bukti itu ada dapat dicantumkan di sebelah kiri simbol~$\Proves$;
+misalnya, $\Log{G1c} \Proves !A, !B \Sequent !A \land !B$. Setiap sekuen
+dalam !!a{proof}, kecuali sekuen awal, merupakan \emph{kesimpulan} suatu
+inferensi melalui aturan~$R$. Satu atau dua sekuen yang terletak tepat di
+atas suatu sekuen dalam !!a{proof} (yakni, induk dari simpul tersebut)
+disebut \emph{premis} inferensi itu.
+
+!!{proof}s yang digunakan dalam konstruksi induktif suatu !!a{proof} disebut
+\emph{sub-!!{proof}s}-nya. Sub-!!{proof}s yang berakhir pada premis suatu
+inferensi disebut \emph{sub-!!{proof}s langsung} dari inferensi tersebut.
+
+Sering kali kita perlu mengukur kompleksitas !!{proof}s dengan bilangan asli.
+Kita dapat sekadar menghitung banyaknya sekuen dalam !!a{proof}, tetapi ukuran
+yang sering lebih berguna ialah !!{height} suatu !!a{proof}: banyak sekuen
+maksimum antara sekuen akhir dan suatu sekuen awal. Kita juga dapat memberikan
+definisi induktif.
+
+\begin{defn}
+\emph{!!{height}}~$\pheight{\pi}$ dari !!a{proof}~$\pi$ didefinisikan secara
+induktif sebagai berikut.
+\begin{enumerate}
+  \item Jika $\pi$ hanya terdiri atas satu aksioma, $\pheight{\pi} = 0$.
+  \item Jika $\pi$ berakhir pada inferensi dengan satu premis dan sub-!!{proof}
+  langsung~$\pi_1$, maka $\pheight{\pi} = \pheight{\pi_1} + 1$.
+  \item Jika $\pi$ berakhir pada inferensi dengan dua premis dan
+  sub-!!{proof}s langsung~$\pi_1$ dan~$\pi_2$, maka $\pheight{\pi} =
+  \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1$.
+\end{enumerate}
+Jika suatu sekuen~$S$ memiliki !!a{proof} dengan tinggi $\le n$, kita menulis
+$\Proves[n] S$.
+\end{defn}
+
+\begin{ex}
+Dalam \Log{G3c}, setiap sekuen berbentuk $!C, \Gamma \Sequent \Delta, !C$
+merupakan aksioma, dengan $!C$ harus atomik. Misalkan $!D$ dan $!E$ merupakan
+kalimat atomik. Maka $!D, !E \Sequent !D$ dan $!D, !E \Sequent !E$ merupakan
+contoh aksioma $!C, \Gamma \Sequent \Delta, !C$. Sebagai contoh, jika kita
+mengambil $!C \ident !E$, $\Gamma = \{!D\}$, dan $\Delta = \emptyset$ dalam
+$!C, \Gamma \Sequent \Delta, !C$, kita memperoleh tepat sekuen $!D, !E
+\Sequent !E$. (Ingat bahwa kita berurusan dengan multi\emph{himpunan}, sehingga
+$!D, !E \Sequent !E$ dan $!E, !D \Sequent !E$ merupakan sekuen yang sama.)
+
+Karena $!D, !E \Sequent !D$ merupakan contoh suatu aksioma~\Log{G3c}, sekuen
+itu sendiri diperlakukan sebagai !!a{proof} dalam~\Log{G3c}; demikian pula
+$!D, !E \Sequent !E$, menurut
+\olref{defn:proof}\olref{defn:prf:axiom}. Sebutlah keduanya $\pi_1$
+dan~$\pi_2$. Menurut \olref{defn:prf:two-prem}, kedua !!{proof}s ini dapat
+kita gunakan untuk membangkitkan bukti baru ($\pi_3$) dengan aturan
+dua-premis~$\RightR{\land}$:
+\[
+\Axiom$!D, !E \fCenter !D$
+\Axiom$!D, !E \fCenter !E$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!D, !E  \fCenter !D \land !E $
+\DisplayProof
+\]
+Dari $\pi_3$, selanjutnya kita memperoleh !!{proof}~$\pi_4$
+\[
+\Axiom$!D, !E \fCenter !D$
+\Axiom$!D, !E \fCenter !E$
+\RightLabel{\RightR{\land}}
+\insertBetweenHyps{\hspace{5ex}}
+\BinaryInf$!D, !E  \fCenter !D \land !E $
+\LeftSubproofLabel{$\pi_3$}
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!D \land !E  \fCenter !D \land !E$
+\RightSubproofLabel{$\pi_4$}
+\DisplayProof
+\]
+dengan aturan satu-premis~$\LeftR{\land}$ (menggunakan
+\olref{defn:proof}\olref{defn:prf:one-prem}). Sub-!!{proof} langsung dari
+inferensi terakhir dalam~$\pi_4$ ialah~$\pi_3$. Sub-!!{proof}s langsung dari
+inferensi $\RightR{\land}$ ialah $\pi_1$ dan~$\pi_2$. Sub-!!{proof}s dari
+$\pi_4$ ialah $\pi_1$, $\pi_2$, $\pi_3$, dan $\pi_4$ sendiri. Kita mempunyai
+$\pheight{\pi_1} = \pheight{\pi_2} = 0$, $\pheight{\pi_3} = 1$, dan
+$\pheight{\pi_4} = 2$. Kita telah menunjukkan bahwa $\Log{G3c} \Proves[2]
+!D \land !E  \fCenter !D \land !E$ bagi sembarang $!D$ dan~$!E$ atomik.
+\end{ex}
+
+\end{document}

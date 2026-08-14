@@ -1,0 +1,116 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: type-preservation
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{pty}{tpr}
+
+\olsection{Preservasi Tipe}
+
+Konversi reduksi dan permutasi yang telah dibahas juga dapat didefinisikan
+langsung bagi sistem \Log{tN2i} dan \Log{tN3i}. Sistem \Log{tN3i}
+mendefinisikan tipe suatu term-$\lambd$~$N$ relatif terhadap konteks~$\Gamma$
+sebagai !!{formula}~$!A$ sedemikian sehingga $\Gamma \Sequent N:!A$
+mempunyai !!a{proof} dalam \Log{tN3i}. Fakta bahwa aturan reduksi-$\beta$
+bagi term-$\lambd$ mencerminkan secara tepat konversi reduksi dan permutasi
+pada !!{proof}s mempunyai akibat penting: tipe suatu term-$\lambd$ relatif
+terhadap konteks~$\Gamma$ tetap sama sesudah konversi-$\beta$. Sifat ini
+disebut \emph{preservasi tipe}.
+
+\begin{prop}
+Jika $N$ bertipe~$!A$ relatif terhadap $\Gamma$ dan $N \redone N'$, maka
+$N'$ bertipe~$!A$ relatif terhadap~$\Gamma$.
+\end{prop}
+
+\begin{proof}
+  Melalui induksi pada~$N$ dan tinggi !!{proof}s~$\delta$ bagi
+  $\Gamma \Sequent N:!A$, kita dapat dengan mudah menetapkan hal berikut.
+  Jika $M$ merupakan subterm dari~$N$, maka $\delta$ memuat
+  sub-!!{proof}~$\delta_1$ yang berakhir dengan
+  $\Gamma' \Sequent M:!B$. Jika $M$ merupakan redex, suatu konversi dapat
+  diterapkan pada~$\delta_1$. Dengan menerapkan reduksi pada~$\delta_1$, kita memperoleh
+  !!a{proof}~$\delta_1'$ bagi $\Gamma' \Sequent M':!B$. Dari pemeriksaan
+  konversi-konversi \Log{tN3i}, $M'$ adalah kontraktum dari~$M$. Mengganti
+  $\delta_1$ dalam~$\delta$ dengan $\delta_1'$ menghasilkan
+  !!a{proof}~$\delta'$ bagi $\Gamma \Sequent N':!A$, dengan $N'$ diperoleh
+  dari~$N$ dengan mengganti subterm~$M$ oleh~$M'$.
+
+  Sebagai contoh, tinjau konversi reduksi bagi \Intro{\land} yang diikuti
+  \Elim{\land}:
+  \[
+  \bottomAlignProof
+  \AxiomC{}
+  \Deduce$\Gamma \fCenter N_1 : !B_1$
+  \AxiomC{}
+  \Deduce$\Gamma \fCenter N_2 : !B_2$
+  \RightLabel{\Intro{\land}}
+  \BinaryInf$\Gamma \fCenter \pair{N_1}{N_2} : !B_1 \land !B_2$
+  \RightLabel{\Elim{\land}[i]}
+  \UnaryInf$\Gamma \fCenter \proj{i}{\pair{N_1}{N_2}} : !B_i$
+  \DisplayProof
+  \quad\redone\quad
+  \bottomAlignProof
+  \AxiomC{}
+  \Deduce$\Gamma \fCenter N_i : !B_i$
+  \DisplayProof
+  \]
+  Kita melihat bahwa term bukti dari !!{proof} di sebelah kanan, yakni
+  $\delta_1'$, adalah~$N_i$. Term ini tepat merupakan hasil penerapan
+  konversi-$\beta$ pada term bukti $\proj{i}{\pair{N_1}{N_2}}$ dari
+  !!{proof} di sebelah kiri~($\delta_1$).
+
+  Atau, tinjau inferensi \Intro{\lif} yang diikuti \Elim{\lif}, beserta
+  konversi reduksi yang diterapkan kepadanya:
+  \begin{multline*}
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \Deduce$x: !B_1, \Gamma \fCenter N : !B_2$
+  \RightLabel{\Intro{\lif}}
+  \UnaryInf$\Gamma \fCenter \lambd[\typeof{x}{!B_1}][N] : !B_1 \lif !B_2$
+  \AxiomC{}
+  \RightLabel{$\delta_3$}
+  \Deduce$\Gamma \fCenter M : !B_1$
+  \RightLabel{\Elim{\lif}}
+  \BinaryInf$\Gamma \fCenter (\lambd[\typeof{x}{!B_1}][N] M) : !B_2$
+  \DisplayProof
+  \quad\redone\\
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_3$}
+  \Deduce$\Gamma \fCenter M : !B_1$
+  \RightLabel{$\Subst{\delta_2}{\delta_3}{x:!B_1}$}
+  \Deduce$\Gamma \fCenter \Subst{N}{M}{x} : !B_2$
+  \DisplayProof
+  \end{multline*}
+  Sekali lagi, term bukti dari !!{proof} di sebelah kanan tepat merupakan
+  hasil reduksi-$\beta$ atas term bukti dari !!{proof} di sebelah kiri.
+  Tentu saja, kita harus memverifikasi dengan cermat (melalui induksi pada
+  tinggi~$\delta_2$) bahwa mengganti semua aksioma berbentuk
+  $\Gamma' \Sequent x:!B_1$ dalam~$\delta_2$ dengan
+  !!{proof}~$\delta_3$ bagi $\Gamma \Sequent M:!B_1$ benar-benar
+  menghasilkan !!a{proof} $\Subst{\delta_2}{\delta_3}{x:!B_1}$ bagi
+  $\Gamma \Sequent \Subst{N}{M}{x}:!B_2$.
+\end{proof}
+
+Korespondensi erat antara !!{proof}s dan term-$\lambd$ mempunyai akibat
+lain. Jika $N$ merupakan term-$\lambd$ bertipe $!A$ relatif terhadap
+konteks~$\Gamma$ dan memuat redex~$M$ (yakni, $N$ tidak berada dalam bentuk
+normal), maka bukti \Log{tN3i}~$\delta$ yang bersesuaian bagi
+$\Gamma \Sequent N:!A$ memuat sub-!!{proof} (yang berakhir dengan
+$\Gamma' \Sequent M:!B$) tempat suatu konversi dapat diterapkan. Jika
+$N \redone N'$ dengan mengganti $M$ oleh kontraktumnya, hasil yang
+bersesuaian dari penerapan reduksi pada~$\delta$ adalah !!a{proof} bagi
+$\Gamma \Sequent N':!A$. Jadi, setiap term-$\lambd$ yang tidak berada dalam
+bentuk normal tereduksi-$\beta$ menjadi term lain. Sifat ini disebut
+\emph{kemajuan}.
+
+Kemajuan bersama preservasi tipe memastikan bahwa reduksi-$\beta$ atas
+term-$\lambd$ tidak pernah ``macet'': jika suatu term bertipe baik dan tidak
+berada dalam bentuk normal, term itu tereduksi menjadi term bertipe baik lain
+(dan term tersebut bertipe sama).
+
+\end{document}

@@ -1,0 +1,96 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: proofs-to-terms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{pty}{pt}
+
+\olsection{Mengonversi \usetoken{P}{derivation} Menjadi Term Bukti}
+
+Proses mengonversi !!{proof}s deduksi alami menjadi term bukti, yakni
+menerjemahkan !!{proof}s dalam~\Log{N2i} menjadi !!{proof}s
+dalam~\Log{tN2i}, sangat langsung. Kita cukup menulis suatu term bukti di
+sebelah kiri setiap !!{formula} yang berada di sebelah kanan sekuen dalam
+!!{derivation}, sehingga diperoleh sekuen berbentuk $\Gamma \Sequent M :
+!A$. Kemudian kita mengatakan bahwa $M$ \emph{menyaksikan}~$!A$ dalam
+konteks~$\Gamma$. Term bukti yang harus ditulis sepenuhnya ditentukan oleh
+aturan-aturan \Log{tN2i}.
+
+\begin{prop}
+Setiap !!{proof}~$\delta$ atas $\Gamma \Sequent !A$ dalam \Log{N2i}
+bersesuaian dengan !!a{proof}~$\delta'$ atas $\Gamma \Sequent N : !A$
+dalam \Log{tN2i}. Term bukti $N$ ditentukan secara unik oleh~$\delta$.
+\end{prop}
+
+\begin{proof}
+Kita melakukan induksi pada tinggi~$\delta$. Jika $\delta$ merupakan
+aksioma $x:!A \Sequent !A$, maka $\delta'$ merupakan aksioma
+$x:!A \Sequent x:!A$. Jika $\delta$ berakhir dengan suatu aturan inferensi,
+hipotesis induksi memberikan term bukti bagi setiap premis serta
+\Log{tN2i}-!!{proof}s atas sekuen yang memuat term bukti tersebut dan
+bersesuaian dengan setiap premis. Kita menerapkan aturan \Log{tN2i} yang
+bersesuaian; term bukti yang bersesuaian ditentukan oleh aturan inferensi
+\Log{tN2i} itu.
+\end{proof}
+
+\begin{ex}
+  Tinjau !!{proof} yang sangat sederhana dalam \Log{N1i} atas
+  $(!A \land !B) \lif (!B \land !A)$:
+  \[
+  \AxiomC{$\Discharge{!A\land !B}{x}$}
+  \RightLabel{\Elim\land[2]}
+  \UnaryInfC{$!B$}
+  \AxiomC{$\Discharge{!A\land !B}{x}$}
+  \RightLabel{\Elim\land[1]}
+  \UnaryInfC{$!A$}
+  \RightLabel{\Intro\land}
+  \BinaryInfC{$!B \land !A$}
+  \DischargeRule{\Intro\lif}{x}
+  \UnaryInfC{$(!A \land !B) \lif (!B \land !A)$}
+  \DisplayProof
+  \]
+  Dalam \Log{N2i}, bukti tersebut tampak seperti ini:
+  \[
+  \Axiom$x : !A\land !B \fCenter !A\land !B$
+  \RightLabel{\Elim\land[2]}
+  \UnaryInf$x : !A\land !B \fCenter !B$
+  \Axiom$x : !A\land !B \fCenter !A\land !B$
+  \RightLabel{\Elim\land[1]}
+  \UnaryInf$x : !A\land !B \fCenter !A$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter !B \land !A$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter (!A \land !B) \lif (!B \land !A)$
+  \DisplayProof
+  \]
+  Kita memberikan term bukti dari atas ke bawah. Term bukti bagi aksioma
+  sama dengan variabel dalam konteks, yakni~$x$. Term bukti yang terkait
+  dengan $\Elim\land[i]$ kemudian ditentukan sebagai $\proj{2}{x}$
+  dan~$\proj{1}{x}$. Ketika menerapkan \Intro{\land}, kita menggabungkan
+  kedua term bukti ini: $\pair{\proj{2}{x}}{\proj{1}{x}}$. Terakhir,
+  aturan \Intro{\lif} menerapkan abstraksi-$\lambd$, mengikat~$x$ dan
+  mencatat bahwa $x$ melabeli asumsi~$!A \land !B$:
+  $\lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}]$.
+  !!{proof} dalam \Log{tN2i} kemudian adalah:
+  \[
+  \Axiom$x : !A\land !B \fCenter x: !A\land !B$
+  \RightLabel{\Elim\land[2]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{2}{x} : !B$
+  \Axiom$x : !A\land !B \fCenter x: !A\land !B$
+  \RightLabel{\Elim\land[1]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{1}{x} : !A$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} :
+    !B \land !A$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif (!B \land !A)$
+  \DisplayProof
+  \]
+\end{ex}
+
+\end{document}

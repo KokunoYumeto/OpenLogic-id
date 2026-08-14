@@ -1,0 +1,62 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{ord-arithmetic}{expo}
+\olsection{Eksponensiasi Ordinal}
+
+Sekarang kita beralih ke eksponensiasi ordinal. Sayangnya, tidak ada definisi
+sintetis yang \emph{bagus} bagi eksponensiasi ordinal.
+
+Memang, definisi sintetis yang eksplisit \emph{ada}. Berikut salah satunya.
+Misalkan $\text{finfun}(\alpha,\beta)$ himpunan semua fungsi $f \colon
+\beta \to \alpha$ sedemikian sehingga $\Setabs{\gamma \in
+\beta}{f(\gamma) \neq 0}$ sama banyak dengan suatu bilangan asli.
+Definisikan suatu pengurutan baik pada $\text{finfun}(\alpha,\beta)$ dengan
+$f \sqsubset g$ jika dan hanya jika $f \neq g$ dan $f(\gamma_0) <
+g(\gamma_0)$, dengan $\gamma_0 = \text{max}\Setabs{\gamma \in
+\beta}{f(\gamma) \neq g(\gamma)}$. Kemudian kita dapat mendefinisikan
+$\ordexpo{\alpha}{\beta}$ sebagai $\ordtype{\text{finfun}(\alpha, \beta),
+\sqsubset}$. Potter menggunakan definisi eksplisit ini, lalu langsung
+menjelaskan:
+\begin{quote}
+	Pemilihan pengurutan ini ditentukan semata-mata oleh keinginan kita untuk
+	memperoleh definisi eksponensiasi ordinal yang memenuhi syarat rekursif
+	yang sesuai\ldots, dan pengurutan ini jauh lebih sulit dibayangkan daripada
+	jumlah terurut maupun hasil kali terurut.
+	\citep[hlm.~199]{Potter2004}
+\end{quote}
+Tepat sekali. Kita menjelaskan penjumlahan sebagai ``suatu salinan $\alpha$
+yang diikuti suatu salinan $\beta$'', dan perkalian sebagai ``suatu barisan
+sepanjang $\beta$ yang terdiri atas salinan-salinan $\alpha$''. Namun, kita
+tidak mempunyai uraian singkat yang menarik mengenai
+$\text{finfun}(\alpha, \gamma)$. Karena itu, sebagai gantinya kita akan
+memberikan definisi eksponensiasi ordinal hanya \emph{melalui} rekursi
+transfinit, yakni:
+
+\begin{defn}\ollabel{ordexporecursion}
+\begin{align*}
+	\ordexpo{\alpha}{0} &= 1\\
+	\ordexpo{\alpha}{\beta\ordplus 1} &=\ordexpo{\alpha}{\beta} \ordtimes \alpha\\
+	\ordexpo{\alpha}{\beta} &= \bigcup_{\delta < \beta}\ordexpo{\alpha}{\delta}& & \text{jika $\beta$ merupakan ordinal limit}
+\end{align*}
+\end{defn}
+
+Jika kita bekerja \emph{sebagai} teoretikus himpunan, kita mungkin ingin
+menyelidiki beberapa sifat eksponensiasi ordinal. Namun, tidak banyak lagi
+yang perlu kita tambahkan selain fakta yang tidak mengejutkan bahwa
+eksponensiasi ordinal tidak komutatif. Jadi $\ordexpo{2}{\omega} =
+\bigcup_{\delta < \omega}\ordexpo{2}{\delta} = \omega$, sedangkan
+$\ordexpo{\omega}{2} = \omega \ordtimes \omega$. Lagi pula, kita memang
+tidak seharusnya \emph{mengharapkan} eksponensiasi bersifat komutatif, sebab
+pada bilangan asli pun tidak demikian: $\ordexpo{2}{3} = 8 < 9 =
+\ordexpo{3}{2}$.
+
+\begin{prob}
+Dengan menggunakan Induksi Transfinit, buktikan bahwa jika kita mendefinisikan
+$\ordexpo{\alpha}{\beta} = \ordtype{\text{finfun}(\alpha, \beta),
+\sqsubset}$, kita memperoleh persamaan-persamaan rekursi dalam
+\olref[sth][ord-arithmetic][expo]{ordexporecursion}.
+\end{prob}
+
+\end{document}

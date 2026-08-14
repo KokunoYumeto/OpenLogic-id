@@ -1,0 +1,42 @@
+% Bagian: second-order-logic
+% Bab: metatheory
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{met}{int}
+
+\olsection{Pendahuluan}
+
+Logika orde pertama mempunyai sejumlah sifat yang baik. Kita tahu bahwa
+logika ini tidak dapat diputuskan, tetapi setidaknya dapat diaksiomatisasi.
+Artinya, terdapat sistem pembuktian bagi logika orde pertama yang sahih dan
+lengkap, yakni sistem tersebut menghasilkan relasi !!a{derivability}~$\Proves$
+dengan sifat bahwa untuk setiap himpunan !!{sentence}~$\Gamma$ dan setiap
+!!{sentence}~$!A$, $\Gamma \Entails !A$ jika dan hanya jika $\Gamma \Proves
+!A$. Secara khusus, ini berarti bahwa himpunan validitas logika orde pertama
+!!{computably enumerable}. Terdapat suatu fungsi yang dapat dihitung~$f\colon
+\Nat \to \Sent[L]$ sedemikian sehingga nilai-nilai~$f$ tepat merupakan semua
+!!{sentence} valid dari~$\Lang{L}$. Hal ini berlaku karena !!{derivation}s dapat
+dienumerasi, lalu derivasi-derivasi yang !!{derive} satu~!!{sentence} dipetakan
+ke !!{sentence} tersebut. Logika orde kedua lebih ekspresif daripada logika
+orde pertama, sehingga secara umum lebih rumit untuk mencakup semua
+validitasnya. Bahkan, kita akan menunjukkan bahwa logika orde kedua bukan
+hanya tidak dapat diputuskan, melainkan validitas-validitasnya bahkan tidak
+!!{computably enumerable}. Ini berarti bahwa tidak mungkin ada sistem
+pembuktian yang sahih dan lengkap bagi logika orde kedua (meskipun tersedia
+sistem pembuktian yang sahih tetapi tidak lengkap, dan sistem-sistem tersebut
+bahkan merupakan objek penelitian yang penting).
+
+Logika orde pertama juga mempunyai dua sifat lain: logika ini kompak (jika
+setiap himpunan bagian berhingga dari suatu himpunan !!{sentence}~$\Gamma$
+dapat dipenuhi, maka $\Gamma$ sendiri dapat dipenuhi) dan Teorema
+L\"owenheim--Skolem berlaku baginya (jika $\Gamma$ mempunyai model tak hingga,
+maka himpunan itu mempunyai model !!{denumerable}). Kedua hasil ini tidak berlaku
+bagi logika orde kedua. Sekali lagi, alasannya ialah bahwa logika orde kedua
+dapat mengungkapkan fakta-fakta tentang ukuran !!{domain} yang tidak dapat
+diungkapkan oleh logika orde pertama.
+
+\end{document}

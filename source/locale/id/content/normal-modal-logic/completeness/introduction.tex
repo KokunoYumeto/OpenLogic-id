@@ -1,0 +1,74 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{com}{int}
+
+\olsection{Pendahuluan}
+
+Jika $\Sigma$ adalah suatu sistem modal, teorema kesahihan menetapkan bahwa
+jika $\Sigma \Proves !A$, maka $!A$ valid dalam setiap kelas
+model~$\mClass{C}$ yang di dalamnya semua instansiasi dari semua !!{formula}s
+dalam~$\Sigma$ valid. Secara khusus, ini berarti bahwa jika $\Log{K}
+\Proves !A$, maka $!A$ benar dalam semua model; jika $\Log{KT} \Proves !A$,
+maka $!A$ benar dalam semua model refleksif; jika $\Log{KD} \Proves !A$,
+maka $!A$ benar dalam semua model serial; dan seterusnya.
+
+Kelengkapan adalah konvers dari kesahihan: bahwa \Log{K} lengkap berarti,
+misalnya, bahwa jika !!a{formula}~$!A$ valid, maka $\Proves !A$.
+Membuktikan kelengkapan jauh lebih sulit daripada membuktikan kesahihan.
+Pertama-tama, berguna untuk meninjau kontraposisinya: \Log{K} lengkap jika
+dan hanya jika, setiap kali $\Proves/ !A$, terdapat suatu model tandingan,
+yakni model~$\mModel{M}$ sedemikian sehingga $\mSat/{M}{!A}$. Secara
+ekuivalen (dengan menegasikan $!A$), kita dapat membuktikan bahwa setiap kali
+$\Proves/ \lnot !A$, terdapat suatu model bagi~$!A$. Dalam konstruksi model
+semacam itu, kita dapat menggunakan informasi yang termuat dalam $!A$. Ketika
+mencari model bagi !!{formula}s tertentu, kita sering melakukan hal yang sama:
+misalnya, jika kita ingin mencari model tandingan bagi $p \lif \Box q$, kita
+tahu bahwa model itu harus memuat suatu dunia tempat $p$ benar dan $\Box q$
+salah. Dunia tempat $\Box q$ salah berarti bahwa harus terdapat dunia yang
+dapat diakses darinya dan tempat $q$ salah. Hanya itu yang perlu kita ketahui:
+dunia mana yang membuat !!{propositional variable}s benar, dan dunia mana yang
+dapat diakses dari dunia mana.
+
+Namun, dalam pembuktian kelengkapan, kita tidak mempunyai !!{formula}
+tertentu~$!A$ yang baginya kita membangun suatu model. Kita ingin menetapkan
+bahwa suatu model ada bagi setiap $!A$ sedemikian sehingga
+$\Proves/[\Sigma] \lnot !A$. Ini merupakan syarat minimal, sebab
+\emph{jika} $\Proves[\Sigma] \lnot !A$, berdasarkan kesahihan tidak ada model
+bagi~$!A$ (yang membuat $\Sigma$ benar). Sekarang perhatikan bahwa
+$\Proves/[\Sigma] \lnot !A$ jika dan hanya jika $!A$ $\Sigma$-konsisten.
+(Ingat bahwa $\Proves/[\Sigma] \lnot !A$ dan
+$!A \Proves/[\Sigma] \lfalse$ ekuivalen.) Jadi, tugas kita adalah membangun
+suatu model bagi setiap !!{formula} yang $\Sigma$-konsisten.
+
+Kiat yang akan kita gunakan ialah mencari suatu himpunan !!{formula}s yang
+$\Sigma$-konsisten dan memuat~$!A$, tetapi juga memuat formula-formula lain
+yang memberi tahu kita seperti apa dunia yang membuat $!A$ benar harus
+terbentuk. Himpunan semacam itu adalah himpunan \emph{lengkap} yang
+$\Sigma$-konsisten. Tidak cukup membangun suatu model dengan satu dunia untuk
+membuat~$!A$ benar; model tersebut harus memuat beberapa dunia dan suatu
+relasi aksesibilitas. Himpunan lengkap dan $\Sigma$-konsisten yang
+memuat~$!A$ juga akan memuat !!{formula}s lain berbentuk $\Box !B$
+dan~$\Diamond !C$. Pada semua dunia yang dapat diakses, $!B$ harus benar; pada
+sekurang-kurangnya satu di antaranya, $!C$ harus benar. Untuk mewujudkan hal
+ini, kita cukup mengambil \emph{semua} himpunan lengkap dan $\Sigma$-konsisten
+yang mungkin sebagai dasar bagi himpunan dunia. Bagian yang rumit ialah
+menentukan kapan suatu himpunan lengkap dan $\Sigma$-konsisten harus dianggap
+dapat diakses dari himpunan lainnya dalam model kita.
+
+Kita akan menunjukkan bahwa dalam model yang didefinisikan demikian, $!A$
+benar pada suatu dunia---yang juga merupakan himpunan lengkap dan
+$\Sigma$-konsisten---jika dan hanya jika $!A$ merupakan !!a{element} himpunan
+tersebut. Jika $!A$ $\Sigma$-konsisten, formula itu akan menjadi !!a{element}
+dari sekurang-kurangnya satu himpunan lengkap dan $\Sigma$-konsisten (suatu
+fakta yang akan kita buktikan), sehingga akan terdapat suatu dunia tempat
+$!A$ benar. Jadi, kita akan mempunyai satu model tempat setiap !!{formula}
+yang $\Sigma$-konsisten---sebutlah formula itu~$!A$---benar pada suatu dunia.
+Model tunggal ini adalah model \emph{kanonik} bagi~$\Sigma$.
+
+\end{document}

@@ -1,0 +1,26 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{z}{union}
+\olsection{Gabungan}
+
+\olref[sth][z][sep]{prop:intersectionsexist} memberi kita irisan. Namun, jika
+kita ingin gabungan sembarang selalu ada, kita perlu menetapkan aksioma lain:
+
+\begin{axiom}[Gabungan] Untuk setiap himpunan $A$, himpunan
+$\bigcup A = \Setabs{x}{(\exists b \in A) x \in b}$ ada.
+\[
+	\forall A \exists U \forall x(x \in U \liff (\exists b \in A)x \in b)
+\]
+\end{axiom}
+
+Aksioma ini juga dibenarkan oleh konsepsi kumulatif-iteratif. Misalkan $A$
+suatu himpunan, sehingga $A$ dibentuk pada suatu tahap $S$ (menurut
+\stageshier). Setiap anggota $A$ dibentuk \emph{sebelum} $S$ (menurut
+\stagesacc); jadi, dengan penalaran serupa, setiap anggota dari setiap anggota
+$A$ dibentuk sebelum $S$. Dengan demikian, semua himpunan \emph{tersebut}
+tersedia sebelum $S$ untuk dibentuk menjadi suatu himpunan pada $S$. Himpunan
+itu tepat $\bigcup A$.
+
+\end{document}

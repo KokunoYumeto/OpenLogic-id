@@ -1,0 +1,14 @@
+/output/
+/tmp/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.pcr
+*.prb
+*.synctex.gz
+*.thm
+*.toc

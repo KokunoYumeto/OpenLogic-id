@@ -1,0 +1,203 @@
+% Bagian: incompleteness
+% Bab: representability-in-q
+% Subbagian: c-representable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{inc}{req}{cre}
+\olsection{Fungsi-Fungsi dalam $C$ Dapat Direpresentasikan dalam $\Th{Q}$}
+
+Kita harus menunjukkan bahwa setiap fungsi dalam $C$ dapat direpresentasikan
+dalam $\Th{Q}$. Pada akhirnya, kita perlu menunjukkan cara menetapkan kepada
+setiap fungsi berargumen $k$, $f(x_0,\dots,x_{k-1})$, dalam~$C$ suatu formula
+$!A_f(x_0,\dots,x_{k-1},y)$ yang merepresentasikannya.
+
+\begin{lem}
+Diberikan bilangan asli $n$ dan $m$, jika $n \neq m$, maka $Q \Proves \num
+n \neq \num m$.
+\end{lem}
+
+\begin{proof}
+Gunakan induksi pada $n$ untuk menunjukkan bahwa, bagi setiap $m$, jika
+$n \neq m$, maka $Q \Proves \eq/[\num n][\num m]$.
+
+Dalam kasus dasar, $n = 0$. Jika $m$ tidak sama dengan $0$, maka
+$m = k + 1$ untuk suatu bilangan asli~$k$. Kita mempunyai aksioma yang
+menyatakan $\lforall[x][\eq/[0][x']]$. Menurut suatu aksioma kuantor, dengan
+mengganti $x$ dengan $\num k$, kita dapat menyimpulkan
+$\eq/[0][\num k']$. Namun, $\num k'$ tidak lain ialah $\num m$.
+
+Dalam langkah induksi, kita dapat mengasumsikan bahwa klaim tersebut benar
+untuk $n$, lalu mempertimbangkan $n+1$. Misalkan $m$ sebarang bilangan asli.
+Ada dua kemungkinan: $m = 0$, atau terdapat suatu $k$ sedemikian sehingga
+$m = k+1$. Kasus pertama ditangani seperti di atas. Dalam kasus kedua,
+andaikan $n+1 \neq k+1$. Maka $n \neq k$. Menurut hipotesis induksi untuk
+$n$, kita mempunyai $\Th{Q} \Proves \eq/[\num n][\num k]$. Kita mempunyai
+aksioma yang menyatakan
+$\lforall[x][\lforall[y][\eq[x'][y'] \lif \eq[x][y]]]$. Dengan menggunakan
+aksioma kuantor, kita mempunyai
+$\eq[\num n'][\num k'] \lif \eq[\num n][\num k]$. Dengan menggunakan
+logika proposisional, dalam $\Th{Q}$ kita dapat menyimpulkan
+$\eq/[\num n][\num k] \lif \eq/[\num n'][\num k']$. Dengan modus ponens,
+kita dapat menyimpulkan $\eq/[\num n'][\num k']$, sebagaimana diinginkan,
+karena $\num k'$ ialah $\num m$.
+\end{proof}
+
+Perhatikan bahwa lema tersebut tidak mengatakan banyak hal: pada intinya,
+lema itu mengatakan bahwa $\Th{Q}$ dapat membuktikan bahwa numeral-numeral
+yang berbeda menunjuk objek yang berbeda. Misalnya, $\Th{Q}$ membuktikan
+$0'' \neq 0'''$. Namun, menunjukkan bahwa hal ini berlaku secara umum
+memerlukan kehati-hatian. Perhatikan pula bahwa meskipun kita menggunakan
+induksi, induksi itu dilakukan \emph{di luar} $\Th{Q}$.
+
+Kita akan dapat merepresentasikan nol, penerus, tambah, kali, fungsi
+karakteristik kesamaan, dan proyeksi. Dalam setiap kasus, formula yang sesuai
+untuk merepresentasikan fungsi tersebut sepenuhnya langsung; misalnya, nol
+direpresentasikan oleh formula
+\[
+y = 0,
+\]
+penerus direpresentasikan oleh formula
+\[
+x_0' = y,
+\]
+dan penjumlahan direpresentasikan oleh formula
+\[
+x_0 + x_1 = y.
+\]
+Pekerjaannya terletak pada menunjukkan bahwa $\Th{Q}$ dapat membuktikan
+pernyataan-pernyataan yang relevan; misalnya, mengatakan bahwa penjumlahan
+direpresentasikan oleh formula di atas berarti menunjukkan bahwa untuk setiap
+pasangan bilangan asli $m$ dan $n$, $\Th{Q}$ membuktikan
+\[
+\eq[\num n + \num m][\num {n+m}]
+\]
+dan
+\[
+\lforall[y][(\eq[(\num n + \num m)][y] \lif \eq[y][\num {n+m}])].
+\]
+
+Bagaimana dengan komposisi? Andaikan $h$ didefinisikan oleh
+\[
+h(x_0,\dots,x_{l-1}) = f(g_0(x_0,\dots,x_{l-1}), \dots,
+g_{k-1}(x_0,\dots,x_{l-1})).
+\]
+dengan kita telah menemukan formula $!A_f, !A_{g_0}, \dots,
+!A_{g_{k-1}}$ yang masing-masing merepresentasikan fungsi
+$f,g_0,\dots,g_{k-1}$. Maka kita dapat mendefinisikan formula~$!A_h$ yang
+merepresentasikan~$h$ dengan mendefinisikan
+$!A_h(x_0,\dots,x_{l-1},y)$ sebagai
+\begin{multline*}
+  \lexists[z_0\dots][\lexists[z_{k-1}][(!A_{g_0}(x_0,\dots,x_{l-1},z_0) \land
+  \dots \land !A_{g_{k-1}}(x_0,\dots,x_{l-1},z_{k-1}) \land]]\\
+  !A_f(z_0,\dots,z_{k-1},y)).
+\end{multline*}
+
+Terakhir, mari kita perhatikan pencarian tak berbatas. Andaikan
+$g(x,\vec z)$ bersifat reguler dan direpresentasikan dalam $\Th{Q}$,
+misalnya oleh formula $!A_g(x,\vec z,y)$. Misalkan $f$ didefinisikan oleh
+$f(\vec z) = \mu x \; g(x,\vec z)$. Kita ingin menemukan formula
+$!A_f(\vec z,y)$ yang merepresentasikan~$f$. Berikut merupakan pilihan yang
+alami:
+\[
+!A_f(\vec z,y) \ident !A_g(y,\vec z,0) \land \lforall[w][(w < y
+\lif \lnot !A_g(w,\vec z,0))].
+\]
+
+Hal ini dapat ditunjukkan berhasil dengan menggunakan beberapa lema tambahan,
+misalnya:
+
+\begin{lem}
+  Bagi setiap variabel~$x$ dan setiap bilangan asli~$n$, $\Th{Q}$ membuktikan
+  $\eq[(x' + \num n)][(x + \num n)']$.
+\end{lem}
+
+Perlu kembali disebutkan bahwa hal ini lebih lemah daripada mengatakan bahwa
+$\Th{Q}$ membuktikan
+$\lforall[x][\lforall[y][(x' + y) = (x +y)']]$ (yang salah).
+
+\begin{proof}
+Seperti biasa, pembuktian dilakukan dengan induksi pada $n$. Dalam kasus
+dasar, $n = 0$, kita perlu menunjukkan bahwa $\Th{Q}$ membuktikan
+$\eq[(x'+0)][(x+0)']$. Namun, kita mempunyai:
+\begin{eqnarray*}
+& & \eq[(x' + 0)][x'] \quad \text{menurut aksioma 4} \\
+& & \eq[(x + 0)][x] \quad \text{menurut aksioma 4} \\
+& & \eq[(x+0)'][x'] \quad \text{menurut baris 2} \\
+& & \eq[(x' + 0)][(x + 0)'] \quad \text{menurut baris 1 dan 3}
+\end{eqnarray*}
+Dalam langkah induksi, kita dapat mengasumsikan bahwa kita telah menurunkan
+$\eq[(x' + \num n)][(x + \num n)']$ dalam $\Th{Q}$. Karena $\num{n+1}$
+ialah $\num n'$, kita perlu menunjukkan bahwa $\Th{Q}$ membuktikan
+$\eq[(x' + \num n')][(x + \num n')']$. Rantai kesamaan berikut dapat
+diturunkan dalam $\Th{Q}$:
+\begin{eqnarray*}
+(x' + \num n') & \eq & (x' + \num n)' \quad \text{aksioma 5} \\
+& \eq & (x + \num n')' \quad \text{menurut hipotesis induksi}
+\end{eqnarray*}
+\end{proof}
+
+\begin{lem}
+\begin{enumerate}
+\item $\Th{Q}$ membuktikan $\lnot (x < \num 0)$.
+\item Bagi setiap bilangan asli~$n$, $\Th{Q}$ membuktikan
+\[
+x < \num {n+1} \lif (\eq[x][\num 0] \lor \dots \lor \eq[x][\num n]).
+\]
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Mari kita kerjakan butir~1 dan sebagian butir~2 secara informal (yakni hanya
+memberi petunjuk tentang cara menyusun !!{derivation} formalnya).
+
+Untuk butir~1, menurut definisi $<$, kita perlu membuktikan
+$\lnot \lexists[y][\eq[(y'+x)][0]]$ dalam $\Th{Q}$, yang ekuivalen
+(dengan menggunakan aksioma dan kaidah logika orde pertama) dengan
+$\lforall[y][\eq/[(y' + x)][0]]$. Berikut gagasannya: andaikan
+$\eq[(y'+x)][0]$. Jika $x$ ialah~0, kita mempunyai
+$\eq[(y' + 0)][0]$. Namun, menurut aksioma~4 dari $\Th{Q}$, kita mempunyai
+$\eq[(y' + 0)][y']$, dan menurut aksioma~2 kita mempunyai $\eq/[y'][0]$,
+suatu kontradiksi. Jadi, $\lforall[y][\eq/[(y' +x)][0]]$. Jika $x$ bukan
+$0$, menurut aksioma~3 terdapat suatu~$z$ sedemikian sehingga
+$\eq[x][z']$. Namun, kemudian kita mempunyai $\eq[(y' + z')][0]$.
+Menurut aksioma~5, kita mempunyai $\eq[(y' + z)'][0]$, yang kembali
+bertentangan dengan aksioma~2.
+
+Untuk butir~2, gunakan induksi pada $n$. Mari kita perhatikan kasus dasar
+ketika $n =0$. Dalam kasus itu, kita perlu menunjukkan
+$x < \num 1 \lif \eq[x][\num 0]$. Andaikan $x < \num 1$. Maka, menurut
+aksioma yang mendefinisikan $<$, kita mempunyai
+$\lexists[y][\eq[(y'+x)][0']]$. Andaikan $y$ mempunyai sifat tersebut;
+jadi, kita mempunyai $\eq[y'+x][0']$.
+
+Kita perlu menunjukkan $\eq[x][0]$. Menurut aksioma~3, jika $x$ bukan~0,
+variabel itu sama dengan $z'$ untuk suatu~$z$. Maka kita mempunyai
+$\eq[(y' + z')][0']$. Menurut aksioma~5 dari $\Th{Q}$, kita mempunyai
+$\eq[(y'+z)'][0']$. Menurut aksioma~1, kita mempunyai
+$\eq[(y' + z)][0]$. Namun, menurut definisi, ini berarti $z < 0$,
+bertentangan dengan butir~1.
+\end{proof}
+
+\begin{explain}
+Kita telah menunjukkan bahwa himpunan fungsi yang dapat dihitung dapat
+dikarakterisasi sebagai himpunan fungsi yang dapat direpresentasikan dalam
+$\Th{Q}$. Bahkan, pembuktian tersebut lebih umum. Dari definisi
+kerepresentasian, tidak sulit melihat bahwa setiap teori yang memperluas
+$\Th{Q}$ (atau yang memungkinkan $\Th{Q}$ ditafsirkan di dalamnya) dapat
+merepresentasikan fungsi-fungsi yang dapat dihitung; sebaliknya, dalam setiap
+sistem !!{derivation} yang pengertian buktinya dapat dihitung, setiap fungsi
+yang dapat direpresentasikan juga dapat dihitung. Jadi, sebagai contoh,
+himpunan fungsi yang dapat dihitung dapat dicirikan sebagai himpunan fungsi
+yang direpresentasikan dalam aritmetika Peano, atau bahkan teori himpunan
+Zermelo--Fraenkel. Seperti dicatat G\"odel, hal ini agak mengejutkan. Kita
+akan melihat bahwa, dalam hal keterbuktian, pertanyaan-pertanyaan sangat peka
+terhadap teori mana yang dipertimbangkan; secara kasar, semakin kuat
+aksiomanya, semakin banyak yang dapat dibuktikan. Namun, pada cakupan luas
+teori-teori aksiomatik, fungsi yang dapat direpresentasikan tepat merupakan
+fungsi yang dapat dihitung.
+\end{explain}
+
+\end{document}

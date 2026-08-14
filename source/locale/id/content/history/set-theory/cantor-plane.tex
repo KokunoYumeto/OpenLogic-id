@@ -1,0 +1,83 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{his}{set}{cantorplane}
+\olsection{Cantor tentang Garis dan Bidang}
+
+Beberapa keadaan seputar pembuktian Schr\"oder--Bernstein berkaitan dengan
+sejarah yang kita bahas dalam \olref[his][set][pathology]{sec}. Ingat bahwa
+pada 1877 Cantor membuktikan bahwa terdapat tepat sama banyak titik pada
+suatu persegi dengan pada salah satu sisinya. Di sini kita akan menyajikan
+bukti (percobaan pertama) Cantor.
+
+Misalkan $\unitline$ garis satuan, yakni himpunan titik $[0,1]$. Misalkan
+$\unitsquare$ persegi satuan, yakni himpunan titik
+$\unitline\times\unitline$. Dalam istilah ini, Cantor membuktikan
+$\cardeq{\unitline}{\unitsquare}$. Ia menulis suatu catatan kepada Dedekind
+yang pada dasarnya memuat argumen berikut.
+
+\begin{thm}\ollabel{thm:cantorplane}
+$\cardeq{\unitline}{\unitsquare}$.
+\end{thm}
+
+\begin{proof}[Bukti: bagian pertama.]
+Tetapkan $a,b\in\unitline$. Tuliskan keduanya dalam notasi biner, sehingga
+kita mempunyai barisan tak hingga angka $0$ dan $1$, yaitu
+$a_1,a_2,\dots$ dan $b_1,b_2,\dots$, sedemikian sehingga:
+\begin{align*}
+a &= 0.a_1a_2a_3a_4\dots\\
+b &= 0.b_1b_2b_3b_4\dots
+\intertext{Sekarang pertimbangkan fungsi
+$f \colon \unitsquare \to \unitline$ yang diberikan oleh}
+f(a, b) & = 0.a_1b_1a_2b_2a_3b_3a_4b_4\dots
+\end{align*}
+Sekarang $f$ merupakan !!a{injection}, sebab jika $f(a,b)=f(c,d)$, maka
+$a_n=c_n$ dan $b_n=d_n$ bagi semua $n\in\Nat$, sehingga $a=c$ dan $b=d$.
+\end{proof}
+
+Sayangnya, sebagaimana ditunjukkan Dedekind kepada Cantor, hal ini tidak
+menjawab pertanyaan semula. Pertimbangkan
+$0.\dot{1}\dot{0}=0.1010101010\ldots$. Kita memerlukan
+$f(a,b)=0.\dot{1}\dot{0}$, dengan:
+\begin{align*}
+a&= 0.\dot{1}\dot{1} = 0.111111\ldots\\
+b&= 0
+\end{align*}
+Namun, $a=0.\dot{1}\dot{1}=1$. Jadi, ketika kita berkata
+``tuliskan $a$ dan $b$ dalam notasi biner'', kita harus memilih
+\emph{notasi mana} yang digunakan; dan karena $f$ harus merupakan suatu
+\emph{fungsi}, kita hanya dapat menggunakan \emph{satu} dari kedua notasi
+yang mungkin. Namun, jika misalnya kita menggunakan notasi sederhana dan
+menulis $a$ sebagai ``$1.000\ldots$'', tidak ada pasangan
+$\tuple{a,b}$ sedemikian sehingga
+$f(a,b)=0.\dot{1}\dot{0}$.
+
+Ringkasnya, Dedekind menunjukkan bahwa karena kemungkinan adanya ekspansi
+biner berulang tertentu, fungsi $f$ dari Cantor merupakan !!a{injection}
+tetapi \emph{bukan} !!a{surjection}. Jadi, Cantor hanya menunjukkan
+$\cardle{\unitsquare}{\unitline}$ dan \emph{bukan}
+$\cardeq{\unitsquare}{\unitline}$.
+
+Cantor segera membalas Dedekind dan pada dasarnya mengemukakan bahwa bukti
+dapat diselesaikan sebagai berikut:
+
+\begin{proof}[Bukti: penyelesaian.]
+Kita telah menunjukkan $\cardle{\unitsquare}{\unitline}$. Namun, jelas
+terdapat !!a{injection} dari $\unitline$ ke $\unitsquare$: cukup letakkan
+garis secara mendatar pada salah satu sisi persegi. Jadi,
+$\cardle{\unitline}{\unitsquare}$ dan
+$\cardle{\unitsquare}{\unitline}$. Berdasarkan
+Schr\"{o}der--Bernstein
+(\olref[sfr][siz][sb]{thm:schroder-bernstein}),
+$\cardeq{\unitline}{\unitsquare}$.
+\end{proof}
+
+Namun, tentu saja Cantor tidak dapat menyelesaikan baris terakhir dengan
+istilah-istilah ini karena Teorema Schr\"{o}der--Bernstein belum terbukti.
+Memang, walaupun kemudian Cantor merumuskannya sebagai dugaan umum, teorema
+itu baru dibuktikan secara memuaskan pada 1897. (Karena itu, kemudian pada
+1877 Cantor memberikan bukti lain bagi \olref{thm:cantorplane}, yang tidak
+melalui Schr\"{o}der--Bernstein.)
+
+\end{document}

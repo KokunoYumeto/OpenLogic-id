@@ -1,0 +1,146 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{pty}{int}
+
+\olsection{Pendahuluan}
+
+Kalkulus lambda adalah sebuah model komputasi sederhana. Kalkulus ini
+bekerja pada term yang dibangun dari variabel. Jika $N$ dan $M$ adalah
+term, maka $(NM)$ juga merupakan term (``$N$ diterapkan kepada~$M$'').
+Jika $N$ merupakan term, maka $\lambd[x][N]$ merupakan term. Jika $N$
+memuat variabel~$x$, kemunculan-kemunculan $x$ yang bersesuaian dalam
+$\lambd[x][N]$ diikat oleh operator $\lambd[x]$, sehingga tidak lagi
+bebas. Term berbentuk $(\lambd[x][N]M)$ dikatakan
+berkontraksi-$\beta$ menjadi $\Subst{N}{M}{x}$ (hasil penggantian setiap
+kemunculan bebas $x$ dalam~$N$ dengan $M$). Term $N$
+berkonversi-$\beta$ menjadi~$N'$ jika $N'$ dihasilkan dari $N$ dengan
+mengontraksi-$\beta$ suatu subterm, dan kita menulis $N \redone N'$.
+Komputasi dalam kalkulus-$\lambd$ adalah suatu barisan $N \redone N_1
+\redone N_2 \redone \dots$. Jika barisan ini berakhir pada term~$N_k$
+yang tidak memiliki subterm yang dapat dikontraksi-$\beta$, term itu
+disebut \emph{normal} atau bentuk normal dari~$N$. Bayangkan komputasi
+dalam kalkulus-$\lambd$ sebagai barisan semacam itu. Komputasi berhenti
+jika menghasilkan bentuk normal, dan bentuk normal tersebut merupakan
+hasil komputasinya. Model komputasi sederhana ini ternyata
+lengkap-Turing: setiap fungsi rekursif parsial dapat dihitung oleh suatu
+term dalam kalkulus-$\lambd$.
+
+Haskell Curry dan William Howard secara terpisah menemukan kemiripan erat
+antara deduksi alami dan kalkulus-$\lambd$. Secara intuitif, term
+$\lambd[x][N]$ adalah fungsi: $x$ merupakan argumennya; $N$ memberi tahu
+kita cara menghitung nilai ketika $x$ diberikan. Term
+$(\lambd[x][N]M)$ kemudian merupakan penerapan fungsi $\lambd[x][N]$
+kepada argumen~$M$, dan kontraksi-$\beta$ memberi tahu kita cara
+mengevaluasinya: gantikan $x$ dalam $N$ dengan~$M$ (lalu terus evaluasi
+term yang dihasilkan). Sekarang bayangkan semua itu sebagai fungsi dengan
+domain dan daerah nilai yang tetap. Jika domain $\lambd[x][N]$ adalah
+$A$ dan daerah nilainya~$B$, variabel~$x$ seharusnya dipandang hanya
+menerima argumen dari~$A$, sedangkan $N$ menghasilkan nilai dari~$B$.
+Karena itu, $(\lambd[x][N]M)$ seharusnya bermakna hanya jika
+$\lambd[x][N]$ merupakan fungsi $A \to B$ dan $M \in A$. Jika informasi
+ini ditambahkan kepada kalkulus-$\lambd$, kita memperoleh
+kalkulus-$\lambd$ \emph{bertipe}. Dalam kalkulus-$\lambd$ bertipe, tidak
+setiap ekspresi $(\lambd[x][N]M)$ sah, melainkan hanya ekspresi yang
+``tipe'' dari $\lambd[x][N]$ dan dari $M$ saling cocok, yakni
+$\lambd[x][N]$ bertipe $A \lif B$ dan $M$ bertipe~$A$. Tipe
+$\lambd[x][N]$ ialah $A \to B$ hanya jika tipe $x$ ialah $A$ dan tipe
+$N$ ialah~$B$. Secara umum, tidak setiap ekspresi $(M_1M_2)$ sah. Hanya
+term $(M_1M_2)$ dengan $M_1$ bertipe $A \to B$ dan $M_2$ bertipe~$A$
+yang sah; jika demikian, $(M_1M_2)$ bertipe~$B$.
+
+Aturan pengetikan ini jelas bersesuaian dengan !!{derivation}s dalam
+deduksi alami, dengan tipe direpresentasikan oleh !!{formula}s dan
+!!{derivation}s itu sendiri oleh term-$\lambd$. Misalnya,
+!!a{derivation} atas $!A \lif !B$ bersesuaian dengan term
+$\lambd[\typeof{x}{!A}][N]$, yang mempunyai tipe fungsi
+$!A \lif !B$. Aturan inferensi deduksi alami bersesuaian dengan aturan
+pengetikan dalam kalkulus lambda bertipe, misalnya,
+\begin{prooftree}
+  \AxiomC{$\Discharge{!A}{x}$}
+  \DeduceC{$!B$}
+  \DischargeRule{\Intro\lif}{x}
+  \UnaryInfC{$!A \lif !B$}
+  \DisplayProof\bottomAlignProof
+  \quad\text{bersesuaian dengan}\quad
+  \Axiom$x: !A \fCenter N: !B$
+  \UnaryInf$ \fCenter \lambd[\typeof{x}{!A}][N] : !A \lif !B$
+\end{prooftree}
+dengan aturan di kanan berarti bahwa jika $x$ bertipe~$!A$ dan $N$
+bertipe~$!B$, maka $\lambd[\typeof{x}{!A}][N]$ bertipe~$!A \lif !B$.
+
+Aturan $\Elim\lif$ bersesuaian dengan aturan pengetikan bagi term
+aplikasi, yakni,
+\[
+  \AxiomC{$!A \lif !B$}
+  \AxiomC{$!A$}
+  \RightLabel{\Elim\lif}
+  \BinaryInfC{$!B$}
+  \DisplayProof
+  \quad\text{bersesuaian dengan}\quad
+  \Axiom$\fCenter M_1: !A \lif !B$
+  \Axiom$\fCenter M_2: !A$
+  \BinaryInf$ \fCenter (M_1M_2) : !B$
+  \DisplayProof
+\]
+Jika aturan \Intro\lif{} langsung diikuti oleh aturan \Elim\lif{},
+!!{derivation} tersebut dapat disederhanakan:
+\begin{gather*}
+  \AxiomC{$\Discharge{!A}{x}$}
+  \DeduceC{$!B$}
+  \DischargeRule{\Intro\lif}{x}
+  \UnaryInfC{$!A \lif !B$}
+  \AxiomC{}
+  \DeduceC{$!A$}
+  \RightLabel{\Elim\lif}
+  \BinaryInfC{$!B$}
+  \DisplayProof
+  \quad\redone\quad
+  \AxiomC{}
+  \DeduceC{$!A$}
+  \DeduceC{$!B$}
+  \DisplayProof
+\end{gather*}
+yang bersesuaian dengan kontraksi-$\beta$ pada term lambda
+\[
+(\lambd[\typeof{x}{!A}][N]M) \quad\redone\quad
+\Subst{N}{M}{x}.
+\]
+
+Korespondensi serupa berlaku antara aturan untuk $\land$ dan tipe
+``produk,'' serta antara aturan untuk $\lor$ dan tipe ``jumlah.''
+
+Korespondensi antara term dalam kalkulus lambda bertipe sederhana dan
+!!{derivation}s deduksi alami ini disebut korespondensi ``Curry--Howard,''
+``bukti sebagai program,'' atau ``proposisi sebagai tipe.'' Selain
+!!{formula}s (proposisi) yang bersesuaian dengan tipe, dan bukti yang
+bersesuaian dengan term, kita dapat merangkum korespondensi tersebut
+sebagai berikut:
+\begin{center}
+  \begin{tabular}{c c}
+    logika & program \\
+    \hline
+    proposisi/!!{formula} & tipe \\
+    bukti & term \\
+    asumsi & variabel \\
+    asumsi yang dikosongkan & variabel terikat \\
+    asumsi yang tidak dikosongkan & variabel bebas \\
+    $!A \lif !B$ & tipe fungsi \\
+    $!A \land !B$ & tipe produk \\
+    $!A \lor !B$ & tipe jumlah \\
+    $\lfalse$ & tipe kosong \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Korespondensi Curry--Howard merupakan salah satu landasan asisten bukti
+otomatis dan pemeriksa tipe bagi program, sebab memeriksa bukti yang
+menyaksikan suatu proposisi (seperti yang kita lakukan di atas) sama
+dengan memeriksa apakah suatu program (term) mempunyai tipe yang
+dideklarasikan.
+\end{document}

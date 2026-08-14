@@ -1,0 +1,133 @@
+% Part: many-valued-logic
+% Chapter: three-valued-logics
+% Section: lukasiewicz
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{inf}{god}
+
+\olsection{Logika-Logika G\"odel}
+
+\begin{editorial}
+  Ini adalah ``rintisan'' singkat untuk suatu bagian mengenai logika G\"odel
+  bernilai tak hingga.
+\end{editorial}
+
+\begin{defn}\ollabel{def:goedel} Logika G\"odel bernilai tak
+hingga~$\LogGod[\infty]$ didefinisikan dengan menggunakan matriks berikut:
+\begin{enumerate}
+  \item Bahasa proposisional baku~$\Lang L_0$ dengan
+  $\lfalse$, $\lnot$, $\land$, $\lor$, $\lif$.
+  \item Himpunan nilai kebenaran~$V_\infty$.
+  \item $1$ merupakan satu-satunya nilai kebenaran yang ditetapkan, yakni
+  $V^+ = \{1\}$.
+  \item Fungsi kebenaran diberikan oleh fungsi-fungsi berikut:
+  \begin{align*}
+    \tf{\lfalse} & = 0\\
+    \tf{\lnot}[\LogGod](x) & = \begin{cases}
+      1 & \text{jika } x =0\\
+      0 & \text{selain itu}
+    \end{cases}\\
+    \tf{\land}[\LogGod](x,y) & = \min(x,y)\\
+    \tf{\lor}[\LogGod](x,y) & = \max(x,y)\\
+    \tf{\lif}[\LogGod](x,y) & = \begin{cases}
+      1 & \text{jika } x \le y\\
+      y & \text{selain itu.}
+    \end{cases}
+    \end{align*}
+\end{enumerate}
+Logika G\"odel bernilai~$m$ didefinisikan dengan cara yang sama, kecuali
+$V = V_m$.
+\end{defn}
+
+\begin{prop}
+  Logika $\LogGod[3]$ yang didefinisikan oleh
+  \olref[thr][god]{defn:goedel} sama dengan $\LogGod[3]$ yang didefinisikan
+  oleh \olref{def:goedel}.
+\end{prop}
+
+\begin{proof}
+  Hal ini dapat dilihat dengan membandingkan tabel kebenaran untuk
+  konektif-konektif yang diberikan dalam \olref[thr][god]{defn:goedel}
+  dengan tabel kebenaran yang ditentukan oleh persamaan-persamaan dalam
+  \olref{def:goedel}:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}[\LogGod[3]]$ & \\ 
+      \hline  
+      $1$ & $0$ \\ 
+      $1/2$ & $0$ \\
+      $0$ & $1$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogGod]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1/2$ & $0$ \\ 
+      $1/2$ & $1/2$ & $1/2$ & $0$\\ 
+      $0$ & $0$ & $0$ & $0$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogGod]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1$ & $1$ \\ 
+      $1/2$ & $1$ & $1/2$ & $1/2$ \\
+      $0$ & $1$ & $1/2$ & $0$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogGod]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1/2$ & $0$ \\ 
+      $1/2$ & $1$ & $1$ & $0$  \\ 
+      $0$ & $1$ & $1$ & $1$ 
+    \end{tabular}
+  \end{center} 
+\end{proof}
+
+\begin{prop}\ollabel{prop:god-infty-m}
+  Jika $\Gamma \Entails[\LogGod[\infty]] !B$, maka $\Gamma
+  \Entails[\LogGod[m]] !B$ untuk setiap~$m \ge 2$.
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[mvl][inf][god]{prop:god-infty-m}.
+\end{prob}
+
+Faktanya, kebalikannya juga berlaku.
+
+Sebagaimana dalam~$\LogGod[3]$, semua !!{formula}s yang valid secara
+intuisionistik merupakan tautologi dari~$\LogGod[\infty]$, dan contoh-contoh
+non-tautologi yang sama juga merupakan non-tautologi dari~$\LogGod[\infty]$:
+\begin{align*}
+  & p \lor \lnot p && (p \lif q) \lif (\lnot p \lor q) \\
+  & \lnot\lnot p \lif p && \lnot(\lnot p \land \lnot q) \lif (p \lor q) \\
+  & ((p \lif q) \lif p) \lif p && \lnot(p \lif q) \lif (p \land \lnot q)
+\end{align*}
+Contoh !!{formula} yang tidak valid secara intuisionistik tetapi tetap
+merupakan tautologi dari~$\LogGod[3]$, $(p \lif q) \lor (q \lif p)$, juga
+merupakan tautologi dalam~$\LogGod[\infty]$. Faktanya, $\LogGod[\infty]$
+dapat dicirikan sebagai logika intuisionistik yang diperoleh dengan
+menambahkan skema $(!A \lif !B) \lor (!B \lif !A)$. Hasil ini dibuktikan oleh
+Michael Dummett; karena itu, $\LogGod[\infty]$ sering disebut logika
+G\"odel--Dummett~$\Log{LC}$.
+
+\begin{prob}
+  Tunjukkan bahwa $(p \lif q) \lor (q \lif p)$ merupakan tautologi
+  dari~$\LogGod[\infty]$.
+\end{prob}
+
+\begin{prob}
+  Tunjukkan bahwa $(p \lif q) \lor (q \lif r) \lor (r \lif s)$, yang
+  merupakan tautologi dari~$\LogGod[3]$, bukan tautologi
+  dari~$\LogGod[\infty]$.
+\end{prob}
+
+\end{document}

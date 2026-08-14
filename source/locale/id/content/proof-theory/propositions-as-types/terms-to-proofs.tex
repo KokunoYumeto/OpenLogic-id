@@ -1,0 +1,98 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: terms-to-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{pty}{tp}
+
+\olsection{Memulihkan \usetoken{P}{derivation} dari Term Bukti}
+
+Sekarang mari kita tinjau arah sebaliknya: menerjemahkan term bukti~$N$
+kembali menjadi !!a{proof} dalam \Log{tN2i}. Secara umum, hal ini hanya dapat
+dilakukan relatif terhadap konteks yang memuat pasangan $x:!A$ bagi setiap
+variabel~$x$ yang muncul bebas dalam term bukti tersebut. Namun, kita mulai
+dengan contoh tanpa variabel bebas, yaitu term
+\[
+\lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}]
+\]
+Term ini berbentuk $\lambd[\typeof{x}{!A \land !B}][N_1]$. Karena satu-satunya
+aturan \Log{tN2i} yang menghasilkan term berbentuk demikian adalah
+\Intro{\lif}, kita mengetahui bahwa !!{proof} yang dikodekan oleh~$N$ harus
+berakhir dengan~\Intro{\lif}, yakni berakhir sebagai
+  \[
+  \Axiom$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} :
+    !C$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif !C$
+  \DisplayProof
+  \]
+Kita belum mengetahui apa itu $!C$, tetapi kita mengetahui bahwa antesedennya
+adalah $!A \land !B$ dan bahwa konteks premis harus memuat
+$x:!A \land !B$.
+
+Term bukti yang terkait dengan premis kini sudah ditentukan, yaitu
+$\pair{\proj{2}{x}}{\proj{1}{x}}$. !!^{proof} yang dikodekannya harus
+berakhir dengan \Intro{\land}. Kita masih belum mengetahui apa itu $!C$,
+tetapi karena $!C$ merupakan kesimpulan \Intro{\land}, kita mengetahui bahwa
+$!C$ harus berupa konjungsi, yakni $!C \ident (!C_1 \land !C_2)$. Kita
+melanjutkan rekonstruksinya:
+  \[
+  \Axiom$x : !A\land !B \fCenter \proj{2}{x} : !C_1$
+  \Axiom$x : !A\land !B \fCenter \proj{1}{x} : !C_2$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} :
+    !C_1 \land !C_2$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif (!C_1 \land !C_2)$
+  \DisplayProof
+  \]
+Term bukti $\proj{2}{x}$ berarti bahwa sekuen teratas di sebelah kiri
+diperoleh dengan \Elim{\land}[2], yakni premisnya berbentuk
+$!D \land !C_1$. Di sebelah kanan, kita dapat menentukan bahwa inferensi
+yang menghasilkan $!C_2$ harus berupa \Elim{\land}[1], dan premisnya
+berbentuk $!C_2 \land !E$.
+  \[
+  \Axiom$x : !A\land !B \fCenter x: !D\land !C_1$
+  \RightLabel{\Elim\land[2]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{2}{x} : !C_1$
+  \Axiom$x : !A\land !B \fCenter x: !C_2\land !E$
+  \RightLabel{\Elim\land[1]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{1}{x} : !C_2$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} :
+    !C_1 \land !C_2$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif (!C_1 \land !C_2)$
+  \DisplayProof
+  \]
+Karena term bukti dari sekuen-sekuen teratas kini berupa variabel, kita
+mengetahui bahwa sekuen-sekuen itu harus merupakan aksioma. Hal ini
+menentukan $!C_1$, $!C_2$, $!D$, dan $!E$: harus berlaku
+$!D \ident !A$ dan $!C_1 \ident !B$, sebab jika tidak, sekuen kiri bukan
+aksioma; demikian pula harus berlaku $!C_2 \ident !A$ dan $!E \ident !B$,
+sebab jika tidak, sekuen kanan bukan aksioma. Kita telah memulihkan bukti
+secara lengkap:
+  \[
+  \Axiom$x : !A\land !B \fCenter x: !A\land !B$
+  \RightLabel{\Elim\land[2]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{2}{x} : !B$
+  \Axiom$x : !A\land !B \fCenter x: !A\land !B$
+  \RightLabel{\Elim\land[1]}
+  \UnaryInf$x : !A\land !B \fCenter \proj{1}{x} : !A$
+  \RightLabel{\Intro\land}
+  \BinaryInf$x : !A\land !B \fCenter \pair{\proj{2}{x}}{\proj{1}{x}} :
+    !B \land !A$
+  \RightLabel{\Intro\lif}
+  \UnaryInf$\fCenter \lambd[\typeof{x}{!A \land
+  !B}][\pair{\proj{2}{x}}{\proj{1}{x}}] : (!A \land !B) \lif (!B \land !A)$
+  \DisplayProof
+  \]
+
+\end{document}

@@ -1,0 +1,117 @@
+% Part: methods
+% Chapter: proofs
+% Section: using-definitions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mod}{prf}{def}
+
+\olsection{Menggunakan Definisi}
+
+Kita telah menyebutkan bahwa Anda harus memahami semua definisi yang
+mungkin digunakan dalam bukti dan mampu menerapkannya dengan benar.
+Hal ini sangat penting dan layak kita telaah sedikit lebih rinci.
+Definisi digunakan untuk menyingkat sifat dan relasi sehingga kita
+dapat membicarakannya dengan lebih ringkas. Singkatan yang
+diperkenalkan disebut \emph{definiendum}, sedangkan apa yang
+disingkatnya disebut \emph{definiens}. Dalam bukti, kita sering harus
+kembali pada cara definiendum diperkenalkan, karena kita perlu
+memanfaatkan struktur logis definiens (versi panjang yang disingkat
+oleh istilah terdefinisi) agar dapat menuntaskan bukti. Dengan
+menguraikan definisi, Anda memastikan bahwa Anda sampai ke inti tempat
+kerja logis berlangsung.
+
+Kita mulai dengan sebuah contoh. Andaikan Anda ingin membuktikan hal
+berikut:
+
+\begin{prop}
+Untuk sebarang himpunan $A$ dan $B$, $A \cup B = B \cup A$.
+\end{prop}
+
+Agar dapat memulai bukti saja, kita perlu mengetahui apa artinya dua
+himpunan identik; yaitu, kita perlu mengetahui apa arti ``$=$'' dalam
+persamaan tersebut bagi himpunan. Dua himpunan didefinisikan identik
+jika keduanya memiliki !!{element} yang sama. Jadi, definisi yang perlu
+kita uraikan ialah:
+
+\begin{defn}
+Himpunan $A$ dan $B$ \emph{identik}, $A = B$, jika dan hanya jika setiap
+!!{element} dari~$A$ merupakan !!a{element} dari~$B$, dan sebaliknya.
+\end{defn}
+
+Definisi ini menggunakan $A$ dan~$B$ sebagai pengganti bagi himpunan
+sembarang. Yang didefinisikannya---\emph{definiendum}---adalah ungkapan
+``$A = B$'', dengan memberikan syarat yang membuat $A = B$ benar.
+Syarat ini---``setiap !!{element} dari~$A$ merupakan !!a{element}
+dari~$B$, dan sebaliknya''---adalah \emph{definiens}.
+\footnote{Dalam kasus khusus ini---dan sangat membingungkan!---ketika
+  $A = B$, himpunan $A$ dan $B$ sebenarnya merupakan satu himpunan
+  yang sama, walaupun kita menggunakan huruf yang berbeda untuknya di
+  ruas kiri dan kanan. Namun, cara himpunan tersebut ditentukan dapat
+  berbeda, dan itulah yang membuat definisi ini tidak sepele.}
+Definisi tersebut menetapkan bahwa $A = B$ benar jika, dan hanya jika
+(ungkapan ini dalam bahasa sumber disingkat menjadi ``iff''), syarat
+tersebut terpenuhi.
+
+Ketika menerapkan definisi, Anda harus mencocokkan $A$ dan $B$ dalam
+definisi dengan kasus yang sedang dihadapi. Dalam kasus kita, agar $A
+\cup B = B \cup A$ benar, setiap $z \in A \cup B$ juga harus berada
+dalam $B \cup A$, dan sebaliknya. Ungkapan $A \cup B$ dalam proposisi
+memainkan peran~$A$ dalam definisi, sedangkan $B \cup A$ memainkan
+peran~$B$. Karena $A$ dan $B$ digunakan baik dalam definisi maupun
+dalam pernyataan proposisi yang sedang kita buktikan, tetapi dengan
+penggunaan yang berbeda, Anda harus berhati-hati agar keduanya tidak
+tertukar. Misalnya, keliru jika mengira bahwa proposisi dapat
+dibuktikan dengan menunjukkan bahwa setiap !!{element} dari~$A$
+merupakan !!a{element} dari~$B$, dan sebaliknya---itu akan menunjukkan
+bahwa $A = B$, bukan bahwa $A \cup B = B \cup A$. (Selain itu, karena
+$A$ dan $B$ dapat berupa dua himpunan sebarang, Anda tidak akan
+melangkah jauh: jika tidak ada apa pun yang diasumsikan mengenai $A$
+dan~$B$, keduanya sangat mungkin merupakan himpunan yang berbeda.)
+
+Di dalam bukti kita berurusan dengan gagasan-gagasan teori himpunan
+seperti gabungan, sehingga kita juga harus mengetahui arti simbol
+$\cup$ agar memahami bagaimana bukti harus dilanjutkan. Kadang-kadang,
+penguraian suatu definisi melahirkan definisi lain yang juga perlu
+diuraikan. Misalnya, $A \cup B$ didefinisikan sebagai
+$\Setabs{z}{z \in A \text{ atau } z \in B}$. Jadi, jika Anda ingin
+membuktikan bahwa $x \in A \cup B$, penguraian definisi $\cup$
+memberi tahu Anda bahwa Anda harus membuktikan $x \in
+\Setabs{z}{z \in A \text{ atau } z \in B}$. Sekarang Anda juga harus
+mengingat bahwa $x \in \Setabs{z}{\dots z\dots}$ jika dan hanya jika
+$\dots x\dots$. Dengan demikian, setelah notasi
+$\Setabs{z}{\dots z \dots}$ diuraikan lebih lanjut, yang harus Anda
+tunjukkan ialah: $x \in A$ atau $x \in B$. Jadi, ``setiap !!{element}
+dari $A \cup B$ juga merupakan !!a{element} dari $B \cup A$''
+sebenarnya berarti: ``untuk setiap $x$, jika $x \in A$ atau $x \in B$,
+maka $x \in B$ atau $x \in A$.'' Jika semua definisi dalam proposisi
+diuraikan sepenuhnya, kita melihat bahwa yang harus ditunjukkan adalah
+hal berikut:
+
+\begin{prop}
+Untuk sebarang himpunan $A$ dan $B$: (a) untuk setiap $x$, jika $x \in
+A$ atau $x \in B$, maka $x \in B$ atau $x \in A$, dan (b) untuk setiap
+$x$, jika $x \in B$ atau $x \in A$, maka $x \in A$ atau $x \in B$.
+\end{prop}
+
+Yang penting ialah bahwa menguraikan definisi merupakan bagian yang
+perlu dalam menyusun bukti. Melakukannya dengan benar kadang-kadang
+sulit: Anda harus berhati-hati membedakan dan mencocokkan variabel
+dalam definisi dengan suku dalam klaim yang sedang dibuktikan. Agar
+berhasil, Anda harus mengetahui apa yang diminta oleh soal dan apa
+arti semua istilah yang digunakan dalam soal---sering kali Anda perlu
+menguraikan lebih dari satu definisi. Dalam bukti sederhana seperti
+yang terdapat di bawah ini, penyelesaiannya hampir langsung mengikuti
+definisi-definisi itu sendiri. Tentu saja, tidak selalu sesederhana
+ini.
+
+\begin{prob}
+Andaikan Anda diminta membuktikan bahwa $A \cap B \neq \emptyset$.
+Uraikan semua definisi yang muncul di sini, yaitu nyatakan kembali
+pernyataan ini dengan cara yang tidak menyebut ``$\cap$'', ``='', atau
+``$\emptyset$''.
+\end{prob}
+
+\end{document}

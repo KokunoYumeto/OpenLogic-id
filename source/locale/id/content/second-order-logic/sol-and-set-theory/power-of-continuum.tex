@@ -1,0 +1,166 @@
+% Bagian: second-order-logic
+% Bab: sol-and-sets
+% Subbagian: power-of-continuum
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{set}{pow}
+
+\olsection{Kuasa Kontinuum}
+
+\begin{explain}
+Dalam logika orde kedua kita dapat menguantifikasi atas himpunan-himpunan
+bagian !!{domain}, tetapi tidak atas himpunan yang terdiri atas
+himpunan-himpunan bagian !!{domain}. Untuk melakukannya secara langsung,
+kita memerlukan logika \emph{orde ketiga}. Misalnya, jika kita ingin
+menyatakan Teorema Cantor bahwa tidak terdapat fungsi !!{injective} dari
+himpunan kuasa suatu himpunan ke himpunan itu sendiri, kita dapat mencoba
+merumuskannya sebagai ``untuk setiap himpunan~$X$ dan setiap himpunan~$P$,
+jika $P$ adalah himpunan kuasa dari~$X$, maka tidak berlaku
+$\cardle{P}{X}$''. Untuk mengatakan bahwa $P$ adalah himpunan kuasa dari~$X$,
+kita perlu memformalkan bahwa !!{element}s dari $P$ tepat merupakan semua
+himpunan bagian dari~$X$, sehingga diperlukan sesuatu seperti
+$\lforall[Y][(P(Y) \liff Y \subseteq X)]$. Masalahnya terletak pada $P(Y)$:
+itu bukan !!a{formula} logika orde kedua, karena hanya suku yang dapat menjadi
+argumen bagi variabel relasi satu-tempat seperti~$P$.
+
+Namun, kita dapat \emph{menyimulasikan} kuantifikasi atas himpunan yang
+beranggotakan himpunan jika domain cukup besar. Gagasannya ialah memanfaatkan
+fakta bahwa
+relasi dua-tempat~$R$ menghubungkan !!{element}s dari !!{domain} dengan
+!!{element}s dari !!{domain}. Jika diberikan relasi~$R$ semacam itu, kita
+dapat menghimpun semua !!{element} yang dengannya suatu~$x$ berelasi
+menurut~$R$:
+$\Setabs{y \in \Domain{M}}{R(x,y)}$ adalah himpunan yang ``dikodekan
+oleh''~$x$. Sebaliknya, jika $Z \subseteq \Pow{\Domain{M}}$ adalah suatu
+koleksi himpunan bagian dari~$\Domain{M}$ dan !!{element}s dalam
+$\Domain{M}$ sekurang-kurangnya sama banyak dengan himpunan-himpunan
+dalam~$Z$, maka terdapat pula relasi~$R \subseteq \Domain{M}^2$ sedemikian
+sehingga setiap $Y \in Z$ dikodekan oleh suatu~$x$ melalui~$R$.
+\end{explain}
+
+\begin{defn}
+Jika $R \subseteq \Domain{M}^2$, maka \emph{$x$ mengodekan dengan~$R$}
+$\Setabs{y \in \Domain{M}}{R(x, y)}$.
+\end{defn}
+
+Jika !!a{element}~$x \in \Domain{M}$ mengodekan dengan~$R$ suatu himpunan
+$Z \subseteq \Domain{M}$, maka suatu himpunan $Y \subseteq \Domain{M}$
+mengodekan himpunan yang terdiri atas himpunan-himpunan, yakni
+himpunan-himpunan yang dikodekan oleh !!{element}s dari~$Y$. Jadi, himpunan
+$Y$ dapat mengodekan dengan~$R$ himpunan $\Pow{X}$. Hal itu terjadi jika dan
+hanya jika untuk setiap $Z \subseteq X$, suatu $x \in Y$ mengodekan
+dengan~$R$ himpunan~$Z$, dan setiap $x \in Y$ mengodekan dengan~$R$ suatu
+himpunan~$Z \subseteq X$.
+
+\begin{prop}
+!!^{formula}
+  \[
+  \fn{Codes}(x, R, Z) \ident \lforall[y][(Z(y) \liff
+    R(x, y))]
+  \]
+menyatakan bahwa $s(x)$ mengodekan dengan~$s(R)$ himpunan $s(Z)$.
+!!^{formula}
+\begin{multline*}
+  \fn{Pow}(Y, R, X) \ident \\
+  \lforall[Z][(Z \subseteq X \lif \lexists[x][(Y(x) \land
+    \fn{Codes}(x, R, Z))])] \land {} \\ \lforall[x][(Y(x) \lif
+  \lforall[Z][(\fn{Codes}(x, R, Z) \lif Z \subseteq X)])]
+\end{multline*}
+menyatakan bahwa $s(Y)$ mengodekan dengan~$s(R)$ himpunan kuasa
+dari~$s(X)$, yakni anggota-anggota $s(Y)$ mengodekan dengan~$s(R)$ tepat
+himpunan-himpunan bagian dari $s(X)$.
+\end{prop}
+
+\begin{explain}
+Dengan siasat ini, kita dapat mengungkapkan pernyataan tentang himpunan kuasa
+dengan menguantifikasi atas kode-kode himpunan bagian alih-alih atas himpunan
+bagian itu sendiri. Misalnya, Teorema Cantor kini dapat diungkapkan dengan
+mengatakan bahwa tidak terdapat fungsi !!{injective} dari domain sebarang
+relasi yang mengodekan himpunan kuasa dari~$X$ ke~$X$ sendiri.
+\end{explain}
+
+\begin{prop}
+Kalimat
+\begin{multline*}
+  \lforall[X][\lforall[Y][\lforall[R][(\fn{Pow}(Y, R, X) \lif \\
+      \lnot \lexists[u][(\lforall[x][\lforall[y][((Y(x) \land Y(y) \land
+            \eq[u(x)][u(y)]) \lif \eq[x][y])]] \land {}\\
+        \lforall[x][(Y(x) \lif X(u(x)))])])]]]
+\end{multline*}
+valid.
+\end{prop}
+
+\begin{explain}
+Himpunan kuasa dari himpunan !!a{denumerable} adalah !!{nonenumerable},
+sehingga kardinalitasnya lebih besar daripada kardinalitas sebarang himpunan
+!!{denumerable} (yaitu~$\aleph_0$). Ukuran $\Pow{\Nat}$ disebut ``kuasa
+dari kontinuum,'' karena sama dengan ukuran himpunan titik-titik pada garis
+bilangan real,~$\Real$. Jika !!{domain} cukup besar untuk mengodekan himpunan
+kuasa dari suatu himpunan !!a{denumerable}, kita dapat mengungkapkan bahwa suatu
+himpunan berukuran sama dengan kontinuum dengan mengatakan bahwa himpunan itu
+berkardinalitas sama dengan sebarang himpunan~$Y$ yang mengodekan himpunan
+kuasa dari suatu himpunan~$X$ berukuran~$\aleph_0$. (Jika domain tidak cukup
+besar, yakni tidak memuat himpunan bagian yang berkardinalitas sama
+dengan~$\Real$, maka tidak mungkin pula ada relasi yang
+mengodekan~$\Pow{X}$.)
+\end{explain}
+
+\begin{prop}
+Jika $\cardle{\Real}{\Domain{M}}$, maka !!{formula}
+\begin{multline*}
+\fn{Cont}(Y) \ident 
+\lexists[X][\lexists[R][((\fn{Aleph}_0(X) \land
+      \fn{Pow}(Y, R, X)) \land \\ 
+      \lforall[x][\lforall[y][((Y(x) \land {} 
+      Y(y) \land \lforall[z][R(x,z) \liff R(y,z)]) \lif \eq[x][y])]])]]
+\end{multline*}
+menyatakan bahwa $\cardeq{s(Y)}{\Real}$.
+\end{prop}
+
+\begin{proof}
+  $\fn{Pow}(Y, R, X)$ menyatakan bahwa $s(Y)$ mengodekan dengan~$s(R)$
+  himpunan kuasa dari~$s(X)$, yang menurut $\fn{Aleph}_0(X)$ terhitung.
+  Jadi, $s(Y)$ sekurang-kurangnya sebesar kuasa kontinuum,
+  meskipun mungkin lebih besar (jika beberapa anggota dari $s(Y)$
+  mengodekan himpunan bagian yang sama dari~$X$). Kemungkinan ini disingkirkan
+  oleh konjung terakhir, yang mensyaratkan bahwa pengaitan antara
+  anggota-anggota $s(Y)$ dan himpunan-himpunan bagian dari $s(X)$ melalui
+  $s(R)$ bersifat !!{injective}.
+\end{proof}
+
+\begin{prop}
+$\cardeq{\Domain{M}}{\Real}$ jika dan hanya jika
+\begin{multline*}
+  \Sat{M}{\lexists[X][\lexists[Y][\lexists[R][(\fn{Aleph}_0(X) \land \fn{Pow}(Y, R, X) \land \\
+          \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif \eq[x][y])]] \land {} \\\lforall[y][(Y(y) \liff \lexists[x][\eq[y][u(x)]])])])]]]}.
+        \end{multline*}
+  \end{prop}
+
+\begin{explain}
+Hipotesis Kontinuum adalah pernyataan bahwa ukuran kontinuum merupakan
+kardinalitas !!{nonenumerable} pertama, yakni bahwa $\Pow{\Nat}$
+berukuran~$\aleph_1$.
+\end{explain}
+
+\begin{prop}
+Hipotesis Kontinuum benar jika dan hanya jika \[\fn{CH} \ident
+\lforall[X][(\fn{Aleph}_1(X) \liff \fn{Cont}(X))]\] valid.
+\end{prop}
+
+Perhatikan bahwa tidak benar bahwa $\lnot \fn{CH}$ valid jika dan hanya jika
+Hipotesis Kontinuum salah. Dalam domain yang !!a{enumerable}, tidak terdapat
+himpunan bagian berukuran~$\aleph_1$ dan juga tidak terdapat himpunan bagian
+seukuran kontinuum, sehingga $\fn{CH}$ selalu benar dalam domain yang
+!!a{enumerable}. Namun, kita dapat memberikan kalimat lain yang valid jika dan
+hanya jika Hipotesis Kontinuum salah:
+
+\begin{prop}
+Hipotesis Kontinuum salah jika dan hanya jika \[\fn{NCH} \ident
+\lforall[X][(\fn{Cont}(X) \lif \lexists[Y][(Y \subseteq X \land \lnot
+    \fn{Count}(Y) \land \lnot \cardeq{X}{Y})])]\] valid.
+\end{prop}
+
+\end{document}

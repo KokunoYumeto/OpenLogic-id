@@ -1,0 +1,37 @@
+% Part: many-valued-logic
+% Chapter: infinite-valued-logics
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{inf}{int}
+
+\olsection{Pengantar}
+
+Banyaknya nilai kebenaran dalam suatu matriks tidak harus berhingga. Pilihan
+yang jelas untuk himpunan nilai kebenaran yang tak berhingga ialah himpunan
+bilangan rasional antara $0$ dan~$1$, $V_\infty = [0,1] \cap \Rat$, yakni,
+\begin{align*}
+    V_\infty & = \Setabs{\frac{n}{m}}{n,m \in \Nat \text{ dan } n\le m}.
+\intertext{Ketika mempertimbangkan himpunan nilai kebenaran tak hingga ini,
+sering kali berguna untuk juga mempertimbangkan himpunan-himpunan bagiannya}
+V_m & = \Setabs{\frac{n}{m-1}}{n \in \Nat \text{ dan } n < m}
+\intertext{Sebagai contoh, $V_5$ merupakan himpunan dengan $5$ nilai kebenaran
+yang berjarak sama,}
+V_5 & = \{0, \frac{1}{4}, \frac{1}{2}, \frac{3}{4}, 1\}.
+\end{align*}
+Dalam logika yang didasarkan pada himpunan-himpunan nilai kebenaran ini,
+biasanya $1$ merupakan satu-satunya nilai kebenaran yang ditetapkan, yakni
+$V^+ = \{1\}$. Dengan kata lain, kita membiarkan $1$ memainkan peran kebenaran
+(mutlak) dan $0$ memainkan peran kepalsuan mutlak, tetapi !!{formula}s dapat
+mengambil nilai perantara mana pun dalam~$V$.
+
+Namun, kita juga dapat mempertimbangkan himpunan $V_{[0,1]} = [0,1]$ dari
+semua bilangan \emph{real} antara $0$ dan~$1$, atau himpunan bagian tak
+berhingga lainnya dari~$[0,1]$. Logika dengan himpunan nilai kebenaran ini
+sering disebut \emph{logika kabur}.
+
+
+\end{document}

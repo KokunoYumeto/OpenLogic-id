@@ -1,0 +1,84 @@
+% Part: lambda-calculus
+% Chapter: lambda-definability
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{ldf}{int}
+\olsection{Pendahuluan}
+
+Sekilas, kalkulus lambda hanyalah kalkulus yang sangat abstrak bagi
+ekspresi-ekspresi yang merepresentasikan fungsi serta penerapan fungsi-fungsi
+itu pada ekspresi lain. Tidak ada sesuatu pun dalam sintaksis kalkulus lambda
+yang menunjukkan bahwa fungsi-fungsi tersebut bekerja pada jenis objek
+tertentu; khususnya, sintaksisnya sama sekali tidak menyebut bilangan asli.
+Operasi-operasi dasarnya---aplikasi dan abstraksi lambda---berlaku pada setiap
+fungsi, bukan hanya pada fungsi atas bilangan asli.
+
+Meskipun demikian, dengan sedikit kecerdikan, fungsi aritmetika, yakni fungsi
+atas bilangan asli, dapat didefinisikan dalam kalkulus lambda. Untuk
+melakukannya, bagi setiap bilangan asli~$n \in \Nat$, kita definisikan suatu
+suku-$\lambd$ khusus~$\num n$, yaitu \emph{numeral Church} untuk~$n$.
+(Numeral Church dinamai menurut Alonzo Church.)
+
+\begin{defn}
+  Jika $n \in \Nat$, \emph{numeral Church} yang bersesuaian, $\num{n}$,
+  merepresentasikan~$n$:
+  \[
+    \num{n} \ident \lambd[fx][f^n(x)]
+  \]
+  Di sini, $f^n(x)$ menyatakan hasil penerapan $f$ pada~$x$ sebanyak $n$
+  kali. Sebagai contoh, $\num{0}$ adalah $\lambd[fx][x]$, sedangkan $\num{3}$
+  adalah $\lambd[fx][f(f(f\,x))]$.
+\end{defn}
+  
+Numeral Church $\num n$ dikodekan sebagai suku lambda yang merepresentasikan
+suatu fungsi yang menerima dua argumen $f$ dan $x$, lalu mengembalikan
+$f^n(x)$. Jelas bahwa numeral Church berbentuk normal.
+
+Representasi bilangan asli dalam kalkulus lambda tentu hanya berguna jika kita
+dapat melakukan komputasi dengannya. Melakukan komputasi dengan numeral Church
+dalam kalkulus lambda berarti menerapkan suatu suku-$\lambd$~$F$ pada numeral
+Church semacam itu, lalu mereduksi suku gabungan~$F\, \num n$ ke bentuk normal.
+Jika suku tersebut selalu tereduksi ke bentuk normal dan bentuk normalnya selalu
+berupa numeral Church~$\num m$, kita dapat menganggap keluaran komputasi itu
+sebagai bilangan~$m$. Dengan demikian, kita dapat menganggap~$F$ mendefinisikan
+suatu fungsi $f\colon \Nat \to \Nat$, yakni fungsi sedemikian sehingga
+$f(n) = m$ jika dan hanya jika $F\, \num n \red \num m$. Berdasarkan sifat
+Church--Rosser, bentuk normal, jika ada, bersifat tunggal. Jadi, jika
+$F\, \num n \red \num m$, tidak mungkin terdapat suku lain berbentuk normal,
+khususnya numeral Church lain, yang menjadi hasil reduksi $F \, \num n$.
+
+Sebaliknya, jika diberikan suatu fungsi $f\colon \Nat \to \Nat$, kita dapat
+bertanya apakah terdapat suku $F$ yang mendefinisikan~$f$ dengan cara ini.
+Dalam hal itu kita mengatakan bahwa $F$ \emph{!!{lambda define}s}~$f$, dan
+bahwa $f$ bersifat !!{lambda definable}. Gagasan ini dapat diperumum ke fungsi
+berargumen banyak dan fungsi parsial.
+
+\begin{defn}
+Misalkan $f\colon \Nat^k \to \Nat$. Kita mengatakan bahwa suatu suku
+lambda~$F$ \emph{!!{lambda define}s} $f$ jika, untuk semua
+$n_0$, \dots,~$n_{k-1}$,
+\[
+F \, \num{n_0} \, \num{n_1} \dots \num{n_{k-1}} \red \num{f(n_0, n_1, \dots,
+  n_{k-1})}
+\]
+apabila $f(n_0, \dots, n_{k-1})$ terdefinisi, sedangkan
+$F \, \num{n_0} \, \num{n_1} \dots \num{n_{k-1}}$ tidak mempunyai bentuk
+normal dalam kasus lainnya.
+\end{defn}
+
+Contoh yang sangat sederhana ialah fungsi-fungsi konstan. Suku $C_k \ident
+\lambd[x][\num{k}]$ !!{lambda define}s fungsi $c_k\colon \Nat \to
+\Nat$ sedemikian sehingga $c_k(n) = k$. Sebab,
+$C_k \, \num n \ident (\lambd[x][\num{k}])\num n \redone \num{k}$ untuk
+setiap~$n$.
+Fungsi identitas !!{lambda defined} oleh $\lambd[x][x]$. Fungsi yang lebih
+kompleks tentu lebih sukar didefinisikan dan sering kali menuntut banyak
+kecerdikan. Karena itu, mungkin mengejutkan bahwa setiap fungsi yang dapat
+dihitung bersifat !!{lambda definable}. Konversnya juga benar: jika suatu
+fungsi bersifat !!{lambda definable}, fungsi itu dapat dihitung.
+
+\end{document}

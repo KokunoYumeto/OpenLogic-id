@@ -1,0 +1,238 @@
+% Part: methods
+% Chapter: proofs
+% Section: proof-by-contradiction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mth}{prf}{con}
+
+\olsection{Pembuktian dengan Kontradiksi}
+
+Pada mulanya, pembuktian dengan kontradiksi merupakan pola inferensi
+yang digunakan untuk membuktikan klaim negatif. Andaikan Anda ingin
+menunjukkan bahwa suatu klaim~$p$ \emph{salah}, yaitu Anda ingin
+menunjukkan~$\lnot p$. Strategi yang paling menjanjikan ialah (a)
+mengandaikan bahwa $p$~benar, dan (b) menunjukkan bahwa asumsi ini
+menuntun pada sesuatu yang Anda ketahui salah. ``Sesuatu yang diketahui
+salah'' dapat berupa hasil yang bertentangan---berkontradiksi---dengan
+$p$ itu sendiri, atau dengan hipotesis lain dari keseluruhan klaim
+yang sedang Anda telaah. Misalnya, bukti atas ``jika $q$, maka $\lnot
+p$'' melibatkan pengasumsian bahwa $q$~benar dan pembuktian~$\lnot p$
+darinya. Jika Anda membuktikan $\lnot p$ dengan kontradiksi, itu
+berarti mengasumsikan $p$ di samping~$q$. Jika Anda dapat membuktikan
+$\lnot q$ dari $p$, Anda telah menunjukkan bahwa asumsi~$p$ menuntun
+pada sesuatu yang bertentangan dengan asumsi Anda yang lain, yaitu
+~$q$, sebab $q$~dan $\lnot q$ tidak dapat sama-sama benar. Tentu saja,
+dalam membuktikan kontradiksi Anda harus menggunakan pola inferensi
+lain serta menguraikan definisi. Mari kita telaah sebuah contoh.
+
+\begin{prop}
+  Jika $A \subseteq B$ dan $B = \emptyset$, maka $A$ tidak memiliki
+  !!{element}.
+\end{prop}
+
+\begin{proof}
+  Andaikan $A \subseteq B$ dan $B = \emptyset$. Kita ingin menunjukkan
+  bahwa $A$ tidak memiliki !!{element}.
+  \begin{quote}
+    Karena ini merupakan klaim kondisional, kita mengasumsikan
+    anteseden dan ingin membuktikan konsekuennya. Konsekuennya ialah:
+    $A$ tidak memiliki !!{element}. Kita dapat membuatnya sedikit
+    lebih eksplisit: tidak benar bahwa ada~$x \in A$.
+  \end{quote}
+  $A$ tidak memiliki !!{element} jika dan hanya jika tidak benar bahwa
+  ada~$x$ sedemikian sehingga $x \in A$.
+  \begin{quote}
+    Jadi, kita telah menentukan bahwa yang sebenarnya ingin kita
+    buktikan adalah klaim negatif~$\lnot p$, yaitu: tidak benar bahwa
+    ada $x \in A$. Untuk menggunakan pembuktian dengan kontradiksi,
+    kita harus mengasumsikan klaim positif yang bersesuaian, yaitu~$p$:
+    ada $x \in A$, lalu membuktikan suatu kontradiksi darinya. Kita
+    menandai bahwa kita sedang melakukan pembuktian dengan kontradiksi
+    dengan menulis ``untuk memperoleh kontradiksi, asumsikan'' atau
+    bahkan sekadar ``andaikan tidak'', lalu menyatakan asumsi~$p$.
+  \end{quote}
+  Andaikan tidak: ada $x \in A$.
+  \begin{quote}
+    Sekarang inilah asumsi baru yang akan kita gunakan untuk memperoleh
+    kontradiksi. Kita memiliki dua asumsi lagi: bahwa $A \subseteq B$
+    dan bahwa $B = \emptyset$. Asumsi pertama memberi kita $x \in B$:
+  \end{quote}
+  Karena $A \subseteq B$, maka $x \in B$.
+  \begin{quote}
+    Namun, karena $B = \emptyset$, setiap !!{element} dari $B$
+    (misalnya $x$) juga harus merupakan !!a{element} dari~$\emptyset$.
+  \end{quote}
+  Karena $B = \emptyset$, maka $x \in \emptyset$. Ini merupakan
+  kontradiksi, sebab menurut definisi $\emptyset$ tidak memiliki
+  !!{element}.
+  \begin{quote}
+    Ini sudah menuntaskan bukti: dari asumsi-asumsi yang kita siapkan,
+    kita telah tiba pada apa yang diperlukan (suatu kontradiksi), dan
+    ini berarti semua asumsi itu tidak mungkin benar secara bersamaan.
+    Karena dua asumsi pertama ($A \subseteq B$ dan $B = \emptyset$)
+    tidak dipersoalkan, asumsi terakhir yang diperkenalkan (ada $x \in
+    A$) pastilah salah. Namun, jika ingin benar-benar teliti, kita
+    dapat menyatakannya secara eksplisit.
+  \end{quote}
+  Dengan demikian, asumsi kita bahwa ada $x \in A$ pastilah salah;
+  jadi, melalui pembuktian dengan kontradiksi, $A$ tidak memiliki
+  !!{element}.
+\end{proof}
+
+Setiap klaim positif secara sepele ekuivalen dengan suatu klaim
+negatif: $p$ jika dan hanya jika $\lnot\lnot p$. Jadi, pembuktian
+dengan kontradiksi juga dapat digunakan untuk menetapkan klaim positif
+secara ``tidak langsung'', sebagai berikut: Untuk membuktikan~$p$,
+bacalah ia sebagai klaim negatif $\lnot\lnot p$. Jika kita dapat
+membuktikan suatu kontradiksi dari $\lnot p$, kita telah menetapkan
+$\lnot\lnot p$ melalui pembuktian dengan kontradiksi, dan dengan
+demikian menetapkan~$p$.
+
+Dalam contoh terakhir, kita bertujuan membuktikan klaim negatif, yaitu
+bahwa $A$ tidak memiliki !!{element}, sehingga asumsi yang kita buat
+untuk keperluan pembuktian dengan kontradiksi (yaitu bahwa ada $x \in
+A$) merupakan klaim positif. Asumsi itu memberi kita sesuatu yang
+dapat diolah, yakni $x \in A$ hipotetis yang terus kita nalar sampai
+kita memperoleh $x \in \emptyset$.
+
+Ketika membuktikan klaim positif secara tidak langsung, asumsi yang
+Anda buat untuk keperluan pembuktian dengan kontradiksi akan bersifat
+negatif. Namun, sangat sering Anda dapat dengan mudah merumuskan
+kembali klaim positif sebagai klaim negatif, dan klaim negatif sebagai
+klaim positif. Bukti kita sebelumnya pada dasarnya akan tetap sama
+seandainya kita membuktikan ``$A = \emptyset$'' sebagai ganti
+konsekuen negatif ``$A$ tidak memiliki !!{element}.'' (Menurut definisi
+$=$, ``$A = \emptyset$'' merupakan klaim umum, sebab ia terurai menjadi
+``setiap !!{element} dari~$A$ merupakan !!{element} dari~$\emptyset$,
+dan sebaliknya''.) Namun, pernyataan itu mudah dilihat ekuivalen dengan
+klaim negatif ``tidak benar bahwa ada $x \in A$.''
+
+Jadi, kadang-kadang lebih mudah bekerja dengan $\lnot p$ sebagai
+asumsi daripada membuktikan~$p$ secara langsung. Bahkan ketika bukti
+langsung sama sederhananya atau lebih sederhana (seperti dalam
+contoh-contoh berikut), sebagian orang lebih suka melangkah secara
+tidak langsung. Jika negasi ganda membingungkan Anda, pandanglah
+pembuktian dengan kontradiksi atas suatu klaim sebagai pembuktian suatu
+kontradiksi dari klaim yang \emph{berlawanan}. Jadi, pembuktian dengan
+kontradiksi atas $\lnot p$ adalah pembuktian suatu kontradiksi dari
+asumsi~$p$; dan pembuktian dengan kontradiksi atas~$p$ adalah
+pembuktian suatu kontradiksi dari~$\lnot p$.
+
+\begin{prop}
+$A \subseteq A \cup B$.
+\end{prop}
+
+\begin{proof}
+  Kita ingin menunjukkan bahwa $A \subseteq A \cup B$.
+  \begin{quote}
+    Sepintas lalu, ini merupakan klaim positif: setiap $x \in A$ juga
+    berada dalam $A \cup B$. Negasinya ialah: terdapat suatu $x \in A$
+    yang memenuhi $\notin A \cup B$. Jadi, kita dapat membuktikan
+    klaim ini secara tidak langsung dengan mengasumsikan klaim yang
+    dinegasikan tersebut dan menunjukkan bahwa klaim itu menuntun pada
+    suatu kontradiksi.
+  \end{quote}
+  Andaikan tidak, yaitu $A \nsubseteq A \cup B$.
+  \begin{quote}
+    Kita memiliki definisi $A \subseteq A \cup B$: setiap $x \in A$
+    juga memenuhi $\in A \cup B$. Untuk memahami arti $A \nsubseteq
+    A \cup B$, kita harus menerapkan sedikit manipulasi logis dasar
+    pada definisi yang telah diuraikan: pernyataan bahwa setiap $x \in
+    A$ juga memenuhi $\in A \cup B$ adalah salah jika dan hanya jika
+    ada \emph{suatu}~$x \in A$ yang memenuhi $\notin A \cup B$.
+    (Di sinilah Anda harus sangat berhati-hati: banyak upaya mahasiswa
+    untuk membuktikan dengan kontradiksi gagal karena mereka keliru
+    menganalisis negasi klaim seperti ``semua $A$ adalah $B$''.) Dengan
+    kata lain, $A \nsubseteq A \cup B$ jika dan hanya jika ada $x$
+    sedemikian sehingga $x \in A$ dan $x \notin A \cup B$. Sejak itu,
+    langkah selanjutnya mudah.
+  \end{quote}
+  Jadi, ada $x \in A$ sedemikian sehingga $x \notin A \cup B$. Menurut
+  definisi $\cup$, $x \in A \cup B$ jika dan hanya jika $x \in A$ atau
+  $x \in B$. Karena $x \in A$, kita memperoleh $x \in A \cup B$. Ini
+  bertentangan dengan asumsi bahwa $x \notin A \cup B$.
+\end{proof}
+
+\begin{prob}
+Buktikan secara \emph{tidak langsung} bahwa $A \cap B \subseteq A$.
+\end{prob}
+
+\begin{prop}
+Jika $A \subseteq B$ dan $B \subseteq C$, maka $A \subseteq C$.
+\end{prop}
+
+\begin{proof}
+  Andaikan $A \subseteq B$ dan $B \subseteq C$. Kita ingin menunjukkan
+  $A \subseteq C$.
+  \begin{quote}
+    Mari kita melangkah secara tidak langsung: kita mengasumsikan
+    negasi dari apa yang ingin ditetapkan.
+  \end{quote}
+  Andaikan tidak, yaitu $A \nsubseteq C$.
+  \begin{quote}
+    Seperti sebelumnya, kita menalar bahwa $A \nsubseteq C$ jika dan
+    hanya jika tidak semua $x \in A$ juga memenuhi $\in C$, yaitu
+    terdapat suatu $x \in A$ yang memenuhi $\notin C$. Jangan
+    khawatir, dengan latihan Anda tidak perlu lagi berpikir keras untuk
+    menguraikan negasi semacam ini.
+  \end{quote}
+  Dengan kata lain, ada~$x$ sedemikian sehingga $x \in A$ dan $x
+  \notin C$.
+  \begin{quote}
+    Sekarang kita dapat menggunakan hal ini untuk memperoleh
+    kontradiksi. Tentu saja, untuk melakukannya kita harus menggunakan
+    kedua asumsi yang lain.
+  \end{quote}
+  Karena $A \subseteq B$, maka $x \in B$. Karena $B \subseteq C$, maka
+  $x \in C$. Namun, ini bertentangan dengan $x \notin C$.
+\end{proof}
+
+\begin{prop}
+Jika $A \cup B = A \cap B$, maka $A = B$.
+\end{prop}
+
+\begin{proof}
+  Andaikan $A \cup B = A \cap B$. Kita ingin menunjukkan bahwa $A = B$.
+  \begin{quote}
+    Bagian awalnya sekarang sudah rutin:
+  \end{quote}
+  Untuk memperoleh kontradiksi, asumsikan bahwa $A \neq B$.
+  \begin{quote}
+    Asumsi kita untuk pembuktian dengan kontradiksi ialah bahwa $A
+    \neq B$. Karena $A = B$ jika dan hanya jika $A \subseteq B$ dan
+    $B \subseteq A$, kita memperoleh bahwa $A \neq B$ jika dan hanya
+    jika $A \nsubseteq B$ \emph{atau} $B \nsubseteq A$. (Perhatikan
+    betapa pentingnya berhati-hati ketika memanipulasi negasi!{}) Untuk
+    membuktikan suatu kontradiksi dari disjungsi ini, kita menggunakan
+    pembuktian dengan kasus dan menunjukkan bahwa dalam setiap kasus,
+    suatu kontradiksi mengikuti.
+  \end{quote}
+  $A \neq B$ jika dan hanya jika $A \nsubseteq B$ atau $B \nsubseteq
+  A$. Kita bedakan kasus.
+  \begin{quote}
+    Dalam kasus pertama, kita mengasumsikan $A \nsubseteq B$, yaitu
+    untuk suatu $x$, $x \in A$ tetapi $\notin B$. $A \cap B$
+    didefinisikan sebagai himpunan !!{element} yang dimiliki bersama
+    oleh $A$ dan $B$, sehingga jika sesuatu tidak berada dalam salah
+    satunya, sesuatu itu tidak berada dalam irisan. $A \cup B$ adalah
+    $A$ bersama dengan $B$, sehingga segala sesuatu yang berada dalam
+    salah satunya juga berada dalam gabungan. Ini memberi tahu kita
+    bahwa $x \in A \cup B$, tetapi $x \notin A \cap B$, sehingga $A
+    \cap B \neq A \cup B$.
+  \end{quote}
+
+  Kasus 1: $A \nsubseteq B$. Maka, untuk suatu $x$, $x \in A$, tetapi
+  $x \notin B$. Karena $x \notin B$, maka $x \notin A \cap B$. Karena
+  $x \in A$, maka $x \in A \cup B$. Jadi, $A \cap B \neq A \cup B$,
+  bertentangan dengan asumsi bahwa $A \cap B = A \cup B$.
+
+  Kasus 2: $B \nsubseteq A$. Maka, untuk suatu $y$, $y \in B$, tetapi
+  $y \notin A$. Seperti sebelumnya, kita memperoleh $y \in A \cup B$,
+  tetapi $y \notin A \cap B$, sehingga $A \cap B \neq A \cup B$,
+  sekali lagi bertentangan dengan $A \cap B = A \cup B$.
+\end{proof}
+
+\end{document}

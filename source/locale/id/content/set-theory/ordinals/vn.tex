@@ -1,0 +1,64 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{ordinals}{vn}
+\olsection[Konstruksi von Neumann]{Konstruksi von Neumann atas Ordinal}
+
+\olref[sth][ordinals][iso]{thm:woalwayscomparable} memunculkan suatu gagasan.
+Kita dapat memperkenalkan objek-objek tertentu, yang disebut \emph{tipe
+urutan}, untuk bertindak sebagai wakil pengurutan baik. Dengan menulis
+$\ordtype{A, <}$ untuk tipe urutan dari pengurutan baik $\tuple{A, <}$, kita
+berharap dapat memperoleh dua prinsip berikut:
+\begin{align*}
+	\ordtype{A, <} = \ordtype{B, \lessdot} &
+	\text{ jika dan hanya jika } \ordeq{\tuple{A, <}}{\tuple{B, \lessdot}}\\
+	\ordtype{A, <} < \ordtype{B, \lessdot}&
+	\text{ jika dan hanya jika }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}\text{ untuk suatu }b \in B
+\end{align*}
+Selain itu, kita mungkin berharap dapat memperkenalkan tipe-tipe urutan
+\emph{sebagai himpunan-himpunan tertentu}, sama seperti kita dapat
+memperkenalkan bilangan asli sebagai himpunan-himpunan tertentu.
+
+Cara paling umum untuk melakukannya---dan pendekatan yang akan kita
+ikuti---adalah mendefinisikan tipe-tipe urutan ini melalui
+himpunan-himpunan terurut baik \emph{kanonik} tertentu. Himpunan-himpunan
+kanonik ini pertama kali diperkenalkan oleh von Neumann:
+
+\begin{defn}
+Himpunan $A$ bersifat \emph{transitif} jika dan hanya jika $(\forall x \in
+A)x \subseteq A$. Kemudian, $A$ merupakan suatu \emph{ordinal} jika dan hanya
+jika $A$ bersifat transitif dan diurutkan dengan baik oleh $\in$.
+\end{defn}
+\noindent
+Dalam pembahasan berikut, kita akan menggunakan huruf-huruf Yunani untuk
+ordinal. Langsung dari definisi mengikuti bahwa, jika $\alpha$ merupakan
+suatu ordinal, maka $\tuple{\alpha, \in_\alpha}$ merupakan suatu pengurutan
+baik, dengan $\in_\alpha = \Setabs{\tuple{x, y} \in \alpha^2}{x \in y}$.
+Jadi, dengan sedikit menyalahgunakan notasi, kita dapat mengatakan bahwa
+$\alpha$ \emph{sendiri} merupakan suatu pengurutan baik.
+
+Berikut beberapa ordinal pertama kita:
+\[
+	\emptyset, \{\emptyset\},
+	\{\emptyset, \{\emptyset\}\},
+	\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}, \ldots
+\]
+Anda akan memperhatikan bahwa ini merupakan beberapa ordinal pertama yang
+kita jumpai dalam Aksioma Ketakhinggaan kita, yakni dalam definisi von
+Neumann atas $\omega$ (lihat \olref[sth][z][infinity-again]{sec}). Hal ini
+bukan kebetulan. Definisi von Neumann atas ordinal memperlakukan bilangan
+asli sebagai ordinal, tetapi juga membolehkan ordinal transfinit.
+
+Seperti biasa, kini kita dapat bertanya: \emph{apakah} semua ini merupakan
+ordinal? Ataukah von Neumann sekadar memberi kita beberapa himpunan yang
+dapat kita \emph{perlakukan} sebagai ordinal? Jenis pembahasan yang mungkin
+dilakukan mengenai pertanyaan ini serupa dengan pembahasan kita dalam
+\olref[sfr][rel][ref]{sec},
+\olref[sfr][arith][ref]{sec},
+\olref[sfr][infinite][dedekindsproof]{sec}, dan
+\olref[sth][z][nat]{sec}, sehingga kita tidak akan berpanjang lebar mengenai
+hal itu. Sebaliknya, dalam pembahasan berikut, kita cukup menggunakan
+``ordinal'' untuk membicarakan ``ordinal von Neumann''.
+
+\end{document}

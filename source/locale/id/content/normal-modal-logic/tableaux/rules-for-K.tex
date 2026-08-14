@@ -1,0 +1,277 @@
+% Bagian: normal-modal-logic
+% Bab: tableaux
+% Subbagian: rules-for-K
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{tab}{rul}
+
+\olsection{Aturan bagi \Ax{K}}
+
+Aturan bagi konektif proposisional biasa sama dengan aturan bagi
+!!{tableau} proposisional bertanda biasa, hanya dengan prefiks yang
+ditambahkan. Dalam setiap kasus, aturan yang diterapkan pada !!{formula}
+bertanda $\sFmla{S}{!A}[\sigma]$ menghasilkan !!{formula} baru yang juga
+berprefiks~$\sigma$. Hal ini seharusnya jelas secara intuitif: misalnya, jika
+$!A \land !B$ benar pada (dunia yang dinamai oleh)~$\sigma$, maka $!A$ dan
+$!B$ benar pada~$\sigma$ (dan bukan pada dunia lain). Kita menghimpun aturan
+proposisional dalam \olref{tab:prop-rules}.
+
+\begin{table}
+  \[\def\arraystretch{3}\begin{array}{|c|c|}
+    \hline
+    \AxiomC{\sFmla{\True}{\lnot !A}[\sigma]}
+    \RightLabel{\TRule{\True}{\lnot}}
+    \UnaryInfC{\sFmla{\False}{!A}[\sigma]}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{\lnot !A}[\sigma]}
+    \RightLabel{\TRule{\False}{\lnot}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma]}
+    \DisplayProof
+    \\[1ex]
+    \hline
+    \AxiomC{\sFmla{\True}{!A \land !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\land}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma]}
+    \noLine
+    \UnaryInfC{\sFmla{\True}{!B}[\sigma]}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \land !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\land}}
+    \UnaryInfC{$\sFmla{\False}{!A}[\sigma] \quad \mid \quad
+      \sFmla{\False}{!B}[\sigma]$}
+    \DisplayProof
+    \\[2ex]
+    \hline
+    \AxiomC{\sFmla{\True}{!A \lor !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\lor}}
+    \UnaryInfC{$\sFmla{\True}{!A}[\sigma] \quad \mid \quad
+      \sFmla{\True}{!B}[\sigma]$}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \lor !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\lor}}
+    \UnaryInfC{\sFmla{\False}{!A}[\sigma]}
+    \noLine
+    \UnaryInfC{\sFmla{\False}{!B}[\sigma]}
+    \DisplayProof
+    \\[2ex]
+    \hline
+    \AxiomC{\sFmla{\True}{!A \lif !B}[\sigma]}
+    \RightLabel{\TRule{\True}{\lif}}
+    \UnaryInfC{$\sFmla{\False}{!A}[\sigma] \quad \mid
+      \quad \sFmla{\True}{!B}[\sigma]$}
+    \DisplayProof
+    &
+    \AxiomC{\sFmla{\False}{!A \lif !B}[\sigma]}
+    \RightLabel{\TRule{\False}{\lif}}
+    \UnaryInfC{\sFmla{\True}{!A}[\sigma]}
+    \noLine
+    \UnaryInfC{\sFmla{\False}{!B}[\sigma]}
+    \DisplayProof
+    \\[2ex]
+    \hline
+  \end{array}\]
+  \caption{Aturan !!{tableau} berprefiks bagi konektif proposisional}
+  \ollabel{tab:prop-rules}
+\end{table}
+
+Syarat penutupan sama seperti syarat bagi !!{tableau} biasa, meskipun kita
+mensyaratkan agar bukan hanya !!{formula}, melainkan prefiksnya juga cocok.
+Jadi, suatu cabang tertutup jika memuat keduanya,
+\[
+\sFmla{\True}{!A}[\sigma] \quad\text{dan}\quad
+\sFmla{\False}{!A}[\sigma]
+\]
+untuk suatu prefiks $\sigma$ dan !!{formula}~$!A$.
+
+Aturan untuk menetapkan asumsi juga sama seperti aturan bagi !!{tableau}
+biasa, kecuali bahwa untuk asumsi kita selalu menggunakan prefiks~$1$.
+(Tidak penting prefiks mana yang kita gunakan, asalkan prefiks tersebut sama
+untuk semua asumsi.) Jadi, misalnya, kita mengatakan bahwa
+\[
+!B_1, \dots, !B_n \Proves !A
+\]
+jika dan hanya jika terdapat tableau tertutup untuk asumsi-asumsi
+\[
+\sFmla{\True}{!B_1}[1], \dots, \sFmla{\True}{!B_n}[1],
+\sFmla{\False}{!A}[1].
+\]
+
+Untuk operator modal\iftag{prvBox}{\iftag{prvDiamond}{~$\Box$
+    dan}{~$\Box$}}{}\iftag{prvDiamond}{~$\Diamond$}{}, prefiks pada
+kesimpulan aturan yang diterapkan pada !!a{formula} berprefiks~$\sigma$
+adalah $\sigma.n$. Namun, nilai $n$ yang diizinkan bergantung pada apakah
+tandanya~$\True$ atau~$\False$.
+
+\iftag{prvBox}{Aturan $\TRule{\True}{\Box}$ memperluas suatu cabang
+  yang memuat $\sFmla{\True}{\Box !A}[\sigma]$ dengan
+  $\sFmla{\True}{!A}[\sigma.n]$.\iftag{prvDiamond}{ Demikian pula,
+    a}{}}{A}\iftag{prvDiamond}{turan $\TRule{\False}{\Diamond}$
+  memperluas suatu cabang yang memuat
+  $\sFmla{\False}{\Diamond !A}[\sigma]$ dengan
+  $\sFmla{\False}{!A}[\sigma.n]$.}{}
+\iftag{notprvBox,notprvDiamond}{Aturan itu}{Aturan-aturan itu} hanya dapat
+diterapkan untuk prefiks~$\sigma.n$ yang \emph{sudah} muncul pada cabang
+tempat aturan tersebut diterapkan. Mari kita sebut prefiks semacam itu
+``sudah digunakan'' (pada cabang tersebut).
+
+\iftag{prvBox}{Aturan $\TRule{\False}{\Box}$ memperluas suatu cabang
+  yang memuat $\sFmla{\False}{\Box !A}[\sigma]$ dengan
+  $\sFmla{\False}{!A}[\sigma.n]$.\iftag{prvDiamond}{ Demikian pula,
+    a}{}}{A}\iftag{prvDiamond}{turan $\TRule{\True}{\Diamond}$ memperluas
+  suatu cabang yang memuat $\sFmla{\True}{\Diamond !A}[\sigma]$ dengan
+  $\sFmla{\True}{!A}[\sigma.n]$.}{}
+Namun, \iftag{notprvBox,notprvDiamond}{aturan ini}{aturan-aturan ini} hanya
+dapat diterapkan untuk prefiks~$\sigma.n$ yang \emph{belum} muncul pada
+cabang tempat aturan tersebut diterapkan. Kita menyebut prefiks semacam itu
+``baru'' (bagi cabang tersebut).
+
+Aturan-aturan itu diberikan dalam \olref{tab:rules-K}.
+
+\begin{table}
+  \begin{center}
+    \def\arraystretch{3}\def\fCenter{}
+    \begin{tabular}{|c|c|}
+    \hline
+    \iftag{prvBox}{
+      \AxiomC{\sFmla{\True}{\Box !A}[\sigma]}
+      \RightLabel{\TRule{\True}{\Box}}
+      \UnaryInfC{\sFmla{\True}{!A}[\sigma.n]}
+      \DisplayProof
+      &
+      \AxiomC{\sFmla{\False}{\Box !A}[\sigma]}
+      \RightLabel{\TRule{\False}{\Box}}
+      \UnaryInfC{\sFmla{\False}{!A}[\sigma.n]}
+      \DisplayProof\\
+      $\sigma.n$ sudah digunakan & $\sigma.n$ baru
+      \\[1ex]
+      \hline}{}
+    \iftag{prvDiamond}{
+      \AxiomC{\sFmla{\True}{\Diamond !A}[\sigma]}
+      \RightLabel{\TRule{\True}{\Diamond}}
+      \UnaryInfC{\sFmla{\True}{!A}[\sigma.n]}
+      \DisplayProof
+      &
+      \AxiomC{\sFmla{\False}{\Diamond !A}[\sigma]}
+      \RightLabel{\TRule{\False}{\Diamond}}
+      \UnaryInfC{\sFmla{\False}{!A}[\sigma.n]}
+      \DisplayProof\\
+      $\sigma.n$ baru & $\sigma.n$ sudah digunakan
+      \\[1ex]
+      \hline}{}
+    \end{tabular}
+  \end{center}
+  \caption{Aturan modal bagi \Ax{K}.}
+  \ollabel{tab:rules-K}
+\end{table}
+
+Syarat bahwa prefiks bagi
+\iftag{prvBox}{\TRule{\True}{\Box}}{\TRule{\False}{\Diamond}} harus sudah
+digunakan memang diperlukan; tanpa syarat itu, kita akan menganggap yang
+berikut sebagai !!{tableau} tertutup:
+\iftag{notprvBox,notprvDiamond}{%
+  \iftag{prvBox}{%
+  \begin{oltableau}
+    [\pFmla{\True}{\Box \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\lnot\Box\lnot \formula{A}}{1}, just = \TAss
+        [\pFmla{\True}{\formula{A}}{1.1}, just = {\TRule{\True}{\Box}[1]}
+          [\pFmla{\True}{\Box\lnot\formula{A}}{1},
+            just ={\TRule{\False}{\lnot}[2]}
+            [\pFmla{\True}{\lnot\formula{A}}{1.1},
+              just = {\TRule{\True}{\Box}[4]}
+              [\pFmla{\False}{\formula{A}}{1.1},
+                  just ={\TRule{\True}{\lnot}[5]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  }{
+  \begin{oltableau}
+    [\pFmla{\True}{\lnot\Diamond\lnot \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\Diamond\formula{A}}{1}, just = \TAss
+        [\pFmla{\False}{\formula{A}}{1.1}, just = {\TRule{\False}{\Diamond}[2]}
+          [\pFmla{\False}{\Diamond\lnot\formula{A}}{1},
+            just ={\TRule{\True}{\lnot}[1]}
+            [\pFmla{\False}{\lnot\formula{A}}{1.1},
+              just = {\TRule{\False}{\Diamond}[4]}
+              [\pFmla{\True}{\formula{A}}{1.1},
+                  just ={\TRule{\True}{\lnot}[5]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+}}{
+  \begin{oltableau}
+    [\pFmla{\True}{\Box \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\Diamond \formula{A}}{1}, just = \TAss
+        [\pFmla{\True}{\formula{A}}{1.1}, just = {\TRule{\True}{\Box}[1]}
+          [\pFmla{\False}{\formula{A}}{1.1},
+            just = {\TRule{\False}{\Diamond}[2]}, close]
+        ]
+      ]
+    ]
+\end{oltableau}}
+
+Namun, $\Box \formula{A} \Entails/ \Diamond \formula{A}$, sehingga sistem
+pembuktian kita akan menjadi tidak sahih. Demikian pula,
+$\Diamond \formula{A} \Entails/ \Box \formula{A}$; tetapi tanpa syarat
+bahwa prefiks bagi
+\iftag{prvBox}{\TRule{\False}{\Box}}{\TRule{\True}{\Diamond}} harus baru,
+yang berikut akan menjadi tableau tertutup:
+\iftag{notprvBox,notprvDiamond}{%
+  \iftag{prvBox}{%
+  \begin{oltableau}
+    [\pFmla{\True}{\lnot\Box\lnot \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\Box \formula{A}}{1}, just = \TAss
+        [\pFmla{\False}{\formula{A}}{1.1}, just = {\TRule{\True}{\Box}[2]}
+          [\pFmla{\False}{\Box\lnot\formula{A}}{1},
+            just ={\TRule{\True}{\lnot}[1]}
+            [\pFmla{\False}{\lnot\formula{A}}{1.1},
+              just = {\TRule{\False}{\Box}[4]}
+              [\pFmla{\True}{\formula{A}}{1.1},
+                  just ={\TRule{\False}{\lnot}[5]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  }{
+  \begin{oltableau}
+    [\pFmla{\True}{\Diamond \formula{A}}{1}, just = \TAss
+      [\pFmla{\False}{\lnot\Diamond\lnot\formula{A}}{1}, just = \TAss
+        [\pFmla{\True}{\formula{A}}{1.1}, just = {\TRule{\True}{\Diamond}[1]}
+          [\pFmla{\True}{\Diamond\lnot\formula{A}}{1},
+            just ={\TRule{\False}{\lnot}[2]}
+            [\pFmla{\True}{\lnot\formula{A}}{1.1},
+              just = {\TRule{\True}{\Diamond}[4]}
+              [\pFmla{\False}{\formula{A}}{1.1},
+                  just ={\TRule{\True}{\lnot}[5]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+}}{
+  \begin{oltableau}
+    [\pFmla{\True}{\Diamond \formula{A}}{1}, just = \TAss,name=one
+      [\pFmla{\False}{\Box \formula{A}}{1}, just = \TAss, name=two
+        [\pFmla{\True}{\formula{A}}{1.1}, just = {\TRule{\True}{\Diamond}[1]}
+          [\pFmla{\False}{\formula{A}}{1.1},
+            just = {\TRule{\False}{\Box}[2]}, close]
+        ]
+      ]
+    ]
+  \end{oltableau}}
+
+\end{document}

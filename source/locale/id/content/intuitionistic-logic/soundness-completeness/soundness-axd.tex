@@ -1,0 +1,61 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: soundness-axd
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{sc}{sax}
+
+\olsection{Kesahihan \usetoken{P}{derivation} Aksiomatik}
+
+\begin{editorial}
+  Bukti kesahihan bergantung pada fakta bahwa semua aksioma valid secara
+  intuisionistik; fakta ini masih perlu dibuktikan, misalnya dalam bab
+  Semantik.
+\end{editorial}
+
+\begin{thm}[Kesahihan]
+  \ollabel{thm:soundness}
+  Jika $\Gamma\Proves !A$, maka $\Gamma\Entails !A$.
+\end{thm}
+
+\begin{proof}
+  Kita membuktikan bahwa jika $\Gamma\Proves !A$, maka
+  $\Gamma\Entails !A$. Bukti dilakukan dengan induksi pada jumlah~$n$
+  !!{formula}s dalam !!{derivation}~$!A$ dari~$\Gamma$. Kita menunjukkan
+  bahwa jika $!A_1$, \dots, $!A_n=!A$ merupakan !!a{derivation}
+  dari~$\Gamma$, maka $\Gamma\Entails !A_n$. Perhatikan bahwa jika $!A_1$,
+  \dots, $!A_n$ merupakan !!a{derivation}, demikian pula $!A_1$, \dots,
+  $!A_k$ untuk setiap $k<n$.
+
+  Tidak ada !!{derivation}s yang panjangnya~$0$, sehingga untuk $n=0$ klaim
+  berlaku secara hampa. Jadi, klaim berlaku bagi semua !!{derivation}s yang
+  panjangnya~$<n$. Kita membedakan kasus menurut justifikasi~$!A_n$.
+
+  \begin{enumerate}
+  \item $!A_n$ merupakan aksioma. Semua aksioma valid, sehingga
+    $\Gamma\Entails !A_n$ untuk sebarang~$\Gamma$.
+  \item $!A_n\in\Gamma$. Maka, untuk setiap $\mModel{M}$ dan $w$, jika
+    $\mSat{M}{\Gamma}[w]$, jelas bahwa $\mSat{M}{!A_n}[w]$, yakni
+    $\Gamma\Entails !A$.
+  \item $!A_n$ mengikuti melalui \MP{} dari $!A_i$ dan
+    $!A_j\ident !A_i\lif !A_n$. $!A_1$, \dots, $!A_i$ dan $!A_1$, \dots,
+    $!A_j$ merupakan !!{derivation}s dari~$\Gamma$, sehingga berdasarkan
+    hipotesis induksi, $\Gamma\Entails !A_i$ dan
+    $\Gamma\Entails !A_i\lif !A_n$.
+
+    Andaikan $\mSat{M}{\Gamma}[w]$. Karena $\mSat{M}{\Gamma}[w]$ dan
+    $\Gamma\Entails !A_i\lif !A_n$, berlaku
+    $\mSat{M}{!A_i\lif !A_n}[w]$. Menurut definisi, ini berarti bahwa, untuk
+    semua $w'$ sedemikian sehingga $Rww'$, jika $\mSat{M}{!A_i}[w']$, maka
+    $\mSat{M}{!A_n}[w']$. Karena $R$ refleksif, $w$ termasuk di antara $w'$
+    yang memenuhi $Rww'$; jadi, jika $\mSat{M}{!A_i}[w]$, maka
+    $\mSat{M}{!A_n}[w]$. Karena $\Gamma\Entails !A_i$, berlaku
+    $\mSat{M}{!A_i}[w]$. Dengan demikian, $\mSat{M}{!A_n}[w]$, sebagaimana
+    hendak ditunjukkan.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

@@ -1,0 +1,120 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: truth-at-w
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{aml}{el}{trw}
+
+\olsection{Kebenaran pada Suatu Dunia}
+
+Seperti pada logika modal normal, setiap model epistemik menentukan
+!!{formula}s mana yang benar pada dunia mana di dalamnya. Kita menggunakan
+notasi yang sama, yakni ``model~$\mModel{M}$ membuat !!{formula}~$!A$ benar
+pada dunia~$w$,'' bagi gagasan dasar semantik relasional. Relasi ini
+didefinisikan secara induktif dan identik dengan kasus modal normal untuk
+semua operator nonmodal.
+
+\begin{defn}\ollabel{defn:mmodels}
+  \emph{Kebenaran !!a{formula}~$!A$ pada~$w$} dalam~$\mModel M$, dengan
+  simbol $\mSat{M}{!A}[w]$, didefinisikan secara induktif sebagai berikut:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{Tidak pernah
+    $\mSat{M}{\lfalse}[w]$}.}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{Selalu
+    $\mSat{M}{\ltrue}[w]$}.}{}
+  \item $\mSat{M}{p}[w]$ jika dan hanya jika $w\in V(p)$
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ jika dan
+    hanya jika $\mSat/{M}{!B}[w]$}.}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ jika
+    dan hanya jika $\mSat{M}{!B}[w]$ dan $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ jika
+    dan hanya jika $\mSat{M}{!B}[w]$ atau $\mSat{M}{!C}[w]$} (atau
+    keduanya).}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ jika
+    dan hanya jika $\mSat/{M}{!B}[w]$ atau $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ jika
+    dan hanya jika $\mSat{M}{!B}[w]$ dan $\mSat{M}{!C}[w]$ keduanya berlaku,
+    atau baik $\mSat{M}{!B}[w]$ maupun $\mSat{M}{!C}[w]$ tidak berlaku}.}{}
+  \item\ollabel{defn:sub:mmodels-box}
+    \indcase{!A}{\Knows_a !B}{$\mSat{M}{\indfrm}[w]$ jika dan hanya jika
+    $\mSat{M}{!B}[w']$ untuk semua $w'\in W$ dengan $R_a ww'$}
+  \end{enumerate}
+\end{defn}
+
+Di sinilah kita perlu memikirkan pembatasan terhadap relasi aksesibilitas.
+Menurut klausa~\olref{defn:sub:mmodels-box}, !!a{formula}~$\Knows_a !B$ benar
+pada~$w$ jika tidak ada $w'$ dengan $R_a ww'$. Ini merupakan klausa yang sama
+dengan klausa dalam logika modal normal; jika suatu dunia tidak mempunyai
+penerus, semua $\Box$-formula benar secara hampa di sana. Hal ini terasa
+sangat berlawanan dengan intuisi jika $\Knows$ kita pahami sebagai
+representasi \emph{pengetahuan}. Lagi pula, kita cenderung berpikir bahwa
+\emph{tidak ada} keadaan tempat seorang agen dapat sekaligus mengetahui $!A$
+dan $\lnot !A$.
+
+Salah satu penyelesaiannya ialah memastikan bahwa relasi aksesibilitas kita
+dalam logika epistemik selalu \emph{refleksif}. Ini secara kasar
+berkorespondensi dengan gagasan bahwa dunia aktual konsisten dengan informasi
+seorang agen. Logika epistemik pada umumnya menggunakan S5, tetapi logika lain
+dapat menggunakan sistem yang lebih lemah, bergantung pada apa tepatnya yang
+hendak direpresentasikan oleh relasi~$\Knows_a$.
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={[align=right]right:\mTrue{p}\\ \mFalse{q}}]{$w_1$};
+      \node[world] (w2) [label={[align=right]right:\mTrue{p}\\ \mTrue{q}},
+        above right=of w1]{$w_2$};
+      \node[world] (w3) [label={[align=right]right:\mFalse{p}\\ \mFalse{q}},
+        below right=of w1] {$w_3$};
+      \draw[<->] (w1) to node {$a$} (w2);
+      \draw[->,loop left] (w1) to node {$a,b$} (w1);
+      \draw[<->] (w1) to [swap] node {$b$} (w3);
+      \draw[->,loop above] (w2) to node {$a,b$} (w2) ;
+      \draw[->,loop below] (w3) to node {$a,b$} (w3) ;
+    \end{tikzpicture}
+  \end{center}
+  \caption{Suatu model epistemik sederhana.}
+  \ollabel{fig:simple}
+\end{figure}
+
+\begin{prob}
+  Tentukan pernyataan mana di antara pernyataan berikut yang berlaku dalam
+  \olref[aml][el][trw]{fig:simple}:
+  \begin{enumerate}
+    \item $\mSat{M}{\lnot q}[w_1]$;
+    \item $\mSat{M}{\Knows_a \lnot q}[w_1]$;
+    \item $\mSat{M}{\Knows_b \lnot q}[w_1]$;
+    \item $\mSat{M}{\Knows_b q \lor \Knows_b \lnot q}[w_2]$;
+    \item $\mSat{M}{\Knows_a( \Knows_b q \lor \Knows_b \lnot q)}[w_2]$;
+    \item $\mSat{M}{\EKnows_{\{a,b\}} \lnot q}[w_3]$;
+    \end{enumerate}
+\end{prob}
+
+Setelah memberikan definisi dasar kebenaran pada suatu dunia, konsep semantik
+lain dari logika modal normal, seperti validitas modal dan perikutan, langsung
+terbawa serta dan diterapkan pada cara baru memahami penafsiran operator
+modal ini.
+
+Sekarang kita juga dapat memberikan syarat kebenaran bagi operator
+pengetahuan bersama~$\CKnows_G$. Ingat dari \olref[sfr][rel][ops]{sec} bahwa
+\emph{penutupan transitif}~$R^+$ dari suatu relasi~$R$ didefinisikan sebagai
+\begin{align*}
+  R^+ &= \bigcup_{0<n\in\Nat} R^n,
+\intertext{dengan}
+  R^1 &= R \text{ dan}\\
+  R^{n+1} &= \Setabs{\tuple{x,z}}{\exists y(R^nxy\land Ryz)}.
+\end{align*}
+Kemudian, jika $G$ merupakan kelompok agen, kita mendefinisikan
+$R_G=(\bigcup_{b\in G}R_b)^+$ sebagai penutupan transitif gabungan semua
+relasi aksesibilitas agen.
+
+\begin{defn}
+Jika $G'\subseteq G$, kita menetapkan $\mSat{M}{\CKnows_{G'} !A}[w]$ jika dan
+hanya jika, untuk setiap $w'$ sedemikian sehingga $R_{G'}ww'$,
+$\mSat{M}{!A}[w']$.
+\end{defn}
+
+\end{document}

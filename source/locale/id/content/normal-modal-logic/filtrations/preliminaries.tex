@@ -1,0 +1,79 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: preliminaries
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{fil}{pre}
+
+\olsection{Persiapan}
+
+Filtrasi memungkinkan kita menetapkan bahwa sistem-sistem logika modal kita
+dapat diputuskan dengan menunjukkan bahwa sistem tersebut mempunyai
+\emph{sifat model berhingga}, yakni bahwa setiap !!{formula} yang bernilai
+benar (salah) dalam suatu model juga bernilai benar (salah) dalam suatu model
+\emph{berhingga}. Filtrasi didefinisikan relatif terhadap himpunan
+!!{formula}s yang tertutup terhadap subformula.
+
+\begin{defn}\ollabel{defn:modallyclosed}
+  Suatu himpunan !!{formula}s~$\Gamma$ \emph{tertutup terhadap subformula}
+  jika himpunan itu memuat setiap subformula dari setiap !!a{formula} dalam
+  $\Gamma$. Selanjutnya, $\Gamma$ \emph{tertutup secara modal} jika himpunan
+  itu tertutup terhadap subformula dan, selain itu, $!A \in \Gamma$
+  mengimplikasikan $\Box!A, \Diamond!A \in \Gamma$.
+\end{defn}
+
+Sebagai contoh, jika diberikan !!a{formula}~$!A$, himpunan semua
+sub-!!{formula}snya tertutup terhadap sub-!!{formula}s. Ketika kita
+mendefinisikan filtrasi suatu model melalui himpunan sub-!!{formula}s
+dari~$!A$, filtrasi tersebut akan mempunyai sifat yang kita cari: filtrasi itu
+membuat $!A$ bernilai benar (salah) jika dan hanya jika model semula demikian.
+
+Himpunan dunia suatu filtrasi dari~$\mModel{M}$ melalui~$\Gamma$ didefinisikan
+sebagai himpunan semua kelas ekuivalensi dari relasi ekuivalensi berikut.
+
+\begin{defn}
+Misalkan $\mModel{M} =\tuple{W, R, V}$ dan andaikan $\Gamma$ tertutup terhadap
+sub-!!{formula}s. Definisikan suatu relasi $\equiv$ pada $W$ yang berlaku bagi
+sebarang dua dunia yang membuat !!{formula}s yang sama dari $\Gamma$ bernilai
+benar, yakni:
+\[
+u \equiv v \quad \text{jika dan hanya jika} \quad
+\forall !A \in \Gamma : \mSat{M}{!A}[u] \Leftrightarrow \mSat{M}{!A}[v].
+\]
+Kelas ekuivalensi~$[w]_\equiv$ dari suatu dunia~$w$, atau disingkat $[w]$,
+adalah himpunan semua dunia yang $\equiv$-ekuivalen dengan~$w$:
+\[
+[w] = \Setabs{v}{v \equiv w}.
+\]
+\end{defn}
+
+\begin{prop}
+  Jika diberikan $\mModel{M}$ dan $\Gamma$, relasi $\equiv$ yang didefinisikan
+  di atas merupakan relasi ekuivalensi, yakni bersifat refleksif, simetris,
+  dan transitif.
+\end{prop}
+
+\begin{proof}
+  Relasi $\equiv$ bersifat refleksif, sebab $w$ membuat tepat
+  !!{formula}s yang sama dari~$\Gamma$ bernilai benar seperti dirinya sendiri.
+  Relasi itu bersifat simetris, sebab jika $u$ membuat !!{formula}s yang sama
+  dari~$\Gamma$ bernilai benar seperti $v$, hal yang sama berlaku bagi $v$
+  dan~$u$. Relasi itu juga bersifat transitif, sebab jika $u$ membuat
+  !!{formula}s yang sama dari~$\Gamma$ bernilai benar seperti~$v$, dan $v$
+  seperti $w$, maka $u$ membuat !!{formula}s yang sama dari~$\Gamma$ bernilai
+  benar seperti~$w$.
+\end{proof}
+
+Relasi $\equiv$, sebagaimana setiap relasi ekuivalensi, mempartisi~$W$ menjadi
+\emph{kelas-kelas ekuivalensi}, yakni himpunan bagian dari~$W$ yang saling lepas
+berpasangan dan bersama-sama mencakup seluruh~$W$. Setiap $w \in W$ merupakan
+!!a{element} dari salah satu kelas tersebut, yaitu~$[w]$, sebab $w \equiv w$.
+Jadi, kelas-kelas $[w]$ mencakup seluruh~$W$. Kelas-kelas itu saling lepas
+berpasangan, sebab jika $u \in [w]$ dan $u \in [v]$, maka $u \equiv w$ dan
+$u \equiv v$; berdasarkan simetri dan transitivitas, $w \equiv v$, sehingga
+$[w] = [v]$.
+
+\end{document}

@@ -1,0 +1,133 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{cardinals}{cardsasords}
+\olsection{Kardinal sebagai Ordinal}
+
+Pada kenyataannya, teori kardinal kita akan memanfaatkan teori ordinal kita
+(tanpa malu-malu). Artinya, kita hanya akan mendefinisikan kardinal sebagai
+ordinal-ordinal tertentu. Secara khusus, kita mengajukan definisi berikut:
+
+\begin{defn}\ollabel{defcardinalasordinal}
+Jika $A$ dapat diurutkan dengan baik, maka $\card{A}$ ialah ordinal terkecil
+$\gamma$ sedemikian sehingga $\cardeq{A}{\gamma}$. Untuk sebarang ordinal
+$\gamma$, kita mengatakan bahwa $\gamma$ merupakan suatu \emph{kardinal}
+jika dan hanya jika $\gamma = \card{\gamma}$.
+\end{defn}
+
+Kita baru saja menggunakan ungkapan ``$A$ dapat diurutkan dengan baik''.
+Seperti hampir selalu terjadi dalam matematika, ungkapan modal di sini
+hanyalah uraian informal bagi suatu klaim eksistensial: mengatakan ``$A$
+dapat diurutkan dengan baik'' hanyalah mengatakan ``terdapat suatu relasi
+yang mengurutkan $A$ dengan baik''.
+
+Namun, terdapat masalah pada \olref{defcardinalasordinal}. Kita menginginkan
+agar \emph{setiap} himpunan mempunyai ukuran, yakni agar $\card{A}$ ada untuk
+setiap~$A$. Akan tetapi, definisi yang baru saja kita berikan diawali suatu
+syarat: ``\emph{Jika} $A$ dapat diurutkan dengan baik\ldots''. Jika terdapat
+suatu himpunan $A$ yang tidak dapat diurutkan dengan baik, definisi kita akan
+gagal mendefinisikan objek~$\card{A}$.
+
+Jadi, untuk menggunakan \olref{defcardinalasordinal}, kita memerlukan jaminan
+bahwa setiap himpunan dapat diurutkan dengan baik. Sayangnya, jaminan ini
+tidak tersedia dalam~$\ZF$. Maka, jika kita hendak menggunakan
+\olref{defcardinalasordinal}, tidak ada pilihan selain menambahkan suatu
+aksioma baru, misalnya:
+\begin{axiom}[Pengurutan Baik]
+Setiap himpunan dapat diurutkan dengan baik.
+\end{axiom}
+Kita akan membahas apakah Aksioma Pengurutan Baik dapat diterima dalam
+\olref[choice][]{chap}. Namun, mulai sekarang kita akan langsung
+menggunakannya. Dengan aksioma tersebut, cukup mudah untuk membuktikan bahwa
+kardinal (sebagaimana didefinisikan dalam \olref{defcardinalasordinal}) ada
+dan berperilaku dengan baik:
+
+\begin{lem}\ollabel{lem:CardinalsExist}
+Untuk setiap himpunan $A$:
+\begin{enumerate}
+	\item\ollabel{cardaexists} $\card{A}$ ada dan unik;
+	\item\ollabel{cardaapprox}  $\cardeq{\card{A}}{A}$;
+	\item\ollabel{cardaidem}  $\card{A}$ merupakan suatu kardinal, yakni
+	$\card{A} = \card{\card{A}}$;
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Tetapkan $A$. Berdasarkan Pengurutan Baik, terdapat suatu pengurutan baik
+$\tuple{A, R}$. Berdasarkan
+\olref[ordinals][ordtype]{thmOrdinalRepresentation}, $\tuple{A, R}$
+isomorfik dengan suatu ordinal unik, $\beta$. Jadi
+$\cardeq{A}{\beta}$. Berdasarkan Induksi Transfinit, terdapat suatu ordinal
+terkecil yang unik, $\gamma$, sedemikian sehingga
+$\cardeq{A}{\gamma}$. Jadi $\card{A} = \gamma$, yang menetapkan
+\olref{cardaexists} dan \olref{cardaapprox}. Untuk menetapkan
+\olref{cardaidem}, perhatikan bahwa jika $\delta \in \gamma$, maka
+$\cardless{\delta}{A}$ berdasarkan pilihan kita atas $\gamma$, sehingga juga
+$\cardless{\delta}{\gamma}$ karena kesamaan kardinalitas merupakan relasi
+ekuivalensi (\olref[sfr][siz][equ]{equinumerosityisequi}). Jadi $\gamma =
+\card{\gamma}$.
+%So, for reductio, suppose that there is some ordinal $\delta \in \gamma$ such that $\cardeq{\gamma}{\delta}$. Then, $\cardeq{\cardeq{A}{\gamma}}{\delta}$ so that $\cardeq{A}{\delta}$ by \olref[sfr][set][equ]{equinumerosityisequi}, which contradicts the choice of $\gamma$ as the least ordinal such that $\cardeq{A}{\gamma}$.
+\end{proof}
+
+Hasil berikutnya menjamin Prinsip Cantor, bahkan lebih dari itu. (Perhatikan
+bahwa kardinal mewarisi pengurutannya dari ordinal, yakni
+$\cardfont{a} < \cardfont{b}$ jika dan hanya jika
+$\cardfont{a} \in \cardfont{b}$. Dalam merumuskan hal ini, kita akan
+menggunakan huruf Fraktur untuk objek yang kita ketahui sebagai kardinal.
+Konvensi ini cukup baku. Alternatif yang lazim ialah menggunakan huruf Yunani,
+sebab kardinal merupakan ordinal, tetapi memilihnya dari bagian tengah
+alfabet, misalnya $\kappa, \lambda$.):
+\begin{lem}\ollabel{lem:CardinalsBehaveRight}
+Untuk sebarang himpunan $A$ dan $B$:
+\begin{align*}
+	\cardeq{A}{B} &\text{ jika dan hanya jika } \card{A} = \card{B}\\
+	\cardle{A}{B} &\text{ jika dan hanya jika } \card{A} \leq \card{B}\\
+	\cardless{A}{B}&\text{ jika dan hanya jika } \card{A} < \card{B}
+\end{align*}
+\end{lem}
+
+\begin{proof}
+Kita akan membuktikan arah kiri-ke-kanan dari klaim kedua (kasus-kasus lain
+serupa dan diserahkan sebagai latihan). Jadi, perhatikan diagram berikut:
+\begin{center}
+	\begin{tikzpicture}
+	\node (nodea) {$A$};
+	\node[right = 6em of nodea] (nodeb) {$B$};
+	\node[below = 2em of nodea] (nodecarda) {$\card{A}$};
+	\node[below = 2em of nodeb] (nodecardb) {$\card{B}$};
+	\draw[->] (nodea)--(nodeb);
+	\draw[<->] (nodea)--(nodecarda);
+	\draw[<->] (nodeb)--(nodecardb);
+	\draw[->, dashed] (nodecarda)--(nodecardb);
+\end{tikzpicture}
+\end{center}
+Panah berkepala dua menunjukkan !!{bijection}s, yang keberadaannya dijamin
+oleh \olref{lem:CardinalsExist}. Dengan mengandaikan
+$\cardle{A}{B}$, terdapat !!a{injection} $A\to B$. Sekarang, dengan
+mengikuti panah dari $\card{A}$ ke $A$, lalu ke $B$, lalu ke $\card{B}$, kita
+memperoleh !!a{injection} $\card{A} \to \card{B}$ (panah putus-putus).
+\end{proof}\noindent Kita juga dapat menggunakan
+\olref{lem:CardinalsBehaveRight} untuk membuktikan kembali
+Schr\"{o}der--Bernstein. Klaim ini menyatakan bahwa jika
+$\cardle{A}{B}$ dan $\cardle{B}{A}$, maka $\cardeq{A}{B}$. Kita menyatakannya
+sebagai \olref[sfr][siz][sb]{thm:schroder-bernstein}, tetapi pertama kali
+membuktikannya---dengan usaha yang cukup besar---dalam
+\olref[sfr][infinite][card-sb]{sec}. Sekarang perhatikan:
+
+\begin{proof}[Pembuktian kembali Schr\"oder--Bernstein]
+Jika $\cardle{A}{B}$ dan $\cardle{B}{A}$, maka $\card{A} \leq \card{B}$
+dan $\card{B} \leq \card{A}$ berdasarkan
+\olref{lem:CardinalsBehaveRight}. Jadi $\card{A} = \card{B}$ dan
+$\cardeq{A}{B}$ berdasarkan Trikotomi dan
+\olref{lem:CardinalsBehaveRight}.
+\end{proof}
+\noindent
+Walaupun bukti ini sangat sederhana, bukti tersebut secara implisit
+bergantung baik pada Penggantian (untuk memperoleh
+\olref[ordinals][ordtype]{thmOrdinalRepresentation}) maupun pada Pengurutan
+Baik (untuk menjamin \olref{lem:CardinalsBehaveRight}). Sebaliknya, bukti
+dalam \olref[sfr][infinite][card-sb]{sec} jauh lebih mandiri (bahkan dapat
+dilakukan dalam~$\Zminus$).
+
+\end{document}

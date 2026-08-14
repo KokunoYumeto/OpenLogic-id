@@ -1,0 +1,36 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{story}{extensionality}
+\olsection{Ekstensionalitas}
+
+Hal pertama yang perlu dikatakan ialah bahwa himpunan dibedakan satu sama
+lain berdasarkan !!{element}s-nya. Lebih tepatnya:
+
+\begin{axiom}[Ekstensionalitas]
+Jika himpunan $A$ dan $B$ mempunyai !!{element}s yang sama, maka $A$
+dan $B$ adalah himpunan yang sama.
+\[
+  \lforall[A][\lforall[B][(\lforall[x][(x \in A \liff x \in B)] \lif
+  \eq[A][B])]]
+\]
+\end{axiom}
+
+Kita mengasumsikan hal ini di sepanjang \olref[sfr][][]{part}. Namun, hal
+ini patut ditegaskan kembali. Aksioma Ekstensionalitas mengungkapkan gagasan
+dasar bahwa suatu himpunan ditentukan oleh !!{element}s-nya. (Dengan
+demikian, himpunan dapat dikontraskan dengan \emph{konsep}: objek-objek yang
+persis sama dapat termasuk dalam banyak konsep yang berbeda.)
+
+Mengapa kita menerima prinsip ini? Dapat dikatakan secara masuk akal bahwa
+menolak Ekstensionalitas berarti memutuskan untuk meninggalkan segala sesuatu
+yang bahkan masih layak disebut \emph{teori himpunan}. Teori himpunan tidak
+lebih dan tidak kurang daripada teori koleksi ekstensional.
+
+Namun, tantangan sesungguhnya dalam \olref[sth][][]{part} ialah menetapkan
+prinsip-prinsip yang memberi tahu kita \emph{himpunan mana yang ada}. Ternyata,
+satu-satunya jawaban yang benar-benar ``jelas'' atas pertanyaan ini dapat
+dibuktikan keliru.
+
+\end{document}

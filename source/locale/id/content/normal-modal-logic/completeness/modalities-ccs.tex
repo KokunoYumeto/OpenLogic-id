@@ -1,0 +1,255 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: modalities-ccs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{com}{mod}
+
+\olsection{Modalitas dan Himpunan Lengkap serta Konsisten}
+
+\begin{explain}
+Ketika kita membangun suatu model~$\mModel{M^\Sigma}$ yang himpunan dunianya
+diberikan oleh himpunan lengkap dan $\Sigma$-konsisten~$\Delta$ dalam suatu
+logika modal normal~$\Sigma$, kita juga perlu mendefinisikan relasi
+aksesibilitas~$R^\Sigma$ di antara ``dunia-dunia'' semacam itu. Kita ingin agar
+relasi aksesibilitas (dan penetapan $V^\Sigma)$ didefinisikan sedemikian rupa
+sehingga $\mSat{M^\Sigma}{!A}[\Delta]$ jika dan hanya jika $!A \in
+\Delta$. Bagaimana kita harus melakukannya?
+
+Setelah relasi aksesibilitas didefinisikan, definisi kebenaran pada suatu
+dunia menjamin bahwa \iftag{prvBox}{$\mSat{M^\Sigma}{\Box!A}[\Delta]$
+  jika dan hanya jika $\mSat{M^\Sigma}{!A}[\Delta']$ bagi semua $\Delta'$
+  sedemikian sehingga $R^\Sigma\Delta\Delta'$}{$\mSat{M^\Sigma}{\Diamond!A}[\Delta]$
+  jika dan hanya jika $\mSat{M^\Sigma}{!A}[\Delta']$ bagi sekurang-kurangnya
+  satu $\Delta'$ sedemikian sehingga $R^\Sigma\Delta\Delta'$}. Pembuktian
+bahwa $\mSat{M^\Sigma}{!A}[\Delta]$ jika dan hanya jika $!A \in \Delta$
+mengharuskan agar hal ini secara khusus benar bagi !!{formula}s yang diawali
+operator modal, yakni \iftag{prvBox}{$\mSat{M^\Sigma}{\Box!A}[\Delta]$ jika
+  dan hanya jika $\Box !A \in \Delta$}{$\mSat{M^\Sigma}{\Diamond!A}[\Delta]$
+  jika dan hanya jika $\Diamond !A \in \Delta$}. Menggabungkan syarat ini
+dengan definisi kebenaran pada suatu dunia bagi
+\iftag{prvBox}{$\Box !A$}{$\Diamond !A$} menghasilkan:
+\[
+\iftag{prvBox}{%
+  \Box!A \in \Delta \text{ jika dan hanya jika } !A \in \Delta' \text{
+    bagi semua $\Delta'$ dengan } R^\Sigma\Delta\Delta'}{%
+  \Diamond!A \in \Delta \text{ jika dan hanya jika } !A \in \Delta' \text{ bagi
+    sekurang-kurangnya satu } \Delta' \text{ dengan } R^\Sigma\Delta\Delta'}
+\]
+\iftag{prvBox}{Tinjau arah dari kiri ke kanan: arah ini menyatakan bahwa jika
+  $\Box !A \in \Delta$, maka $!A \in \Delta'$ bagi sebarang $!A$ dan sebarang
+  $\Delta'$ dengan $R^\Sigma\Delta\Delta'$. Jika kita menetapkan bahwa
+  $R^\Sigma\Delta\Delta'$ jika dan hanya jika $!A \in \Delta'$ bagi semua
+  $\Box!A \in \Delta$, maka pernyataan tersebut berlaku. Kita dapat menulis
+  syarat di sebelah kanan ``jika dan hanya jika'' secara lebih ringkas sebagai:
+  $\Setabs{!A}{\Box!A \in \Delta} \subseteq \Delta'$.}{Tinjau arah dari kanan
+  ke kiri: arah ini menyatakan bahwa jika $!A \in \Delta'$, maka
+  $\Diamond!A \in \Delta$, bagi sebarang $!A$ dan $\Delta'$ dengan
+  $R^\Sigma\Delta\Delta'$. Jika kita menetapkan bahwa
+  $R^\Sigma\Delta\Delta'$ berlaku setiap kali $\Diamond!A \in \Delta$ bagi
+  semua $!A \in \Delta'$, maka pernyataan tersebut berlaku. Kita dapat
+  menulis syarat di sebelah kanan ``jika dan hanya jika'' secara lebih ringkas
+  sebagai: $\Setabs{\Diamond!A}{!A \in \Delta'} \subseteq \Delta$.}
+
+Jadi, pertanyaannya ialah: apakah definisi $R^\Sigma$ ini benar-benar
+menjamin bahwa \iftag{prvBox}{$\Box !A \in \Delta$ jika dan hanya jika
+  $\mSat{M^\Sigma}{\Box !A}[\Delta]$? \iftag{prvDiamond}{Apakah definisi itu
+    juga menjamin bahwa }{}}{}\iftag{prvDiamond}{$\Diamond !A \in \Delta$
+  jika dan hanya jika $\mSat{M^\Sigma}{\Diamond !A}[\Delta]$?}{} Beberapa
+hasil berikutnya akan menetapkan hal ini.
+\end{explain}
+
+\begin{defn}
+  Jika $\Gamma$ merupakan suatu himpunan !!{formula}s, tetapkan
+  \begin{align*}
+    \Box\Gamma & = \Setabs{\Box !B}{!B \in \Gamma}\\
+    \Diamond\Gamma & = \Setabs{\Diamond !B}{!B \in \Gamma}\\
+    \intertext{dan}
+    \Box^{-1}\Gamma & = \Setabs{!B}{\Box !B \in \Gamma}\\
+    \Diamond^{-1}\Gamma & = \Setabs{!B}{\Diamond !B \in \Gamma}\\
+  \end{align*}
+\end{defn}
+
+Dengan kata lain, $\Box\Gamma$ adalah $\Gamma$ dengan $\Box$ di depan setiap
+!!{formula} dalam~$\Gamma$; $\Box^{-1}\Gamma$ terdiri atas semua
+!!{formula}s yang diawali~$\Box$ dalam~$\Gamma$, dengan $\Box$ awal tersebut
+dihapus. Definisi ini tidak terlalu penting dengan sendirinya, tetapi akan
+sangat menyederhanakan notasi.
+
+Perhatikan bahwa $\Box\Box^{-1}\Gamma \subseteq \Gamma$:
+\[
+\Box\Box^{-1}\Gamma = \Setabs{\Box!B}{\Box!B \in \Gamma}
+\]
+yakni, himpunan ini tepat merupakan himpunan semua !!{formula}s dalam~$\Gamma$
+yang diawali~$\Box$.
+
+\begin{lem}\ollabel{lem:box1}
+  Jika $\Gamma \Proves[\Sigma] !A$, maka $\Box\Gamma \Proves[\Sigma] \Box
+  !A$.
+\end{lem}
+
+\begin{proof}
+  Jika $\Gamma \Proves[\Sigma] !A$, maka terdapat $!B_1$, \dots, $!B_k
+  \in \Gamma$ sedemikian sehingga $\Sigma \Proves !B_1 \lif (!B_2 \lif \cdots
+  (!B_k \lif !A)\cdots)$. Karena $\Sigma$ normal, berdasarkan aturan \RK{},
+  $\Sigma \Proves \Box!B_1 \lif (\Box!B_2 \lif \cdots (\Box!B_k \lif
+  \Box!A)\cdots)$, dan jelas bahwa $\Box!B_1$, \dots, $\Box!B_k \in
+  \Box\Gamma$. Jadi, berdasarkan definisi, $\Box\Gamma \Proves[\Sigma] \Box
+  !A$.
+\end{proof}
+
+\begin{lem}\ollabel{lem:box2}
+  Jika $\Box^{-1} \Gamma \Proves[\Sigma] !A$, maka $\Gamma
+  \Proves[\Sigma] \Box!A$.
+\end{lem}
+
+\begin{proof}
+  Andaikan $\Box^{-1}\Gamma \Proves[\Sigma] !A$; maka berdasarkan
+  \olref{lem:box1}, $\Box\Box^{-1}\Gamma \Proves[\Sigma] \Box!A$. Namun, karena
+  $\Box\Box^{-1}\Gamma \subseteq \Gamma$, berdasarkan monotonisitas berlaku
+  pula $\Gamma \Proves[\Sigma] \Box!A$.
+\end{proof}
+
+\iftag{prvBox}{%
+% Box is primitive
+
+\begin{prop}\ollabel{prop:box}
+  Jika $\Gamma$ lengkap dan $\Sigma$-konsisten, maka $\Box !A \in
+  \Gamma$ jika dan hanya jika, bagi setiap himpunan lengkap dan
+  $\Sigma$-konsisten~$\Delta$ sedemikian sehingga $\Box^{-1} \Gamma
+  \subseteq \Delta$, berlaku $!A \in \Delta$.
+\end{prop}
+
+\begin{proof}
+  Andaikan $\Gamma$ lengkap dan $\Sigma$-konsisten. Arah ``hanya jika''
+  mudah: andaikan $\Box !A \in \Gamma$ dan $\Box^{-1}\Gamma \subseteq
+  \Delta$. Karena $\Box!A \in \Gamma$, berlaku $!A \in
+  \Box^{-1}\Gamma \subseteq \Delta$, sehingga $!A \in \Delta$.
+
+  Untuk arah ``jika'', kita membuktikan kontraposisinya: andaikan
+  $\Box!A \notin \Gamma$. Karena $\Gamma$ lengkap dan $\Sigma$-konsisten,
+  himpunan itu tertutup secara deduktif, sehingga $\Gamma
+  \Proves/[\Sigma] \Box !A$. Berdasarkan \olref{lem:box2},
+  $\Box^{-1}\Gamma \Proves/[\Sigma] !A$. Berdasarkan
+  \olref[prf][con]{prop:consistencyfacts}\olref[prf][con]{prop:consistencyfacts-b},
+  $\Box^{-1}\Gamma \cup \{ \lnot!A \}$ $\Sigma$-konsisten. Berdasarkan
+  Lema Lindenbaum, terdapat suatu himpunan lengkap dan
+  $\Sigma$-konsisten~$\Delta$ sedemikian sehingga
+  $\Box^{-1}\Gamma \cup \{ \lnot!A \}
+  \subseteq \Delta$. Berdasarkan konsistensi, $!A \notin \Delta$.
+\end{proof}
+}{%
+% Box is not primitive, only Diamond is
+
+\begin{prop}\ollabel{prop:diamond}
+  Jika $\Gamma$ lengkap dan $\Sigma$-konsisten, maka $\Diamond !A \in
+  \Gamma$ jika dan hanya jika terdapat suatu himpunan lengkap dan
+  $\Sigma$-konsisten~$\Delta$ sedemikian sehingga $\Diamond\Delta \subseteq
+  \Gamma$ dan $!A \in \Delta$.
+\end{prop}
+
+\begin{proof}
+  Andaikan $\Gamma$ lengkap dan $\Sigma$-konsisten. Bagian dari kanan ke kiri
+  mudah: misalkan $\Delta$ lengkap dan $\Sigma$-konsisten sedemikian sehingga
+  $\Diamond\Delta \subseteq \Gamma$ dan $!A \in \Delta$. Maka
+  $\Diamond!A \in \Diamond\Delta \subseteq \Gamma$, yakni $\Diamond!A
+  \in \Gamma$.
+
+  Untuk arah dari kiri ke kanan, andaikan $\Diamond !A \in \Gamma$. Kita
+  harus menunjukkan bahwa terdapat suatu himpunan lengkap dan
+  $\Sigma$-konsisten~$\Delta$ dengan $!A \in \Delta$ dan
+  $\Diamond\Delta \subseteq \Gamma$. Karena $\Diamond !A \in \Gamma$ dan
+  $\Gamma$ $\Sigma$-konsisten, $\Box\lnot !A \notin \Gamma$. Karena
+  $\Gamma$ lengkap dan $\Sigma$-konsisten, himpunan itu tertutup secara
+  deduktif, sehingga $\Gamma \Proves/[\Sigma] \Box\lnot !A$. Berdasarkan
+  \olref{lem:box2}, $\Box^{-1}\Gamma \Proves/[\Sigma] \lnot !A$.
+  Berdasarkan
+  \olref[prf][con]{prop:consistencyfacts}\olref[prf][con]{prop:consistencyfacts-b},
+  $\Box^{-1}\Gamma \cup \{ !A \}$ $\Sigma$-konsisten. Berdasarkan Lema
+  Lindenbaum, terdapat suatu himpunan lengkap dan
+  $\Sigma$-konsisten~$\Delta$ sedemikian sehingga
+  $\Box^{-1}\Gamma \cup \{ !A \} \subseteq
+  \Delta$. Jelas bahwa $!A \in \Delta$. Untuk melihat bahwa
+  $\Diamond\Delta \subseteq \Gamma$, andaikan hal itu tidak berlaku: bagi
+  suatu $!B \in \Delta$, berlaku $\Diamond !B \notin \Gamma$. Karena
+  $\Gamma$ lengkap dan $\Sigma$-konsisten, maka $\Box\lnot !B \in \Gamma$.
+  Akan tetapi, dengan demikian $\lnot !B \in \Box^{-1}\Gamma \subseteq
+  \Delta$, dan hal ini akan membuat $\Delta$ tak konsisten.
+\end{proof}
+}
+
+\begin{lem}\ollabel{lem:box-iff-diamond}
+  Andaikan $\Gamma$ dan $\Delta$ lengkap serta $\Sigma$-konsisten. Maka
+  $\Box^{-1}\Gamma \subseteq \Delta$ jika dan hanya jika
+  $\Diamond\Delta \subseteq \Gamma$.
+\end{lem}
+
+\begin{proof}
+  Arah ``hanya jika'': andaikan $\Box^{-1}\Gamma \subseteq \Delta$ dan
+  $\Diamond!A \in \Diamond\Delta$ (yakni, $!A \in \Delta$). Untuk
+  menunjukkan bahwa $\Diamond!A \in \Gamma$, cukup ditunjukkan bahwa
+  $\Box\lnot!A \notin \Gamma$, sebab berdasarkan kemaksimalan akan berlaku
+  $\lnot\Box\lnot !A \in \Gamma$. Sekarang, jika $\Box\lnot!A \in \Gamma$,
+  maka berdasarkan hipotesis $\lnot!A \in \Delta$, bertentangan dengan
+  konsistensi $\Delta$ (sebab $!A \in \Delta$). Jadi,
+  $\Box\lnot!A \notin \Gamma$, seperti yang diperlukan.
+
+  Arah ``jika'': andaikan $\Diamond\Delta
+  \subseteq \Gamma$. Kita bernalar secara kontrapositif: andaikan $!A
+  \notin \Delta$ untuk menunjukkan $\Box!A \notin \Gamma$. Jika
+  $!A \notin \Delta$, maka berdasarkan kemaksimalan $\lnot!A \in \Delta$,
+  sehingga berdasarkan hipotesis $\Diamond\lnot!A \in \Gamma$. Namun, dalam
+  suatu logika modal normal, $\Diamond\lnot!A$ ekuivalen dengan
+  $\lnot\Box !A$; dan jika yang disebut terakhir berada dalam $\Gamma$,
+  berdasarkan konsistensi $\Box!A \notin\Gamma$, seperti yang diperlukan.
+\end{proof}
+
+\iftag{prvBox}{%
+  \iftag{prvDiamond}{%
+% Box and Diamond are both primitive; prove
+% prop:diamond using lem:box-iff-diamond
+
+\begin{prop}\ollabel{prop:diamond}
+  Jika $\Gamma$ lengkap dan $\Sigma$-konsisten, maka $\Diamond !A \in
+  \Gamma$ jika dan hanya jika terdapat suatu himpunan lengkap dan
+  $\Sigma$-konsisten~$\Delta$ sedemikian sehingga $\Diamond\Delta \subseteq
+  \Gamma$ dan $!A \in \Delta$.
+\end{prop}
+
+\begin{proof}
+Andaikan $\Gamma$ lengkap dan $\Sigma$-konsisten. $\Diamond!A \in
+\Gamma$ jika dan hanya jika $\lnot\Box\lnot !A \in \Gamma$ berdasarkan
+\Dual{} dan ketertutupan. $\lnot\Box\lnot !A \in \Gamma$ jika dan hanya jika
+$\Box\lnot !A \notin \Gamma$ berdasarkan
+\olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lnot}, sebab
+$\Gamma$ lengkap dan $\Sigma$-konsisten. Berdasarkan \olref{prop:box},
+$\Box\lnot !A \notin \Gamma$ jika dan hanya jika terdapat suatu himpunan
+lengkap dan $\Sigma$-konsisten~$\Delta$ dengan
+$\Box^{-1}\Gamma \subseteq \Delta$ dan $\lnot!A \notin \Delta$. Sekarang
+tinjau sebarang~$\Delta$ semacam itu.
+Berdasarkan \olref{lem:box-iff-diamond}, $\Box^{-1}\Gamma \subseteq \Delta$
+jika dan hanya jika $\Diamond\Delta \subseteq \Gamma$. Selain itu,
+$\lnot !A \notin \Delta$ jika dan hanya jika $!A \in \Delta$ berdasarkan
+\olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lnot}. Jadi,
+$\Diamond!A \in \Gamma$ jika dan hanya jika terdapat suatu himpunan lengkap
+dan $\Sigma$-konsisten~$\Delta$ dengan $\Diamond\Delta \subseteq \Gamma$
+dan $!A \in \Delta$.
+\end{proof}
+
+}{}}{}
+
+\begin{prob}
+  Tunjukkan bahwa jika $\Gamma$ lengkap dan $\Sigma$-konsisten, maka
+  \iftag{prvBox}{$\Diamond !A \in \Gamma$ jika dan hanya jika terdapat suatu
+    himpunan lengkap dan $\Sigma$-konsisten~$\Delta$ sedemikian sehingga
+    $\Box^{-1}\Gamma \subseteq \Delta$ dan $!A \in \Delta$.}{$\Box !A \in
+    \Gamma$ jika dan hanya jika, bagi setiap himpunan lengkap dan
+    $\Sigma$-konsisten~$\Delta$ sedemikian sehingga $\Box^{-1} \Gamma
+    \subseteq \Delta$, berlaku $!A \in \Delta$.} \emph{Kerjakan tanpa
+    menggunakan \olref[nml][com][mod]{lem:box-iff-diamond}}.
+\end{prob}
+
+\end{document}

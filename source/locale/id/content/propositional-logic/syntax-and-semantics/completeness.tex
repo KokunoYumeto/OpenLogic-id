@@ -1,0 +1,125 @@
+% Bagian: propositional-logic
+% Bab: propositional-logic
+% Subbagian: completeness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pl}{prp}{com}
+
+\olsection{Kelengkapan Logika Proposisi}
+
+\begin{defn}
+\ollabel{def:MaxCon}
+Suatu himpunan~$\Gamma$ dari !!{formula}s disebut \emph{konsisten maksimal}
+jika himpunan itu konsisten dan, untuk setiap himpunan konsisten~$\Delta$
+sedemikian sehingga $\Gamma \subseteq \Delta$, berlaku $\Gamma = \Delta$.
+\end{defn}
+
+\begin{lem}[Lema Kebenaran]
+  \ollabel{lem:truth}
+Misalkan $\Gamma$ konsisten maksimal; maka:
+\begin{enumerate}
+\item \ollabel{lem:truth-1} $!A \in \Gamma$ jika dan hanya jika $\lnot !A
+  \notin \Gamma$;
+\item \ollabel{lem:truth-2} $\Gamma \Proves !A$ jika dan hanya jika $!A \in
+  \Gamma$;
+\item \ollabel{lem:truth-3} $!A \lif !B \in \Gamma$ jika dan hanya jika
+  $!A \notin \Gamma$ atau $!B \in \Gamma$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+\begin{enumerate}
+\item Misalkan $!A \in \Gamma$. Jika $\lnot !A \in \Gamma$ juga, maka
+  $\Gamma$ tidak konsisten; dan jika baik $!A$ maupun $\lnot!A$ tidak berada
+  dalam $\Gamma$, maka menurut \olref[axd]{prop:phi}, salah satu dari
+  $\Gamma\cup\{!A\}$ dan $\Gamma \cup \{\lnot !A\}$ konsisten, yang berarti
+  bahwa $\Gamma$ tidak maksimal. Arah sebaliknya dibuktikan dengan cara yang
+  sama.
+\item Jika $!A \in \Gamma$, tentu saja $\Gamma \Proves !A$. Sebaliknya,
+  misalkan $\Gamma \Proves !A$. Jika $!A \notin \Gamma$, maka menurut
+  \olref{lem:truth-1}, $\lnot !A \in \Gamma$. Jadi $\Gamma \Proves !A$ dan
+  $\Gamma \Proves \lnot !A$, suatu kontradiksi.
+\item Latihan.
+\end{enumerate}
+\end{proof}
+
+Arah kiri-ke-kanan dari \olref{lem:truth}\olref{lem:truth-2} menunjukkan
+bahwa $\Gamma$ \emph{tertutup secara deduktif}, yakni, jika $\Gamma \Proves
+!A$, maka $!A \in \Gamma$ untuk setiap~$!A$.
+
+\begin{prob}
+  Lengkapi bukti \olref{lem:truth}.
+\end{prob}
+
+\begin{thm}[Kelengkapan]
+\ollabel{thm:completeness}
+Jika $\Gamma$ konsisten, maka $\Gamma$ dapat dipenuhi.
+\end{thm}
+
+\begin{proof}
+Misalkan $!A_0$, $!A_1$,~\dots merupakan suatu daftar lengkap semua
+!!{formula}s dalam bahasa tersebut. Secara rekursif kita definisikan suatu
+barisan menaik himpunan !!{formula}s $\Gamma_0$, $\Gamma_1$,~\dots dengan
+menetapkan:
+\begin{align*}
+\Gamma_0 & = \Gamma\\
+\Gamma_{n+1} &  =
+\begin{cases}
+  \Gamma_n \cup \{!A_n\} & \text{jika $\Gamma_n \cup \{!A_n\}$
+    konsisten;}\\
+  \Gamma_n \cup \{\lnot !A_n\} & \text{jika tidak}.
+\end{cases}
+\end{align*}
+Kemudian definisikan:
+\[
+\Gamma^* = \bigcup_{0\le n}\Gamma_n.
+\]
+Selanjutnya, bukti diteruskan dengan menetapkan fakta-fakta berikut secara
+berurutan:
+\begin{enumerate}
+\item Untuk setiap $n$, himpunan $\Gamma_n$ konsisten (melalui induksi pada
+  $n$, dengan menggunakan \olref[axd]{prop:phi});
+\item $\Gamma^*$ konsisten;
+\item $\Gamma^*$ maksimal.
+\end{enumerate}
+Kemudian definisikan suatu valuasi~$v$ dengan menetapkan $v(p_i) = \True$ jika
+dan hanya jika $p_i \in \Gamma^*$. Melalui induksi pada $!A$, selanjutnya
+ditunjukkan bahwa keanggotaan dalam $\Gamma^*$ bertepatan dengan kebenaran
+menurut $v$, juga untuk !!{sentence}s yang lebih kompleks:
+$\overline{v}(!A) = \True$ jika dan hanya jika $!A \in \Gamma^*$. Secara
+khusus, $v$ memenuhi $\Gamma^*$; dan karena $\Gamma \subseteq \Gamma^*$,
+$\Gamma$ juga dapat dipenuhi, seperti yang dikehendaki.
+\end{proof}
+
+\begin{cor}
+Jika $\Gamma \Entails !A$, maka $\Gamma \Proves !A$.
+\end{cor}
+
+\begin{proof}
+Jika $\Gamma\Proves/ !A$, maka $\Gamma \cup \{\lnot !A\}$ konsisten menurut
+\olref[axd]{prop:prov-incons}. Jadi, menurut teorema kelengkapan,
+$\Gamma \cup \{\lnot !A\}$ dapat dipenuhi, sehingga $\Gamma \Entails/ !A$.
+\end{proof}
+
+\begin{prop}[Teorema Kekompakan]
+\ollabel{prop:compactness}
+$\Gamma$ dapat dipenuhi jika dan hanya jika setiap himpunan bagian
+\emph{berhingga} $\Gamma_0$ dari $\Gamma$ dapat dipenuhi.
+\end{prop}
+
+\begin{proof}
+$\Gamma$ tidak dapat dipenuhi jika dan hanya jika himpunan itu tidak konsisten,
+jika dan hanya jika suatu himpunan bagian berhingga $\Gamma_0$ dari $\Gamma$
+tidak konsisten, jika dan hanya jika suatu himpunan bagian berhingga
+$\Gamma_0$ dari $\Gamma$ tidak dapat dipenuhi.
+\end{proof}
+
+\begin{cor}
+$\Gamma \Entails !A$ jika dan hanya jika, untuk suatu himpunan bagian
+berhingga $\Gamma_0$ dari $\Gamma$, berlaku $\Gamma_0 \Entails !A$.
+\end{cor}
+
+\end{document}

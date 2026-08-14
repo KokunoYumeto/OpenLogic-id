@@ -1,0 +1,52 @@
+% Part: methods
+% Chapter: induction
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mth}{ind}{int}
+
+\olsection{Pendahuluan}
+
+Induksi adalah teknik pembuktian penting yang, dalam berbagai bentuk,
+digunakan di hampir semua bidang logika, ilmu komputer teoretis, dan
+matematika. Teknik ini diperlukan untuk membuktikan banyak hasil dalam
+logika.
+
+Induksi sering dipertentangkan dengan deduksi dan dicirikan sebagai
+inferensi dari yang khusus menuju yang umum. Misalnya, jika kita mengamati
+banyak zamrud hijau dan tidak menemukan apa pun yang akan kita sebut zamrud
+tetapi tidak berwarna hijau, kita mungkin menyimpulkan bahwa semua zamrud
+berwarna hijau. Ini merupakan inferensi induktif karena bergerak dari banyak
+kasus khusus (zamrud ini hijau, zamrud itu hijau, dan seterusnya) menuju
+suatu klaim umum (semua zamrud hijau). Induksi \emph{matematis} juga
+merupakan inferensi yang menghasilkan suatu klaim umum, tetapi jenisnya
+sangat berbeda dari ``induksi sederhana'' ini.
+
+Secara sangat kasar, bukti induktif dalam matematika menyimpulkan bahwa
+semua objek matematis dari jenis tertentu memiliki suatu sifat. Dalam kasus
+paling sederhana, objek matematis yang dibahas oleh bukti induktif adalah
+bilangan asli. Dalam kasus itu, bukti induktif digunakan untuk menetapkan
+bahwa semua bilangan asli memiliki suatu sifat, dengan menunjukkan bahwa
+\begin{enumerate}
+    \item $0$ memiliki sifat tersebut, dan
+    \item setiap kali suatu bilangan~$k$ memiliki sifat tersebut, $k+1$
+      juga memilikinya.
+\end{enumerate}
+Induksi pada bilangan asli juga sering dapat digunakan untuk membuktikan
+klaim umum mengenai objek matematis yang dapat diberi bilangan. Misalnya,
+setiap himpunan hingga memiliki sejumlah hingga~$n$ anggota; jika dengan
+induksi kita dapat menunjukkan bahwa setiap bilangan~$n$ memiliki sifat
+``semua himpunan hingga berukuran~$n$ adalah \dots'', kita telah menunjukkan
+sesuatu mengenai semua himpunan hingga.
+
+Induksi juga dapat diperumum ke objek matematis yang \emph{didefinisikan
+secara induktif}. Misalnya, ungkapan suatu bahasa formal, seperti ungkapan
+dalam logika orde pertama, didefinisikan secara induktif. \emph{Induksi
+struktural} merupakan cara untuk membuktikan hasil mengenai semua ungkapan
+tersebut. Induksi struktural khususnya sangat berguna---dan digunakan secara
+luas---dalam logika.
+
+\end{document}

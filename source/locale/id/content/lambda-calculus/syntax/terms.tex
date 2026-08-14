@@ -1,0 +1,53 @@
+% Part: lambda-calculus
+% Chapter: syntax
+% Section: terms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{syn}{trm}
+\olsection{Suku}
+
+Suku-suku kalkulus lambda dibangun secara induktif dari persediaan variabel
+yang tak hingga banyaknya, $\Obj{v_0}$, $\Obj{v_1}$, \dots, simbol
+``$\lambd$'', dan tanda kurung. Kita akan menggunakan $x$, $y$, $z$, \dots{}
+untuk menyatakan variabel, serta $M$, $N$, $P$, \dots{} untuk menyatakan suku.
+
+\begin{defn}[Suku] \ollabel{defn:term}
+Himpunan \emph{suku} kalkulus lambda didefinisikan secara induktif sebagai
+berikut:
+\begin{enumerate}
+  \item \ollabel{defn:term-var} Jika $x$ adalah variabel, maka $x$ adalah
+    suku.
+  \item \ollabel{defn:term-abs} Jika $x$ adalah variabel dan $M$ adalah
+    suku, maka $(\lambd[x][M])$ adalah suku.
+  \item \ollabel{defn:term-app} Jika $M$ dan $N$ keduanya suku, maka
+    $(MN)$ adalah suku.
+\end{enumerate}
+\end{defn}
+
+Jika suku $(\lambd[x][M])$ dibentuk menurut
+\olref{defn:term-abs}, kita mengatakan bahwa suku itu merupakan hasil suatu
+\emph{abstraksi}, dan $x$ dalam $\lambd[x]$ disebut
+\emph{!!{parameter}}. Suku $(MN)$ yang dibentuk menurut
+\olref{defn:term-app} merupakan hasil suatu \emph{aplikasi}.
+
+Suku-suku yang didefinisikan di atas bertanda kurung lengkap. Hal ini dapat
+menjadi cukup merepotkan, sebagaimana diperlihatkan oleh suku
+$(\lambd[x][((\lambd[x][x])(\lambd[x][(xx)]))])$. Kita akan memperkenalkan
+konvensi untuk menghindari tanda kurung. Namun, definisi resmi tersebut
+memudahkan kita menentukan bagaimana suatu suku dibangun menurut
+\olref{defn:term}. Sebagai contoh, langkah terakhir dalam membentuk suku
+$(\lambd[x][((\lambd[x][x])(\lambd[x][(xx)]))])$ pasti berupa abstraksi
+dengan !!{parameter}~$x$. Suku itu diperoleh melalui abstraksi dari suku
+$((\lambd[x][x])(\lambd[x][(xx)]))$, yang merupakan aplikasi dua suku.
+Masing-masing dari kedua suku ini merupakan hasil abstraksi, dan demikian
+seterusnya.
+
+\begin{prob}
+Uraikan pembentukan $(\lambd[g][(\lambd[x][(g (x x))])
+  (\lambd[x][(g (x x))])])$.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,105 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{ordinals}{opps}
+\olsection{Ordinal Suksesor dan Limit}
+
+Dalam beberapa bab berikutnya, kita akan banyak menggunakan ordinal. Karena
+itu, akan berguna jika kita memperkenalkan beberapa gagasan sederhana.
+
+\begin{defn}
+Untuk sembarang ordinal $\alpha$, \emph{suksesor}-nya adalah
+$\ordsucc{\alpha} =\alpha \cup \{\alpha\}$. Kita mengatakan bahwa $\alpha$
+merupakan suatu ordinal \emph{suksesor} jika $\ordsucc{\beta} = \alpha$
+untuk suatu ordinal~$\beta$. Kita mengatakan bahwa $\alpha$ merupakan suatu
+ordinal \emph{limit} jika dan hanya jika $\alpha$ tidak kosong dan bukan
+ordinal suksesor.
+\end{defn}
+\noindent
+Hasil berikut menunjukkan bahwa ini merupakan gagasan \emph{suksesor} yang
+tepat:
+
+\begin{prop}
+Untuk sembarang ordinal $\alpha$:
+\begin{enumerate}
+	\item $\alpha \in \ordsucc{\alpha}$;
+	\item $\ordsucc{\alpha}$ merupakan suatu ordinal;
+	\item tidak ada ordinal $\beta$ sedemikian sehingga $\alpha \in \beta
+	\in \ordsucc{\alpha}$.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Secara trivial, $\alpha \in \alpha \cup \{\alpha\} =
+\ordsucc{\alpha}$. Demikian pula, $\ordsucc{\alpha}$ merupakan suatu
+himpunan transitif dari ordinal-ordinal, dan karena itu merupakan suatu
+ordinal menurut \olref[basic]{corordtransitiveord}. Tidak mungkin pula bahwa
+$\alpha \in \beta \in \ordsucc{\alpha}$, sebab dalam hal itu berlaku
+$\beta \in \alpha$ atau $\beta = \alpha$, bertentangan dengan
+\olref[basic]{ordordered}.
+\end{proof}
+\noindent
+Hal ini juga mengabsahkan suatu varian pembuktian dengan induksi transfinit:
+
+\begin{thm}[Induksi Transfinit Sederhana]\ollabel{simpletransrecursion}
+Misalkan $\phi(x)$ suatu formula sedemikian sehingga:
+\begin{enumerate}
+	\item $\phi(\emptyset)$; dan
+	\item untuk sembarang ordinal $\alpha$, jika $\phi(\alpha)$ maka
+	$\phi(\ordsucc{\alpha})$; dan
+	\item jika $\alpha$ merupakan suatu ordinal limit dan $(\forall \beta \in
+	\alpha)\phi(\beta)$, maka $\phi(\alpha)$.
+\end{enumerate}
+Maka $\forall \alpha \phi(\alpha)$.
+\end{thm}
+
+\begin{proof}
+Kita membuktikan kontraposisinya. Jadi, andaikan terdapat suatu ordinal yang
+memenuhi $\lnot\phi$; misalkan $\gamma$ merupakan ordinal terkecil semacam
+itu. Maka berlaku salah satu dari: $\gamma = \emptyset$; atau $\gamma =
+\ordsucc{\alpha}$ untuk suatu $\alpha$ sedemikian sehingga $\phi(\alpha)$;
+atau $\gamma$ merupakan suatu ordinal limit dan $(\forall \beta \in
+\gamma)\phi(\beta)$.
+\end{proof}
+\noindent
+Sedikit notasi terakhir akan berguna kemudian:
+
+\begin{defn}\ollabel{defsupstrict}
+Jika $X$ merupakan suatu himpunan ordinal, maka $\supstrict(X) =
+\bigcup_{\alpha \in X} \ordsucc{\alpha}$.
+\end{defn}
+\noindent
+Di sini, ``lsub'' merupakan singkatan dari ``least strict upper bound''
+(batas atas ketat terkecil).\footnote{Beberapa buku menggunakan
+``$\text{sup}(X)$'' untuk gagasan ini. Namun, buku lain menggunakan
+``$\text{sup}(X)$'' untuk batas atas \emph{tak ketat} terkecil, yakni cukup
+$\bigcup X$. Jika $X$ mempunyai anggota terbesar, $\alpha$, kedua
+gagasan ini berbeda: batas atas \emph{ketat} terkecil adalah
+$\ordsucc{\alpha}$, sedangkan batas atas \emph{tak ketat} terkecil hanyalah
+$\alpha$.} Hasil berikut menjelaskan hal ini:
+
+\begin{prop}
+Jika $X$ merupakan suatu himpunan ordinal, $\supstrict(X)$ merupakan ordinal
+terkecil yang lebih besar daripada setiap ordinal dalam $X$.
+\end{prop}
+
+\begin{proof}
+Misalkan $Y = \Setabs{\ordsucc{\alpha}}{\alpha \in X}$, sehingga
+$\supstrict(X) = \bigcup Y$. Karena ordinal bersifat transitif dan setiap
+anggota suatu ordinal merupakan suatu ordinal, $\supstrict(X)$ merupakan
+suatu himpunan transitif dari ordinal-ordinal, dan karena itu merupakan suatu
+ordinal menurut \olref[basic]{corordtransitiveord}.
+
+Jika $\alpha \in X$, maka $\ordsucc{\alpha} \in Y$, sehingga
+$\ordsucc{\alpha} \subseteq \bigcup Y = \supstrict(X)$, dan karena itu
+$\alpha \in \supstrict(X)$. Jadi, $\supstrict(X)$ lebih besar secara ketat
+daripada setiap ordinal dalam $X$.
+
+Sebaliknya, jika $\alpha \in \supstrict(X)$, maka $\alpha \in
+\ordsucc{\beta} \in Y$ untuk suatu $\beta \in X$, sehingga $\alpha \leq
+\beta \in X$. Jadi, $\supstrict(X)$ merupakan batas atas ketat
+\emph{terkecil} bagi $X$.
+\end{proof}
+
+\end{document}

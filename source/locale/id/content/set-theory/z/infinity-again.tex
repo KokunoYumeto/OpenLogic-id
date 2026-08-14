@@ -1,0 +1,146 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{z}{infinity-again}
+\olsection{Ketakhinggaan}
+
+Kita sudah memiliki cukup banyak aksioma untuk menjamin adanya tak berhingga
+banyak himpunan (jika ada himpunan sama sekali). Andaikan suatu himpunan ada;
+maka $\emptyset$ ada (berdasarkan
+\olref[sth][z][sep]{prop:emptyexists}). Untuk setiap himpunan~$x$, himpunan
+$x\cup\{x\}$ ada berdasarkan
+\olref[sth][z][pairs]{prop:pairsconsequences}. Jadi, dengan menerapkan operasi
+ini beberapa kali, kita memperoleh himpunan-himpunan berikut:
+\begin{enumerate}
+	\item[0.] $\emptyset$ %& $0$ & stage $0$\\
+	\item[1.] $ \{\emptyset\}$ %& $1$ & stage $1$\\
+	\item[2.] $\{\emptyset, \{\emptyset\}\}$ %& $2$ & stage $2$\\
+	\item[3.] $\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}$ %&$3$ & stage $3$\\
+	\item[4.] $\{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}, \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}\}$% & $4$ & stage $4$ 
+\end{enumerate}
+dan kita dapat memeriksa bahwa setiap himpunan ini berbeda.
+
+Kita memulai penomoran dari~$0$ karena beberapa alasan. Salah satunya adalah
+sebagai berikut. Tidak sulit untuk memeriksa bahwa himpunan yang kita beri
+label ``$n$'' mempunyai tepat $n$ anggota dan (secara intuitif) dibentuk pada
+tahap ke-$n$.
+
+Namun, konstruksi ini hanya memberikan \emph{tak berhingga banyak} himpunan;
+konstruksi ini tidak menjamin adanya suatu \emph{himpunan tak hingga}, yakni
+himpunan dengan tak berhingga banyak anggota. Hal ini sungguh penting: jika
+kita tidak dapat menemukan suatu himpunan yang tak hingga Dedekind, kita tidak
+dapat mengonstruksi aljabar Dedekind. Padahal kita menginginkan aljabar
+Dedekind agar dapat memperlakukannya sebagai himpunan bilangan asli.
+(Bandingkan \olref[sfr][infinite][dedekindsproof]{sec}.)
+
+Yang penting, aksioma-aksioma yang telah kita tetapkan sejauh ini
+\emph{tidak} menjamin keberadaan himpunan tak hingga apa pun. Jadi, kita harus
+menetapkan suatu aksioma baru:
+
+\begin{axiom}[Ketakhinggaan]
+Terdapat himpunan~$I$ sedemikian sehingga $\emptyset\in I$ dan
+$x\cup\{x\}\in I$ setiap kali $x\in I$.
+\begin{align*}
+	\exists I( & ((\exists o \in I)\forall x\ x \notin o) \land {}\\
+	& (\forall x \in I)(\exists s \in I)\forall z(z \in s \liff (z \in x \lor z = x)))
+\end{align*}
+\end{axiom}
+
+Mudah dilihat bahwa himpunan~$I$ yang diberikan oleh Aksioma Ketakhinggaan
+bersifat tak hingga Dedekind. Anggota istimewanya ialah $\emptyset$, dan
+injeksi pada~$I$ diberikan oleh $s(x)=x\cup\{x\}$. Teorema
+\olref[sfr][infinite][dedekind]{thm:DedekindInfiniteAlgebra} menunjukkan cara
+mengekstrak suatu aljabar Dedekind dari himpunan yang tak hingga Dedekind;
+kita akan memperlakukan aljabar ini sebagai himpunan bilangan asli kita.
+Secara lebih tepat:
+\begin{defn}\ollabel{defnomega}
+Misalkan $I$ sebarang himpunan yang diberikan oleh Aksioma Ketakhinggaan.
+Misalkan $s$ fungsi yang didefinisikan oleh $s(x)=x\cup\{x\}$. Tetapkan
+$\omega=\closureofunder{s}{\emptyset}$. Kita menyebut anggota-anggota
+$\omega$ sebagai \emph{bilangan asli}, dan mengatakan bahwa $n$ merupakan
+hasil dari menerapkan $s$ kepada $\emptyset$ sebanyak $n$ kali.
+\end{defn}
+
+Sekarang Anda dapat kembali memeriksa bahwa himpunan yang beberapa paragraf
+sebelumnya diberi label ``$n$'' akan diperlakukan \emph{sebagai} bilangan~$n$.
+
+Kita akan membahas arti penting ketetapan ini dalam
+\olref[sth][z][nat]{sec}. Untuk saat ini, ketetapan tersebut memungkinkan
+kita membuktikan hasil yang intuitif:
+
+\begin{prop}\ollabel{naturalnumbersarentinfinite}
+Tidak ada bilangan asli yang bersifat tak hingga Dedekind.
+\end{prop}
+
+\begin{proof}
+Bukti dilakukan dengan induksi, yakni
+\olref[sfr][infinite][induction]{thm:dedinfiniteinduction}. Jelas bahwa
+$0=\emptyset$ tidak bersifat tak hingga Dedekind. Untuk langkah induksi, kita
+akan membuktikan kontraposisinya: jika (secara absurd) $s(n)$ bersifat tak
+hingga Dedekind, maka $n$ bersifat tak hingga Dedekind.
+
+Andaikan $s(n)$ bersifat tak hingga Dedekind; dengan kata lain, terdapat suatu
+!!{injection}~$f$ dengan $\ran{f}\subsetneq\dom{f}=s(n)=n\cup\{n\}$. Ada dua
+kasus yang perlu dipertimbangkan.
+
+\emph{Kasus 1: $n\notin\ran{f}$.} Maka $\ran{f}\subseteq n$ dan
+$f(n)\in n$. Misalkan $g=\funrestrictionto{f}{n}$; sekarang
+$\ran{g}=\ran{f}\setminus\{f(n)\}\subsetneq n=\dom{g}$. Jadi, $n$ bersifat
+tak hingga Dedekind.
+
+\emph{Kasus 2: $n\in\ran{f}$.} Tetapkan suatu
+$m\in\dom{f}\setminus\ran{f}$, dan definisikan fungsi~$h$ dengan domain
+$s(n)=n\cup\{n\}$:
+\[
+h(x) = 
+	\begin{cases}
+		f(x) & \text{jika }f(x) \neq n\\
+		m & \text{jika }f(x)=n.
+	\end{cases}
+\]
+Jadi, $h$ dan $f$ bernilai sama di semua tempat, kecuali bahwa
+$h(f^{-1}(n))=m\neq n=f(f^{-1}(n))$. Karena $f$
+merupakan !!a{injection}, berlaku $n\notin\ran{h}$; dan
+$\ran{h}\subsetneq\dom{h}=s(n)$. Sekarang, dengan menggunakan argumen pada
+Kasus~1, $n$ bersifat tak hingga Dedekind.
+\end{proof}
+
+Namun, masih tersisa pertanyaan tentang bagaimana kita dapat
+\emph{membenarkan} Aksioma Ketakhinggaan. Jawaban singkatnya adalah bahwa kita
+perlu menambahkan satu prinsip lagi pada kisah kita. Prinsip itu adalah
+sebagai berikut:
+\begin{enumerate}
+	\item[] \stagesinf. Terdapat suatu tahap tak hingga. Artinya, terdapat
+	tahap yang (a) bukan tahap pertama, (b) mempunyai beberapa tahap yang
+	mendahuluinya, tetapi (c) tidak mempunyai pendahulu langsung.
+\end{enumerate}
+Aksioma Ketakhinggaan langsung mengikuti prinsip ini. Kita tahu bahwa
+bilangan asli~$n$ dibentuk pada tahap~$n$. Jadi, himpunan $\omega$ dibentuk
+pada tahap tak hingga pertama. $\omega$ sendiri menjadi saksi bagi Aksioma
+Ketakhinggaan.
+
+Namun, hal ini hanya mengembalikan kita pada pertanyaan tentang bagaimana
+kita dapat membenarkan \stagesinf. Seperti halnya \stagessucc, prinsip ini
+bukan bagian eksplisit dari kisah kita mengenai hierarki kumulatif-iteratif.
+Lebih dari itu, tidak ada apa pun dalam gagasan hierarki iteratif itu
+sendiri---tempat himpunan dibentuk tahap demi tahap---yang memaksa kita
+berpikir bahwa proses tersebut melibatkan suatu tahap \emph{tak hingga}.
+Sangat masuk akal untuk berpikir bahwa tahap-tahap itu ditata seperti
+bilangan asli.
+
+Namun, hal ini menimbulkan masalah yang jelas. Dalam
+\olref[sfr][infinite][dedekindsproof]{sec}, kita mempertimbangkan ``bukti''
+Dedekind bahwa terdapat suatu himpunan (pikiran-pikiran) yang tak hingga
+Dedekind. Mungkin bukti itu tidak terasa sangat memuaskan. Akan tetapi, jika
+\stagesinf{} tidak ``dipaksakan kepada kita'' oleh konsepsi iteratif tentang
+himpunan (atau oleh ``hukum-hukum pemikiran''), kita masih tidak mempunyai
+pembenaran intrinsik bagi klaim bahwa terdapat suatu himpunan yang tak hingga
+Dedekind.
+
+Tentu saja, masih banyak yang dapat dikatakan. Namun, semoga sekarang Anda
+telah sampai pada titik untuk mulai memikirkan apa yang mungkin
+\emph{diperlukan} guna membenarkan suatu aksioma (atau prinsip). Dalam
+pembahasan selanjutnya, kita menerima \stagesinf{} begitu saja.
+
+\end{document}

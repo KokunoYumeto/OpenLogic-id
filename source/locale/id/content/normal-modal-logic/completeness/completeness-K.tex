@@ -1,0 +1,65 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: completeness-K
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{com}{cmk}
+
+\olsection{Penentuan dan Kelengkapan bagi \Log{K}}
+
+Sekarang kita siap menggunakan model kanonik untuk menetapkan kelengkapan.
+Kelengkapan mengikuti dari fakta bahwa !!{formula}s yang benar dalam model
+kanonik bagi~$\Sigma$ tepat merupakan formula yang !!{derivable}
+berdasarkan~$\Sigma$. Model yang mempunyai sifat ini dikatakan
+\emph{menentukan}~$\Sigma$.
+
+\begin{defn}
+  Suatu model $\mModel{M}$ \emph{menentukan} suatu logika modal
+  normal~$\Sigma$ tepat ketika $\mSat{M}{!A}$ jika dan hanya jika $\Sigma
+  \Proves !A$, bagi semua !!{formula}s~$!A$.
+\end{defn}
+
+\begin{thm}[Penentuan]\ollabel{thm:determination}
+   $\mSat{M^\Sigma}{!A}$ jika dan hanya jika $\Sigma \Proves !A$.
+\end{thm}
+
+\begin{proof}
+  Jika $\mSat{M^\Sigma}{!A}$, maka bagi setiap himpunan lengkap dan
+  $\Sigma$-konsisten~$\Delta$, berlaku
+  $\mSat{M^\Sigma}{!A}[\Delta]$. Jadi, berdasarkan Lema Kebenaran,
+  $!A \in \Delta$ bagi setiap himpunan lengkap dan
+  $\Sigma$-konsisten~$\Delta$; karena itu, berdasarkan
+  \olref[lin]{cor:provability-characterization} (dengan $\Gamma =
+  \emptyset$), $\Sigma \Proves !A$.
+
+  Sebaliknya, jika $\Sigma \Proves !A$, maka berdasarkan
+  \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-closed}, setiap
+  himpunan lengkap dan $\Sigma$-konsisten~$\Delta$ memuat~$!A$; sehingga,
+  berdasarkan Lema Kebenaran, $\mSat{M^\Sigma}{!A}[\Delta]$ bagi setiap
+  $\Delta \in W^\Sigma$, yakni $\mSat{M^\Sigma}{!A}$.
+\end{proof}
+
+Karena model kanonik bagi \Log{K} menentukan~\Log{K}, kita langsung
+memperoleh kelengkapan~\Log{K} sebagai suatu akibat:
+
+\begin{cor}\ollabel{cor:Kcomplete}
+  Logika modal dasar \Log{K} lengkap terhadap kelas semua model, yakni jika
+  $\Entails !A$, maka $\Log{K} \Proves !A$.
+\end{cor}
+
+\begin{proof}
+  Secara kontrapositif, jika $\Log{K} \Proves/ !A$, maka berdasarkan
+  Penentuan $\mSat/{M^{\Log{K}}}{!A}$, sehingga $!A$ tidak valid.
+\end{proof}
+
+Dalam kasus umum kelengkapan suatu sistem $\Sigma$ terhadap suatu kelas
+model, misalnya kelengkapan \Log{KTB4} terhadap kelas model refleksif,
+simetris, dan transitif, penentuan saja tidak cukup. Kita juga harus
+menunjukkan bahwa model kanonik bagi sistem $\Sigma$ merupakan anggota kelas
+tersebut, dan hal ini tidak serta-merta mengikuti dari konstruksi model
+kanonik---bahkan tidak selalu benar!
+
+\end{document}

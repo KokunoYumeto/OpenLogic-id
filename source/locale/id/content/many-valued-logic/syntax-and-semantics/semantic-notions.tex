@@ -1,0 +1,73 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: semantic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{syn}{sem}
+
+\olsection{Pengertian Semantik}
+
+Andaikan suatu logika bernilai banyak~$\Log L$ diberikan oleh sebuah matriks.
+Kita kemudian dapat mendefinisikan pengertian semantik biasa bagi~$\Log L$.
+
+\begin{defn}
+\begin{enumerate}
+\item !!^a{formula}~$!A$ \emph{dapat dipenuhi} jika terdapat
+  $\pAssign{v}$ sedemikian sehingga $\pSat{v}{!A}$; formula itu
+  \emph{tidak dapat dipenuhi} jika tidak ada $\pAssign{v}$ sedemikian
+  sehingga $\pSat{v}{!A}$;
+\item !!^a{formula}~$!A$ merupakan \emph{tautologi} jika
+  $\pSat{v}{!A}$ bagi semua !!{valuation}s~$v$;
+\item Jika $\Gamma$ merupakan suatu himpunan !!{formula}s, maka
+  $\Gamma\Entails !A$ (``$\Gamma$ mengikutkan~$!A$'') jika dan hanya jika
+  $\pSat{v}{!A}$ bagi setiap !!{valuation}~$\pAssign{v}$ yang memenuhi
+  $\pSat{v}{\Gamma}$.
+\item Jika $\Gamma$ merupakan suatu himpunan !!{formula}s, maka $\Gamma$
+  \emph{dapat dipenuhi} jika terdapat !!a{valuation}~$\pAssign{v}$ yang
+  memenuhi $\pSat{v}{\Gamma}$, dan $\Gamma$ \emph{tidak dapat dipenuhi}
+  dalam kasus lainnya.
+\end{enumerate}
+\end{defn}
+
+Beberapa fakta mengenai pengertian-pengertian ini sama seperti dalam kasus
+logika klasik:
+
+\begin{prop}
+\ollabel{prop:semanticalfacts}
+\begin{enumerate}
+\item $!A$ merupakan tautologi jika dan hanya jika
+  $\emptyset\Entails !A$;
+\item Jika $\Gamma$ dapat dipenuhi, maka setiap himpunan bagian berhingga
+  dari~$\Gamma$ juga dapat dipenuhi;
+\item\ollabel{def:monotonicity}%
+Monotonisitas: jika $\Gamma\subseteq\Delta$ dan $\Gamma\Entails !A$, maka
+  $\Delta\Entails !A$;
+\item\ollabel{def:Cut}%
+Transitivitas: jika $\Gamma\Entails !A$ dan
+  $\Delta\cup\{!A\}\Entails !B$, maka
+  $\Gamma\cup\Delta\Entails !B$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan \olref[mvl][syn][sem]{prop:semanticalfacts}.
+\end{prob}
+
+Dalam logika klasik kita dapat menghubungkan perikutan dengan implikasi.
+Sebagai contoh, kita mempunyai validitas \emph{modus ponens}: jika
+$\Gamma\Entails !A$ dan $\Gamma\Entails !A\lif !B$, maka
+$\Gamma\Entails !B$. Hubungan penting lainnya antara $\Entails$ dan~$\lif$
+dalam logika klasik ialah teorema deduksi semantik:
+$\Gamma\Entails !A\lif !B$ jika dan hanya jika
+$\Gamma\cup\{!A\}\Entails !B$. Hasil-hasil ini \emph{tidak} selalu berlaku
+dalam logika bernilai banyak. Berlaku atau tidaknya hasil-hasil tersebut
+bergantung pada fungsi kebenaran~$\tf{\lif}$.
+
+\end{document}

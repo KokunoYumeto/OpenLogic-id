@@ -1,0 +1,53 @@
+% Bagian: intuitionistic-logic
+% Bab: semantics
+% Subbagian: propositions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{sem}{pro}
+
+\olsection{Proposisi}
+
+Kadang-kadang berguna untuk memberi nama kepada himpunan dunia dalam
+!!a{relational model}~$\mModel{M}$ tempat !!a{formula}~$!A$ benar. Himpunan
+ini kita sebut \emph{proposisi} yang didefinisikan oleh~$!A$, dan kita tulis
+$\Prop{M}{!A}$.
+
+\begin{defn}
+  Secara induktif, kita memperluas fungsi $V$ menjadi fungsi
+  $\bigl(!A \mapsto \Prop{M}{!A}\bigr) \colon \Frm \to \Pow{W}$ sebagai
+  berikut:
+  \begin{enumerate}
+  \item $\Prop{M}{\lfalse} = \emptyset$
+  \item $\Prop{M}{p} = V(p)$
+  \item $\Prop{M}{\lnot !B} = {}$
+    \[
+      \Setabs{w \in W}{\text{untuk setiap $w'$ sedemikian sehingga $Rww'$,
+          $w' \notin \Prop{M}{!B}$}}.
+    \]
+  \item $\Prop{M}{!B \land !C} = \Prop{M}{!B} \cap \Prop{M}{!C}$.
+  \item $\Prop{M}{!B \lor !C} = \Prop{M}{!B} \cup \Prop{M}{!C}$.
+  \item $\Prop{M}{!B \lif !C} = {}$
+    \[
+      \Setabs{w \in W}{\text{untuk setiap $w'$ sedemikian sehingga $Rww'$,
+          jika $w' \in \Prop{M}{!B}$ maka $w' \in \Prop{M}{!C}$}}.
+    \]
+  \end{enumerate}
+\end{defn}
+
+\begin{prop}
+  \ollabel{prop:propositions-true}
+  $\mSat{M}{!A}[w]$ jika dan hanya jika $w \in \Prop{M}{!A}$
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[int][sem][pro]{prop:propositions-true}.
+\end{prob}
+
+\end{document}

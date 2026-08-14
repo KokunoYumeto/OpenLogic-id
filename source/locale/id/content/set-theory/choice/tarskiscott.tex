@@ -1,0 +1,81 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{choice}{tarskiscott}
+\olsection{Trik Tarski--Scott}
+
+Dalam \olref[cardinals][cardsasords]{defcardinalasordinal}, kita
+mendefinisikan kardinal sebagai ordinal. Untuk melakukannya, kita mengandaikan
+Aksioma Pengurutan Baik. Kita melakukannya semata-mata karena itulah
+``standar industri''.
+
+Sebelum membahas persoalan-persoalan filosofis seputar Pengurutan Baik,
+penting untuk memperjelas bahwa kita \emph{dapat} menyimpang dari standar
+industri dan mengembangkan teori kardinal \emph{tanpa} mengandaikan
+Pengurutan Baik. Kita masih dapat menggunakan definisi $\cardeq{A}{B}$,
+$\cardle{A}{B}$, dan $\cardless{A}{B}$ sebagaimana muncul dalam
+\olref[sfr][siz][]{chap}. Kita hanya memerlukan suatu pengertian
+\emph{kardinal} yang baru.
+
+Gagasan naifnya ialah mencoba mendefinisikan kardinalitas $A$ sebagai
+berikut:
+\[
+	\Setabs{x}{\cardeq{A}{x}}.
+\]
+Anda mungkin ingin membandingkannya dengan definisi Frege tentang $\# x Fx$
+yang diuraikan secara ringkas pada bagian paling akhir
+\olref[cardinals][hp]{sec}. Karena alasan yang telah kita singgung di sana,
+definisi ini gagal. Setiap himpunan singleton sama banyak dengan
+$\{\emptyset\}$. Namun, himpunan-himpunan singleton baru terbentuk pada
+setiap tahap penerus hierarki (perhatikan saja singleton dari tahap
+sebelumnya). Jadi, $\Setabs{x}{\cardeq{A}{x}}$ tidak ada karena ia tidak
+dapat mempunyai peringkat.
+
+Untuk mengatasi masalah ini, kita menggunakan suatu trik yang berasal dari
+Tarski dan Scott:\footnote{Pengingat: semua formula dapat mempunyai parameter
+(kecuali dinyatakan sebaliknya secara eksplisit).}
+
+\begin{defn}[Tarski--Scott]
+Untuk sebarang formula $\phi(x)$, misalkan $[ x : \phi(x)] $ himpunan semua
+$x$ yang berperingkat serendah mungkin dan memenuhi $\phi(x)$ (atau
+$\emptyset$ jika tidak ada $x$ yang memenuhi~$\phi$).
+\end{defn}
+
+Kita perlu memeriksa bahwa definisi ini sah. Dengan bekerja dalam $\ZF$,
+\olref[spine][foundation]{zfentailsregularity} menjamin bahwa
+$\setrank{x}$ ada bagi setiap $x$. Sekarang, jika terdapat entitas yang
+memenuhi $\phi$, kita dapat mengambil $\alpha$ sebagai peringkat terkecil
+sedemikian sehingga $(\exists x\subseteq V_\alpha)\phi(x)$, yakni
+$(\forall \beta \in \alpha)(\forall x \subseteq V_\beta)\lnot \phi(x)$.
+Kemudian, berdasarkan Pemisahan, kita dapat mendefinisikan
+$[x : \phi(x)]$ sebagai $\Setabs{x \in V_{\alpha+1}}{\phi(x)}$.
+
+Setelah membenarkan trik Tarski--Scott, sekarang kita dapat menggunakannya
+untuk mendefinisikan suatu pengertian kardinalitas:
+
+\begin{defn}
+\textsc{ts}-kardinalitas $A$ ialah $\text{tsc}(A) = [x :
+\cardeq{A}{x}]$.
+\end{defn}
+
+Definisi suatu \textsc{ts}-kardinal tidak menggunakan Pengurutan Baik.
+Namun, bahkan tanpa Aksioma tersebut, kita dapat menunjukkan bahwa
+\emph{\textsc{ts}-kardinal} berperilaku cukup mirip dengan \emph{kardinal}
+sebagaimana didefinisikan dalam
+\olref[cardinals][cardsasords]{defcardinalasordinal}. Sebagai contoh, jika
+kita menyatakan ulang
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} dan
+\olref[card-arithmetic][opps]{lem:SizePowerset2Exp} dalam istilah
+\textsc{ts}-kardinal, bukti-buktinya tetap berlaku dalam $\ZF$ tanpa
+mengandaikan Pengurutan Baik.
+
+Selagi membahas hal ini, patut dicatat bahwa kita juga dapat mengembangkan
+suatu teori ordinal dengan menggunakan trik Tarski--Scott. Jika
+$\tuple{A, <}$ merupakan suatu pengurutan baik, misalkan
+$\text{tso}(A, <) = [\tuple{X, R} :
+\ordeq{\tuple{A, <}}{\tuple{X, R}}]$. Untuk pembahasan lebih lanjut tentang
+perlakuan terhadap kardinal dan ordinal ini, lihat
+\citet[bab~9--12]{Potter2004}.
+
+\end{document}

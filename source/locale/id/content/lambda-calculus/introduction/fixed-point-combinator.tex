@@ -1,0 +1,41 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: fixed-point-combinator
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{int}{fix}
+\olsection{Kombinator Titik Tetap}
+
+Andaikan kita mempunyai suku lambda $g$ dan menginginkan suku lain~$k$ dengan
+sifat bahwa $k$ $\beta$-ekuivalen dengan $gk$. Definisikan suku-suku
+\[
+\fn{diag}(x) = xx
+\]
+dan
+\[
+l(x) = g(\fn{diag}(x))
+\]
+dengan menggunakan konvensi notasi kita; dengan kata lain, $l$ adalah suku
+$\lambd[x][g(xx)]$. Misalkan $k$ adalah suku $ll$. Maka kita mempunyai
+\begin{align*}
+k & = (\lambd[x][g(xx)])(\lambd[x][g(xx)]) \\
+& \red  g((\lambd[x][g(xx)])(\lambd[x][g(xx)])) \\
+& = gk.
+\end{align*}
+Jika kita mengambil
+\[
+Y = \lambd[g][((\lambd[x][g(xx)])(\lambd[x][g(xx)]))]
+\]
+maka $Yg$ dan $g(Yg)$ tereduksi menjadi suatu suku yang sama; jadi
+$Yg \equiv_\beta g(Yg)$. Bentuk ini dikenal sebagai ``kombinator Curry.'' Jika
+sebagai gantinya kita mengambil
+\[
+Y = (\lambd[xg][g(xxg)])(\lambd[xg][g(xxg)])
+\]
+maka $Yg$ bahkan tereduksi menjadi $g(Yg)$, yang merupakan pernyataan lebih
+kuat. Versi terakhir dari $Y$ ini dikenal sebagai ``kombinator Turing.''
+
+\end{document}

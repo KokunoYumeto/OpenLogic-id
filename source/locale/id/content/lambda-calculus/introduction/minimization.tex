@@ -1,0 +1,73 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: minimization
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{int}{min}
+\olsection{Fungsi yang \usetoken{S}{lambda definable} Tertutup terhadap Minimisasi}
+
+\begin{lem}
+Andaikan $f(x,y)$ bersifat !!{lambda definable}. Misalkan $g$ didefinisikan
+oleh
+\[
+g(x) \simeq \umin{y}{f(x,y)}.
+\]
+Maka $g$ bersifat !!{lambda definable}.
+\end{lem}
+
+\begin{proof}
+Gagasannya kira-kira sebagai berikut. Jika $x$ diberikan, kita akan
+menggunakan suku lambda titik-tetap $Y$ untuk mendefinisikan fungsi $h_x(n)$
+yang mencari suatu~$y$ mulai dari~$n$; kemudian $g(x)$ hanyalah $h_x(0)$.
+Fungsi~$h_x$ dapat dinyatakan sebagai solusi persamaan titik tetap:
+\[
+h_x(n) \simeq
+\begin{cases}
+n & \text{jika $f(x,n) = 0$} \\
+h_x(n+1) & \text{dalam kasus lainnya.}
+\end{cases}
+\]
+
+Berikut perinciannya. Karena $f$ bersifat !!{lambda definable}, fungsi itu
+!!{lambda defined} oleh suatu suku~$F$. Ingat bahwa kita juga mempunyai suku
+lambda~$D$ sedemikian sehingga $D(M,N,\bar{0}) \red M$ dan
+$D(M,N,\bar{1}) \red N$. Dengan menetapkan $x$ untuk sementara, untuk
+!!{lambda define} $h_x$ kita ingin menemukan suatu suku~$H$ (yang bergantung
+pada~$x$) yang memenuhi
+\[
+H(\num{n}) \equiv D(\num{n}, H(S(\num{n})), F(x, \num{n})).
+\]
+Kita dapat melakukannya dengan menggunakan suku titik-tetap~$Y$. Pertama,
+misalkan $U$ adalah suku
+\[
+\lambd[h][\lambd[z][D(z,(h(Sz)),F(x,z))]],
+\]
+kemudian misalkan $H$ adalah suku~$YU$. Perhatikan bahwa satu-satunya variabel
+bebas dalam~$H$ adalah~$x$. Mari kita tunjukkan bahwa $H$ memenuhi persamaan
+di atas.
+
+Berdasarkan definisi~$Y$, kita mempunyai
+\[
+H = YU \equiv U(YU) = U(H).
+\]
+Khususnya, untuk setiap bilangan asli~$n$, kita mempunyai
+\begin{align*}
+H(\num{n}) & \equiv U(H, \num{n}) \\
+& \red D(\num{n}, H(S(\num{n})), F(x, \num{n})),
+\end{align*}
+seperti yang diperlukan. Perhatikan bahwa jika numeral $\num{m}$
+disubstitusikan sebagai pengganti~$x$ pada baris terakhir, ekspresi itu
+tereduksi menjadi $\num{n}$ jika $F(\num{m},\num{n})$ tereduksi menjadi
+$\num{0}$, dan tereduksi menjadi $H(S(\num{n}))$ jika
+$F(\num{m},\num{n})$ tereduksi menjadi numeral lainnya.
+
+Untuk menyelesaikan pembuktian, misalkan $G$ adalah
+$\lambd[x][H(\num 0)]$. Maka $G$ !!{lambda define}s~$g$; dengan kata lain,
+untuk setiap~$m$, $G(\num m)$ tereduksi menjadi~$\overline{g(m)}$ jika $g(m)$
+terdefinisi, dan tidak memiliki bentuk normal dalam kasus lainnya.
+\end{proof}
+
+\end{document}

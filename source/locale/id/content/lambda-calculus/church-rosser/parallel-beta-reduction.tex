@@ -1,0 +1,162 @@
+% Part: lambda-calculus
+% Chapter: church-rosser
+% Section: parallel-beta-reduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{cr}{pb}
+
+\olsection{Reduksi-$\beta$ Paralel}
+
+Kita memperkenalkan gagasan \emph{reduksi-$\beta$ paralel} dan membuktikan
+bahwa reduksi tersebut mempunyai sifat Church--Rosser.
+
+\begin{defn}[Reduksi-$\beta$ paralel, $\bredpar$] \ollabel{defn:bredpar}
+  Reduksi paralel ($\bredpar$) pada suku didefinisikan secara induktif sebagai
+  berikut:
+  \begin{enumerate}
+    \item \ollabel{defn:bredpar1} $x \bredpar x$.
+    \item \ollabel{defn:bredpar2} Jika $N \bredpar N'$, maka
+      $\lambd[x][N] \bredpar \lambd[x][N']$.
+    \item \ollabel{defn:bredpar3} Jika $P \bredpar P'$ dan $Q \bredpar Q'$,
+      maka $PQ \bredpar P'Q'$.
+    \item \ollabel{defn:bredpar4} Jika $N \bredpar N'$ dan $Q \bredpar Q'$,
+      maka $(\lambd[x][N])Q \bredpar \Subst{N'}{Q'}{x}$.
+  \end{enumerate}
+\end{defn}
+
+Reduksi-$\beta$ paralel memungkinkan kita mereduksi sebarang jumlah redex
+dalam satu suku melalui satu langkah. Reduksi ini berbeda dari
+reduksi-$\beta$ karena kita hanya dapat mengontraksi redex yang sudah terdapat
+dalam suku asal, bukan redex yang baru muncul akibat reduksi-$\beta$ paralel.
+Sebagai contoh, suku $(\lambd[f][fx])(\lambd[y][y])$ hanya dapat direduksi-$\beta$
+secara paralel menjadi dirinya sendiri atau menjadi $(\lambd[y][y])x$, tetapi
+tidak langsung lebih lanjut menjadi~$x$, meskipun suku itu tereduksi-$\beta$
+menjadi~$x$; redex terakhir baru muncul sesudah satu langkah reduksi-$\beta$
+paralel. Namun, langkah reduksi-$\beta$ paralel kedua menghasilkan~$x$.
+
+\begin{thm}\ollabel{thm:refl}
+  $M \bredpar M$.
+\end{thm}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[lam][cr][pb]{thm:refl}.
+\end{prob}
+
+\begin{defn}[Pengembangan lengkap-$\beta$]\ollabel{defn:bcd}
+  \emph{Pengembangan lengkap-$\beta$}~$\bcd{M}$ dari $M$ didefinisikan secara
+  induktif sebagai berikut:
+  \begin{align}
+    \bcd{x} &= x \ollabel{defn:bcd1} \\
+    \bcd{(\lambd[x][N])} &= \lambd[x][\bcd{N}] \ollabel{defn:bcd2}\\
+    \bcd{(PQ)} &= \bcd{P}\bcd{Q} && \text{jika $P$ bukan abstrak-$\lambd$}
+    \ollabel{defn:bcd3} \\
+    \bcd{((\lambd[x][N])Q)} &= \Subst{\bcd{N}}{\bcd{Q}}{x} \ollabel{defn:bcd4}
+  \end{align}
+\end{defn}
+
+Sesuai namanya, pengembangan lengkap-$\beta$ suatu suku merupakan ``reduksi
+paralel lengkap.'' Dalam reduksi-$\beta$ paralel kita masih dapat memilih untuk
+tidak mengontraksi suatu redex; dalam pengembangan lengkap, semua redex harus
+dikontraksi. Karena itu, pengembangan lengkap dari
+$(\lambd[f][fx])(\lambd[y][y])$ adalah $(\lambd[y][y])x$, bukan suku itu
+sendiri.
+
+\begin{editorial}
+  Definisi ini bermasalah karena cara mendefinisikan fungsi secara rekursif
+  pada suku-$\lambd$ belum diperkenalkan. Hal ini akan diperbaiki kelak.
+\end{editorial}
+
+\begin{lem}\ollabel{lem:comp}
+  Jika $M \bredpar M'$ dan $R \bredpar R'$, maka $\Subst{M}{R}{y}
+  \bredpar \Subst{M'}{R'}{y}$.
+\end{lem}
+
+\begin{proof}
+  Dengan induksi pada !!{derivation} $M \bredpar M'$.
+  \begin{enumerate}
+    \item Langkah terakhir adalah \olref{defn:bredpar1}: Latihan.
+    \item Langkah terakhir adalah \olref{defn:bredpar2}: Maka
+      $M=\lambd[x][N]$ dan $M'=\lambd[x][N']$, dengan $N\bredpar N'$.
+      Kita ingin membuktikan bahwa
+      $\Subst{(\lambd[x][N])}{R}{y}\bredpar
+      \Subst{(\lambd[x][N'])}{R'}{y}$, yaitu
+      $\lambd[x][\Subst{N}{R}{y}]\bredpar
+      \lambd[x][\Subst{N'}{R'}{y}]$. Hal ini langsung mengikuti
+      \olref{defn:bredpar2} dan hipotesis induksi.
+    \item Langkah terakhir adalah \olref{defn:bredpar3}: Latihan.
+    \item Langkah terakhir adalah \olref{defn:bredpar4}: $M$ adalah
+      $(\lambd[x][N])Q$ dan $M'$ adalah $\Subst{N'}{Q'}{x}$. Kita ingin
+      membuktikan bahwa
+      $\Subst{((\lambd[x][N])Q)}{R}{y}\bredpar
+      \Subst{\Subst{N'}{Q'}{x}}{R'}{y}$, yaitu
+      $(\lambd[x][\Subst{N}{R}{y}])\Subst{Q}{R}{y}\bredpar
+      \Subst{\Subst{N'}{R'}{y}}{\Subst{Q'}{R'}{y}}{x}$. Hal ini mengikuti
+      \olref{defn:bredpar4} dan hipotesis induksi.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[lam][cr][pb]{lem:comp}.
+\end{prob}
+
+\begin{lem}\ollabel{lem:cont}
+  Jika $M \bredpar M'$, maka $M' \bredpar \bcd{M}$.
+\end{lem}
+\begin{proof}
+  Dengan induksi pada !!{derivation} $M \bredpar M'$.
+  \begin{enumerate}
+    \item Aturan terakhir adalah \olref{defn:bredpar1}: Latihan.
+    \item Aturan terakhir adalah \olref{defn:bredpar2}: $M$ adalah
+      $\lambd[x][N]$ dan $M'$ adalah $\lambd[x][N']$, dengan
+      $N\bredpar N'$. Kita ingin menunjukkan
+      $\lambd[x][N']\bredpar\bcd{(\lambd[x][N])}$, yaitu
+      $\lambd[x][N']\bredpar\lambd[x][\bcd{N}]$ berdasarkan
+      \olref{defn:bcd2}. Hal ini mengikuti \olref{defn:bredpar2} dan
+      hipotesis induksi.
+    \item Aturan terakhir adalah \olref{defn:bredpar3}: $M$ adalah $PQ$ dan
+      $M'$ adalah $P'Q'$ untuk suatu $P$, $Q$, $P'$, dan~$Q'$, dengan
+      $P\bredpar P'$ dan $Q\bredpar Q'$. Berdasarkan hipotesis induksi,
+      $P'\bredpar\bcd{P}$ dan $Q'\bredpar\bcd{Q}$.
+      \begin{enumerate}
+        \item Jika $P=\lambd[x][N]$ untuk suatu $x$ dan~$N$, maka
+          $P'=\lambd[x][N']$ untuk suatu $N'$ dengan $N\bredpar N'$.
+          Berdasarkan hipotesis induksi, $N'\bredpar\bcd{N}$ dan
+          $Q'\bredpar\bcd{Q}$. Maka
+          $(\lambd[x][N'])Q'\bredpar\Subst{\bcd{N}}{\bcd{Q}}{x}$ berdasarkan
+          \olref{defn:bredpar4}.
+        \item Jika $P$ bukan abstrak-$\lambd$, maka
+          $P'Q'\bredpar\bcd{P}\bcd{Q}$ berdasarkan
+          \olref{defn:bredpar3}; ruas kanannya adalah $\bcd{PQ}$ berdasarkan
+          \olref{defn:bcd3}.
+      \end{enumerate}
+    \item Aturan terakhir adalah \olref{defn:bredpar4}: $M$ adalah
+      $(\lambd[x][N])Q$ dan $M'$ adalah $\Subst{N'}{Q'}{x}$ untuk suatu
+      $x$, $N$, $Q$, $N'$, dan~$Q'$, dengan $N\bredpar N'$ dan
+      $Q\bredpar Q'$. Berdasarkan hipotesis induksi,
+      $N'\bredpar\bcd{N}$ dan $Q'\bredpar\bcd{Q}$. Berdasarkan
+      \olref{lem:comp},
+      $\Subst{N'}{Q'}{x}\bredpar\Subst{\bcd{N}}{\bcd{Q}}{x}$; ruas kanan
+      ini tepat sama dengan $\bcd{((\lambd[x][N])Q)}$.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[lam][cr][pb]{lem:cont}.
+\end{prob}
+
+\begin{thm}\ollabel{thm:cr}
+  $\bredpar$ mempunyai sifat Church--Rosser.
+\end{thm}
+
+\begin{proof}
+  Langsung dari \olref{lem:cont}.
+\end{proof}
+
+\end{document}

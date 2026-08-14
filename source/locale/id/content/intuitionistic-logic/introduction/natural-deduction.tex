@@ -1,0 +1,260 @@
+% Bagian: intuitionistic-logic
+% Bab: introduction
+% Subbagian: natural-deduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{int}{ntd}
+
+\olsection{Deduksi Alami}
+
+Deduksi alami tanpa aturan $\FalseCl$ merupakan sistem !!{derivation} baku
+bagi logika intuisionistik. Kita mengulangi aturan-aturannya di sini dan
+menjelaskan motivasinya dengan menggunakan interpretasi BHK. Dalam setiap
+kasus, kita dapat memandang suatu aturan sebagai aturan yang memungkinkan kita
+menyimpulkan bahwa jika premis-premisnya mempunyai konstruksi, kesimpulannya
+juga mempunyai konstruksi.
+
+Karena !!{derivation}s deduksi alami mempunyai asumsi yang belum dilepaskan, kita
+sebaiknya memandang !!a{derivation} semacam itu, misalnya derivasi $!A$ dari
+asumsi !!{undischarged}~$\Gamma$, sebagai fungsi yang mengubah konstruksi bagi
+semua $!B \in \Gamma$ menjadi konstruksi bagi~$!A$. Jika terdapat
+!!a{derivation} bagi~$!A$ tanpa asumsi !!{undischarged}, maka terdapat
+konstruksi bagi~$!A$ dalam pengertian interpretasi BHK. Namun, untuk keperluan
+pembahasan, kita akan menghilangkan~$\Gamma$ jika tidak diperlukan.
+
+Suatu asumsi~$!A$ sendiri merupakan !!a{derivation} bagi~$!A$ dari asumsi
+!!{undischarged}~$!A$. Hal ini sesuai dengan interpretasi BHK: fungsi identitas
+pada konstruksi mengubah setiap konstruksi bagi~$!A$ menjadi konstruksi
+bagi~$!A$.
+
+\subsection{Konjungsi}
+
+\begin{defish}
+\AxiomC{$!A$}
+\AxiomC{$!B$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!A \land !B$}
+\DisplayProof
+\hfill
+\begin{tabular}{l}
+\AxiomC{$!A \land !B$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!A$}
+\DisplayProof
+\\[3ex]
+\AxiomC{$!A \land !B$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!B$}
+\DisplayProof
+\end{tabular}
+\end{defish}
+
+Andaikan kita mempunyai konstruksi $N_1$, $N_2$ masing-masing bagi $!A_1$
+dan $!A_2$. Dengan demikian, kita juga mempunyai konstruksi bagi $!A_1 \land
+!A_2$, yakni pasangan $\tuple{N_1, N_2}$.
+
+Menurut interpretasi BHK, konstruksi bagi $!A_1 \land !A_2$ ialah pasangan
+$\tuple{N_1, N_2}$. Jadi, andaikan kita mempunyai pasangan semacam itu. Kita
+pun mempunyai konstruksi bagi setiap konjung: $N_1$ merupakan konstruksi
+bagi~$!A_1$, dan $N_2$ merupakan konstruksi bagi $!A_2$.
+
+\subsection{Kondisional}
+
+\begin{defish}
+  \AxiomC{$\Discharge{!A}{u}$}
+  \DeduceC{$!B$}
+  \DischargeRule{$\Intro{\lif}$}{u}
+  \UnaryInfC{$!A \lif !B$}
+  \DisplayProof
+\hfill
+  \AxiomC{$!A \lif !B$}
+  \AxiomC{$!A$}
+  \RightLabel{$\Elim{\lif}$}
+  \BinaryInfC{$!B$}
+  \DisplayProof
+\end{defish}
+
+Jika kita mempunyai !!a{derivation} bagi~$!B$ dari asumsi
+!!{undischarged}~$!A$, terdapat fungsi~$f$ yang mengubah konstruksi bagi~$!A$
+menjadi konstruksi bagi~$!B$. Fungsi yang sama merupakan konstruksi bagi $!A
+\lif !B$. Jadi, jika premis $\Intro\lif$ mempunyai konstruksi yang bergantung
+pada suatu konstruksi bagi~$!A$, kesimpulan $!A \lif !B$ mempunyai konstruksi.
+
+Sebaliknya, andaikan terdapat konstruksi~$N$ bagi $!A$ dan $f$ bagi $!A \lif
+!B$. Konstruksi bagi $!A \lif !B$ ialah fungsi yang mengubah konstruksi bagi
+$!A$ menjadi konstruksi bagi~$!B$. Jadi, $f(N)$ merupakan konstruksi bagi~$!B$;
+yakni, kesimpulan $\Elim\lif$ mempunyai konstruksi.
+
+\subsection{Disjungsi}
+
+\begin{defish}
+\begin{tabular}{l}
+\AxiomC{$!A$}
+\RightLabel{\Intro{\lor}}
+\UnaryInfC{$!A \lor !B$}
+\DisplayProof
+\\[3ex]
+\AxiomC{$!B$}
+\RightLabel{\Intro{\lor}}
+\UnaryInfC{$!A \lor !B$}
+\DisplayProof
+\end{tabular}
+\hfill
+\AxiomC{$!A \lor !B$}
+\AxiomC{$\Discharge{!A}{n}$}
+\DeduceC{$!C$}
+\AxiomC{$\Discharge{!B}{n}$}
+\DeduceC{$!C$}
+\DischargeRule{\Elim{\lor}}{n}
+\TrinaryInfC{$!C$}
+\DisplayProof
+\end{defish}
+
+Jika kita mempunyai konstruksi~$N_i$ bagi~$!A_i$, kita dapat mengubahnya
+menjadi konstruksi~$\tuple{i, N_i}$ bagi~$!A_1 \lor !A_2$. Sebaliknya,
+andaikan kita mempunyai konstruksi bagi~$!A_1 \lor !A_2$, yakni pasangan
+$\tuple{i, N_i}$ dengan $N_i$ suatu konstruksi bagi~$!A_i$, serta fungsi
+$f_1$, $f_2$ yang masing-masing mengubah konstruksi bagi $!A_1$, $!A_2$
+menjadi konstruksi bagi~$!C$. Maka $f_i(N_i)$ merupakan konstruksi bagi~$!C$,
+yakni kesimpulan dari~$\Elim\lor$.
+
+\subsection{Absurditas}
+
+\begin{defish}
+  \AxiomC{$\lfalse$}
+  \RightLabel{\FalseInt}
+  \UnaryInfC{$!A$}
+  \DisplayProof
+\end{defish}
+
+Jika kita mempunyai !!a{derivation} bagi~$\lfalse$ dari asumsi
+!!{undischarged}~$!B_1$, \dots, $!B_n$, maka terdapat fungsi~$f(M_1, \dots,
+M_n)$ yang mengubah konstruksi bagi $!B_1$, \dots, $!B_n$ menjadi konstruksi
+bagi~$\lfalse$. Karena $\lfalse$ tidak mempunyai konstruksi, konstruksi bagi
+semua $!B_1$, \dots, $!B_n$ juga tidak mungkin ada. Oleh karena itu, $f$ juga
+mempunyai sifat bahwa \emph{jika} $M_1$, \dots, $M_n$ masing-masing merupakan
+konstruksi bagi $!B_1$, \dots, $!B_n$, \emph{maka} $f(M_1, \dots, M_n)$
+merupakan konstruksi bagi~$!A$.
+
+\subsection{Aturan untuk $\lnot$}
+
+Karena $\lnot !A$ didefinisikan sebagai $!A \lif \lfalse$, secara ketat kita
+tidak memerlukan aturan bagi~$\lnot$. Namun, seandainya kita menggunakannya,
+aturan tersebut berbentuk sebagai berikut:
+
+\begin{defish}
+\AxiomC{$\Discharge{!A}{n}$}
+\noLine
+\DeduceC{$\lfalse$}
+\DischargeRule{\Intro{\lnot}}{n}
+\UnaryInfC{$\lnot !A$}
+\DisplayProof
+\hfill
+\AxiomC{$\lnot !A$}
+\AxiomC{$!A$}
+\RightLabel{\Elim{\lnot}}
+\BinaryInfC{$\lfalse$}
+\DisplayProof
+\end{defish}
+
+
+\subsection{Contoh \usetoken{P}{derivation}}
+
+\begin{enumerate}
+\item $\Proves !A \lif (\lnot !A \lif \lfalse)$, yakni $\Proves !A
+  \lif ((!A \lif \lfalse) \lif \lfalse)$
+  \begin{prooftree}
+    \AxiomC{$\Discharge{!A}{2}$}
+    \AxiomC{$\Discharge{!A \lif \lfalse}{1}$}
+    \RightLabel{\Elim\lif}
+    \BinaryInfC{$\lfalse$}
+    \DischargeRule{\Intro\lif}{1}
+    \UnaryInfC{$(!A \lif \lfalse)\lif \lfalse$}
+    \DischargeRule{\Intro\lif}{2}
+    \UnaryInfC{$!A \lif ((!A \lif \lfalse) \lif \lfalse)$}
+  \end{prooftree}
+
+\item $\Proves ((!A \land !B) \lif !C) \lif (!A \lif (!B \lif !C))$
+  \begin{prooftree}
+    \AxiomC{$\Discharge{(!A \land !B) \lif !C}{3}$}
+    \AxiomC{$\Discharge{!A}{2}$}
+    \AxiomC{$\Discharge{!B}{1}$}
+    \RightLabel{\Intro\land}
+    \BinaryInfC{$!A \land !B$}
+    \RightLabel{\Elim\lif}
+    \BinaryInfC{$!C$}
+    \DischargeRule{\Intro\lif}{1}
+    \UnaryInfC{$!B \lif !C$}
+    \DischargeRule{\Intro\lif}{2}
+    \UnaryInfC{$!A \lif (!B \lif !C)$}
+    \DischargeRule{\Intro\lif}{3}
+    \UnaryInfC{$((!A \land !B) \lif !C) \lif (!A \lif (!B \lif !C))$}
+  \end{prooftree}
+
+\item $\Proves \lnot(!A \land \lnot !A)$, yakni $\Proves (!A \land (!A
+  \lif \lfalse))\lif \lfalse$
+  \begin{prooftree}
+    \AxiomC{$\Discharge{!A \land (!A \lif \lfalse)}{1}$}
+    \RightLabel{\Elim\land}
+    \UnaryInfC{$!A \lif \lfalse$}
+    \AxiomC{$\Discharge{!A \land (!A \lif \lfalse)}{1}$}
+    \RightLabel{\Elim\land}
+    \UnaryInfC{$!A$}
+    \RightLabel{\Elim\lif}
+    \BinaryInfC{$\lfalse$}
+    \DischargeRule{\Intro\lif}{1}
+    \UnaryInfC{$(!A \land (!A \lif \lfalse))\lif \lfalse$}
+  \end{prooftree}
+
+\item $\Proves \lnot\lnot(!A \lor \lnot !A)$, yakni $\Proves ((!A \lor
+  (!A \lif \lfalse))\lif \lfalse)\lif \lfalse$
+  \begin{prooftree}\hskip-3em
+    \AxiomC{$\Discharge{(!A \lor (!A \lif \lfalse))\lif \lfalse}{2}$}
+    \AxiomC{$\Discharge{(!A \lor (!A \lif \lfalse))\lif \lfalse}{2}$}
+    \AxiomC{$\Discharge{!A}{1}$}
+    \RightLabel{\Intro\lor}
+    \UnaryInfC{$!A \lor (!A \lif \lfalse)$}
+    \RightLabel{\Elim\lif}
+    \BinaryInfC{$\lfalse$}
+    \DischargeRule{\Intro\lif}{1}
+    \UnaryInfC{$!A \lif \lfalse$}
+    \RightLabel{\Intro\lor}
+    \UnaryInfC{$!A \lor (!A \lif \lfalse)$}
+    \RightLabel{\Elim\lif}
+    \insertBetweenHyps{\hskip -4em}
+    \BinaryInfC{$\lfalse$}
+    \DischargeRule{\Intro\lif}{2}
+    \UnaryInfC{$((!A \lor (!A \lif \lfalse))\lif \lfalse)\lif \lfalse$}
+  \end{prooftree}
+\end{enumerate}
+
+\begin{prop}
+  Jika $\Gamma \Proves !A$ dalam deduksi alami bagi logika intuisionistik,
+  maka $\Gamma \Proves !A$ dalam logika klasik. Khususnya, jika $!A$
+  merupakan teorema intuisionistik, formula itu juga merupakan teorema klasik.
+\end{prop}
+
+\begin{proof}
+  Setiap aturan deduksi alami juga merupakan aturan dalam deduksi alami
+  klasik, sehingga setiap !!{derivation} dalam logika intuisionistik juga
+  merupakan !!a{derivation} dalam logika klasik.
+\end{proof}
+
+\begin{prob}
+  Berikan !!{derivation}s dalam logika intuisionistik bagi !!{formula}s
+  berikut:
+  \begin{enumerate}
+    \item $(\lnot !A \lor !B) \lif (!A \lif !B)$
+    \item $\lnot\lnot\lnot !A \lif \lnot !A$
+    \item $\lnot\lnot (!A \land !B) \liff (\lnot\lnot !A\land \lnot \lnot !B)$
+    \item $\lnot (!A \lor !B) \liff (\lnot !A \land \lnot !B)$
+    \item $(\lnot !A \lor \lnot !B) \lif \lnot (!A \land !B)$
+    \item $\lnot\lnot ( !A \land !B) \lif  (\lnot\lnot !A \lor
+    \lnot\lnot !B)$
+  \end{enumerate}
+\end{prob}
+
+\end{document}

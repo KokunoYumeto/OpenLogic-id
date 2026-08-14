@@ -1,0 +1,155 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: truth-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{com}{tru}
+
+\olsection{Lema Kebenaran}
+
+Model kanonik~$\mModel{M^\Sigma}$ didefinisikan sedemikian rupa sehingga
+$\mSat{M^\Sigma}{!A}[\Delta]$ jika dan hanya jika $!A \in \Delta$. Bagi
+!!{propositional variable}s, definisi $V^\Sigma$ menghasilkan hal ini secara
+langsung. Namun, kita harus memeriksa bahwa ekuivalensi tersebut berlaku bagi
+semua !!{formula}s. Kita melakukannya melalui induksi. Langkah induksi
+mencakup pembuktian ekuivalensi bagi !!{formula}s yang melibatkan operator
+proposisional (dengan menggunakan \olref[ccs]{prop:ccs-properties}) dan
+operator modal (dengan menggunakan hasil-hasil dalam \olref[mod]{sec}).
+
+\begin{prop}[Lema Kebenaran]
+  \ollabel{prop:truthlemma}
+  Bagi setiap !!{formula}~$!A$, $\mSat{M^\Sigma}{!A}[\Delta]$ jika dan hanya jika
+  $!A \in \Delta$.
+\end{prop}
+
+\begin{proof}
+  Melalui induksi pada~$!A$.
+  \begin{enumerate}
+    \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\mSat/{M^\Sigma}{\lfalse}[\Delta]$
+        berdasarkan \olref[syn][trw]{defn:mmodels}, dan $\lfalse \notin \Delta$
+        berdasarkan
+        \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lfalse}.}}{}
+
+    \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M^\Sigma}{\ltrue}[\Delta]$
+        berdasarkan \olref[syn][trw]{defn:mmodels}, dan $\ltrue \in \Delta$
+        berdasarkan
+        \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-ltrue}.}}{}
+
+    \item \indcase{!A}{p}{$\mSat{M^\Sigma}{p}[\Delta]$ jika dan hanya jika
+      $\Delta \in V^\Sigma(p)$ berdasarkan \olref[syn][trw]{defn:mmodels}.
+      Selain itu, $\Delta \in V^\Sigma(p)$ jika dan hanya jika
+      $p \in \Delta$ berdasarkan definisi~$V^\Sigma$.}
+
+    \tagitem{prvNot}{\indcase{!A}{\lnot !B}{%
+        \iftag{probNot}{Latihan.}{$\mSat{M^\Sigma}{\lnot !B}[\Delta]$
+          jika dan hanya jika $\mSat/{M^\Sigma}{!B}[\Delta]$
+          (\olref[syn][trw]{defn:mmodels}), jika dan hanya jika
+          $!B \notin \Delta$ (berdasarkan hipotesis induksi), jika dan hanya
+          jika $\lnot !B \in \Delta$ (berdasarkan
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lnot}).}}}{}
+
+    \tagitem{prvAnd}{\indcase{!A}{!B \land !C}{%
+        \iftag{probAnd}{Latihan.}{$\mSat{M^\Sigma}{!B \land
+            !C}[\Delta]$ jika dan hanya jika $\mSat{M^\Sigma}{!B}[\Delta]$
+          dan $\mSat{M^\Sigma}{!C}[\Delta]$ (berdasarkan
+          \olref[syn][trw]{defn:mmodels}), jika dan hanya jika
+          $!B \in \Delta$ dan $!C \in \Delta$ (berdasarkan hipotesis
+          induksi), jika dan hanya jika $!B \land !C \in \Delta$ (berdasarkan
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-land}).}}}{}
+
+    \tagitem{prvOr}{\indcase{!A}{!B \lor !C}{%
+        \iftag{probOr}{Latihan.}{$\mSat{M^\Sigma}{!B \lor
+            !C}[\Delta]$ jika dan hanya jika $\mSat{M^\Sigma}{!B}[\Delta]$
+          atau $\mSat{M^\Sigma}{!C}[\Delta]$ (berdasarkan
+          \olref[syn][trw]{defn:mmodels}), jika dan hanya jika
+          $!B \in \Delta$ atau $!C \in \Delta$ (berdasarkan hipotesis
+          induksi), jika dan hanya jika $!B \lor !C \in \Delta$ (berdasarkan
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lor}).}}}{}
+
+    \tagitem{prvIf}{\indcase{!A}{!B \lif !C}{%
+        \iftag{probIf}{Latihan.}{$\mSat{M^\Sigma}{!B \lif
+            !C}[\Delta]$ jika dan hanya jika $\mSat/{M^\Sigma}{!B}[\Delta]$
+          atau $\mSat{M^\Sigma}{!C}[\Delta]$ (berdasarkan
+          \olref[syn][trw]{defn:mmodels}), jika dan hanya jika
+          $!B \notin \Delta$ atau $!C \in \Delta$ (berdasarkan hipotesis
+          induksi), jika dan hanya jika $!B \lif !C \in \Delta$ (berdasarkan
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-lif}).}}}{}
+
+    \tagitem{prvIff}{\indcase{!A}{!B \liff !C}{%
+        \iftag{probIff}{Latihan.}{$\mSat{M^\Sigma}{!B \liff
+            !C}[\Delta]$ jika dan hanya jika sekaligus
+          $\mSat{M^\Sigma}{!B}[\Delta]$ dan
+          $\mSat{M^\Sigma}{!C}[\Delta]$, atau sekaligus
+          $\mSat/{M^\Sigma}{!B}[\Delta]$ dan
+          $\mSat/{M^\Sigma}{!C}[\Delta]$ (berdasarkan
+          \olref[syn][trw]{defn:mmodels}), jika dan hanya jika sekaligus
+          $!B \in \Delta$ dan $!C \in \Delta$, atau sekaligus
+          $!B \notin \Delta$ dan $!C \notin \Delta$ (berdasarkan hipotesis
+          induksi), jika dan hanya jika $!B \liff !C \in \Delta$ (berdasarkan
+          \olref[ccs]{prop:ccs-properties}\olref[ccs]{prop:ccs-liff}).}}}{}
+
+    \tagitem{prvBox}{\indcase{!A}{\Box !B}{%
+        \iftag{probBox}{Latihan.}{Pertama, andaikan
+          $\mSat{M^\Sigma}{\Box !B}[\Delta]$. Berdasarkan
+          \olref[syn][trw]{defn:mmodels}, bagi setiap $\Delta'$ sedemikian
+          sehingga $R^\Sigma \Delta\Delta'$, berlaku
+          $\mSat{M^\Sigma}{!B}[\Delta']$. Berdasarkan hipotesis induksi, bagi
+          setiap $\Delta'$ sedemikian sehingga $R^\Sigma \Delta\Delta'$,
+          berlaku $!B \in \Delta'$. Berdasarkan definisi $R^\Sigma$, bagi
+          setiap $\Delta'$ sedemikian sehingga $\Box^{-1} \Delta \subseteq
+          \Delta'$, berlaku $!B \in \Delta'$. Berdasarkan
+          \olref[mod]{prop:box}, $\Box !B \in \Delta$.
+
+          Sekarang andaikan $\Box !B \in \Delta$. Misalkan
+          $\Delta' \in W^\Sigma$ sedemikian sehingga
+          $R^\Sigma \Delta\Delta'$, yakni $\Box^{-1}\Delta \subseteq
+          \Delta'$. Karena $\Box !B \in \Delta$, berlaku
+          $!B \in \Box^{-1} \Delta$. Akibatnya, $!B \in \Delta'$.
+          Berdasarkan hipotesis induksi, $\mSat{M^\Sigma}{!B}[\Delta']$.
+          Karena $\Delta'$ merupakan sebarang himpunan dengan
+          $R^\Sigma \Delta\Delta'$, bagi semua $\Delta' \in W^\Sigma$
+          sedemikian sehingga $R^\Sigma \Delta\Delta'$, berlaku
+          $\mSat{M^\Sigma}{!B}[\Delta']$. Berdasarkan
+          \olref[syn][trw]{defn:mmodels}, $\mSat{M^\Sigma}{\Box
+            !B}[\Delta]$.}}}{}
+
+    \tagitem{prvDiamond}{\indcase{!A}{\Diamond !B}{%
+        \iftag{probDiamond}{Latihan.}{Pertama, andaikan
+          $\mSat{M^\Sigma}{\Diamond !B}[\Delta]$. Berdasarkan
+          \olref[syn][trw]{defn:mmodels}, bagi suatu $\Delta'$ sedemikian
+          sehingga $R^\Sigma \Delta\Delta'$, berlaku
+          $\mSat{M^\Sigma}{!B}[\Delta']$. Berdasarkan hipotesis induksi, bagi
+          suatu $\Delta'$ sedemikian sehingga $R^\Sigma \Delta\Delta'$,
+          berlaku $!B \in \Delta'$. Berdasarkan definisi
+          $R^\Sigma$,\iftag{prvBox}{ bagi suatu $\Delta'$ sedemikian sehingga
+            $\Box^{-1} \Delta \subseteq \Delta'$, berlaku $!B \in \Delta'$.
+            Berdasarkan \olref[mod]{lem:box-iff-diamond},}{} bagi suatu $\Delta'$
+          sedemikian sehingga $\Diamond \Delta' \subseteq \Delta$, berlaku
+          $!B \in \Delta'$. Karena $!B \in \Delta'$, berlaku
+          $\Diamond !B \in \Diamond \Delta'$, sehingga
+          $\Diamond !B \in \Delta$.
+
+          Sekarang andaikan $\Diamond !B \in \Delta$. Berdasarkan
+          \olref[mod]{prop:diamond}, terdapat suatu himpunan lengkap dan
+          $\Sigma$-konsisten~$\Delta' \in W^\Sigma$ sedemikian sehingga
+          $\Diamond \Delta' \subseteq \Delta$ dan $!B \in
+          \Delta'$.\iftag{prvBox}{ Berdasarkan
+            \olref[mod]{lem:box-iff-diamond}, terdapat suatu
+            $\Delta' \in W^\Sigma$ sedemikian sehingga $\Box^{-1}
+            \Delta \subseteq \Delta'$, dan $!B \in \Delta'$.}{}
+          Berdasarkan definisi $R^\Sigma$, $R^\Sigma \Delta\Delta'$, sehingga
+          terdapat suatu $\Delta' \in W^\Sigma$ sedemikian sehingga
+          $R^\Sigma \Delta\Delta'$ dan $!B \in \Delta'$. Berdasarkan
+          \olref[syn][trw]{defn:mmodels}, $\mSat{M^\Sigma}{\Diamond
+            !B}[\Delta]$.}}}{}
+  \end{enumerate}
+\end{proof}
+
+\begin{probtag}{probFalse,probTrue,probNot,probAnd,probOr,probIf,probIff,probBox,probDiamond}
+  Lengkapi pembuktian \olref[nml][com][tru]{prop:truthlemma}.
+\end{probtag}
+
+\end{document}

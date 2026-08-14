@@ -1,0 +1,90 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: S5-fmp
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{fil}{fmp}
+
+\olsection{\Log{K} dan \Log{S5} Mempunyai Sifat Model Berhingga}
+
+\begin{defn}
+  Suatu sistem logika modal $\Sigma$ dikatakan mempunyai \emph{sifat model
+    berhingga} jika, setiap kali !!a{formula}~$!A$ bernilai benar pada suatu
+  dunia dalam suatu model dari $\Sigma$, $!A$ juga bernilai benar pada suatu
+  dunia dalam suatu model \emph{berhingga} dari~$\Sigma$.
+\end{defn}
+
+\begin{prop}\ollabel{prop:K-fmp}
+  \Log{K} mempunyai sifat model berhingga.
+\end{prop}
+
+\begin{proof}
+  \Log{K} merupakan himpunan !!{formula}s yang valid, yakni setiap model
+  merupakan model dari~\Log{K}. Menurut \olref[fil]{thm:filtrations}, jika
+  $\mSat{M}{!A}[w]$, maka $\mSat{M^*}{!A}[{[w]}]$ bagi setiap filtrasi
+  dari~$\mModel{M}$ melalui himpunan $\Gamma$ semua sub-!!{formula}s
+  dari~$!A$. Setiap !!{formula} hanya mempunyai berhingga banyak
+  sub-!!{formula}s, sehingga $\Gamma$ berhingga. Menurut
+  \olref[fin]{prop:filt-are-finite}, $\card{W^*} \le 2^n$, dengan $n$
+  banyaknya !!{formula}s dalam~$\Gamma$. Karena \Log{K} tidak memberlakukan
+  pembatasan apa pun pada model, $\mModel{M^*}$ merupakan model dari~\Log{K}.
+\end{proof}
+
+Untuk menunjukkan melalui filtrasi bahwa suatu logika~\Log{L} mempunyai sifat
+model berhingga, sangat penting bahwa filtrasi dari suatu model dari~\Log{L}
+itu sendiri merupakan model dari~\Log{L}. Hal ini sering memerlukan cukup
+banyak upaya, dan tidak setiap filtrasi menghasilkan model dari~\Log{L}. Namun, bagi model
+universal, hal itu tetap berlaku.
+
+\begin{prop}\ollabel{prop:univ-fin}
+  Misalkan $\mClass{U}$ merupakan kelas model universal (lihat
+  \olref[frd][es5]{prop:S5=univ}) dan $\mClass{U}_\mathrm{Fin}$ merupakan
+  kelas semua model universal berhingga. Maka sebarang !!{formula}~$!A$ valid
+  dalam $\mClass{U}$ jika dan hanya jika formula itu valid dalam
+  $\mClass{U}_\mathrm{Fin}$.
+\end{prop}
+
+\begin{proof}
+  Model universal berhingga merupakan model universal, sehingga arah dari
+  kiri ke kanan langsung berlaku. Untuk arah dari kanan ke kiri, andaikan
+  bahwa~$!A$ bernilai salah pada suatu dunia $w$ dalam suatu model universal
+  $\mModel{M}$. Misalkan $\Gamma$ memuat $!A$ beserta semua subformulanya;
+  jelas bahwa $\Gamma$ berhingga. Ambil suatu filtrasi $\mModel{M^*}$
+  dari~$\mModel{M}$; maka $\mModel{M^*}$ berhingga menurut
+  \olref[fin]{prop:filt-are-finite}, dan menurut
+  \olref[fil]{thm:filtrations}, $!A$ bernilai salah pada $[w]$
+  dalam~$\mModel{M^*}$. Tinggal diamati bahwa $\mModel{M^*}$ juga universal:
+  jika diberikan $u$ dan $v$, berdasarkan hipotesis berlaku $Ruv$, dan
+  berdasarkan \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R},
+  berlaku pula $R^*[u][v]$.
+\end{proof}
+
+\begin{cor}\ollabel{cor:S5fmp}
+  \Log{S5} mempunyai sifat model berhingga.
+\end{cor}
+
+\begin{proof}
+  Menurut \olref[frd][es5]{prop:S5=univ}, jika $!A$ bernilai benar pada suatu
+  dunia dalam suatu model refleksif dan Euklidean, maka formula itu bernilai
+  benar pada suatu dunia dalam suatu model universal. Menurut
+  \olref{prop:univ-fin}, formula itu bernilai benar pada suatu dunia dalam
+  suatu model universal berhingga (yakni filtrasi model tersebut melalui
+  himpunan sub-!!{formula}s dari~$!A$). Setiap model universal juga refleksif
+  dan Euklidean; jadi, $!A$ bernilai benar pada suatu dunia dalam suatu model
+  refleksif dan Euklidean berhingga.
+\end{proof}
+
+\begin{prob}
+  Tunjukkan bahwa setiap filtrasi dari suatu model serial atau refleksif juga
+  serial atau refleksif (masing-masing).
+\end{prob}
+
+\begin{prob}
+  Temukan suatu filtrasi tak simetris (tak transitif, tak Euklidean) dari suatu
+  model simetris (transitif, Euklidean).
+\end{prob}
+
+\end{document}

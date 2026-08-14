@@ -1,0 +1,81 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{story}{urelements}
+\olsection{Urelemen atau Bukan?}
+
+Dalam beberapa bab berikutnya, kita akan mencoba menurunkan aksioma-aksioma
+dari konsepsi kumulatif-iteratif tentang himpunan. Namun, sebelum melangkah
+lebih jauh, kita perlu mengatakan sesuatu lagi tentang \emph{urelemen}.
+
+Gambaran dalam \olref[approach]{sec} hanya memperbolehkan kita membentuk
+himpunan baru dari \emph{himpunan} lama. Akan tetapi, kita mungkin ingin
+memperbolehkan \emph{bukan-himpunan} tertentu---sapi, babi, butir pasir, atau
+apa pun---menjadi !!{element}s suatu himpunan. Dalam hal itu, kita akan memulai
+dengan unsur dasar tertentu, yaitu \emph{urelemen}, lalu mengatakan bahwa pada
+setiap tahap $S$ kita membentuk ``semua himpunan yang mungkin'' yang terdiri
+atas urelemen atau himpunan yang dibentuk pada tahap sebelum $S$ (dalam
+kombinasi apa pun). Gambaran yang dihasilkan akan lebih menyerupai ini:
+\begin{center}
+	\begin{tikzpicture}[scale=0.6]
+	\tikzset{cut_here/.style={densely dotted}}
+	\draw (-4,6) -- (-1, 0) -- (1,0) -- (4,6);
+	\draw[cut_here] (-5,8)--(-4,6);
+	\draw[cut_here] (5,8)--(4,6);
+	\draw(-1.5, 1)--(1.5, 1);
+	\draw(-2, 2)--(2, 2);
+	\draw(-2.5, 3)--(2.5,3);
+	\draw(-3, 4)--(3, 4);
+	\draw(-3.5, 5)--(3.5, 5);
+	\draw(-4, 6)--(4, 6);
+	\node[label] at (2, 0) {\small 0};
+	\node[label] at (2.5, 1) {\small 1};
+	\node[label] at (3, 2) {\small 2};
+	\node[label] at (3.5, 3) {\small 3};
+	\node[label] at (4, 4) {\small 4};
+	\node[label] at (4.5, 5) {\small 5};
+	\node[label] at (5, 6) {\small 6};
+	\end{tikzpicture}
+\end{center}
+Jadi, sekarang ada keputusan yang harus kita ambil: \emph{Haruskah kita
+memperbolehkan urelemen?}
+
+Secara filosofis, memasukkan urelemen ke dalam teori kita masuk akal. Alasan
+utamanya ialah agar teori himpunan kita \emph{dapat diterapkan}. Sebagai
+ilustrasi, ingat dari \olref[sfr][siz][]{chap} bahwa kita mengatakan dua
+himpunan $A$ dan~$B$ berukuran sama, yakni $\cardeq{A}{B}$, jika dan hanya
+jika terdapat suatu bijeksi di antara keduanya. Sekarang, jika sapi di padang dan babi di kandang
+masing-masing membentuk himpunan, kita dapat memberikan perlakuan
+teoretis-himpunan terhadap klaim ``jumlah sapi sama banyaknya dengan jumlah
+babi''. Namun, jika kita melarang urelemen sehingga sapi dan babi \emph{tidak}
+membentuk himpunan, perlakuan teoretis-himpunan tersebut tidak akan tersedia.
+Memang, kita tidak akan mempunyai cara langsung untuk menerapkan teori
+himpunan pada apa pun selain himpunan itu sendiri. (Untuk alasan lain yang
+mendukung urelemen, lihat \citealt[pp.~vi, 24, 50--1]{Potter2004}.)
+
+Namun, secara matematis, urelemen cukup jarang diperbolehkan. Sebagian
+alasannya ialah bahwa teori himpunan \emph{sedikit sekali} lebih mudah
+dirumuskan tanpa urelemen. Akan tetapi, sesekali kita menemukan pembenaran
+yang lebih menarik untuk mengeluarkan urelemen dari teori himpunan:
+\begin{quote}
+	Sesuai dengan keyakinan bahwa teori himpunan merupakan fondasi matematika,
+	kita seharusnya dapat mencakup seluruh matematika hanya dengan membicarakan
+	himpunan; karena itu, variabel kita tidak boleh menjangkau objek
+	seperti sapi dan babi.
+	%But if $C$ is a cow, $\{C\}$ is a set, but not a legitimate mathematical object.
+	\citep[p.~8]{Kunen1980}
+\end{quote}
+Jadi, fokus pada keterterapan menyarankan agar urelemen \emph{dimasukkan};
+fokus pada tujuan fondasional yang reduktif (mereduksi matematika menjadi
+teori himpunan murni) mungkin menyarankan agar urelemen \emph{dikeluarkan}.
+Sedikit kemalasan juga mengarah pada pengeluaran urelemen.
+
+Kita akan mengikuti jalan yang paling malas. Namun, sebagian pilihan ini juga
+memiliki pembenaran pedagogis. Tujuan kita ialah memperkenalkan kepada Anda
+unsur-unsur teori himpunan yang diperlukan untuk mulai mempelajari filsafat
+teori himpunan. Dan sebagian besar literatur filosofis tersebut membahas
+teori himpunan yang dirumuskan \emph{tanpa} urelemen. Jadi, buku ini barangkali
+akan lebih berguna jika mengikuti literatur tersebut dengan cukup dekat.
+
+\end{document}

@@ -1,0 +1,164 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: soundness-nd
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{sc}{snd}
+
+\olsection{Kesahihan Deduksi Alami}
+
+Sekarang kita akan membuktikan kesahihan deduksi alami terhadap semantik
+relasional, yakni menunjukkan bahwa jika !!a{formula} !!{derivable} dari suatu
+himpunan asumsi, maka himpunan asumsi tersebut mengikutkan !!{formula} itu.
+
+\begin{thm}[Kesahihan]
+  \ollabel{thm:soundness}
+  Jika $\Gamma \Proves !A$, maka $\Gamma \Entails !A$.
+\end{thm}
+
+\begin{proof}
+  Kita membuktikan bahwa jika $\Gamma \Proves !A$, maka $\Gamma \Entails !A$.
+  Bukti dilakukan dengan induksi pada !!{derivation}~$!A$ dari~$\Gamma$.
+
+  \begin{enumerate}
+  \item Jika !!{derivation} hanya terdiri atas asumsi~$!A$, kita mempunyai
+    $!A \Proves !A$, dan hendak menunjukkan bahwa $!A \Entails !A$.
+    Andaikan $\mSat{M}{!A}[w]$. Maka jelas $\mSat{M}{!A}[w]$.
+
+  \item !!^{derivation} berakhir dengan $\Intro{\land}$:
+    \iftag{probAnd}{Latihan.}{!!^{derivation}s premis~$!B$ dari
+      asumsi~$\Gamma$ yang !!{undischarged} dan premis~$!C$ dari
+      asumsi~$\Delta$ yang !!{undischarged} menunjukkan bahwa
+      $\Gamma \Proves !B$ dan $\Delta \Proves !C$. Berdasarkan hipotesis
+      induksi, kita mempunyai $\Gamma \Entails !B$ dan
+      $\Delta \Entails !C$. Kita harus menunjukkan bahwa
+      $\Gamma \cup \Delta \Entails !B \land !C$, karena asumsi yang
+      !!{undischarged} dalam seluruh !!{derivation} ialah asumsi dalam
+      $\Gamma$ bersama asumsi dalam~$\Delta$. Andaikan
+      $\mSat{M}{\Gamma \cup \Delta}[w]$. Maka
+      $\mSat{M}{\Gamma}[w]$. Karena $\Gamma \Entails !B$, berlaku
+      $\mSat{M}{!B}[w]$. Demikian pula, $\mSat{M}{!C}[w]$. Jadi,
+      $\mSat{M}{!B \land !C}[w]$.}
+
+  \item !!^{derivation} berakhir dengan $\Elim{\land}$:
+    \iftag{probAnd}{Latihan.}{!!^{derivation} premis $!B \land !C$ dari
+      asumsi~$\Gamma$ yang !!{undischarged} menunjukkan bahwa
+      $\Gamma \Proves !B \land !C$. Berdasarkan hipotesis induksi,
+      $\Gamma \Entails !B \land !C$. Kita harus menunjukkan bahwa
+      $\Gamma \Entails !B$. Andaikan $\mSat{M}{\Gamma}[w]$. Karena
+      $\Gamma \Entails !B \land !C$, berlaku
+      $\mSat{M}{!B \land !C}[w]$. Maka $\mSat{M}{!B}[w]$. Demikian pula,
+      jika $\Elim\land$ berakhir dengan~$!C$, maka
+      $\Gamma \Entails !C$.}
+
+  \item !!^{derivation} berakhir dengan $\Intro{\lor}$:
+    \iftag{probOr}{Latihan.}{Andaikan premisnya ialah~$!B$, dan asumsi yang
+      !!{undischarged} dalam !!{derivation} yang berakhir dengan~$!B$ ialah
+      $\Gamma$. Maka kita mempunyai $\Gamma \Proves !B$ dan, berdasarkan
+      hipotesis induksi, $\Gamma \Entails !B$. Kita harus menunjukkan bahwa
+      $\Gamma \Entails !B \lor !C$. Andaikan
+      $\mSat{M}{\Gamma}[w]$. Karena $\Gamma \Entails !B$, berlaku
+      $\mSat{M}{!B}[w]$. Dengan demikian,
+      $\mSat{M}{!B \lor !C}[w]$. Demikian pula, jika premisnya ialah~$!C$,
+      kita mempunyai $\Gamma \Entails !C$.}
+
+  \item !!^{derivation} berakhir dengan~$\Elim{\lor}$:
+    \iftag{probOr}{Latihan.}{!!^{derivation}s yang berakhir dengan
+      premis-premisnya masing-masing menyimpulkan $!B \lor !C$ dari asumsi
+      $\Gamma$ yang !!{undischarged}, $!D$ dari asumsi
+      $\Delta_1 \cup \{!B\}$ yang !!{undischarged}, dan $!D$ dari asumsi
+      $\Delta_2 \cup \{!C\}$ yang !!{undischarged}. Jadi, kita mempunyai
+      $\Gamma \Proves !B \lor !C$, $\Delta_1 \cup \{!B\} \Proves !D$,
+      dan $\Delta_2 \cup \{!C\} \Proves !D$. Berdasarkan hipotesis
+      induksi, $\Gamma \Entails !B \lor !C$,
+      $\Delta_1 \cup \{!B\} \Entails !D$, dan
+      $\Delta_2 \cup \{!C\} \Entails !D$. Kita harus membuktikan bahwa
+      $\Gamma \cup \Delta_1 \cup \Delta_2 \Entails !D$.
+
+    Andaikan $\mSat{M}{\Gamma \cup \Delta_1 \cup \Delta_2}[w]$. Maka
+    $\mSat{M}{\Gamma}[w]$ dan, karena $\Gamma \Entails !B \lor !C$,
+    $\mSat{M}{!B \lor !C}[w]$. Menurut definisi $\mSat{M}{}$, berlaku
+    $\mSat{M}{!B}[w]$ atau $\mSat{M}{!C}[w]$. Jadi, kita membedakan kasus:
+    (a)~$\mSat{M}{!B}[w]$. Maka
+    $\mSat{M}{\Delta_1 \cup \{!B\}}[w]$. Karena
+    $\Delta_1 \cup \{!B\} \Entails !D$, berlaku $\mSat{M}{!D}[w]$.
+    (b)~$\mSat{M}{!C}[w]$. Maka
+    $\mSat{M}{\Delta_2 \cup \{!C\}}[w]$. Karena
+    $\Delta_2 \cup \{!C\} \Entails !D$, berlaku $\mSat{M}{!D}[w]$.
+    Jadi, pada kedua kasus, $\mSat{M}{!D}[w]$, sebagaimana hendak
+    ditunjukkan.}
+
+  \item !!^{derivation} berakhir dengan $\Intro{\lif}$ dan menyimpulkan
+    $!B\lif !C$. Premisnya ialah~$!C$, dan !!{derivation} yang berakhir
+    dengan premis tersebut mempunyai asumsi $\Gamma \cup \{!B\}$ yang
+    !!{undischarged}. Jadi, $\Gamma \cup \{!B\} \Proves !C$, dan
+    berdasarkan hipotesis induksi, $\Gamma \cup \{!B\} \Entails !C$.
+    Kita harus menunjukkan bahwa $\Gamma \Entails !B \lif !C$.
+
+    Andaikan $\mSat{M}{\Gamma}[w]$. Kita hendak menunjukkan bahwa untuk
+    semua $w'$ sedemikian sehingga $Rww'$, jika $\mSat{M}{!B}[w']$, maka
+    $\mSat{M}{!C}[w']$. Jadi, andaikan $Rww'$ dan
+    $\mSat{M}{!B}[w']$. Berdasarkan
+    \olref[sem][rel]{prop:true-monotonic},
+    $\mSat{M}{\Gamma}[w']$. Karena $\Gamma \cup \{!B\} \Entails !C$,
+    berlaku $\mSat{M}{!C}[w']$, sebagaimana hendak ditunjukkan.
+
+  \item !!^{derivation} berakhir dengan $\Elim{\lif}$ dan menyimpulkan
+    $!C$. Premis-premisnya ialah $!B \lif !C$ dan $!B$, dengan
+    !!{derivation}s dari asumsi $\Gamma$ dan $\Delta$ yang
+    !!{undischarged}. Jadi, kita mempunyai $\Gamma \Proves !B \lif !C$
+    dan $\Delta \Proves !B$. Berdasarkan hipotesis induksi,
+    $\Gamma \Entails !B \lif !C$ dan $\Delta \Entails !B$. Kita harus
+    menunjukkan bahwa $\Gamma \cup \Delta \Entails !C$.
+
+    Andaikan $\mSat{M}{\Gamma \cup \Delta}[w]$. Karena
+    $\mSat{M}{\Gamma}[w]$ dan $\Gamma \Entails !B \lif !C$, berlaku
+    $\mSat{M}{!B \lif !C}[w]$. Menurut definisi, ini berarti bahwa untuk
+    semua $w'$ sedemikian sehingga $Rww'$, jika $\mSat{M}{!B}[w']$, maka
+    $\mSat{M}{!C}[w']$. Karena $R$ refleksif, $w$ termasuk di antara $w'$
+    yang memenuhi $Rww'$; dengan kata lain, jika $\mSat{M}{!B}[w]$, maka
+    $\mSat{M}{!C}[w]$. Karena $\mSat{M}{\Delta}[w]$ dan
+    $\Delta \Entails !B$, berlaku $\mSat{M}{!B}[w]$. Jadi,
+    $\mSat{M}{!C}[w]$, sebagaimana hendak ditunjukkan.
+
+  \item !!^{derivation} berakhir dengan $\FalseInt$ dan menyimpulkan~$!A$.
+    Premisnya ialah $\lfalse$, dan asumsi yang !!{undischarged} dalam
+    !!{derivation} premis tersebut ialah~$\Gamma$. Maka
+    $\Gamma \Proves \lfalse$. Berdasarkan hipotesis induksi,
+    $\Gamma \Entails \lfalse$. Kita harus menunjukkan
+    $\Gamma \Entails !A$.
+
+    Kita membuktikannya secara tak langsung. Jika $\Gamma \Entails/ !A$,
+    terdapat model~$\mModel{M}$ dan dunia~$w$ sedemikian sehingga
+    $\mSat{M}{\Gamma}[w]$ dan $\mSat/{M}{!A}[w]$. Karena
+    $\Gamma \Entails \lfalse$, berlaku $\mSat{M}{\lfalse}[w]$. Namun,
+    hal ini mustahil karena, menurut definisi,
+    $\mSat/{M}{\lfalse}[w]$. Jadi, $\Gamma \Entails !A$.
+  \item !!^{derivation} berakhir dengan $\Intro\lnot$: Latihan.
+  \item !!^{derivation} berakhir dengan $\Elim\lnot$: Latihan.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Lengkapi bukti \olref[int][sc][snd]{thm:soundness}. Untuk kasus
+  $\Intro\lnot$ dan $\Elim\lnot$, gunakan definisi
+  $\mSat{M}{\lnot !A}[w]$ dalam
+  \olref[int][sem][rel]{defn:true-at-w}; dengan kata lain, jangan perlakukan
+  $\lnot !A$ sebagai formula yang didefinisikan oleh
+  $!A \lif \lfalse$.
+\end{prob}
+
+\begin{prob}
+  Tunjukkan bahwa !!{formula}s berikut tidak !!{derivable} dalam logika
+  intuisionistik:
+  \begin{enumerate}
+    \item $(!A \lif !B) \lor (!B \lif !A)$
+    \item $(\lnot\lnot !A \lif !A) \lif (!A \lor \lnot !A)$
+    \item $(!A \lif !B \lor !C) \lif \bigl((!A \lif !B)\lor(!A \lif !C)\bigr)$
+  \end{enumerate}
+\end{prob}
+
+\end{document}

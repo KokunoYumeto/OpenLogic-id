@@ -1,0 +1,80 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{ordinals}{ordtype}
+\olsection{Ordinal sebagai Tipe Urutan}
+
+Berbekal Penggantian, dan dengan demikian kini bekerja dalam $\ZFminus$,
+akhirnya kita dapat membuktikan hasil yang telah kita tuju:
+
+\begin{thm}\ollabel{thmOrdinalRepresentation}
+Setiap pengurutan baik isomorfik dengan suatu ordinal yang unik.
+\end{thm}
+
+\begin{proof}
+Misalkan $\tuple{A, <}$ suatu pengurutan baik. Menurut
+\olref[basic]{ordisoidentity}, pengurutan itu isomorfik dengan paling banyak
+satu ordinal. Jadi, untuk reductio, andaikan $\tuple{A, <}$ tidak isomorfik
+dengan \emph{ordinal mana pun}. Pertama-tama kita akan ``membuat
+$\tuple{A, <}$ sekecil mungkin''. Secara terperinci: jika suatu segmen awal
+sejati $\tuple{A_a, <_a}$ tidak isomorfik dengan ordinal mana pun, terdapat
+$a \in A$ terkecil dengan sifat tersebut; kemudian misalkan $B = A_a$ dan
+$\mathord{\lessdot} = \mathord{<_a}$. Jika tidak, misalkan $B = A$ dan
+$\mathord{\lessdot} = \mathord{<}$.
+
+Menurut definisi, setiap segmen awal sejati dari $B$ isomorfik dengan suatu
+ordinal, yang unik seperti di atas. Jadi, menurut Penggantian, himpunan
+berikut ada dan merupakan suatu fungsi:
+\[
+	f = \Setabs{\tuple{\beta, b}}{b \in B\text{ dan }\ordeq{\beta}{\tuple{B_b, \lessdot_b}}}
+\]
+Untuk menyelesaikan reductio, kita akan menunjukkan bahwa $f$ merupakan
+suatu isomorfisme $\alpha \to B$, untuk suatu ordinal $\alpha$.
+
+Jelas bahwa $\ran{f} = B$. Menurut \olref[iso]{lemordsegments}, $f$
+mempertahankan pengurutan, yakni $\gamma \in \beta$ jika dan hanya jika
+$f(\gamma) \lessdot f(\beta)$. Untuk menunjukkan bahwa $\dom{f}$ merupakan
+suatu ordinal, menurut \olref[basic]{corordtransitiveord} cukup ditunjukkan
+bahwa $\dom{f}$ bersifat transitif. Jadi, tetapkan $\beta \in \dom{f}$,
+yakni $\ordeq{\beta}{\tuple{B_b, \lessdot_b}}$ untuk suatu $b$. Jika $\gamma
+\in \beta$, maka $\gamma \in \dom{f}$ menurut
+\olref[iso]{wellordinitialsegment}; dengan menggeneralisasi, $\beta
+\subseteq \dom{f}$.
+\end{proof}
+
+Hasil ini mengabsahkan definisi berikut, yang ingin kita berikan sejak
+\olref[vn]{sec}:
+
+\begin{defn}
+Jika $\tuple{A, <}$ merupakan suatu pengurutan baik, maka tipe urutannya,
+$\ordtype{A, <}$, adalah ordinal unik $\alpha$ sedemikian sehingga
+$\ordeq{\tuple{A, < }}{\alpha}$.
+\end{defn}
+
+Selain itu, definisi ini mengabsahkan dua prinsip yang baik:
+
+\begin{cor}\ollabel{ordtypesworklikeyouwant}
+Jika $\tuple{A, <}$ dan $\tuple{B, \lessdot}$ merupakan pengurutan baik:
+\begin{align*}
+	\ordtype{A, <} = \ordtype{B, \lessdot}&\text{ jika dan hanya jika }\ordeq{\tuple{A, <}}{\tuple{B, \lessdot}}\\
+	\ordtype{A, <} \in \ordtype{B, \lessdot}&\text{ jika dan hanya jika }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}\text{ untuk suatu }b \in B
+\end{align*}
+\end{cor}
+
+\begin{proof}
+Identitas tersebut berlaku menurut \olref[basic]{ordisoidentity}. Untuk
+membuktikan klaim kedua, misalkan $\ordtype{A, <} = \alpha$ dan
+$\ordtype{B, \lessdot} = \beta$, dan misalkan $f \colon \beta \to \tuple
+{B, \lessdot}$ merupakan isomorfisme kita. Maka:
+\begin{align*}
+	\alpha \in \beta&\text{ jika dan hanya jika }\funrestrictionto{f}{\alpha} \colon \alpha \to B_{f(\alpha)}\text{ merupakan suatu isomorfisme}\\
+	&\text{ jika dan hanya jika }\ordeq{\tuple{A, <}}{\tuple{B_{f(\alpha)}, \lessdot_{f(\alpha)}}}\\
+	&\text{ jika dan hanya jika }\ordeq{\tuple{A, <}}{\tuple{B_b, \lessdot_b}}\text{ untuk suatu $b \in B$}
+\end{align*}
+menurut \olref[iso]{ordisounique},
+\olref[iso]{wellordinitialsegment}, dan
+\olref[basic]{ordissetofsmallerord}.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,72 @@
+Jika $!A \ident (!B \lif !C)$, maka $\pi$ berakhir dengan
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$\Gamma \fCenter \Delta, !B \lif !C$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B \lif !C, \Pi \fCenter \Lambda, !B$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Pi \fCenter \Lambda$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!B \lif !C, \Pi \fCenter \Lambda$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\Cut}
+\BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+!!{proof} yang berakhir dengan \Cut,
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$\Gamma \fCenter \Delta, !B \lif !C$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B \lif !C, \Pi \fCenter \Lambda, !B$
+\RightLabel{\Cut}
+\BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda, !B$
+\DisplayProof
+\]
+memiliki !!{height} potongan yang lebih rendah daripada~$\pi$. Hipotesis
+induksi menghasilkan !!a{proof}~$\pi_1''$ dari $\Gamma, \Pi \fCenter
+\Delta, \Lambda, !B$. !!{proof} yang berakhir dengan \Cut,
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Pi \fCenter \Lambda$
+\RightLabel{\Cut}
+\BinaryInf$!B, \Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+memiliki peringkat potongan maupun !!{height} potongan yang lebih rendah
+daripada peringkat dan !!{height} potongan~$\pi$, sehingga hipotesis induksi
+menghasilkan !!{proof} \Log{G3c}~$\pi_2'''$ dari $!B, \Gamma, \Pi
+\fCenter \Delta, \Lambda$. Sekarang terapkan hipotesis induksi
+pada !!{proof} yang berakhir dengan \Cut,
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma, \Pi \fCenter \Delta, \Lambda, !B$
+\AxiomC{}
+\RightLabel{$\pi_2'''$}
+\Deduce$!B, \Gamma, \Pi \fCenter \Delta, \Lambda$
+\RightLabel{\Cut}
+\BinaryInf$\Gamma, \Gamma, \Pi, \Pi \fCenter
+\Delta, \Delta, \Lambda, \Lambda$
+\DisplayProof
+\]
+(peringkat potongannya $< \cutrank{\pi}$) untuk memperoleh !!a{proof} dari
+$\Gamma, \Gamma, \Pi, \Pi \fCenter \Delta, \Delta, \Lambda, \Lambda$.
+Kita memperoleh !!{proof}~$\pi'$ dari $\Gamma, \Pi \fCenter
+\Delta, \Lambda$ dengan menerapkan
+\olref[seq][inv]{prop:G3c-cont-adm}.

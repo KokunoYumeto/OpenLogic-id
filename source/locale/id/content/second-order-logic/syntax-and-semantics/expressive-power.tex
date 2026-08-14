@@ -1,0 +1,99 @@
+% Bagian: second-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: expressive-power
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{syn}{exp}
+\olsection{Daya Ekspresif}
+
+\begin{explain}
+Kuantifikasi atas variabel orde kedua menghasilkan peningkatan yang sangat
+besar dalam daya ekspresif bahasa dibandingkan dengan logika orde pertama.
+Kuantifikasi eksistensial orde kedua memungkinkan kita menyatakan bahwa
+terdapat fungsi atau relasi yang mempunyai sifat-sifat tertentu. Dalam logika
+orde pertama, satu-satunya cara untuk melakukan hal itu ialah menentukan
+suatu simbol nonlogis (yakni, !!a{function} atau !!{predicate}) bagi tujuan
+tersebut. Kuantifikasi universal orde kedua memungkinkan kita menyatakan
+bahwa semua himpunan bagian dan relasi pada !!{domain}, serta semua fungsi
+dari !!{domain} itu ke dirinya sendiri, mempunyai suatu sifat. Dalam
+logika orde pertama, kita hanya dapat menyatakan bahwa himpunan bagian,
+relasi, atau fungsi yang ditetapkan kepada salah satu simbol nonlogis bahasa
+mempunyai suatu sifat. Dan ketika kita menyatakan bahwa terdapat himpunan
+bagian, relasi, atau fungsi yang mempunyai suatu sifat, atau bahwa semuanya
+mempunyai sifat itu, kita juga dapat menggunakan kuantifikasi orde kedua
+dalam menentukan sifat tersebut. Hal ini memungkinkan kita mendefinisikan
+relasi yang tidak dapat didefinisikan dalam logika orde pertama dan
+mengungkapkan sifat-sifat domain yang tidak dapat diungkapkan dalam logika
+orde pertama.
+\end{explain}
+
+\begin{defn}
+Jika $\Struct{M}$ merupakan !!a{structure} bagi suatu bahasa~$\Lang{L}$,
+suatu relasi~$R \subseteq \Domain{M}^2$ \emph{dapat didefinisikan}
+dalam~$\Lang{L}$ jika terdapat !!{formula}~$!A_R(x, y)$ yang hanya mempunyai
+variabel $x$ dan~$y$ sebagai variabel bebas, sedemikian sehingga $R(a, b)$
+berlaku (yakni, $\tuple{a,b} \in R$) jika dan hanya jika
+$\Sat{M}{!A_R(x, y)}[s]$ bagi $s(x) = a$ dan $s(y) = b$.
+\end{defn}
+
+\begin{ex}
+Dalam logika orde pertama kita dapat mendefinisikan relasi
+identitas~$\Id{\Domain{M}}$ (yakni, $\Setabs{\tuple{a,a}}{a \in
+  \Domain{M}}$) dengan formula $\eq[x][y]$. Dalam logika orde kedua, kita
+dapat mendefinisikan relasi ini \emph{tanpa~$\eq$}. Sebab, jika $a$ dan $b$
+merupakan !!{element} yang sama dari~$\Domain{M}$, keduanya menjadi
+!!{element}s dari himpunan-himpunan bagian yang sama dari~$\Domain{M}$
+(karena himpunan ditentukan oleh !!{element}s di dalamnya). Sebaliknya, jika $a$ dan
+$b$ berbeda, keduanya bukan !!{element}s dari himpunan-himpunan bagian yang
+sama: misalnya, $a \in \{a\}$ tetapi $b \notin \{a\}$ jika $a \neq b$.
+Jadi, ``menjadi !!{element}s dari himpunan-himpunan bagian yang sama
+dari~$\Domain{M}$'' merupakan relasi yang berlaku atas $a$ dan $b$ jika dan
+hanya jika $a = b$. Relasi itu dapat diungkapkan dalam logika orde kedua,
+karena kita dapat menguantifikasi atas semua himpunan bagian dari~$\Domain{M}$.
+Oleh karena itu, !!{formula} berikut mendefinisikan $\Id{\Domain{M}}$:
+\[
+\lforall[X][(X(x) \liff X(y))]
+\]
+\end{ex}
+
+\begin{prob}
+Tunjukkan bahwa $\lforall[X][(X(x) \lif X(y))]$ (perhatikan:
+$\lif$, bukan~$\liff$!) mendefinisikan $\Id{\Domain{M}}$.
+\end{prob}
+
+\begin{ex}
+Jika $R$ merupakan !!{predicate} beraritas dua, $\Assign{R}{M}$ merupakan
+relasi beraritas dua pada~$\Domain{M}$. Barangkali agak membingungkan, kita
+akan menggunakan $R$ baik sebagai !!{predicate}~$R$ maupun sebagai relasi
+$\Assign{R}{M}$ itu sendiri. \emph{Penutupan transitif}~$R^+$ dari~$R$ ialah
+relasi yang berlaku antara $a$ dan $b$ jika dan hanya jika untuk suatu $c_1$,
+\dots, $c_k$, berlaku $R(a,c_1)$, $R(c_1, c_2)$, \dots, $R(c_k,b)$. Ini
+mencakup kasus ketika $k = 0$, yakni, jika $R(a,b)$ berlaku, maka $R^+(a,b)$
+juga berlaku. Ini berarti $R \subseteq R^+$. Bahkan, $R^+$ merupakan relasi
+terkecil yang memuat~$R$ dan bersifat transitif. Dalam logika orde kedua kita
+dapat menyatakan bahwa $X$ merupakan relasi transitif yang memuat~$R$:
+\begin{multline*}
+  !B_R(X) \ident \lforall[x][\lforall[y][(R(x,y) \lif X(x, y))]] \land {}\\
+\lforall[x][\lforall[y][\lforall[z][((X(x,y) \land X(y,z)) \lif X(x,
+      z))]]].
+\end{multline*}
+Konjung pertama menyatakan bahwa $R \subseteq X$, dan konjung kedua
+menyatakan bahwa $X$ transitif.
+
+Menyatakan bahwa $X$ merupakan relasi terkecil semacam itu berarti menyatakan
+bahwa relasi itu sendiri termuat dalam setiap relasi yang memuat~$R$ dan
+bersifat transitif. Jadi, kita dapat mendefinisikan penutupan transitif
+dari~$R$ dengan !!{formula}
+\[
+R^+(X) \ident !B_R(X) \land \lforall[Y][(!B_R(Y) \lif
+  \lforall[x][\lforall[y][(X(x, y) \lif Y(x,y))]])].
+\]
+Kita mempunyai $\Sat{M}{R^+(X)}[s]$ jika dan hanya jika $s(X) = R^+$.
+Penutupan transitif dari~$R$ tidak dapat diungkapkan dalam logika orde
+pertama.
+\end{ex}
+
+\end{document}

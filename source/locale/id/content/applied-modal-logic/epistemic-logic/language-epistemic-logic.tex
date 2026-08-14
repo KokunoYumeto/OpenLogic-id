@@ -1,0 +1,90 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: language-epistemic-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{aml}{el}{lan}
+
+\olsection{Bahasa Logika Epistemik}
+
+\begin{defn}
+Misalkan $G$ merupakan himpunan simbol agen. Bahasa dasar logika epistemik
+multiagen memuat
+\begin{enumerate}
+  \tagitem{prvFalse}{Konstanta proposisional untuk !!{falsity}~$\lfalse$.}{}
+  \tagitem{prvTrue}{Konstanta proposisional untuk !!{truth}~$\ltrue$.}{}
+  \item Suatu himpunan yang !!{denumerable}s, yang terdiri atas
+    !!{propositional variable}s: $\Obj p_0$, $\Obj p_1$, $\Obj p_2$, \dots
+  \item Konektif proposisional: \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (negasi)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (konjungsi)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (disjungsi)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}.
+  \item Operator pengetahuan $\Knows_a$ dengan $a\in G$.
+\end{enumerate}
+\end{defn}
+
+Jika kita hanya memperhatikan pengetahuan satu agen dalam sistem, kita dapat
+menghilangkan acuan kepada himpunan~$G$ dan kepada agen individual. Dalam
+hal itu, kita hanya mempunyai operator dasar~$\Knows$.
+
+\begin{defn}
+\emph{!!^{formula}s} dalam bahasa epistemik didefinisikan secara induktif
+sebagai berikut:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$ merupakan !!{formula} atomik.}{}
+
+\tagitem{prvTrue}{$\ltrue$ merupakan !!{formula} atomik.}{}
+
+\item Setiap variabel proposisional $\Obj p_i$ merupakan !!{formula}
+  (atomik).
+
+\tagitem{prvNot}{Jika $!A$ merupakan !!a{formula}, maka $\lnot !A$
+  merupakan !!a{formula}.}{}
+
+\tagitem{prvAnd}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \land !B)$ merupakan !!a{formula}.}{}
+
+\tagitem{prvOr}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \lor !B)$ merupakan !!a{formula}.}{}
+
+\tagitem{prvIf}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \lif !B)$ merupakan !!a{formula}.}{}
+
+\tagitem{prvIff}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \liff !B)$ merupakan !!a{formula}.}{}
+
+\item Jika $!A$ merupakan !!a{formula} dan $a\in G$, maka $\Knows_a !A$
+  merupakan !!a{formula}.
+
+\tagitem{limitClause}{Tidak ada hal lain yang merupakan !!a{formula}.}{}
+\end{enumerate}
+\end{defn}
+
+Jika !!a{formula}~$!A$ tidak memuat $\Knows_a$, kita menyebutnya
+\emph{bebas modal}.
+
+\begin{defn}
+  Operator $\Knows$ dimaksudkan untuk menyimbolkan pengetahuan individual,
+  sedangkan $\EKnows$, yang sering dibaca ``semua orang tahu,'' menyimbolkan
+  pengetahuan kelompok. Jika $G'\subseteq G$, kita mendefinisikan
+  $\EKnows_{G'} !A$ sebagai singkatan bagi
+  \[\bigwedge_{b \in G'} \Knows_b !A.\]
+\end{defn}
+
+Kita juga dapat mendefinisikan pengertian pengetahuan yang lebih kuat, yakni
+\emph{pengetahuan bersama} di antara sekelompok agen~$G$. Jika suatu informasi
+merupakan pengetahuan bersama bagi sekelompok agen, itu berarti bahwa, untuk
+setiap kombinasi agen dalam kelompok tersebut, mereka semua tahu bahwa satu
+sama lain tahu bahwa satu sama lain tahu \dots dan demikian seterusnya tanpa
+batas. Pengertian ini jauh lebih kuat daripada pengetahuan kelompok, dan
+mudah menyusun model relasional tempat !!a{formula} merupakan pengetahuan
+kelompok tetapi bukan pengetahuan bersama. Kita menggunakan $\CKnows_G !A$
+untuk menyimbolkan ``merupakan pengetahuan bersama di antara~$G$
+bahwa~$!A$.''
+
+\end{document}

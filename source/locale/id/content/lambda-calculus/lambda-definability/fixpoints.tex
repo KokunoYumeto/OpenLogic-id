@@ -1,0 +1,180 @@
+% Part: lambda-calculus
+% Chapter: lambda-definability
+% Section: fixpoints
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{ldf}{fp}
+
+\olsection{Titik Tetap}
+
+Andaikan kita ingin mendefinisikan fungsi faktorial secara rekursif sebagai
+suatu suku $\fn{Fac}$ dengan sifat berikut:
+\[
+\fn{Fac} \ident \lambd[n][\fn{IsZero}\, n\, \num 1 (\fn{Mult}\, n (\fn{Fac}(\fn{Pred} \, n)))]
+\]
+Artinya, faktorial dari $n$ adalah $1$ jika $n = 0$, dan dalam kasus lainnya
+merupakan $n$ dikalikan faktorial dari $n-1$. Tentu saja, kita tidak dapat
+mendefinisikan suku $\fn{Fac}$ dengan cara ini karena $\fn{Fac}$ sendiri
+muncul di ruas kanan. Definisi rekursif semacam itu, yang melibatkan acuan
+diri, bukan bagian dari kalkulus lambda. Mendefinisikan suatu suku, misalnya,
+dengan
+\[
+\fn{Mult} \ident \lambd[ab][a (\fn{Add}\, b) \num{0}]
+\]
+hanya melibatkan suku-suku yang telah didefinisikan sebelumnya di ruas kanan,
+seperti $\fn{Add}$. Kita selalu dapat menyingkirkan $\fn{Add}$ dengan
+menggantinya dengan suku pendefinisinya. Dengan demikian, suku $\fn{Mult}$
+akan menjadi suku lambda murni; jika $\fn{Add}$ sendiri melibatkan suku-suku
+terdefinisi (seperti halnya $\fn{Add}'$, misalnya), kita dapat meneruskan
+proses ini dan akhirnya memperoleh suatu suku lambda murni.
+
+Namun, hal ini tidak berlaku bagi definisi rekursif seperti definisi
+$\fn{Fac}$ di atas. Jika kemunculan $\fn{Fac}$ di ruas kanan kita ganti dengan
+definisi $\fn{Fac}$ itu sendiri, kita memperoleh:
+\begin{align*}
+  \fn{Fac} & \ident \lambd[n][\fn{IsZero}\, n\, \num{1}\,
+    (\fn{Mult}\, n
+  ((\lambd[n][\fn{IsZero} \, n \, \num 1\, (\fn{Mult}\, n\, (\fn{Fac}
+    (\fn{Pred}\, n)))]) (\fn{Pred}\, n)))]
+\end{align*}
+dan $\fn{Fac}$ masih belum tersingkir dari ruas kanan. Jelas bahwa, jika kita
+mengulangi proses ini, definisinya terus bertambah panjang dan proses tersebut
+tidak pernah menghasilkan suku lambda murni. Jadi, cara ini tidak layak untuk
+mendefinisikan faktorial (atau, secara lebih umum, fungsi rekursif).
+
+Meskipun demikian, definisi rekursif tersebut memberi tahu kita sesuatu:
+jika $f$ adalah suku yang merepresentasikan fungsi faktorial, maka suku
+\[
+\fn{Fac}' \ident \lambd[g][\lambd[n][\fn{IsZero} \, n \, \num 1\, (\fn{Mult} \, n\, (g (\fn{Pred} n)))]]
+\]
+yang diterapkan pada suku $f$, yakni $\fn{Fac}'\,f$, juga merepresentasikan
+fungsi faktorial. Artinya, jika kita memandang $\fn{Fac}'$ sebagai fungsi yang
+menerima suatu fungsi dan mengembalikan suatu fungsi, nilai
+$\fn{Fac'}\, f$ tidak lain adalah~$f$, asalkan $f$ merupakan fungsi faktorial.
+Suatu fungsi~$f$ dengan sifat $\fn{Fac}' \, f \equal[\beta] f$ disebut
+\emph{titik tetap} dari $\fn{Fac}'$. Jadi, fungsi faktorial merupakan titik
+tetap dari $\fn{Fac}'$.
+
+Dalam kalkulus lambda terdapat suku-suku yang menghitung titik tetap dari suatu
+suku yang diberikan, dan suku-suku tersebut kemudian dapat digunakan untuk
+mengubah suku seperti $\fn{Fac}'$ menjadi definisi fungsi faktorial.
+
+\begin{defn}
+  \ollabel{defn:Turing-Y}
+
+  \emph{Kombinator Y} adalah suku:
+  \[
+  Y \ident (\lambd[ux][x(uux)])(\lambd[ux][x(uux)]).
+  \]
+\end{defn}
+
+\begin{thm}
+  $Y$ mempunyai sifat bahwa $Yg \red g(Yg)$ untuk setiap suku $g$. Jadi,
+  $Yg$ selalu merupakan titik tetap dari~$g$.
+\end{thm}
+
+\begin{proof}
+  Mari singkat $(\lambd[ux][x(uux)])$ sebagai~$U$, sehingga $Y \ident UU$.
+  Maka
+  \begin{align*}
+    Y g &\ident (\lambd[ux][x(uux)])U\,g \\
+    &\red (\lambd[x][x(UUx)])g\\
+    & \red g(UUg) \ident g(Yg).
+  \end{align*}
+  Karena $g(Yg)$ dan $Yg$ sama-sama tereduksi menjadi $g(Yg)$,
+  $g(Yg) \equal[\beta] Yg$, sehingga $Yg$ merupakan titik tetap dari~$g$.
+\end{proof}
+
+Tentu saja, karena $Yg$ adalah suatu redex, reduksi dapat berlanjut tanpa
+batas:
+\begin{align*}
+  Y g &\red g (Y g) \\
+    &\red g (g (Y g)) \\
+    &\red g(g (g (Y g)))\\
+    &\ldots
+\end{align*}
+Jadi, kita dapat memandang $Yg$ sebagai $g$ yang diterapkan pada dirinya
+sendiri tak berhingga kali. Jika kita menerapkan~$g$ satu kali lagi, maka,
+boleh dikatakan, kita tidak melakukan hal tambahan apa pun; $g$ yang
+diterapkan pada~$g$ yang diterapkan tak berhingga kali pada~$Yg$ tetaplah
+$g$ yang diterapkan pada~$Yg$ tak berhingga kali.
+
+Perhatikan bahwa barisan langkah reduksi-$\beta$ di atas yang dimulai
+dengan~$Yg$ bersifat tak berhingga. Jadi, jika kita menerapkan $Yg$ pada suatu
+suku, yakni meninjau $(Yg)N$, suku itu juga akan tereduksi menjadi tak
+berhingga banyak suku yang berbeda, yaitu $(g(Yg))N$, $(g(g(Yg)))N$, \dots.
+Meskipun demikian, mungkin saja suatu barisan langkah reduksi \emph{lain}
+berakhir pada bentuk normal.
+
+Sebagai contoh, tinjau fungsi faktorial. Definisikan $\fn{Fac}$ sebagai
+$Y\, \fn{Fac}'$ (yakni, suatu titik tetap dari $\fn{Fac'}$). Maka:
+\begin{align*}
+  \fn{Fac}\,\num 3
+  &\red Y\, \fn{Fac}' \, \num 3 \\
+  &\red \fn{Fac}' (Y \,\fn{Fac}') \, \num 3 \\
+  &\ident (\lambd[x][\lambd[n][\fn{IsZero} \, n\, \num 1\,
+      (\fn{Mult}\, n\, (x (\fn{Pred}\, n)))]]) \, \fn{Fac} \, \num 3\\
+  & \red \fn{IsZero} \, \num 3\, \num 1\,
+      (\fn{Mult}\, \num 3\, (\fn{Fac} (\fn{Pred}\, \num 3))) \\
+  &\red  \fn{Mult}\, \num 3 \, (\fn{Fac} \, \num 2).
+  \intertext{Demikian pula,}
+  \fn{Fac}\,\num 2
+  &\red  \fn{Mult}\, \num 2 \, (\fn{Fac} \, \num 1) \\
+  \fn{Fac}\,\num 1
+  &\red  \fn{Mult}\, \num 1 \, (\fn{Fac} \, \num 0)
+  \intertext{tetapi}
+  \fn{Fac}\,\num 0
+  &\red \fn{Fac}' (Y \,\fn{Fac}') \, \num 0 \\
+  &\ident (\lambd[x][\lambd[n][\fn{IsZero} \, n\, \num 1\,
+      (\fn{Mult}\, n\, (x (\fn{Pred}\, n)))]]) \, \fn{Fac} \, \num 0\\
+  & \red \fn{IsZero} \, \num 0\, \num 1\,
+      (\fn{Mult}\, \num 0\, (\fn{Fac} (\fn{Pred}\, \num 0))).\\
+  &\red \num 1.
+  \intertext{Jadi, secara keseluruhan,}
+  \fn{Fac}\,\num 3
+  &\red  \fn{Mult}\, \num 3 \,
+  (\fn{Mult} \, \num 2\, (\fn{Mult} \, \num 1\, \num 1)).
+\end{align*}
+
+Apa yang berlaku bagi $\fn{Fac'}$ berlaku pula bagi setiap definisi rekursif.
+Andaikan kita mempunyai persamaan rekursif
+\begin{align*}
+g\,x_1\dots x_n & \equal[\beta] N
+\intertext{dengan $N$ mungkin memuat~$g$ dan $x_1$, \dots,~$x_n$. Maka selalu
+terdapat suatu suku~$G \ident (Y \lambd[g][\lambd[x_1\dots x_n][N]])$
+sedemikian sehingga}
+G\,x_1 \dots x_n & \equal[\beta] \Subst{N}{G}{g}.
+\intertext{Sebab, berdasarkan teorema titik tetap,}
+G \ident (Y \lambd[g][\lambd[x_1\dots x_n][N]]) & \red \lambd[g][\lambd[x_1\dots x_n][N]](Y \lambd[g][\lambd[x_1\dots x_n][N]])\\
+& \ident (\lambd[g][\lambd[x_1\dots x_n][N]])\,G
+\intertext{dan akibatnya}
+G\,x_1 \dots x_n
+& \red (\lambd[g][\lambd[x_1\dots x_n][N]])\,G\,x_1\dots x_n\\
+& \red (\lambd[x_1\dots x_n][\Subst{N}{G}{g}])\,x_1\dots x_n\\
+  & \red \Subst{N}{G}{g}.
+\end{align*}
+
+Kombinator $Y$ pada \olref{defn:Turing-Y} dikemukakan oleh Alan Turing. Alonzo
+Church telah mengusulkan versi lain yang akan kita sebut~$Y_C$:
+\[
+Y_C \ident \lambd[g][(\lambd[x][g(xx)])(\lambd[x][g(xx)])].
+\]
+Kombinator Church sedikit lebih lemah daripada kombinator Turing, dalam arti
+bahwa $Y_Cg \equal[\beta] g(Y_Cg)$, tetapi reduksi satu-langkah
+$Y_Cg \redone g(Y_Cg)$ tidak berlaku (meskipun keduanya tereduksi ke suku
+yang sama). Misalkan $V$ adalah suku $\lambd[x][g(xx)]$, sehingga
+$Y_C \ident \lambd[g][VV]$. Maka
+\begin{align*}
+  VV & \ident (\lambd[x][g(xx)])V \red g(VV)
+  \text{ dan dengan demikian}\\
+  Y_C g & \ident (\lambd[g][VV])g \red VV \red g(VV), \text{ tetapi juga}\\
+  g(Y_C g) & \ident g((\lambd[g][VV])g) \red g(VV).
+\end{align*}
+Dengan kata lain, $Y_Cg$ dan $g(Y_Cg)$ tereduksi menjadi suku yang sama,
+$g(VV)$; jadi $Y_Cg \equal[\beta] g(Y_Cg)$. Hal ini sering kali memadai untuk
+penerapan.
+
+\end{document}

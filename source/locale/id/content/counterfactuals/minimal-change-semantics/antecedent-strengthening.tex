@@ -1,0 +1,73 @@
+% Bagian: counterfactuals
+% Bab: minimal-change-semantics
+% Subbagian: antecedent-strengthening
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cnt}{min}{agg}
+
+\olsection{Penguatan Anteseden}
+
+``Memperkuat anteseden'' mengacu pada inferensi $!A \lif !C \Entails (!A
+\land !B) \lif !C$. Inferensi ini valid bagi kondisional material, tetapi
+tidak valid bagi kontrafaktual. Andaikan benar bahwa seandainya saya menggesek
+korek api ini, korek tersebut akan menyala. (Artinya, tidak ada masalah dengan
+korek api atau permukaan kotaknya, saya tidak akan mematahkan korek itu, dan
+sebagainya.) Namun, tidak benar bahwa seandainya saya menggesek korek api ini
+di luar angkasa, korek tersebut akan menyala. Jadi, inferensi berikut tidak
+valid:
+\begin{quote}
+  Seandainya korek api itu digesek, korek tersebut akan menyala.
+
+  Oleh karena itu, seandainya korek api itu digesek di luar angkasa, korek
+  tersebut akan menyala.
+\end{quote}
+
+Penjelasan Lewis--Stalnaker tentang kondisional menerangkan hal ini: dunia
+terdekat tempat saya menggesek korek api dan melakukannya di luar angkasa
+jauh lebih berbeda dari dunia aktual daripada dunia terdekat tempat saya
+menggesek korek api. Jadi, meskipun benar bahwa korek api menyala di dunia
+yang disebut terakhir, hal itu tidak benar di dunia yang disebut pertama.
+Dan memang demikianlah semestinya.
+
+\begin{ex}
+  Semantik bola membuat inferensi tersebut tidak valid, yakni kita mempunyai
+  $p \cif r \Entails/ (p \land q) \cif r$. Perhatikan model $\mModel{M}
+  = \tuple{W, O, V}$ dengan $W = \{w, w_1, w_2\}$, $O_w = \{\{w\}, \{w,
+  w_1\}, \{w, w_1, w_2\}\}$, $V(p) = \{w_1, w_2\}$, $V(q) = \{w_2\}$,
+  dan $V(r) = \{w_1\}$. Terdapat bola yang memuat dunia-$p$, yaitu $S =
+  \{w, w_1\}$, dan $p \lif r$ benar pada semua dunia di dalamnya, sehingga
+  $\mSat{M}{p \cif r}[w]$. Terdapat pula bola yang memuat dunia-$(p \land q)$,
+  yaitu $S' = \{w, w_1, w_2\}$, tetapi $\mSat/{M}{(p \land q) \lif r}[w_2]$,
+  sehingga $\mSat/{M}{(p \land q) \cif r}[w]$ (lihat
+  \olref{fig:antecedent-strengthening}).
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[layerwidth=1.5,scale=.6]\tiny
+  \spheresystem{3}
+  \propositionintersect{-10}{3}{30}{5}
+  \begin{scope}
+    \clip plot[smooth,tension=1] coordinates
+          {(0,4.5) (30:.95) (4.5,-3.5)} -- (4.5,4.5) ;
+    \spherefill{2}
+  \end{scope}
+  \draw[proposition] plot[dashed,smooth,tension=1] coordinates
+          {(0,4.5) (30:.95) (4.5,-3.5)} ;
+  \proposition{30}{2}{30}{5}
+  \path (0,0) node[world] {$w$};
+  \spherepos{30}{2}{node[world] {$w_1$}}
+  \spherepos{-10}{3}{node[world] {$w_2$}}
+  \spherepos{-10}{4}{node {$q$}}
+  \spherepos{30}{4}{node {$r$}}
+  \draw (1,4.5) node[below] {$p$};
+\end{tikzpicture}
+\caption{Model tandingan bagi penguatan anteseden}
+\ollabel{fig:antecedent-strengthening}
+\end{center}
+\end{figure}
+\end{ex}
+
+\end{document}

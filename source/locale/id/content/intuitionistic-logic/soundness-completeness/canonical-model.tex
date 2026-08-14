@@ -1,0 +1,73 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: canonical-model
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{sc}{mod}
+
+\olsection{Model Kanonis}
+
+Dunia-dunia dalam model kita akan berupa barisan berhingga~$\sigma$ dari
+bilangan asli, yakni $\sigma\in\Nat^*$. Perhatikan bahwa $\Nat^*$
+didefinisikan secara induktif oleh:
+\begin{enumerate}
+\item $\emptyseq \in \Nat^*$.
+\item Jika $\sigma\in\Nat^*$ dan $n\in\Nat$, maka
+  $\sigma.n\in\Nat^*$ (dengan $\sigma.n$ berarti
+  $\sigma\concat\tuple{n}$, sedangkan $\sigma\concat\sigma'$ merupakan
+  konkatenasi barisan $\sigma$ dan~$\sigma'$).
+\item Tidak ada objek lain yang termasuk dalam $\Nat^*$.
+\end{enumerate}
+Jadi, kita dapat menggunakan $\Nat^*$ untuk memberikan definisi-definisi
+induktif.
+
+Misalkan $\tuple{!B_0,!C_0}$, $\tuple{!B_1,!C_1}$, \dots, merupakan
+enumerasi semua pasangan !!{formula}s. Dengan diberikan suatu himpunan
+!!{formula}s~$\Delta$, definisikan $\Delta(\sigma)$ secara induktif sebagai
+berikut:
+\begin{enumerate}
+\item $\Delta(\emptyseq)=\Delta$.
+\item $\Delta(\sigma.n)={}$
+  \[
+  \begin{cases}
+    (\Delta(\sigma)\cup\{!B_n\})^* &
+    \text{jika $\Delta(\sigma)\cup\{!B_n\}\Proves/ !C_n$} \\
+    \Delta(\sigma) & \text{jika tidak}.
+  \end{cases}
+  \]
+\end{enumerate}
+Di sini, $(\Delta(\sigma)\cup\{!B_n\})^*$ berarti himpunan prima
+!!{formula}s yang keberadaannya dijamin oleh
+\olref[lin]{lem:lindenbaum}, diterapkan pada himpunan
+$\Delta(\sigma)\cup\{!B_n\}$ dan !!{formula}~$!C_n$. Perhatikan bahwa,
+menurut definisi ini, jika
+$\Delta(\sigma)\cup\{!B_n\}\Proves/ !C_n$, maka
+$\Delta(\sigma.n)\Proves !B_n$ dan
+$\Delta(\sigma.n)\Proves/ !C_n$. Perhatikan pula bahwa
+$\Delta(\sigma)\subseteq\Delta(\sigma.n)$ untuk setiap~$n$. Jika $\Delta$
+prima, maka $\Delta(\sigma)$ prima untuk setiap~$\sigma$.
+
+\begin{defn}\ollabel{defn:canonical-model}
+  Andaikan $\Delta$ prima. Maka \emph{model kanonis}
+  $\mModel{M(\Delta)}$ bagi $\Delta$ didefinisikan oleh:
+  \begin{enumerate}
+  \item $W=\Nat^*$, yakni himpunan barisan berhingga bilangan asli.
+  \item $R$ merupakan tatanan parsial yang memenuhi
+    $R\sigma\sigma'$ jika dan hanya jika $\sigma$ merupakan segmen awal
+    dari~$\sigma'$ (yakni, $\sigma'=\sigma\concat\sigma''$ untuk suatu
+    barisan~$\sigma''$).
+  \item $V(p)=\Setabs{\sigma}{p\in\Delta(\sigma)}$.
+  \end{enumerate}
+\end{defn}
+
+Mudah diperiksa bahwa $R$ memang merupakan tatanan parsial. Syarat
+monotonisitas pada~$V$ juga terpenuhi. Karena
+$\Delta(\sigma)\subseteq\Delta(\sigma.n)$, dengan induksi pada panjang
+ekor~$\sigma''$ kita memperoleh
+$\Delta(\sigma)\subseteq\Delta(\sigma')$ setiap kali
+$R\sigma\sigma'$.
+
+\end{document}

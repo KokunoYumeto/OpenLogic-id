@@ -1,0 +1,65 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{choice}{justifications}
+\olsection{Pertimbangan Intrinsik tentang Pilihan}
+
+Pertanyaan yang lebih luas ialah apakah Pengurutan Baik, Pilihan, atau bahkan
+keterbandingan semua himpunan menurut ukurannya---tidak menjadi soal yang
+mana---dapat dibenarkan.
+
+Berikut suatu upaya pembenaran \emph{intrinsik}. Sebelumnya, dalam
+\olref[z][story]{sec}, kita memperkenalkan beberapa prinsip tentang
+hierarki. Salah satunya patut dinyatakan kembali:
+\begin{enumerate}
+	\item[] \stagesacc. Untuk sebarang tahap $S$ dan sebarang himpunan yang
+	terbentuk \emph{sebelum} tahap $S$: pada tahap $S$ terbentuk suatu
+	himpunan yang anggota-anggotanya tepat merupakan himpunan-himpunan
+	tersebut. Tidak ada hal lain yang terbentuk pada tahap~$S$.
+\end{enumerate}
+Sesungguhnya, banyak penulis telah mengemukakan bahwa Aksioma Pilihan dapat
+dibenarkan melalui prinsip ini (atau sesuatu yang serupa dengannya). Kita
+akan memberikan suatu uraian ringkas mengenai pendekatan tersebut.
+
+Kita mulai dengan suatu hasil sederhana yang menawarkan \emph{satu lagi}
+perumusan ekuivalen bagi Pilihan:
+
+\begin{thm}[dalam $\ZF$]\ollabel{choiceset}
+Pilihan ekuivalen dengan prinsip berikut. Jika !!{element}s dari $A$ saling
+lepas dan tak kosong, maka terdapat suatu $C$ sedemikian sehingga
+$C\cap x$ merupakan singleton bagi setiap $x\in A$. (Kita menyebut $C$
+seperti ini sebagai suatu himpunan pilihan bagi~$A$.)
+\end{thm}
+
+Bukti hasil ini lugas dan kita serahkan sebagai latihan kepada pembaca.
+
+\begin{prob}
+Buktikan \olref[sth][choice][justifications]{choiceset}. Jika Anda mengalami
+kesulitan, suatu bukti dapat ditemukan dalam
+\cite[hlm.~242--243]{Potter2004}.
+\end{prob}
+
+Pokok yang mendasar ialah bahwa himpunan pilihan bagi $A$ tidak lain adalah
+daerah hasil suatu fungsi pilihan bagi~$A$. Jadi, untuk membenarkan Pilihan,
+kita cukup mencoba membenarkan perumusan ekuivalennya dalam hal keberadaan
+himpunan pilihan. Itulah yang sekarang akan kita coba lakukan.
+
+Andaikan !!{element}s dari $A$ saling lepas dan tak kosong. Berdasarkan
+\stageshier{} (lihat \olref[z][story]{sec}), $A$ terbentuk pada suatu
+tahap~$S$. Perhatikan bahwa semua !!{element}s dari $\bigcup A$ tersedia
+sebelum tahap~$S$. Berdasarkan \stagesacc{}, bagi \emph{sebarang} himpunan
+yang terbentuk sebelum~$S$, terbentuk pula suatu himpunan yang
+anggota-anggotanya tepat merupakan himpunan-himpunan tersebut. Dengan kata
+lain, setiap koleksi \emph{yang mungkin} dari himpunan-himpunan yang tersedia
+sebelumnya akan ada pada tahap~$S$. Namun, tentu \emph{mungkin} untuk memilih
+objek-objek yang dapat membentuk suatu himpunan pilihan bagi~$A$; ini hanya
+merupakan suatu himpunan bagian yang sangat spesifik dari $\bigcup A$.
+Dengan demikian, himpunan pilihan seperti itu ada, sebagaimana diperlukan.
+
+Itulah suatu upaya yang \emph{sangat} singkat untuk membenarkan Pilihan
+berdasarkan pertimbangan intrinsik. Namun, untuk mendalami gagasan ini, Anda
+sebaiknya membaca pengembangan yang rapi oleh Potter
+(\citeyear[\S14.8]{Potter2004}).
+
+\end{document}

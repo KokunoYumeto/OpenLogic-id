@@ -1,0 +1,108 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: language-modal-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{syn}{lan}
+
+\olsection{Bahasa Logika Modal Dasar}
+
+\begin{defn}
+Bahasa dasar logika modal memuat
+\begin{enumerate}
+  \tagitem{prvFalse}{Konstanta proposisional untuk !!{falsity}~$\lfalse$.}{}
+  \tagitem{prvTrue}{Konstanta proposisional untuk !!{truth}~$\ltrue$.}{}
+  \item Suatu himpunan !!{propositional variable}s yang !!{denumerable}:
+    $\Obj p_0$, $\Obj p_1$, $\Obj p_2$, \dots
+  \item Perangkai proposisional: \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (negasi)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (konjungsi)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (disjungsi)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}.
+  \tagitem{prvBox}{Operator modal $\Box$.}{}
+  \tagitem{prvDiamond}{Operator modal $\Diamond$.}{}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+\emph{!!^{formula}s} dalam bahasa modal dasar didefinisikan secara induktif
+  sebagai berikut:
+\begin{enumerate}
+\tagitem{prvFalse}{$\lfalse$ merupakan !!{formula} atomik.}{}
+
+\tagitem{prvTrue}{$\ltrue$ merupakan !!{formula} atomik.}{}
+
+\item Setiap !!{propositional variable} $\Obj p_i$ merupakan !!{formula}
+  (atomik).
+
+\tagitem{prvNot}{Jika $!A$ merupakan !!a{formula}, maka $\lnot !A$
+  merupakan !!a{formula}.}{}
+
+\tagitem{prvAnd}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka $(!A \land
+  !B)$ merupakan !!a{formula}.}{}
+
+\tagitem{prvOr}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka $(!A \lor !B)$
+  merupakan !!a{formula}.}{}
+
+\tagitem{prvIf}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka $(!A \lif !B)$
+  merupakan !!a{formula}.}{}
+
+\tagitem{prvIff}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka $(!A \liff !B)$
+  merupakan !!a{formula}.}{}
+
+\tagitem{prvBox}{Jika $!A$ merupakan !!a{formula}, maka $\Box !A$
+  merupakan !!a{formula}.}{}
+
+\tagitem{prvDiamond}{Jika $!A$ merupakan !!a{formula}, maka $\Diamond !A$
+  merupakan !!a{formula}.}{}
+
+\tagitem{limitClause}{Tidak ada yang lain yang merupakan !!a{formula}.}{}
+\end{enumerate}
+\end{defn}
+
+\begin{tagblock}{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defBox,defDiamond}
+\begin{defn}
+Formula yang dibentuk dengan menggunakan operator terdefinisi harus dipahami
+sebagai berikut:
+
+\begin{tagenumerate}{defTrue,defFalse,defNot,defOr,defAnd,defIf,defIff,defBox,defDiamond}
+
+\tagitem{defTrue}{$\ltrue$ menyingkat
+  \iftag{prvFalse}{$\lnot\lfalse$}{$(!A \lor \lnot !A)$ untuk suatu
+    !!{formula} atomik tetap~$!A$}.}{}
+
+\tagitem{defFalse}{$\lfalse$ menyingkat
+  \iftag{prvTrue}{$\lnot\ltrue$}{$(!A \land \lnot !A)$ untuk suatu
+    !!{formula} atomik tetap~$!A$}.}{}
+
+\tagitem{defNot}{$\lnot !A$ menyingkat $!A \lif \lfalse$.}{}
+
+\tagitem{defOr}{$!A \lor !B$ menyingkat
+  \iftag{prvAnd}{$\lnot(\lnot !A \land \lnot !B)$}{$\lnot !A \lif
+    !B$}.}{}
+
+\tagitem{defAnd}{$!A \land !B$ menyingkat
+  \iftag{prvOr}{$\lnot(\lnot !A \lor \lnot !B)$}{$\lnot (!A \lif
+    \lnot !B)$}.}{}
+
+\tagitem{defIf}{$!A \lif !B$ menyingkat
+  \iftag{prvOr}{$\lnot !A \lor !B)$}{$\lnot (!A \land \lnot !B)$}.}{}
+
+\tagitem{defIff}{$!A \liff !B$ menyingkat $(!A \lif !B) \land (!B
+  \lif !A)$.}{}
+
+\tagitem{defBox}{$\Box !A$ menyingkat $\lnot\Diamond\lnot !A$. }{}
+
+\tagitem{defDiamond}{$\Diamond !A$ menyingkat $\lnot\Box\lnot !A$.}{}
+\end{tagenumerate}
+\end{defn}
+\end{tagblock}
+
+Jika !!a{formula}~$!A$ tidak memuat $\Box$ atau $\Diamond$, kita menyebutnya
+\emph{bebas-modal}.
+
+\end{document}

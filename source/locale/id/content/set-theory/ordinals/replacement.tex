@@ -1,0 +1,85 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{ordinals}{replacement}
+\olsection{Penggantian}
+
+Dalam \olref[sth][ordinals][vn]{sec}, kita memotivasi pengenalan ordinal
+dengan menyarankan bahwa kita dapat memperlakukannya sebagai tipe urutan,
+yakni sebagai wakil kanonik bagi pengurutan baik. Agar hal itu berhasil, kita
+perlu membuktikan bahwa \emph{setiap pengurutan baik isomorfik dengan suatu
+ordinal}. Ini akan memungkinkan kita mendefinisikan $\ordtype{A, <}$ sebagai
+ordinal $\alpha$ sedemikian sehingga $\tuple{A, <} \isomorphic \alpha$.
+
+Sayangnya, kita \emph{tidak dapat} membuktikan hasil yang diinginkan hanya
+dengan aksioma-aksioma yang telah diperkenalkan sejauh ini. (Kita akan
+melihat alasannya dalam \olref[replacement][strength]{sec}, tetapi untuk saat
+ini pokoknya ialah: kita tidak dapat melakukannya.) Kita memerlukan suatu
+gagasan baru, yakni:
+
+\begin{axiom}[Skema Penggantian]
+Untuk sembarang formula $\phi(x, y)$, berikut ini merupakan suatu aksioma:
+\begin{quote}
+	untuk sembarang $A$, jika $(\forall x \in A)\lexists![y][\phi(x,y)]$,
+	maka $\Setabs{y}{(\exists x \in A)\phi(x,y)}$ ada.
+\end{quote}
+\end{axiom}
+\noindent
+Seperti Pemisahan, ini merupakan suatu skema: skema tersebut menghasilkan
+tak berhingga banyaknya aksioma, satu bagi setiap formula $\phi$ yang berbeda.
+Skema ini juga dapat (dan biasanya memang) dituliskan sebagai berikut:
+
+\begin{defish}
+Untuk sembarang formula $\phi(x,y)$ yang tidak memuat ``$B$'', berikut ini
+merupakan suatu aksioma:
+\[
+\forall A[(\forall x \in A)\lexists![y][\phi(x,y)] \lif \exists B\forall y (y \in B \liff (\exists x \in A)\phi(x,y))]
+\]
+\end{defish}
+
+Namun, ketika pertama kali dijumpai, rumus ini cukup berbelit-belit.
+Konsekuensi singkat Penggantian berikut mungkin mengungkapkan gagasan
+intuitif yang sedang kita gunakan dengan \emph{lebih jelas}:\footnote{Suatu
+suku adalah ungkapan yang menunjuk tepat satu objek (pada setiap pengisian
+variabel bebasnya). Sebagai contoh, ``$\emptyset$'' merupakan suku yang
+menunjuk himpunan kosong; ``$\{x\}$'' merupakan suku yang menunjuk singleton
+$x$ (apa pun $x$ itu); ``$x \cup y$'' merupakan suku yang menunjuk gabungan
+$x$ dan $y$ (apa pun keduanya).}
+
+\begin{cor}
+Untuk sembarang suku $\tau(x)$ dan sembarang himpunan $A$, himpunan berikut
+ada:
+\[
+	\Setabs{\tau(x)}{x \in A} = \Setabs{y}{(\exists x \in A)y = \tau(x)}.
+\]
+\end{cor}
+
+\begin{proof}
+Karena $\tau$ merupakan suatu \emph{suku}, $\forall x
+\lexists![y][\tau(x) = y]$. Terlebih lagi, $(\forall x \in A)
+\lexists![y][\tau(x) = y]$. Jadi, $\Setabs{y}{(\exists x \in A)\tau(x) =
+y}$ ada menurut Penggantian.
+\end{proof}
+\noindent
+Hal ini menunjukkan bahwa ``Penggantian'' merupakan nama yang tepat bagi
+aksioma tersebut: dengan diberikannya suatu himpunan $A$, Anda dapat
+membentuk himpunan baru, $\Setabs{\tau(x)}{x \in A}$, dengan mengganti setiap
+anggota $A$ dengan citranya di bawah~$\tau$. Memang, mengikuti notasi bagi
+citra suatu himpunan di bawah suatu fungsi, kita dapat menulis
+$\funimage{\tau}{A}$ untuk $\Setabs{\tau(x)}{x \in A}$.
+
+Namun, yang penting, $\tau$ merupakan suatu \emph{suku}. Suku itu tidak harus
+merupakan (nama bagi) suatu \emph{fungsi}, dalam pengertian
+\olref[sfr][fun][rel]{sec}, yakni suatu himpunan tertentu dari pasangan
+terurut. Lagi pula, jika $f$ merupakan suatu fungsi (dalam pengertian itu),
+maka himpunan $\funimage{f}{A} = \Setabs{f(x)}{x \in A}$ hanyalah suatu
+himpunan bagian tertentu dari $\ran{f}$, dan keberadaannya sudah dijamin
+hanya dengan menggunakan aksioma-aksioma~$\Zminus$.\footnote{Cukup
+pertimbangkan $\Setabs{y \in \bigcup \bigcup f}{(\exists x \in A)y =
+f(x)}$.} Sebaliknya, Penggantian merupakan tambahan yang \emph{kuat} bagi
+aksioma-aksioma kita, sebagaimana akan kita lihat dalam
+\olref[sth][replacement][]{chap}.
+
+
+\end{document}

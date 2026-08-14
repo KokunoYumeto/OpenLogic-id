@@ -1,0 +1,111 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: lindenbaums-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{com}{lin}
+
+\olsection{Lema Lindenbaum}
+
+Lema Lindenbaum menetapkan bahwa setiap himpunan !!{formula}s yang
+$\Sigma$-konsisten termuat dalam sekurang-kurangnya satu himpunan
+\emph{lengkap} yang $\Sigma$-konsisten. Konstruksi model kanonik kita akan
+menunjukkan bahwa bagi setiap himpunan lengkap dan
+$\Sigma$-konsisten~$\Delta$, terdapat suatu dunia dalam model kanonik tempat
+semua !!{formula}s dalam~$\Delta$---dan hanya formula-formula itu---benar.
+Jadi, Lema Lindenbaum menjamin bahwa setiap
+himpunan $\Sigma$-konsisten benar pada suatu dunia dalam model kanonik.
+
+\begin{thm}[Lema Lindenbaum]\ollabel{thm:lindenbaum}
+  Jika $\Gamma$ $\Sigma$-konsisten, maka terdapat suatu himpunan lengkap dan
+  $\Sigma$-konsisten~$\Delta$ yang memperluas~$\Gamma$.
+\end{thm}
+
+\begin{proof}
+Misalkan $!A_0$, $!A_1$, \dots{} merupakan suatu daftar menyeluruh semua
+formula bahasa tersebut (pengulangan diperbolehkan). Sebagai contoh, mulailah
+dengan mendaftarkan $\Obj p_0$, lalu pada setiap tahap $n \ge 1$ daftarkan
+sejumlah berhingga formula dengan panjang~$n$ yang hanya menggunakan variabel
+di antara $\Obj p_0$, \dots,~$\Obj p_n$. Kita mendefinisikan himpunan
+!!{formula}s $\Delta_n$ melalui induksi pada~$n$, lalu menetapkan
+$\Delta = \bigcup_n \Delta_n$. Pertama-tama, tetapkan
+$\Delta_0 = \Gamma$. Dengan mengandaikan bahwa $\Delta_n$ telah didefinisikan,
+kita mendefinisikan $\Delta_{n+1}$ sebagai berikut:
+\[
+\Delta_{n+1} =
+\begin{cases}
+  \Delta_n \cup \{!A_n\}, & \text{jika $\Delta_n \cup \{ !A_n\}$
+    $\Sigma$-konsisten;} \\
+  \Delta_n \cup \{ \lnot !A_n\}, & \text{jika tidak.}
+\end{cases}
+\]
+Sekarang misalkan $\Delta = \bigcup_{n=0}^\infty \Delta_n$.
+
+Kita harus menunjukkan bahwa definisi ini benar-benar menghasilkan himpunan
+$\Delta$ dengan sifat-sifat yang diperlukan, yakni $\Gamma \subseteq \Delta$
+dan $\Delta$ lengkap serta $\Sigma$-konsisten.
+
+Jelas bahwa $\Gamma \subseteq \Delta$, sebab $\Delta_0 \subseteq \Delta$
+berdasarkan konstruksi, dan $\Delta_0 = \Gamma$. Bahkan,
+$\Delta_n \subseteq \Delta$ bagi semua~$n$, sebab $\Delta$ merupakan gabungan
+semua~$\Delta_n$. (Karena pada setiap langkah konstruksi kita menambahkan
+!!a{formula} ke himpunan yang telah dibangun, $\Delta_n \subseteq
+\Delta_{n+1}$; jadi, karena $\subseteq$ transitif, $\Delta_n \subseteq
+\Delta_{m}$ setiap kali $n \le m$.) Pada setiap tahap konstruksi, kita
+menambahkan $!A_n$ atau $\lnot !A_n$, dan setiap !!{formula} muncul
+(sekurang-kurangnya sekali) dalam daftar semua~$!A_n$. Jadi, untuk setiap
+$!A$, berlaku $!A \in \Delta$ atau $\lnot !A \in \Delta$, sehingga $\Delta$
+lengkap berdasarkan definisi.
+
+Terakhir, kita harus menunjukkan bahwa $\Delta$ $\Sigma$-konsisten. Untuk itu,
+kita menunjukkan bahwa (a) jika $\Delta$ tidak $\Sigma$-konsisten, maka suatu
+$\Delta_n$ juga tidak $\Sigma$-konsisten, dan (b) semua $\Delta_n$
+$\Sigma$-konsisten.
+
+Andaikan $\Delta$ tidak $\Sigma$-konsisten. Maka $\Delta
+\Proves[\Sigma] \lfalse$, yakni terdapat $!A_1$, \dots,~$!A_k \in
+\Delta$ sedemikian sehingga $\Sigma \Proves !A_1 \lif (!A_2 \lif \cdots (!A_k
+\lif \lfalse)\dots)$. Karena $\Delta = \bigcup_{n=0}^\infty \Delta_n$, setiap
+$!A_i \in \Delta_{n_i}$ bagi suatu~$n_i$. Misalkan $n$ merupakan yang
+terbesar di antaranya. Karena $n_i \le n$, $\Delta_{n_i} \subseteq \Delta_n$.
+Jadi, semua $!A_i$ berada dalam suatu~$\Delta_n$. Hal ini berarti $\Delta_n
+\Proves[\Sigma] \lfalse$, yakni $\Delta_n$ tidak $\Sigma$-konsisten.
+
+Untuk menunjukkan bahwa setiap $\Delta_n$ $\Sigma$-konsisten, kita
+menggunakan induksi sederhana pada~$n$. $\Delta_0 = \Gamma$, dan kita
+mengasumsikan bahwa $\Gamma$ $\Sigma$-konsisten. Jadi, klaim tersebut berlaku
+bagi $n = 0$. Sekarang andaikan klaim itu berlaku bagi $n$, yakni $\Delta_n$
+$\Sigma$-konsisten. $\Delta_{n+1}$ adalah $\Delta_n \cup \{!A_n\}$ jika
+himpunan tersebut $\Sigma$-konsisten; jika tidak, himpunan itu adalah
+$\Delta_n \cup \{\lnot!A_n\}$. Dalam kasus pertama, jelas bahwa
+$\Delta_{n+1}$ $\Sigma$-konsisten. Namun, berdasarkan
+\olref[prf][con]{prop:consistencyfacts}\olref[prf][con]{prop:consistencyfacts-c},
+$\Delta_n \cup \{!A_n\}$ atau $\Delta_n \cup \{\lnot!A_n\}$ konsisten,
+sehingga dalam kasus lainnya pun $\Delta_{n+1}$ konsisten.
+\end{proof}
+
+\begin{cor}\ollabel{cor:provability-characterization}
+  $\Gamma \Proves[\Sigma] !A$ jika dan hanya jika $!A \in \Delta$ bagi
+  setiap himpunan lengkap dan $\Sigma$-konsisten~$\Delta$ yang memperluas
+  $\Gamma$ (termasuk ketika $\Gamma = \emptyset$; dalam hal itu kita
+  memperoleh pencirian lain bagi sistem modal $\Sigma$.)
+\end{cor}
+
+\begin{proof}
+  Andaikan $\Gamma \Proves[\Sigma] !A$, dan misalkan $\Delta$ merupakan
+  sebarang himpunan lengkap dan $\Sigma$-konsisten yang memperluas $\Gamma$.
+  Jika $!A \notin \Delta$, maka berdasarkan kemaksimalan
+  $\lnot!A \in \Delta$, sehingga $\Delta \Proves[\Sigma] !A$ (berdasarkan
+  monotonisitas) dan $\Delta \Proves[\Sigma] \lnot!A$ (berdasarkan
+  refleksivitas); dengan demikian, $\Delta$ tak konsisten. Sebaliknya, jika
+  $\Gamma \Proves/[\Sigma] !A$, maka $\Gamma \cup \{ \lnot!A\}$
+  $\Sigma$-konsisten, dan berdasarkan Lema Lindenbaum terdapat suatu himpunan
+  lengkap dan konsisten~$\Delta$ yang memperluas
+  $\Gamma \cup \{ \lnot!A \}$. Berdasarkan konsistensi, $!A
+  \notin \Delta$.
+\end{proof}
+
+\end{document}

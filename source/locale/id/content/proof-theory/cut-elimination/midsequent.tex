@@ -1,0 +1,269 @@
+% Part: proof-theory
+% Chapter: cut-elimination
+% Section: midsequent
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{cut}{mid}
+
+\olsection{Teorema Sekuen Tengah dan Teorema Herbrand}
+
+Salah satu konsekuensi penting teorema eliminasi potongan adalah teorema
+sekuen tengah. Teorema ini menyatakan bahwa jika terdapat
+!!a{proof}~$\pi$ atas~$\Gamma \Sequent \Delta$ yang setiap
+!!{formula}-nya berbentuk preneks, maka terdapat !!a{proof}~$\pi'$ yang
+memuat suatu sekuen $S\ident\Pi\Sequent\Lambda$ (disebut
+\emph{sekuen tengah}) sedemikian sehingga semua inferensi di atas $S$
+dalam~$\pi'$ bersifat proposisional dan semua inferensi di bawah~$S$
+merupakan inferensi kuantor. (!!^a{formula}~$!A$ disebut
+\emph{preneks} (atau berada dalam \emph{bentuk preneks}) jika berbentuk
+\[\mathsf{Q}_1x_1\dots\mathsf{Q}_nx_n\,!B(x_1,\dots,x_n)\]
+dengan setiap $\mathsf{Q}_i$ berupa $\lforall$ atau~$\lexists$.)
+Salah satu konsekuensi penting teorema sekuen tengah adalah teorema
+Herbrand. Kasus umumnya agak sulit diuraikan, tetapi secara sangat umum
+bentuknya adalah sebagai berikut: untuk setiap !!{sentence}~$!A$
+logika orde pertama yang !!{provable}, terdapat tautologi
+proposisional~$!A'$ yang darinya $!A$ dapat di-!!{prove}. Berikut versi
+untuk !!{sentence} berbentuk~$\lexists[x][!B(x)]$, dengan $!B$ bebas
+kuantor:
+
+\begin{thm}[Teorema Herbrand]
+Andaikan $!B(x)$ bebas kuantor dan
+$\Proves\lexists[x][!B(x)]$. Maka terdapat suku-suku~$t_1$,
+\dots, $t_n$ sedemikian sehingga
+$\Proves !B(t_1)\lor\dots\lor !B(t_n)$.
+\end{thm}
+
+!!{formula}~$!B(t_1)\lor\dots\lor !B(t_n)$ disebut
+\emph{disjungsi Herbrand} dari~$\lexists[x][!B(x)]$. Karena $!B$
+bebas kuantor, disjungsi ini juga bebas kuantor. Jadi, jika disjungsi
+tersebut !!{provable}, ia !!{provable} melalui bukti bebas potongan,
+dan akibatnya dengan !!a{proof} yang hanya menggunakan inferensi
+proposisional. Oleh karena itu, disjungsi tersebut merupakan tautologi.
+
+Bagian sulit dari Teorema Herbrand ialah menunjukkan bahwa suatu disjungsi
+Herbrand ada bagi setiap !!{formula}~$\lexists[x][!B(x)]$ yang
+!!{provable}. Arah sebaliknya, yakni bahwa jika
+$\lexists[x][!B(x)]$ memiliki disjungsi Herbrand maka formula tersebut
+dapat dibuktikan, adalah mudah. Bahkan, disjungsi Herbrand itu secara logis mengimplikasikan
+$\lexists[x][!B(x)]$. Misalnya, berikut !!a{proof} dalam~$\Log{G3c}$
+untuk kasus $n=2$:
+\[
+\Axiom$!B(t_1) \fCenter \lexists[x][!B(x)], !B(t_1), !B(t_2)$
+\Axiom$!B(t_2) \fCenter \lexists[x][!B(x)], !B(t_1), !B(t_2)$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$!B(t_1) \lor !B(t_2) \fCenter \lexists[x][!B(x)], !B(t_1), !B(t_2)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$!B(t_1) \lor !B(t_2) \fCenter \lexists[x][!B(x)], !B(t_2)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$!B(t_1) \lor !B(t_2) \fCenter \lexists[x][!B(x)]$
+\DisplayProof
+\]
+
+Untuk mengekstrak disjungsi Herbrand dari !!a{proof}~$\pi$ atas
+$\Sequent\lexists[x][!B(x)]$, mula-mula tinjau kasus ketika semua
+inferensi $\RightR{\lexists}$ dalam !!{proof} bebas potongan~$\pi$
+berada di bagian akhir:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$ \fCenter \lexists[x][!B(x)], !B(t_1), \dots, !B(t_n)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$ \fCenter \lexists[x][!B(x)], !B(t_2), \dots, !B(t_n)$
+\RightLabel{$(n-1) \times \RightR{\lexists}$}
+\Deduce$ \fCenter \lexists[x][!B(x)]$
+\DisplayProof
+\]
+Jika semua inferensi $\RightR{\lexists}$ dalam~$\pi$ dengan
+$\lexists[x][!B(x)]$ aktif adalah inferensi-inferensi ini, maka tidak
+ada inferensi kuantor lain dalam~$\pi_1$. Alasannya, $!B(x)$ tidak
+memuat kuantor lain, dan sekuen akhir tidak memuat !!{formula} apa pun
+di sebelah kiri. Dengan kata lain,
+$\fCenter\lexists[x][!B(x)],!B(t_1),\dots,!B(t_n)$ merupakan sekuen
+tengah dari~$\pi$. Selain itu, karena tidak ada inferensi kuantor di atas
+sekuen tengah, semua sekuen di atasnya memuat
+$\lexists[x][!B(x)]$, dan kemunculan-kemunculan ini tidak aktif maupun
+utama. Maka kemunculan-kemunculan itu dapat dihapus dari
+!!{proof}~$\pi_1$, dan kita memperoleh !!a{proof} atas
+$\fCenter !B(t_1),\dots,!B(t_n)$. Dengan menggunakan $n-1$ penerapan
+$\RightR{\lor}$, kita lalu memperoleh !!a{proof} atas disjungsi
+Herbrand~$\Sequent !B(t_1)\lor\dots\lor !B(t_n)$.
+
+Masalahnya, kita tidak dapat mengasumsikan bahwa bahkan suatu !!{proof}
+bebas potongan atas $\Sequent\lexists[x][!B(x)]$ memiliki semua
+inferensi \RightR{\lexists} dalam satu blok di bagian akhir. Di antara
+inferensi-inferensi \RightR{\lexists} itu mungkin terdapat inferensi
+yang menjadikan salah satu $!B(t_i)$ sebagai formula utama. Di sinilah
+teorema sekuen tengah diperlukan.
+
+\begin{thm}[Teorema Sekuen Tengah]\ollabel{thm:midsequent}
+Jika terdapat \Log{G3c}-!!{proof}~$\pi$ atas
+$\Gamma\Sequent\Delta$, dengan semua !!{formula} dalam $\Gamma$ dan
+$\Delta$ berbentuk preneks, maka terdapat !!a{proof}~$\pi'$ yang memuat
+suatu sekuen $\Pi\Sequent\Lambda$ sedemikian sehingga semua inferensi di
+bawahnya merupakan inferensi kuantor dan semua inferensi di atasnya
+merupakan inferensi proposisional.
+\end{thm}
+
+\begin{proof}
+  Definisikan \emph{orde} suatu inferensi kuantor dalam~$\pi$ sebagai
+  banyaknya inferensi proposisional di bawahnya, dan orde~$o(\pi)$ dari
+  $\pi$ sebagai jumlah orde semua inferensi kuantornya. Jika
+  $o(\pi)=0$, tidak ada inferensi kuantor yang memiliki inferensi
+  proposisional di bawahnya, dan kita selesai: karena semua inferensi
+  kuantor mempunyai satu premis, terdapat tepat satu inferensi kuantor
+  paling atas. Premisnya adalah sekuen tengah.
+
+  Jika $o(\pi)>0$, pilih inferensi kuantor paling bawah yang berorde
+  $>0$. Karena ordenya $>0$, di bawahnya pasti terdapat inferensi
+  proposisional. Karena inferensi kuantor itu merupakan inferensi
+  semacam ini yang paling bawah, kesimpulannya tidak mungkin menjadi
+  premis suatu inferensi kuantor: jika demikian, inferensi kuantor kedua
+  yang lebih bawah itu juga akan memiliki inferensi proposisional di
+  bawahnya. Kita membedakan (banyak sekali!) kasus menurut inferensi
+  kuantor yang dihadapi dan inferensi proposisional di bawahnya.
+  Karena sekuen akhir hanya terdiri atas formula preneks, formula utama
+  inferensi kuantor tidak dapat aktif dalam inferensi proposisional
+  berikutnya. Jika aktif, formula utama inferensi proposisional itu akan
+  memiliki kuantor dalam lingkup suatu penghubung proposisional.
+  Berdasarkan sifat sub-!!{formula}, formula tersebut harus merupakan
+  sub-!!{formula} dari !!a{formula} dalam sekuen akhir. Jadi, !!{formula}
+  utama inferensi kuantor merupakan !!a{element} dari konteks inferensi
+  proposisional yang lebih bawah.
+
+  Berikut dua contoh.
+
+Pertama, andaikan terdapat suatu $\RightR{\lforall}$ yang berakhir pada
+premis kanan $\LeftR{\lif}$. Maka sub-!!{proof} terkait dari~$\pi$
+berakhir pada sub-!!{proof}~$\pi_1$:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma' \fCenter \Delta', \lforall[x][!A(x)], !B$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!C, \Gamma' \fCenter \Delta', !A(c)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$!C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)]$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!B \lif !C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)]$
+\DisplayProof
+\]
+Kita dapat mengasumsikan bahwa $\pi$ reguler, sehingga variabel
+eigen~$c$ tidak muncul di luar~$\pi_3$; khususnya, $c$ tidak muncul
+dalam $!B\lif !C$ atau~$\pi_2$. Sekarang tinjau bukti~$\pi_1'$:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma' \fCenter \Delta', \lforall[x][!A(x)], !A(c), !B$
+\AxiomC{}
+\RightLabel{$\pi_3'$}
+\Deduce$!C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)], !A(c)$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!B \lif !C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)], !A(c)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$!B \lif !C, \Gamma' \fCenter \Delta', \lforall[x][!A(x)], \lforall[x][!A(x)]$
+\DisplayProof
+\]
+Di sini $\pi_2'$ diperoleh dari~$\pi_2$ melalui pelemahan dengan~$!A(c)$
+di sebelah kanan, dan $\pi_3'$ diperoleh dari~$\pi_3$ melalui pelemahan
+dengan~$\lforall[x][!A(x)]$ di sebelah kanan. Pelemahan ini tidak
+menambahkan inferensi apa pun; khususnya, tidak ada inferensi kuantor
+yang dapat memengaruhi orde. Pelemahan tersebut juga tidak melanggar
+syarat variabel eigen mana pun dalam~$\pi_2$ atau~$\pi_3$. Syarat
+variabel eigen bagi \RightR{\lforall} tetap terpenuhi karena $c$ tidak
+muncul dalam~$!B\lif !C$.
+
+Kita menggunakan dapat diterimanya kontraksi untuk memperoleh
+!!a{proof}~$\pi_1''$ atas
+$!B\lif !C,\Gamma'\fCenter\Delta',\lforall[x][!A(x)]$. Bukti dapat
+diterimanya $\RightR{\Contraction}$ bagi
+$\lforall[x][!A(x)]$ dan bukti keterbalikan $\RightR{\lforall}$ yang
+digunakan di dalamnya tidak mengubah orde inferensi apa pun: paling
+jauh, bukti-bukti itu menghapus inferensi. Jadi, jumlah inferensi kuantor
+dalam~$\pi_1''$ tidak lebih banyak daripada dalam~$\pi_1$, dan setiap
+inferensi kuantor dalam~$\pi_1''$ memiliki jumlah inferensi proposisional
+di bawahnya yang sama dengan inferensi pasangannya dalam~$\pi_1$---kecuali
+\RightR{\lforall} terakhir. Dalam~$\pi$, inferensi itu memiliki
+\LeftR{\lif} di bawahnya, sedangkan dalam~$\pi_1''$ kita telah
+memindahkan \LeftR{\lif} ke atasnya. Ganti $\pi_1$ dalam $\pi$ dengan
+$\pi_1''$. !!{proof} yang dihasilkan memiliki orde lebih rendah, karena
+setidaknya orde inferensi $\RightR{\lforall}$ telah berkurang
+sekurang-kurangnya~$1$. Sekarang terapkan hipotesis induksi.
+
+Kasus ketika inferensi kuantornya adalah \RightR{\lexists} bahkan lebih
+mudah, karena kontraksi tidak diperlukan dan tidak ada syarat variabel
+eigen yang harus diperhatikan. Misalnya, andaikan $\RightR{\lexists}$
+diikuti oleh $\RightR{\land}$ (kali ini sebagai premis kiri).
+Sub-!!{proof} terkait adalah $\pi_1$:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !A(t), !B$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !B$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !B \land !C$
+\DisplayProof
+\]
+Ganti $\pi_1$ dalam~$\pi$ dengan $\pi_1'$:
+\[
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !A(t), !B$
+\AxiomC{}
+\RightLabel{$\pi_3'$}
+\Deduce$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !A(t), !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !A(t), !B \land !C$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$\Gamma' \fCenter \Delta', \lexists[x][!A(x)], !B \land !C$
+\DisplayProof
+\]
+Di sini $\pi_3'$ diperoleh dari $\pi_3$ melalui pelemahan dengan~$!A(t)$
+di sebelah kanan. Pelemahan ini hanya menambahkan $!A(t)$ ke sebelah
+kanan setiap sekuen dalam~$\pi_3$, sehingga tidak mengubah orde inferensi
+kuantor apa pun. Orde inferensi kuantor dalam~$\pi_1'$ sama dengan
+ordenya dalam~$\pi_1$, kecuali orde inferensi \RightR{\lexists} yang
+dipertukarkan dengan~\RightR{\land} telah berkurang~$1$. Hipotesis
+induksi berlaku.
+\end{proof}
+
+\begin{prob}
+Uraikan kasus-kasus dalam bukti \olref{thm:midsequent} ketika
+\LeftR{\lexists} berakhir pada premis~\RightR{\lif}, dan ketika
+\LeftR{\lforall} berakhir pada premis kiri~\LeftR{\lor}.
+\end{prob}
+
+\begin{proof}[Bukti Teorema Herbrand]
+Andaikan $\pi$ berakhir pada $\Sequent\lexists[x][!A(x)]$.
+Berdasarkan \olref{thm:midsequent}, kita dapat mengubah $\pi$ menjadi
+!!a{proof}~$\pi'$ dengan sekuen tengah~$S$, yang harus berbentuk
+\[\Sequent\lexists[x][!A(x)],!A(t_1),\dots,!A(t_n).\]
+Karena semua inferensi di atas $S$ bersifat proposisional,
+$\lexists[x][!A(x)]$ tidak dapat menjadi formula utama inferensi di
+atas~$S$. Karena formula itu tidak atomik, ia tidak dapat menjadi
+formula utama dalam aksioma. Karena $\lexists[x][!A(x)]$ tidak dapat
+menjadi subformula wajar dari $!A(t_1)$ (ingat bahwa $!A(x)$ bebas
+kuantor), formula itu juga tidak dapat aktif di atas~$S$. Oleh sebab
+itu, menghapus $\lexists[x][!A(x)]$ dari sub-!!{proof} yang berakhir
+pada~$S$ menghasilkan !!{proof} yang benar atas
+$\Sequent !A(t_1),\dots,!A(t_n)$. Dari bukti itu, !!a{proof} atas
+$\Sequent !A(t_1)\lor\dots\lor !A(t_n)$ dapat diperoleh dengan
+$n-1$ inferensi $\RightR{\lor}$.
+\end{proof}
+
+% \begin{prob}
+% Find a Herbrand disjunction of $\lexists[x][\lforall[y][(!A(x) \lif
+% !A(y))]]$ by finding a cut-free !!{proof} of $\Sequent
+% \lexists[x][\lforall[y][(!A(x) \lif !A(y))]]$ and applying the
+% transformation in \olref{thm:midsequent} to find a midsequent (if
+% necessary).
+% \end{prob}
+
+\end{document}

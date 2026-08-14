@@ -1,0 +1,234 @@
+% Bagian: normal-modal-logic
+% Bab: tableaux
+% Subbagian: more-soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{tab}{msn}
+      
+\olsection{Kesahihan bagi Aturan Tambahan}
+
+Kita mengatakan bahwa suatu aturan sahih bagi suatu kelas model jika, setiap
+kali suatu cabang dalam !!a{tableau} dapat dipenuhi dalam suatu model dari
+kelas tersebut, cabang yang dihasilkan dengan menerapkan aturan itu juga
+dapat dipenuhi dalam suatu model dari kelas tersebut.
+
+\begin{prop}
+  \ollabel{prop:soundness-T} 
+  \iftag{prvBox}{\Ax{T}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ dan }%
+  \iftag{prvDiamond}{\Ax{T}$\Diamond$}{}
+  \iftag{notprvBox,notprvDiamond}{sahih}{sahih}
+  bagi model refleksif.
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{Cabang diperluas dengan menerapkan T$\Box$ pada
+  $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$:
+  \iftag{probBox}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\True}{!B}[\sigma]$ pada cabang tersebut. Andaikan
+    $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat{M}{\Box !B}[f(\sigma)]$. Karena $R$ refleksif, kita mengetahui
+    bahwa $Rf(\sigma)f(\sigma)$. Jadi, $\mSat{M}{!B}[f(\sigma)]$; dengan
+    kata lain, $\mModel{M}, f$ memenuhi
+    $\sFmla{\True}{!B}[\sigma]$.}}{}
+\tagitem{prvDiamond}{Cabang diperluas dengan menerapkan T$\Diamond$ pada
+  $\sFmla{\False}{\Diamond !B}[\sigma] \in \Gamma$:
+  \iftag{probDiamond}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\False}{!B}[\sigma]$ pada cabang tersebut. Andaikan
+    $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat/{M}{\Diamond !B}[f(\sigma)]$. Karena $R$ refleksif, kita
+    mengetahui bahwa $Rf(\sigma)f(\sigma)$. Jadi,
+    $\mSat/{M}{!B}[f(\sigma)]$; dengan kata lain, $\mModel{M}, f$ memenuhi
+    $\sFmla{\False}{!B}[\sigma]$.}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  Lengkapi pembuktian \olref[nml][tab][msn]{prop:soundness-T}.
+\end{prob}
+\tagendprob
+
+\begin{prop}
+  \ollabel{prop:soundness-D} 
+  \iftag{prvBox}{\Ax{D}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ dan }%
+  \iftag{prvDiamond}{\Ax{D}$\Diamond$}{}
+  \iftag{notprvBox,notprvDiamond}{sahih}{sahih}
+  bagi model serial.
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{Cabang diperluas dengan menerapkan D$\Box$ pada
+  $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$:
+  \iftag{probBox}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\True}{\Diamond !B}[\sigma]$ pada cabang tersebut.
+    Andaikan $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat{M}{\Box !B}[f(\sigma)]$. Karena $R$ serial, terdapat $w \in W$
+    sedemikian sehingga $Rf(\sigma)w$. Maka $\mSat{M}{!B}[w]$, dan karena
+    itu $\mSat{M}{\Diamond !B}[f(\sigma)]$. Jadi, $\mModel{M}, f$ memenuhi
+    $\sFmla{\True}{\Diamond!B}[\sigma]$.}}{}
+\tagitem{prvDiamond}{Cabang diperluas dengan menerapkan D$\Diamond$ pada
+  $\sFmla{\False}{\Diamond !B}[\sigma] \in \Gamma$:
+  \iftag{probDiamond}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\False}{\Box !B}[\sigma]$ pada cabang tersebut. Andaikan
+    $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat/{M}{\Diamond !B}[f(\sigma)]$. Karena $R$ serial, terdapat
+    $w \in W$ sedemikian sehingga $Rf(\sigma)w$. Maka
+    $\mSat/{M}{!B}[w]$, dan karena itu
+    $\mSat/{M}{\Box !B}[f(\sigma)]$. Jadi, $\mModel{M}, f$ memenuhi
+    $\sFmla{\False}{\Box!B}[\sigma]$.}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  Lengkapi pembuktian \olref[nml][tab][msn]{prop:soundness-D}.
+\end{prob}
+\tagendprob
+
+\begin{prop}
+  \ollabel{prop:soundness-B} 
+  \iftag{prvBox}{\Ax{B}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ dan }%
+  \iftag{prvDiamond}{\Ax{B}$\Diamond$}{}
+  \iftag{notprvBox,notprvDiamond}{sahih}{sahih}
+  bagi model simetris.
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{Cabang diperluas dengan menerapkan B$\Box$ pada
+  $\sFmla{\True}{\Box !B}[\sigma.n] \in \Gamma$:
+  \iftag{probBox}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\True}{!B}[\sigma]$ pada cabang tersebut. Andaikan
+    $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat{M}{\Box !B}[f(\sigma.n)]$. Karena $f$ adalah interpretasi atas
+    prefiks pada cabang tersebut dalam~$\mModel{M}$, kita mengetahui bahwa
+    $Rf(\sigma)f(\sigma.n)$. Karena $R$ simetris,
+    $Rf(\sigma.n)f(\sigma)$. Karena
+    $\mSat{M}{\Box !B}[f(\sigma.n)]$, berlaku
+    $\mSat{M}{!B}[f(\sigma)]$. Jadi, $\mModel{M}, f$ memenuhi
+    $\sFmla{\True}{!B}[\sigma]$.}}{}
+\tagitem{prvDiamond}{Cabang diperluas dengan menerapkan B$\Diamond$ pada
+  $\sFmla{\False}{\Diamond !B}[\sigma.n] \in \Gamma$:
+  \iftag{probDiamond}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\False}{!B}[\sigma]$ pada cabang tersebut. Andaikan
+    $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$. Karena $f$ adalah interpretasi
+    atas prefiks pada cabang tersebut dalam~$\mModel{M}$, kita mengetahui
+    bahwa $Rf(\sigma)f(\sigma.n)$. Karena $R$ simetris,
+    $Rf(\sigma.n)f(\sigma)$. Karena
+    $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$, berlaku
+    $\mSat/{M}{!B}[f(\sigma)]$. Jadi, $\mModel{M}, f$ memenuhi
+    $\sFmla{\False}{!B}[\sigma]$.}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  Lengkapi pembuktian \olref[nml][tab][msn]{prop:soundness-B}.
+\end{prob}
+\tagendprob
+
+\begin{prop}
+  \ollabel{prop:soundness-4} 
+  \iftag{prvBox}{\Ax{4}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ dan }%
+  \iftag{prvDiamond}{\Ax{4}$\Diamond$}{}
+  \iftag{notprvBox,notprvDiamond}{sahih}{sahih}
+  bagi model transitif.
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{Cabang diperluas dengan menerapkan 4$\Box$ pada
+  $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$:
+  \iftag{probBox}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\True}{\Box!B}[\sigma.n]$ pada cabang tersebut. Andaikan
+    $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat{M}{\Box !B}[f(\sigma)]$. Karena $f$ adalah interpretasi atas
+    prefiks pada cabang tersebut dalam~$\mModel{M}$ dan $\sigma.n$ harus
+    sudah digunakan, kita mengetahui bahwa $Rf(\sigma)f(\sigma.n)$.
+    Sekarang misalkan $w$ sebarang dunia sedemikian sehingga
+    $Rf(\sigma.n)w$. Karena $R$ transitif, $Rf(\sigma)w$. Karena
+    $\mSat{M}{\Box !B}[f(\sigma)]$, berlaku $\mSat{M}{!B}[w]$. Jadi,
+    $\mSat{M}{\Box !B}[f(\sigma.n)]$, dan $\mModel{M}, f$ memenuhi
+    $\sFmla{\True}{\Box !B}[\sigma.n]$.}}{}
+\tagitem{prvDiamond}{Cabang diperluas dengan menerapkan 4$\Diamond$ pada
+  $\sFmla{\False}{\Diamond !B}[\sigma] \in \Gamma$:
+  \iftag{probDiamond}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\False}{\Diamond!B}[\sigma.n]$ pada cabang tersebut.
+    Andaikan $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat/{M}{\Diamond !B}[f(\sigma)]$. Karena $f$ adalah interpretasi
+    atas prefiks pada cabang tersebut dalam~$\mModel{M}$ dan $\sigma.n$
+    harus sudah digunakan, kita mengetahui bahwa
+    $Rf(\sigma)f(\sigma.n)$. Sekarang misalkan $w$ sebarang dunia sedemikian
+    sehingga $Rf(\sigma.n)w$. Karena $R$ transitif, $Rf(\sigma)w$. Karena
+    $\mSat/{M}{\Diamond !B}[f(\sigma)]$, berlaku $\mSat/{M}{!B}[w]$. Jadi,
+    $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$, dan $\mModel{M}, f$ memenuhi
+    $\sFmla{\False}{\Diamond !B}[\sigma.n]$.}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  Lengkapi pembuktian \olref[nml][tab][msn]{prop:soundness-4}.
+\end{prob}
+\tagendprob
+
+\begin{prop}
+  \ollabel{prop:soundness-4r} 
+  \iftag{prvBox}{\Ax{4r}$\Box$}{}%
+  \iftag{notprvBox,notprvDiamond}{}{ dan }%
+  \iftag{prvDiamond}{\Ax{4r}$\Diamond$}{}
+  \iftag{notprvBox,notprvDiamond}{sahih}{sahih}
+  bagi model Euklidean.
+\end{prop}
+
+\begin{proof}
+\begin{tagenumerate}{prvBox,prvDiamond}
+\tagitem{prvBox}{Cabang diperluas dengan menerapkan 4r$\Box$ pada
+  $\sFmla{\True}{\Box !B}[\sigma.n] \in \Gamma$:
+  \iftag{probBox}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\True}{\Box!B}[\sigma]$ pada cabang tersebut. Andaikan
+    $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat{M}{\Box !B}[f(\sigma.n)]$. Karena $f$ adalah interpretasi atas
+    prefiks pada cabang tersebut dalam~$\mModel{M}$, kita mengetahui bahwa
+    $Rf(\sigma)f(\sigma.n)$. Sekarang misalkan $w$ sebarang dunia sedemikian
+    sehingga $Rf(\sigma)w$. Karena $R$ Euklidean,
+    $Rf(\sigma.n)w$. Karena $\mSat{M}{\Box !B}[f(\sigma.n)]$, berlaku
+    $\mSat{M}{!B}[w]$. Jadi, $\mSat{M}{\Box !B}[f(\sigma)]$, dan
+    $\mModel{M}, f$ memenuhi $\sFmla{\True}{\Box !B}[\sigma]$.}}{}
+\tagitem{prvDiamond}{Cabang diperluas dengan menerapkan 4r$\Diamond$ pada
+  $\sFmla{\False}{\Diamond !B}[\sigma.n] \in \Gamma$:
+  \iftag{probDiamond}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\False}{\Diamond!B}[\sigma]$ pada cabang tersebut. Andaikan
+    $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$. Karena $f$ adalah interpretasi
+    atas prefiks pada cabang tersebut dalam~$\mModel{M}$, kita mengetahui
+    bahwa $Rf(\sigma)f(\sigma.n)$. Sekarang misalkan $w$ sebarang dunia
+    sedemikian sehingga $Rf(\sigma)w$. Karena $R$ Euklidean,
+    $Rf(\sigma.n)w$. Karena $\mSat/{M}{\Diamond !B}[f(\sigma.n)]$, berlaku
+    $\mSat/{M}{!B}[w]$. Jadi, $\mSat/{M}{\Diamond !B}[f(\sigma)]$, dan
+    $\mModel{M}, f$ memenuhi $\sFmla{\False}{\Diamond !B}[\sigma]$.}}{}
+\end{tagenumerate}
+\end{proof}
+
+\tagprob{probBox,probDiamond}
+\begin{prob}
+  Lengkapi pembuktian \olref[nml][tab][msn]{prop:soundness-4r}.
+\end{prob}
+\tagendprob
+
+\begin{cor}
+\ollabel{cor:soundness-logics} Sistem-sistem !!{tableau} yang diberikan
+dalam \olref[mru]{tab:logics-rules} sahih bagi kelas model masing-masing.
+\end{cor}
+
+\end{document}

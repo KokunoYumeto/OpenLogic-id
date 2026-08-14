@@ -1,0 +1,90 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: grafting
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{nat}{gra}
+
+\olsection{Pencangkokan \usetoken{P}{proof}}
+
+!!^{proof} dalam \Log{N1c} dan~\Log{N1i} merupakan !!{proof} atas
+!!{formula}~$!A$ dari asumsi-asumsi~$!B$. Andaikan $!B$ sendiri memiliki
+!!a{proof}. Bagaimana kita menggabungkan !!{proof} atas~$!B$ dengan
+!!{proof} atas $!A$ dari~$!B$ untuk memperoleh !!a{proof} atas~$!A$ yang
+tidak menggunakan asumsi~$!B$?
+
+Salah satu pilihan ialah menghapus asumsi~$!B$ dari !!{proof} atas~$!A$
+dengan menerapkan~\Intro{\lif}. Kemudian kita dapat menggabungkan
+!!{proof} yang dihasilkan atas~$!B \lif !A$ dengan !!{proof} atas~$!B$
+untuk memperoleh
+\[
+\AxiomC{$\Discharge{!B}{x}$}
+\DeduceC{$!A$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!B \lif !A$}
+\AxiomC{}
+\DeduceC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!A$}
+\DisplayProof
+\]
+Cara ini langsung, tetapi agak janggal: mengapa mengintroduksi $\lif$ hanya
+untuk segera mengeliminasinya? Semestinya kita dapat menghindari
+``jalan memutar'' semacam ini melalui $!B \lif !A$. (Fakta bahwa jalan
+memutar itu selalu dapat dihindari sebenarnya merupakan isi teorema
+normalisasi.)
+
+Dalam \Log{N1c} dan~\Log{N1i}, kita dapat menghindarinya dengan cukup mudah
+dalam kasus ini: kita cukup mengganti asumsi-asumsi~$!B^x$ dengan seluruh
+!!{proof} atas~$!B$. ``Pencangkokan'' !!{proof} pada asumsi lain ini
+cukup berguna, sehingga kita mencatatnya sebagai definisi.
+
+\begin{defn}
+Jika $\delta_1$ adalah \Log{N1c}-!!{proof} (atau
+\Log{N1i}-!!{proof}) atas~$!A$ dari asumsi terbuka~$!B^x$, dan
+$\delta_2$ adalah \Log{N1c}-!!{proof} (\Log{N1i}-!!{proof})
+atas~$!B$, maka $\Subst{\delta_1}{\delta_2}{!B^x}$ adalah hasil
+penggantian setiap kemunculan $!B^x$ yang belum dilepaskan
+dalam~$\delta_1$ dengan~$\delta_2$.
+\end{defn}
+
+Asalkan $\delta_1$ dan $\delta_2$ tidak memiliki !!{formula} asumsi yang berbeda
+tetapi diberi label yang sama, dan tidak ada asumsi terbuka
+dalam~$\delta_2$ yang memuat variabel eigen dari~$\delta_1$, hasil
+$\Subst{\delta_1}{\delta_2}{!B^x}$ merupakan !!{proof} yang benar, dan
+asumsi-asumsi terbukanya ialah asumsi-asumsi terbuka $\delta_1$ bersama
+dengan asumsi-asumsi terbuka~$\delta_2$. Ketika mencangkokkan !!{proof},
+syarat-syarat ini biasanya terpenuhi. Syarat pertama terpenuhi setiap kali
+$\delta_1$ dan $\delta_2$ merupakan subbukti dari !!{proof} yang lebih
+besar. Jika syarat kedua tidak terpenuhi, kita dapat mengganti nama
+variabel-variabel eigen dalam~$\delta_1$ agar syarat itu terpenuhi.
+
+Definisi yang bersesuaian berlaku bagi \Log{N2c} dan~\Log{N2i}.
+
+\begin{defn}
+Jika $\delta_1$ adalah \Log{N2c}-!!{proof} (atau
+\Log{N2i}-!!{proof}) atas~$x:!B, \Gamma_1 \Sequent !A$, dan
+$\delta_2$ adalah \Log{N2c}-!!{proof} (\Log{N2i}-!!{proof})
+atas~$\Gamma_2 \Sequent !B$, maka
+$\Subst{\delta_1}{\delta_2}{x:!B}$ adalah hasil penggantian setiap
+aksioma $x:!B \Sequent !B$ dalam~$\delta_1$ dengan~$\delta_2$, serta
+penambahan $\Gamma_2$ pada konteks setiap sekuen di bawah aksioma-aksioma
+tersebut.
+\end{defn}
+
+\begin{prop}
+Jika $\delta_1 \Proves x:!B, \Gamma_1 \Sequent
+!A$ dan $\delta_2 \Proves \Gamma_2 \Sequent !B$, maka
+$\Subst{\delta_1}{\delta_2}{x:!B} \Proves \Gamma_1, \Gamma_2 \Sequent
+!A$, asalkan tidak ada variabel eigen dari~$\delta_1$ yang muncul
+dalam~$\Gamma_2$.
+\end{prop}
+
+\begin{proof}
+  Melalui induksi pada $\pheight{\delta_1}$.
+\end{proof}
+
+\end{document}

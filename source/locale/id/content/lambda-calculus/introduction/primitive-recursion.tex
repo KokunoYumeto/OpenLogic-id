@@ -1,0 +1,147 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: primitive-recursion
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{int}{pr}
+\olsection{Fungsi yang \usetoken{S}{lambda definable} Tertutup terhadap Rekursi Primitif}
+
+Untuk rekursi primitif, akhirnya kita perlu melakukan pekerjaan yang lebih
+substantif. Kita harus melangkah secara bertahap. Seperti sebelumnya, dengan
+mengandaikan bahwa kita telah mempunyai suku $G$ dan $H$ yang masing-masing
+!!{lambda define} fungsi $g$ dan~$h$, kita ingin memperoleh suku $F$ yang
+!!{lambda define}s fungsi~$f$ yang didefinisikan oleh
+\begin{align*}
+f(0, \vec z) & = g(\vec z) \\
+f(x+1, \vec z) & = h(x, f(x,\vec z), \vec z).
+\end{align*}
+Jadi, secara umum, jika diberikan suku lambda $G'$ dan~$H'$, cukup ditemukan
+suatu suku~$F$ sedemikian sehingga
+\begin{align*}
+F(\num{0}, \vec z) & \equiv G(\vec z) \\
+F(\overline{n+1}, \vec z) & \equiv H(\num{n}, F(\num{n}, \vec z), \vec z)
+\end{align*}
+untuk setiap bilangan asli~$n$; fakta bahwa $G'$ dan~$H'$ !!{lambda define}
+$g$ dan~$h$ berarti bahwa setiap kali kita memasukkan numeral
+$\num{\vec m}$ sebagai pengganti $\vec z$, $F(\num{n+1}, \num{\vec m})$
+akan ternormalisasi ke jawaban yang benar.
+
+Untuk tujuan tersebut, cukup ditemukan suatu suku~$F$ yang memenuhi
+\begin{align*}
+F(\num 0) & \equiv G \\
+F(\overline {n+1}) & \equiv H(\num{n},F(\num{n}))
+\intertext{untuk setiap bilangan asli $n$, dengan}
+G & = \lambd[\vec z][G'(\vec z)] \text{ dan}\\
+H(u,v) & = \lambd[\vec z][H'(u,v(\vec z),\vec z)].
+\end{align*}
+Dengan kata lain, melalui kiat lambda kita tidak perlu lagi menangani parameter
+tambahan $\vec z$ secara terpisah---parameter itu terserap ke dalam notasi
+lambda.
+
+Sebelum mendefinisikan suku $F$, kita memerlukan mekanisme untuk menangani
+pasangan terurut. Mekanisme itu diberikan oleh lema berikut.
+
+\begin{lem}
+Terdapat suatu suku lambda $D$ sedemikian sehingga, bagi setiap pasangan suku
+lambda $M$ dan~$N$, $D(M,N)(\num{0}) \red M$ dan
+$D(M,N)(\num{1}) \red N$.
+\end{lem}
+
+\begin{proof}
+Pertama, definisikan suku lambda $K$ dengan
+\[
+K(y) = \lambd[x][y].
+\]
+Dengan kata lain, $K$ adalah suku $\lambd[y][\lambd[x][y]]$. Dilihat dengan
+cara lain, untuk setiap $M$, $K(M)$ adalah fungsi konstan yang mengembalikan~$M$
+pada setiap masukan.
+
+Sekarang definisikan $D(x,y,z)$ dengan $D(x,y,z)=z(K(y))x$. Maka kita mempunyai
+\begin{align*}
+D(M,N,\num 0) & \red \num 0 (K(N)) M \red M \text{ dan}\\
+D(M,N,\num 1) & \red \num 1 (K(N)) M \red K(N) M \red N,
+\end{align*}
+seperti yang diperlukan.
+\end{proof}
+
+Gagasannya ialah bahwa $D(M,N)$ merepresentasikan pasangan $\tuple{M,N}$;
+jika $P$ dianggap merepresentasikan pasangan semacam itu, maka $P(\num 0)$ dan
+$P(\num 1)$ merepresentasikan proyeksi kiri dan kanan, $(P)_0$ dan $(P)_1$.
+Kita akan menggunakan notasi terakhir ini.
+
+\begin{lem}
+Fungsi-fungsi yang !!{lambda definable} tertutup terhadap rekursi primitif.
+\end{lem}
+
+\begin{proof}
+Kita perlu menunjukkan bahwa, jika diberikan sebarang suku $G$ dan $H$, kita
+dapat menemukan suatu suku $F$ sedemikian sehingga
+\begin{align*}
+F(\num{0}) & \equiv G \\
+F(\num{n+1}) & \equiv H(\num{n}, F(\num{n}))
+\end{align*}
+untuk setiap bilangan asli~$n$. Gagasan kasarnya ialah menghitung barisan
+\emph{pasangan}
+\[
+\tuple{\num 0, F(\num 0)}, \tuple{\num 1, F(\num 1)}, \dots,
+\]
+dengan menggunakan numeral sebagai iterator. Perhatikan bahwa pasangan pertama
+hanyalah $\tuple{\num 0,G}$. Jika diberikan pasangan
+$\tuple{\num{n},F(\num{n})}$, pasangan berikutnya,
+$\tuple{\num{n+1},F(\num{n+1})}$, seharusnya ekuivalen dengan
+$\tuple{\num{n+1},H(\num{n},F(\num{n}))}$. Kita akan merancang suku
+lambda~$T$ yang menjalankan transisi satu-langkah ini.
+
+Perinciannya sebagai berikut. Definisikan $T(u)$ dengan
+\[
+T(u) = \tuple{S((u)_0), H((u)_0,(u)_1)}.
+\]
+Sekarang mudah diperiksa bahwa untuk setiap bilangan~$n$,
+\[
+T(\tuple{\num{n}, M}) \red \tuple{\num{n+1}, H(\num{n}, M)}.
+\]
+Seperti disarankan di atas, jika $G$ dan $H$ diberikan, definisikan~$F(u)$
+dengan
+\[
+F(u) = (u(T,\tuple{\num 0, G}))_1.
+\]
+Dengan kata lain, pada masukan~$\num{n}$, $F$ mengiterasikan $T$ sebanyak $n$
+kali mulai dari $\tuple{\num 0,G}$, kemudian mengembalikan komponen kedua.
+Untuk langkah awal, kita mempunyai
+\begin{enumerate}
+\item $\num{0} (T, \tuple{\num 0, G}) \equiv \tuple{\num{0}, G}$
+\item $F(\num{0}) \equiv G$
+\end{enumerate}
+Dengan induksi pada~$n$, dapat ditunjukkan bahwa bagi setiap bilangan asli
+berlaku hal-hal berikut:
+\begin{enumerate}
+\item $\num{n+1}(T, \tuple{\num{0}, G}) \equiv \tuple{\num{n+1}, F(\num{n+1})}$
+\item $F(\num{n+1}) \equiv H(\num{n}, F(\num{n}))$
+\end{enumerate}
+Untuk klausa kedua, kita mempunyai
+\begin{align*}
+F(\num{n+1}) & \red (\num{n+1}(T, \tuple{\num 0, G}))_1 \\
+& \equiv (T(\num{n} (T, \tuple{\num 0, G})))_1 \\
+& \equiv (T(\tuple{\num{n}, F(\num{n})}))_1 \\
+& \equiv (\tuple{\num{n+1}, H(\num{n}, F(\num{n}))})_1 \\
+& \equiv H(\num{n}, F(\num{n})).
+\end{align*}
+Di sini kita telah menggunakan hipotesis induksi pada baris kedua dari bawah.
+Untuk klausa pertama, kita mempunyai
+\begin{align*}
+\num{n+1} (T, \tuple{\num 0, G}) &
+\equiv T(\num{n} (T, \tuple{\num 0, G})) \\
+& \equiv T( \tuple{\num{n}, F(\num{n})}) \\
+& \equiv \tuple{\num{n+1}, H(\num{n}, F(\num{n}))} \\
+& \equiv \tuple{\num{n+1}, F(\num{n+1})}.
+\end{align*}
+Di sini kita menggunakan klausa kedua pada baris terakhir. Jadi, kita telah
+menunjukkan $F(\num 0)\equiv G$ dan, untuk setiap~$n$,
+$F(\num {n+1})\equiv H(\num n,F(\num{n}))$, tepat seperti yang diperlukan.
+\end{proof}
+
+\end{document}
+

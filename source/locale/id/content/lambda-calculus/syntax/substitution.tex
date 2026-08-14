@@ -1,0 +1,183 @@
+% Part: lambda-calculus
+% Chapter: syntax
+% Section: substitution
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{syn}{sub}
+\olsection{Substitusi}
+
+\begin{explain}
+Variabel bebas merupakan acuan kepada variabel lingkungan; karena itu, masuk
+akal untuk benar-benar menggunakan suatu nilai tertentu sebagai pengganti
+variabel bebas. Sebagai contoh, kita mungkin ingin mengganti $f$ dalam
+$\lambd[x][f x]$ dengan suatu suku tertentu, seperti fungsi identitas
+$\lambd[y][y]$. Hasilnya adalah $\lambd[x][(\lambd[y][y]) x]$. Proses
+mengganti variabel bebas dengan suku lambda disebut substitusi.
+\end{explain}
+
+\begin{defn}[Substitusi] \ollabel{defn:substitution}
+  \emph{Substitusi} suku $N$ bagi variabel $x$ dalam suku $M$,
+  $\Subst{M}{N}{x}$, didefinisikan secara induktif sebagai berikut:
+  \begin{enumerate}
+    \item $\Subst{x}{N}{x} = N$. \ollabel{defn:substitution-1}
+    \item $\Subst{y}{N}{x}  = y$ jika $x \neq y$. \ollabel{defn:substitution-2}
+    \item $\Subst{PQ}{N}{x}  = (\Subst{P}{N}{x}) (\Subst{Q}{N}{x})$.
+      \ollabel{def:substitution-3}
+    \item $\Subst{(\lambd[y][P])}{N}{x} = \lambd[y][\Subst{P}{N}{x}]$,
+      jika $x \neq y$ dan $y \notin \FV{N}$; dalam kasus lain, substitusi
+      ini tidak terdefinisi.
+      \ollabel{defn:substitution-4}
+  \end{enumerate}
+\end{defn}
+
+\begin{explain}
+Dalam \olref{defn:substitution}\olref{defn:substitution-4}, kita mensyaratkan
+$x \neq y$ karena kita tidak ingin mengganti kemunculan \emph{terikat}
+variabel~$x$ dalam~$M$ dengan~$N$. Sebagai contoh, jika kita menghitung
+substitusi $\Subst{\lambd[x][x]}{y}{x}$, hasilnya seharusnya bukan
+$\lambd[x][y]$, melainkan tetap $\lambd[x][x]$.
+
+Ketika menyubstitusikan $N$ bagi~$x$ dalam $\lambd[y][P]$, kita juga
+mensyaratkan bahwa $y \notin \FV{N}$. Sebagai contoh, kita tidak dapat
+menyubstitusikan $y$ bagi $x$ dalam $\lambd[y][x]$, yakni
+$\Subst{\lambd[y][x]}{y}{x}$, karena hal itu akan menghasilkan
+$\lambd[y][y]$, suatu suku yang menyatakan fungsi yang menerima sebuah
+argumen dan langsung mengembalikannya. Akan tetapi, suku $\lambd[y][x]$
+menyatakan fungsi yang selalu mengembalikan suku~$x$ (atau apa pun yang dirujuk
+oleh $x$). Jadi, hasil yang sebenarnya kita inginkan adalah fungsi yang
+menerima sebuah argumen, mengabaikannya, dan mengembalikan variabel
+lingkungan~$y$. Untuk melakukannya dengan benar, pertama-tama kita harus
+``mengganti nama'' variabel terikat~$y$.
+\end{explain}
+
+\begin{prob}
+  Apakah hasil substitusi-substitusi berikut?
+  \begin{enumerate}
+  \item $\Subst{\lambd[y][x(\lambd[w][vwx])]}{(uv)}{x}$
+  \item $\Subst{\lambd[y][x(\lambd[x][x])]}{(\lambd[y][xy])}{x}$
+  \item $\Subst{y(\lambd[v][xv])}{(\lambd[y][vy])}{x}$
+  \end{enumerate}
+\end{prob}
+
+\begin{thm} \ollabel{thm:notinfv}
+  Jika $x \notin \FV{M}$, maka $\FV{\Subst{M}{N}{x}} = \FV{M}$, jika
+  ruas kiri terdefinisi.
+\end{thm}
+
+\begin{proof}
+  Dengan induksi pada pembentukan $M$.
+  \begin{enumerate}
+  \item $M$ adalah variabel: latihan.
+  \item $M$ berbentuk $(PQ)$: latihan.
+  \item $M$ berbentuk $\lambd[y][P]$, dan karena
+    $\Subst{\lambd[y][P]}{N}{x}$ terdefinisi, substitusi itu pasti berupa
+    $\lambd[y][\Subst{P}{N}{x}]$. Maka $\Subst{P}{N}{x}$ pasti terdefinisi;
+    selain itu, $x \neq y$, $y \notin \FV{N}$, dan $x \notin \FV{P}$.
+    Maka:
+    \begin{multline*}
+      \FV{\Subst{\lambd[y][P]}{N}{x}} \\
+    \begin{aligned}
+      & = \FV{\lambd[y][\Subst{P}{N}{x}]} &&
+      \text{menurut \olref{defn:substitution-4}}\\
+      & = \FV{\Subst{P}{N}{x}} \setminus \{y\} &&
+      \text{menurut \olref[fv]{def:fv}\olref[fv]{def:fv2}}\\
+      & = \FV{P} \setminus \{y\} && \text{menurut hipotesis induksi} \\
+      & = \FV{\lambd[y][P]} &&
+      \text{menurut \olref[fv]{def:fv}\olref[fv]{def:fv2}}
+    \end{aligned}
+    \end{multline*}
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[lam][syn][sub]{thm:notinfv}.
+\end{prob}
+
+\begin{thm} \ollabel{thm:infv}
+  Jika $x \in \FV{M}$, maka $\FV{\Subst{M}{N}{x}} = (\FV{M} \setminus
+  \{x\}) \cup \FV{N}$, asalkan ruas kiri terdefinisi.
+\end{thm}
+
+\begin{proof}
+  Dengan induksi pada pembentukan $M$.
+  \begin{enumerate}
+  \item $M$ adalah variabel: latihan.
+  \item $M$ berbentuk $PQ$: Karena $\Subst{(PQ)}{N}{x}$ terdefinisi,
+    substitusi itu pasti berupa
+    $(\Subst{P}{N}{x})(\Subst{Q}{N}{x})$, dengan kedua substitusi tersebut
+    terdefinisi. Selain itu, karena $x \in \FV{PQ}$, berlaku $x \in \FV{P}$
+    atau $x \in \FV{Q}$, atau keduanya. Sisanya diserahkan sebagai latihan.
+  \item $M$ berbentuk $\lambd[y][P]$. Karena
+    $\Subst{\lambd[y][P]}{N}{x}$ terdefinisi, substitusi itu pasti berupa
+    $\lambd[y][\Subst{P}{N}{x}]$, dengan $\Subst{P}{N}{x}$ terdefinisi,
+    $x \neq y$, dan $y \notin \FV{N}$; selain itu, karena $x \in
+    \FV{\lambd[y][P]}$, kita juga mempunyai $x \in \FV{P}$. Sekarang:
+    \begin{multline*}
+      \FV{\Subst{(\lambd[y][P])}{N}{x}} \\
+      \begin{aligned}
+      & = \FV{\lambd[y][\Subst{P}{N}{x}]} \\
+      & = \FV{\Subst{P}{N}{x}} \setminus \{y\} \\
+      & = ((\FV{P} \setminus \{x\}) \cup \FV{N}) \setminus \{y\}
+       && \text{menurut hipotesis induksi} \\
+      & = (\FV{P} \setminus \{x, y\}) \cup \FV{N}
+       && y \notin \FV{N} \\
+      & = (\FV{\lambd[y][P]} \setminus \{x\}) \cup \FV{N}
+      \end{aligned}
+      \end{multline*}
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[lam][syn][sub]{thm:infv}.
+\end{prob}
+
+\begin{thm}\ollabel{thm:clr}
+  $x \notin \FV{\Subst{M}{N}{x}}$, jika $\Subst{M}{N}{x}$ terdefinisi dan
+  $x \notin \FV{N}$.
+\end{thm}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[lam][syn][sub]{thm:clr}.
+\end{prob}
+
+
+\begin{thm}\ollabel{thm:inv}
+  Jika $\Subst{M}{y}{x}$ terdefinisi dan $y \notin \FV{M}$, maka
+  $\Subst{\Subst{M}{y}{x}}{x}{y} = M$.
+\end{thm}
+
+\begin{proof}
+  Dengan induksi pada pembentukan $M$.
+  \begin{enumerate}
+  \item $M$ adalah variabel $z$: latihan.
+  \item $M$ berbentuk $(PQ)$. Maka:
+    \begin{align*}
+      \Subst{\Subst{(PQ)}{y}{x}}{x}{y}
+      &=\Subst{((\Subst{P}{y}{x})(\Subst{Q}{y}{x}))}{x}{y} \\
+      &= (\Subst{\Subst{P}{y}{x}}{x}{y})(\Subst{\Subst{Q}{y}{x}}{x}{y}) \\
+      &= (PQ) \text{ menurut hipotesis induksi}
+    \end{align*}
+  \item $M$ berbentuk $\lambd[z][N]$. Karena
+    $\Subst{\lambd[z][N]}{y}{x}$ terdefinisi, kita mengetahui bahwa
+    $z \neq x$ dan $z \neq y$. Selain itu, $y \notin \FV{N}$. Jadi:
+    \begin{align*}
+      \Subst{\Subst{(\lambd[z][N])}{y}{x}}{x}{y}\\
+      & = \Subst{(\lambd[z][\Subst{N}{y}{x}])}{x}{y} \\
+      & = \lambd[z][\Subst{\Subst{N}{y}{x}}{x}{y}] \\
+      &= \lambd[z][N] \text{ menurut hipotesis induksi}
+    \end{align*}
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[lam][syn][sub]{thm:inv}.
+\end{prob}
+
+\end{document}

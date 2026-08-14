@@ -1,0 +1,87 @@
+% Section: truth-in-model
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{syn}{tru}
+
+\olsection{Kebenaran dalam Suatu Model}
+
+Kadang-kadang kita tertarik pada !!{formula}s mana yang bernilai benar pada
+setiap dunia dalam suatu model tertentu. Mari kita perkenalkan notasi untuk
+hal ini.
+
+\begin{defn}
+  !!^a{formula}~$!A$ \emph{bernilai benar dalam suatu model} $M = \tuple{W,
+    R, V}$, yang ditulis $\mSat{M}{!A}$, jika dan hanya jika
+  $\mSat{M}{!A}[w]$ untuk setiap $w \in W$.
+\end{defn}
+
+\begin{prop}\ollabel{prop:truthfacts}
+  \begin{enumerate}
+  \item Jika $\mSat{M}{!A}$, maka $\mSat/{M}{\lnot !A}$, tetapi
+    \emph{tidak} sebaliknya.
+  \item Jika $\mSat{M}{!A \lif !B}$, maka $\mSat{M}{!A}$ hanya jika
+    $\mSat{M}{!B}$, tetapi \emph{tidak} sebaliknya.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Jika $\mSat{M}{!A}$, maka $!A$ bernilai benar pada semua dunia dalam
+    $W$, dan karena $W \neq \emptyset$, tidak mungkin
+    $\mSat{M}{\lnot!A}$; sebab jika demikian, $!A$ harus bernilai benar
+    sekaligus salah pada suatu dunia.
+
+    Di pihak lain, jika $\mSat/{M}{\lnot !A}$, maka $!A$ bernilai benar pada
+    suatu dunia $w \in W$. Tidak mengikuti bahwa $\mSat{M}{!A}[w]$ untuk
+    \emph{setiap}~$w \in W$. Sebagai contoh, dalam model pada
+    \olref[rel]{fig:simple}, $\mSat/{M}{\lnot p}$, dan juga
+    $\mSat/{M}{p}$.
+  \item Andaikan $\mSat{M}{!A \lif !B}$ dan $\mSat{M}{!A}$; untuk
+    menunjukkan $\mSat{M}{!B}$, ambillah sebarang dunia $w \in W$. Maka
+    $\mSat{M}{!A \lif !B}[w]$ dan $\mSat{M}{!A}[w]$, sehingga
+    $\mSat{M}{!B}[w]$; dan karena $w$ sebarang, $\mSat{M}{!B}$.
+
+    Untuk menunjukkan bahwa konversnya gagal, kita harus menemukan suatu
+    model $\mModel{M}$ sedemikian sehingga $\mSat{M}{!A}$ hanya jika
+    $\mSat{M}{!B}$, tetapi $\mSat/{M}{!A \lif !B}$. Tinjau kembali model
+    pada \olref[rel]{fig:simple}: $\mSat/{M}{p}$ dan karena itu (secara
+    vakum) $\mSat{M}{p}$ hanya jika $\mSat{M}{q}$. Namun,
+    $\mSat/{M}{p \lif q}$, karena $p$ bernilai benar tetapi $q$ bernilai
+    salah pada~$w_1$.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Tinjau model $\mModel{M}$ berikut bagi bahasa yang hanya memuat
+  $p_1$, $p_2$, $p_3$ sebagai !!{propositional variable}s:
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={[align=right]left:\mTrue{p_1}\\\mFalse{p_2}\\\mFalse{p_3}}]
+            {$w_1$} ; 
+      \node[world] (w2) [label={[align=right]right:\mTrue{p_1}\\\mTrue{p_2}\\\mFalse{p_3}},
+        below right=of w1]  {$w_2$}; 
+      \node[world] (w3) [label={[align=right]right:\mTrue{p_1}\\\mTrue{p_2}\\\mTrue{p_3}},
+        above right=of w2] {$w_3$};
+      \draw[reflexive above] (w3) to (w3); 
+      \draw[->] (w1) to (w2);
+      \draw[->] (w2) to (w3);
+      \draw[->] (w1) to (w3); 
+    \end{tikzpicture}
+  \end{center}
+  Apakah !!{formula}s dan skema berikut bernilai benar dalam model
+  $\mModel{M}$, yakni bernilai benar pada setiap dunia dalam $\mModel{M}$?
+  Jelaskan.
+  \begin{enumerate}
+  \item $p\lif \Diamond p$ (untuk $p$ atomik);
+  \item $!A\lif \Diamond !A$ (untuk $!A$ sebarang);
+  \item $\Box p \lif p$ (untuk $p$ atomik);
+  \item $\lnot p \lif \Diamond \Box p$ (untuk $p$ atomik);
+  \item $\Diamond \Box !A$ (untuk $!A$ sebarang);
+  \item $\Box \Diamond p$ (untuk $p$ atomik). 
+  \end{enumerate}
+\end{prob}
+
+\end{document}

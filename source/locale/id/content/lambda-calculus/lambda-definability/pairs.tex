@@ -1,0 +1,56 @@
+% Part: lambda-calculus
+% Chapter: lambda-definability
+% Section: pairs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{ldf}{pai}
+\olsection{Pasangan dan Pendahulu}
+
+\begin{defn}
+Pasangan $M$ dan $N$ (ditulis $\tuple{M,N}$) didefinisikan sebagai berikut:
+\[
+\tuple{M,N} \ident \lambd[f][fMN].
+\]
+\end{defn}
+  
+Secara intuitif, pasangan merupakan fungsi yang menerima suatu fungsi, lalu
+menerapkan fungsi itu pada kedua elemen pasangan. Mengikuti gagasan ini, kita
+memperoleh konstruktor berikut, yang menerima dua suku dan mengembalikan
+pasangan yang memuat keduanya:
+\[
+  \fn{Pair} \ident \lambd[mn][\lambd[f][fmn]]
+\]
+Jika diberikan suatu pasangan, kita juga ingin memperoleh kembali
+elemen-elemennya. Untuk itu, kita memerlukan dua fungsi pengakses yang menerima
+suatu pasangan sebagai argumen dan mengembalikan elemen pertama atau kedua dari
+pasangan itu:
+\begin{align*}
+  \fn{Fst} & \ident \lambd[p][p(\lambd[mn][m])]\\
+  \fn{Snd} & \ident \lambd[p][p(\lambd[mn][n])]
+\end{align*}
+
+\begin{prob}
+  Jelaskan mengapa fungsi pengakses $\fn{Fst}$ dan $\fn{Snd}$ bekerja.
+\end{prob}
+
+Sekarang, dengan pasangan, kita dapat !!{lambda define} fungsi pendahulu:
+\[
+  \fn{Pred} \ident \lambd[n][\fn{Fst}(n (\lambd[p][\tuple{\fn{Snd}\, {p}, \fn{Succ}(\fn{Snd}\, {p})}]) \tuple{\num 0, \num 0})]
+\]
+Ingat bahwa $\num n\, f x$ tereduksi menjadi $f^{n}(x)$; dalam hal ini,
+$f$ adalah fungsi yang menerima suatu pasangan $p$ dan mengembalikan pasangan
+baru yang memuat komponen kedua $p$ dan penerus komponen kedua itu; sedangkan
+$x$ adalah pasangan $\tuple{0,0}$. Dengan demikian, hasilnya adalah
+$\tuple{0,0}$ jika $n=0$, dan $\tuple{\num{n-1}, \num n}$ dalam kasus
+lainnya. Kemudian $\fn{Pred}$ mengembalikan komponen pertama hasil tersebut.
+
+Pengurangan dapat didefinisikan sebagai $\fn{Pred}$ yang diterapkan pada $a$
+sebanyak $b$ kali:
+\[
+\fn{Sub} \ident \lambd[ab][b \fn{Pred}\, a].
+\]
+    
+\end{document}

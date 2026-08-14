@@ -1,0 +1,35 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: canonical-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{com}{cmd}
+
+\olsection{Model Kanonik}
+
+\emph{Model kanonik} bagi suatu sistem modal~$\Sigma$ adalah suatu
+model khusus~$\mModel{M^\Sigma}$ yang dunia-dunianya merupakan semua himpunan
+lengkap dan $\Sigma$-konsisten. Relasi aksesibilitas~$R^\Sigma$ serta
+valuasi~$V^\Sigma$ didefinisikan sedemikian rupa untuk menjamin bahwa
+!!{formula}s yang benar pada suatu dunia~$\Delta$ tepat merupakan !!{formula}s
+yang membentuk~$\Delta$.
+
+\begin{defn}
+  Misalkan $\Sigma$ suatu logika modal normal. \emph{Model kanonik} bagi
+  $\Sigma$ adalah $\mModel{M}^\Sigma = \tuple{W^\Sigma, R^\Sigma,
+    V^\Sigma}$, dengan:
+  \begin{enumerate}
+  \item $W^\Sigma = \Setabs{ \Delta }{\Delta \text{
+      lengkap dan $\Sigma$-konsisten} }$.
+  \item $R^\Sigma \Delta\Delta'$ berlaku jika dan hanya jika
+    \iftag{prvBox}{$\Box^{-1}\Delta \subseteq
+      \Delta'$}{$\Diamond\Delta' \subseteq \Delta$}.
+  \item $V^\Sigma(p) = \Setabs{\Delta}{p \in \Delta}$.
+  \end{enumerate}
+\end{defn}
+
+
+\end{document}

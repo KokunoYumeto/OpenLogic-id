@@ -1,0 +1,156 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{spine}{recursion}
+\olsection{Teorema(-Teorema) Rekursi Transfinit}
+
+Namun, hal pertama yang harus kita lakukan ialah memastikan bahwa
+\olref[valpha]{defValphas} merupakan definisi yang berhasil. Secara lebih
+umum, kita perlu membuktikan bahwa setiap upaya memberikan suatu definisi
+transfinit melalui rekursi (transfinit) akan berhasil. Itulah tujuan bagian
+ini.
+
+\emph{Peringatan: materi ini rumit}. Meskipun demikian, pesan utamanya cukup
+sederhana: Induksi Transfinit bersama Penggantian menjamin keabsahan
+(beberapa versi) rekursi transfinit.\footnote{Pengingat: semua formula dan
+suku dapat mempunyai parameter (kecuali dinyatakan sebaliknya secara
+eksplisit).}
+
+\begin{defn}
+	Misalkan $\tau(x)$ suatu suku; misalkan $f$ suatu fungsi; misalkan $\alpha$
+	suatu ordinal. Kita mengatakan bahwa $f$ merupakan suatu
+	\emph{aproksimasi-$\alpha$} bagi $\tau$ jika dan hanya jika berlaku baik
+	$\dom{f} = \alpha$ maupun $(\forall \beta \in \alpha)f(\beta) =
+	\tau(\funrestrictionto{f}{\beta})$.
+\end{defn}
+
+\begin{lem}[Rekursi Terbatas]\ollabel{transrecursionfun}
+Untuk sembarang suku $\tau(x)$ dan sembarang ordinal $\alpha$, terdapat suatu
+aproksimasi-$\alpha$ yang unik bagi $\tau$.
+\end{lem}
+\begin{proof}
+Kita akan menunjukkan bahwa, untuk setiap $\gamma \leq \alpha$, terdapat
+suatu aproksimasi-$\gamma$ yang unik.
+
+Pertama-tama kita menetapkan keunikan. Misalkan $g$ dan $h$ (berturut-turut)
+merupakan aproksimasi-$\gamma$ dan aproksimasi-$\delta$. Induksi transfinit
+pada argumen keduanya menunjukkan bahwa $g(\beta) = h(\beta)$ untuk setiap
+$\beta \in \dom{g} \cap \dom{h} = \gamma \cap \delta = \min(\gamma,
+\delta)$. Jadi, aproksimasi kita unik (jika ada), dan semuanya bersepakat
+pada semua nilai.
+
+Untuk menetapkan keberadaan, kini kita menggunakan induksi transfinit
+sederhana (\olref[ordinals][opps]{simpletransrecursion}) pada ordinal
+$\delta \leq \alpha$.
+
+Fungsi kosong secara trivial merupakan suatu aproksimasi-$\emptyset$.
+
+Jika $g$ merupakan suatu aproksimasi-$\gamma$, maka $g \cup
+\{\tuple{\gamma, \tau(g)}\}$ merupakan suatu
+aproksimasi-$\ordsucc{\gamma}$.
+
+Jika $\gamma$ merupakan suatu ordinal limit dan $g_\delta$ merupakan suatu
+aproksimasi-$\delta$ untuk semua $\delta < \gamma$, misalkan $g =
+\bigcup_{\delta \in \gamma} g_\delta$. Ini merupakan suatu fungsi karena
+berbagai $g_\delta$ kita bersepakat pada semua nilai. Jika $\delta \in
+\gamma$, maka $g(\delta) = g_{\ordsucc{\delta}}(\delta) =
+\tau(\funrestrictionto{g_{\ordsucc{\delta}}}{\delta}) =
+\tau(\funrestrictionto{g}{\delta})$.
+
+Ini menyelesaikan pembuktian melalui induksi transfinit.
+\end{proof}
+
+Jika kita membolehkan diri mendefinisikan suatu \emph{suku} alih-alih suatu
+fungsi, maka kita dapat menghapus batas $\alpha$ dari hasil sebelumnya.
+Dalam pernyataan dan pembuktian hasil berikut, jika $\sigma$ merupakan suatu
+suku, kita misalkan $\funrestrictionto{\sigma}{\alpha} =
+\Setabs{\tuple{\beta, \sigma(\beta)}}{\beta \in \alpha}$.
+
+\begin{thm}[Rekursi Umum]\ollabel{transrecursionschema}
+Untuk sembarang suku $\tau(x)$, kita dapat secara eksplisit mendefinisikan
+suatu suku $\sigma(x)$ sedemikian sehingga $\sigma(\alpha) =
+\tau(\funrestrictionto{\sigma}{\alpha})$ untuk sembarang ordinal~$\alpha$.
+\end{thm}
+
+\begin{proof}
+Untuk setiap $\alpha$, menurut \olref{transrecursionfun} terdapat suatu
+aproksimasi-$\alpha$ yang unik, $f_\alpha$, bagi~$\tau$. Definisikan
+$\sigma(\alpha)$ sebagai $f_{\ordsucc{\alpha}}(\alpha)$. Sekarang:
+	\begin{align*}
+		\sigma(\alpha) &=
+		f_{\ordsucc{\alpha}}(\alpha) \\&=
+		\tau(\funrestrictionto{f_{\ordsucc{\alpha}}}{\alpha}) \\&=
+		\tau(\Setabs{\tuple{\beta, f_{\ordsucc{\alpha}}(\beta)}}{\beta \in \alpha}) \\&=
+		\tau(\Setabs{\tuple{\beta, f_{\ordsucc{\beta}}(\beta)}}{\beta \in \alpha})\\&=
+		\tau(\funrestrictionto{\sigma}{\alpha})
+	\end{align*}
+dengan memperhatikan bahwa $f_{\ordsucc{\beta}}(\beta) =
+f_{\ordsucc{\alpha}}(\beta)$ untuk semua $\beta < \alpha$, sebagaimana
+dalam \olref{transrecursionfun}.
+\end{proof}
+\noindent
+Perhatikan bahwa \olref{transrecursionschema} merupakan suatu \emph{skema}.
+Yang penting, kita tidak dapat mengharapkan $\sigma$ mendefinisikan suatu
+fungsi, yakni suatu jenis \emph{himpunan} tertentu, sebab dalam hal itu
+$\dom{\sigma}$ akan menjadi himpunan semua ordinal, bertentangan dengan
+Paradoks Burali-Forti (\olref[ordinals][basic]{buraliforti}).
+
+Namun, masih perlu ditunjukkan bahwa \olref{transrecursionschema}
+mengabsahkan definisi kita atas $V_\alpha$. Hal ini mungkin tidak langsung
+jelas; tetapi akan tampak dengan suatu versi terakhir yang sederhana dari
+rekursi transfinit.
+
+\begin{thm}[Rekursi Sederhana]\ollabel{simplerecursionschema}
+Untuk sembarang suku $\tau(x)$ dan $\theta(x)$ serta sembarang himpunan $A$,
+kita dapat secara eksplisit mendefinisikan suatu suku $\sigma(x)$ sedemikian
+sehingga:
+\begin{align*}
+	\sigma(\emptyset) &= A\\
+	\sigma(\ordsucc{\alpha}) &= \tau(\sigma(\alpha)) &&
+		\text{untuk sembarang ordinal }\alpha\\
+	\sigma(\alpha) &= \theta(\ran{\funrestrictionto{\sigma}{\alpha}})&&
+	\text{ketika }\alpha\text{ merupakan ordinal limit}
+\end{align*}
+\end{thm}
+
+\begin{proof}
+Kita mulai dengan mendefinisikan suatu suku, $\xi(x)$, sebagai berikut:
+%t $\xi(x) = A$ if $x$ is not a function whose domain is an ordinal;
+%otherwise let:
+\[
+	\xi(x) =
+	\begin{cases}
+			A &\text{jika $x$ bukan fungsi yang domainnya}\\
+			&\hspace{1em}\text{ordinal tak kosong; jika tidak:}\\
+			\tau(x(\alpha)) & \text{jika $\dom{x} = \ordsucc{\alpha}$}\\
+			\theta(\ran{x}) & \text{jika $\dom{x}$ merupakan ordinal limit}
+	\end{cases}
+\]
+Menurut \olref{transrecursionschema}, terdapat suatu suku $\sigma(x)$
+sedemikian sehingga $\sigma(\alpha) =
+\xi(\funrestrictionto{\sigma}{\alpha})$ untuk setiap ordinal $\alpha$;
+selain itu, $\funrestrictionto{\sigma}{\alpha}$ merupakan suatu fungsi dengan
+domain $\alpha$. Kita menunjukkan bahwa $\sigma$ mempunyai sifat-sifat yang
+diperlukan, dengan induksi transfinit sederhana
+(\olref[ordinals][opps]{simpletransrecursion}).
+
+Pertama, $\sigma(\emptyset) = \xi(\emptyset) = A$.
+
+Berikutnya, $\sigma(\ordsucc{\alpha}) =
+\xi(\funrestrictionto{\sigma}{\ordsucc{\alpha}}) =
+\tau(\funrestrictionto{\sigma}{\ordsucc{\alpha}}(\alpha)) =
+\tau(\sigma(\alpha))$.
+
+Terakhir, $\sigma(\alpha) =
+\xi(\funrestrictionto{\sigma}{\alpha}) =
+\theta(\ran{\funrestrictionto{\sigma}{\alpha}})$, jika $\alpha$ merupakan
+suatu limit.
+\end{proof}
+\noindent
+Sekarang, untuk mengabsahkan \olref[valpha]{defValphas}, cukup ambil $A =
+\emptyset$ dan $\tau(x) = \Pow{x}$ serta $\theta(x) = \bigcup x$. Akhirnya,
+ini mengabsahkan definisi $V_\alpha$!{}
+
+
+\end{document}

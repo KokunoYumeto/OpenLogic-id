@@ -1,0 +1,202 @@
+% Part: many-valued-logic
+% Chapter: three-valued-logics
+% Section: kleene
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{thr}{skl}
+
+\olsection{Logika Kleene}
+
+Stephen Kleene memperkenalkan dua logika bernilai tiga yang dimotivasi oleh
+suatu pandangan bahwa nilai kebenaran merupakan hasil prosedur komputasi:
+suatu prosedur mungkin menghasilkan $\True$ atau~$\False$, tetapi mungkin pula
+tidak pernah berhenti. Dalam kasus terakhir, nilai kebenaran yang bersesuaian
+tidak terdefinisi dan direpresentasikan oleh nilai kebenaran~$\Undef$.
+
+Untuk menghitung negasi suatu proposisi~$!A$, mula-mula kita menghitung nilai
+dari~$!A$, kemudian mengembalikan kebalikan hasil tersebut. Jika komputasi
+$!A$ tidak berhenti, keseluruhan prosedur itu pun tidak berhenti; jadi negasi
+$\Undef$ adalah~$\Undef$.
+
+Untuk menghitung suatu konjungsi $!A\land !B$, terdapat dua pilihan. Kita dapat
+menghitung~$!A$ terlebih dahulu, lalu~$!B$; hasilnya adalah~$\True$ jika kedua
+komputasi menghasilkan~$\True$, dan~$\False$ dalam kasus lainnya. Jika salah
+satu komputasi tidak berhenti, keseluruhan prosedur pun tidak berhenti. Jadi,
+dalam cara ini, jika salah satu konjung tidak terdefinisi, konjungsinya juga
+tidak terdefinisi. Hal yang sama berlaku bagi disjungsi.
+
+Akan tetapi, jika kita dapat mengevaluasi $!A$ dan~$!B$ secara paralel, kita
+dapat memperoleh hasil yang lebih baik. Jika salah satu dari kedua prosedur
+berhenti dan mengembalikan~$\False$, kita dapat berhenti karena jawabannya
+pasti salah. Dengan demikian, konjungsi dengan satu konjung salah bernilai
+salah, meskipun konjung lainnya tidak terdefinisi. Serupa dengan itu, ketika
+menghitung suatu disjungsi secara paralel, kita dapat berhenti segera setelah
+prosedur bagi salah satu disjung mengembalikan benar: disjungsi tersebut pasti
+benar. Jadi, dalam cara ini kita dapat mengetahui hasil suatu klaim majemuk
+meskipun salah satu komponennya tidak terdefinisi. Dalam penafsiran ini,
+$\Undef$ dapat dibaca sebagai ``tidak diketahui'', bukan ``tidak
+terdefinisi''.
+
+Kedua penafsiran tersebut menghasilkan logika Kleene kuat dan lemah.
+Implikasi didefinisikan sebagai padanan dari~$\lnot !A\lor !B$.
+
+\begin{defn}
+\emph{Logika Kleene kuat}~$\LogKs$ didefinisikan dengan menggunakan matriks
+berikut:
+\begin{enumerate}
+  \item Bahasa proposisional baku~$\Lang L_0$ dengan $\lnot$, $\land$,
+  $\lor$, $\lif$.
+  \item Himpunan nilai kebenaran~$V=\{\True,\Undef,\False\}$.
+  \item $\True$ merupakan satu-satunya nilai yang ditetapkan, yakni
+  $V^+=\{\True\}$.
+  \item Fungsi kebenaran diberikan oleh tabel-tabel berikut:
+  \begin{center}
+    \begin{tabular}{c|c}
+      $\tf{\lnot}$ & \\
+      \hline
+      $\True$ & $\False$ \\
+      $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc}
+      $\tf{\land}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\
+      $\Undef$ & $\Undef$ & $\Undef$ & $\False$\\
+      $\False$ & $\False$ & $\False$ & $\False$
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc}
+      $\tf{\lor}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\True$ & $\True$ \\
+      $\Undef$ & $\True$ & $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ & $\Undef$ & $\False$
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc}
+      $\tf{\lif}[\LogKs]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\
+      $\Undef$ & $\True$ & $\Undef$ & $\Undef$  \\
+      $\False$ & $\True$ & $\True$ & $\True$
+    \end{tabular}
+  \end{center}
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+\emph{Logika Kleene lemah}~$\LogKw$ didefinisikan dengan menggunakan matriks
+berikut:
+\begin{enumerate}
+  \item Bahasa proposisional baku~$\Lang L_0$ dengan $\lnot$, $\land$,
+  $\lor$, $\lif$.
+  \item Himpunan nilai kebenaran~$V=\{\True,\Undef,\False\}$.
+  \item $\True$ merupakan satu-satunya nilai yang ditetapkan, yakni
+  $V^+=\{\True\}$.
+  \item Fungsi kebenaran diberikan oleh tabel-tabel berikut:
+  \begin{center}
+    \begin{tabular}{c|c}
+      $\tf{\lnot}$ & \\
+      \hline
+      $\True$ & $\False$ \\
+      $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc}
+      $\tf{\land}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\
+      $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$\\
+      $\False$ & $\False$ & $\Undef$ & $\False$
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc}
+      $\tf{\lor}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\True$ \\
+      $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ & $\Undef$ & $\False$
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc}
+      $\tf{\lif}[\LogKw]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\
+      $\Undef$ & $\Undef$ & $\Undef$ & $\Undef$  \\
+      $\False$ & $\True$ & $\Undef$ & $\True$
+    \end{tabular}
+  \end{center}
+\end{enumerate}
+\end{defn}
+
+\begin{prop}
+  $\LogKs$ dan~$\LogKw$ tidak mempunyai tautologi.
+\end{prop}
+
+\begin{proof}
+  Jika $\pAssign v(p)=\Undef$ bagi semua !!{propositional variable}s~$p$,
+  maka setiap formula~$!A$ mempunyai nilai kebenaran
+  $\pValue v(!A)=\Undef$, sebab
+  \[
+    \tf{\lnot}(\Undef)=\tf{\lor}(\Undef,\Undef)=\tf{\land}(\Undef,
+  \Undef)=\tf{\lif}(\Undef,\Undef)=\Undef
+  \]
+  dalam kedua logika. Karena $\Undef\notin V^+$ baik bagi $\LogKs$ maupun
+  bagi~$\LogKw$, pada !!{valuation} ini nilai~$!A$ tidak ditetapkan.
+\end{proof}
+
+Meskipun logika Kleene lemah dan kuat sama-sama tidak mempunyai tautologi,
+keduanya mempunyai relasi konsekuensi yang tidak trivial.
+
+\begin{prob}
+  Manakah di antara relasi-relasi berikut yang berlaku dalam (a)~logika
+  Kleene kuat dan (b)~logika Kleene lemah? Berikan tabel kebenaran bagi
+  masing-masing relasi.
+  \begin{enumerate}
+    \item $p,p\lif q\Entails q$
+    \item $p\lor q,\lnot p\Entails q$
+    \item $p\land q\Entails p$
+    \item $p\Entails p\land p$
+    \item $p\Entails p\lor q$
+  \end{enumerate}
+\end{prob}
+
+Dmitry Bochvar menafsirkan $\Undef$ sebagai ``tidak bermakna'' dan berusaha
+menggunakannya untuk menyelesaikan paradoks seperti paradoks Pembohong dengan
+menetapkan bahwa kalimat paradoksal bernilai~$\Undef$. Ia memperkenalkan suatu
+logika yang pada dasarnya merupakan logika Kleene lemah yang diperluas dengan
+konektif tambahan, dua di antaranya adalah ``negasi eksternal'' dan operator
+``tidak terdefinisi'':
+\begin{center}
+  \begin{tabular}{c|c}
+    $\tf{\sim}$ & \\
+    \hline
+    $\True$ & $\False$ \\
+    $\Undef$ & $\True$ \\
+    $\False$ & $\True$
+  \end{tabular}
+\quad
+  \begin{tabular}{c|c}
+    $\tf{+}$ & \\
+    \hline
+    $\True$ & $\False$ \\
+    $\Undef$ & $\True$ \\
+    $\False$ & $\False$
+  \end{tabular}
+\end{center}
+
+\begin{prob}
+  Dapatkah Anda mendefinisikan $\sim$ dalam logika Bochvar dengan menggunakan
+  $\lnot$ dan~$+$; yakni, dapatkah Anda menemukan !!a{formula} yang hanya
+  memuat !!{propositional variable}~$p$, tidak memuat~$\sim$, dan selalu
+  mempunyai nilai kebenaran yang sama dengan~$\mathord{\sim}p$? Berikan tabel
+  kebenaran untuk menunjukkan bahwa jawaban Anda benar.
+\end{prob}
+
+\end{document}

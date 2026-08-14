@@ -1,0 +1,135 @@
+% Bagian: second-order-logic
+% Bab: metatheory
+% Subbagian: second-order-arithmetic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{met}{spa}
+
+\olsection{Aritmetika Orde Kedua}
+
+Ingat bahwa teori $\Th{PA}$ dari aritmetika Peano mencakup delapan aksioma
+dari~$\Th{Q}$,
+\begin{align*}
+& \lforall[x][\eq/[x'][\Obj 0]]\\
+& \lforall[x][\lforall[y][(\eq[x'][y'] \lif \eq[x][y])]]\\
+& \lforall[x][(\eq[x][\Obj 0] \lor \lexists[y][\eq[x][y']])]\\ 
+& \lforall[x][\eq[(x + \Obj 0)][x]]\\
+& \lforall[x][\lforall[y][\eq[(x + y')][(x + y)']]]\\
+& \lforall[x][\eq[(x \times \Obj 0)][\Obj 0]]\\
+& \lforall[x][\lforall[y][\eq[(x \times y')][((x \times y) + x)]]]\\
+& \lforall[x][\lforall[y][(x < y \liff \lexists[z][\eq[(z' + x)][y]])]]\\
+\intertext{bersama semua kalimat berbentuk}
+& (!A(\Obj 0) \land \lforall[x][(!A(x) \lif !A(x'))]) \lif \lforall[x][!A(x)].
+\end{align*}
+Yang terakhir merupakan suatu ``skema'', yakni pola yang menghasilkan tak
+hingga banyak !!{sentence} dalam bahasa aritmetika, satu untuk setiap
+!!{formula}~$!A(x)$. Skema ini kita sebut \emph{skema aksioma induksi}
+(orde pertama).
+Dalam aritmetika Peano \emph{orde kedua}~$\Th{PA^2}$, induksi dapat dinyatakan
+sebagai satu kalimat. $\Th{PA^2}$ terdiri atas delapan aksioma pertama di atas
+bersama \emph{aksioma induksi} (orde kedua):
+\[
+\lforall[X][((X(\Obj 0) \land \lforall[x][(X(x) \lif X(x'))]) \lif \lforall[x][X(x)])].
+\]
+Aksioma tersebut menyatakan bahwa jika suatu himpunan bagian~$X$ dari
+!!{domain} memuat~$\Assign{\Obj{0}}{M}$ dan, bersama setiap~$x \in
+\Domain{M}$, juga memuat~$\Assign{\prime}{M}(x)$ (yakni, himpunan itu
+``tertutup terhadap penerus''), maka himpunan itu memuat segala sesuatu dalam
+!!{domain} (yakni, $X = \Domain{M})$.
+
+Aksioma induksi menjamin bahwa setiap !!{structure} yang memenuhinya hanya
+memuat !!{element}s dari~$\Domain{M}$ yang keberadaannya dituntut oleh
+aksioma-aksioma tersebut, yakni nilai-nilai~$\num{n}$ untuk $n \in \Nat$.
+Suatu model dari $\Th{PA^2}$ tidak memuat bilangan nonstandar.
+
+\begin{thm}
+\ollabel{thm:sol-pa-standard}
+Jika $\Sat{M}{\Th{PA^2}}$, maka $\Domain{M} =
+\Setabs{\Value{\num{n}}{M}}{n \in \Nat}$.
+\end{thm}
+
+\begin{proof}
+Misalkan $N = \Setabs{\Value{\num{n}}{M}}{n \in \Nat}$, dan andaikan
+$\Sat{M}{\Th{PA^2}}$. Tentu saja, untuk setiap $n \in \Nat$,
+$\Value{\num{n}}{M} \in \Domain{M}$, sehingga $N \subseteq \Domain{M}$.
+
+Sekarang tinjau inklusi ke arah sebaliknya. Tinjau suatu penugasan variabel
+$s$ dengan $s(X) = N$. Berdasarkan asumsi,
+\begin{align*}
+\Sat{M}{\lforall[X][((X(\Obj 0) \land \lforall[x][(X(x)
+      \lif X(x'))]) \lif \lforall[x][X(x)])]}, & \text{ sehingga}\\
+\Sat{M}{(X(\Obj 0) \land \lforall[x][(X(x) \lif X(x'))]) \lif
+  \lforall[x][X(x)]}[s]. & 
+\end{align*}
+Tinjau anteseden implikasi ini. $\Value{\Obj{0}}{M} \in N$, sehingga
+$\Sat{M}{X(\Obj{0})}[s]$. Konjungsi kedua,
+$\lforall[x][(X(x) \lif X(x'))]$, juga dipenuhi. Sebab, andaikan $x \in N$.
+Menurut definisi~$N$, $x = \Value{\num{n}}{M}$ untuk suatu~$n$. Hal ini
+memberikan $\Assign{\prime}{M}(x) = \Value{\num{n+1}}{M} \in N$. Jadi,
+$\Assign{\prime}{M}(x) \in N$.
+
+Kita memperoleh $\Sat{M}{X(\Obj 0) \land \lforall[x][(X(x) \lif X(x'))]}[s]$.
+Akibatnya, $\Sat{M}{\lforall[x][X(x)]}[s]$. Namun, ini berarti bahwa untuk
+setiap $x \in \Domain{M}$ berlaku $x \in s(X) = N$. Jadi, $\Domain{M}
+\subseteq N$.
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:sol-pa-categorical}
+Sembarang dua model dari~$\Th{PA^2}$ saling isomorfik.
+\end{cor}
+
+\begin{proof}
+Menurut \olref{thm:sol-pa-standard}, domain setiap model dari $\Th{PA^2}$
+seluruhnya terdiri atas $\Value{\num{n}}{M}$. Setiap model semacam itu juga
+merupakan model dari~$\Th{Q}$. Menurut
+\olref[mod][mar][stm]{prop:thq-standard}, setiap model semacam itu standar,
+yakni isomorfik dengan~$\Struct{N}$.
+\end{proof}
+
+Di atas kita mendefinisikan $\Th{PA^2}$ sebagai teori yang memuat delapan
+aksioma aritmetika pertama bersama aksioma induksi orde kedua. Sebenarnya,
+berkat daya ekspresif logika orde kedua, hanya \emph{dua aksioma pertama}
+dari aksioma-aksioma aritmetika itu bersama induksi yang diperlukan bagi
+aritmetika Peano orde kedua.
+
+\begin{prop}\ollabel{prop:sol-pa-definable}
+Misalkan $\Th{PA^{2\dagger}}$ adalah teori orde kedua yang memuat dua
+aksioma aritmetika pertama (aksioma-aksioma penerus) dan aksioma induksi
+orde kedua. Maka $\le$, $+$, dan $\times$ dapat didefinisikan dalam
+$\Th{PA^{2\dagger}}$.
+\end{prop}
+
+\begin{proof}
+Untuk menunjukkan bahwa $\le$ dapat didefinisikan, kita harus menemukan
+suatu formula~$!A_\le(x, y)$ sedemikian sehingga
+$\Sat{N}{!A_\le(\num n, \num m)}$ jika dan hanya jika $n \le m$. Tinjau
+formula
+\[
+!B(x, Y) \ident Y(x) \land \lforall[y][(Y(y) \lif Y(y'))]
+\]
+Jelas bahwa $!B(\num n, Y)$ dipenuhi oleh suatu himpunan $Y \subseteq \Nat$
+jika dan hanya jika $\Setabs{m}{n \le m} \subseteq Y$, sehingga kita dapat
+mengambil $!A_\le(x, y) \ident \lforall[Y][(!B(x, Y) \lif Y(y))]$.
+
+Untuk melihat bahwa penjumlahan dapat didefinisikan, amati bahwa $k+l=m$
+jika dan hanya jika terdapat suatu fungsi $u$ sedemikian sehingga $u(0)=k$,
+$u(n')=u(n)'$ untuk semua $n$, dan $m = u(l)$. Kita dapat menggunakan
+ekuivalensi ini untuk mendefinisikan penjumlahan dalam
+$\Th{PA^{2\dagger}}$ dengan formula berikut:
+\[
+!A_+(x,y,z) \ident \lexists[u][(u(\Obj 0)=x \land \lforall[w][u(w')=u(w)']
+ \land u(y)=z)]
+\] 
+Harus jelas bahwa $\Sat{N}{!A_+(\num k, \num l, \num m)}$ jika dan hanya
+jika $k+l=m$.
+\end{proof}
+
+\begin{prob}
+Lengkapi pembuktian \olref[sol][met][spa]{prop:sol-pa-definable}.
+\end{prob}
+
+\end{document}

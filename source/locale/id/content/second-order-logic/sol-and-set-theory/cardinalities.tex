@@ -1,0 +1,71 @@
+% Bagian: second-order-logic
+% Bab: sol-and-sets
+% Subbagian: cardinalities
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{set}{crd}
+
+\olsection{Kardinalitas Himpunan}
+
+\begin{explain}
+Sebagaimana kita dapat mengungkapkan bahwa domain berhingga atau tak hingga,
+!!{enumerable} atau !!{nonenumerable}, kita dapat mendefinisikan sifat suatu
+himpunan bagian dari~$\Domain{M}$ sebagai berhingga atau tak hingga,
+!!{enumerable} atau !!{nonenumerable}.
+\end{explain}
+
+\begin{prop}
+Formula $\fn{Inf}(X) \ident$
+\begin{multline*}
+\lexists[u][(\lforall[x][\lforall[y][((X(x) \land X(y) \land
+      \eq[u(x)][u(y)]) \lif \eq[x][y])]] \land {}
+      \\ \lforall[x][(X(x) \lif X(u(x)))] \land {}
+      \\\lexists[y][(X(y) \land \lforall[x][(X(x) \lif \eq/[y][u(x)])]])]
+\end{multline*}
+dipenuhi relatif terhadap suatu penugasan variabel~$s$ jika dan hanya jika
+$s(X)$ tak hingga.
+\end{prop}
+
+\begin{prop}
+Formula $\fn{Count}(X) \ident $
+\begin{multline*}
+\lnot\lexists[x][X(x)] \lor {} \\
+\lexists[z][\lexists[u][(X(z) \land
+    \lforall[x][(X(x) \lif X(u(x)))] \land {} \\ \lforall[Y][((Y(z) \land
+      \lforall[x][(Y(x) \lif Y(u(x)))]) \lif X \subseteq Y])]])
+\end{multline*}
+dipenuhi relatif terhadap suatu penugasan variabel~$s$ jika dan hanya jika
+$s(X)$ !!{enumerable}.
+\end{prop}
+
+Kita mengetahui dari Teorema Cantor bahwa terdapat himpunan-himpunan
+!!{nonenumerable}, dan bahkan terdapat tak hingga banyak tingkat ukuran tak
+hingga yang berbeda. Teori himpunan mengembangkan seluruh aritmetika
+ukuran himpunan dan menetapkan bilangan kardinal tak hingga kepada himpunan.
+Bilangan asli berperan sebagai bilangan kardinal yang mengukur ukuran
+himpunan hingga. Kardinalitas himpunan !!{denumerable} adalah kardinalitas
+tak hingga pertama, yang disebut~$\aleph_0$ (``alef-nol''). Ukuran tak hingga
+berikutnya ialah~$\aleph_1$. Ini adalah ukuran terkecil yang dapat dimiliki
+suatu himpunan tanpa menjadi terhitung (yakni, tanpa berukuran~$\aleph_0$).
+Kita dapat mendefinisikan ``$X$ berukuran $\aleph_0$'' sebagai
+$\fn{Aleph}_0(X) \liff \fn{Inf}(X) \land \fn{Count}(X)$. $X$ berukuran
+$\aleph_1$ jika dan hanya jika semua himpunan bagiannya berhingga atau
+berukuran~$\aleph_0$, tetapi himpunan itu sendiri tidak
+berukuran~$\aleph_0$. Oleh karena itu, kita dapat mengungkapkan hal ini dengan
+formula
+$\fn{Aleph_1}(X) \ident \fn{Inf}(X) \land
+  \lforall[Y][(Y \subseteq X \lif
+  (\lnot\fn{Inf}(Y) \lor \fn{Aleph}_0(Y)))] \land \lnot
+\fn{Aleph}_0(X)$. Sifat berukuran $\aleph_2$ didefinisikan secara serupa,
+dan seterusnya.
+
+Ada satu ukuran yang menarik perhatian secara khusus, yakni apa yang disebut
+kardinalitas kontinuum. Ukuran ini adalah ukuran $\Pow{\Nat}$, atau, secara
+ekuivalen, ukuran~$\Real$. Bahwa suatu himpunan berkardinalitas kontinuum juga
+dapat diungkapkan dalam logika orde kedua, tetapi memerlukan
+sedikit lebih banyak upaya.
+
+\end{document}

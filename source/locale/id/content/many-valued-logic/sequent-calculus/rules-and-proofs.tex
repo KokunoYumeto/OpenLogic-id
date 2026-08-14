@@ -1,0 +1,77 @@
+% Part: first-order-logic
+% Chapter: sequent-calculus
+% Section: rules-and-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{seq}{rul}
+
+\olsection{Aturan dan \usetoken{P}{derivation}}
+
+Dalam pembahasan berikut, misalkan $\Gamma,\Delta,\Pi,\Lambda$
+merepresentasikan barisan berhingga !!{sentence}s.
+
+\begin{defn}[Sekuen]
+Suatu \emph{sekuen bersisi~$n$} merupakan ekspresi berbentuk
+\[
+\Gamma_1 \nSequent \dots \nSequent \Gamma_n,
+\]
+dengan setiap $\Gamma_i$ merupakan barisan berhingga (mungkin kosong) yang
+beranggotakan !!{sentence}s dari bahasa~$\Lang L$.
+\end{defn}
+
+\begin{defn}[Sekuen Awal]
+Suatu \emph{sekuen awal bersisi~$n$} merupakan sekuen bersisi~$n$ berbentuk
+$!A\nSequent\dots\nSequent !A$ bagi sebarang !!{sentence}~$!A$ dalam bahasa.
+
+Jika bahasa tersebut memuat konektif $0$-tempat~$\star$, yakni suatu konstanta
+proposisional, kita juga mengambil sekuen $\dots\nSequent\star\nSequent\dots$
+dengan $\star$ muncul pada posisi bagi nilai kebenaran yang bersesuaian dengan
+$\tf{\star}\in V$, dan posisi lainnya kosong.
+\end{defn}
+
+Bagi setiap konektif dari suatu logika bernilai~$n$, yakni~$\Log{L}$, terdapat
+satu aturan logis bagi setiap nilai kebenaran yang mungkin diambil oleh
+konektif tersebut dalam~$\Log{L}$. !!^{derivation}s dalam kalkulus sekuen
+bersisi~$n$ bagi~$\Log{L}$ merupakan pohon sekuen: sekuen paling atas
+merupakan sekuen awal; dan jika suatu sekuen berada di bawah satu atau lebih
+sekuen lain, sekuen itu harus mengikuti sekuen di atasnya secara benar melalui
+suatu aturan inferensi bagi konektif-konektif dari~$\Log{L}$.
+
+\begin{defn}[Teorema]
+!!^a{sentence}~$!A$ merupakan suatu \emph{teorema} dari logika
+bernilai~$n$, yakni~$\Log{L}$, jika terdapat !!a{derivation} dari sekuen
+bersisi~$n$ yang memuat~$!A$ pada setiap posisi yang bersesuaian dengan nilai
+kebenaran yang ditetapkan dari~$\Log{L}$. Kita menulis
+$\Proves[\Log{L}]!A$ jika $!A$ merupakan teorema dan
+$\Proves/[\Log{L}]!A$ jika bukan.
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+!!^a{sentence}~$!A$ \emph{!!{derivable} dari} suatu himpunan
+!!{sentence}s~$\Gamma$ dalam logika bernilai~$n$, yakni~$\Log{L}$,
+$\Gamma\Proves[\Log{L}]!A$, jika dan hanya jika terdapat suatu himpunan
+bagian berhingga~$\Gamma_0\subseteq\Gamma$ dan suatu barisan~$\Gamma_0'$ yang
+memuat !!{sentence}s dalam~$\Gamma_0$ sedemikian sehingga sekuen berikut
+mempunyai !!a{derivation}:
+\[
+\Lambda_1\nSequent\dots\nSequent\Lambda_n.
+\]
+Di sini $\Lambda_i$ adalah~$!A$ jika posisi~$i$ bersesuaian dengan nilai
+kebenaran yang ditetapkan, dan $\Gamma_0'$ dalam kasus lainnya. Jika $!A$
+tidak !!{derivable} dari~$\Gamma$, kita menulis $\Gamma\Proves/ !A$.
+\end{defn}
+
+Sebagai contoh, logika \L ukasiewicz bernilai~$3$ mempunyai kalkulus sekuen
+bersisi~$3$. Dalam sekuen bersisi~$3$,
+$\Gamma\nSequent\Pi\nSequent\Delta$, $\Gamma$ bersesuaian dengan~$\False$,
+$\Delta$ dengan~$\True$, dan $\Pi$ dengan~$\Undef$. Aksiomanya adalah
+$!A\nSequent !A\nSequent !A$. Karena hanya $\True$ yang ditetapkan,
+$\Gamma\Proves[\LogLuk[3]]!A$ jika dan hanya jika sekuen
+$\Gamma\nSequent\Gamma\nSequent !A$ mempunyai !!a{derivation}. (Jika
+$\Undef$ juga ditetapkan, kita memerlukan !!a{derivation} dari
+$\Gamma\nSequent !A\nSequent !A$.)
+
+\end{document}

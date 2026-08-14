@@ -1,0 +1,106 @@
+% Part: sets-functions-relations
+% Chapter: sets
+% Section: proofs-about-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{set}{prf}
+\olsection{Bukti tentang Himpunan}
+
+\begin{editorial}
+Bagian ini digantikan oleh \verb|content/methods/proofs| dan secara bawaan
+tidak disertakan dalam bab ini.
+\end{editorial}
+
+\begin{explain}
+Himpunan dan notasi yang telah kita perkenalkan sejauh ini menyediakan
+singkatan yang memudahkan kita menentukan himpunan dan menyatakan hubungan
+di antaranya. Sering kali kita juga perlu membuktikan klaim tentang
+hubungan tersebut. Jika Anda belum mengenal bukti matematika, hal ini
+mungkin baru bagi Anda. Karena itu, kita akan membahas sebuah contoh
+sederhana langkah demi langkah. Kita akan membuktikan bahwa untuk sebarang
+himpunan $X$ dan $Y$, selalu berlaku $X \cap (X \cup Y) = X$. Bagaimana
+cara membuktikan identitas antara himpunan seperti ini? Ingat bahwa
+himpunan ditentukan semata-mata oleh !!{element}snya, yakni dua himpunan
+identik jika dan hanya jika keduanya mempunyai !!{element}s yang sama.
+Jadi, dalam hal ini kita harus membuktikan bahwa (a) setiap !!{element}
+dari $X \cap (X \cup Y)$ juga merupakan !!a{element} dari $X$ dan,
+sebaliknya, bahwa (b) setiap !!{element} dari $X$ juga merupakan
+!!a{element} dari $X \cap (X \cup Y)$. Dengan kata lain, kita menunjukkan
+baik (a) $X \cap (X \cup Y) \subseteq X$ maupun (b) $X \subseteq X \cap
+(X \cup Y)$.
+
+Klaim umum seperti ``setiap !!{element}~$z$ dari $X \cap (X \cup Y)$ juga
+merupakan !!a{element} dari $X$'' dibuktikan dengan terlebih dahulu
+mengasumsikan bahwa diberikan suatu $z \in X \cap (X \cup Y)$ yang
+sebarang, lalu membuktikan dari asumsi ini bahwa $z \in X$. Anda mungkin
+mengenal pola ini sebagai ``pembuktian bersyarat umum.'' Dalam bukti ini
+kita juga harus menggunakan definisi-definisi yang muncul dalam asumsi dan
+kesimpulan, misalnya, dalam hal ini, definisi ``$\cap$'' dan ``$\cup$.''
+Jadi, kasus (a) dapat dikemukakan sebagai berikut:
+
+\begin{quote}
+(a) Pertama-tama kita ingin menunjukkan bahwa $X \cap (X \cup Y) \subseteq
+X$, yakni, menurut definisi $\subseteq$, bahwa jika $z \in X \cap (X \cup
+Y)$, maka $z \in X$, untuk sebarang~$z$. Jadi, asumsikan bahwa $z \in X
+\cap (X \cup Y)$. Karena $z$ merupakan !!a{element} dari irisan dua
+himpunan jika dan hanya jika ia merupakan !!a{element} dari kedua himpunan
+tersebut, kita dapat menyimpulkan bahwa $z \in X$ dan juga $z \in X \cup
+Y$. Khususnya, $z \in X$, dan itulah yang ingin kita tunjukkan.
+\end{quote}
+
+Ini menuntaskan paruh pertama bukti. Perhatikan bahwa pada langkah terakhir
+kita menggunakan fakta bahwa jika suatu konjungsi ($z \in X$ dan $z \in X
+\cup Y$) mengikuti dari sebuah asumsi, maka setiap konjungnya mengikuti
+dari asumsi yang sama. Anda mungkin mengenal aturan ini sebagai
+``eliminasi konjungsi,'' atau $\land$Elim. Sekarang mari kita buktikan (b):
+
+\begin{quote}
+(b) Sekarang kita membuktikan bahwa $X \subseteq X \cap (X \cup Y)$,
+yakni, menurut definisi $\subseteq$, bahwa jika $z \in X$, maka $z \in X
+\cap (X \cup Y)$ juga, untuk sebarang~$z$. Asumsikan $z \in X$. Untuk
+menunjukkan bahwa $z \in X \cap (X \cup Y)$, kita harus menunjukkan
+(menurut definisi ``$\cap$'') bahwa (i) $z \in X$ dan juga (ii) $z \in X
+\cup Y$. Di sini, (i) hanyalah asumsi kita, sehingga tidak ada lagi yang
+perlu dibuktikan. Untuk (ii), ingat bahwa $z$ merupakan !!a{element} dari
+gabungan himpunan jika dan hanya jika ia merupakan !!a{element} dari
+sekurang-kurangnya salah satu himpunan tersebut. Karena $z \in X$, dan $X
+\cup Y$ adalah gabungan $X$ dan $Y$, hal ini berlaku di sini. Jadi, $z \in
+X \cup Y$. Kita telah menunjukkan baik (i) $z \in X$ maupun (ii) $z \in X
+\cup Y$; maka, menurut definisi ``$\cap$,'' $z \in X \cap (X \cup Y)$.
+\end{quote}
+
+Uraian ini agak panjang lebar, tetapi menggambarkan cara kita bernalar
+tentang himpunan dan hubungan di antaranya. Biasanya kita tidak menjelaskan
+semuanya secara sejelas ini; khususnya, kita mungkin tidak mengulang semua
+definisi. Dalam teks yang lebih lanjut, bukti untuk hasil kita akan jauh
+lebih padat. Bukti itu mungkin tampak seperti berikut ini.
+\end{explain}
+
+
+\begin{prop}[Absorpsi]
+Untuk semua himpunan $X$, $Y$,
+\[
+X \cap (X \cup Y) = X
+\]
+\end{prop}
+
+\begin{proof}
+(a) Andaikan $z \in X \cap (X \cup Y)$. Maka $z \in X$, sehingga $X \cap
+(X \cup Y) \subseteq X$.
+
+(b) Sekarang andaikan $z \in X$. Maka $z \in X \cup Y$ juga, dan karena
+itu $z \in X \cap (X \cup Y)$ juga. Dengan demikian, $X \subseteq X \cap
+(X \cup Y)$.
+\end{proof}
+
+\begin{prob}
+Buktikan secara terperinci bahwa $X \cup (X \cap Y) = X$. Kemudian berikan
+versi bukti yang singkat dan padat. (Petunjuk: untuk arah $X \cup (X \cap Y)
+\subseteq X$, Anda akan memerlukan pembuktian dengan kasus, yang juga
+dikenal sebagai $\lor$Elim.)
+\end{prob}
+
+\end{document}

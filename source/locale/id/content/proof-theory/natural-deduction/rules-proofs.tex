@@ -1,0 +1,308 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: rules-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{nat}{rp}
+
+\olsection{Aturan dan \usetoken{P}{proof}}
+
+Kita mulai dengan memberikan beberapa definisi dan menetapkan sejumlah
+terminologi.
+
+Tinjau dua aturan dalam \Log{N1c} dan~\Log{N1i} yang menyebut
+$!A \lif !B$.
+\[
+\bottomAlignProof
+\AxiomC{$\Discharge{!A}{x}$}
+\shortDeduce
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\DisplayProof
+\qquad
+\bottomAlignProof
+\AxiomC{$!A \lif !B$}
+\AxiomC{$!A$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!B$}
+\DisplayProof
+\]
+Aturan \Elim{\lif} cukup sederhana. !!{formula} di atas garis disebut
+\emph{premis}. !!{formula} di sebelah kiri adalah !!{formula}
+\emph{utama}~$!A \lif !B$. Semua aturan !!{elimination} memiliki satu
+premis semacam itu, selalu di posisi paling kiri. Premis itu disebut
+\emph{premis mayor} inferensi. Jika ada premis lain, seperti dalam kasus
+ini, premis-premis itu disebut \emph{premis minor}. Premis bagi aturan
+!!{introduction} juga disebut premis mayor. !!{formula} di bawah garis
+disebut \emph{kesimpulan}.
+
+Aturan \Intro{\lif} hanya memiliki satu premis, dan di sini kesimpulannya
+adalah formula utama~$!A \lif !B$. Semua aturan !!{introduction} memiliki
+bentuk seperti ini: kesimpulannya adalah formula utama, dan operator
+utamanya merupakan operator yang ``diintroduksi.''
+
+Notasi $\Discharge{!A}{x}$ bermakna sebagai berikut. Dalam !!a{proof},
+inferensi \Intro{\lif} diterapkan pada !!a{formula}~$!B$ sebagai premis.
+Sub-!!{proof} yang berakhir pada~$!B$ mempunyai sejumlah !!{formula}
+awal. Formula-formula itu disebut \emph{asumsi}. !!^a{proof} atas~$!B$
+dari satu atau lebih asumsi berbentuk~$!A$ adalah !!a{proof} bahwa $!B$
+mengikuti dari~$!A$. Ketika menerapkan aturan \Intro{\lif}, kita
+menyimpulkan~$!A \lif !B$, dan kesimpulan itu tidak lagi bergantung pada
+asumsi~$!A$. Untuk menunjukkan hal ini, asumsi-asumsi berbentuk~$!A$
+dalam !!{proof} yang mencakup inferensi~\Intro{\lif} tersebut
+\emph{dilepaskan} atau \emph{ditutup}. Aturannya menentukan asumsi mana
+yang dapat dilepaskan. Dalam kasus \Intro{\lif} dengan kesimpulan
+$!A \lif !B$, asumsi itu berbentuk~$!A$, yakni sama dengan anteseden
+kondisional. Kadang-kadang penting untuk menunjukkan asumsi mana yang
+dilepaskan pada aturan mana, dan hal ini dilakukan dengan label
+pelepasan~$x$. Yang penting, aturan yang melepaskan asumsi tidak
+\emph{harus} melepaskan \emph{semua} asumsi dengan bentuk yang
+disyaratkan, bahkan tidak harus melepaskan asumsi apa pun. Misalnya,
+berikut adalah konstruksi yang benar, meskipun \Intro{\lif} pertama tidak
+melepaskan asumsi apa pun:
+\[
+\AxiomC{$\Discharge{!A}{y}$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!B \lif !A$}
+\DischargeRule{\Intro{\lif}}{y}
+\UnaryInfC{$!A \lif (!B \lif !A)$}
+\DisplayProof
+\]
+Ketika suatu aturan tidak melepaskan asumsi apa pun, kita cukup
+menghilangkan label pelepasan (seperti yang dilakukan di sini).
+
+Dalam !!{proof}
+\[
+\AxiomC{$\Discharge{!A}{x}$}
+\AxiomC{$\Discharge{!A}{y}$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!A \land !A$}
+\RightLabel{\Elim{\land}}
+\UnaryInfC{$!A$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !A$}
+\DischargeRule{\Intro{\lif}}{y}
+\UnaryInfC{$!A \lif (!A \lif !A)$}
+\DisplayProof
+\]
+inferensi \Intro{\lif} pertama melepaskan asumsi kiri $!A^x$, sedangkan
+inferensi kedua melepaskan asumsi kanan~$!A^y$. Dengan kata lain, semua
+asumsi berlabel~$x$ dilepaskan oleh \Intro{\lif} berlabel~$x$, dan semua
+asumsi berlabel~$y$ dilepaskan oleh inferensi berlabel~$y$. Agar hal ini
+berfungsi, semua asumsi dengan label yang sama juga harus berupa
+!!{formula} yang sama.
+
+Aturan kuantor sedikit lebih rumit. Misalnya, aturan untuk $\lexists$
+dalam \Log{N1i} adalah:
+\[
+\bottomAlignProof
+\AxiomC{$!A(t)$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!A(x)]$}
+\DisplayProof
+\qquad
+\bottomAlignProof
+\AxiomC{$\lexists[x][!A(x)]$}
+\AxiomC{$\Discharge{!A(c)}{x}$}
+\shortDeduce
+\DeduceC{$!B$}
+\DischargeRule{\Elim{\lexists}}{x}
+\BinaryInfC{$!B$} \DisplayProof
+\bottomAlignProof
+\]
+Dalam aturan \Intro{\lexists}, premisnya ialah~$!A(t)$, dengan $t$
+sebagai suku tertutup, yakni suku tanpa variabel. Inferensi semacam itu
+benar---yakni cocok dengan aturan skematis \Intro{\lexists}---jika
+terdapat suatu !!{formula}~$!A$, suatu variabel~$x$, dan suatu suku
+tertutup~$t$ sedemikian sehingga kesimpulannya
+$\lexists[x][!A]$ dan premisnya~$\Subst{!A}{t}{x}$.
+Aturan \Elim{\lexists} memungkinkan kita melepaskan asumsi berbentuk
+$!A(c)$; yakni, bagi setiap inferensi terdapat suatu !!{constant}~$c$,
+dan asumsi berbentuk $\Subst{!A}{c}{x}$ dapat dilepaskan. Semua asumsi
+yang dilepaskan oleh satu inferensi harus menggunakan~$c$ yang sama.
+Konstanta ini disebut \emph{variabel eigen} dari inferensi
+\Elim{\lexists}. Inferensi tersebut hanya benar jika $c$ tidak muncul
+dalam asumsi terbuka selain $!A(c)$ yang dilepaskan, tidak muncul
+dalam~$!B$, dan tidak muncul dalam~$!A$. Ketentuan ini disebut
+\emph{syarat variabel eigen}.
+
+!!^{proof} dalam \Log{N1c} dan~\Log{N1i} adalah pohon berhingga formula
+yang dibentuk secara induktif dari aksioma dengan menggunakan
+aturan inferensi. Setiap daun merupakan asumsi, yang mungkin diberi label
+pelepasan, dan setiap !!{formula} lainnya mengikuti dari
+semua !!{formula} tepat di atasnya melalui salah satu aturan
+inferensi sistem. Jika suatu kemunculan !!{formula} sebagai asumsi dalam
+pohon di atas suatu inferensi belum dilepaskan oleh inferensi di bawahnya,
+kemunculan itu disebut \emph{terbuka} (pada inferensi tersebut).
+
+\begin{defn}\ollabel{defn:proof}
+\emph{!!^{proof}} dalam \Log{N1c} dan~\Log{N1i} adalah pohon berhingga
+!!{formula} yang didefinisikan secara induktif sebagai berikut:
+\begin{enumerate}
+  \item\ollabel{defn:prf:assumption}
+  Setiap !!{formula} yang diberi label pelepasan seperti $x$ atau $y$
+  merupakan !!a{proof} dengan sendirinya. Dalam !!a{proof} yang hanya
+  terdiri atas satu !!{formula}, !!{formula} tersebut dihitung sebagai
+  asumsi terbuka.
+  \item\ollabel{defn:prf:one-prem}
+  Jika $R$ adalah aturan dengan satu, dua, atau tiga premis $!A_1$,
+  $!A_2$, $!A_3$, kesimpulan~$!A$, dan $\delta_1$, $\delta_2$,
+  $\delta_3$ masing-masing merupakan !!{proof} yang berakhir pada
+  $!A_1$, $!A_2$, $!A_3$, maka
+  \[
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!A_1$}
+  \RightLabel{$R$}
+  \UnaryInfC{$!A$}
+  \DisplayProof
+\qquad
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!A_1$}
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!A_2$}
+  \RightLabel{$R$}
+  \BinaryInfC{$!A$}
+  \DisplayProof
+\qquad
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!A_1$}
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!A_2$}
+  \AxiomC{}
+  \RightLabel{$\delta_3$}
+  \DeduceC{$!A_3$}
+  \RightLabel{$R$}
+  \TrinaryInfC{$!A$}
+  \DisplayProof
+  \]
+  masing-masing merupakan !!a{proof}, asalkan label asumsi dalam
+  !!{proof} tersebut kompatibel (tidak ada dua !!{formula}
+  berbeda yang memiliki label pelepasan yang sama) dan
+  inferensi-inferensinya merupakan penerapan~$R$ yang benar.
+  \item Kemunculan !!{formula} paling atas dalam !!{proof} baru dihitung
+  sebagai \emph{asumsi terbuka} dari !!{proof} tersebut jika kemunculan
+  itu merupakan asumsi terbuka dari $\delta_1$, $\delta_2$,
+  atau~$\delta_3$, kecuali kemunculan yang dilepaskan oleh aturan.
+  Jika aturan diberi label~$x$ (atau $x\,y$), maka untuk
+  \Intro{\lif} dan~\Intro{\lnot}, kemunculan yang dilepaskan ialah
+  semua asumsi terbuka dalam~$\delta_1$ berlabel~$x$; untuk
+  \Elim{\lexists}, semua asumsi terbuka berlabel~$x$
+  dalam~$\delta_2$; dan untuk \Elim{\lor}, semua asumsi terbuka
+  berlabel~$x$ dalam~$\delta_2$ serta semua asumsi terbuka berlabel~$y$
+  dalam~$\delta_3$.
+\end{enumerate}
+\end{defn}
+
+!!{proof} yang digunakan dalam konstruksi induktif suatu !!a{proof}
+disebut \emph{sub-!!{proof}}-nya. Sub-!!{proof} yang berakhir pada premis
+suatu inferensi disebut \emph{sub-!!{proof} langsung} dari inferensi
+tersebut. Aturan \Log{N1c} dan \Log{N1i} diberikan dalam
+\olref{tab:N1}.
+
+\subfile{rules-N1}
+
+\begin{defn}
+\emph{!!{height}}~$\pheight{\delta}$ dari !!a{proof}~$\delta$
+didefinisikan secara induktif sebagai berikut.
+\begin{enumerate}
+  \item Jika $\delta$ terdiri atas satu asumsi,
+  $\pheight{\delta}=0$.
+  \item Jika $\delta$ berakhir pada inferensi dengan satu premis dan
+  sub-!!{proof} langsung~$\delta_1$, maka
+  $\pheight{\delta}=\pheight{\delta_1}+1$.
+  \item Jika $\delta$ berakhir pada inferensi dengan dua premis dan
+  sub-!!{proof} langsung~$\delta_1$ dan~$\delta_2$, maka
+  $\pheight{\delta}=
+  \max(\pheight{\delta_1},\pheight{\delta_2})+1$.
+  \item Jika $\delta$ berakhir pada \Elim{\lor} dengan
+  sub-!!{proof} langsung~$\delta_1$, $\delta_2$, dan~$\delta_3$, maka
+  $\pheight{\delta}=
+  \max(\pheight{\delta_1},\pheight{\delta_2},\pheight{\delta_3})+1$.
+\end{enumerate}
+Jika suatu sekuen~$S$ memiliki !!a{proof} dengan tinggi $\le n$, kita
+menulis $\Proves[n] S$.
+\end{defn}
+
+\begin{ex}
+Dalam \Log{N1i}, setiap !!{formula} dihitung sebagai !!a{proof} dari
+dirinya sendiri sebagai asumsi terbuka. Jadi,
+\[
+!A \land !B^x
+\]
+adalah !!a{proof}~$\delta_1$. Tingginya~$0$.
+Dari $\delta_1$ kita dapat memperoleh dua !!{proof}~$\delta_2$
+dan~$\delta_3$ dengan menerapkan salah satu dari dua versi
+\Elim{\land}:
+\[
+\AxiomC{$!A \land !B^x$}
+\RightLabel{\Elim{\land}[2]}
+\UnaryInfC{$!B$}
+\DisplayProof
+\qquad
+\AxiomC{$!A \land !B^x$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!A$}
+\DisplayProof
+\]
+Sub-!!{proof} langsung dari inferensi terakhir dalam~$\delta_2$ dan
+dalam~$\delta_3$ sama, yaitu $!A \land !B$. Kedua !!{proof} tersebut
+memiliki kemunculan $!A\land !B$ sebagai asumsi terbuka. Kita memperoleh
+$\pheight{\delta_2}=\pheight{\delta_3}=1$.
+
+Aturan \Intro{\land} memerlukan dua premis berbentuk $!B$ dan $!A$
+untuk membenarkan kesimpulan berbentuk~$!B \land !A$. Karena itu,
+berikut adalah !!a{proof}~$\delta_4$:
+\[
+\AxiomC{$!A \land !B^x$}
+\RightLabel{\Elim{\land}[2]}
+\UnaryInfC{$!B$}
+\LeftSubproofLabel{$\delta_2$}
+\AxiomC{$!A \land !B^x$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!A$}
+\RightSubproofLabel{$\delta_3$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!B \land !A$}
+\DisplayProof
+\]
+Tingginya
+$\pheight{\delta_4}=\max(\pheight{\delta_2},
+\pheight{\delta_3})+1=\max(1,1)+1=2$. Bukti ini memiliki dua
+kemunculan $!A \land !B$ sebagai asumsi, dan keduanya terbuka.
+
+Akhirnya, kita dapat menerapkan \Intro{\lif} untuk memperoleh
+$\delta_5$:
+\[
+\AxiomC{$\Discharge{!A \land !B}{x}$}
+\RightLabel{\Elim{\land}[2]}
+\UnaryInfC{$!B$}
+\LeftSubproofLabel{$\delta_2$}
+\AxiomC{$\Discharge{!A \land !B}{x}$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!A$}
+\RightSubproofLabel{$\delta_3$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!B \land !A$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$(!A \land !B) \lif (!B \land !A)$}
+\DisplayProof
+\]
+Tingginya ialah $\pheight{\delta_4}+1=3$. Inferensi \Intro{\lif}
+melepaskan semua kemunculan asumsi berbentuk $!A \land !B$ yang
+berlabel~$x$, yakni kedua asumsi yang sebelumnya terbuka dalam
+subbukti langsung. Karena keduanya merupakan satu-satunya asumsi
+dari~$\delta_5$, bukti itu tidak memiliki asumsi terbuka, sehingga
+merupakan !!a{proof} \emph{atas} !!{formula} akhirnya
+$(!A \land !B) \lif (!B \land !A)$.
+\end{ex}
+
+\end{document}

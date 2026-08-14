@@ -1,0 +1,155 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: systems-distinct
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{prf}{dis}
+
+\olsection{Menunjukkan bahwa Sistem-Sistem Berbeda}
+
+Dalam \olref[prs]{sec}, kita melihat cara membuktikan bahwa dua sistem logika
+modal sebenarnya merupakan sistem yang sama. \olref[snd]{thm:soundness}
+memungkinkan kita menunjukkan bahwa dua sistem modal~$\Sigma$ dan~$\Sigma'$
+berbeda, dengan menemukan !!a{formula}~$!A$ sedemikian sehingga
+$\Sigma'\Proves !A$ tetapi formula itu gagal dalam suatu model dari~$\Sigma$.
+
+\begin{prop}
+  $\Log{KD} \subsetneq \Log{KT}$
+\end{prop}
+
+\begin{proof}
+  Ini merupakan padanan sintaktis bagi fakta semantik bahwa semua relasi
+  refleksif bersifat serial. Untuk menunjukkan
+  $\Log{KD}\subseteq\Log{KT}$, kita harus melihat bahwa
+  $\Log{KD}\Proves !B$ mengimplikasikan $\Log{KT}\Proves !B$; hal ini
+  mengikuti dari $\Log{KT}\Proves\Ax{D}$, seperti ditunjukkan dalam
+  \olref[prs]{prop:S5facts-KT-D}. Untuk menunjukkan bahwa inklusinya sejati,
+  menurut Kesahihan (\olref[snd]{thm:soundness}), cukup kita berikan suatu
+  model dari~\Log{KD} tempat~\Ax{T}, yakni $\Box p\lif p$, gagal (tugas mudah
+  yang ditinggalkan sebagai latihan); sebab menurut Kesahihan diperoleh
+  $\Log{KD}\Proves/\Box p\lif p$.
+\end{proof}
+
+\begin{prop}
+  $\Log{KB} \neq \Log{K4}$.
+\end{prop}
+
+\begin{proof}
+  Kita membangun suatu model simetris tempat suatu instansiasi~\Ax{4} gagal;
+  karena instansiasi tersebut jelas !!{derivable} dalam~\Log{K4} tetapi tidak
+  dalam~\Log{KB}, akan diperoleh $\Log{K4}\nsubseteq\Log{KB}$. Perhatikan
+  model simetris~$\mModel{M}$ dalam \olref{fig:Bnot4}. Karena model itu
+  simetris, \Ax{K} dan~\Ax{B} benar dalam~$\mModel{M}$ (berturut-turut menurut
+  \olref[syn][sch]{prop:Kvalid} dan
+  \olref[frd][acc]{thm:soundschemas}). Akan tetapi,
+  $\mSat/{M}{\Box p\lif\Box\Box p}[w_1]$.
+\end{proof}
+
+\begin{figure}[htpb]
+  \centering
+  \begin{tikzpicture}[modal]
+    \node[world] (w1) [label=above:\mFalse{p},
+    label={below:$\mSat{{}}{\Box p}$\\ $\mSat/{{}}{\Box\Box p}$}] {$w_1$};
+    \node[world] (w2) [label=above:\mTrue{p},
+      label=below:$\mSat/{{}}{\Box p}$, right=of w1]{$w_2$};
+    \draw[->, bend left] (w1) to (w2);
+    \draw[->, bend left] (w2) to (w1);
+  \end{tikzpicture}
+  \caption{Model simetris yang memfalsifikasi suatu instansiasi~\Ax{4}.}
+  \ollabel{fig:Bnot4}
+\end{figure}
+
+\begin{thm}\ollabel{thm:KTBnot45}
+  $\Log{KTB}\Proves/\Ax{4}$ dan $\Log{KTB}\Proves/\Ax{5}$.
+\end{thm}
+
+\begin{proof}
+  Menurut \olref[frd][acc]{thm:soundschemas}, kita mengetahui bahwa semua
+  instansiasi~\Ax{T} dan~\Ax{B} benar dalam setiap model yang, berturut-turut,
+  refleksif dan simetris. Jadi, menurut kesahihan, cukup kita temukan suatu
+  model refleksif dan simetris yang memuat dunia tempat suatu instansiasi
+  \Ax{4} gagal, dan demikian pula bagi~\Ax{5}. Kita menggunakan model yang
+  sama bagi kedua klaim. Perhatikan model simetris dan refleksif dalam
+  \olref{fig:KTBnot45}. Maka
+  $\mSat/{M}{\Box p\lif\Box\Box p}[w_1]$, sehingga \Ax{4} gagal pada~$w_1$.
+  Dengan cara serupa,
+  $\mSat/{M}{\Diamond\lnot p\lif\Box\Diamond\lnot p}[w_2]$, sehingga
+  instansiasi~\Ax{5} dengan $!A=\lnot p$ gagal pada~$w_2$.
+\end{proof}
+
+\begin{figure}[htpb]
+  \centering
+  \begin{tikzpicture}[modal]
+    \node[world] (w1) [label={right:\mTrue{p}},
+      label={below: $\mSat{{}}{\Box p}$\\
+        $\mSat/{{}}{\Box\Box p}$\\
+        $\mSat/{{}}{\Diamond\lnot p}$}] {$w_1$};
+    \draw[reflexive above] (w1) to (w1);
+    \node[world] (w2) [label={right:\mTrue{p}}, label={below:
+        $\mSat{{}}{\Diamond\lnot p}$\\
+        $\mSat/{{}}{\Box\Diamond\lnot p}$}, right=of w1] {$w_2$} ;
+    \draw[reflexive above] (w2) to (w2);
+    \node[world] (w3) [label={right:\mFalse{p}},right=of w2] {$w_3$};
+    \draw[reflexive above] (w3) to (w3);
+    \draw[->, bend left] (w1) to (w2);
+    \draw[->, bend left] (w2) to (w3);
+    \draw[->, bend left] (w3) to (w2);
+    \draw[->, bend left] (w2) to (w1);
+  \end{tikzpicture}
+  \caption{Model bagi \olref{thm:KTBnot45}.}
+  \ollabel{fig:KTBnot45}
+\end{figure}
+
+\begin{thm}\ollabel{thm:KD5not4}
+  $\Log{KD5}\neq\Log{KT4}=\Log{S4}$.
+\end{thm}
+
+\begin{proof}
+  Menurut \olref[frd][acc]{thm:soundschemas}, kita mengetahui bahwa semua
+  instansiasi~\Ax{D} dan~\Ax{5} benar dalam semua model yang serial dan
+  Euklidean. Jadi, cukup kita temukan suatu model serial dan Euklidean yang
+  memuat dunia tempat suatu instansiasi~\Ax{4} gagal. Perhatikan model dalam
+  \olref{fig:KD5not4}, dan perhatikan bahwa
+  $\mSat/{M}{\Box p\lif\Box\Box p}[w_1]$.
+\end{proof}
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}[modal]
+    \node[world] (w2) [label=north west:\mTrue{p}]{$w_2$} ;
+    \draw[reflexive left] (w2) to (w2);
+    \node[world] (w1) [label=right:\mFalse{p},
+      label=below:{$\mSat{{}}{\Box p}, \mSat/{{}}{\Box\Box p}$},
+      below right=of w2]{$w_1$};
+    \node[world] (w3) [label=north east:\mTrue{p}, above right=of w1]{$w_3$} ;
+    \draw[reflexive right] (w3) to (w3);
+    \node[world] (w4) [label=right:\mFalse{p},above right=of w2]{$w_4$};
+    \draw[reflexive above] (w4) to (w4);
+    \draw[->] (w1) to (w2);
+    \draw[->] (w1) to (w3);
+    \draw[->, bend left=15] (w2) to (w3);
+    \draw[->, bend left=15] (w3) to (w2);
+    \draw[->, bend left=15] (w2) to (w4);
+    \draw[->, bend left=15] (w4) to (w2);
+    \draw[->, bend left=15] (w3) to (w4);
+    \draw[->, bend left=15] (w4) to (w3);
+  \end{tikzpicture}
+  \caption{Model bagi \olref{thm:KD5not4}.}
+  \ollabel{fig:KD5not4}
+\end{figure}
+
+\begin{prob}
+  Berikan pembuktian alternatif bagi
+  \olref[nml][prf][dis]{thm:KD5not4} dengan menggunakan suatu model yang
+  mempunyai $3$ dunia.
+\end{prob}
+
+\begin{prob}
+  Berikan satu model refleksif dan transitif yang menunjukkan sekaligus bahwa
+  $\Log{KT4}\Proves/\Ax{B}$ dan $\Log{KT4}\Proves/\Ax{5}$.
+\end{prob}
+
+\end{document}

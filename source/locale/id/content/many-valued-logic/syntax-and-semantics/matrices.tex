@@ -1,0 +1,80 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: matrices
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{syn}{mat}
+
+\olsection{Matriks}
+
+Suatu logika bernilai banyak didefinisikan oleh bahasanya, himpunan nilai
+kebenarannya~$V$, suatu himpunan bagian yang beranggotakan nilai-nilai
+kebenaran yang ditetapkan, dan fungsi kebenaran bagi setiap konektifnya.
+Secara bersama-sama, unsur-unsur ini disebut suatu \emph{matriks}.
+
+\begin{defn}[Matriks]
+\ollabel{defn:matrix}
+Suatu \emph{matriks} bagi logika~$\Log L$ terdiri atas:
+\begin{enumerate}
+\item suatu himpunan konektif yang membentuk bahasa~$\Lang L$;
+\item suatu himpunan tak kosong~$V\neq\emptyset$ yang beranggotakan nilai
+kebenaran;
+\item suatu himpunan~$V^+\subseteq V$ yang beranggotakan nilai-nilai
+kebenaran yang ditetapkan;
+\item bagi setiap konektif $n$-tempat~$\star$ dalam~$\Lang L$, suatu fungsi
+kebenaran~$\tf{\star}:V^n\to V$. Jika $n=0$, maka $\tf{\star}$ hanyalah
+suatu unsur dari~$V$.
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+Matriks bagi logika klasik~\LogCL{} terdiri atas:
+\begin{enumerate}
+  \item Bahasa proposisional baku~$\Lang L_0$ dengan $\lfalse$, $\lnot$,
+  $\land$, $\lor$, $\lif$.
+  \item Himpunan nilai kebenaran~$V=\{\True,\False\}$.
+  \item $\True$ merupakan satu-satunya nilai yang ditetapkan, yakni
+  $V^+=\{\True\}$.
+  \item Bagi $\lfalse$, kita mempunyai $\tf{\lfalse}=\False$. Fungsi
+  kebenaran lainnya diberikan oleh tabel kebenaran biasa (lihat
+  \olref{fig:tf-CL}).
+\end{enumerate}
+\begin{figure}
+  \begin{center}
+      \begin{tabular}{c|c}
+        $\tf{\lnot}$ & \\
+        \hline
+        $\True$ & $\False$ \\
+        $\False$ & $\True$
+      \end{tabular}
+      \quad
+      \begin{tabular}{c|cc}
+        $\tf{\land}$ & $\True$ & $\False$ \\
+        \hline
+        $\True$ & $\True$ & $\False$ \\
+        $\False$ & $\False$ & $\False$
+      \end{tabular}
+      \quad
+      \begin{tabular}{c|cc}
+        $\tf{\lor}$ & $\True$ & $\False$ \\
+        \hline
+        $\True$ & $\True$ & $\True$ \\
+        $\False$ & $\True$ & $\False$
+      \end{tabular}
+      \quad
+      \begin{tabular}{c|cc}
+        $\tf{\lif}$ & $\True$ & $\False$ \\
+        \hline
+        $\True$ & $\True$ & $\False$ \\
+        $\False$ & $\True$ & $\True$
+      \end{tabular}
+    \end{center}
+    \caption{Fungsi kebenaran bagi logika klasik~$\LogCL$.}
+    \ollabel{fig:tf-CL}
+  \end{figure}
+\end{ex}
+
+\end{document}

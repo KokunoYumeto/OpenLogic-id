@@ -1,0 +1,111 @@
+% Part: proof-theory
+% Chapter: cut-elimination
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{cut}{int}
+
+\olsection{Pengantar}
+
+Aturan~\Cut{} adalah aturan
+\[
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$!A, \Pi \fCenter \Lambda$
+\RightLabel{\Cut}
+\BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+(!!{formula}~$!A$ disebut \emph{formula potongan}.)
+
+\Cut{} disertakan dalam kalkulus sekuen asli Gentzen,~\Log{LK}.
+\emph{Hauptsatz} Gentzen (``teorema utama'') menyatakan bahwa setiap sekuen
+yang !!{provable} dalam~\Log{LK} juga !!{provable} tanpa menggunakan
+aturan~\Cut{}, yakni bahwa \Cut{} dapat ``dieliminasi'' dari bukti-bukti
+\Log{LK}. Sistem kita, \Log{G1c} dan \Log{G3c}, tidak memuat \Cut, tetapi
+pertanyaan yang sama dapat diajukan untuk keduanya: dapatkah \Cut{}
+dieliminasi dari !!{proof}s yang menggunakan \Cut{} bersama aturan-aturan
+lain \Log{G1c} (atau aturan-aturan \Log{G3c})? Dalam terminologi yang telah
+kita tetapkan, pertanyaan yang ekuivalen ialah: Apakah \Cut{} merupakan
+aturan yang dapat diterima dalam \Log{G1c} (atau \Log{G3c})?
+
+Teorema eliminasi potongan barangkali merupakan hasil teori bukti yang paling
+penting dan paling tersohor. Pertama-tama, teorema itu menetapkan bahwa
+\Log{G1c} dan \Log{G3c} tidak memerlukan aturan yang sepintas mungkin tampak
+jelas-jelas dibutuhkan. Ketika mencoba memformalkan bukti yang sebenarnya,
+Anda akan mendapati bahwa diperlukan cara untuk menangani penggunaan lema.
+Matematikawan suka membuktikan hasil, kemudian mengacu pada hasil tersebut
+dalam pembuktian hasil lain. Jadi, mula-mula Anda dapat memformalkan bukti
+hasil~$L$ (lema) sebagai !!{proof} sekuen $\Sequent L$. Lalu Anda
+memformalkan bukti hasil kedua~$R$, yang menggunakan~$L$, sebagai !!{proof}
+sekuen $L \Sequent R$. Bagaimana Anda tahu bahwa terdapat bukti~$R$, yakni
+!!a{proof} dari $\Sequent R$ saja? Anda memerlukan cara untuk menggabungkan
+kedua !!{proof} itu, dan aturan~\Cut{} memungkinkan Anda melakukannya.
+
+Kita telah menyebutkan bahwa \Log{G1c} dan \Log{G3c} lengkap, sehingga
+keduanya membuktikan setiap sekuen yang sewajarnya diharapkan dapat
+dibuktikan---semua sekuen yang valid. Hal ini dapat dibuktikan secara
+langsung. Namun, ketika Gentzen menulis, hanya sistem derivasi aksiomatik
+yang diketahui lengkap. Untuk menunjukkan bahwa \Log{LK} lengkap, Gentzen
+memberikan terjemahan !!{derivation}s dalam sistem aksiomatik menjadi
+!!{proof}s \Log{LK}. Terjemahan ini menggunakan \Cut{} secara esensial.
+Eliminasi potongan bukan hanya hasil penting bagi logika klasik: banyak
+logika lain memiliki kalkulus sekuen. Bagi beberapa logika, bukti langsung
+kelengkapan kalkulus sekuennya sulit atau mustahil, sehingga terjemahan dari
+sistem lain (yang menggunakan \Cut) merupakan satu-satunya cara untuk
+menunjukkan kelengkapan. Karena itu, pembuktian eliminasi potongan secara
+teori-bukti diperlukan untuk menetapkan bahwa \Cut{} berlebih dan bahwa
+sistem tanpa \Cut{} lengkap.
+
+Eliminasi potongan juga penting karena dapat diterapkan untuk memperoleh
+hasil-hasil lain yang menarik secara mandiri. Dua kasus yang akan kita
+bahas ialah lema interpolasi Craig dan teorema Herbrand.
+
+Gagasan yang digunakan untuk membuktikan eliminasi potongan biasanya
+mencakup cara menunjukkan bagaimana !!a{proof} yang menggunakan \Cut{}
+dapat ditransformasikan menjadi bukti tanpa aturan tersebut. Transformasi
+ini lazimnya ``lokal'', yakni kita mengambil suatu bagian !!a{proof}
+(biasanya sub-!!{proof} yang berakhir pada inferensi \Cut{}) dan
+menggantinya dengan sub-!!{proof} lain dari sekuen yang sama, tetapi
+inferensi \Cut{} di dalamnya telah dihapus atau diganti oleh inferensi lain.
+Argumen semacam ini menyediakan algoritme langkah demi langkah untuk
+mentransformasikan !!{proof}s dengan \Cut{} menjadi bukti tanpa potongan.
+Hal ini memberikan lebih banyak informasi ketika prosedur eliminasi
+potongan digunakan dalam penerapan. Sebagai contoh, terdapat bukti
+teori-model atas lema interpolasi yang berbentuk ``jika $!A \lif !B$ valid,
+maka suatu interpolan ada'' (untuk sementara, abaikan apa itu interpolan).
+Argumen teori-bukti yang menggunakan eliminasi potongan menyediakan
+algoritme yang menerima !!a{proof} dari $!A \lif !B$ dan mengembalikan
+sebuah interpolan. Berbeda dengan argumen teori-model, argumen teori-bukti
+tersebut bersifat \emph{konstruktif}.
+
+Ada dua cara populer untuk membuktikan teorema eliminasi potongan. Cara
+pertama (yang berasal dari Gentzen) menunjukkan bahwa kita dapat menghapus
+potongan-potongan teratas dalam suatu bukti, lalu terus menghapusnya sampai
+tidak ada yang tersisa. Cara kedua (mula-mula dikemukakan oleh Sch\"utte dan
+Tait) berfokus pada potongan-potongan paling kompleks dalam !!a{proof}, dan
+secara berturut-turut menghapus potongan yang maksimal dalam arti tidak ada
+potongan lain dengan !!{formula} potongan berkedalaman lebih tinggi. Masing-masing
+memiliki kelebihan dan kekurangan. Bagi beberapa sistem, satu pendekatan
+berhasil sedangkan pendekatan lain sulit diterapkan atau bahkan mustahil.
+Karena itu, kita menguraikan kedua pendekatan tersebut. Kita akan membuktikan
+eliminasi potongan untuk~\Log{G3c}. Bahkan, yang akan kita tunjukkan bukanlah
+bahwa \Cut{} dapat dieliminasi, melainkan \emph{potongan yang berbagi
+konteks}~\CutCS:
+\[
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$!A, \Gamma \fCenter \Delta$
+\RightLabel{\Cut}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Jika suatu kalkulus sekuen mengizinkan pelemahan dan kontraksi (baik sebagai
+aturan nyata seperti dalam \Log{G1c} maupun sebagai aturan yang dapat
+diterima seperti dalam \Log{G3c}), \Cut{} dapat menyimulasikan \CutCS, dan
+sebaliknya. Kita memilih \CutCS{} alih-alih \Cut karena strategi eliminasi
+potongan pertama lebih mudah diuraikan untuk~\CutCS, sedangkan strategi
+kedua hanya berlaku untuk~\CutCS.
+
+\end{document}

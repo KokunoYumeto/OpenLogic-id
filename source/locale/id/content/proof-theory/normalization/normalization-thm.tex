@@ -1,0 +1,59 @@
+% Part: proof-theory
+% Chapter: normalization
+% Section: normalization-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{nor}{thm}
+
+\olsection{Teorema Normalisasi}
+
+!!^a{proof} berada dalam bentuk \emph{normal} jika tidak mempunyai segmen
+potongan. Jelas bahwa hal ini berlaku jika dan hanya jika kita tidak dapat
+menerapkan konversi permutasi maupun konversi reduksi kepadanya.
+\emph{Menormalisasi} !!a{proof} berarti mengubahnya menjadi bukti normal
+dengan menerapkan konversi permutasi dan reduksi sampai tidak ada potongan
+yang tersisa. Bahwa hal ini selalu mungkin merupakan isi
+\emph{teorema normalisasi}.
+
+\begin{thm}\ollabel{thm:normalization} Setiap !!{proof}~\Log{N1i}
+$\delta$ dapat dinormalisasi, yakni dapat diubah menjadi
+!!a{proof}~$\delta'$ tanpa potongan.
+\end{thm}
+
+\begin{proof}
+  Lakukan induksi pada peringkat dan panjang potongan~$\delta$. Hipotesis
+  induksinya ialah bahwa setiap !!{proof} yang mempunyai peringkat potongan
+  lebih rendah, atau peringkat potongan sama tetapi panjang potongan lebih
+  rendah, dapat dinormalisasi.
+
+  Jika panjang potongannya~$0$, tidak ada potongan dan $\delta$ sudah
+  normal. Jadi, andaikan peringkat dan panjang potongan~$\delta$ keduanya
+  $>0$. Pilih segmen potongan maksimal yang paling atas dan paling kanan.
+  Jika panjang segmen potongan itu $>1$, terapkan konversi permutasi. Jika
+  panjangnya~$1$, terapkan konversi reduksi yang bersesuaian. Hasilnya adalah
+  !!a{proof} baru yang mempunyai peringkat potongan sama tetapi panjang
+  potongan lebih rendah, atau peringkat potongan lebih rendah; karena itu,
+  hipotesis induksi berlaku.
+\end{proof}
+
+Strategi yang digunakan dalam bukti di atas (selalu menangani potongan
+maksimal yang paling atas dan paling kanan) menyarankan suatu urutan khusus
+bagi penerapan konversi pada !!a{proof} agar menghasilkan !!{proof} normal.
+Yang cukup mengejutkan, urutannya ternyata tidak penting. Penerapan konversi
+permutasi dan reduksi dalam urutan apa pun pada akhirnya menghasilkan bukti
+normal.
+
+Definisi segmen dan potongan dapat dengan mudah dirumuskan bagi \Log{N2i},
+dan konversi permutasi serta reduksi bagi \Log{N1i} dapat diterjemahkan
+langsung ke \Log{N2i}. Akibatnya, teorema normalisasi juga berlaku bagi
+\Log{N2i}.
+
+\begin{thm}\ollabel{thm:normalization-N2i} Setiap !!{proof}~\Log{N2i}
+$\delta$ dapat dinormalisasi, yakni dapat diubah menjadi
+!!a{proof}~$\delta'$ tanpa potongan.
+\end{thm}
+
+\end{document}

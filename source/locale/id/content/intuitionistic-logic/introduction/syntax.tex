@@ -1,0 +1,76 @@
+% Bagian: intuitionistic-logic
+% Bab: introduction
+% Subbagian: syntax
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{int}{syn}
+
+\olsection{Sintaks Logika Intuisionistik}
+
+Sintaks logika intuisionistik sama dengan sintaks logika proposisional.
+Dalam logika proposisional klasik, suatu konektif dapat didefinisikan melalui
+konektif lain; misalnya, $!A \lif !B$ dapat didefinisikan sebagai $\lnot !A
+\lor !B$, atau $!A \lor !B$ sebagai $\lnot(\lnot !A \land \lnot !B)$. Karena
+itu, penyajian logika klasik sering memperkenalkan beberapa konektif sebagai
+singkatan bagi definisi-definisi tersebut. Hal ini tidak berlaku dalam logika
+intuisionistik, dengan dua pengecualian: $\lnot !A$ dapat---dan sering kali
+memang---didefinisikan sebagai singkatan bagi $!A \lif \lfalse$. Dengan
+demikian, tentu saja, $\lfalse$ sendiri tidak boleh didefinisikan!{} Selain
+itu, sebagaimana dalam logika klasik, $!A \liff !B$ dapat didefinisikan sebagai
+$(!A \lif !B) \land (!B \lif !A)$.
+
+!!^{formula}s logika proposisional intuisionistik dibentuk dari
+\emph{!!{propositional variable}s} dan konstanta proposisional~$\lfalse$
+dengan menggunakan \emph{konektif logis}. Kita mempunyai:
+
+\begin{enumerate}
+\item !!^a{denumerable} himpunan~$\PVar$ dari !!{propositional variable}s
+  $\Obj p_0$, $\Obj p_1$, \dots
+\item Konstanta proposisional untuk !!{falsity}~$\lfalse$.
+\item Konektif logis: $\land$ (konjungsi), $\lor$ (disjungsi), $\lif$
+  (kondisional).
+\item Tanda baca: (, ), dan koma.
+\end{enumerate}
+
+\begin{defn}[Formula]
+\ollabel{defn:formulas} Himpunan~$\Frm[L_0]$ dari \emph{!!{formula}s}
+logika proposisional intuisionistik didefinisikan secara induktif sebagai
+berikut:
+\begin{enumerate}
+\item $\lfalse$ merupakan !!{formula} atomik.
+
+\item Setiap !!{propositional variable}~$\Obj p_i$ merupakan !!{formula}
+  atomik.
+
+\item Jika $!A$ dan $!B$ merupakan !!{formula}s, maka $(!A \land !B)$
+  merupakan !!a{formula}.
+
+\item Jika $!A$ dan $!B$ merupakan !!{formula}s, maka $(!A \lor !B)$
+  merupakan !!a{formula}.
+
+\item Jika $!A$ dan $!B$ merupakan !!{formula}s, maka $(!A \lif !B)$
+  merupakan !!a{formula}.
+
+\tagitem{limitClause}{Tidak ada hal lain yang merupakan !!a{formula}.}{}
+\end{enumerate}
+\end{defn}
+
+Selain konektif primitif yang diperkenalkan di atas, kita juga menggunakan
+simbol-simbol \emph{terdefinisi} berikut: $\lnot$ (negasi) dan $\liff$
+(!!{biconditional}). Formula yang dibentuk menggunakan operator terdefinisi
+dipahami sebagai berikut:
+\begin{enumerate}
+\item $\lnot !A$ menyingkat $!A \lif \lfalse$.
+
+\item $!A \liff !B$ menyingkat $(!A \lif !B) \land (!B \lif !A)$.
+\end{enumerate}
+
+Meskipun $\lnot$ secara resmi diperlakukan sebagai singkatan, kadang-kadang
+kita akan memberikan aturan dan klausa eksplisit dalam definisi bagi~$\lnot$
+seolah-olah simbol itu primitif. Tujuan utamanya ialah agar kita dapat
+merumuskan soal latihan.
+
+\end{document}

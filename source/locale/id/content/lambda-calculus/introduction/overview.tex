@@ -1,0 +1,72 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: overview
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{int}{ovr}
+\olsection{Ikhtisar}
+
+Kalkulus lambda mula-mula dirancang oleh Alonzo Church pada awal 1930-an
+sebagai landasan bagi logika konstruktif, dan \emph{bukan} sebagai model
+fungsi-fungsi yang dapat dihitung. Namun, kalkulus ini segera terbukti
+ekuivalen dengan definisi komputabilitas lainnya, seperti fungsi-fungsi yang
+dapat dihitung oleh Turing dan fungsi-fungsi rekursif parsial. Kenyataan bahwa
+hasil ini pada mulanya agak mengejutkan justru membuat karakterisasi tersebut
+semakin menarik.
+
+Notasi lambda merupakan cara praktis untuk merujuk langsung kepada suatu
+fungsi melalui ekspresi simbolik yang mendefinisikannya, alih-alih memberi
+nama kepada fungsi itu terlebih dahulu. Daripada mengatakan ``misalkan $f$
+adalah fungsi yang didefinisikan oleh $f(x)=x+3$,'' kita dapat mengatakan
+``misalkan $f$ adalah fungsi $\lambd[x][(x+3)]$.'' Dengan kata lain,
+$\lambd[x][(x+3)]$ hanyalah sebuah \emph{nama} bagi fungsi yang menambahkan
+tiga pada argumennya. Dalam ekspresi ini, $x$ adalah variabel semu atau
+penanda tempat: fungsi yang sama dapat pula dinyatakan dengan
+$\lambd[y][(y+3)]$. Notasi ini tetap berfungsi apabila terdapat parameter
+lain. Misalkan, sebagai contoh, $g(x,y)$ adalah fungsi dua variabel dan $k$
+suatu bilangan asli. Maka $\lambd[x][g(x,k)]$ adalah fungsi yang memetakan
+setiap~$x$ ke~$g(x,k)$.
+
+Cara mendefinisikan fungsi dari ekspresi simbolik ini dikenal sebagai
+\emph{abstraksi lambda}. Sisi lain abstraksi lambda adalah \emph{aplikasi}:
+andaikan kita mempunyai suatu fungsi~$f$ (misalnya, yang didefinisikan pada
+bilangan asli), kita dapat \emph{menerapkan} fungsi itu pada nilai apa pun,
+misalnya~2. Dalam notasi biasa, tentu saja, kita menulis~$f(2)$ untuk hasilnya.
+
+Apa yang terjadi apabila abstraksi lambda digabungkan dengan aplikasi?
+Ekspresi yang dihasilkan dapat disederhanakan dengan ``memasukkan'' argumen
+yang diterapkan sebagai pengganti variabel yang diabstraksikan. Sebagai contoh,
+\[
+(\lambd[x][(x + 3)])(2)
+\]
+dapat disederhanakan menjadi~$2+3$.
+
+Sampai tahap ini, kita baru memperkenalkan notasi baru bagi gagasan-gagasan
+biasa. Akan tetapi, kalkulus lambda menyimpang secara lebih radikal dari sudut
+pandang teori himpunan. Dalam kerangka ini:
+\begin{enumerate}
+\item Segala sesuatu menyatakan suatu fungsi.
+\item Fungsi dapat didefinisikan dengan abstraksi lambda.
+\item Apa pun dapat diterapkan pada apa pun yang lain.
+\end{enumerate}
+Sebagai contoh, jika $F$ adalah suatu suku dalam kalkulus lambda, $F(F)$ selalu
+dianggap bermakna. Kerangka yang bebas ini dikenal sebagai kalkulus lambda
+\emph{tanpa tipe}; ``tanpa tipe'' berarti ``tidak ada pembatasan mengenai apa
+yang dapat diterapkan pada apa.''
+
+\begin{digress}
+Ada pula kalkulus lambda \emph{bertipe}, suatu variasi penting dari versi
+tanpa tipe. Meskipun dalam banyak hal kalkulus lambda bertipe serupa dengan
+versi tanpa tipe, kalkulus ini jauh lebih mudah diselaraskan dengan kerangka
+teori himpunan klasik dan memiliki sejumlah sifat yang sangat berbeda.
+
+Penelitian mengenai kalkulus lambda terbukti memainkan peran sentral dalam
+ilmu komputer teoretis dan dalam perancangan bahasa pemrograman. LISP, yang
+dirancang oleh John McCarthy pada 1950-an, merupakan contoh awal bahasa yang
+dipengaruhi oleh gagasan-gagasan ini.
+\end{digress}
+
+\end{document}

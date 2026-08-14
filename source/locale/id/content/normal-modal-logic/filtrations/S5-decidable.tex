@@ -1,0 +1,39 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: S5-decidable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{fil}{dec}
+
+\olsection{\Log{S5} Dapat Diputuskan}
+Sifat model berhingga memberi kita cara mudah untuk menunjukkan bahwa sistem
+logika modal yang diberikan oleh skema-skema dapat \emph{diputuskan} (yakni
+bahwa terdapat prosedur yang dapat dihitung untuk menentukan apakah
+!!a{formula} !!{derivable} dalam sistem tersebut atau tidak).
+
+\begin{thm}
+  \Log{S5} dapat diputuskan.
+\end{thm}
+
+\begin{proof}
+  Misalkan $!A$ diberikan, dan andaikan !!{propositional variable}s yang
+  muncul dalam $!A$ terdapat di antara $p_1$, \dots, $p_k$. Karena bagi
+  setiap $n$ hanya terdapat berhingga banyak model universal dengan $n$ dunia
+  yang menetapkan suatu nilai kepada $p_1$, \dots, $p_k$, kita dapat
+  mengenumerasi, \emph{secara paralel}, semua teorema \Log{S5} dengan
+  menghasilkan pembuktian secara sistematis, serta semua model universal dengan
+  $1$, $2$, \dots dunia dan memeriksa apakah $!A$ gagal pada suatu
+  dunia dalam salah satu model tersebut. Pada akhirnya, salah satu dari kedua
+  proses paralel itu akan memberikan jawaban, sebab menurut
+  \olref[com][fra]{thm:generaldet} dan \olref[fmp]{cor:S5fmp}, $!A$
+  !!{derivable} atau gagal dalam suatu model universal berhingga.
+\end{proof}
+
+Pembuktian di atas berlaku bagi \Log{S5} karena filtrasi dari model universal
+secara otomatis bersifat universal. Hal yang sama berlaku bagi refleksivitas
+dan serialitas, tetapi sifat-sifat lain memerlukan lebih banyak upaya.
+
+\end{document}

@@ -1,0 +1,79 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: truth-lemma
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{sc}{tru}
+
+\olsection{Lema Kebenaran}
+
+Lema berikut menghubungkan keterpenuhan dalam model kanonis dengan
+!!{formula}s yang merupakan !!{element}s dari himpunan prima~$\Delta$.
+
+\begin{lem}\ollabel{lem:truth}
+  Jika $\Delta$ prima, maka $\mSat{M(\Delta)}{!A}[\sigma]$ jika dan hanya
+  jika $\Delta(\sigma)\Proves !A$.
+\end{lem}
+
+\begin{proof}
+  Dengan induksi pada~$!A$.
+  \begin{enumerate}
+    \item \indcase{!A}{\lfalse}{Karena $\Delta(\sigma)$ prima, himpunan
+      tersebut konsisten, sehingga $\Delta(\sigma)\Proves/ \indfrm$.
+      Menurut definisi, $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.}
+    \item \indcase{!A}{p}{Menurut definisi $\mSat{{}}{}$,
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$ jika dan hanya jika
+      $\sigma\in V(p)$, yakni $\indfrm\in\Delta(\sigma)$. Karena
+      $\Delta(\sigma)$ prima, ini berlaku jika dan hanya jika
+      $\Delta(\sigma)\Proves \indfrm$.}
+    \item \indcase!{!A}{\lnot !B}{}
+    \item \indcase{!A}{!B \land
+      !C}{$\mSat{M(\Delta)}{\indfrm}[\sigma]$ jika dan hanya jika
+      $\mSat{M(\Delta)}{!B}[\sigma]$ dan
+      $\mSat{M(\Delta)}{!C}[\sigma]$. Berdasarkan hipotesis induksi,
+      $\mSat{M(\Delta)}{!B}[\sigma]$ jika dan hanya jika
+      $\Delta(\sigma)\Proves !B$, dan demikian pula bagi~$!C$. Namun,
+      $\Delta(\sigma)\Proves !B$ dan $\Delta(\sigma)\Proves !C$ jika dan
+      hanya jika $\Delta(\sigma)\Proves \indfrm$.}
+    \item \indcase{!A}{!B \lor
+      !C}{$\mSat{M(\Delta)}{\indfrm}[\sigma]$ jika dan hanya jika
+      $\mSat{M(\Delta)}{!B}[\sigma]$ atau
+      $\mSat{M(\Delta)}{!C}[\sigma]$. Berdasarkan hipotesis induksi, ini
+      berlaku jika dan hanya jika $\Delta(\sigma)\Proves !B$ atau
+      $\Delta(\sigma)\Proves !C$. Kita harus menunjukkan bahwa syarat
+      terakhir ini berlaku jika dan hanya jika
+      $\Delta(\sigma)\Proves \indfrm$. Arah dari kiri ke kanan jelas.
+      Arah dari kanan ke kiri mengikuti fakta bahwa $\Delta(\sigma)$
+      prima.}
+    \item \indcase{!A}{!B \lif !C}{Pertama, kita membuktikan
+      kontraposisi arah dari kiri ke kanan. Andaikan
+      $\Delta(\sigma)\Proves/ !B\lif !C$. Maka
+      $\Delta(\sigma)\cup\{!B\}\Proves/ !C$. Karena
+      $\tuple{!B,!C}$ sama dengan $\tuple{!B_n,!C_n}$ untuk suatu~$n$,
+      kita mempunyai
+      $\Delta(\sigma.n)=(\Delta(\sigma)\cup\{!B\})^*$, serta
+      $\Delta(\sigma.n)\Proves !B$ tetapi
+      $\Delta(\sigma.n)\Proves/ !C$. Berdasarkan hipotesis induksi,
+      $\mSat{M(\Delta)}{!B}[\sigma.n]$ dan
+      $\mSat/{M(\Delta)}{!C}[\sigma.n]$. Karena
+      $R\sigma(\sigma.n)$, ini berarti bahwa
+      $\mSat/{M(\Delta)}{\indfrm}[\sigma]$.
+
+      Sekarang andaikan $\Delta(\sigma)\Proves !B\lif !C$, dan misalkan
+      $R\sigma\sigma'$. Karena
+      $\Delta(\sigma)\subseteq\Delta(\sigma')$, jika
+      $\Delta(\sigma')\Proves !B$, maka $\Delta(\sigma')\Proves !C$.
+      Dengan kata lain, untuk setiap $\sigma'$ sedemikian sehingga
+      $R\sigma\sigma'$, berlaku $\Delta(\sigma')\Proves/ !B$ atau
+      $\Delta(\sigma')\Proves !C$. Berdasarkan hipotesis induksi, ini
+      berarti bahwa setiap kali $R\sigma\sigma'$, berlaku
+      $\mSat/{M(\Delta)}{!B}[\sigma']$ atau
+      $\mSat{M(\Delta)}{!C}[\sigma']$; dengan kata lain,
+      $\mSat{M(\Delta)}{\indfrm}[\sigma]$.}
+  \end{enumerate}
+\end{proof}
+
+\end{document}

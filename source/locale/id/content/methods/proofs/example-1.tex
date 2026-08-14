@@ -1,0 +1,188 @@
+% Part: methods
+% Chapter: proofs
+% Section: example-1
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mth}{prf}{ex1}
+
+\olsection{Sebuah Contoh}
+
+Contoh pertama kita adalah fakta sederhana berikut tentang gabungan
+dan irisan himpunan. Contoh ini akan menggambarkan penguraian definisi,
+pembuktian konjungsi dan klaim universal, serta pembuktian dengan kasus.
+
+\begin{prop}
+Untuk sebarang himpunan $A$, $B$, dan $C$, $A \cup (B \cap C) = (A
+\cup B) \cap (A \cup C)$.
+\end{prop}
+
+Mari kita buktikan!{}
+
+\begin{proof}
+Kita ingin menunjukkan bahwa untuk sebarang himpunan $A$, $B$, dan
+$C$, $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.
+\begin{quote}
+Mula-mula kita menguraikan definisi ``$=$'' dalam pernyataan
+proposisi. Ingat bahwa membuktikan dua himpunan identik berarti
+menunjukkan bahwa kedua himpunan itu memiliki !!{element} yang sama.
+Artinya, semua !!{element} dari $A \cup (B \cap C)$ juga merupakan
+!!{element} dari $(A \cup B) \cap (A \cup C)$, dan sebaliknya. Bagian
+``dan sebaliknya'' berarti bahwa setiap !!{element} dari $(A \cup B)
+\cap (A \cup C)$ juga harus merupakan !!a{element} dari $A \cup (B
+\cap C)$. Jadi, ketika menguraikan definisi, kita melihat bahwa kita
+harus membuktikan suatu konjungsi. Mari kita catat hal ini:
+\end{quote}
+Menurut definisi, $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+jika dan hanya jika setiap !!{element} dari $A \cup (B \cap C)$ juga
+merupakan !!a{element} dari $(A \cup B) \cap (A \cup C)$, dan setiap
+!!{element} dari $(A \cup B) \cap (A \cup C)$ merupakan !!a{element}
+dari $A \cup (B \cap C)$.
+\begin{quote}
+Karena ini merupakan konjungsi, kita harus membuktikan setiap
+konjungnya secara terpisah. Mari kita mulai dengan yang pertama: kita
+akan membuktikan bahwa setiap !!{element} dari $A \cup (B \cap C)$
+juga merupakan !!a{element} dari $(A \cup B) \cap (A \cup C)$.
+
+Ini merupakan klaim universal, sehingga kita mengambil suatu
+!!{element} sembarang dari $A \cup (B \cap C)$ dan menunjukkan bahwa
+objek itu juga harus merupakan !!a{element} dari $(A \cup B) \cap (A
+\cup C)$. Kita akan memilih sebuah variabel sebagai nama !!{element}
+sembarang tersebut, misalnya~$z$. Bukti kita berlanjut:
+\end{quote}
+Pertama, kita buktikan bahwa setiap !!{element} dari $A \cup (B \cap
+C)$ juga merupakan !!a{element} dari $(A \cup B) \cap (A \cup C)$.
+Misalkan $z \in A \cup (B \cap C)$. Kita harus menunjukkan bahwa $z
+\in (A \cup B) \cap (A \cup C)$.
+\begin{quote}
+Sekarang tiba waktunya untuk menguraikan definisi $\cup$ dan~$\cap$.
+Misalnya, definisi $\cup$ adalah: $A \cup B = \Setabs{z}{z \in A
+  \text{ atau } z \in B}$. Ketika kita menerapkan definisi itu pada
+``$A \cup (B \cap C)$'', peran ``$B$'' dalam definisi kini dimainkan
+oleh ``$B \cap C$'', sehingga $A \cup (B \cap C) =
+\Setabs{z}{z \in A \text{ atau } z \in B \cap C}$. Jadi, asumsi kita
+bahwa $z \in A \cup (B \cap C)$ sama dengan: $z \in
+\Setabs{z}{z \in A \text{ atau } z \in B \cap C}$. Dan $z \in
+\Setabs{z}{\dots z\dots}$ jika dan hanya jika \dots{} $z$ \dots,
+yaitu, dalam kasus ini, $z \in A$ atau $z \in B \cap C$.
+\end{quote}
+Menurut definisi $\cup$, $z \in A$ atau $z \in B \cap C$.
+\begin{quote}
+Karena ini merupakan disjungsi, akan berguna untuk menerapkan
+pembuktian dengan kasus. Kita mengambil kedua kasus dan menunjukkan
+bahwa dalam masing-masing kasus, kesimpulan yang kita tuju (yaitu, ``$z
+\in (A \cup B) \cap (A \cup C)$'') berlaku.
+\end{quote}
+Kasus 1: Andaikan $z \in A$.
+\begin{quote}
+Tidak banyak lagi yang dapat kita olah dari asumsi-asumsi kita. Jadi,
+mari kita perhatikan apa yang dapat kita gunakan dalam kesimpulan.
+Kita ingin menunjukkan bahwa $z \in (A \cup B) \cap (A \cup C)$.
+Berdasarkan definisi $\cap$, untuk menunjukkan bahwa $z \in (A \cup
+B) \cap (A \cup C)$, kita harus menunjukkan bahwa objek itu berada
+baik dalam $(A \cup B)$ maupun dalam $(A \cup C)$. Namun, $z \in A \cup B$
+jika dan hanya jika $z \in A$ atau $z \in B$, dan kita sudah memiliki
+(sebagai asumsi kasus~1) bahwa $z \in A$. Dengan penalaran yang
+sama---memakai $C$ sebagai pengganti $B$---kita memperoleh $z \in A \cup C$.
+Argumen ini berjalan dalam arah terbalik, jadi mari kita catat
+penalarannya dalam arah yang diperlukan oleh bukti.
+\end{quote}
+Karena $z \in A$, maka $z \in A$ atau $z \in B$, sehingga menurut
+definisi~$\cup$, $z \in A \cup B$. Demikian pula, $z \in A \cup C$.
+Namun, ini berarti bahwa $z \in (A \cup B) \cap (A \cup C)$, menurut
+definisi~$\cap$.
+\begin{quote}
+Ini menuntaskan kasus pertama dalam pembuktian dengan kasus. Sekarang
+kita ingin menurunkan kesimpulan dalam kasus kedua, yaitu ketika $z
+\in B \cap C$.
+\end{quote}
+Kasus 2: Andaikan $z \in B \cap C$.
+\begin{quote}
+Sekali lagi, kita sedang berurusan dengan irisan dua himpunan. Mari
+kita terapkan definisi~$\cap$:
+\end{quote}
+Karena $z \in B \cap C$, $z$ harus merupakan !!a{element} dari $B$
+sekaligus dari $C$, menurut definisi~$\cap$.
+\begin{quote}
+Sekarang kita kembali melihat kesimpulan kita. Kita harus menunjukkan
+bahwa $z$ berada baik dalam $(A \cup B)$ maupun dalam $(A \cup C)$.
+Sekali lagi, penyelesaiannya langsung.
+\end{quote}
+Karena $z \in B$, maka $z \in (A \cup B)$. Karena $z \in C$, maka $z
+\in (A \cup C)$ juga. Jadi, $z \in (A \cup B) \cap (A \cup C)$.
+\begin{quote}
+Di sini kita kembali menerapkan definisi $\cup$ dan $\cap$, tetapi
+karena definisi-definisi tersebut sudah kita ingat kembali dan kita
+sudah menunjukkan bahwa jika $z$ berada dalam salah satu dari dua
+himpunan, maka ia berada dalam gabungan keduanya, kita tidak perlu
+menyatakan langkah yang dilakukan secara begitu eksplisit.
+
+Kita telah menuntaskan kasus kedua dalam pembuktian dengan kasus, jadi
+sekarang kita dapat menyatakan kesimpulan pertama.
+\end{quote}
+Jadi, jika $z \in A \cup (B \cap C)$, maka $z \in (A \cup B) \cap (A
+\cup C)$.
+\begin{quote}
+Sekarang kita tinggal menunjukkan arah sebaliknya, yaitu bahwa setiap
+!!{element} dari $(A \cup B) \cap (A \cup C)$ merupakan !!a{element}
+dari $A \cup (B \cap C)$. Seperti sebelumnya, kita membuktikan klaim
+universal ini dengan mengasumsikan bahwa kita memiliki suatu
+!!{element} sembarang dari himpunan pertama, lalu menunjukkan bahwa
+objek itu harus berada dalam himpunan kedua. Mari kita nyatakan apa
+yang akan kita lakukan.
+\end{quote}
+Sekarang, asumsikan bahwa $z \in (A \cup B) \cap (A \cup C)$. Kita
+ingin menunjukkan bahwa $z \in A \cup (B \cap C)$.
+\begin{quote}
+Kini kita bekerja dari hipotesis bahwa $z \in (A \cup B) \cap (A \cup
+C)$. Mudah-mudahan tidak terlalu membingungkan bahwa kita menggunakan
+~$z$ yang sama seperti pada bagian pertama bukti. Ketika bagian itu
+selesai, semua asumsi yang kita buat di sana tidak lagi berlaku,
+sehingga sekarang kita dapat membuat asumsi baru mengenai $z$. Jika
+hal ini membingungkan, gantilah $z$ dengan variabel lain dalam bagian
+berikut.
+
+Kita mengetahui bahwa $z$ berada baik dalam $A \cup B$ maupun dalam $A
+\cup C$, menurut definisi~$\cap$. Menurut definisi $\cup$, kita dapat
+menguraikan hal ini lebih lanjut menjadi: $z \in A$ atau $z \in B$,
+dan juga $z \in A$ atau $z \in C$. Ini tampak seperti pembuktian
+dengan kasus lagi---hanya saja kata ``dan'' membuatnya membingungkan.
+Anda mungkin mengira bahwa ini berarti ada tiga kemungkinan: $z$
+berada dalam $A$, $B$, atau $C$. Namun, itu keliru. Kita harus
+berhati-hati, jadi mari kita telaah setiap disjungsi secara bergiliran.
+\end{quote}
+Menurut definisi $\cap$, $z \in A \cup B$ dan $z \in A \cup C$.
+Menurut definisi $\cup$, $z \in A$ atau $z \in B$. Kita bedakan kasus.
+\begin{quote}
+Karena kita sedang berfokus pada disjungsi pertama, kita belum
+memperoleh disjungsi kedua (dari penguraian $A \cup C$). Bahkan, kita
+belum memerlukannya. Kasus pertama adalah $z \in A$, dan !!a{element}
+dari suatu himpunan juga merupakan !!a{element} dari gabungan himpunan
+itu dengan himpunan mana pun. Jadi, kasus~1 mudah:
+\end{quote}
+Kasus 1: Andaikan $z \in A$. Akibatnya, $z \in A \cup (B \cap C)$.
+\begin{quote}
+Sekarang untuk kasus kedua, $z \in B$. Di sini kita akan menguraikan
+$\cup$ kedua dan melakukan pembuktian dengan kasus sekali lagi:
+\end{quote}
+Kasus 2: Andaikan $z \in B$. Karena $z \in A \cup C$, maka $z \in A$
+atau $z \in C$. Kita bedakan kasus lebih lanjut:
+
+Kasus 2a: $z \in A$. Maka, sekali lagi, $z \in A \cup (B \cap C)$.
+\begin{quote}
+Baiklah, ini agak aneh. Kita sebenarnya tidak memerlukan asumsi bahwa
+~$z \in B$ untuk kasus ini, tetapi itu tidak menjadi masalah.
+\end{quote}
+Kasus 2b: $z \in C$. Maka $z \in B$ dan $z \in C$, sehingga $z \in B
+\cap C$, dan akibatnya $z \in A \cup (B \cap C)$.
+\begin{quote}
+Ini mengakhiri kedua pembuktian dengan kasus, sehingga bagian kedua
+telah selesai.
+\end{quote}
+Jadi, jika $z \in (A \cup B) \cap (A \cup C)$, maka $z \in A \cup (B
+\cap C)$.
+\end{proof}
+
+\end{document}

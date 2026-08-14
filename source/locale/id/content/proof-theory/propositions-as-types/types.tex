@@ -1,0 +1,108 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: types
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{pty}{typ}
+
+\olsection{Tipe}
+
+Term bukti seperti $(MN)$ dengan sendirinya tidak menentukan secara unik
+bukti yang diwakilinya. Alasannya, variabel-variabel bebas, yakni term bukti
+dari aksioma, tidak menentukan !!{formula}s dalam aksioma yang bersesuaian.
+Namun, jika kita menentukannya dalam konteks~$\Gamma$, buktinya memang
+ditentukan secara unik.
+
+\begin{defn}
+Suatu \emph{konteks} bagi term bukti~$N$ adalah himpunan $\Gamma$ sedemikian
+sehingga, bagi setiap variabel bebas~$x$ dari~$N$, $\Gamma$ memuat tepat satu
+pasangan $x:!A$.
+\end{defn}
+
+Perhatikan bahwa definisi ini tidak mensyaratkan bahwa $\Gamma$ memuat
+$x:!A$ \emph{hanya} bagi variabel bebas dari~$N$. Jadi, misalnya,
+$\Gamma=\{x:!A,y:!B,z:!C\}$ merupakan konteks bagi $\pair{x}{y}$.
+
+\begin{defn}\ollabel{defn:type}
+  Andaikan $\Gamma$ merupakan konteks bagi~$N$. \emph{Tipe} dari~$N$
+  (relatif terhadap~$\Gamma$) didefinisikan secara induktif sebagai berikut:
+  \begin{enumerate}
+  \item Tipe $x$ adalah $!A$ jika dan hanya jika $x:!A \in \Gamma$.
+  \item Jika $N$ bertipe~$!B$ relatif terhadap $x:!A,\Gamma$, maka
+    $\lambd[\typeof{x}{!A}][N]$ bertipe $!A \lif !B$.
+  \item Jika $N$ bertipe $!A \lif !B$ dan $M$ bertipe~$!A$, maka $(NM)$
+    bertipe~$!B$.
+  \item Jika $N$ bertipe~$!A$ dan $M$ bertipe~$!B$, maka $\pair{N}{M}$
+    bertipe $!A \land !B$.
+  \item Jika $N$ bertipe~$!A_1 \land !A_2$, maka $\proj{i}{N}$ bertipe~$!A_i$.
+  \item Jika $N$ bertipe~$!A$, maka $\inj[!B]{i}{N}$ bertipe
+    $!A \lor !B$ jika $i=1$, dan bertipe $!B \lor !A$ jika $i=2$.
+  \item Jika $M$ bertipe $!A \lor !B$, $N_1$ bertipe~$!C$ relatif terhadap
+    $x_1:!A,\Gamma$, dan $N_2$ bertipe~$!C$ relatif terhadap
+    $x_2:!B,\Gamma$, maka $\dcase{M}{x_1}{N_1}{x_2}{N_2}$ bertipe~$!C$.
+  \item Jika $N$ bertipe~$\lfalse$, maka $\abort{!A}{N}$ bertipe~$!A$.
+  \end{enumerate}
+\end{defn}
+
+\begin{prop}
+Setiap term bukti~$N$ mempunyai tepat satu tipe relatif terhadap suatu
+konteks~$\Gamma$ bagi~$N$.
+\end{prop}
+
+\begin{proof}
+  Melalui induksi pada~$N$.
+\end{proof}
+
+Kita menulis $\Gamma \Sequent N:!A$ jika tipe $N$ relatif terhadap
+$\Gamma$ adalah~$!A$. Klausa-klausa dalam \olref{defn:type} seharusnya
+tampak akrab: semuanya tepat merupakan aturan \Log{tN2i}, dengan satu
+perbedaan kecil, yaitu konteks~$\Gamma$ tetap sama di seluruh aturan. Kita
+dapat mengodekan definisi tersebut sebagai kalkulus \Log{tN3i} dengan aturan
+yang diberikan dalam \olref{tab:tN3ip}.
+
+\subfile{rules-tN3}
+
+Term bukti merupakan term dalam suatu versi kalkulus-$\lambd$, yaitu
+\emph{kalkulus-$\lambd$ bertipe dengan hasil kali, jumlah, dan tipe kosong}.
+Kalkulus-$\lambd$ tak bertipe hanya mempunyai term yang dibentuk dari
+variabel, \emph{abstraksi-$\lambd$}~$\lambd[x][N]$, dan aplikasi $(MN)$;
+kalkulus itu tidak memiliki anotasi~$!A$ pada abstraksi-$\lambd$ bertipe
+$\lambd[\typeof{x}{!A}][N]$. Kalkulus-$\lambd$ merupakan model komputasi
+yang lengkap-Turing (yakni, setiap fungsi parsial yang dapat dihitung dapat
+direpresentasikan di dalamnya oleh suatu term). Versi kalkulus-$\lambd$ yang
+diberikan oleh term bukti dan aturan penetapan tipe merupakan model komputasi
+terbatas, tetapi gagasan dasarnya sama. Model ini dibatasi oleh penetapan
+tipe: hanya term yang \emph{bertipe baik}, yakni term bukti yang mempunyai
+tipe (relatif terhadap konteks~$\Gamma$), yang merupakan term sah. Misalnya,
+$\lambd[x][(xx)]$ merupakan term sah dalam kalkulus-$\lambd$ tak bertipe,
+tetapi $\lambd[\typeof{x}{!A}][(xx)]$ tidak bertipe baik bagi $!A$ mana pun.
+Sebab, agar $(xx)$ mempunyai tipe, aturan penetapan tipe mensyaratkan bahwa
+$x$ pertama bertipe $!A \lif !B$ dan $x$ kedua bertipe~$!A$; hal itu mustahil
+karena $!A$ merupakan sub-!!{formula} sejati dari~$!A \lif !B$.
+
+Secara intuitif, kita dapat memandang tipe sebagai jenis objek yang dinamai
+oleh term bertipe tersebut. Jadi, term bertipe $!A \land !B$ memilih pasangan
+dengan komponen pertama bertipe~$!A$ dan komponen kedua bertipe~$!B$, yakni
+!!a{element} dari hasil kali~$!A \times !B$. Term bertipe $!A \lif !B$
+merupakan fungsi dari objek bertipe~$!A$ ke objek bertipe~$!B$. Term bertipe
+$!A \lor !B$ merupakan objek bertipe~$!A$ atau objek bertipe~$!B$, beserta
+informasi tentang jenis yang dipilih. Hal ini seperti gabungan saling lepas
+dari dua himpunan $!A$ dan $!B$ yang didefinisikan sebagai
+$\{\tuple{i,x}:i=1 \text{ atau } 2, x\in !A \text{ jika } i=1,
+x\in !B \text{ jika } i=2\}$. Tipe $\lfalse$ adalah himpunan kosong;
+dengan kata lain, term bertipe itu tidak dapat menamai apa pun. Karena
+deduksi alami (termasuk \Log{tN3i}) konsisten, tidak ada !!{proof}
+bagi~$\lfalse$ tanpa asumsi terbuka, sehingga tidak ada term bukti tertutup
+(term tanpa variabel bebas) yang bertipe~$\lfalse$.
+
+Operator kalkulus-$\lambd$ bertipe menghasilkan term yang secara intuitif
+menamai jenis objek yang tepat, asalkan term-term yang menjadi argumennya
+menamai objek tertentu. Misalnya, pernyataan ``jika $N_1:!A$ dan $N_2:!B$,
+maka $\pair{N_1}{N_2}:!A \land !B$'' mengatakan bahwa jika $N_1$ menamai
+objek bertipe~$!A$ dan $N_2$ menamai objek bertipe~$!B$, maka
+$\pair{N_1}{N_2}$ menamai objek bertipe $!A \land !B$.
+
+\end{document}

@@ -1,0 +1,128 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: public-announcement-logic-semantics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{aml}{el}{psm}
+
+\olsection{Semantik Logika Pengumuman Publik}
+
+Model relasional bagi logika pengumuman publik sama dengan model relasional
+bagi logika epistemik. Akan tetapi, semantik operator pengumuman publik
+merupakan sesuatu yang baru.
+
+\begin{defn}\ollabel{defn:mmodels} \emph{Kebenaran !!a{formula}~$!A$
+  pada~$w$} dalam~$\mModel M=\tuple{W,R,V}$, dengan simbol
+  $\mSat{M}{!A}[w]$, didefinisikan secara induktif sebagai berikut:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{Tidak pernah
+    $\mSat{M}{\lfalse}[w]$}.}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{Selalu
+    $\mSat{M}{\ltrue}[w]$}.}{}
+  \item $\mSat{M}{p}[w]$ jika dan hanya jika $w\in V(p)$
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ jika dan
+    hanya jika $\mSat/{M}{!B}[w]$}.}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ jika
+    dan hanya jika $\mSat{M}{!B}[w]$ dan $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ jika
+    dan hanya jika $\mSat{M}{!B}[w]$ atau $\mSat{M}{!C}[w]$} (atau
+    keduanya).}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ jika
+    dan hanya jika $\mSat/{M}{!B}[w]$ atau $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ jika
+    dan hanya jika $\mSat{M}{!B}[w]$ dan $\mSat{M}{!C}[w]$ keduanya berlaku,
+    atau baik $\mSat{M}{!B}[w]$ maupun $\mSat{M}{!C}[w]$ tidak berlaku}.}{}
+  \item\ollabel{defn:sub:mmodels-box}
+    \indcase{!A}{\Knows_a !B}{$\mSat{M}{\indfrm}[w]$ jika dan hanya jika
+    $\mSat{M}{!B}[w']$ untuk semua $w'\in W$ dengan $R_a ww'$}
+  \item\ollabel{defn:sub:mmodels-pal}
+    \indcase{!A}{[!B] !C}{$\mSat{M}{\indfrm}[w]$ jika dan hanya jika
+    $\mSat{M}{!B}[w]$ mengakibatkan $\mSat{M \mid !B}{!C}[w]$}
+
+
+  Dengan $\mModel M\mid !B=\tuple{W',R',V'}$ didefinisikan sebagai berikut:
+  \begin{enumerate}
+    \item $W'=\Setabs{u\in W}{\mSat{M}{!B}[u]}$. Jadi, dunia-dunia dalam
+      $\mModel M\mid !B$ ialah dunia-dunia dalam~$\mModel M$ tempat $!B$
+      berlaku.
+    \item $R'_a=R_a\cap(W'\times W')$. Relasi aksesibilitas setiap agen hanya
+      dibatasi pada dunia-dunia yang tetap berada dalam~$W'$.
+    \item $V'(p)=\Setabs{u\in W'}{u\in V(p)}$. Demikian pula, valuasi
+      proposisional pada dunia-dunia tersebut tetap sama. Hal ini
+      merepresentasikan gagasan bahwa peristiwa informasional tidak mengubah
+      nilai kebenaran variabel proposisional.
+  \end{enumerate}
+
+  \end{enumerate}
+\end{defn}
+
+Ciri khas logika pengumuman publik ialah bahwa kebenaran !!a{formula}
+dalam~$\mModel M$ terkadang hanya dapat diputuskan dengan mengacu pada model
+selain~$\mModel M$ itu sendiri.
+
+Perhatikan pula bahwa semantik kita memperlakukan operator pengumuman sebagai
+operator~$\Box$. Jadi, jika !!a{formula}~$!A$ tidak dapat diumumkan dengan
+benar pada suatu dunia, maka $[!A]!B$ berlaku secara hampa di sana, sama
+seperti semua $\Box$-!!{formula}s berlaku pada titik ujung.
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={below left:$p, \lnot q$}]{$w_1$};
+      \node[world] (w2) [left=of w1, label={left:$\lnot p, \lnot q$}]{$w_2$};
+      \node[world] (w3) [above=of w1, label={right:$p, q$}] {$w_3$};
+      \draw[<->] (w1) to [swap] node {$b$} (w2);
+      \draw[->,loop below] (w1) to node {$a, b$} (w1);
+      \draw[<->] (w1) to [swap] node {$a$} (w3);
+      \draw[->,loop above] (w2) to node {$a, b$} (w2) ;
+      \draw[->,loop above] (w3) to node {$a, b$} (w3) ;
+
+      \node[world](v1)[right of=w1, xshift=1.25in, label={right:$p, \lnot q$}]{$w'_1$};
+      \node[world](v3)[above of=v1,label={right:$p,q$}]{$w'_3$};
+      \draw[<->] (v1) to node {$a$} (v3);
+      \draw[->,loop below] (v1) to node {$a,b$} (v1);
+      \draw[->,loop above] (v3) to node {$a,b$} (v3) ;
+
+      \node(m)[below=of w1]{$\mModel M$};
+      \node(m')[below=of v1]{$\mModel M \mid p$};
+
+      \draw[-,dotted] (w1) to node {\footnotesize pengumuman $p$}(v1) ;
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{Sebelum dan sesudah pengumuman publik tentang~$p$.}
+  \ollabel{fig:announcement-example}
+\end{figure}
+
+Pengumuman publik suatu !!{formula} dapat dipandang sebagai tindakan
+memperkecil model, atau membatasinya pada dunia-dunia tempat !!{formula}
+tersebut benar. \olref{fig:announcement-example} memberikan contoh akibat
+pengumuman publik~$p$. Salah satu hal penting tentang model itu ialah bahwa
+agen~$b$ mengetahui bahwa~$p$ sebagai akibat pengumuman tersebut, sedangkan
+agen~$a$ tidak memperoleh pengetahuan baru itu (sebab $a$ sudah mengetahui
+bahwa~$p$ benar).
+
+Secara lebih formal, berlaku $\mSat{M}{\lnot\Knows_b p}[w_1]$, tetapi juga
+$\mSat{M\mid p}{\Knows_b p}[w'_1]$. Ini mengakibatkan
+$\mSat{M}{[p]\Knows_b p}[w_1]$. Namun, kita dapat membuat pernyataan yang
+bahkan lebih kuat mengenai hasil pengumuman itu. Bahkan,
+$\mSat{M}{[p]\CKnows_{\{a,b\}}p}[w_1]$. Dengan kata lain, setelah $p$
+diumumkan, hal itu menjadi \emph{pengetahuan bersama}.
+
+Namun, kita dapat bertanya-tanya apakah hal ini berlaku dalam kasus umum dan
+apakah pengumuman benar atas~$!A$ \emph{selalu} mengakibatkan $!A$ menjadi
+pengetahuan bersama. Mungkin mengejutkan bahwa jawabannya tidak. Bahkan,
+!!{formula}s yang diumumkan dengan benar mungkin tidak lagi benar setelah
+diumumkan. Sebagai contoh, pertimbangkan akibat pengumuman
+$p\land\lnot\Knows_b p$ pada~$w_1$ dalam
+\olref{fig:announcement-example}. Model $\mModel M\mid p$ dan
+$\mModel M\mid(p\land\lnot\Knows_b p)$ sebenarnya sama. Akan tetapi, seperti
+telah kita perhatikan, $\mSat{M\mid p}{\Knows_b p}[w'_1]$. Oleh karena itu,
+$\mSat{M\mid(p\land\lnot\Knows_b p)}{\lnot
+(p\land\lnot\Knows_b p)}[w'_1]$; jadi, ini merupakan !!a{formula} yang
+menjadi salah setelah diumumkan.
+
+\end{document}

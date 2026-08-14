@@ -1,0 +1,73 @@
+% Part: lambda-calculus
+% Chapter: lambda-definability
+% Section: minimization
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{ldf}{min}
+\olsection{Minimisasi}
+
+Fungsi rekursif umum ialah fungsi yang dapat diperoleh dari fungsi-fungsi
+dasar $\Zero$, $\Succ$, dan $\Proj{n}{i}$ melalui komposisi, rekursi primitif,
+dan minimisasi reguler. Untuk menunjukkan bahwa semua fungsi rekursif umum
+bersifat !!{lambda definable}, kita harus menunjukkan bahwa setiap fungsi yang
+didefinisikan melalui minimisasi reguler dari suatu fungsi yang
+!!a{lambda definable} dengan sendirinya bersifat !!{lambda definable}.
+
+\begin{lem}
+  \ollabel{lem:min} Jika $f(x_1, \dots, x_k, y)$ reguler dan
+  !!{lambda definable}, maka $g$ yang didefinisikan oleh
+  \[
+  g(x_1, \dots, x_k) = \umin{y}{f(x_1,\dots,x_k, y) = 0}
+  \]
+  juga bersifat !!{lambda definable}.
+\end{lem}
+
+\begin{proof}
+  Andaikan suku lambda~$F$ mendefinisikan secara~$\lambda$ fungsi reguler
+  $f(\vec x, y)$. Untuk !!{lambda define}~$g$, kita menggunakan suatu fungsi
+  pencarian dan suatu kombinator titik tetap:
+  \begin{align*}
+    \fn{Search} & \ident \lambd[g][\lambd[f\,\vec{x}\,y][
+        \fn{IsZero} (f\, \vec{x}\, y)\, y\, (g\, f \vec{x} (\fn{Succ}\, y))]]\\
+    H & \ident \lambd[\vec x][(Y \, \fn{Search}) F\, \vec{x}\, \num{0}],
+  \end{align*}
+  dengan $Y$ sebarang kombinator titik tetap. Secara informal,
+  $\fn{Search}$ adalah fungsi yang mengacu pada dirinya sendiri: mulai
+  dari~$y$, fungsi itu
+  menguji apakah $f\, \vec x\, y$ bernilai nol; jika ya, fungsi itu
+  mengembalikan~$y$, dan jika tidak, fungsi itu memanggil dirinya sendiri
+  dengan $\fn{Succ}\, y$. Jadi, $(Y \, \fn{Search}) F
+  \num{n_1}\dots\num{n_k}\,\num{0}$ mengembalikan $m$ terkecil yang memenuhi
+  $f(n_1, \dots, n_k, m) = 0$.
+
+  Secara khusus, perhatikan bahwa
+  \begin{align*}
+    (Y \, \fn{Search}) F \num{n_1}
+    \dots\num{n_k}\, \num{m} & \red \num{m}
+    \intertext{jika $f(n_1, \dots,
+      n_k, m) = 0$, atau}
+    & \red (Y \, \fn{Search}) F\, \num{n_1} \dots\num{n_k}\, \num{m+1}
+    \intertext{dalam kasus lainnya. Karena $f$ reguler,
+      $f(n_1, \dots, n_k, y) = 0$ untuk suatu $y$, sehingga}
+    (Y \, \fn{Search}) F \num{n_1} \dots\num{n_k}\,\num{0}
+    & \red \num{g(n_1, \dots, n_k)}.
+    \end{align*}
+\end{proof}
+
+
+\begin{prop}
+  Setiap fungsi rekursif umum bersifat !!{lambda definable}.
+\end{prop}
+
+\begin{proof}
+ Berdasarkan \olref[prf]{lem:basic}, semua fungsi dasar bersifat
+ !!{lambda definable}; dan berdasarkan \olref[prf]{lem:comp},
+ \olref[prf]{lem:prim}, serta \olref{lem:min}, fungsi-fungsi yang
+ !!{lambda definable} tertutup terhadap komposisi, rekursi primitif, dan
+ minimisasi reguler.
+\end{proof}
+
+\end{document}

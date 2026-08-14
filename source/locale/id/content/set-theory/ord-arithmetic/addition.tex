@@ -1,0 +1,216 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{ord-arithmetic}{add}
+\olsection{Penjumlahan Ordinal}
+
+Andaikan kita hendak menjumlahkan $\alpha$ dan~$\beta$. Kita cukup
+menempatkan suatu salinan~$\beta$ tepat sesudah suatu salinan~$\alpha$.
+(Kita perlu mengambil \emph{salinan}, sebab berdasarkan
+\olref[ordinals][basic]{ordinalsaresubsets}, kita tahu bahwa
+$\alpha\subseteq\beta$ atau $\beta\subseteq\alpha$.) Efek intuitifnya ialah
+menjalani barisan langkah sepanjang~$\alpha$, \emph{lalu} menjalani barisan
+sepanjang~$\beta$. Barisan yang dihasilkan akan terurut baik; jadi, berdasarkan
+\olref[ordinals][ordtype]{thmOrdinalRepresentation}, barisan itu isomorfik
+dengan suatu ordinal (unik). Ordinal tersebut dapat dipandang sebagai
+\emph{jumlah} $\alpha$ dan~$\beta$.
+
+Itulah gagasan intuitif di balik penjumlahan ordinal. Untuk mendefinisikannya
+secara teliti, kita mulai dengan gagasan mengambil \emph{salinan} himpunan.
+Gagasannya ialah menggunakan penanda sebarang, $0$ dan~$1$, untuk mencatat
+asal setiap objek:
+
+\begin{defn}\ollabel{defdissum}
+\emph{Jumlah lepas} $A$ dan $B$ ialah
+$A\disjointsum B=(A\times\{0\})\cup(B\times\{1\})$.
+\end{defn}
+
+Selanjutnya, kita mendefinisikan suatu pengurutan pada pasangan ordinal:
+
+\begin{defn}
+Untuk sebarang ordinal $\alpha_1,\alpha_2,\beta_1,\beta_2$, tetapkan bahwa:
+\begin{align*}
+	\tuple{\alpha_1, \alpha_2} \rlexless \tuple{\beta_1, \beta_2}\text{ jika dan hanya jika }& 
+	\text{$\alpha_2 \in \beta_2$, atau}\\
+	& \text{$\alpha_2 = \beta_2$ dan $\alpha_1 \in \beta_1$.}
+\end{align*}
+\end{defn}
+
+Ini merupakan pengurutan \emph{leksikografis terbalik}, karena kita
+mengurutkan menurut anggota kedua, lalu menurut anggota pertama. Ingat bahwa
+kita hendak mendefinisikan $\alpha\ordplus\beta$ sebagai tipe urutan suatu
+salinan~$\alpha$ yang diikuti suatu salinan~$\beta$. Untuk mencapainya, kita
+menetapkan:
+
+\begin{defn}\ollabel{defordplus}
+Untuk sebarang ordinal $\alpha,\beta$, jumlahnya ialah
+$\alpha\ordplus\beta=\ordtype{\alpha\disjointsum\beta,\rlexless}$.
+\end{defn}
+\noindent
+Perhatikan bahwa kita sedikit menyalahgunakan notasi di sini; secara tegas,
+kita seharusnya menulis
+``$\Setabs{\tuple{x,y}\in\alpha\disjointsum\beta}{x\rlexless y}$'' sebagai
+ganti ``$\rlexless$''. Namun, demi keringkasan, selanjutnya kita akan terus
+menyalahgunakan notasi dengan cara ini.
+
+Hasil berikut, bersama
+\olref[ordinals][ordtype]{thmOrdinalRepresentation}, memastikan bahwa definisi
+kita terbentuk dengan baik:
+
+\begin{lem}\ollabel{ordsumlessiswo}
+$\tuple{\alpha\disjointsum\beta,\rlexless}$ merupakan pengurutan baik bagi
+sebarang ordinal $\alpha$ dan~$\beta$.
+\end{lem}
+
+\begin{proof}
+Jelas bahwa $\rlexless$ terhubung pada $\alpha\disjointsum\beta$. Untuk
+menunjukkan bahwa relasi itu berlandasan baik, tetapkan suatu himpunan tak
+kosong $X\subseteq\alpha\disjointsum\beta$. Misalkan $Y$ himpunan bagian
+dari~$X$ yang koordinat keduanya sekecil mungkin, yakni
+$Y=\Setabs{\tuple{\gamma,i}\in X}{(\forall\tuple{\delta,j}\in X)i\leq j}$.
+Sekarang pilih anggota~$Y$ dengan koordinat pertama terkecil.
+\end{proof}
+\noindent
+Jadi, kita mempunyai definisi eksplisit yang baik bagi penjumlahan ordinal.
+Berikut fakta yang tidak mengejutkan (ingat bahwa $1=\{0\}$ berdasarkan
+\olref[z][infinity-again]{defnomega}):
+\begin{prop}
+$\alpha\ordplus1=\ordsucc{\alpha}$ bagi sebarang ordinal~$\alpha$.
+\end{prop}
+
+\begin{proof}
+Perhatikan isomorfisme~$f$ dari
+$\ordsucc{\alpha}=\alpha\cup\{\alpha\}$ ke
+$\alpha\disjointsum1=(\alpha\times\{0\})\cup(\{0\}\times\{1\})$ yang
+diberikan oleh $f(\gamma)=\tuple{\gamma,0}$ bagi $\gamma\in\alpha$, dan
+$f(\alpha)=\tuple{0,1}$.
+\end{proof}
+\noindent
+Selain itu, mudah ditunjukkan bahwa penjumlahan memenuhi syarat-syarat
+rekursif tertentu:
+
+\begin{lem}\ollabel{ordadditionrecursion}
+Untuk sebarang ordinal $\alpha,\beta$, berlaku:
+\begin{align*}
+	\alpha\ordplus 0 &= \alpha\\
+	\alpha \ordplus  (\beta\ordplus 1) &= (\alpha \ordplus  \beta) \ordplus  1\\
+	\alpha  \ordplus  \beta &= \supstrict_{\delta < \beta}(\alpha \ordplus  \delta) && \text{jika $\beta$ ordinal limit.}
+\end{align*}
+\end{lem}
+
+\begin{proof}
+Kita memeriksa setiap kasus; pertama:
+\begin{align*}
+	\alpha \ordplus  0 
+	& = \ordtype{(\alpha \times \{0\}) \cup (0 \times \{1\}), \rlexless} \\
+	&= \ordtype{\alpha \times \{0\}, \rlexless}\\
+	&= \alpha\\
+	\alpha \ordplus (\beta \ordplus  1) 
+	%&= \ordtype{(\alpha\times \{0\}) \cup (\ordtype{\beta \ordplus  1}\times \{1\}), \rlexless} \\
+	&= \ordtype{(\alpha\times \{0\}) \cup (\ordsucc{\beta}\times \{1\}), \rlexless} \\
+	&= \ordtype{(\alpha\times \{0\}) \cup (\beta \times \{1\}), \rlexless} \ordplus 1\\
+	&= (\alpha \ordplus  \beta) \ordplus  1.
+\end{align*}
+Sekarang misalkan $\beta\neq\emptyset$ suatu limit. Jika $\delta<\beta$,
+maka $\delta\ordplus1<\beta$, sehingga $\alpha\ordplus\delta$ merupakan
+segmen awal sejati dari $\alpha\ordplus\beta$. Jadi,
+$\alpha\ordplus\beta$ merupakan batas atas ketat bagi
+$X=\Setabs{\alpha\ordplus\delta}{\delta<\beta}$. Selain itu, jika
+$\alpha\leq\gamma<\alpha\ordplus\beta$, maka jelas
+$\gamma=\alpha\ordplus\delta$ bagi suatu $\delta<\beta$. Jadi,
+$\alpha\ordplus\beta=\supstrict_{\delta<\beta}(\alpha\ordplus\delta)$.
+\end{proof}
+
+Namun, berikut suatu fakta yang mencolok. Untuk mendefinisikan penjumlahan
+ordinal, kita sebenarnya dapat menggunakan Teorema Rekursi Transfinit dan
+menetapkan persamaan-persamaan rekursi tepat seperti dalam
+\olref{ordadditionrecursion} (meskipun menggunakan ``$\ordsucc{\beta}$''
+alih-alih ``$\beta\ordplus1$'').
+
+Jadi, ada dua cara berbeda untuk mendefinisikan operasi pada ordinal. Kita
+dapat mendefinisikannya \emph{secara sintetis}, dengan secara eksplisit
+mengonstruksi suatu himpunan terurut baik dan mempertimbangkan tipe urutannya.
+Atau, kita dapat mendefinisikannya \emph{secara rekursif}, hanya dengan
+menetapkan persamaan-persamaan rekursi. Jika dilakukan dengan benar, hasilnya
+sama. Teorema \olref[ordinals][ordtype]{thmOrdinalRepresentation} menjamin
+bahwa persamaan-persamaan rekursi ini menentukan ordinal yang \emph{unik}.
+
+Dalam banyak hal, aritmetika ordinal berperilaku seperti penjumlahan bilangan
+asli. Sebagai contoh, kita dapat membuktikan hasil berikut:
+
+\begin{lem}\ollabel{ordinaladditionisnice}
+Jika $\alpha,\beta,\gamma$ ordinal, maka:
+\begin{enumerate}
+	\item\ollabel{ordaddition1} jika $\beta<\gamma$, maka
+	$\alpha\ordplus\beta<\alpha\ordplus\gamma$;
+	\item\ollabel{ordaddition2} jika
+	$\alpha\ordplus\beta=\alpha\ordplus\gamma$, maka $\beta=\gamma$;
+	\item\ollabel{ordaddition3}
+	$\alpha\ordplus(\beta\ordplus\gamma)
+	=(\alpha\ordplus\beta)\ordplus\gamma$, yakni penjumlahan bersifat
+	asosiatif;
+	\item\ollabel{ordaddition4} jika $\alpha\leq\beta$, maka
+	$\alpha\ordplus\gamma\leq\beta\ordplus\gamma$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Kita membuktikan \olref{ordaddition3} dan menyerahkan sisanya sebagai
+latihan. Bukti dilakukan dengan Induksi Transfinit Sederhana pada~$\gamma$,
+menggunakan \olref{ordadditionrecursion}. Jika $\gamma=0$:
+\[
+(\alpha \ordplus  \beta) \ordplus  0 = \alpha \ordplus  \beta  = \alpha \ordplus  (\beta \ordplus  0)
+\]
+Jika $\gamma=\delta\ordplus1$, andaikan sebagai hipotesis induksi bahwa
+$(\alpha\ordplus\beta)\ordplus\delta
+=\alpha\ordplus(\beta\ordplus\delta)$; sekarang gunakan
+\olref{ordadditionrecursion} tiga kali:
+\begin{align*}
+	(\alpha \ordplus  \beta) \ordplus  (\delta \ordplus  1) & = ((\alpha \ordplus  \beta) \ordplus  \delta)\ordplus 1\\
+	& = (\alpha \ordplus  (\beta \ordplus  \delta)) \ordplus  1\\
+	& = \alpha \ordplus  ((\beta \ordplus  \delta)\ordplus 1)\\
+	& = \alpha \ordplus  (\beta \ordplus  (\delta\ordplus 1)).
+\end{align*}
+Jika $\gamma$ ordinal limit, andaikan sebagai hipotesis induksi bahwa jika
+$\delta\in\gamma$, maka
+$(\alpha\ordplus\beta)\ordplus\delta
+=\alpha\ordplus(\beta\ordplus\delta)$; sekarang:
+\begin{align*}
+	(\alpha \ordplus  \beta) \ordplus  \gamma & = \supstrict_{\delta < \gamma}((\alpha \ordplus  \beta) \ordplus  \delta) \\
+	&= \supstrict_{\delta < \gamma}(\alpha \ordplus  (\beta \ordplus  \delta))\\
+	&= \alpha \ordplus  \supstrict_{\delta < \gamma}(\beta \ordplus  \delta)\\
+	& = \alpha \ordplus  (\beta \ordplus  \gamma).
+\end{align*}
+\end{proof}
+
+\begin{prob}
+Buktikan bagian selebihnya dari
+\olref[sth][ord-arithmetic][add]{ordinaladditionisnice}.
+\end{prob}
+
+Dalam berbagai hal ini, penjumlahan ordinal seharusnya terasa sangat akrab.
+Namun, ada satu perbedaan penting: penjumlahan ordinal \emph{tidak} seperti
+penjumlahan bilangan asli.
+
+\begin{prop}\ollabel{ordsumnotcommute}
+Penjumlahan ordinal \emph{tidak} komutatif;
+$1\ordplus\omega=\omega<\omega\ordplus1$.
+\end{prop}
+
+\begin{proof}
+Perhatikan bahwa $1\ordplus\omega=\supstrict_{n<\omega}(1\ordplus n)
+=\omega\in\omega\cup\{\omega\}=\ordsucc{\omega}=\omega\ordplus1$.
+\end{proof}
+\noindent
+Walaupun pada mulanya hal ini mungkin mengejutkan, \emph{seharusnya tidak}.
+Di satu sisi, ketika mempertimbangkan $1\ordplus\omega$, kita memikirkan tipe
+urutan yang diperoleh dengan menempatkan satu anggota tambahan \emph{sebelum}
+semua bilangan asli. Dengan penalaran seperti pada Hotel Hilbert dalam
+\olref[sfr][infinite][hilbert]{sec}, secara intuitif anggota pertama tambahan
+ini seharusnya tidak mengubah tipe urutan keseluruhan. Di sisi lain, ketika
+mempertimbangkan $\omega\ordplus1$, kita memikirkan tipe urutan yang diperoleh
+dengan menempatkan satu anggota tambahan \emph{sesudah} semua bilangan asli.
+Itu merupakan sesuatu yang sama sekali berbeda!
+
+\end{document}

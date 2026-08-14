@@ -1,0 +1,40 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: computable-lambda
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{int}{lrp}
+\olsection{Fungsi yang Dapat Dihitung Juga \usetoken{S}{lambda definable}}
+
+\begin{thm}
+\ollabel{thm:computable-lambda}
+Setiap fungsi parsial yang dapat dihitung bersifat !!{lambda definable}.
+\end{thm}
+
+\begin{proof}
+Kita perlu menunjukkan bahwa setiap fungsi parsial dapat dihitung~$f$
+!!{lambda defined} oleh suatu suku lambda~$F$. Berdasarkan teorema bentuk
+normal Kleene, cukup ditunjukkan bahwa setiap fungsi rekursif primitif
+!!{lambda defined} oleh suatu suku lambda, kemudian bahwa fungsi-fungsi yang
+!!{lambda definable} tertutup terhadap komposisi yang sesuai dan pencarian tak
+terbatas. Untuk menunjukkan bahwa setiap fungsi rekursif primitif
+!!{lambda defined} oleh suatu suku lambda, cukup ditunjukkan bahwa fungsi
+awal bersifat !!{lambda definable}, serta bahwa fungsi parsial yang
+!!{lambda definable} tertutup terhadap komposisi, rekursi primitif, dan
+pencarian tak terbatas.
+\end{proof}
+
+Kita akan menggunakan notasi yang lebih konvensional agar sisa pembuktian lebih
+mudah dibaca. Sebagai contoh, kita akan menulis $M(x,y,z)$ sebagai ganti
+$Mxyz$. Meskipun notasi ini sugestif, ingatlah bahwa suku dalam kalkulus lambda
+tanpa tipe tidak mempunyai aritas yang melekat; jadi, bagi suku~$M$ yang sama,
+menulis $M(x,y)$ sama masuk akalnya dengan menulis $M(x,y,z,w)$. Namun,
+penggunaan notasi ini menunjukkan bahwa kita memperlakukan $M$ sebagai fungsi
+tiga variabel dan membantu memperjelas maksud definisinya. Dengan cara serupa,
+kita akan mengatakan ``definisikan $M$ dengan $M(x,y,z)=\dots$'' sebagai ganti
+``definisikan $M$ dengan $M=\lambd[x][\lambd[y][\lambd[z][\dots]]]$.''
+
+\end{document}

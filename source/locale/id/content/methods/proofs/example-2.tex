@@ -1,0 +1,112 @@
+% Part: methods
+% Chapter: proofs
+% Section: example-2
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mth}{prf}{ex2}
+
+\olsection{Contoh Lain}
+
+\begin{prop}
+Jika $A \subseteq C$, maka $A \cup (C \setminus A) = C$.
+\end{prop}
+
+\begin{proof}
+  Andaikan $A \subseteq C$. Kita ingin menunjukkan bahwa $A \cup (C
+  \setminus A) = C$.
+  \begin{quote}
+    Kita mulai dengan mengamati bahwa ini merupakan pernyataan
+    kondisional. Pernyataan itu secara tersirat dikuantifikasi secara
+    universal: proposisi berlaku untuk semua himpunan $A$ dan $C$.
+    Jadi, $A$ dan $C$ adalah variabel bagi himpunan sembarang. Untuk
+    membuktikan pernyataan semacam itu, kita mengasumsikan antesedennya
+    dan membuktikan konsekuennya.
+
+    Kita melanjutkan dengan menggunakan asumsi bahwa $A \subseteq C$.
+    Mari kita uraikan definisi~$\subseteq$: asumsi tersebut berarti
+    bahwa semua !!{element} dari~$A$ juga merupakan !!{element}
+    dari~$C$. Mari kita tuliskan hal ini---ini adalah fakta penting yang
+    akan kita gunakan di sepanjang bukti.
+  \end{quote}
+  Menurut definisi~$\subseteq$, karena $A \subseteq C$, untuk setiap
+  $z$, jika $z \in A$, maka $z \in C$.
+  \begin{quote}
+    Kita telah menguraikan semua definisi yang diberikan dalam asumsi.
+    Sekarang kita dapat beralih ke kesimpulan. Kita ingin menunjukkan
+    bahwa $A \cup (C \setminus A) = C$, sehingga kita menyiapkan bukti
+    dengan cara yang serupa dengan contoh sebelumnya: kita menunjukkan
+    bahwa setiap !!{element} dari $A \cup (C \setminus A)$ juga
+    merupakan !!a{element} dari~$C$, dan sebaliknya, setiap !!{element}
+    dari $C$ merupakan !!a{element} dari $A \cup (C \setminus A)$. Kita
+    dapat menyingkatnya menjadi: $A \cup (C \setminus A) \subseteq C$
+    dan $C \subseteq A \cup (C \setminus A)$. (Di sini kita melakukan
+    kebalikan dari menguraikan definisi, tetapi hal itu membuat bukti
+    sedikit lebih mudah dibaca.) Karena ini merupakan konjungsi, kita
+    harus membuktikan kedua bagiannya. Untuk menunjukkan bagian
+    pertama, yaitu bahwa setiap !!{element} dari $A \cup (C \setminus
+    A)$ juga merupakan !!a{element} dari~$C$, kita mengasumsikan $z
+    \in A \cup (C \setminus A)$ untuk suatu~$z$ sembarang, lalu
+    menunjukkan bahwa $z \in C$. Menurut definisi $\cup$, kita dapat
+    menyimpulkan bahwa $z \in A$ atau $z \in C \setminus A$ dari $z
+    \in A \cup (C \setminus A)$. Sekarang Anda semestinya mulai
+    memahami polanya.
+  \end{quote}
+  $A \cup (C \setminus A) = C$ jika dan hanya jika $A \cup (C
+  \setminus A) \subseteq C$ dan $C \subseteq A \cup (C \setminus A)$.
+  Pertama-tama kita buktikan bahwa $A \cup (C \setminus A) \subseteq
+  C$. Misalkan $z \in A \cup (C \setminus A)$. Jadi, $z \in A$ atau
+  $z \in (C \setminus A)$.
+  \begin{quote}
+    Kita telah sampai pada suatu disjungsi, dan darinya kita ingin
+    membuktikan bahwa $z \in C$. Kita melakukannya dengan pembuktian
+    berdasarkan kasus.
+  \end{quote}
+  Kasus 1: $z \in A$. Karena untuk setiap $z$, jika $z \in A$, maka $z
+  \in C$, kita memperoleh $z \in C$.
+  \begin{quote}
+    Di sini kita menggunakan fakta yang dicatat sebelumnya, yang
+    mengikuti hipotesis proposisi bahwa $A \subseteq C$. Kasus pertama
+    selesai, dan kita beralih ke kasus kedua, $z \in (C \setminus A)$.
+    Ingat bahwa $C \setminus A$ menyatakan \emph{selisih} kedua
+    himpunan, yaitu himpunan semua !!{element} dari~$C$ yang bukan
+    !!{element} dari~$A$. Namun, setiap !!{element} dari $C$ yang tidak
+    berada dalam~$A$ khususnya merupakan !!a{element} dari~$C$.
+  \end{quote}
+  Kasus 2: $z \in (C \setminus A)$. Ini berarti bahwa $z \in C$ dan $z
+  \notin A$. Jadi, khususnya, $z \in C$.
+  \begin{quote}
+    Bagus, kita telah membuktikan arah pertama. Sekarang kita beralih
+    ke arah kedua. Di sini kita membuktikan bahwa $C \subseteq A \cup
+    (C \setminus A)$. Jadi, kita mengasumsikan bahwa $z \in C$ dan
+    membuktikan bahwa $z \in A \cup (C \setminus A)$.
+  \end{quote}
+  Sekarang misalkan $z \in C$. Kita ingin menunjukkan bahwa $z \in A$
+  atau $z \in C \setminus A$.
+  \begin{quote}
+    Karena semua !!{element} dari $A$ juga merupakan !!{element} dari
+    $C$, dan $C \setminus A$ adalah himpunan semua objek yang merupakan
+    !!{element} dari $C$ tetapi bukan dari $A$, maka $z$ berada dalam
+    $A$ atau dalam $C \setminus A$. Hal ini mungkin sedikit kurang
+    jelas jika Anda belum mengetahui mengapa hasilnya benar. Akan
+    lebih baik jika kita membuktikannya langkah demi langkah. Akan
+    membantu jika kita menggunakan sebuah fakta sederhana yang dapat
+    kita nyatakan tanpa bukti: $z \in A$ atau $z \notin A$. Ini disebut
+    ``prinsip tengah yang dikecualikan'': untuk sebarang pernyataan~$p$,
+    $p$ benar atau negasinya benar. (Di sini, $p$ adalah pernyataan
+    bahwa $z \in A$.) Karena ini merupakan disjungsi, kita kembali
+    dapat menggunakan pembuktian dengan kasus.
+  \end{quote}
+  $z \in A$ atau $z \notin A$. Dalam kasus pertama, $z \in A \cup (C
+  \setminus A)$. Dalam kasus kedua, $z \in C$ dan $z \notin A$, jadi
+  $z \in C \setminus A$. Namun, dengan demikian $z \in A \cup (C
+  \setminus A)$.
+  \begin{quote}
+    Bukti kita selesai: kita telah menunjukkan bahwa $A \cup (C
+    \setminus A) = C$.
+  \end{quote}
+\end{proof}
+
+\end{document}

@@ -1,0 +1,167 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{card-arithmetic}{fix}
+\olsection{Titik Tetap-$\aleph$}
+
+Dalam \olref[spine][]{chap}, kita mengemukakan bahwa Penggantian memerlukan
+pembenaran karena aksioma itu memaksa hierarki menjadi cukup tinggi. Setelah
+mempelajari aritmetika kardinal, kita dapat memberikan suatu ilustrasi kecil
+tentang ketinggian hierarki tersebut.
+
+Jelas bahwa $0 < \aleph_0$, $1 < \aleph_1$, dan $2 < \aleph_2$\ldots{}
+dan, sesungguhnya, selisih ukurannya semakin \emph{besar} pada setiap
+langkah. Karena itu, kita mungkin tergoda untuk menduga bahwa
+$\kappa<\aleph_\kappa$ bagi setiap ordinal~$\kappa$.
+
+Namun, berdasarkan $\ZFC$, dugaan ini \emph{salah}. Bahkan, kita dapat
+membuktikan bahwa terdapat \emph{titik-titik tetap-$\aleph$}, yakni kardinal
+$\kappa$ sedemikian sehingga $\kappa=\aleph_\kappa$.
+
+\begin{prop}\ollabel{alephfixed}
+Terdapat suatu titik tetap-$\aleph$.
+\end{prop}
+
+\begin{proof}
+Dengan menggunakan rekursi, definisikan:
+\begin{align*}
+	\kappa_0 &= 0\\
+	\kappa_{n+1} &= \aleph_{\kappa_n}\\
+	\kappa&= \bigcup_{n < \omega}\kappa_n
+\end{align*}
+Sekarang $\kappa$ merupakan kardinal berdasarkan
+\olref[cardinals][classing]{unioncardinalscardinal}. Namun:
+\[
+	\kappa= \bigcup_{n < \omega} \kappa_{n+1} =
+	\bigcup_{n < \omega}\aleph_{\kappa_n} =
+	\bigcup_{\alpha < \kappa}\aleph_\alpha = \aleph_\kappa
+\]
+%	By construction, $\kappa$ is the least cardinal greater than each
+%	$\kappa_n$. So $\aleph_\kappa$ is the least cardinal greater than
+%	each $\aleph_{\kappa_n}$, and hence greater than each
+%	$\kappa_{n+1}$. But equally $\kappa$ is the least cardinal greater
+%	than each $\kappa_{n+1} = \aleph_{\kappa_n}$. So $\kappa=
+%	\aleph_\kappa$.
+\end{proof}
+
+Boolos pernah menulis sebuah artikel tepat mengenai titik tetap-$\aleph$ yang
+baru saja kita konstruksi. Setelah mencatat keberadaan $\kappa$ pada awal
+artikelnya, ia berkata:
+\begin{quote}
+	[$\kappa$ merupakan] suatu bilangan yang \emph{cukup besar}, menurut
+	ukuran orang-orang yang belum pernah mengenal teori himpunan; begitu
+	besarnya, menurut saya, sehingga ia membuat kita mempertanyakan kebenaran
+	setiap teori yang salah satu pernyataannya mengklaim bahwa terdapat
+	sekurang-kurangnya $\kappa$ objek.
+	\citep[hlm.~257]{Boolos2000}
+\end{quote}
+Pada akhirnya, ia menutup makalahnya dengan bertanya:
+\begin{quote}
+	[apakah] kita menduga bahwa, bagaimanapun keadaannya pada awal cerita,
+	setelah mencapai sejauh ini roda-roda telah berputar di tempat dan kita
+	tidak lagi mendengarkan deskripsi tentang sesuatu yang sungguh demikian
+	adanya?
+	\citep[hlm.~268]{Boolos2000}
+\end{quote}
+Jika kita memang telah melampaui ``segala sesuatu yang sungguh demikian
+adanya'', maka kesalahan harus langsung ditimpakan kepada Penggantian. Sebab,
+aksioma inilah yang memungkinkan bukti kita bekerja. Jika demikian, agaknya
+Boolos perlu meninjau kembali klaim yang ia buat beberapa dasawarsa
+sebelumnya bahwa Penggantian tidak mempunyai konsekuensi ``yang tidak
+diinginkan'' (lihat \olref[replacement][extrinsic]{sec}).
+
+Namun, apakah keberadaan $\kappa$ memang seburuk itu? Di sini mungkin
+bermanfaat untuk mempertimbangkan \emph{paradoks Tristram Shandy} dari
+Russell. Tristram Shandy mencatat kehidupannya dalam buku harian, tetapi ia
+memerlukan satu tahun untuk mencatat satu hari. Setiap tahun berlalu,
+Tristram semakin tertinggal: setelah satu tahun, ia baru mencatat satu hari
+dan telah menjalani 364 hari yang belum tercatat; setelah dua tahun, ia baru
+mencatat dua hari dan telah menjalani 728 hari yang belum tercatat; setelah
+tiga tahun, ia baru mencatat tiga hari dan telah menjalani 1.092 hari yang
+belum tercatat, \dots\footnote{Dengan mengabaikan tahun kabisat.} Meskipun
+demikian, jika Tristram \emph{abadi}, ia akan berhasil mencatat setiap hari,
+sebab ia akan mencatat hari ke-$n$ pada tahun ke-$n$ kehidupannya. Jadi,
+``pada akhir waktu'', Tristram akan mempunyai buku harian yang lengkap.
+
+Sekarang, mengapa hal ini begitu berbeda dari gagasan bahwa $\alpha$ lebih
+kecil daripada $\aleph_\alpha$---dan bahkan semakin lama semakin jauh lebih
+kecil---hingga mencapai $\kappa$, ketika kita akhirnya menyusul dan
+$\kappa=\aleph_\kappa$?
+
+Kesampingkan hal itu, dan andaikan kita menerima $\ZFC$. Mari kita akhiri
+dengan sedikit kesenangan tambahan mengenai konstruksi titik tetap. Tiga
+hasil berikut secara intuitif menetapkan bahwa terdapat suatu titik (yang
+tidak trivial) ketika hierarki selebar tingginya:
+
+\begin{prop}\ollabel{bethfixed}
+Terdapat suatu titik tetap-$\beth$, yakni suatu $\kappa$ sedemikian sehingga
+$\kappa=\beth_\kappa$.
+\end{prop}
+
+\begin{proof}
+Seperti dalam \olref{alephfixed}, dengan menggunakan ``$\beth$'' sebagai
+ganti ``$\aleph$''.
+\end{proof}
+
+\begin{prop}\ollabel{stagesize}
+$\card{V_{\omega+\alpha}} = \beth_{\alpha}$. Jika $\omega \ordtimes
+\omega \leq \alpha$, maka $\card{V_\alpha} = \beth_\alpha$.
+\end{prop}
+
+\begin{proof}
+Klaim pertama berlaku berdasarkan suatu induksi transfinit sederhana. Klaim
+kedua mengikuti karena, jika $\omega \ordtimes \omega \leq \alpha$, maka
+$\omega + \alpha = \alpha$. Untuk menetapkannya, kita menggunakan fakta-fakta
+tentang aritmetika ordinal dari \olref[ord-arithmetic][]{chap}. Pertama,
+perhatikan bahwa $\omega \ordtimes \omega = \omega \ordtimes (1 \ordplus
+\omega) = (\omega \ordtimes 1) \ordplus (\omega\ordtimes\omega) = \omega
+\ordplus (\omega \ordtimes \omega)$. Sekarang, jika $\omega \ordtimes \omega
+\leq \alpha$, yakni $\alpha = (\omega\ordtimes\omega) \ordplus \beta$ bagi
+suatu $\beta$, maka $\omega \ordplus \alpha = \omega \ordplus ((\omega
+\ordtimes \omega) \ordplus \beta) = (\omega \ordplus (\omega \ordtimes
+\omega)) \ordplus \beta = (\omega \ordtimes \omega) \ordplus \beta =
+\alpha$.
+\end{proof}
+
+\begin{cor}
+Terdapat suatu $\kappa$ sedemikian sehingga $\card{V_\kappa} = \kappa$.
+\end{cor}
+
+\begin{proof}
+Misalkan $\kappa$ suatu titik tetap-$\beth$ sebagaimana diberikan oleh
+\olref{bethfixed}. Jelas bahwa $\omega \ordtimes \omega < \kappa$. Jadi,
+$\card{V_\kappa} = \beth_\kappa= \kappa$ berdasarkan \olref{stagesize}.
+\end{proof}
+
+Terdapat sama banyak tahap di bawah $V_\kappa$ dengan !!{element}s dalam
+$V_\kappa$. Jadi, secara intuitif, $V_\kappa$ selebar tingginya. Hal ini
+sangat menyerupai Tristram Shandy: kita berpindah dari satu tahap ke tahap
+berikutnya dengan mengambil \emph{himpunan-himpunan kuasa}, sehingga hierarki
+menjadi \emph{jauh} lebih besar pada setiap langkah. Namun, ``pada akhirnya'',
+yakni pada tahap $\kappa$, lebar hierarki menyusul tingginya.
+
+Orang mungkin bertanya: \emph{Seberapa sering lebar hierarki menyamai
+tingginya?} Jawabannya: \emph{Sesering adanya ordinal.} Namun, jawaban ini
+memerlukan sedikit penjelasan.
+
+Kita mendefinisikan suatu suku $\tau$ sebagai berikut. Untuk sebarang $A$,
+tetapkan:
+\begin{align*}
+	\tau_0(A) & \defis \card{A}\\
+	\tau_{n+1}(A) & \defis \beth_{\tau_n(A)}\\
+	\tau(A) & \defis \bigcup_{n < \omega}\tau_n(A)
+\intertext{Seperti dalam \olref{bethfixed}, $\tau(A)$ merupakan titik
+tetap-$\beth$ bagi sebarang $A$, dan jelas $\card{A} < \tau(A)$. Sekarang
+perhatikan definisi rekursif berikut:}
+	W_0 &\defis 0\\
+	W_{\alpha + 1} & \defis \tau(W_\alpha)\\
+	W_\alpha & \defis \bigcup_{\beta < \alpha} W_\beta
+	\text{, jika $\alpha$ merupakan ordinal limit}
+\end{align*}
+Konstruksi ini terdefinisi bagi semua ordinal. Jadi, secara intuitif, $W$
+merupakan ``!!a{injection}'' dari ordinal-ordinal ke titik-titik tetap-$\beth$.
+Dan, tepat seperti sebelumnya, $V_{W_\alpha}$ selebar tingginya bagi sebarang
+$\alpha$.
+
+\end{document}

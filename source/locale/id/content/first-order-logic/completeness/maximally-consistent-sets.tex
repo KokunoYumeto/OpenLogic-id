@@ -1,0 +1,177 @@
+% Bagian: first-order-logic
+% Bab: completeness
+% Subbagian: maximally-consistent-sets
+
+% Definisi himpunan konsisten maksimal. Sifat-sifat himpunan konsisten
+% maksimal yang diperlukan untuk kelengkapan dibuktikan dalam
+% maximally-consistent-sets.tex pada bab tentang sistem bukti yang digunakan.
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{com}{mcs}
+\olsection{Himpunan \usetoken{P}{sentence} yang Konsisten Maksimal}
+
+\begin{defn}[Himpunan konsisten maksimal]
+\ollabel{mcs}
+Suatu himpunan~$\Gamma$ dari !!{sentence} bersifat \emph{konsisten maksimal}
+jika dan hanya jika
+\begin{enumerate}
+\item $\Gamma$ konsisten, dan
+\item jika $\Gamma \subsetneq \Gamma'$, maka $\Gamma'$ tak konsisten.
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+Definisi lain yang ekuivalen dengan definisi di atas ialah: suatu himpunan
+kalimat~$\Gamma$ bersifat \emph{konsisten maksimal} jika dan hanya jika
+\begin{enumerate}
+\item $\Gamma$ konsisten, dan
+\item jika $\Gamma \cup \{ !A \}$ konsisten, maka $!A \in \Gamma$.
+\end{enumerate}
+Dengan kata lain, !!{sentence} yang belum berada dalam~$\Gamma$ tidak dapat
+ditambahkan kepada himpunan konsisten maksimal~$\Gamma$ tanpa membuat
+himpunan lebih besar yang dihasilkan menjadi tak konsisten.
+\end{explain}
+
+\begin{explain}
+Himpunan konsisten maksimal penting dalam pembuktian kelengkapan karena kita
+dapat menjamin bahwa setiap himpunan konsisten dari !!{sentence}~$\Gamma$
+termuat dalam suatu himpunan konsisten maksimal~$\Gamma^*$, dan suatu himpunan
+konsisten maksimal memuat, untuk setiap !!{sentence}~$!A$, $!A$ atau
+negasinya~$\lnot !A$. Hal ini berlaku khususnya bagi !!{sentence} atomik;
+karena itu, dari suatu himpunan konsisten maksimal dalam bahasa yang diperluas
+secara tepat dengan !!{constant}, kita dapat membangun !!a{structure} dengan
+interpretasi !!{predicate} didefinisikan menurut !!{sentence} atomik mana
+yang berada dalam~$\Gamma^*$. Selanjutnya dapat ditunjukkan bahwa
+!!{structure} ini membuat semua !!{sentence} dalam~$\Gamma^*$ (dan karena itu
+juga semua kalimat dalam~$\Gamma$) benar. Pembuktian fakta terakhir ini
+mensyaratkan bahwa $\lnot !A \in \Gamma^*$ jika dan hanya jika
+$!A \notin \Gamma^*$, bahwa $(!A \lor !B) \in \Gamma^*$ jika dan hanya
+jika $!A \in \Gamma^*$ atau $!B \in \Gamma^*$, dan seterusnya.
+\end{explain}
+
+\begin{prop}
+\ollabel{prop:mcs}
+Andaikan $\Gamma$ konsisten maksimal. Maka:
+\begin{enumerate}
+\item \ollabel{prop:mcs-prov-in} Jika $\Gamma \Proves !A$, maka $!A \in
+  \Gamma$.
+
+\item \ollabel{prop:mcs-either-or} Untuk setiap $!A$, berlaku $!A \in
+  \Gamma$ atau $\lnot !A \in \Gamma$.
+
+\tagitem{prvAnd}{\ollabel{prop:mcs-and} $(!A \land !B) \in \Gamma$
+  jika dan hanya jika $!A \in \Gamma$ dan $!B \in \Gamma$.}{}
+
+\tagitem{prvOr}{\ollabel{prop:mcs-or} $(!A \lor !B) \in \Gamma$ jika dan
+  hanya jika $!A \in \Gamma$ atau $!B \in \Gamma$.}{}
+
+\tagitem{prvIf}{\ollabel{prop:mcs-if} $(!A \lif !B) \in \Gamma$ jika dan
+  hanya jika $!A \notin \Gamma$ atau $!B \in \Gamma$.}{}
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Untuk seluruh pembahasan berikut, andaikan bahwa $\Gamma$ konsisten maksimal.
+\begin{enumerate}
+\item Jika $\Gamma \Proves !A$, maka $!A \in \Gamma$.
+
+Andaikan $\Gamma \Proves !A$. Demi memperoleh kontradiksi, andaikan bahwa
+$!A \notin \Gamma$. Karena $\Gamma$ konsisten maksimal, $\Gamma \cup
+\{!A\}$ tak konsisten, sehingga $\Gamma \cup \{!A\} \Proves \lfalse$.
+Menurut
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-contr},prfND/{fol:ntd:prv:prop:provability-contr}},
+$\Gamma$ tak konsisten. Hal ini bertentangan dengan asumsi bahwa $\Gamma$
+konsisten. Jadi, tidak mungkin $!A \notin \Gamma$, sehingga
+$!A \in \Gamma$.
+
+\item Untuk setiap $!A$, berlaku $!A \in \Gamma$ atau
+$\lnot !A \in \Gamma$.
+
+Demi memperoleh kontradiksi, andaikan bahwa untuk suatu~$!A$ berlaku
+$!A \notin \Gamma$ dan $\lnot !A \notin \Gamma$. Karena $\Gamma$
+konsisten maksimal, $\Gamma \cup \{!A\}$ dan
+$\Gamma \cup \{\lnot !A\}$ keduanya tak konsisten, sehingga
+$\Gamma \cup \{!A\} \Proves \lfalse$ dan
+$\Gamma \cup \{\lnot !A\} \Proves \lfalse$. Menurut
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-exhaustive},prfND/{fol:ntd:prv:prop:provability-exhaustive}},
+$\Gamma$ tak konsisten, suatu kontradiksi. Jadi, !!a{sentence}~$!A$ semacam
+itu tidak mungkin ada dan, untuk setiap $!A$, berlaku $!A \in \Gamma$ atau
+$\lnot !A \in \Gamma$.
+
+\tagitem{defAnd}{}{%
+\iftag{probAnd}{Latihan.}{%
+$(!A \land !B) \in \Gamma$ jika dan hanya jika $!A \in \Gamma$ dan
+$!B \in \Gamma$:
+
+Untuk arah maju, andaikan $(!A \land !B) \in \Gamma$. Maka
+$\Gamma \Proves !A \land !B$. Menurut
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-land-left},prfND/{fol:ntd:prv:prop:provability-land-left}},
+$\Gamma \Proves !A$ dan $\Gamma \Proves !B$. Menurut
+\olref{prop:mcs-prov-in}, $!A \in \Gamma$ dan $!B \in \Gamma$, seperti
+yang diperlukan.
+
+Untuk arah sebaliknya, misalkan $!A \in \Gamma$ dan $!B \in \Gamma$.
+Maka $\Gamma \Proves !A$ dan $\Gamma \Proves !B$. Menurut
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-land-right},prfND/{fol:ntd:prv:prop:provability-land-right}},
+$\Gamma \Proves !A \land !B$. Menurut \olref{prop:mcs-prov-in},
+$(!A \land !B) \in \Gamma$.}}
+
+\tagitem{defOr}{}{%
+\iftag{probOr}{Latihan.}{%
+$(!A \lor !B) \in \Gamma$ jika dan hanya jika $!A \in \Gamma$ atau
+$!B \in \Gamma$.
+
+Untuk kontrapositif arah maju, andaikan bahwa $!A \notin \Gamma$ dan
+$!B \notin \Gamma$. Kita hendak menunjukkan bahwa
+$(!A \lor !B) \notin \Gamma$. Karena $\Gamma$ konsisten maksimal,
+$\Gamma \cup \{!A\} \Proves \lfalse$ dan
+$\Gamma \cup \{!B\} \Proves \lfalse$. Menurut
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-lor-left},prfND/{fol:ntd:prv:prop:provability-lor-left}},
+$\Gamma \cup \{(!A \lor !B)\}$ tak konsisten. Jadi,
+$(!A \lor !B) \notin \Gamma$, seperti yang diperlukan.
+
+Untuk arah sebaliknya, andaikan bahwa $!A \in \Gamma$ atau
+$!B \in \Gamma$. Maka $\Gamma \Proves !A$ atau $\Gamma \Proves !B$.
+Menurut
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-lor-right},prfND/{fol:ntd:prv:prop:provability-lor-right}},
+$\Gamma \Proves !A \lor !B$. Menurut \olref{prop:mcs-prov-in},
+$(!A \lor !B) \in \Gamma$, seperti yang diperlukan.}}
+
+\tagitem{defIf}{}{%
+\iftag{probIf}{Latihan.}{%
+$(!A \lif !B) \in \Gamma$ jika dan hanya jika $!A \notin \Gamma$ atau
+$!B \in \Gamma$:
+
+Untuk arah maju, misalkan $(!A \lif !B) \in \Gamma$, lalu, demi memperoleh
+kontradiksi, andaikan bahwa $!A \in \Gamma$ dan $!B \notin \Gamma$.
+Berdasarkan asumsi-asumsi ini, $\Gamma \Proves !A \lif !B$ dan
+$\Gamma \Proves !A$. Menurut
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-mp},prfND/{fol:ntd:prv:prop:provability-mp}},
+$\Gamma \Proves !B$. Namun, menurut \olref{prop:mcs-prov-in}, hal ini
+berarti $!B \in \Gamma$, bertentangan dengan asumsi bahwa
+$!B \notin \Gamma$.
+
+Untuk arah sebaliknya, pertama-tama tinjau kasus ketika
+$!A \notin \Gamma$. Menurut \olref{prop:mcs-either-or},
+$\lnot !A \in \Gamma$, sehingga $\Gamma \Proves \lnot !A$. Menurut
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-lif},prfND/{fol:ntd:prv:prop:provability-lif}},
+$\Gamma \Proves !A \lif !B$. Sekali lagi, menurut
+\olref{prop:mcs-prov-in}, kita memperoleh $(!A \lif !B) \in \Gamma$,
+seperti yang diperlukan.
+
+Sekarang tinjau kasus ketika $!B \in \Gamma$. Maka $\Gamma \Proves !B$,
+dan menurut
+\tagrefs{prfSC/{fol:seq:prv:prop:provability-lif},prfND/{fol:ntd:prv:prop:provability-lif}},
+$\Gamma \Proves !A \lif !B$. Menurut \olref{prop:mcs-prov-in},
+$(!A \lif !B) \in \Gamma$.}}
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+Lengkapi pembuktian \olref[fol][com][mcs]{prop:mcs}.
+\end{prob}
+
+\end{document}

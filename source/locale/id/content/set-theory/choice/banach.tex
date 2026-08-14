@@ -1,0 +1,91 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{choice}{banach}
+\olsection{Paradoks Banach--Tarski}
+
+Kita juga dapat mencoba membenarkan Pilihan, sebagaimana Boolos mencoba
+membenarkan Penggantian, dengan mengacu pada pertimbangan
+\emph{ekstrinsik} (lihat \olref[replacement][extrinsic]{sec}). Lagi pula,
+menerima Pilihan mempunyai banyak konsekuensi yang diinginkan: kemampuan
+membandingkan setiap kardinal; kemampuan mengurutkan baik setiap himpunan;
+kemampuan memperlakukan kardinal sebagai suatu jenis ordinal tertentu; dan
+sebagainya.
+
+Namun, kadang-kadang diklaim bahwa Pilihan mempunyai konsekuensi yang
+\emph{tidak diinginkan}. Sebagian besar klaim ini disebabkan oleh suatu
+hasil dari \cite{BanachTarski1924}.
+
+\begin{thm}[Paradoks Banach--Tarski (dalam $\ZFC$)]
+Sebarang bola dapat diuraikan menjadi sejumlah hingga kepingan yang dapat
+disusun kembali (melalui rotasi dan translasi) untuk membentuk dua salinan
+bola tersebut.
+\end{thm}
+\noindent
+Sekilas, hasil ini cukup mencengangkan. Jelas bahwa kedua bola mempunyai
+\emph{dua kali} volume bola semula. Namun, gerak kaku---rotasi dan
+translasi---tidak mengubah volume. Jadi, tampaknya Banach--Tarski
+memungkinkan kita mengada-adakan materi baru.
+
+Keadaannya bahkan lebih buruk.\footnote{Lihat
+\citet[Teorema 3.12]{Wagon2016}.} Penalaran yang serupa menunjukkan bahwa
+sebutir kacang polong dapat dipotong menjadi sejumlah hingga kepingan yang
+kemudian dapat disusun kembali (melalui rotasi dan translasi) untuk membentuk
+suatu benda dengan bentuk dan ukuran Big Ben.
+
+Namun, tidak satu pun dari hasil ini berlaku hanya dalam $\ZF$.\footnote{
+Meskipun Banach--Tarski dapat dibuktikan dengan prinsip-prinsip yang secara
+ketat lebih lemah daripada Pilihan; lihat \citet[hlm.~303]{Wagon2016}.}
+Jadi, kita menghadapi suatu keputusan: menolak Pilihan atau belajar hidup
+dengan ``paradoks'' tersebut.
+
+Kita akan mengemukakan bahwa kita sebaiknya belajar hidup dengan
+``paradoks'' itu. Bahkan, kita tidak menganggapnya sebagai paradoks yang
+berarti. Secara khusus, kita tidak melihat mengapa hasil itu lebih atau
+kurang paradoksal daripada hasil-hasil berikut:\footnote{
+\citet[hlm.~276--277]{Potter2004}, \citet[hlm.~16]{Weston2003}, dan
+\citet[hlm.~31, 308--309]{Wagon2016} mengemukakan pokok serupa dengan
+menggunakan contoh-contoh lain.}
+\begin{enumerate}
+	\item Terdapat sama banyak titik dalam interval $(0,1)$ dengan dalam
+	$\Real$.
+	\\\emph{Bukti}: perhatikan $\tan(\pi(r-\nicefrac{1}{2}))$.
+	\item Terdapat sama banyak titik pada suatu garis dengan dalam suatu
+	persegi.
+	\\Lihat \olref[his][set][pathology]{sec} dan
+	\olref[his][set][cantorplane]{sec}.
+	\item Terdapat kurva-kurva pengisi ruang.
+	\\Lihat \olref[his][set][pathology]{sec} dan
+	\olref[his][set][hilbertcurve]{sec}.
+\end{enumerate}
+Tidak satu pun dari ketiga hasil ini memerlukan Pilihan. Bahkan, sekarang
+kita cukup menganggapnya sebagai bagian matematika yang mengejutkan dan
+indah. Barangkali kita sebaiknya bersikap sama terhadap Paradoks
+Banach--Tarski.
+
+Memang, suatu pengamatan teknis diperlukan di sini; tetapi kita hanya perlu
+tetap berpikir jernih. Gerak kaku mempertahankan volume. Akibatnya, kelima
+kepingan\footnote{Kita menyatakan Paradoks tersebut dalam istilah
+``sejumlah hingga kepingan''. Sesungguhnya, \citet{Robinson1947}
+membuktikan bahwa penguraian dapat dicapai dengan \emph{lima} kepingan
+(tetapi tidak kurang). Untuk suatu bukti, lihat
+\citet[hlm.~66--67]{Wagon2016}.} yang menjadi hasil penguraian bola tidak
+mungkin semuanya \emph{terukur}. Secara kasar, tidak masuk akal untuk
+menetapkan volume kepada kepingan-kepingan individual ini. Anda perlu
+membayangkannya sebagai ``hamburan-hamburan tak hingga'' titik yang tidak
+dapat digambarkan. Barangkali memang ``aneh'' untuk memikirkan himpunan
+``yang terhambur secara tak hingga'' seperti itu. Namun, keberadaannya
+tampak mengikuti perintah yang terkandung dalam \stagesacc{} bahwa kita
+harus membentuk \emph{semua koleksi yang mungkin} dari himpunan-himpunan
+yang telah tersedia sebelumnya.
+
+Jika semua itu tidak meyakinkan, berikut suatu argumen (ekstrinsik) terakhir
+untuk menerima Paradoks Banach--Tarski. Paradoks itu segera menghasilkan
+lelucon matematika terbaik sepanjang masa:
+\begin{enumerate}
+	\item[] \emph{Pertanyaan}. Apa anagram dari ``Banach--Tarski''?
+	\item[] \emph{Jawaban}. ``Banach--Tarski Banach--Tarski''.
+\end{enumerate}
+
+\end{document}

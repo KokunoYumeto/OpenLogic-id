@@ -1,0 +1,251 @@
+% Pilihan istilah Bahasa Indonesia untuk unit pembaca Open Logic.
+% Berkas ini dimuat sesudah konfigurasi utama, sehingga hanya token yang
+% berbeda dari bahasa sumber yang perlu didefinisikan ulang.
+
+% Sumber UI menggunakan "elemen" dan "anggota" sebagai sinonim, sedangkan
+% modul UT secara konsisten memakai "anggota himpunan" dalam definisi.
+\settexttoken{element}{anggota}{anggota}[Anggota][Anggota]
+
+% Bahasa Indonesia tidak memakai artikel tak tentu a/an. Pertahankan bentuk
+% token !!a{element} di sumber, tetapi kosongkan keluaran artikelnya.
+\definetoken{a}{element}{}
+\definetoken{A}{element}{}
+
+% Istilah fungsi mengikuti buku teks Konsep Dasar Matematika UIN KHAS:
+% fungsi injektif, surjektif, dan bijektif; bentuk nomina Indonesianya
+% adalah injeksi, surjeksi, dan bijeksi. Bentuk tunggal dan jamak sama.
+\settexttoken{injective}*{injektif}{injektif}
+\settexttoken{injection}*{injeksi}{injeksi}
+\settexttoken{surjective}{surjektif}{surjektif}
+\settexttoken{surjection}{surjeksi}{surjeksi}
+\settexttoken{bijective}{bijektif}{bijektif}
+\settexttoken{bijection}{bijeksi}{bijeksi}
+
+% Artikel tak tentu bahasa Inggris pada token fungsi tidak mempunyai
+% padanan yang perlu dicetak dalam bahasa Indonesia.
+\definetoken{a}{injective}{}
+\definetoken{A}{injective}{}
+\definetoken{a}{injection}{}
+\definetoken{A}{injection}{}
+\definetoken{a}{surjective}{}
+\definetoken{A}{surjective}{}
+\definetoken{a}{surjection}{}
+\definetoken{A}{surjection}{}
+\definetoken{a}{bijective}{}
+\definetoken{A}{bijective}{}
+\definetoken{a}{bijection}{}
+\definetoken{A}{bijection}{}
+
+% Token logika yang pertama kali muncul pada bab Pohon dan akan dipakai
+% kembali dalam sintaks serta teori bukti.
+\settexttoken{formula}*{formula}{formula}
+\settexttoken{derivation}*{derivasi}{derivasi}
+\definetoken{a}{formula}{}
+\definetoken{A}{formula}{}
+\definetoken{a}{derivation}{}
+\definetoken{A}{derivation}{}
+
+% Istilah dasar sintaks dan semantik proposisional. Bahasa Indonesia tidak
+% menandai jamak pada nomina ini melalui sufiks, dan artikel a/A dikosongkan.
+\settexttoken{propositional variable}{variabel proposisi}{variabel proposisi}[Variabel proposisi][Variabel proposisi]
+\settexttoken{operator}{operator logis}{operator logis}[Operator logis][Operator logis]
+\settexttoken{conditional}{implikasi}{implikasi}[Implikasi][Implikasi]
+\settexttoken{biconditional}{biimplikasi}{biimplikasi}[Biimplikasi][Biimplikasi]
+\settexttoken{falsity}{kepalsuan}{kepalsuan}[Kepalsuan][Kepalsuan]
+\settexttoken{truth}{kebenaran}{kebenaran}[Kebenaran][Kebenaran]
+\settexttoken{structure}{struktur}{struktur}[Struktur][Struktur]
+\settexttoken{valuation}{valuasi}{valuasi}[Valuasi][Valuasi]
+\definetoken{a}{propositional variable}{}
+\definetoken{A}{propositional variable}{}
+\definetoken{a}{operator}{}
+\definetoken{A}{operator}{}
+\definetoken{a}{conditional}{}
+\definetoken{A}{conditional}{}
+\definetoken{a}{biconditional}{}
+\definetoken{A}{biconditional}{}
+\definetoken{a}{falsity}{}
+\definetoken{A}{falsity}{}
+\definetoken{a}{truth}{}
+\definetoken{A}{truth}{}
+\definetoken{a}{structure}{}
+\definetoken{A}{structure}{}
+\definetoken{a}{valuation}{}
+\definetoken{A}{valuation}{}
+
+% Istilah teori bukti yang pertama kali diperlukan oleh ikhtisar sistem
+% pembuktian. Bentuk nomina tidak berubah untuk jamak; artikel bahasa
+% Inggris dikosongkan. Infleksi pasif verba tetap ditangani dalam kalimat
+% target apabila sufiks bahasa Inggris pada sumber tidak dapat dipertahankan.
+\settexttoken{sentence}{kalimat}{kalimat}[Kalimat][Kalimat]
+\settexttoken{derive}{menurunkan}{menurunkan}[Menurunkan][Menurunkan]
+\settexttoken{derivable}{dapat diturunkan}{dapat diturunkan}[Dapat diturunkan][Dapat diturunkan]
+\settexttoken{derivability}{keterderivasian}{keterderivasian}[Keterderivasian][Keterderivasian]
+\settexttoken{tableau}{tableau}{tableau}[Tableau][Tableau]
+\settexttoken{signed formula}{formula bertanda}{formula bertanda}[Formula bertanda][Formula bertanda]
+\settexttoken{discharge}{melepaskan}{melepaskan}[Melepaskan][Melepaskan]
+\settexttoken{discharged}{dilepaskan}{dilepaskan}[Dilepaskan][Dilepaskan]
+\settexttoken{undischarged}{belum dilepaskan}{belum dilepaskan}[Belum dilepaskan][Belum dilepaskan]
+\settexttoken{variable}{variabel}{variabel}[Variabel][Variabel]
+\settexttoken{constant}{simbol konstanta}{simbol konstanta}[Simbol konstanta][Simbol konstanta]
+\settexttoken{main operator}{operator utama}{operator utama}[Operator utama][Operator utama]
+\settexttoken{identity}{predikat identitas}{predikat identitas}[Predikat identitas][Predikat identitas]
+\settexttoken{nonderivability}{ketakterderivasian}{ketakterderivasian}[Ketakterderivasian][Ketakterderivasian]
+\settexttoken{proof}{bukti}{bukti}[Bukti][Bukti]
+\settexttoken{prove}{membuktikan}{membuktikan}[Membuktikan][Membuktikan]
+\settexttoken{proving}{membuktikan}{membuktikan}[Membuktikan][Membuktikan]
+\settexttoken{provable}{dapat dibuktikan}{dapat dibuktikan}[Dapat dibuktikan][Dapat dibuktikan]
+\settexttoken{introduction}{introduksi}{introduksi}[Introduksi][Introduksi]
+\settexttoken{elimination}{eliminasi}{eliminasi}[Eliminasi][Eliminasi]
+\settexttoken{height}{tinggi}{tinggi}[Tinggi][Tinggi]
+\settexttoken{depth}{kedalaman}{kedalaman}[Kedalaman][Kedalaman]
+% `hp` adalah singkatan teknis baku untuk height-preserving; pertahankan
+% bentuk singkatnya, sementara istilah panjang di dalam prosa dilokalkan.
+\settexttoken{hp}{hp}{hp}[HP][HP]
+\settexttoken{relational model}{model relasional}{model relasional}[Model relasional][Model relasional]
+\settexttoken{parameter}{parameter}{parameter}[Parameter][Parameter]
+\settexttoken{colorC}{merah}{merah}[Merah][Merah]
+\settexttoken{colorD}{biru}{biru}[Biru][Biru]
+\settexttoken{colorE}{hijau}{hijau}[Hijau][Hijau]
+\definetoken{a}{sentence}{}
+\definetoken{A}{sentence}{}
+\definetoken{a}{tableau}{}
+\definetoken{A}{tableau}{}
+\definetoken{a}{signed formula}{}
+\definetoken{A}{signed formula}{}
+\definetoken{a}{variable}{}
+\definetoken{A}{variable}{}
+\definetoken{a}{constant}{}
+\definetoken{A}{constant}{}
+\definetoken{a}{main operator}{}
+\definetoken{A}{main operator}{}
+\definetoken{a}{identity}{}
+\definetoken{A}{identity}{}
+\definetoken{a}{nonderivability}{}
+\definetoken{A}{nonderivability}{}
+\definetoken{a}{proof}{}
+\definetoken{A}{proof}{Suatu}
+\definetoken{a}{introduction}{}
+\definetoken{A}{introduction}{Suatu}
+\definetoken{a}{elimination}{}
+\definetoken{A}{elimination}{Suatu}
+\definetoken{a}{relational model}{}
+\definetoken{A}{relational model}{Suatu}
+\definetoken{a}{parameter}{}
+\definetoken{A}{parameter}{Suatu}
+\definetoken{a}{derivability}{}
+\definetoken{A}{derivability}{}
+\definetoken{a}{undischarged}{}
+\definetoken{A}{undischarged}{}
+
+% Apabila artikel tak tentu berkode `A` muncul pada awal kalimat, pengosongan
+% artikel Inggris akan menyisakan nomina berhuruf kecil. `Suatu` menjaga
+% kapitalisasi dan kelancaran kalimat tanpa mengubah token matematisnya.
+\definetoken{A}{derivation}{Suatu}
+\definetoken{A}{tableau}{Suatu}
+\definetoken{A}{signed formula}{Suatu}
+
+% Label justifikasi tableau ini ditulis langsung sebagai makro oleh sumber,
+% bukan melalui sistem token, sehingga harus dilokalkan secara eksplisit.
+\RenewDocumentCommand{\TAss}{}{Asumsi}
+
+% Singkatan justifikasi pada derivasi aksiomatik juga ditulis langsung
+% sebagai makro oleh sumber. `Hip` mempertahankan bentuk ringkas small caps
+% sambil menampilkan singkatan Bahasa Indonesia untuk `hipotesis`.
+\RenewDocumentCommand{\Hyp}{}{\textsc{Hip}}
+
+% Kanon pembanding UIN KHAS membedakan "himpunan terhitung" dari
+% "himpunan takterhitung" dan mencatat "terbilang" untuk himpunan tak
+% hingga yang dapat dipasangkan satu-satu dengan bilangan asli. Bentuk ini
+% mengikat token countability tanpa mengubah definisi matematis sumber.
+\settexttoken{enumerable}*{terhitung}{terhitung}
+\settexttoken{nonenumerable}{takterhitung}{takterhitung}
+\settexttoken{denumerable}{terbilang}{terbilang}
+\definetoken{a}{enumerable}{}
+\definetoken{A}{enumerable}{}
+\definetoken{a}{nonenumerable}{}
+\definetoken{A}{nonenumerable}{}
+\definetoken{a}{denumerable}{}
+\definetoken{A}{denumerable}{}
+
+% Istilah komputabilitas. Bentuk ini dibedakan dari `enumerable` dalam
+% teori himpunan: di sini enumerasinya harus dihasilkan secara efektif.
+\settexttoken{computably enumerable}{terenumerasi secara komputabel}{terenumerasi secara komputabel}[Terenumerasi secara komputabel][Terenumerasi secara komputabel]
+\settexttoken{c.e.}{c.e.\@}{c.e.\@}[C.e.\@][C.e.\@]
+\definetoken{a}{computably enumerable}{}
+\definetoken{A}{computably enumerable}{}
+\definetoken{a}{c.e.}{}
+\definetoken{A}{c.e.}{}
+
+% Istilah model-teori yang pertama kali diperlukan oleh bab Kelengkapan.
+% `Predicate` dan `function` pada sumber berarti simbol nonlogis, bukan
+% ekstensi/operasi yang menafsirkannya. Bentuk tunggal dan jamak tidak
+% dibedakan secara morfologis dalam keluaran Bahasa Indonesia.
+\settexttoken{complete}{lengkap}{lengkap}[Lengkap][Lengkap]
+\settexttoken{axiomatizable}*{dapat diaksiomatisasi}{dapat diaksiomatisasi}[Dapat diaksiomatisasi][Dapat diaksiomatisasi]
+\settexttoken{axiomatized}*{diaksiomatisasi}{diaksiomatisasi}[Diaksiomatisasi][Diaksiomatisasi]
+\settexttoken{axiomatizability}*{keteraksiomatisasian}{keteraksiomatisasian}[Keteraksiomatisasian][Keteraksiomatisasian]
+\settexttoken{represents}{merepresentasikan}{merepresentasikan}[Merepresentasikan][Merepresentasikan]
+\settexttoken{representable}{dapat direpresentasikan}{dapat direpresentasikan}[Dapat direpresentasikan][Dapat direpresentasikan]
+\settexttoken{decidable}{dapat diputuskan}{dapat diputuskan}[Dapat diputuskan][Dapat diputuskan]
+\settexttoken{lambda define}{mendefinisikan secara $\lambd$}{mendefinisikan secara $\lambd$}[Mendefinisikan secara $\lambd$][Mendefinisikan secara $\lambd$]
+\settexttoken{lambda defined}{didefinisikan secara $\lambd$}{didefinisikan secara $\lambd$}[Didefinisikan secara $\lambd$][Didefinisikan secara $\lambd$]
+\settexttoken{lambda definable}{dapat didefinisikan secara $\lambd$}{dapat didefinisikan secara $\lambd$}[Dapat didefinisikan secara $\lambd$][Dapat didefinisikan secara $\lambd$]
+\settexttoken{language}{bahasa}{bahasa}[Bahasa][Bahasa]
+\settexttoken{predicate}{simbol predikat}{simbol predikat}[Simbol predikat][Simbol predikat]
+\settexttoken{function}{simbol fungsi}{simbol fungsi}[Simbol fungsi][Simbol fungsi]
+\settexttoken{domain}{domain}{domain}[Domain][Domain]
+\settexttoken{value}{nilai}{nilai}[Nilai][Nilai]
+\definetoken{a}{complete}{}
+\definetoken{A}{complete}{}
+\definetoken{a}{axiomatizable}{}
+\definetoken{A}{axiomatizable}{}
+\definetoken{a}{axiomatized}{}
+\definetoken{A}{axiomatized}{}
+\definetoken{a}{axiomatizability}{}
+\definetoken{A}{axiomatizability}{}
+\definetoken{a}{represents}{}
+\definetoken{A}{represents}{}
+\definetoken{a}{representable}{}
+\definetoken{A}{representable}{}
+\definetoken{a}{decidable}{}
+\definetoken{A}{decidable}{}
+\definetoken{a}{lambda define}{}
+\definetoken{A}{lambda define}{}
+\definetoken{a}{lambda defined}{}
+\definetoken{A}{lambda defined}{}
+\definetoken{a}{lambda definable}{}
+\definetoken{A}{lambda definable}{}
+\definetoken{a}{language}{}
+\definetoken{A}{language}{}
+\definetoken{a}{predicate}{}
+\definetoken{A}{predicate}{}
+\definetoken{a}{function}{}
+\definetoken{A}{function}{}
+\definetoken{a}{domain}{}
+\definetoken{A}{domain}{}
+\definetoken{a}{value}{}
+\definetoken{A}{value}{}
+
+% Istilah sintaksis yang mulai dipakai pada bab Sintaksis Logika Orde
+% Pertama. Bentuk jamak tidak berubah dalam Bahasa Indonesia, dan artikel
+% tak tentu Inggris harus kosong. `free for` menyatakan bahwa substitusi
+% suatu suku bagi variabel tidak menangkap variabel bebas.
+\settexttoken{subformula}{subformula}{subformula}[Subformula][Subformula]
+\settexttoken{free for}{bebas disubstitusikan bagi}{bebas disubstitusikan bagi}[Bebas disubstitusikan bagi][Bebas disubstitusikan bagi]
+\definetoken{a}{subformula}{}
+\definetoken{A}{subformula}{}
+\definetoken{a}{free for}{}
+\definetoken{A}{free for}{}
+
+% Makro sumber menulis dua permukaan pembaca Inggris secara langsung.
+% Definisi lokal ini mempertahankan argumen, rumus, dan alur makro sambil
+% melokalkan label kasus atomik dan penanda latihan.
+\RenewDocumentCommand \indcase { s t{!} m m +m }{%
+  \DeclareDocumentMacro \indfrm {#3}%
+  \DeclareDocumentMacro \indfrmp {#3}%
+  \DeclareDocumentMacro \indcomplex {#4}%
+  \IfBooleanTF{#1}
+     {$#3$ atomik: }{$#3 \ident #4$: }
+  \IfBooleanTF{#2}
+     {latihan.}
+     {#5}}

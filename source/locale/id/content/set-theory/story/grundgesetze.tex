@@ -1,0 +1,68 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{story}{blv}
+
+\olsection{Lampiran: Hukum Dasar V Frege}
+
+Dalam \olref[rus]{sec}, kita menjelaskan bahwa Russell merumuskan
+paradoksnya sebagai masalah bagi sistem yang diuraikan Frege dalam
+\emph{Grundgesetze}. Sistem Frege tidak memuat perumusan langsung Komprehensi
+Naif. Jadi, dalam lampiran ini, kita akan menjelaskan dengan sangat singkat
+apa yang \emph{termuat} dalam sistem Frege, bagaimana hubungannya dengan
+Komprehensi Naif, dan bagaimana hubungannya dengan Paradoks Russell.
+
+Sistem Frege bersifat \emph{orde kedua} dan dirancang untuk merumuskan
+gagasan tentang \emph{ekstensi suatu konsep}.\footnote{Tepatnya, Frege
+berusaha memformalkan suatu gagasan yang lebih umum: ``rentang-nilai'' suatu
+fungsi. Ekstensi konsep merupakan kasus khusus dari gagasan yang lebih umum
+tersebut. Lihat \citet[pp.\ 8--9]{Heck2012} untuk perinciannya.} Dengan
+menggunakan notasi yang diilhami Frege, kita akan menulis
+$\fregeext{x}{F(x)}$ untuk \emph{ekstensi konsep~$F$}. Perangkat ini mengambil
+sebuah \emph{predikat}, ``$F$'', dan mengubahnya menjadi sebuah
+\emph{term} (orde pertama), ``$\fregeext{x}{F(x)}$''. Dengan perangkat ini,
+Frege memberikan \emph{definisi} keanggotaan berikut:
+\[
+	a \in b =_\text{df} \exists G(b = \fregeext{x}{G(x)} \land Ga)
+\]
+secara kasar: $a \in b$ jika dan hanya jika $a$ berada di bawah suatu konsep
+yang ekstensinya adalah $b$. (Perhatikan bahwa penguantifikasi ``$\exists G$'' bersifat orde
+kedua.) Frege juga mempertahankan prinsip berikut, yang dikenal sebagai
+\emph{Hukum Dasar V}:
+$$\fregeext{x}{F(x)} = \fregeext{x}{G(x)} \liff \forall x (Fx \liff Gx)$$
+secara kasar: konsep-konsep mempunyai ekstensi identik jika dan hanya jika
+konsep-konsep itu koekstensif. (Sekali lagi, baik ``$F$'' maupun ``$G$'' berada pada posisi
+predikat.) Kini suatu prinsip sederhana menghubungkan keanggotaan dengan
+terpenuhinya sifat:
+
+\begin{lem}[dalam \emph{Grundgesetze}]\ollabel{lem:Fregeextensions}
+$\forall F \forall a(a \in \fregeext{x}{F(x)} \liff Fa)$
+\end{lem}
+
+\begin{proof}
+Tetapkan $F$ dan $a$. Sekarang $a \in \fregeext{x}{F(x)}$ jika dan hanya jika
+$\exists G(\fregeext{x}{F(x)} = \fregeext{x}{G(x)} \land Ga)$ (menurut
+definisi keanggotaan) jika dan hanya jika
+$\exists G(\forall x(Fx \liff Gx) \land Ga)$ (menurut Hukum Dasar V) jika
+dan hanya jika
+$Fa$ (menurut logika orde kedua elementer).
+\end{proof}
+
+Dan hasil ini memberikan Komprehensi Naif hampir seketika:
+
+\begin{lem}[dalam \emph{Grundgesetze}.]
+$\forall F \exists s \forall a (a \in s \liff Fa)$
+\end{lem}
+
+\begin{proof}
+Tetapkan $F$; sekarang \olref{lem:Fregeextensions} memberikan
+$\forall a (a \in \fregeext{x}{F(x)} \liff Fa)$; jadi
+$\exists s\forall a(a \in s \liff Fa)$ berdasarkan generalisasi
+eksistensial. Hasilnya mengikuti karena $F$ dipilih secara sembarang.
+\end{proof}
+
+Paradoks Russell mengikuti dengan mengambil $F$ sebagaimana diberikan oleh
+$\forall x(Fx \liff x \notin x)$.
+
+\end{document}

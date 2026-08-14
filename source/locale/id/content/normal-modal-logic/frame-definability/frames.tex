@@ -1,0 +1,51 @@
+% Part: normal-modal-logic
+% Chapter: frame-correspondence
+% Section: frames
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{frd}{fra}
+
+\olsection{Kerangka}
+
+\begin{defn}
+  Suatu \emph{kerangka} merupakan pasangan $\mModel{F}=\tuple{W,R}$, dengan
+  $W$ suatu himpunan dunia tak kosong dan $R$ suatu relasi biner pada~$W$.
+  Suatu model~$\mModel{M}$ \emph{berbasis pada} kerangka
+  $\mModel{F}=\tuple{W,R}$ jika dan hanya jika
+  $\mModel{M}=\tuple{W,R,V}$ bagi suatu valuasi~$V$.
+\end{defn}
+
+\begin{defn}
+  Jika $\mModel{F}$ merupakan suatu kerangka, kita mengatakan bahwa $!A$
+  \emph{valid pada~$\mModel{F}$}, $\mModel{F}\Entails !A$, jika
+  $\mSat{M}{!A}$ bagi setiap model~$\mModel{M}$ yang berbasis
+  pada~$\mModel{F}$.
+
+  Jika $\mClass{F}$ merupakan suatu kelas kerangka, kita mengatakan bahwa
+  $!A$ \emph{valid pada~$\mClass{F}$}, $\mClass{F}\Entails !A$, jika dan
+  hanya jika $\mModel{F}\Entails !A$ bagi setiap
+  kerangka~$\mModel{F}\in\mClass{F}$.
+\end{defn}
+
+Kerangka menarik karena korespondensi antara skema dan sifat relasi
+aksesibilitas~$R$ terjadi pada tingkat kerangka, \emph{bukan model}. Sebagai
+contoh, meskipun \Ax{T} benar dalam semua model refleksif, tidak setiap model
+tempat \Ax{T} benar bersifat refleksif. Akan tetapi, \emph{memang} benar bahwa
+\Ax{T} tidak hanya \emph{valid} pada semua \emph{kerangka} refleksif, tetapi
+setiap kerangka tempat \Ax{T} valid juga refleksif.
+
+\begin{rem}
+Validitas pada suatu kelas kerangka merupakan kasus khusus pengertian validitas
+pada suatu kelas model: $\mClass{F}\Entails !A$ jika dan hanya jika
+$\mClass{C}\Entails !A$, dengan $\mClass{C}$ kelas semua model yang berbasis
+pada suatu kerangka dalam~$\mClass{F}$.
+
+Jelas bahwa jika !!a{formula} atau suatu skema valid, yakni valid terhadap
+kelas \emph{semua} model, formula atau skema itu juga valid terhadap setiap
+kelas kerangka~$\mClass{F}$.
+\end{rem}
+
+\end{document}

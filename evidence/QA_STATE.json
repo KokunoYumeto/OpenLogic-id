@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "version": "OLP-0722-20260814",
+  "coverage": "Complete Indonesian edition: OLP-0001 through OLP-0722, 722/722 frozen content modules",
+  "source_authority": {
+    "commit": "9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+    "tree": "f67757bb9305b173634082ab4cefd5601a707a34"
+  },
+  "source_replay": {
+    "status": "PASS_HASH_AND_EXISTENCE",
+    "rows": 722,
+    "missing_targets": 0,
+    "source_hash_mismatches": 0,
+    "target_hash_mismatches": 0,
+    "control_character_files": 0,
+    "brace_delta_mismatches": 0,
+    "closure_sha256": "964A274B418C06C99130AD33E8326629D5C35BF677D7C9A6166C19A6F91A033B"
+  },
+  "reviewed_structural_differences": {
+    "active_environment_sequence_files": 1,
+    "reference_label_citation_import_asset_sequence_files": 14,
+    "semantic_token_base_sequence_files": 65,
+    "disposition": "Explicit review surfaces arising from localization grammar, declared source repairs, or reviewed structural corrections; exact IDs are retained in COMPLETE_0722_CLOSURE_REPLAY.json and batch receipts."
+  },
+  "model_or_agent_checks": "ADMITTED_AGGREGATE_MODEL_REVIEW_722_OF_722",
+  "deterministic_build": {
+    "status": "PASS",
+    "exit_code": 0,
+    "fatal_or_error_diagnostics": 0,
+    "missing_file_or_glyph_diagnostics": 0,
+    "unresolved_references_or_citations": 0,
+    "overfull_hbox_warnings": 557,
+    "underfull_hbox_warnings": 22,
+    "underfull_vbox_warnings": 38,
+    "log_sha256": "74CD54FDC23D0FF30D4DAABF0A32832D05115889A0FFF68E79CF0A2CE02E2937"
+  },
+  "reader_filename": "00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf",
+  "reader_pages": 1116,
+  "reader_bytes": 5591857,
+  "reader_sha256": "FE6174AFFBB3174CEC813630E4D7608ACDAFA89FE044BFFC486B62E66E6A161C",
+  "text_layer": {
+    "status": "PASS",
+    "bytes": 2288540,
+    "lines": 47036,
+    "sha256": "DD22475047913AA92C23E51B6F04A9C5B6388550D930CE94FBBD624C53F42468",
+    "replacement_glyphs_or_question_pairs": 0,
+    "raw_localization_tokens": 0,
+    "undefined_or_placeholder_markers": 0,
+    "stale_git_footers": 0
+  },
+  "rendered_inspection": {
+    "status": "CLEAN",
+    "pages_rendered": 1116,
+    "pages_inspected": 1116,
+    "dpi": 144,
+    "body_defects_observed": 0,
+    "footer_correction_replay": "100 no-footer pages pixel-identical; 1,016 changed pages confined to raster rows 1380-1397; zero changes outside footer band 1370-1400"
+  },
+  "accessibility": {
+    "fonts_embedded": "29/29",
+    "fonts_with_unicode_maps": "26/29",
+    "inherited_type3_without_tounicode": 3,
+    "pdf_tagged": false,
+    "claim": "searchable, not claimed fully accessible"
+  },
+  "artifact_manifest": "evidence/ARTIFACT_SHA256.tsv",
+  "unresolved_items": "evidence/UNRESOLVED_ITEMS.tsv",
+  "human_review_required": false,
+  "native_review_required": false,
+  "release_closed": true,
+  "external_publication_complete": false,
+  "closure_reason": "All 722/722 modules and every defined deterministic reader gate passed; remaining caveats are explicitly disclosed."
+}

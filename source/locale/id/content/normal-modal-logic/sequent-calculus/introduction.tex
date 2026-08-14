@@ -1,0 +1,50 @@
+% Part: normal-modal-logic
+% Chapter: sequent-calculus
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{seq}{int}
+
+\olsection{Pengantar}
+
+Kalkulus sekuen bagi logika proposisional dapat diperluas dengan aturan
+tambahan yang menangani~\iftag{prvBox}{$\Box$\iftag{prvDiamond}{ dan~}{}}{}%
+\iftag{prvDiamond}{$\Diamond$}{}. Sebagai contoh, bagi~$\Log{K}$, kita
+mempunyai \Log{LK} ditambah:
+\[
+  \iftag{prvBox}{\iftag{prvDiamond}{% <> and [] primitive
+    \Axiom$\Gamma \fCenter \Delta, !A$
+    \RightLabel{$\Box$}
+    \UnaryInf$\Box\Gamma \fCenter \Diamond\Delta, \Box!A$
+    \DisplayProof
+    \qquad
+    \Axiom$!A, \Gamma \fCenter \Delta$
+    \RightLabel{$\Diamond$}
+    \UnaryInf$\Diamond!A, \Box\Gamma \fCenter \Diamond\Delta$
+    \DisplayProof
+}{% only Box primitive
+\Axiom$\Gamma \fCenter !A$
+\RightLabel{$\Box$}
+\UnaryInf$\Box\Gamma \fCenter \Box!A$
+\DisplayProof
+}}{% only <> primitive
+  \Axiom$!A \fCenter \Delta$
+  \RightLabel{$\Diamond$}
+  \UnaryInf$\Diamond!A \fCenter \Diamond\Delta$
+  \DisplayProof
+}
+\]
+Bagi perluasan~$\Log{K}$, aturan tambahan lain juga harus ditambahkan.
+
+Tidak setiap logika modal mempunyai kalkulus sekuen semacam itu. Bahkan
+$\Log{S5}$, yang secara semantik sederhana (logika itu dapat didefinisikan
+tanpa menggunakan relasi aksesibilitas sama sekali), belum diketahui
+mempunyai kalkulus sekuen yang diperoleh dari~$\Log{LK}$ dan lengkap tanpa
+aturan~\Cut. Akan tetapi, logika itu mempunyai kalkulus \emph{hipersekuen}
+lengkap yang bebas potongan.
+
+\end{document}
+

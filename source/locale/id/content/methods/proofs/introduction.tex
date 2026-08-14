@@ -1,0 +1,78 @@
+% Part: methods
+% Chapter: proofs
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mth}{prf}{int}
+
+\olsection{Pendahuluan}
+
+Berdasarkan pengalaman Anda dalam pengantar logika, Anda mungkin
+sudah terbiasa dengan !!a{derivation} system---barangkali sistem
+!!{derivation} deduksi alami atau bergaya Fitch, atau mungkin sistem
+pohon bukti. Anda mungkin ingat pernah membuat bukti dalam sistem-sistem
+tersebut, baik untuk membuktikan !!a{formula} maupun untuk menunjukkan
+bahwa suatu argumen tertentu sahih. Untuk melakukannya, Anda
+menerapkan kaidah-kaidah sistem sampai memperoleh hasil akhir yang
+diinginkan. Ketika bernalar \emph{tentang} logika, kita juga membuktikan
+berbagai hal, tetapi dalam kebanyakan kasus kita tidak menggunakan
+!!a{derivation} system. Bahkan, sebagian besar bukti yang kita bahas
+ditulis dalam bahasa Inggris (barangkali dengan sedikit bahasa
+simbolik yang disisipkan), bukan seluruhnya dalam bahasa logika orde
+pertama. Ketika menyusun bukti semacam itu, pada mulanya Anda mungkin
+bingung---bagaimana saya membuktikan sesuatu tanpa !!a{derivation}
+system? Bagaimana saya memulainya? Bagaimana saya tahu bahwa bukti saya
+benar?
+
+Sebelum mencoba membuat bukti, penting untuk mengetahui apa itu bukti
+dan bagaimana menyusunnya. Sesuai dengan namanya, sebuah \emph{bukti}
+dimaksudkan untuk menunjukkan bahwa sesuatu itu benar. Anda dapat
+membayangkannya sebagai dialog---seseorang bertanya apakah sesuatu itu
+benar, misalnya apakah setiap bilangan prima selain dua merupakan
+bilangan ganjil. Menjawab ``ya'' saja tidak cukup; orang itu mungkin
+ingin tahu \emph{mengapa}. Dalam hal ini, Anda akan memberinya bukti.
+
+Dalam percakapan sehari-hari, mungkin cukup untuk sekadar memberi
+isyarat menuju suatu jawaban atau memberikan jawaban yang tidak
+lengkap. Namun, dalam logika dan matematika, kita menginginkan bukti
+yang ketat---kita ingin menunjukkan bahwa sesuatu itu benar tanpa
+menyisakan \emph{keraguan apa pun}. Ini berarti bahwa setiap langkah
+dalam bukti harus dibenarkan dan pembenarannya harus kuat (yaitu,
+asumsi yang Anda gunakan memang benar-benar diasumsikan dalam
+pernyataan teorema yang sedang dibuktikan, definisi yang Anda gunakan
+harus diterapkan dengan benar, pembenaran yang dirujuk harus berupa
+inferensi yang benar, dan seterusnya).
+
+Biasanya kita membuktikan suatu pernyataan. Pernyataan yang kita
+buktikan disebut dengan berbagai nama: proposisi, teorema, lema, atau
+korolari. Proposisi adalah pernyataan dasar yang layak dibuktikan:
+cukup penting untuk dicatat, tetapi mungkin tidak terlalu mendalam
+atau tidak sering diterapkan. Teorema adalah proposisi yang penting
+dan berarti. Buktinya sering diuraikan menjadi beberapa langkah, dan
+kadang-kadang dinamai menurut orang yang pertama kali membuktikannya
+(misalnya Teorema Cantor dan teorema L\"owenheim--Skolem) atau menurut
+fakta yang dibahasnya (misalnya teorema kelengkapan). Lema adalah
+proposisi atau teorema yang digunakan dalam pembuktian suatu hasil
+yang lebih penting. Agak membingungkan, beberapa lema merupakan hasil
+penting dengan sendirinya dan juga dinamai menurut orang yang
+memperkenalkannya (misalnya Lema Zorn). Korolari adalah hasil yang
+dengan mudah mengikuti hasil lain.
+
+Pernyataan yang hendak dibuktikan sering memuat asumsi-asumsi yang
+memperjelas jenis objek yang sedang kita buktikan sesuatu tentangnya.
+Pernyataan itu mungkin diawali dengan ``Misalkan $!A$ adalah
+!!a{formula} berbentuk $!B \lif !C$'' atau ``Andaikan $\Gamma \Proves
+!A$'', atau kalimat serupa. Asumsi-asumsi ini merupakan
+\emph{hipotesis} proposisi, teorema, atau lema tersebut, dan Anda boleh
+menganggapnya benar dalam bukti. Hipotesis membatasi apa yang sedang
+kita buktikan dan juga memperkenalkan beberapa nama untuk objek yang
+sedang dibicarakan. Misalnya, jika proposisi Anda diawali dengan
+``Misalkan $!A$ adalah !!a{formula} berbentuk $!B \lif !C$'', Anda hanya
+membuktikan sesuatu mengenai semua rumus dari jenis tertentu (yaitu
+kondisional), dan dipahami bahwa $!B \lif !C$ adalah suatu kondisional
+sembarang yang akan dibahas oleh bukti Anda.
+
+\end{document}

@@ -1,0 +1,138 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: euclidean-filtrations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{fil}{euc}
+
+\olsection{Filtrasi dari Model Euklidean}
+
+Pendekatan dalam \olref[acc]{sec} tidak berhasil bagi model Euklidean ataupun
+model serial dan Euklidean. Tinjau model pada bagian atas
+\olref{fig:ser-eucl}, yang sekaligus Euklidean dan serial. Misalkan
+$\Gamma = \{p, \Box p \}$. Ketika kita mengambil filtrasi melalui $\Gamma$,
+berlaku $[w_1] = [w_3]$ sebab $w_1$ dan $w_3$ merupakan satu-satunya dunia yang
+bersepakat pada~$\Gamma$. Setiap filtrasi juga akan mempunyai panah yang
+diwarisi dari $\mModel{M}$, seperti digambarkan dalam
+\olref{fig:ser-eucl2}. Model itu tidak Euklidean. Selain itu, kita tidak dapat
+menambahkan panah kepada model tersebut untuk membuatnya Euklidean. Kita
+harus menambahkan panah ganda antara $[w_2]$ dan $[w_4]$, lalu juga antara
+$[w_2]$ dan~$[w_5]$. Namun, $\Box p$ seharusnya bernilai benar pada~$w_2$,
+sedangkan $p$ bernilai salah pada~$w_5$.
+
+\begin{figure}[htpb]
+  \centering
+  \begin{tikzpicture}[modal]
+    \node[world] (w1)
+          [label={left: \mFalse{p}},
+            label={below: $\mSat{{}}{\Box p}$}] {$w_1$};
+    \node[world] (w2)
+          [label={right: \mTrue{p}},
+            label = {below: $\mSat{{}}{\Box p}$},
+            right=of w1] {$w_2$};
+    \draw[->] (w1) to (w2);
+    \node[world] (w3)
+          [label={left: \mFalse{p}},
+            label={below: $\mSat{{}}{\Box p}$},
+            below=of w1] {$w_3$};
+    \node[world] (w4)
+          [label={right:\mTrue{p}},
+            label={below: $\mSat/{{}}{\Box p}$},
+            right=of w3] {$w_4$};
+    \draw[->] (w3) to (w4);
+    \draw[reflexive above] (w4) to (w4);
+    \node[world] (w5)
+          [label={right: \mFalse{p}},
+            label=below:$\mSat/{{}}{\Box p}$,
+            right=of w4] {$w_5$};
+    \draw[->, bend left] (w4) to (w5);
+    \draw[->, bend left] (w5) to (w4);
+    \draw[reflexive above] (w5) to (w5);
+  \end{tikzpicture}
+  \caption{Suatu model serial dan Euklidean.}
+  \ollabel{fig:ser-eucl}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[modal,every text node part/.style={align=center}]
+    \node[world] (w1)
+          [label={left: \mFalse{p}},
+            label={right:$[w_1]=[w_3]$},
+            label={below: $\mSat{{}}{\Box p}$}] {$[w_1]$};
+    \node[world] (w2)
+         [label={right: \mTrue{p}},
+           label = {below: $\mSat{{}}{\Box p}$},
+           right=of w1, yshift=1.5cm] {$[w_2]$};
+    \draw[->] (w1) to (w2);
+    \node[world] (w4)
+         [label={right:\mTrue{p}},
+           label={below: $\mSat/{{}}{\Box p}$},
+           right=of w1,yshift=-1.5cm] {$[w_4]$};
+    \draw[->] (w1) to (w4);
+    \draw[reflexive above] (w4) to (w4);
+    \node[world] (w5)
+         [label={right: \mFalse{p}},
+             label=below:$\mSat/{{}}{\Box p}$,
+             right=of w4] {$[w_5]$};
+    \draw[->, bend left] (w4) to (w5);
+    \draw[->, bend left] (w5) to (w4);
+    \draw[reflexive above] (w5) to (w5);
+  \end{tikzpicture}
+  \caption{Filtrasi dari model dalam \olref{fig:ser-eucl}.}
+  \ollabel{fig:ser-eucl2}
+\end{figure}
+
+Secara khusus, untuk memperoleh filtrasi Euklidean, tidaklah cukup meninjau
+filtrasi melalui sebarang $\Gamma$ yang tertutup terhadap sub-!!{formula}s.
+Sebagai gantinya, kita perlu meninjau himpunan $\Gamma$ yang
+\emph{tertutup secara modal} (lihat
+\olref[pre]{defn:modallyclosed}). Himpunan formula semacam itu tak berhingga,
+sehingga tidak langsung menghasilkan sifat model berhingga ataupun
+keterputusan sistem yang bersesuaian.
+
+\begin{thm}\ollabel{thm:modal-closed-filt}
+  Misalkan $\Gamma$ tertutup secara modal,
+  $\mModel{M}=\tuple{W,R,V}$, dan
+  $\mModel{M^*} = \tuple{W^*,R^*,V^*}$ merupakan filtrasi terkasar
+  dari~$\mModel{M}$.
+  \begin{enumerate}
+  \item Jika $\mModel{M}$ transitif, demikian pula $\mModel{M^*}$.
+  \item Jika $\mModel{M}$ Euklidean, demikian pula $\mModel{M^*}$.
+  \item Jika $\mModel{M}$ simetris, demikian pula $\mModel{M^*}$.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}
+  \item Jika $\mModel{M^*}$ merupakan filtrasi terkasar, maka menurut definisi
+    $R^*[u][v]$ berlaku jika dan hanya jika $C_1(u,v)$. Andaikan model semula
+    transitif. Untuk transitivitas, andaikan $C_1(u,v)$ dan
+    $C_1(v,w)$; kita harus menunjukkan $C_1(u,w)$.
+    \iftag{prvBox}{Andaikan $\mSat{M}{\Box !A}[u]$; maka
+      $\mSat{M}{\Box\Box!A}[u]$ sebab \Ax{4} valid dalam semua model
+      transitif; karena $\Box\Box!A \in \Gamma$ berdasarkan ketertutupan,
+      menurut $C_1(u,v)$ berlaku pula $\mSat{M}{\Box!A}[v]$, dan menurut
+      $C_1(v,w)$ berlaku pula $\mSat{M}{!A}[w]$. }{}\iftag{prvDiamond}{
+      Andaikan $\mSat{M}{!A}[w]$; maka $\mSat{M}{\Diamond !A}[v]$ menurut
+      $C_1(v,w)$, sebab $\Diamond !A \in \Gamma$ berdasarkan ketertutupan
+      modal. Menurut $C_1(u,v)$, kita memperoleh
+      $\mSat{M}{\Diamond\Diamond !A}[u]$ sebab
+      $\Diamond\Diamond!A \in \Gamma$ berdasarkan ketertutupan modal. Karena
+      $\Ax{4}_\Diamond$ valid dalam semua model transitif,
+      $\mSat{M}{\Diamond!A}[u]$.}{}
+  \item Latihan. Gunakan fakta bahwa \Ax{5} dan $\Ax{5_\Diamond}$ keduanya
+    valid dalam semua model Euklidean.
+  \item Latihan. Gunakan fakta bahwa \Ax{B} dan $\Ax{B_\Diamond}$ valid dalam
+    semua model simetris.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[nml][fil][euc]{thm:modal-closed-filt}.
+\end{prob}
+
+\end{document}

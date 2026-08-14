@@ -1,0 +1,234 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: examples-of-filtrations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{fil}{exf}
+
+\olsection{Contoh Filtrasi}
+
+Kita belum menunjukkan bahwa filtrasi apa pun memang ada. Namun, bagi setiap
+model $\mModel{M}$, sesungguhnya terdapat banyak filtrasi dari $\mModel{M}$
+melalui $\Gamma$. Secara khusus, kita mengidentifikasi dua di antaranya:
+filtrasi terhalus dan terkasar. Filtrasi dari model yang sama akan berbeda
+dalam relasi aksesibilitasnya (sebab \olref[fil]{defn:filtration} secara
+langsung menetapkan seperti apa $W^*$ dan~$V^*$). Filtrasi terhalus akan
+mempunyai sesedikit mungkin dunia yang saling berelasi, sedangkan filtrasi
+terkasar akan mempunyai sebanyak mungkin.
+
+\begin{defn}
+  Jika $\Gamma$ tertutup terhadap subformula, \emph{filtrasi terhalus}
+  $\mModel{M^*}$ dari suatu model $\mModel{M}$ didefinisikan dengan
+  menetapkan:
+  \[
+  R^*[u][v] \quad \text{jika dan hanya jika} \quad \exists u'\in [u] \;
+  \exists v' \in [v] : Ru'v'.
+  \]
+\end{defn}
+
+\begin{prop}\ollabel{prop:finest}
+  Filtrasi terhalus $\mModel{M^*}$ memang merupakan suatu filtrasi.
+\end{prop}
+
+\begin{proof}
+  Kita perlu memeriksa bahwa $R^*$, yang didefinisikan demikian, memenuhi
+  \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R}. Kita memeriksa
+  ketiga syarat itu secara berurutan.
+
+  Jika $Ruv$, maka karena $u \in [u]$ dan $v \in [v]$, berlaku pula
+  $R^*[u][v]$, sehingga \olref[fil]{defn:filtration-R1} terpenuhi.
+
+  \iftag{prvBox}{\iftag{probBox}{Verifikasi
+      \olref[fil]{defn:filtration-R2} kita tinggalkan sebagai
+      latihan.}{Untuk \olref[fil]{defn:filtration-R2}, andaikan
+        $\Box!A \in \Gamma$, $R^*[u][v]$, dan
+        $\mSat{M}{\Box!A}[u]$. Menurut definisi $R^*$, terdapat
+        $u' \equiv u$ dan $v' \equiv v$ sedemikian sehingga $Ru'v'$.
+        Karena $u$ dan $u'$ bersepakat pada $\Gamma$, berlaku pula
+        $\mSat{M}{\Box!A}[u']$, sehingga $\mSat{M}{!A}[v']$. Karena
+        $\Gamma$ tertutup terhadap sub-!!{formula}s, $v$ dan $v'$
+        bersepakat mengenai $!A$, sehingga $\mSat{M}{!A}[v]$, seperti yang
+        dikehendaki.}}{}
+
+  \iftag{prvDiamond}{\iftag{probDiamond}{Verifikasi
+      \olref[fil]{defn:filtration-R3} kita tinggalkan sebagai
+      latihan.}{Untuk memverifikasi \olref[fil]{defn:filtration-R3},
+        andaikan $\Diamond!A \in \Gamma$, $R^*[u][v]$, dan
+        $\mSat{M}{!A}[v]$. Menurut definisi $R^*$, terdapat
+        $u' \equiv u$ dan $v' \equiv v$ sedemikian sehingga $Ru'v'$.
+        Karena $v$ dan $v'$ bersepakat pada~$\Gamma$, dan $\Gamma$ tertutup
+        terhadap sub-!!{formula}s, berlaku pula $\mSat{M}{!A}[v']$, sehingga
+        $\mSat{M}{\Diamond !A}[u']$. Karena $u$ dan $u'$ juga bersepakat
+        pada $\Gamma$, maka $\mSat{M}{\Diamond !A}[u]$.}}{}
+\end{proof}
+
+\begin{probtag}{probBox,probDiamond}
+  Lengkapi pembuktian \olref[nml][fil][exf]{prop:finest}.
+\end{probtag}
+
+\begin{defn}
+  Jika $\Gamma$ tertutup terhadap subformula, \emph{filtrasi terkasar}
+  $\mModel{M^*}$ dari suatu model~$\mModel{M}$ didefinisikan dengan
+  menetapkan bahwa $R^*[u][v]$ jika dan hanya jika
+  \iftag{notprvBox,notprvDiamond}{syarat berikut dipenuhi:}{\emph{kedua}
+    syarat berikut dipenuhi:}
+  \begin{tagenumerate}{prvBox,prvDiamond}
+  \tagitem{prvBox}{\ollabel{defn:coarsest-Box}Jika $\Box!A \in \Gamma$
+    dan $\mSat{M}{\Box!A}[u]$, maka
+    $\mSat{M}{!A}[v]$\iftag{prvDiamond}{;}{.}}{}
+  \tagitem{prvDiamond}{\ollabel{defn:coarsest-Diamond}Jika $\Diamond!A
+    \in \Gamma$ dan $\mSat{M}{!A}[v]$, maka
+    $\mSat{M}{\Diamond!A}[u]$.}{}
+  \end{tagenumerate}
+\end{defn}
+
+\begin{prop}
+  Filtrasi terkasar $\mModel{M^*}$ memang merupakan suatu filtrasi.
+\end{prop}
+
+\begin{proof}
+  Berdasarkan definisi $R^*$, satu-satunya syarat yang masih harus
+  diverifikasi ialah implikasi dari $Ruv$ ke $R^*[u][v]$. Jadi, andaikan
+  $Ruv$. \iftag{prvBox}{Andaikan $\Box!A \in \Gamma$ dan
+    $\mSat{M}{\Box!A}[u]$; maka jelas bahwa
+    $\mSat{M}{!A}[v]$\iftag{prvDiamond}{, dan
+      \olref{defn:coarsest-Box} terpenuhi.}{.}}{}\iftag{prvDiamond}{Andaikan
+    $\Diamond!A \in \Gamma$ dan $\mSat{M}{!A}[v]$. Maka
+    $\mSat{M}{\Diamond!A}[u]$ karena~$Ruv$\iftag{prvBox}{, dan
+      \olref{defn:coarsest-Diamond} terpenuhi}{}.}{}
+\end{proof}
+
+\begin{ex}
+  Misalkan $W = \PosInt$, $Rnm$ jika dan hanya jika $m = n + 1$, dan
+  $V(p) = \Setabs{2n}{n \in \Nat}$. Model
+  $\mModel{M} = \tuple{W, R, V}$ digambarkan dalam
+  \olref{fig:ex-filtration}. Dunia-dunianya adalah $1$, $2$, dan seterusnya;
+  setiap dunia dapat mengakses tepat satu dunia lain---penerusnya---dan $p$
+  bernilai benar tepat pada semua bilangan genap.
+
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}[modal]
+      \node[world] (1) [label=below:\mFalse{p}] {$1$};
+      \node[world] (2) [label=below:\mTrue{p}, right=of 1] {$2$};
+      \node[world] (3) [label=below:\mFalse{p}, right=of 2] {$3$};
+      \node[world] (4) [label=below:\mTrue{p}, right=of 3] {$4$};
+      \node[phantom] (5) [right=of 4] {};
+      \draw[->] (1) to (2);
+      \draw[->] (2) to (3);
+      \draw[->] (3) to (4);
+      \draw[dotted] (4) to (5);
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[modal]
+      \node[world] (1) [label=below:\mFalse{p}] {$[1]$};
+      \node[world] (2) [label=below:\mTrue{p}, right=of 1] {$[2]$};
+      \draw[->,bend left] (1) to (2);
+      \draw[->,bend left] (2) to (1);
+
+      \node[world] (3) [label=below:\mFalse{p},right=of 2] {$[1]$};
+      \node[world] (4) [label=below:\mTrue{p}, right=of 3] {$[2]$};
+      \draw[->,bend left] (3) to (4);
+      \draw[->,bend left] (4) to (3);
+      \draw[->,reflexive above] (4) to (4);
+    \end{tikzpicture}
+    \caption{Suatu model tak berhingga dan filtrasi-filtrasinya.}
+    \ollabel{fig:ex-filtration}
+  \end{figure}
+
+  Sekarang, misalkan $\Gamma$ merupakan himpunan sub-!!{formula}s dari
+  $\Box p \lif p$, yakni $\{p, \Box p, \Box p \lif p\}$. $p$ bernilai benar
+  tepat pada semua bilangan genap, sedangkan $\Box p$ bernilai benar tepat
+  pada semua bilangan ganjil, sehingga $\Box p \lif p$ bernilai benar tepat
+  pada semua bilangan genap. Dengan kata lain, setiap bilangan ganjil membuat
+  $\Box p$ bernilai benar, tetapi $p$ dan $\Box p \lif p$ bernilai salah;
+  setiap bilangan genap membuat $p$ dan $\Box p \lif p$ bernilai benar,
+  tetapi $\Box p$ bernilai salah. Jadi, $W^* = \{ [1], [2] \}$, dengan
+  $[1] = \{1, 3, 5, \dots\}$ dan $[2] = \{2, 4, 6, \dots\}$. Karena
+  $2 \in V(p)$, maka $[2] \in V^*(p)$; karena $1 \notin V(p)$, maka
+  $[1] \notin V^*(p)$. Jadi, $V^*(p) = \{[2]\}$.
+
+  Setiap filtrasi yang berbasis pada $W^*$ harus mempunyai relasi
+  aksesibilitas yang memuat $\tuple{[1], [2]}, \tuple{[2],[1]}$: karena
+  $R12$, menurut \olref[fil]{defn:filtration}\olref[fil]{defn:filtration-R1}
+  harus berlaku $R^*[1][2]$; dan karena $R23$, harus berlaku $R^*[2][3]$,
+  sedangkan $[3]=[1]$. Relasi itu tidak dapat memuat $\tuple{[1],[1]}$:
+  jika memuatnya, akan berlaku $R^*[1][1]$, $\mSat{M}{\Box p}[1]$, tetapi
+  $\mSat/{M}{p}[1]$, berlawanan dengan
+  \olref[fil]{defn:filtration-R2}. Tidak ada syarat yang mewajibkan ataupun
+  melarang $R^*[2][2]$ berlaku. Jadi, terdapat dua filtrasi yang mungkin
+  dari~$\mModel{M}$, yang bersesuaian dengan kedua relasi aksesibilitas
+  \[
+  \{\tuple{[1],[2]}, \tuple{[2],[1]}\} \text{ dan }
+  \{\tuple{[1],[2]}, \tuple{[2],[1]}, \tuple{[2],[2]}\}.
+  \]
+  Dalam kedua kasus, $p$ dan $\Box p \lif p$ bernilai salah dan $\Box p$
+  bernilai benar pada~$[1]$; $p$ dan $\Box p \lif p$ bernilai benar dan
+  $\Box p$ bernilai salah pada~$[2]$.
+\end{ex}
+
+
+\begin{prob}
+  Tinjau model $\mModel{M} = \tuple{W, R, V}$ berikut, dengan
+  $W = \Setabs{0\sigma}{\sigma \in \Bin^*}$, yakni himpunan barisan $0$ dan
+  $1$ yang diawali~$0$, dengan $R\sigma\sigma'$ jika dan hanya jika
+  $\sigma' = \sigma 0$ atau $\sigma' = \sigma 1$, serta
+  $V(p) = \Setabs{\sigma 0}{\sigma \in \Bin^*}$ dan
+  $V(q) = \Setabs{\sigma 1}{\sigma \in \Bin^* \setminus \{1\}}$.
+  Berikut gambarnya:
+  \begin{center}
+    \begin{tikzpicture}[modal,
+        node distance=2cm
+      ]
+
+      \node[world] (0) [label={below:\mTrue{p}\\\mFalse{q}},font=\tiny] {$0$};
+      \node[world] (00) [label={below:\mTrue{p}\\\mFalse{q}},
+        above right=of 0,font=\tiny] {$00$};
+      \node[world] (000) [label={below:\mTrue{p}\\\mFalse{q}},
+        right=of 00, yshift=.8cm, font=\tiny] {$000$};
+      \node[phantom] (0000) [right=of 000, yshift=.5cm] {};
+      \node[phantom] (0001) [right=of 000, yshift=-.5cm] {};
+      \node[world] (001) [label={below:\mFalse{p}\\\mTrue{q}},
+        right=of 00, yshift=-.8cm, font=\tiny] {$001$};
+      \node[phantom](0010) [right=of 001, yshift=.5cm] {};
+      \node[phantom](0011) [right=of 001, yshift=-.5cm] {};
+      \node[world] (01) [label={below:\mFalse{p}\\\mTrue{q}},
+        below right=of 0,font=\tiny] {$01$};
+      \node[world] (010) [label={below:\mTrue{p}\\\mFalse{q}},
+        right=of 01, yshift=.8cm,font=\tiny] {$010$};
+      \node[phantom] (0100) [right=of 010, yshift=.5cm] {};
+      \node[phantom] (0101) [right=of 010, yshift=-.5cm] {};
+      \node[world] (011) [label={below:\mFalse{p}\\\mTrue{q}},
+        right=of 01, yshift=-.8cm,font=\tiny] {$011$};
+      \node[phantom] (0110) [right=of 011, yshift=.5cm] {};
+      \node[phantom] (0111) [right=of 011, yshift=-.5cm] {};
+
+      \draw[->] (0) to (00);
+      \draw[->] (0) to (01);
+      \draw[->] (00) to (000);
+      \draw[dotted] (000) to (0000);
+      \draw[dotted] (000) to (0001);
+      \draw[->] (00) to (001);
+      \draw[dotted] (001) to (0010);
+      \draw[dotted] (001) to (0011);
+      \draw[->] (01) to (010);
+      \draw[dotted] (010) to (0100);
+      \draw[dotted] (010) to (0101);
+      \draw[->] (01) to (011);
+      \draw[dotted] (011) to (0110);
+      \draw[dotted] (011) to (0111);
+    \end{tikzpicture}
+  \end{center}
+  Kita mempunyai
+  $\mSat/{M}{\Box(p \lor q) \lif (\Box p \lor \Box q)}[w]$ bagi setiap~$w$.
+
+  Misalkan $\Gamma$ merupakan himpunan sub-!!{formula}s dari
+  $\Box(p \lor q) \lif (\Box p \lor \Box q)$. Tentukan $W^*$ dan~$V^*$.
+  Bagaimanakah relasi aksesibilitas dari filtrasi terhalus
+  dari~$\mModel{M}$? Bagaimana dengan filtrasi terkasar?
+\end{prob}
+
+\end{document}

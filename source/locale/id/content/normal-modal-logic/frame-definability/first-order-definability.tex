@@ -1,0 +1,88 @@
+% Part: normal-modal-logic
+% Chapter: frame-correspondence
+% Section: first-order-definability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{frd}{fol}
+
+\olsection{Keterdefinisian Orde Pertama}
+
+Kita telah melihat bahwa sejumlah sifat relasi aksesibilitas pada kerangka
+dapat didefinisikan oleh !!{formula}s modal. Sebagai contoh, simetri kerangka
+dapat didefinisikan oleh !!{formula}~\Ax{B}, $p \lif \Box\Diamond p$.
+Semua kondisi yang telah kita jumpai sejauh ini dapat dinyatakan oleh
+!!{formula}s orde pertama dalam !!a{language} yang melibatkan satu
+!!{predicate} dua-tempat. Sebagai contoh, simetri didefinisikan oleh
+$\lforall[x][\lforall[y][(\Atom{Q}{x,y} \lif \Atom{Q}{y, x})]]$, dalam arti
+bahwa !!a{structure} orde pertama~$\Struct{M}$ dengan $\Domain{M}=W$ dan
+$\Assign{Q}{M}=R$ memenuhi formula tersebut jika dan hanya jika $R$ simetris.
+Hal ini menyarankan definisi berikut.
+
+\begin{defn}
+  Suatu kelas kerangka~$\mClass{F}$ \emph{dapat didefinisikan secara orde
+  pertama} jika terdapat !!a{sentence}~$!A$ dalam bahasa orde pertama dengan
+  satu !!{predicate} dua-tempat~$Q$ sedemikian sehingga
+  $\mModel{F}=\tuple{W,R}\in\mClass{F}$ jika dan hanya jika
+  $\Sat{M}{!A}$ dalam !!a{structure} orde pertama~$\Struct{M}$ dengan
+  $\Domain{M}=W$ dan $\Assign{Q}{M}=R$.
+\end{defn}
+
+Ternyata, sifat-sifat beserta !!{formula}s modal yang sejauh ini kita bahas
+merupakan kasus khusus. Tidak setiap !!{formula} mendefinisikan kelas kerangka
+yang dapat didefinisikan secara orde pertama, dan tidak setiap kelas kerangka
+yang dapat didefinisikan secara orde pertama dapat didefinisikan oleh suatu
+formula modal.
+
+Contoh tandingan bagi klaim pertama diberikan oleh formula L\"ob:
+\begin{equation}
+\Box(\Box p \lif p) \lif \Box p. \tag{\Ax{W}}
+\end{equation}
+\Ax{W} mendefinisikan kelas kerangka yang transitif dan berfondasi baik secara
+konvers. Suatu relasi berfondasi baik jika tidak terdapat barisan tak hingga
+$w_1$, $w_2$, \dots{} sedemikian sehingga $Rw_2w_1$, $Rw_3w_2$, \dots.
+Sebagai contoh, relasi $<$ pada~$\Nat$ berfondasi baik, sedangkan relasi $<$
+pada~$\Int$ tidak. Suatu relasi berfondasi baik secara konvers jika dan hanya
+jika konvers relasi itu berfondasi baik. Jadi, relasi yang berfondasi baik
+secara konvers ialah relasi yang tidak mempunyai barisan tak hingga $w_1$,
+$w_2$, \dots{} sedemikian sehingga $Rw_1w_2$, $Rw_2w_3$, \dots.
+
+Akan tetapi, tidak ada !!{formula} orde pertama yang mendefinisikan relasi
+transitif yang berfondasi baik secara konvers. Andaikan sebaliknya,
+$\Sat{M}{!F}$ jika dan hanya jika $R=\Assign{Q}{M}$ transitif dan berfondasi
+baik secara konvers. Bagi setiap $n\geq 2$, misalkan $!A_n$ ialah !!{formula}
+\[
+(\Atom{Q}{a_1,a_2} \land \dots \land
+    \Atom{Q}{a_{n-1},a_{n}}).
+\]
+Sekarang perhatikan himpunan !!{formula}s
+\[
+\Gamma=\{!F,!A_2,!A_3,\dots\}.
+\]
+Setiap himpunan bagian berhingga dari~$\Gamma$ dapat dipenuhi. Jika himpunan
+bagian itu memuat suatu~$!A_n$, misalkan $k$ indeks terbesar yang muncul;
+jika tidak, tetapkan $k=1$. Ambil $\Domain{M_k}=\{1,\dots,k\}$,
+$\Assign{a_i}{M_k}=i$ untuk $i\leq k$ (dan tetapkan konstanta lainnya secara
+sebarang), serta $\Assign{Q}{M_k}=<$. Karena $<$ pada $\{1,\dots,k\}$
+transitif dan berfondasi baik secara konvers, $\Sat{M_k}{!F}$.
+$\Sat{M_k}{!A_i}$ menurut konstruksi bagi semua $2\leq i\leq k$. Menurut
+Teorema Kekompakan bagi logika orde pertama, $\Gamma$ dapat dipenuhi dalam
+suatu !!{structure}~$\Struct{M}$. Berdasarkan hipotesis, karena
+$\Sat{M}{!F}$, relasi $\Assign{Q}{M}$ berfondasi baik secara konvers. Namun,
+$\Assign{a_1}{M}$, $\Assign{a_2}{M}$, \dots{} jelas membentuk barisan tak
+hingga dari jenis yang dilarang oleh sifat berfondasi baik secara konvers.
+
+Contoh tandingan bagi klaim kedua diberikan oleh sifat universalitas: bagi
+setiap $u$ dan~$v$, berlaku~$Ruv$. Kerangka universal dapat didefinisikan
+secara orde pertama oleh formula
+$\lforall[x][\lforall[y][\Atom{Q}{x,y}]]$. Akan tetapi, tidak ada formula
+modal yang valid tepat pada semua kerangka universal. Hal ini merupakan akibat
+dari suatu hasil yang juga menarik secara mandiri: formula-formula yang valid
+pada kerangka universal persis sama dengan formula-formula yang valid pada
+kerangka refleksif, simetris, dan transitif. Ada kerangka refleksif, simetris,
+dan transitif yang tidak universal; karena itu, setiap !!{formula} yang valid
+pada semua kerangka universal juga valid pada beberapa kerangka nonuniversal.
+
+\end{document}

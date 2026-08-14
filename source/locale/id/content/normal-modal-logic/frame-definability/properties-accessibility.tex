@@ -1,0 +1,187 @@
+% Part: normal-modal-logic
+% Chapter: frame-correspondence
+% Section: properties-accessibility
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{frd}{acc}
+
+\olsection{Sifat Relasi Aksesibilitas}
+
+Banyak !!{formula}s modal ternyata bersifat karakteristik bagi sifat-sifat
+sederhana, bahkan sudah dikenal, dari relasi aksesibilitas. Dalam satu arah,
+hal ini berarti bahwa setiap model yang mempunyai suatu sifat tertentu membuat
+!!{formula} yang bersesuaian (beserta semua instansiasi substitusinya) benar.
+Kita mulai dengan lima contoh klasik jenis relasi aksesibilitas dan formula
+yang dijamin benar olehnya.
+
+\begin{thm}\ollabel{thm:soundschemas}
+  Misalkan $\mModel{M}=\tuple{W,R,V}$ merupakan suatu model. Jika $R$
+  mempunyai sifat pada sisi kiri \olref{tab:five}, setiap instansiasi
+  !!{formula} pada sisi kanan benar dalam~$\mModel{M}$.
+\end{thm}
+
+\begin{table}[t]
+    \begin{tabular}{| l || l |}
+      \hline
+      {\emph{Jika $R$ bersifat \dots}} & {\emph{maka \dots benar dalam~$\mModel{M}$:}} \\
+      \hline \hline
+      \emph{serial}: $\forall u \exists v Ruv$ & \hbox to.43\textwidth
+           {$\Box p \lif \Diamond p$ \hfill (\Ax{D})} \\
+      \hline
+      \emph{refleksif}: $\forall w Rww$
+      & \hbox to.43\textwidth
+          {$\Box p \lif p$ \hfill (\Ax{T})} \\
+      \hline
+      \emph{simetris}: &  \hbox to .43\textwidth
+           {$p \lif \Box\Diamond p$ \hfill (\Ax{B})} \\
+           $\forall u\forall v(Ruv \lif Rvu)$ & \\
+      \hline
+      \emph{transitif}: & \hbox to.43\textwidth
+           {$\Box p \lif \Box \Box p$ \hfill (\Ax{4})} \\
+      $\forall u \forall v \forall w ((Ruv \land Rvw) \lif Ruw)$ & \\
+      \hline
+      \emph{Euklidean}: & \hbox to .43\textwidth
+        {$\Diamond p \lif \Box\Diamond p$ \hfill (\Ax{5})} \\
+      $\forall w \forall u \forall v ((Rwu \land Rwv) \lif Ruv)$ &\\
+      \hline
+    \end{tabular}
+    \caption{Lima fakta korespondensi.}
+    \ollabel{tab:five}
+  \end{table}
+
+
+\begin{proof}
+  Berikut adalah kasus bagi \Ax{B}. Untuk menunjukkan bahwa skema ini benar
+  dalam suatu model, kita harus menunjukkan bahwa semua instansiasinya benar
+  pada semua dunia dalam model tersebut. Jadi, misalkan
+  $!A\lif\Box\Diamond !A$ merupakan suatu instansiasi \Ax{B}, dan misalkan
+  $w\in W$ suatu dunia sebarang. Andaikan anteseden~$!A$ benar pada~$w$;
+  kita akan menunjukkan bahwa $\Box\Diamond !A$ benar pada~$w$. Jadi, kita
+  harus menunjukkan bahwa $\Diamond !A$ benar pada semua~$w'$ yang dapat
+  diakses dari~$w$. Bagi sebarang $w'$ sedemikian sehingga $Rww'$, dengan
+  menggunakan hipotesis simetri kita juga memperoleh $Rw'w$ (lihat
+  \olref{fig:Bsymm}). Karena $\mSat{M}{!A}[w]$, kita mempunyai
+  $\mSat{M}{\Diamond !A}[w']$. Karena $w'$ merupakan dunia sebarang sedemikian
+  sehingga $Rww'$, kita memperoleh $\mSat{M}{\Box\Diamond !A}[w]$.
+
+  Kasus lainnya ditinggalkan sebagai latihan.
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[nml][frd][acc]{thm:soundschemas}.
+\end{prob}
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={below:$\mSat{{}}{\formula{A}}$\\
+          $\mSat{{}}{\Box\Diamond \formula{A}}$}] {$w$};
+      \node[world] (w2) [label=below:{$\mSat{{}}{\Diamond \formula{A}}$},
+        right=of w1] {$w'$};
+      \draw[->, bend left] (w1) to (w2);
+      \draw[->, bend left] (w2) to (w1);
+    \end{tikzpicture}
+  \end{center}
+\caption{Argumen berdasarkan simetri.}
+\ollabel{fig:Bsymm}
+\end{figure}
+
+Perhatikan bahwa implikasi konvers dari \olref{thm:soundschemas} tidak
+berlaku: tidak benar bahwa jika suatu model memverifikasi sebuah skema, maka
+relasi aksesibilitas model itu mempunyai sifat yang bersesuaian. Dalam kasus
+\Ax{T} dan model refleksif, mudah diberikan contoh model tempat \Ax{T} sendiri
+gagal: misalkan $W=\{w\}$ dan $V(p)=\emptyset$. Maka $R$ tidak refleksif,
+tetapi $\mSat{M}{\Box p}[w]$ dan $\mSat/{M}{p}[w]$. Namun, di sini kita hanya
+mempunyai satu instansiasi \Ax{T} yang gagal dalam~$\mModel{M}$;
+instansiasi lain, misalnya $\Box\lnot p\lif\lnot p$, benar. Lebih sulit
+memberikan contoh tempat \emph{setiap instansiasi substitusi} dari~\Ax{T}
+benar dalam~$\mModel{M}$ sementara $\mModel{M}$ tidak refleksif. Namun,
+model semacam itu memang ada:
+
+\begin{prop}\ollabel{prop:reflexive}
+  Misalkan $\mModel{M}=\tuple{W,R,V}$ merupakan model dengan $W=\{u,v\}$,
+  dan dunia $u$ dan~$v$ saling berelasi melalui~$R$; yakni, $Ruv$ dan~$Rvu$.
+  Andaikan bagi semua $p$ berlaku $u\in V(p)\Leftrightarrow v\in V(p)$.
+  Maka:
+  \begin{enumerate}
+  \item Bagi semua~$!A$, $\mSat{M}{!A}[u]$ jika dan hanya jika
+    $\mSat{M}{!A}[v]$ (gunakan induksi pada~$!A$).
+  \item Setiap instansiasi~\Ax{T} benar dalam~$\mModel{M}$.
+  \end{enumerate}
+  Karena $\mModel{M}$ tidak refleksif (bahkan, model itu
+  \emph{irefleksif}), konvers \olref{thm:soundschemas} gagal dalam kasus
+  \Ax{T} (argumen serupa dapat diberikan bagi beberapa---meskipun tidak
+  semua---skema lain yang disebutkan dalam \olref{thm:soundschemas}).
+\end{prop}
+
+\begin{prob}
+  Buktikan klaim-klaim dalam \olref[nml][frd][acc]{prop:reflexive}.
+\end{prob}
+
+Meskipun kita akan memusatkan perhatian pada lima !!{formula}s klasik \Ax{D},
+\Ax{T}, \Ax{B}, \Ax{4}, dan~\Ax{5}, dalam \olref{tab:anotherfive} kita
+mencatat beberapa sifat relasi aksesibilitas lainnya. Relasi aksesibilitas~$R$
+bersifat fungsional parsial jika dari setiap dunia paling banyak satu dunia
+dapat diakses. Jika dari setiap dunia tepat satu dunia dapat diakses, kita
+menyebutnya fungsional. (Jadi, relasi fungsional tepat merupakan relasi yang
+sekaligus serial dan fungsional parsial.) Relasi ini disebut ``fungsional''
+karena relasi aksesibilitas bekerja seperti suatu fungsi (parsial). Suatu
+relasi bersifat rapat lemah jika, setiap kali $Ruv$, terdapat suatu~$w$ ``di
+antara'' $u$ dan~$v$. Jadi, relasi rapat lemah dalam suatu arti merupakan
+kebalikan relasi transitif: dalam relasi transitif, setiap kali $v$ dapat
+dicapai dari~$u$ melalui jalan memutar lewat~$w$, $v$ dapat dicapai langsung
+dari~$u$; dalam relasi rapat lemah, setiap kali $v$ dapat dicapai langsung
+dari~$u$, $v$ juga dapat dicapai melalui jalan memutar lewat suatu~$w$. Suatu
+relasi bersifat terarah lemah jika, setiap kali dunia $u$ dan~$v$ dapat
+dicapai dari suatu dunia~$w$, terdapat satu dunia~$t$ yang dapat dicapai baik
+dari $u$ maupun~$v$---sifat ini kadang-kadang disebut ``sifat wajik'' atau
+``konfluensi''.
+
+\begin{table}[t]
+    \begin{tabular}{| p{.50\textwidth} || p{.43\textwidth} |}
+      \hline
+      {\emph{Jika $R$ bersifat \dots}} & {\emph{maka \dots benar dalam~$\mModel{M}$:}} \\
+      \hline \hline
+      \emph{fungsional parsial}: &
+      \multirow{2}{*}{$\Diamond p \lif \Box p$} \\
+      $ \forall w \forall u \forall v ((Rwu \land Rwv) \lif u =v )$ & \\
+      \hline
+      \multirow{2}{*}{\emph{fungsional}: $\forall w \exists v \forall u(Rwu \liff \eq[u][v]) $}
+      & \multirow{2}{*}{$\Diamond p \liff \Box p$} \\
+      & \\
+      \hline
+      \emph{rapat lemah}: &  \multirow{2}{*}{$\Box \Box p \lif
+        \Box p$} \\
+      $\forall u\forall v(Ruv \lif \exists w(Ruw \land Rwv))$ & \\
+      \hline
+      \emph{terhubung lemah}: &
+      \multirow{3}{*}{\hbox to.43\textwidth{$
+        \begin{array}{@{}l@{}}
+          \Box ((p \land \Box p) \lif q) \lor {} \\
+          \qquad \Box ((q \land \Box q) \lif p)
+        \end{array}$ \hfill (\Ax{L})}
+      } \\
+      $\forall w \forall u \forall v ((Rwu \land Rwv) \lif {}$ &\\
+      \qquad $(Ruv \lor u=v \lor Rvu))$ & \\
+      \hline
+      \emph{terarah lemah}: & \multirow{3}{*}{\hbox to .43\textwidth
+        {$\Diamond\Box p \lif \Box\Diamond p$\hfill (\Ax{G})}} \\
+      $\forall w \forall u \forall v ((Rwu \land Rwv) \lif {}$ & \\
+      \qquad $\exists t (Rut \land Rvt))$ & \\
+      \hline
+    \end{tabular}
+    \caption{Lima fakta korespondensi lainnya.}
+    \ollabel{tab:anotherfive}
+  \end{table}
+
+\begin{prob}
+  Misalkan $\mModel{M}=\tuple{W,R,V}$ merupakan suatu model. Tunjukkan bahwa
+  jika $R$ memenuhi sifat-sifat pada sisi kiri
+  \olref[nml][frd][acc]{tab:anotherfive}, setiap instansiasi formula yang
+  bersesuaian pada sisi kanan benar dalam~$\mModel{M}$.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,426 @@
+% Part: proof-theory
+% Chapter: normalization
+% Section: permutations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{nor}{per}
+
+\olsection{Konversi Permutasi}
+
+Potongan dalam \Log{N1i} adalah segmen yang berakhir pada premis utama
+!!a{elimination}. Salah satu kasus dalam bukti normalisasi ialah mengurangi
+panjang potongan maksimal, dan dengan demikian panjang potongan
+!!{proof}. Suatu potongan dengan panjang $>1$ dapat berakhir dalam banyak
+cara, bergantung pada apakah kemunculan !!{formula}~$!A$ terakhir dalam
+potongan itu merupakan kesimpulan dari \Elim{\lor} atau \Elim{\lexists},
+dan bergantung pada inferensi !!{elimination} yang premis utamanya adalah
+kemunculan tersebut.
+
+Sebagai contoh, jika inferensi yang terlibat ialah \Elim{\lor} dan
+\Elim{\land}, $!A \ident !B \lor !C$, dan terdapat
+sub-!!{proof}~$\delta_1$ yang berakhir dengan:
+\[
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\RightLabel{$\delta_3$}
+\DeduceC{$!B \land !C$}
+\AxiomC{$\Discharge{!E}{y}$}
+\RightLabel{$\delta_4$}
+\DeduceC{$!B \land !C$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\DisplayProof
+\]
+Kemunculan !!{formula} terakhir~$!A_n$ dalam potongan adalah kesimpulan
+\Elim{\lor}, yakni $!B \land !C$ yang berada di bawah. Kemunculan
+!!{formula} kedua dari belakang~$!A_{n-1}$ adalah salah satu premis minor
+\Elim{\lor}.
+
+Untuk mengurangi panjang potongan ini, kita dapat menukar urutan
+(``mempermutasikan'') inferensi \Elim{\lor} dan \Elim{\land}. Artinya,
+kita mengganti subbukti~$\delta_1$ dalam~$\delta$ dengan yang berikut:
+\[
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\RightLabel{$\delta_3$}
+\DeduceC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\AxiomC{$\Discharge{!E}{y}$}
+\RightLabel{$\delta_4$}
+\DeduceC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!B$}
+\DisplayProof
+\]
+Potongan-potongan yang sebelumnya berakhir pada premis \Elim{\land} di
+bawah \Elim{\lor} kini berakhir pada premis salah satu inferensi
+\Elim{\land} di atas premis-premis minor \Elim{\lor}; dengan kata lain,
+panjang masing-masing berkurang~$1$.
+
+Selain itu, setiap potongan yang seluruhnya terletak dalam $\delta_2$,
+$\delta_3$, atau $\delta_4$, maupun seluruhnya di luar~$\delta_1$ dalam
+$\delta$, tidak berubah: potongan tersebut masih melibatkan !!{formula}s
+yang sama dan melewati inferensi yang sama, sehingga khususnya mempunyai
+peringkat dan panjang yang sama dengan potongan bersesuaian dalam~$\delta$.
+Jadi, peringkat potongan !!{proof} baru tidak meningkat, dan panjang
+potongan !!{proof} baru lebih kecil daripada panjang potongan !!{proof} lama.
+
+\begin{prob}
+Setelah suatu konversi permutasi, panjang sekurang-kurangnya satu potongan
+berkurang~$1$. Jika kita mempermutasikan \Elim{\land} melintasi
+\Elim{\lor}, sebenarnya terdapat dua segmen potongan yang panjangnya
+berkurang, sehingga dalam kasus ini panjang potongan !!{proof} berkurang
+sekurang-kurangnya~$2$. Dapatkah panjang potongan !!a{proof} berkurang lebih
+dari~$2$ melalui satu permutasi seperti itu? Dapatkah \emph{peringkat}
+potongannya berkurang?
+\end{prob}
+
+Proses memindahkan !!a{elimination} ke atas aturan \Elim{\lor} atau
+\Elim{\lexists} disebut \emph{konversi permutasi}. Pola bagi beberapa
+pasangan aturan diberikan dalam \olref{tab:permutation-conversions}.
+(Pola lainnya dibiarkan sebagai latihan.)
+
+% The earlier table source is intentionally retained as a non-rendered source note.
+% begin{table}
+% begin{multline*}
+% shoveleft{AxiomC{$!D lor !E$}
+% AxiomC{$Discharge{!D}{x}$}
+% shortDeduce
+% DeduceC{$!B land !C$}
+% AxiomC{$Discharge{!E}{y}$}
+% shortDeduce
+% DeduceC{$!B land !C$}
+% DischargeRule{Elim{lor}}{x,y}
+% TrinaryInfC{$!B land !C$}
+% RightLabel{Elim{land}[1]}
+% UnaryInfC{$!B$}
+% DisplayProof}\
+% shoveright{longrightarrow\ 
+% AxiomC{$!D lor !E$}
+% AxiomC{$Discharge{!D}{x}$}
+% shortDeduce
+% DeduceC{$!B land !C$}
+% RightLabel{Elim{land}[1]}
+% UnaryInfC{$!B$}
+% AxiomC{$Discharge{!E}{y}$}
+% shortDeduce
+% DeduceC{$!B land !C$}
+% RightLabel{Elim{land}[1]}
+% UnaryInfC{$!B$}
+% DischargeRule{Elim{lor}}{x,y}
+% TrinaryInfC{$!B$}
+% DisplayProof}
+% \
+% shoveleft{AxiomC{$!D lor !E$}
+% AxiomC{$Discharge{!D}{x}$}
+% shortDeduce
+% DeduceC{$!B lif !C$}
+% AxiomC{$Discharge{!E}{y}$}
+% shortDeduce
+% DeduceC{$!B lif !C$}
+% DischargeRule{Elim{lor}}{x,y}
+% TrinaryInfC{$!B lif !C$}
+% AxiomC{$!B$}
+% RightLabel{Elim{lif}}
+% BinaryInfC{$!C$}
+% DisplayProof}\
+% shoveright{longrightarrow\ 
+% AxiomC{$!D lor !E$}
+% AxiomC{$Discharge{!D}{x}$}
+% shortDeduce
+% DeduceC{$!B lif !C$}
+% AxiomC{$!B$}
+% RightLabel{Elim{lif}}
+% BinaryInfC{$!C$}
+% AxiomC{$Discharge{!E}{y}$}
+% shortDeduce
+% DeduceC{$!B lif !C$}
+% AxiomC{$!B$}
+% RightLabel{Elim{lif}}
+% BinaryInfC{$!C$}
+% DischargeRule{Elim{lor}}{x,y}
+% TrinaryInfC{$!C$}
+% DisplayProof}
+% \
+% shoveleft{AxiomC{$!D lor !E$}
+% AxiomC{$Discharge{!D}{x}$}
+% shortDeduce
+% DeduceC{$!B lif !C$}
+% AxiomC{$Discharge{!E}{y}$}
+% shortDeduce
+% DeduceC{$!B lif !C$}
+% DischargeRule{Elim{lor}}{x,y}
+% TrinaryInfC{$!B lif !C$}
+% AxiomC{$!B$}
+% RightLabel{Elim{lif}}
+% BinaryInfC{$!C$}
+% DisplayProof}\
+% shoveright{longrightarrow\ 
+% AxiomC{$!D lor !E$}
+% AxiomC{$Discharge{!D}{x}$}
+% shortDeduce
+% DeduceC{$!B lif !C$}
+% AxiomC{$!B$}
+% RightLabel{Elim{lif}}
+% BinaryInfC{$!C$}
+% AxiomC{$Discharge{!E}{y}$}
+% shortDeduce
+% DeduceC{$!B lif !C$}
+% AxiomC{$!B$}
+% RightLabel{Elim{lif}}
+% BinaryInfC{$!C$}
+% DischargeRule{Elim{lor}}{x,y}
+% TrinaryInfC{$!C$}
+% DisplayProof}
+% \
+% shoveleft{AxiomC{$!D lor !E$}
+% AxiomC{$Discharge{!D}{x}$}
+% shortDeduce
+% DeduceC{$lforall[x][!B(x)]$}
+% AxiomC{$Discharge{!E}{y}$}
+% shortDeduce
+% DeduceC{$lforall[x][!B(x)]$}
+% DischargeRule{Elim{lor}}{x,y}
+% TrinaryInfC{$lforall[x][!B(x)]$}
+% RightLabel{Elim{lforall}}
+% UnaryInfC{$!B(t)$}
+% DisplayProof}\
+% shoveright{longrightarrow\ 
+% AxiomC{$!D lor !E$}
+% AxiomC{$Discharge{!D}{x}$}
+% shortDeduce
+% DeduceC{$lforall[x][!B(x)]$}
+% RightLabel{Elim{lforall}}
+% UnaryInfC{$!B(t)$}
+% AxiomC{$Discharge{!E}{y}$}
+% shortDeduce
+% DeduceC{$lforall[x][!B(x)]$}
+% RightLabel{Elim{lforall}}
+% UnaryInfC{$!B(t)$}
+% DischargeRule{Elim{lor}}{x,y}
+% TrinaryInfC{$!B(t)$}
+% DisplayProof}
+% end{multline*}
+% caption{Some permutation conversions for Log{N1i}.}
+% ollabel{tab:permutation-conversions}
+% end{table}
+
+{\small
+\begin{longtable}{@{}l@{}}
+\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$!B \land !C$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$!B \land !C$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\DisplayProof
+$\longrightarrow$\\[6ex]
+\quad\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!B$}
+\DisplayProof
+\\[10ex]
+\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$!B \lif !C$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$!B \lif !C$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!B \lif !C$}
+\AxiomC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DisplayProof
+$\longrightarrow$\\[6ex]
+\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$!B \lif !C$}
+\AxiomC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$!B \lif !C$}
+\AxiomC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!C$}
+\DisplayProof
+\\[10ex]
+\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$!B \lif !C$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$!B \lif !C$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!B \lif !C$}
+\AxiomC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DisplayProof
+$\longrightarrow$\\[6ex]
+\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$!B \lif !C$}
+\AxiomC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$!B \lif !C$}
+\AxiomC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!C$}
+\DisplayProof
+\\[10ex]
+\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$\lforall[x][!B(x)]$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$\lforall[x][!B(x)]$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$\lforall[x][!B(x)]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(t)$}
+\DisplayProof
+\quad$\longrightarrow$\\[8ex]
+\quad\AxiomC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\shortDeduce
+\DeduceC{$\lforall[x][!B(x)]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(t)$}
+\AxiomC{$\Discharge{!E}{y}$}
+\shortDeduce
+\DeduceC{$\lforall[x][!B(x)]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(t)$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!B(t)$}
+\DisplayProof
+\\
+\caption{Beberapa konversi permutasi bagi \Log{N1i}.}
+\ollabel{tab:permutation-conversions}
+\end{longtable}
+}
+
+\begin{prob}
+Berikan konversi permutasi bagi \Elim{\lor} yang diikuti \Elim{\lor} atau
+\Elim{\lnot}.
+\end{prob}
+
+\begin{prob}
+Berikan konversi permutasi bagi \Elim{\lexists} yang diikuti
+\Elim{\lexists}. Jelaskan mengapa tidak ada syarat variabel eigen yang
+dilanggar pada kasus terakhir.
+\end{prob}
+
+Kita perlu meyakinkan diri bahwa penerapan konversi permutasi tidak mungkin
+melanggar suatu syarat variabel eigen. Pertimbangkan
+\[
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\RightLabel{$\delta_3$}
+\DeduceC{$\lexists[x][!B(x)]$}
+\AxiomC{$\Discharge{!E}{y}$}
+\RightLabel{$\delta_4$}
+\DeduceC{$\lexists[x][!B(x)]$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$\lexists[x][!B(x)]$}
+\AxiomC{$\Discharge{!B(c)}{z}$}
+\RightLabel{$\delta_5$}
+\DeduceC{$!C$}
+\DischargeRule{\Elim{\lexists}}{z}
+\BinaryInfC{$!C$}
+\DisplayProof
+\]
+Jika kita menggantinya dengan
+\[
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$!D \lor !E$}
+\AxiomC{$\Discharge{!D}{x}$}
+\RightLabel{$\delta_3$}
+\DeduceC{$\lexists[x][!B(x)]$}
+\AxiomC{$\Discharge{!B(c)}{z}$}
+\RightLabel{$\delta_5$}
+\DeduceC{$!C$}
+\DischargeRule{\Elim{\lexists}}{z}
+\BinaryInfC{$!C$}
+\AxiomC{$\Discharge{!E}{y}$}
+\RightLabel{$\delta_4$}
+\DeduceC{$\lexists[x][!B(x)]$}
+\AxiomC{$\Discharge{!B(c)}{z}$}
+\RightLabel{$\delta_5$}
+\DeduceC{$!C$}
+\DischargeRule{\Elim{\lexists}}{z}
+\BinaryInfC{$!C$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!C$}
+\DisplayProof
+\]
+kita mungkin khawatir bahwa variabel eigen~$c$ muncul, misalnya, dalam~$!D$.
+Bagaimanapun, asumsi $!D$ dilepaskan di atas \Elim{\lexists} semula, sehingga
+dalam !!{proof} semula asumsi itu tidak muncul dalam asumsi yang terbuka di
+atas premis utama inferensi \Elim{\lexists}; dengan demikian, syarat
+variabel eigen terpenuhi di sana. Namun, dalam !!{proof} baru, $!D$ belum
+dilepaskan sampai setelah inferensi-inferensi \Elim{\lexists}, sehingga
+syarat variabel eigen akan dilanggar. Akan tetapi, ingatlah bahwa kita
+mengandaikan !!{proof}s kita teratur: setiap variabel eigen merupakan
+variabel eigen dari tepat satu inferensi dan hanya muncul di atas premis
+minor \Elim{\lexists} dalam !!{proof}. Khususnya, $c$ tidak mungkin muncul
+dalam $\delta_3$ maupun~$\delta_4$.
+
+Contoh ini menunjukkan hal lain: perhatikan bahwa !!{proof} baru mempunyai
+dua salinan~$\delta_5$. Artinya, jika $\delta_5$ memuat suatu potongan
+maksimal, kita \emph{belum} mengurangi panjang potongan! Karena itu, kita
+harus memastikan bahwa konversi permutasi diterapkan hanya jika kita tahu
+tidak ada potongan maksimal dalam $\delta_5$. Kita akan menjaminnya dengan
+selalu memilih potongan maksimal yang \emph{paling atas}, yaitu potongan
+maksimal sedemikian sehingga sub-!!{proof} (dalam kasus ini,~$\delta_1$)
+tidak memuat potongan maksimal yang berakhir di atas inferensi terakhir
+dalam sub-!!{proof} tersebut. Hal ini meniadakan kemungkinan adanya
+potongan maksimal lain dalam~$\delta_5$ (atau bahkan dalam $\delta_2$,
+$\delta_3$, maupun~$\delta_4$).
+
+\end{document}

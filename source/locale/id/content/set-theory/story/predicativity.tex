@@ -1,0 +1,117 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{story}{predicative}	
+
+\olsection{Predikatif dan Impredikatif}
+
+Himpunan Russell, $R$, didefinisikan melalui $\Setabs{x}{x \notin
+x}$. Jika diuraikan lebih lengkap, $R$ adalah himpunan yang memuat semua dan
+hanya himpunan yang bukan anggota dirinya sendiri. Jadi, ketika mendefinisikan
+$R$, kita menguantifikasi atas domain yang akan memuat $R$ (seandainya objek
+tersebut ada).
+
+Ini merupakan definisi \emph{impredikatif}. Secara lebih umum, kita dapat
+mengatakan bahwa suatu definisi impredikatif jika dan hanya jika definisi itu menguantifikasi
+atas domain yang memuat objek yang sedang didefinisikan.
+	
+Sesudah munculnya berbagai paradoks, Whitehead, Russell, Poincar\'{e}, dan
+Weyl menolak definisi impredikatif semacam itu karena membentuk
+``lingkaran setan'':
+\begin{quote}
+	Analisis atas paradoks-paradoks yang harus dihindari menunjukkan bahwa
+	semuanya muncul dari sejenis lingkaran setan. Lingkaran-lingkaran setan
+	tersebut timbul dari anggapan bahwa suatu koleksi objek dapat
+	memuat anggota yang hanya dapat didefinisikan melalui koleksi itu secara
+	keseluruhan[\ldots. \textparagraph]
+
+	Prinsip yang memungkinkan kita menghindari totalitas yang tidak sah dapat
+	dinyatakan sebagai berikut: `Apa pun yang melibatkan \emph{semua} anggota
+	suatu koleksi tidak boleh menjadi salah satu anggota koleksi itu'; atau,
+	sebaliknya: `Jika, seandainya suatu koleksi tertentu mempunyai suatu
+	totalitas, koleksi itu akan mempunyai anggota yang hanya dapat didefinisikan
+	dengan merujuk pada totalitas tersebut, maka koleksi itu tidak mempunyai
+	totalitas.' Kita akan menyebut ini `prinsip lingkaran setan', karena
+	prinsip ini memungkinkan kita menghindari lingkaran-lingkaran setan yang
+	terlibat dalam pengandaian totalitas yang tidak sah.
+	\citep[p.~37]{WhiteheadRussell1910}
+\end{quote}
+Jika kita mengikuti mereka dengan menerima \emph{prinsip lingkaran setan},
+kita dapat mencoba mengganti Skema Komprehensi Naif yang membawa bencana
+(dari \olref[sth][story][rus]{sec}) dengan sesuatu seperti berikut:
+
+\begin{defish}
+\emph{Komprehensi Predikatif.} Untuk setiap formula $\phi$ yang hanya
+menguantifikasi atas himpunan: himpunan$^\prime$
+$\Setabs{x}{\phi(x)}$ ada.
+\end{defish}
+
+Selama himpunan$^{\prime}$ bukan merupakan himpunan, tidak akan timbul
+kontradiksi.
+
+Sayangnya, Komprehensi Predikatif tidak terlalu \emph{komprehensif}. Bagaimanapun,
+prinsip itu memperkenalkan entitas baru kepada kita, yakni
+himpunan$^\prime$. Jadi, kita harus mempertimbangkan formula yang
+menguantifikasi atas himpunan$^\prime$. Jika formula semacam itu selalu
+menghasilkan himpunan$^\prime$, Paradoks Russell akan timbul lagi hanya dengan
+mempertimbangkan himpunan$^\prime$ dari semua himpunan$^\prime$ yang bukan
+anggota dirinya sendiri. Dengan melanjutkan gagasan yang sama, kita harus
+mengatakan bahwa formula yang menguantifikasi atas himpunan$^\prime$
+menghasilkan himpunan$^{\prime\prime}$ yang bersesuaian. Lalu kita akan
+memerlukan himpunan$^{\prime\prime\prime}$,
+himpunan$^{\prime\prime\prime\prime}$, dan seterusnya. Untuk mencegah ledakan
+tanda prima, lebih mudah menganggap semuanya sebagai himpunan$_0$,
+himpunan$_1$, himpunan$_2$, himpunan$_3$, himpunan$_4$,\ldots. Dengan cara
+ini kita memperoleh jalan menuju teori tipe (sederhana).
+
+Ada beberapa keberatan yang jelas terhadap teori semacam itu (meskipun tidak
+jelas bahwa keberatan tersebut \emph{sangat menentukan}). Singkatnya: teori
+yang dihasilkan rumit digunakan; teori itu boros dalam mendalilkan beragam
+jenis objek; dan pada akhirnya tidak jelas bahwa definisi impredikatif bahkan
+\emph{seburuk itu}.
+	
+Untuk menegaskan butir terakhir, perhatikan komentar
+\citeauthor{Ramsey1925} berikut:
+\begin{quote}
+	kita dapat menyebut seorang pria sebagai yang tertinggi dalam suatu
+	kelompok, sehingga mengidentifikasinya melalui suatu totalitas yang ia
+	sendiri menjadi anggotanya, tanpa adanya lingkaran setan.
+	\citep{Ramsey1925}
+\end{quote}
+Butir yang diajukan Ramsey ialah bahwa ``pria tertinggi dalam kelompok''
+\emph{merupakan} definisi impredikatif; tetapi definisi itu jelas sepenuhnya
+wajar.
+
+Seseorang mungkin menanggapi bahwa, dalam kasus ini, kita dapat memilih orang
+tertinggi itu dengan cara \emph{predikatif}. Misalnya, mungkin kita cukup
+menunjuk pria yang dimaksud. Karena itu, keberatan terhadap definisi
+impredikatif jelas harus dibatasi pada entitas yang \emph{hanya} dapat dipilih
+secara impredikatif. Namun, sekalipun demikian, kita masih memerlukan
+penjelasan lebih lanjut tentang mengapa ``keimpredikatifan esensial'' semacam
+itu begitu buruk.\footnote{Untuk pembahasan lebih lanjut, lihat
+\citet{Linnebo2010}.}
+
+Memang, definisi impredikatif membawa masalah yang sangat serius jika kita
+ingin definisi kita menyediakan semacam resep untuk \emph{menciptakan} suatu
+objek. Sebab, dengan diberikannya definisi impredikatif, kita benar-benar akan
+terperangkap dalam lingkaran setan: untuk menciptakan objek yang
+ditentukan secara impredikatif, kita harus \emph{terlebih dahulu} menciptakan
+semua objek (termasuk objek yang ditentukan secara impredikatif), karena objek
+tersebut ditentukan dengan mengacu pada semua objek; jadi, kita harus
+menciptakan objek yang ditentukan secara impredikatif sebelum kita selesai
+menciptakan objek itu sendiri. Namun sekali lagi, ini hanya merupakan
+keberatan serius terhadap himpunan yang ditentukan ``secara impredikatif
+esensial'' jika kita menganggap himpunan sebagai benda yang kita
+\emph{ciptakan}. Dan (barangkali) kita tidak menganggapnya demikian.
+
+Karena itu---baik atau buruk---pendekatan yang kemudian menjadi umum tidak
+mengambil sikap keras mengenai (im)\-pre\-di\-ka\-tiv\-itas. Sebaliknya,
+pendekatan tersebut menggunakan apa yang kini dianggap sebagai pendekatan
+kumulatif-iteratif. Pada akhirnya, pendekatan ini memungkinkan kita
+menstratifikasi himpunan ke dalam ``tahap-tahap''---\emph{agak} menyerupai
+cara pendekatan predikatif menstratifikasi entitas menjadi himpunan$_0$,
+himpunan$_1$, himpunan$_2$, \ldots---tetapi kita tidak akan mendalilkan
+perbedaan jenis apa pun di antara semuanya.
+
+\end{document}

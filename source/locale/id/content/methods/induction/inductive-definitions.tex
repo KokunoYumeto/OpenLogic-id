@@ -1,0 +1,161 @@
+% Part: methods
+% Chapter: induction
+% Section: inductive-definitions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mth}{ind}{idf}
+
+\olsection{Definisi Induktif}
+
+Dalam logika, kita sangat sering mendefinisikan jenis-jenis objek
+\emph{secara induktif}, yakni dengan menentukan kaidah-kaidah mengenai apa
+yang terhitung sebagai objek dari jenis yang hendak didefinisikan; kaidah
+itu menjelaskan cara memperoleh objek baru dari jenis tersebut berdasarkan
+objek lama dari jenis yang sama. Misalnya, kita sering mendefinisikan jenis
+khusus barisan simbol, seperti suku dan !!{formula} suatu bahasa, melalui
+induksi. Sebagai contoh sederhana, perhatikan untai yang terdiri atas huruf
+$\mathrm{a}$, $\mathrm{b}$, $\mathrm{c}$, $\mathrm{d}$, simbol~$\circ$,
+serta kurung siku $[$ dan $]$, misalnya
+``$[[\mathrm{c} \circ \mathrm{d}][$'', ``$[\mathrm{a}[]\circ]$'',
+``$\mathrm{a}$'', atau ``$[[\mathrm{a} \circ \mathrm{b}]\circ
+\mathrm{d}]$''. Barangkali Anda merasa bahwa ada sesuatu yang ``salah''
+pada dua untai pertama: kurung siku sama sekali tidak ``seimbang'' pada
+untai pertama, dan Anda mungkin merasa bahwa ``$\circ$'' seharusnya
+``menghubungkan'' ungkapan-ungkapan yang masing-masing masuk akal. Untai
+ketiga dan keempat tampak lebih baik: bagi setiap ``$[$'' terdapat
+``$]$'' penutup (jika memang ada kurung sama sekali), dan bagi setiap
+$\circ$ kita dapat menemukan ungkapan yang ``rapi'' pada kedua sisinya,
+dikelilingi sepasang kurung siku.
+
+Kita ingin menentukan secara tepat apa yang terhitung sebagai ``suku
+rapi''. Pertama-tama, setiap huruf dengan sendirinya merupakan suku rapi.
+Apa pun yang bukan sekadar satu huruf harus berbentuk ``$[t \circ s]$'',
+dengan $s$ dan $t$ sendiri merupakan suku rapi. Sebaliknya, jika $t$ dan
+$s$ rapi, kita dapat membentuk suku rapi baru dengan menempatkan $\circ$ di
+antara keduanya dan mengelilinginya dengan sepasang kurung siku. Kita dapat
+menggunakan operasi-operasi ini untuk \emph{mendefinisikan} himpunan suku
+rapi. Inilah suatu \emph{definisi induktif}.
+
+\begin{defn}[Suku rapi]
+  Himpunan \emph{suku rapi} didefinisikan secara induktif sebagai berikut:
+  \begin{enumerate}
+  \item Setiap huruf $\mathrm{a}$, $\mathrm{b}$, $\mathrm{c}$,
+    $\mathrm{d}$ merupakan suku rapi.
+  \item Jika $s_1$ dan $s_2$ merupakan suku rapi, maka
+    $[s_1 \circ s_2]$ juga merupakan suku rapi.
+  \item Tidak ada yang lain yang merupakan suku rapi.
+  \end{enumerate}
+\end{defn}
+
+Definisi ini memberi tahu kita bahwa sesuatu terhitung sebagai suku rapi
+jika dan hanya jika sesuatu itu dapat dibangun menurut dua syarat (1)
+dan~(2) dalam sejumlah berhingga langkah. Pada langkah pertama, kita
+membangun semua suku rapi yang hanya terdiri atas satu huruf, yakni
+\[
+\mathrm{a}, \mathrm{b}, \mathrm{c}, \mathrm{d}
+\]
+Pada langkah kedua, kita menerapkan (2) pada suku-suku yang telah dibangun.
+Kita memperoleh
+\[
+[\mathrm{a} \circ \mathrm{a}], [\mathrm{a} \circ \mathrm{b}],
+[\mathrm{b} \circ \mathrm{a}], \dots, [\mathrm{d} \circ \mathrm{d}]
+\]
+untuk semua kombinasi dua huruf. Pada langkah ketiga, kita menerapkan (2)
+lagi pada dua suku rapi mana pun yang sudah dibangun. Kita memperoleh suku
+rapi baru seperti $[\mathrm{a} \circ [\mathrm{a} \circ
+    \mathrm{a}]]$---di sini $t$ adalah $\mathrm{a}$ dari langkah~1 dan $s$
+adalah $[\mathrm{a} \circ \mathrm{a}]$ dari langkah~2---serta
+$[[\mathrm{b} \circ \mathrm{c}] \circ [\mathrm{d} \circ \mathrm{b}]]$,
+yang dibangun dari dua suku $[\mathrm{b} \circ \mathrm{c}]$ dan
+$[\mathrm{d} \circ \mathrm{b}]$ dari langkah~2. Demikian seterusnya.
+Klausa (3) mencegah apa pun yang tidak dibangun dengan cara ini menyusup ke
+dalam himpunan suku rapi.
+
+Perhatikan bahwa kita belum membuktikan bahwa setiap barisan simbol yang
+``terasa'' rapi memang rapi menurut definisi ini. Namun, semestinya jelas
+bahwa semua yang dapat kita bangun memang ``terasa rapi'': kurung sikunya
+seimbang, dan $\circ$ menghubungkan bagian-bagian yang dengan sendirinya
+rapi.
+
+Ciri utama definisi induktif ialah bahwa, jika Anda hendak membuktikan
+sesuatu mengenai semua suku rapi, definisi tersebut memberi tahu Anda kasus
+mana saja yang harus dipertimbangkan. Misalnya, jika diberi tahu bahwa $t$
+adalah suku rapi, definisi induktif memberi tahu Anda seperti apa bentuk
+$t$: $t$ dapat berupa sebuah huruf, atau dapat berupa $[s_1 \circ s_2]$
+untuk sepasang suku rapi $s_1$ dan~$s_2$. Karena klausa (3), hanya itulah
+kemungkinannya.
+
+Ketika membuktikan klaim mengenai seluruh anggota suatu himpunan yang
+didefinisikan secara induktif, bentuk induksi kuat menjadi sangat penting.
+Misalnya, andaikan kita hendak membuktikan bahwa bagi setiap suku rapi
+sepanjang~$n$, banyaknya $[$ di dalamnya adalah~$< n/2$. Ini dapat
+dipandang sebagai klaim mengenai semua~$n$: bagi setiap $n$, banyaknya $[$
+dalam sebarang suku rapi sepanjang~$n$ adalah $< n/2$.
+
+\begin{prop}
+  Untuk sebarang $n$, banyaknya $[$ dalam suatu suku rapi sepanjang~$n$
+  adalah $< n/2$.
+\end{prop}
+
+\begin{proof}
+Untuk membuktikan hasil ini melalui induksi (kuat), kita harus menunjukkan
+bahwa klaim kondisional berikut benar:
+\begin{quote}
+  Jika bagi setiap $l < k$, sebarang suku rapi sepanjang~$l$ memiliki
+  $< l/2$ buah $[$, maka sebarang suku rapi sepanjang~$k$ memiliki
+  $< k/2$ buah $[$.
+\end{quote}
+Untuk menunjukkan kondisional ini, andaikan antesedennya benar, yakni
+andaikan bahwa bagi sebarang $l<k$, suku rapi sepanjang~$l$ memuat
+$< l/2$ buah $[$. Asumsi ini kita sebut hipotesis induksi. Kita hendak
+menunjukkan bahwa hal yang sama benar bagi suku rapi sepanjang~$k$.
+
+Jadi, andaikan $t$ adalah suku rapi sepanjang~$k$. Karena suku rapi
+didefinisikan secara induktif, kita mempunyai dua kasus: (1)~$t$ hanya
+berupa satu huruf, atau (2)~$t$ adalah $[s_1 \circ s_2]$ untuk suatu suku
+rapi $s_1$ dan~$s_2$.
+\begin{enumerate}
+\item $t$ adalah sebuah huruf. Maka $k = 1$, dan banyaknya $[$ dalam $t$
+adalah~$0$. Karena $0 < 1/2$, klaim tersebut berlaku.
+\item $t$ adalah $[s_1 \circ s_2]$ untuk suatu suku rapi $s_1$ dan~$s_2$.
+  Misalkan $l_1$ adalah panjang~$s_1$ dan $l_2$ adalah panjang~$s_2$.
+  Maka panjang~$k$ dari $t$ adalah $l_1+l_2+3$ (panjang $s_1$ dan $s_2$
+  ditambah tiga simbol $[$, $\circ$, $]$). Karena $l_1+l_2+3$ selalu lebih
+  besar daripada $l_1$, berlaku $l_1 < k$. Demikian pula, $l_2 < k$. Ini
+  berarti hipotesis induksi berlaku pada suku $s_1$ dan~$s_2$:
+  bilangan~$m_1$ yang menyatakan banyaknya $[$ dalam $s_1$ adalah
+  $< l_1/2$, dan
+  bilangan~$m_2$ yang menyatakan banyaknya $[$ dalam~$s_2$ adalah
+  $< l_2/2$.
+
+  Banyaknya $[$ dalam $t$ adalah banyaknya $[$ dalam~$s_1$, ditambah
+  banyaknya $[$ dalam~$s_2$, ditambah~$1$, yakni $m_1 + m_2 + 1$. Karena
+  $m_1 < l_1/2$ dan $m_2 < l_2/2$, kita memperoleh:
+  \[
+  m_1 + m_2 + 1 < \frac{l_1}{2} + \frac{l_2}{2} + 1 = \frac{l_1+l_2+2}{2} < \frac{l_1+l_2+3}{2} = k/2.
+  \]
+\end{enumerate}
+Dalam setiap kasus, kita telah menunjukkan bahwa banyaknya $[$ dalam $t$
+adalah $< k/2$ (berdasarkan hipotesis induksi). Melalui induksi kuat,
+proposisi tersebut mengikuti.
+\end{proof}
+
+\begin{prob}
+  Definisikan himpunan suku superrapi dengan ketentuan berikut:
+  \begin{enumerate}
+  \item Setiap huruf $\mathrm{a}$, $\mathrm{b}$, $\mathrm{c}$,
+    $\mathrm{d}$ merupakan suku superrapi.
+  \item Jika $s$ merupakan suku superrapi, maka $[s]$ juga merupakan suku
+    superrapi.
+  \item Jika $s_1$ dan $s_2$ merupakan suku superrapi, maka
+    $[s_1 \circ s_2]$ juga merupakan suku superrapi.
+  \item Tidak ada yang lain yang merupakan suku superrapi.
+  \end{enumerate}
+  Tunjukkan bahwa banyaknya $[$ dalam suatu suku superrapi~$t$ sepanjang
+  $n$ adalah $\le n/2 +1$.
+\end{prob}
+
+\end{document}

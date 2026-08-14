@@ -1,0 +1,165 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: derived-rules
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{prf}{der}
+
+\olsection{Aturan Turunan}
+
+Mencari dan menulis !!{derivation}s jelas sulit, merepotkan, dan berulang.
+Sebagai contoh, sangat sering kita ingin beralih dari $!A\lif !B$ ke
+$\Box !A\lif\Box !B$, yakni menerapkan aturan~\RK. Hal itu memerlukan
+penerapan~\Nec, lalu pencatatan instansiasi~\Ax{K} yang tepat, kemudian
+penerapan~\MP. Beralih dari $!A\lif !B$ dan $!B\lif !C$ ke $!A\lif !C$
+memerlukan pencatatan instansiasi tautologis (yang panjang)
+\[
+(!A \lif !B) \lif ((!B \lif !C) \lif (!A \lif !C))
+\]
+dan penerapan~\MP{} dua kali. Sering kali kita ingin mengganti suatu
+sub-!!{formula} dengan formula yang kita ketahui ekuivalen dengannya, misalnya
+\iftag{prvDiamond}{$\Diamond !A$ dengan $\lnot\Box\lnot !A$}{$\Box !A$
+dengan $\lnot\Diamond\lnot !A$}, atau $\lnot\lnot !A$ dengan~$!A$. Jadi,
+alih-alih menuliskan !!{derivation} yang sebenarnya, lebih mudah mencatat
+mengapa langkah-langkah antara itu !!{derivable}. Untuk tujuan tersebut,
+marilah kita kumpulkan beberapa fakta tentang !!{derivability}.
+
+\begin{prop}
+  Jika $\Log{K}\Proves !A_1$, \dots, $\Log{K}\Proves !A_n$, dan $!B$
+  mengikuti dari $!A_1$, \dots, $!A_n$ melalui logika proposisional, maka
+  $\Log{K}\Proves !B$.
+\end{prop}
+
+\begin{proof}
+  Jika $!B$ mengikuti dari $!A_1$, \dots,~$!A_n$ melalui logika
+  proposisional, maka
+  \[
+  !A_1 \lif (!A_2 \lif \cdots (!A_n \lif !B)\dots)
+  \]
+  merupakan instansiasi tautologis. Menerapkan~\MP{} sebanyak $n$ kali
+  menghasilkan !!a{derivation} dari~$!B$.
+\end{proof}
+
+Kita akan menandai penggunaan proposisi ini dengan~\PL.
+
+\begin{prop}
+  Jika $\Log{K}\Proves !A_1\lif(!A_2\lif\cdots(!A_{n-1}\lif
+  !A_n)\dots)$, maka $\Log{K}\Proves\Box !A_1\lif(\Box !A_2\lif
+  \cdots(\Box !A_{n-1}\lif\Box !A_n)\dots)$.
+\end{prop}
+
+\begin{proof}
+  Melalui induksi pada~$n$, persis seperti dalam pembuktian
+  \olref[nor]{prop:rk}.
+\end{proof}
+
+Kita akan menandai penggunaan proposisi ini dengan~\RK. Mari kita gambarkan
+bagaimana hasil-hasil ini mempermudah pembuktian hasil !!{derivability}.
+
+\begin{prop}
+  $\Log{K}\Proves(\Box!A\land\Box!B)\lif\Box(!A\land !B)$
+\end{prop}
+
+\begin{proof}
+  \begin{derivation}
+    1. & $\Log{K} \Proves !A \lif (!B \lif (!A \land !B))$ & \Taut \\
+    2. & $\Log{K} \Proves \Box!A \lif (\Box !B \lif \Box(!A \land !B)))$ & \RK, 1\\
+    3. & $\Log{K} \Proves (\Box!A \land \Box!B) \lif \Box(!A \land !B)$ & \PL, 2
+  \end{derivation}
+\end{proof}
+
+\begin{prop}\ollabel{prop:rewriting}
+  Jika $\Log{K}\Proves !A\liff !B$ dan
+  $\Log{K}\Proves\Subst{!C}{!A}{q}$, maka
+  $\Log{K}\Proves\Subst{!C}{!B}{q}$.
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[nml][prf][der]{prop:rewriting} dengan membuktikan, melalui
+  induksi pada kompleksitas~$!C$, bahwa jika $\Log{K}\Proves !A\liff !B$,
+  maka $\Log{K}\Proves\Subst{!C}{!A}{q}\liff\Subst{!C}{!B}{q}$.
+\end{prob}
+
+Proposisi ini terutama berguna ketika kita ingin mengubah $\Diamond$ menjadi
+$\Box$ (atau sebaliknya), atau menghapus negasi ganda di dalam !!a{formula}.
+Dalam pembahasan berikut, kita akan menandai penerapan
+\olref{prop:rewriting} dengan ``$!B$ untuk~$!A$'' ketika kita menulis ulang
+!!a{formula}~$!C(!A)$ menjadi~$!C(!B)$. Dengan kata lain, ``$!B$ untuk~$!A$''
+menyingkat:
+  \begin{derivation}
+    & $\Proves !C(!A)$ \\
+    & $\Proves !A \liff !B$\\
+    & $\Proves !C(!B)$ & menurut \olref{prop:rewriting}
+  \end{derivation}
+Sebagai contoh:
+
+\begin{prop}
+  $\Log{K}\Proves\lnot\Box p\lif\Diamond\lnot p$
+\end{prop}
+
+\begin{proof}
+  \iftag{prvDiamond}{% Diamond is primitive
+  \begin{derivation}
+    1. & $\Log{K} \Proves \Diamond \lnot p \liff \lnot\Box\lnot\lnot p$ &
+    \Dual\\
+    2. & $\Log{K} \Proves \lnot \Box \lnot\lnot p \lif \Diamond \lnot p$ & \PL, 1\\
+    3. & $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ & $p$ untuk $\lnot\lnot p$\\
+  \end{derivation}
+  }{% Diamond is defined
+  \begin{derivation}
+    1. & $\Log{K} \Proves \lnot \Box \lnot\lnot p \lif \Diamond \lnot p$ & \Taut\\
+    2. & $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ & $p$ untuk $\lnot\lnot p$\\
+  \end{derivation}
+  Formula pada baris~$1$ merupakan instansiasi $\lnot q\lif\lnot q$, dengan
+  $\Box\lnot\lnot p$ disubstitusikan untuk~$q$. $\Diamond\lnot p$ dan
+  $\lnot\Box\lnot\lnot p$ identik, sebab $\Diamond$ didefinisikan sebagai
+  $\lnot\Box\lnot$.}
+\end{proof}
+
+Dalam !!{derivation} di atas, langkah terakhir ``$p$ untuk $\lnot\lnot p$''
+merupakan singkatan bagi
+  \begin{derivation}
+    & $\Log{K} \Proves \lnot \Box \lnot\lnot p \lif \Diamond \lnot p$\\
+    & $\Log{K} \Proves \lnot\lnot p \liff p$ & \Taut\\
+    & $\Log{K} \Proves \lnot\Box p \lif \Diamond \lnot p$ & menurut \olref{prop:rewriting}
+  \end{derivation}
+Peran $!C(q)$, $!A$, dan~$!B$ dalam \olref{prop:rewriting} di sini dimainkan,
+berturut-turut, oleh $\lnot\Box q\lif\Diamond\lnot p$,
+$\lnot\lnot p$, dan~$p$.
+
+Jika !!a{formula} memuat sub-!!{formula}~$\lnot\Diamond !A$, kita dapat
+menggantinya dengan $\Box\lnot !A$ menggunakan \olref{prop:rewriting}, sebab
+$\Log{K}\Proves\lnot\Diamond !A\liff\Box\lnot !A$. Kita akan menandai
+penggantian ini dan penggantian serupa cukup dengan ``$\Box\lnot$ untuk
+$\lnot\Diamond$.''
+
+Proposisi berikut membenarkan bahwa kita dapat menetapkan hasil
+!!{derivability} secara skematis. Sebagai contoh, proposisi sebelumnya tidak
+hanya menetapkan bahwa $\Log{K}\Proves\lnot\Box p\lif\Diamond\lnot p$, tetapi
+juga $\Log{K}\Proves\lnot\Box !A\lif\Diamond\lnot !A$ bagi sebarang~$!A$.
+
+\begin{prop}
+  Jika $!A$ merupakan instansiasi substitusi dari~$!B$ dan
+  $\Log{K}\Proves !B$, maka $\Log{K}\Proves !A$.
+\end{prop}
+
+\begin{proof}
+  Membosankan tetapi rutin untuk memeriksa (melalui induksi pada panjang
+  !!{derivation} dari~$!B$) bahwa penerapan suatu substitusi pada seluruh
+  !!{derivation} juga menghasilkan !!a{derivation} yang benar. Secara khusus,
+  instansiasi substitusi dari instansiasi tautologis juga merupakan instansiasi
+  tautologis; instansiasi substitusi dari instansiasi
+  \iftag{prvDiamond}{\Dual{} dan~}{}\Ax{K} juga merupakan instansiasi
+  \iftag{prvDiamond}{\Dual{} dan~}{}\Ax{K}; dan penerapan~\MP{} dan~\Nec{}
+  tetap benar ketika !!{formula}s disubstitusikan bagi
+  !!{propositional variable}s dalam premis maupun kesimpulannya.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,44 @@
+% Part: lambda-calculus
+% Chapter: lambda-definability
+% Section: partial-recursive-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{ldf}{par}
+\olsection{Fungsi Rekursif Parsial yang \usetoken{S}{lambda definable}}
+
+Fungsi rekursif parsial ialah fungsi yang diperoleh dari fungsi-fungsi dasar
+melalui komposisi, rekursi primitif, dan minimisasi tak berbatas.
+Fungsi-fungsi ini berbeda dari fungsi rekursif umum karena fungsi-fungsi
+yang digunakan dalam pencarian tak berbatas tidak disyaratkan bersifat
+reguler. Tanpa syarat
+keteraturan, fungsi yang didefinisikan melalui minimisasi mungkin tidak
+terdefinisi pada sebagian masukan.
+
+Sekilas, tampaknya metode yang sama dengan yang digunakan untuk menunjukkan
+bahwa semua fungsi rekursif umum (yang total) bersifat !!{lambda definable}
+dapat digunakan untuk membuktikan bahwa semua fungsi rekursif parsial bersifat
+!!{lambda definable}. Sebagai contoh, komposisi $f$ dengan $g$
+!!{lambda defined} oleh $\lambd[x][F (G x)]$ jika $f$ dan $g$ masing-masing
+!!{lambda defined} oleh suku $F$ dan~$G$. Namun, hal ini menimbulkan masalah
+ketika fungsi-fungsi tersebut parsial. Jika $g(x)$ tidak terdefinisi, maka
+$G x$ tidak mempunyai bentuk normal. Dalam kebanyakan kasus, ini berarti
+bahwa $F (G x)$ juga tidak mempunyai bentuk normal, dan itulah yang kita
+inginkan. Namun, tinjau kasus ketika $F$ adalah
+$\lambd[x][\lambd[y][y]]$; dalam kasus ini, $F (G x)$ justru mempunyai bentuk
+normal, yaitu $\lambd[y][y]$.
+
+Masalah ini bukannya tidak dapat diatasi. Ada cara-cara untuk
+!!{lambda define} semua fungsi rekursif parsial sedemikian sehingga nilai yang
+tidak terdefinisi direpresentasikan oleh suku tanpa bentuk normal. Akan tetapi,
+cara-cara tersebut agak lebih rumit dan kurang intuitif daripada pendekatan
+yang kita gunakan bagi fungsi rekursif umum. Di sini kita mencatat teoremanya
+tanpa bukti:
+
+\begin{thm}
+  Semua fungsi rekursif parsial bersifat !!{lambda definable}.
+\end{thm}
+
+\end{document}

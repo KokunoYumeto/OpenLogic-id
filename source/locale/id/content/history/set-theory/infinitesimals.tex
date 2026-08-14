@@ -1,0 +1,97 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{his}{set}{infinitesimals}
+\olsection{Infinitesimal dan Diferensiasi}
+
+Newton dan Leibniz menemukan kalkulus (secara independen) pada akhir abad
+ke-17. Salah satu penerapan kalkulus yang sangat penting ialah
+\emph{diferensiasi}. Secara kasar, diferensiasi bertujuan memberikan suatu
+pengertian tentang ``laju perubahan'', atau gradien, suatu fungsi pada
+suatu titik.
+
+Berikut cara yang jelas untuk menggambarkan gagasan tersebut. Pertimbangkan
+fungsi $f(x)=\nicefrac{x^2}{4}+\nicefrac{1}{2}$, yang digambarkan dengan
+warna hitam di bawah ini:
+\begin{center}
+	\begin{tikzpicture}[scale=1]
+	\draw[->, gray] (-1,0) -- (4.25,0) node[right] {$x$};
+	\draw[->, gray] (0,-0.25) -- (0,5.25) node[above] {$f(x)$};
+
+	\foreach \x/\xtext in {1/1, 2/2, 3/3, 4/4}
+	\draw[shift={(\x,0)}, gray] (0pt,2pt) -- (0pt,-2pt) node[below] {$\xtext$};
+
+	\foreach \y/\ytext in {1/1, 2/2, 3/3, 4/4, 5/5}
+	\draw[shift={(0,\y)}, gray] (2pt,0pt) -- (-2pt,0pt) node[left] {$\ytext$};
+
+	\draw[oldiagcolorC] (0.5, 9/16) -- (3.5, 57/16) -- (3.5, 9/16)--cycle;
+	\draw[oldiagcolorD] (.5, 9/16) -- (2.5, 33/16) -- (2.5, 9/16) -- cycle;
+	\draw[oldiagcolorE] (.5, 9/16) -- (1.5, 17/16) -- (1.5, 9/16) -- cycle;
+	\draw[thick] (-1,.75) parabola bend (0,0.5) (4,4.5);
+	\end{tikzpicture}
+\end{center}
+Andaikan kita hendak mencari gradien fungsi pada
+$c=\nicefrac{1}{2}$. Kita mulai dengan menggambar suatu segitiga yang
+hipotenusanya menghampiri gradien pada titik tersebut, misalnya segitiga
+merah di atas. Jika $\beta$ merupakan panjang alas segitiga kita, tingginya
+ialah $f(\nicefrac{1}{2}+\beta)-f(\nicefrac{1}{2})$, sehingga gradien
+hipotenusanya ialah:
+\[
+\frac{f(\nicefrac{1}{2}+\beta) - f(\nicefrac{1}{2})}{\beta}.
+\]
+Jadi, gradien segitiga !!{colorC} kita, yang panjang alasnya~$3$, tepat
+sama dengan~$1$. Hipotenusa segitiga yang lebih kecil, yaitu segitiga
+!!{colorD} dengan panjang alas~$2$, memberikan hampiran yang lebih baik;
+gradiennya ialah $\nicefrac{3}{4}$. Segitiga yang lebih kecil lagi, yakni
+segitiga !!{colorE} dengan panjang alas~$1$, memberikan hampiran yang lebih
+baik lagi; gradiennya ialah $\nicefrac{1}{2}$.
+
+Segitiga yang semakin kecil memberikan hampiran yang semakin baik. Karena
+itu, kita mungkin berkata seperti berikut: hipotenusa suatu segitiga dengan
+panjang alas \emph{infinitesimal} memberikan gradien pada
+$c=\nicefrac{1}{2}$ itu sendiri. Dengan cara ini, kita memperoleh suatu
+rumus bagi turunan (pertama) fungsi $f$ pada titik $c$:
+\[
+{f'}(c) = \frac{f(c+\beta) - f(c)}{\beta}
+\text{ dengan $\beta$ infinitesimal.}
+\]
+Secara kasar, inilah yang dikatakan Newton dan Leibniz.
+
+Namun, karena mereka mengatakan demikian, kita harus bertanya: apakah
+\emph{infinitesimal} itu? Timbul suatu dilema serius. Jika $\beta=0$, maka
+$f'$ tidak terdefinisi dengan baik karena melibatkan pembagian oleh~$0$.
+Namun, jika $\beta>0$, kita hanya memperoleh suatu \emph{hampiran} gradien,
+bukan gradien itu sendiri.
+
+Kekhawatiran ini bukan anakronisme. Berikut kritik Berkeley terhadap para
+pengikut Newton:
+\begin{quote}
+Saya mengakui bahwa tanda dapat dibuat untuk menyatakan sesuatu atau tidak
+menyatakan apa pun; dan karena itu, dalam notasi semula $c+\beta$, $\beta$
+dapat menyatakan suatu pertambahan ataupun ketiadaan. Namun, apa pun yang
+Anda jadikan maknanya, Anda harus bernalar secara konsisten dengan makna itu
+dan tidak melanjutkan berdasarkan makna ganda; melakukan hal tersebut
+merupakan sofisme yang nyata. (\citealt[\S{}XIII]{Berkeley1734},
+variabel diubah agar sesuai dengan teks sebelumnya)
+\end{quote}
+Untuk membela kalkulus infinitesimal terhadap Berkeley, orang mungkin
+menjawab bahwa pembicaraan tentang ``infinitesimal'' hanyalah kiasan.
+Orang mungkin berkata bahwa, selama kita mengambil segitiga yang
+\emph{sangat kecil}, kita akan memperoleh suatu hampiran garis singgung yang
+\emph{cukup baik}. Berkeley juga mempunyai jawaban bagi hal ini: walaupun
+hal itu mungkin cukup baik bagi rekayasa, ia merusak \emph{status}
+matematika, sebab
+\begin{quote}
+kita diberi tahu bahwa \emph{in rebus mathematicis errores qu\`{a}m minimi
+non sunt contemnendi}. [Dalam matematika, kesalahan yang paling kecil pun
+tidak boleh diabaikan.] \citep[\S{}IX]{Berkeley1734}
+\end{quote}
+Petikan bercetak miring tersebut hampir merupakan kutipan kata demi kata
+dari \emph{Quadrature of Curves} (1704) karya Newton sendiri.
+
+Keberatan filosofis Berkeley sangat tajam. Meskipun demikian, kalkulus
+merupakan usaha yang sangat berhasil, dan para matematikawan terus
+menggunakannya tanpa terjerumus ke dalam kesalahan.
+
+\end{document}

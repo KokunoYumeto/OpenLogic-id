@@ -1,0 +1,114 @@
+% Part: methods
+% Chapter: induction
+% Section: structural-induction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mth}{ind}{sti}
+
+\olsection{Induksi Struktural}
+
+Sejauh ini kita telah menggunakan induksi untuk menetapkan hasil mengenai
+semua bilangan asli. Namun, suatu prinsip yang bersesuaian dapat digunakan
+secara langsung untuk membuktikan hasil mengenai semua !!{element} suatu
+himpunan yang didefinisikan secara induktif. Prinsip ini sering disebut
+induksi \emph{struktural}, karena bergantung pada struktur objek-objek yang
+didefinisikan secara induktif.
+
+Secara umum, suatu definisi induktif diberikan oleh (a)~daftar !!{element}
+``awal'' dari himpunan tersebut dan (b)~daftar operasi yang menghasilkan
+!!{element} baru dari himpunan itu berdasarkan anggota lama. Dalam kasus
+suku rapi, misalnya, objek awalnya adalah huruf-huruf. Kita hanya mempunyai
+satu operasi, yakni
+\begin{align*}
+  o(s_1, s_2) = & [s_1 \circ s_2].
+\end{align*}
+Bahkan, Anda dapat memandang bilangan asli~$\Nat$ sendiri sebagai sesuatu
+yang diberikan oleh definisi induktif: objek awalnya adalah~$0$, dan
+operasinya adalah fungsi penerus~$x + 1$.
+
+Untuk membuktikan sesuatu mengenai semua anggota suatu himpunan yang
+didefinisikan secara induktif, yakni bahwa setiap !!{element} himpunan itu
+memiliki sifat~$P$, kita harus:
+\begin{enumerate}
+\item membuktikan bahwa objek-objek awal memiliki~$P$;
+\item membuktikan bahwa bagi setiap operasi~$o$, jika argumen-argumennya
+  memiliki~$P$, hasilnya juga demikian.
+\end{enumerate}
+Misalnya, untuk membuktikan sesuatu mengenai semua suku rapi, kita akan
+membuktikan bahwa hal itu benar bagi semua huruf dan bahwa hal itu benar
+bagi $[s_1 \circ s_2]$ asalkan benar bagi $s_1$ dan $s_2$ masing-masing.
+
+\begin{prop}
+  Banyaknya $[$ sama dengan banyaknya $]$ dalam sebarang suku rapi~$t$.
+\end{prop}
+
+\begin{proof}
+Kita menggunakan induksi struktural. Suku rapi didefinisikan secara
+induktif, dengan huruf sebagai objek awal dan operasi $o$ untuk membangun
+suku rapi baru dari suku rapi lama.
+\begin{enumerate}
+\item Klaim tersebut benar bagi setiap huruf, sebab banyaknya $[$ dalam
+  sebuah huruf dengan sendirinya adalah~$0$, dan banyaknya $]$ di dalamnya
+  juga~$0$.
+\item Andaikan banyaknya $[$ dalam $s_1$ sama dengan banyaknya $]$, dan hal
+  yang sama benar bagi $s_2$. Banyaknya $[$ dalam $o(s_1, s_2)$, yakni
+  dalam $[s_1 \circ s_2]$, adalah jumlah banyaknya $[$ dalam $s_1$ dan
+  $s_2$, ditambah satu. Banyaknya $]$ dalam $o(s_1, s_2)$ adalah jumlah
+  banyaknya $]$ dalam $s_1$ dan $s_2$, ditambah satu. Jadi, banyaknya $[$
+  dalam $o(s_1, s_2)$ sama dengan banyaknya $]$ dalam $o(s_1,s_2)$.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Buktikan melalui induksi struktural bahwa tidak ada suku rapi yang diawali
+  dengan~$]$.
+\end{prob}
+
+Mari kita berikan bukti lain melalui induksi struktural: suatu segmen awal
+sejati dari untai simbol~$t$ adalah sebarang untai~$s$ yang bersesuaian
+dengan $t$ simbol demi simbol ketika dibaca dari kiri, tetapi $t$ lebih
+panjang. Jadi, misalnya, $[a \circ {}$ merupakan segmen awal sejati dari
+$[a \circ b]$, sedangkan $[b \circ {}$ bukan (keduanya berbeda pada simbol
+kedua), dan $[a \circ b]$ juga bukan (keduanya sama panjang).
+
+\begin{prop}\ollabel{prop:initial}
+  Setiap segmen awal sejati dari suatu suku rapi~$t$ memiliki lebih banyak
+  $[$ daripada $]$.
+\end{prop}
+
+\begin{proof}
+  Melalui induksi pada~$t$:
+  \begin{enumerate}
+  \item $t$ hanya berupa satu huruf: maka $t$ tidak mempunyai segmen awal
+    sejati.
+  \item $t = [s_1 \circ s_2]$ untuk suatu suku rapi $s_1$ dan~$s_2$. Jika
+    $r$ merupakan segmen awal sejati dari $t$, terdapat sejumlah
+    kemungkinan:
+    \begin{enumerate}
+    \item $r$ hanya berupa $[$: maka $r$ memiliki satu $[$ lebih banyak
+      daripada~$]$.
+    \item $r$ berupa $[r_1$, dengan $r_1$ merupakan segmen awal sejati
+      dari~$s_1$: karena $s_1$ adalah suku rapi, menurut hipotesis induksi
+      $r_1$ memiliki lebih banyak $[$ daripada $]$, dan hal yang sama benar
+      bagi $[r_1$.
+    \item $r$ berupa $[s_1$ atau $[s_1 \circ {}$: menurut hasil sebelumnya,
+      banyaknya $[$ dan $]$ dalam~$s_1$ sama; jadi, banyaknya $[$ dalam
+      $[s_1$ ataupun $[s_1 \circ {}$ adalah satu lebih banyak daripada
+      banyaknya~$]$.
+    \item $r$ berupa $[s_1 \circ r_2$, dengan $r_2$ merupakan segmen awal
+      sejati dari~$s_2$: menurut hipotesis induksi, $r_2$ memuat lebih
+      banyak $[$ daripada $]$. Menurut hasil sebelumnya, banyaknya $[$ dan
+      $]$ dalam~$s_1$ sama. Jadi, banyaknya $[$ dalam $[s_1 \circ r_2$
+      lebih besar daripada banyaknya~$]$.
+    \item $r$ berupa $[s_1 \circ s_2$: menurut hasil sebelumnya, banyaknya
+      $[$ dan $]$ dalam $s_1$ sama, dan begitu pula dalam~$s_2$. Jadi,
+      banyaknya $[$ dalam $[s_1 \circ s_2$ adalah satu lebih banyak daripada
+      banyaknya $]$.
+    \end{enumerate}
+  \end{enumerate}
+\end{proof}
+
+\end{document}

@@ -1,0 +1,98 @@
+% part: intuitionistic-logic
+% chapter: semantics
+% section: topological-semantics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{sem}{top}
+
+\olsection{Semantik Topologis}
+
+Cara lain untuk memberikan semantik bagi logika intuisionistik ialah dengan
+menggunakan konsep matematis topologi.
+
+\begin{defn}
+  Misalkan $X$ merupakan himpunan. Suatu \emph{topologi pada~$X$} ialah
+  himpunan $\Top{O}\subseteq\Pow{X}$ yang memenuhi sifat-sifat di bawah ini.
+  !!^{element}s dari~$\Top{O}$ disebut \emph{himpunan terbuka} dalam topologi
+  tersebut. Himpunan $X$ bersama $\Top{O}$ disebut \emph{ruang topologis}.
+  \begin{enumerate}
+  \item Himpunan kosong dan seluruh ruang bersifat terbuka:
+    $\emptyset$, $X\in\Top{O}$.
+  \item Himpunan terbuka tertutup terhadap irisan berhingga: jika
+    $U$, $V\in\Top{O}$, maka $U\cap V\in\Top{O}$
+  \item Himpunan terbuka tertutup terhadap gabungan sebarang: jika
+    $U_i\in\Top{O}$ untuk semua $i\in I$, maka
+    $\bigcup\Setabs{U_i}{i\in I}\in\Top{O}$.
+  \end{enumerate}
+\end{defn}
+
+Kita dapat menulis $X$ bagi suatu ruang topologis jika koleksi himpunan
+terbukanya dapat disimpulkan dari konteks. Namun, perlu diperhatikan bahwa
+$X$ baru dapat disebut ruang topologis setelah dilengkapi dengan koleksi
+himpunan terbuka.
+
+\begin{defn}
+  Suatu \emph{model topologis} logika proposisional intuisionistik ialah
+  tripel $\mModel{X}=\tuple{X,\Top{O},V}$, dengan $\Top{O}$ merupakan topologi
+  pada~$X$ dan $V$ merupakan fungsi yang menetapkan suatu himpunan terbuka
+  dalam $\Top{O}$ kepada setiap variabel proposisional.
+
+  Dengan diberikan model topologis~$\mModel{X}$, kita dapat mendefinisikan
+  $\Prop{X}{!A}$ secara induktif sebagai berikut:
+  \begin{enumerate}
+  \item $\Prop{X}{\lfalse}=\emptyset$
+  \item $\Prop{X}{p}=V(p)$
+  \item $\Prop{X}{!A\land !B}=\Prop{X}{!A}\cap\Prop{X}{!B}$
+  \item $\Prop{X}{!A\lor !B}=\Prop{X}{!A}\cup\Prop{X}{!B}$
+  \item $\Prop{X}{!A\lif !B}=\Interior{(X\setminus\Prop{X}{!A})\cup
+    \Prop{X}{!B}}$
+  \end{enumerate}
+  Di sini, $\Interior{V}$ merupakan fungsi yang memetakan himpunan
+  $V\subseteq X$ ke \emph{interiornya}, yakni gabungan semua himpunan terbuka
+  yang termuat di dalamnya. Dengan kata lain,
+  \[
+  \Interior{V}=\bigcup\Setabs{U}{U\subseteq V\text{ dan }U\in\Top{O}}.
+  \]
+\end{defn}
+
+Perhatikan bahwa interior setiap himpunan selalu terbuka karena merupakan
+gabungan himpunan-himpunan terbuka. Jadi, $\Prop{X}{!A}$ selalu merupakan
+himpunan terbuka.
+
+Walaupun semantik topologis sangat abstrak, ada cara memahaminya yang dapat
+memberikan motivasi. Andaikan bahwa !!{element}s, atau ``titik-titik,'' dari
+$X$ merupakan titik tempat pernyataan dapat dievaluasi. Himpunan semua titik
+tempat $!A$ benar ialah proposisi yang dinyatakan oleh~$!A$. Tidak setiap
+himpunan titik merupakan proposisi yang mungkin; hanya !!{element}s
+dari~$\Top{O}$ yang demikian. $!A\Entails !B$ jika dan hanya jika $!B$ benar
+pada setiap titik tempat~$!A$ benar, yakni
+$\Prop{X}{!A}\subseteq\Prop{X}{!B}$, untuk semua~$X$. Pernyataan absurd
+$\lfalse$ tidak pernah benar, sehingga $\Prop{X}{\lfalse}=\emptyset$.
+
+Bagaimana proposisi yang dinyatakan oleh $!B\land !C$, $!B\lor !C$, dan
+$!B\lif !C$ harus berhubungan dengan proposisi yang dinyatakan oleh $!B$
+dan~$!C$ agar hukum-hukum yang valid secara intuisionistik berlaku, yakni agar
+$!A\Proves !B$ jika dan hanya jika
+$\Prop{X}{!A}\subseteq\Prop{X}{!B}$? Kita mensyaratkan
+$\lfalse\Proves !A$ untuk setiap $!A$, dan hal ini terpenuhi karena
+$\emptyset\subseteq U$ untuk semua $U$. Karena $!B\land !C\Proves !B$, kita
+mensyaratkan $\Prop{X}{!B\land !C}\subseteq\Prop{X}{!B}$, dan serupa dengan
+itu $\Prop{X}{!B\land !C}\subseteq\Prop{X}{!C}$. Himpunan terbesar yang
+memenuhi $W\subseteq U$ dan $W\subseteq V$ ialah $U\cap V$. Sebaliknya,
+$!B\Proves !B\lor !C$ dan $!C\Proves !B\lor !C$, sehingga kita mensyaratkan
+$\Prop{X}{!B}\subseteq\Prop{X}{!B\lor !C}$ dan
+$\Prop{X}{!C}\subseteq\Prop{X}{!B\lor !C}$. Himpunan terkecil~$W$ yang
+memenuhi $U\subseteq W$ dan $V\subseteq W$ ialah $U\cup V$.
+
+Definisi bagi $\lif$ lebih rumit: $!A\lif !B$ menyatakan proposisi terlemah
+yang, jika digabungkan dengan $!A$, mengikutkan $!B$. Fakta bahwa
+$!A\lif !B$ bersama $!A$ mengikutkan~$!B$ jelas dari
+$(!A\lif !B)\land !A\Proves !B$. Jadi, $\Prop{X}{!A\lif !B}$ harus merupakan
+himpunan terbuka terbesar sedemikian sehingga
+$\Prop{X}{!A\lif !B}\cap\Prop{X}{!A}\subseteq\Prop{X}{!B}$; dari sinilah
+definisi kita diperoleh.
+
+\end{document}

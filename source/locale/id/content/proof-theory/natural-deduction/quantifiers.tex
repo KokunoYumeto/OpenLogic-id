@@ -1,0 +1,213 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{nat}{qua}
+
+\olsection{\usetoken{P}{proof} Reguler dan Substitusi}
+
+Aturan-aturan kuantor menimbulkan sejumlah kerumitan karena
+``syarat variabel eigen'' yang berlaku pada aturan
+\Elim{\lexists} dan~\Intro{\lforall}. Sebagian besar kerumitan ini
+dapat ditangani dengan memastikan bahwa !!{constant}~$c$ dalam
+inferensi-inferensi tersebut tidak pernah digunakan kembali. Mari kita
+perkenalkan definisi berikut.
+
+\begin{defn}
+Suatu !!{proof} deduksi alami~$\delta$ disebut \emph{reguler} jika
+\begin{enumerate}
+  \item tidak ada variabel eigen~$a$ yang digunakan sebagai variabel eigen
+  bagi lebih dari satu inferensi \Elim{\lexists}
+  atau~\Intro{\lforall}; dan
+  \item jika $a$ adalah variabel eigen bagi suatu inferensi
+  \Elim{\lexists} atau~\Intro{\lforall}, maka $a$ hanya muncul dalam
+  sub-!!{proof} langsung yang masing-masing menuju premis minor atau
+  premis inferensi tersebut.
+\end{enumerate}
+\end{defn}
+
+\begin{lem}\ollabel{lem:subst-regular}
+Jika $\delta$ reguler dan berakhir pada~$!C$, $c$ adalah
+!!a{constant} yang tidak digunakan sebagai variabel eigen
+dalam~$\delta$, dan $t$ adalah suku yang tidak memuat variabel eigen
+apa pun dari~$\delta$, maka $\Subst{\delta}{t}{c}$ yang diperoleh
+dari~$\delta$ dengan mengganti setiap kemunculan~$c$ dengan~$t$
+merupakan !!{proof} reguler. !!{formula} akhir
+$\Subst{\delta}{t}{c}$ ialah $\Subst{!C}{t}{c}$. Jika $!A^x$
+merupakan asumsi terbuka dari~$\delta$, maka
+$\Subst{!A}{t}{c}^x$ merupakan asumsi terbuka dari
+$\Subst{\delta}{t}{c}$.
+\end{lem}
+
+\begin{proof}
+  Melalui induksi pada $\pheight{\delta}$. Jika
+  $\pheight{\delta}=0$, $\delta$ hanya terdiri atas asumsi~$!A^x$.
+  Maka $\Subst{\delta}{t}{c}$ ialah~$\Subst{!A}{t}{c}^x$.
+
+  Jika $\pheight{\delta}>0$, kita membedakan kasus menurut inferensi
+  terakhir dalam~$\delta$. Kasus-kasus aturan penghubung proposisional
+  mudah dan ditinggalkan sebagai latihan. Kita membahas kasus ketika
+  $\delta$ berakhir pada inferensi kuantor.
+  \begin{enumerate}
+    \item Jika inferensi terakhir adalah $\Intro{\lforall}$, $\delta$
+    berbentuk
+    \[
+    \AxiomC{}
+    \RightLabel{$\delta'$}
+    \DeduceC{$!A(a,c)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x,c)]$}
+    \DisplayProof
+    \]
+    Berdasarkan hipotesis induksi, $\Subst{\delta'}{t}{c}$ merupakan
+    !!{proof} reguler atas $!A(a,t)$. Karena $a$ merupakan variabel
+    eigen dari~$\delta$, $a$ tidak muncul dalam~$t$. Karena itu,
+    inferensi terakhir dalam $\Subst{\delta}{t}{c}$,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\delta'}{t}{c}$}
+    \DeduceC{$!A(a,t)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x,t)]$}
+    \DisplayProof
+    \]
+    adalah benar: karena $t$ tidak memuat~$a$, baik kesimpulan maupun
+    asumsi terbuka mana pun tidak memuat~$a$.
+    \item Jika inferensi terakhir adalah $\Elim{\lforall}$, $\delta$
+    berbentuk
+    \[
+    \AxiomC{}
+    \RightLabel{$\delta'$}
+    \DeduceC{$\lforall[x][!A(x,c)]$}
+    \RightLabel{\Elim{\lforall}}
+    \UnaryInfC{$!A(s(c),c)$}
+    \DisplayProof
+    \]
+    Berdasarkan hipotesis induksi, $\Subst{\delta'}{t}{c}$ merupakan
+    !!{proof} reguler atas $\lforall[x][!A(x,t)]$. (Suku~$s(c)$
+    dalam kesimpulan boleh memuat~$c$, tetapi tidak harus.) Inferensi
+    terakhir dalam $\Subst{\delta}{t}{c}$,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\delta'}{t}{c}$}
+    \DeduceC{$\lforall[x][!A(x,t)]$}
+    \RightLabel{\Elim{\lforall}}
+    \UnaryInfC{$!A(s(t),t)$}
+    \DisplayProof
+    \]
+    adalah benar, dan
+    $!A(s(t),t) \ident \Subst{!A(s(c),c)}{t}{c}$. Kasus
+    \Intro{\lexists} serupa.
+    \item Jika inferensi terakhir adalah $\Elim{\lexists}$, $\delta$
+    berbentuk
+    \[
+    \AxiomC{}
+    \RightLabel{$\delta_1'$}
+    \DeduceC{$\lexists[x][!A(x,c)]$}
+    \AxiomC{$\Discharge{!A(a,c)}{x}$}
+    \RightLabel{$\delta_2'$}
+    \DeduceC{$!C$}
+    \DischargeRule{\Elim{\lexists}}{x}
+    \BinaryInfC{$!C$}
+    \DisplayProof
+    \]
+    Berdasarkan hipotesis induksi,
+    $\Subst{\delta_1'}{t}{c}$ dan
+    $\Subst{\delta_2'}{t}{c}$ masing-masing merupakan !!{proof}
+    reguler atas $\lexists[x][!A(x,t)]$ dan atas
+    $\Subst{!C}{t}{c}$ dari asumsi terbuka~$!A(a,t)$. Karena $a$
+    merupakan variabel eigen dari~$\delta$, $a$ tidak muncul
+    dalam~$t$. Maka inferensi terakhir dalam
+    $\Subst{\delta}{t}{c}$,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\delta_1'}{t}{c}$}
+    \DeduceC{$\lexists[x][!A(x,t)]$}
+    \AxiomC{$\Discharge{!A(a,t)}{x}$}
+    \RightLabel{$\Subst{\delta_2'}{t}{c}$}
+    \DeduceC{$\Subst{!C}{t}{c}$}
+    \DischargeRule{\Elim{\lexists}}{x}
+    \BinaryInfC{$\Subst{!C}{t}{c}$}
+    \DisplayProof
+    \]
+    adalah benar:
+    $\Subst{!A(x,t)}{a}{x}
+    \ident \Subst{!A(a,c)}{t}{c}$, dan baik kesimpulan
+    $\Subst{!C}{t}{c}$ maupun asumsi terbuka mana pun tidak
+    memuat~$a$.
+  \end{enumerate}
+\end{proof}
+
+\begin{prop}\ollabel{prop:regular}
+Jika $\delta$ adalah !!a{proof} dalam \Log{N1c} atau \Log{N1i}, maka
+terdapat !!{proof} reguler~$\delta'$ dengan struktur yang sama (khususnya,
+dengan !!{height} yang sama) yang berbeda dari $\delta$ hanya melalui
+penggantian variabel-variabel eigen.
+\end{prop}
+
+\begin{proof}
+Khusus untuk keperluan bukti ini, sebut suatu inferensi variabel eigen
+dalam~$\delta$ \emph{bersih} jika variabel eigennya bukan variabel eigen
+bagi inferensi lain dan tidak muncul di tempat mana pun dalam~$\delta$
+selain sub-!!{proof} langsung dari inferensi tersebut; sebut inferensi itu
+\emph{kotor} jika tidak demikian. Misalkan $n$ banyaknya inferensi
+variabel eigen kotor dalam~$\delta$. Kita menunjukkan melalui induksi
+pada~$n$ bahwa $\delta$ dapat diubah menjadi !!{proof} reguler~$\delta'$
+yang disyaratkan. Jika $n=0$, semua inferensi variabel eigen
+dalam~$\delta$ bersih; jadi $\delta$ reguler dan tidak ada yang perlu
+dibuktikan. Jika tidak, pilih inferensi variabel eigen kotor paling atas,
+misalnya \Intro{\lforall}. Sub-!!{proof}~$\delta_1$ dari~$\delta$ yang
+berakhir pada inferensi itu berbentuk
+    \[
+    \AxiomC{}
+    \RightLabel{$\delta_2$}
+    \DeduceC{$!A(c)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x)]$}
+    \DisplayProof
+    \]
+Karena $c$ merupakan variabel eigen, $c$ tidak muncul
+dalam~$\lforall[x][!A(x)]$ ataupun dalam asumsi terbuka. Tidak ada
+inferensi variabel eigen kotor dalam $\delta_2$, sehingga $\delta_2$
+reguler; khususnya, $c$ tidak digunakan sebagai variabel eigen di
+dalamnya. Misalkan $a$ adalah !!a{constant} yang tidak muncul
+dalam~$\delta$. Berdasarkan \olref{lem:subst-regular},
+$\Subst{\delta_2}{a}{c}$ merupakan bukti reguler atas $!A(a)$.
+Berdasarkan syarat variabel eigen, tidak ada asumsi terbuka
+dalam~$\delta_2$ yang memuat~$c$; karena itu, tidak ada asumsi terbuka
+dalam~$\Subst{\delta_2}{a}{c}$ yang memuat~$a$. Jadi kita dapat
+menerapkan~$\Intro{\lforall}$. Jika kita mengganti $\delta_1$
+dalam~$\delta$ dengan bukti $\delta_1'$,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\delta_2}{a}{c}$}
+    \DeduceC{$!A(a)$}
+    \RightLabel{\Intro{\lforall}}
+    \UnaryInfC{$\lforall[x][!A(x)]$}
+    \DisplayProof
+    \]
+kita telah mengganti satu inferensi variabel eigen kotor dengan inferensi
+bersih, dan satu-satunya perbedaan ialah penggantian variabel eigen $c$
+dengan~$a$. Bukti yang dihasilkan memiliki lebih sedikit daripada $n$
+inferensi variabel eigen kotor, sehingga hasilnya mengikuti dari hipotesis
+induksi.
+\end{proof}
+
+\begin{prob}
+Uraikan kasus dalam bukti \olref{prop:regular} ketika inferensi variabel
+eigen paling atas adalah~\Elim{\lexists}.
+\end{prob}
+
+Kita tidak akan merujuk secara eksplisit pada proposisi yang baru saja
+dibuktikan, tetapi kita akan mengasumsikan bahwa semua !!{proof} yang
+dibahas adalah reguler---jika tidak, kita selalu dapat mengganti variabel
+eigen untuk menjadikannya reguler.
+
+\Olref{lem:subst-regular} dan \olref{prop:regular} juga berlaku bagi
+\Log{N2c} dan~\Log{N2i}. Bukti-buktinya ditinggalkan sebagai latihan.
+
+\end{document}

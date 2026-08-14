@@ -1,0 +1,157 @@
+% Part: lambda-calculus
+% Chapter: lambda-definability
+% Section: primitive-recursive-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{ldf}{prf}
+\olsection{Fungsi Rekursif Primitif yang \usetoken{S}{lambda definable}}
+
+Ingat bahwa fungsi rekursif primitif ialah fungsi yang dapat didefinisikan
+dari fungsi-fungsi dasar $\Zero$, $\Succ$, dan $\Proj{n}{i}$ melalui
+komposisi dan rekursi primitif.
+
+\begin{lem}
+  \ollabel{lem:basic}
+  Fungsi-fungsi rekursif primitif dasar $\Zero$, $\Succ$, dan
+  proyeksi~$\Proj{n}{i}$ bersifat !!{lambda definable}.
+\end{lem}
+
+\begin{proof}
+Fungsi-fungsi tersebut !!{lambda defined} oleh suku-suku berikut:
+\begin{align*}
+  \fn{Zero} & \ident \lambd[a][\lambd[fx][x]]\\
+  \fn{Succ} & \ident \lambd[a][\lambd[fx][f (a f x)]] \\
+  \fn{Proj}^n_i & \ident \lambd[x_0\dots x_{n-1}][x_i]
+\end{align*}
+\end{proof}
+
+\begin{lem}
+  \ollabel{lem:comp} Andaikan fungsi beraritas~$k$, $f$, dan fungsi-fungsi
+  beraritas~$n$, $g_0, \dots, g_{k-1}$, masing-masing
+  !!{lambda defined} oleh suku $F$, $G_0$, \dots,~$G_{k-1}$, dan $h$
+  didefinisikan dari fungsi-fungsi tersebut melalui komposisi. Maka $h$
+  bersifat !!{lambda definable}.
+\end{lem}
+
+\begin{proof}
+  Fungsi $h$ dapat !!{lambda defined} oleh suku
+  \[
+  H \ident \lambd[x_0 \dots x_{n-1}][F\, (G_0 x_0 \dots
+    x_{n-1}) \dots (G_{k-1} x_0 \dots x_{n-1})]
+  \]
+  Verifikasi fakta ini diserahkan sebagai latihan.
+\end{proof}
+
+\begin{prob}
+  Lengkapi bukti \olref[lam][ldf][prf]{lem:comp} dengan menunjukkan
+  bahwa $H\num{n_0}\dots\num{n_{n-1}} \red \num{h(n_0, \dots,
+    n_{n-1})}$.
+\end{prob}
+
+Perhatikan bahwa \olref{lem:comp} tidak mensyaratkan $f$ dan $g_0$,
+\dots,~$g_{k-1}$ bersifat rekursif primitif; yang disyaratkan hanyalah bahwa
+fungsi-fungsi tersebut total dan !!{lambda definable}.
+
+\begin{lem}\ollabel{lem:prim}
+  Andaikan $f$ adalah fungsi beraritas~$n$ dan~$g$ adalah fungsi
+  beraritas~$n+2$, keduanya !!{lambda defined} oleh suku $F$ dan~$G$, dan
+  fungsi~$h$ didefinisikan dari $f$ dan $g$ melalui rekursi primitif.
+  Maka $h$ juga bersifat !!{lambda definable}.
+\end{lem}
+
+\begin{proof}
+  Ingat bahwa $h$ didefinisikan oleh
+  \begin{align*}
+    h(x_1, \dots, x_n, 0) &= f(x_1, \dots, x_n)\\
+    h(x_1, \dots, x_n, y+1) & = g(x_1, \dots, x_n, y, h(x_1, \dots, x_n, y)).
+  \end{align*}
+  Secara informal, definisi rekursif primitif mengiterasikan langkah yang
+  ditentukan oleh fungsi $g$ sebanyak $y$ kali, dengan bertolak dari
+  $f(x_1, \dots, x_n)$. Hal ini mengingatkan kita pada definisi numeral
+  Church, yang juga didefinisikan sebagai iterator.
+
+  Demi kesederhanaan, kita memberikan definisi dan bukti untuk satu argumen
+  parameter tambahan~$x$. Fungsi $h$ !!{lambda defined} oleh:
+  \begin{align*}
+    H \ident & \lambd[x][\lambd[y][\fn{Snd} (y
+        D \tuple{\num{0}, F x})]]
+    \intertext{dengan}
+    D \ident & \lambd[p][\tuple{\fn{Succ} (\fn{Fst}\, p), (G x
+          (\fn{Fst}\, p) (\fn{Snd}\, p))}]
+  \end{align*}
+  Keadaan iterasi yang kita pertahankan adalah suatu pasangan: komponen
+  pertamanya ialah nilai $y$ saat ini, sedangkan komponen keduanya ialah nilai
+  $h$ yang bersesuaian. Pada setiap langkah iterasi, kita membuat pasangan
+  nilai $y$ dan $h$ yang baru; setelah iterasi selesai, kita mengembalikan
+  komponen kedua pasangan, dan itulah nilai akhir~$h$. Sekarang kita buktikan
+  bahwa ini memang merupakan representasi rekursi primitif.
+
+  Kita ingin membuktikan bahwa untuk setiap $n$ dan $m$,
+  $H\,\num{n}\,\num{m} \red \num{h(n,m)}$. Untuk itu, pertama-tama kita
+  tunjukkan bahwa jika $D_n \ident \Subst{D}{\num{n}}{x}$, maka
+  $D_n^m \tuple{\num{0}, F\, \num{n}} \red
+  \tuple{\num{m}, \num{h(n, m)}}$. Kita melanjutkan dengan induksi pada~$m$.
+
+  Jika $m=0$, kita ingin memperoleh
+  $D_n^0 \tuple{\num{0}, F\, \num{n}} \red
+  \tuple{\num{0}, \num{h(n, 0)}}$. Namun,
+  $D_n^0 \tuple{\num{0}, F\, \num{n}}$ tidak lain adalah
+  $\tuple{\num{0}, F\, \num{n}}$. Karena $F$ !!{lambda define}s~$f$,
+  suku ini tereduksi menjadi $\tuple{\num{0}, \num{f(n)}}$; dan karena
+  $f(n) = h(n, 0)$, hasilnya adalah
+  $\tuple{\num{0}, \num{h(n,0)}}$.
+
+  Sekarang andaikan $D_n^m \tuple{\num{0}, F\, \num{n}} \red
+  \tuple{\num{m}, \num{h(n, m)}}$. Kita ingin menunjukkan bahwa
+  $D_n^{m+1} \tuple{\num{0}, F\, \num{n}} \red
+  \tuple{\num{m+1}, \num{h(n, m+1)}}$.
+  \begin{align*}
+    D_n^{m+1} \tuple{\num{0}, F\, \num{n}}
+    & \ident D_n(D_n^{m} \tuple{\num{0}, F\, \num{n}})\\
+    & \red D_n\,\tuple{\num{m}, \num{h(n, m)}}
+      \text{\qquad (menurut hipotesis induksi)}\\
+    & \ident (\lambd[p][
+      \tuple{
+        \fn{Succ} (\fn{Fst}\, p), (G \, \num{n} (\fn{Fst}\, p) (\fn{Snd}\, p))
+    }]) \tuple{\num{m}, \num{h(n,m)}}\\
+    & \redone
+    \tuple{\fn{Succ} (\fn{Fst}\, \tuple{\num{m}, \num{h(n,m)}}),\\
+      & \qquad (G \, \num{n} (\fn{Fst}\, \tuple{\num{m}, \num{h(n,m)}}) (\fn{Snd}\, \tuple{\num{m}, \num{h(n,m)}}))}\\
+    & \red
+    \tuple{\fn{Succ}\, \num{m}, (G \, \num{n} \,\num{m} \, \num{h(n,m)})}\\
+    & \red \tuple{\num{m+1}, \num{g(n, m, h(n, m))}}
+  \end{align*}
+  Karena $g(n, m, h(n, m)) = h(n, m+1)$, pembuktian langkah induksi selesai.
+
+  Terakhir, tinjau
+  \begin{align*}
+    H\,\num n\,\num m &\ident \lambd[x][\lambd[y][\fn{Snd} (y
+        (\lambd[p][\tuple{\fn{Succ} (\fn{Fst}\, p), (G\, x\,
+          (\fn{Fst}\, p)\, (\fn{Snd}\, p))}]) \tuple{\num{0}, F x})]]\\
+    & \qquad\,\num n\, \num m\\
+    & \red \fn{Snd} (\num m \,
+    \underbrace{(\lambd[p][\tuple{\fn{Succ} (\fn{Fst}\, p), (G \,\num n\,
+      (\fn{Fst}\, p) (\fn{Snd}\, p))}])}_{D_n} \tuple{\num{0}, F \num n})\\
+    & \ident \fn{Snd} (\num m \, D_n\, \tuple{\num{0}, F \num n})\\
+    & \red \fn{Snd} \,(D_n^m  \tuple{\num{0}, F \num n})\\
+    & \red \fn{Snd} \,\tuple{\num{m}, \num{h(n, m)}} \\
+    & \red \num{h(n,m)}.
+  \end{align*}
+\end{proof}
+
+
+\begin{prop}
+  Setiap fungsi rekursif primitif bersifat !!{lambda definable}.
+\end{prop}
+
+\begin{proof}
+  Berdasarkan \olref{lem:basic}, semua fungsi dasar bersifat
+  !!{lambda definable}; dan berdasarkan \olref{lem:comp} serta
+  \olref{lem:prim}, fungsi-fungsi yang !!{lambda definable} tertutup terhadap
+  komposisi dan rekursi primitif.
+\end{proof}
+
+\end{document}

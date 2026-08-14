@@ -1,0 +1,59 @@
+% Bagian: counterfactuals
+% Bab: introduction
+% Subbagian: paradoxes-material
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cnt}{int}{par}
+
+\olsection{Paradoks Kondisional Material}
+
+Salah seorang yang pertama mengkritik penggunaan $!A \lif !B$ sebagai cara
+menyimbolkan pernyataan kondisional berbentuk ``jika \dots, maka \dots''
+ialah C.~I. Lewis. Lewis mengkritik penggunaan kondisional material dalam
+\emph{Principia Mathematica} karya Whitehead dan Russell, yang melafalkan
+$\lif$ sebagai ``mengimplikasikan.'' Lewis dengan tepat mengeluhkan bahwa
+jika $\lif$ berarti ``mengimplikasikan,'' maka setiap proposisi salah~$p$
+mengimplikasikan bahwa $p$ mengimplikasikan~$q$, karena
+$p \lif (p \lif q)$ benar jika~$p$ salah; dan setiap proposisi benar~$q$
+mengimplikasikan bahwa $p$ mengimplikasikan~$q$, karena
+$q \lif (p \lif q)$ benar jika~$q$ benar.
+
+Para ahli logika tentu mengetahui bahwa \emph{implikasi}, yakni perikutan
+logis, bukanlah konektif, melainkan relasi antara !!{formula} atau pernyataan.
+Karena itu, untuk menghindari kebingungan, kita sebaiknya tidak membaca
+$\lif$ sebagai ``mengimplikasikan.''\footnote{Pembacaan ``$\lif$'' sebagai
+  ``mengimplikasikan'' masih tersebar luas di antara matematikawan dan
+  ilmuwan komputer, meskipun para filsuf berusaha menghindari kebingungan
+  yang ditunjukkan Lewis dengan melafalkannya sebagai ``hanya jika.''}
+Selama kita tidak membacanya demikian, kekhawatiran khusus Lewis sama sekali
+tidak muncul: $p$ tidak ``mengimplikasikan'' $q$ sekalipun kita menganggap
+$p$ mewakili suatu kalimat bahasa alamiah yang salah. Untuk menentukan
+apakah $p \Entails q$, kita harus mempertimbangkan \emph{semua}
+!!{valuation}; dan $p \Entails/ q$ bahkan ketika kita menggunakan $p$ untuk
+menyimbolkan suatu kalimat yang kebetulan salah.
+
+Namun, tetap ada sesuatu yang ganjil tentang pernyataan ``jika \dots, maka
+\dots'' seperti contoh Lewis berikut:
+\begin{quote}
+Jika bulan terbuat dari keju hijau, maka $2+2=4$.
+\end{quote}
+dan tentang inferensi-inferensi berikut:
+\begin{quote}
+  Bulan tidak terbuat dari keju hijau. Oleh karena itu, jika bulan terbuat
+  dari keju hijau, maka $2+2=4$.
+
+  $2+2 = 4$. Oleh karena itu, jika bulan terbuat dari keju hijau, maka
+  $2+2=4$.
+\end{quote}
+Namun, jika ``jika \dots, maka \dots'' hanyalah $\lif$, kalimat tersebut
+benar tanpa masalah dan inferensi-inferensi itu valid tanpa masalah.
+
+Contoh lainnya menyangkut tautologi
+$(!A \lif !B) \lor (!B \lif !A)$. Hal ini menyiratkan bahwa jika Anda
+mengambil secara acak dua kalimat indikatif~$S$ dan~$T$ dari surat kabar,
+kalimat ``Jika $S$, maka $T$, atau jika $T$, maka~$S$'' seharusnya benar.
+
+\end{document}

@@ -1,0 +1,89 @@
+% Bagian: second-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: terms-formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{syn}{frm}
+
+\olsection{Suku dan \printtoken{P}{formula}}
+
+Seperti dalam logika orde pertama, ungkapan-ungkapan logika orde kedua
+dibangun dari kosakata dasar yang memuat \emph{!!{variable}s},
+\emph{!!{constant}s}, \emph{!!{predicate}s}, dan kadang-kadang
+\emph{!!{function}s}. Dari unsur-unsur tersebut, bersama penghubung logis,
+kuantor, dan simbol tanda baca seperti tanda kurung dan koma, dibentuk
+\emph{suku} dan \emph{!!{formula}s}. Perbedaannya ialah bahwa selain variabel
+untuk objek, logika orde kedua juga memuat variabel untuk relasi dan fungsi,
+serta memperbolehkan kuantifikasi atasnya. Jadi, simbol-simbol logis logika
+orde kedua adalah simbol-simbol logika orde pertama, dengan tambahan:
+
+\begin{enumerate}
+\item Suatu himpunan !!{variable}s relasi orde kedua yang !!{denumerable}s untuk
+  setiap aritas~$n$: $\Obj V_0^n$, $\Obj V_1^n$, $\Obj V_2^n$, \dots
+\item Suatu himpunan !!{variable}s fungsi orde kedua yang !!{denumerable}s:
+  $\Obj u_0^n$, $\Obj u_1^n$, $\Obj u_2^n$, \dots
+\end{enumerate}
+
+Sebagaimana kita menggunakan $x$, $y$, dan~$z$ sebagai metavariabel bagi
+variabel orde pertama $\Obj v_i$, kita akan menggunakan $X$, $Y$, $Z$, dan
+seterusnya sebagai metavariabel bagi~$\Obj V_i^n$, serta $u$, $v$, dan
+seterusnya sebagai metavariabel bagi~$\Obj u_i^n$.
+
+\begin{explain}
+Simbol-simbol nonlogis suatu bahasa orde kedua ditentukan dengan cara yang
+sama seperti bagi suatu bahasa orde pertama: dengan mencantumkan
+!!{constant}s, !!{function}s, dan !!{predicate}s dalam bahasa tersebut.
+
+Dalam logika orde pertama, !!{identity}~$\eq$ biasanya disertakan. Dalam
+logika orde pertama, simbol-simbol nonlogis suatu bahasa~$\Lang{L}$ sangat
+penting agar kita dapat mengungkapkan sesuatu yang menarik. Tentu saja ada
+!!{sentence}s yang tidak menggunakan simbol nonlogis, tetapi hanya
+dengan~$\eq$ sulit untuk menyatakan sesuatu yang menarik. Dalam logika orde
+kedua, karena kita mempunyai persediaan variabel relasi dan fungsi yang tidak
+terbatas, kita dapat menyatakan apa pun yang dapat kita nyatakan dalam suatu
+bahasa orde pertama, bahkan tanpa persediaan khusus simbol nonlogis.
+\end{explain}
+
+\begin{defn}[Suku Orde Kedua]
+Himpunan \emph{suku orde kedua} dari~$\Lang L$, $\TrmSOL[L]$, didefinisikan
+dengan menambahkan klausa berikut pada \olref[fol][syn][frm]{defn:terms}:
+\begin{enumerate}
+\item Jika $u$ merupakan variabel fungsi beraritas~$n$ dan $t_1$, \dots,
+  $t_n$ merupakan suku, maka $\Atom{u}{t_1, \ldots, t_n}$ merupakan suku.
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+Jadi, suatu suku orde kedua tampak persis seperti suatu suku orde pertama,
+kecuali bahwa pada tempat suku orde pertama memuat !!a{function}~$\Obj{f^n_i}$,
+suatu suku orde kedua dapat memuat variabel fungsi~$\Obj{u^n_i}$ sebagai
+gantinya.
+\end{explain}
+
+\begin{defn}[\usetoken{S}{formula} Orde Kedua]
+Himpunan \emph{!!{formula}s orde kedua}~$\FrmSOL[L]$ dari bahasa~$\Lang L$
+didefinisikan dengan menambahkan klausa-klausa berikut pada
+\olref[fol][syn][frm]{defn:formulas}:
+\begin{enumerate}
+\item Jika $X$ merupakan variabel predikat beraritas~$n$ dan $t_1$, \dots,
+  $t_n$ merupakan suku orde kedua dari~$\Lang L$, maka
+  $\Atom{X}{t_1,\ldots, t_n}$ merupakan !!{formula} atomik.
+
+\tagitem{prvAll}{Jika $!A$ merupakan !!a{formula} dan $u$ merupakan variabel
+  fungsi, maka $\lforall[u][!A]$ merupakan !!a{formula}.}{}
+
+\tagitem{prvAll}{Jika $!A$ merupakan !!a{formula} dan $X$ merupakan variabel
+  predikat, maka $\lforall[X][!A]$ merupakan !!a{formula}.}{}
+
+\tagitem{prvEx}{Jika $!A$ merupakan !!a{formula} dan $u$ merupakan variabel
+  fungsi, maka $\lexists[u][!A]$ merupakan !!a{formula}.}{}
+
+\tagitem{prvEx}{Jika $!A$ merupakan !!a{formula} dan $X$ merupakan variabel
+  predikat, maka $\lexists[X][!A]$ merupakan !!a{formula}.}{}
+\end{enumerate}
+\end{defn}
+
+\end{document}

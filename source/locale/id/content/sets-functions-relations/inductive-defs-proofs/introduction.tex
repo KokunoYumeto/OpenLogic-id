@@ -1,0 +1,134 @@
+% Bagian: sets-functions-relations
+% Bab: induction
+% Subbagian: induction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sfr}{ind}{int}
+
+\olsection{Pendahuluan}
+
+\begin{explain}
+Induksi merupakan teknik pembuktian yang umum digunakan dalam matematika dan
+logika. Anda mungkin telah mengenalnya dari matematika, ketika induksi
+dilakukan pada bilangan asli. Ternyata, ada banyak jenis himpunan objek
+matematis dan logis lain yang juga cocok untuk induksi.
+
+Secara umum, induksi memungkinkan kita membuktikan suatu klaim universal,
+yakni menunjukkan bahwa setiap objek dari jenis tertentu memiliki suatu
+sifat. Secara khusus, induksi sering berguna apabila metode bukti
+``introduksi universal'' terlalu rumit. Induksi hanya berlaku pada objek
+matematis yang dibangun dengan cara khusus: jika setiap unsur dalam himpunan
+bersifat dasar atau dibangun dari unsur-unsur dasar, maka kita dapat
+menggunakan induksi pada himpunan itu. Secara lebih tepat:
+\end{explain}
+
+\begin{defn}
+Suatu himpunan $S$ disebut \emph{tertutup} terhadap fungsi $f$ jika dan hanya
+jika, setiap kali $x \in S$, berlaku $f(x) \in S$.
+\end{defn}
+
+\begin{explain}
+Sebagai contoh, bilangan asli ($\mathbb{N}$) tertutup terhadap fungsi penerus
+$f(x) = x+1$. Jika $x$ bilangan asli, maka $x+1$ juga bilangan asli. Namun,
+bilangan asli tidak tertutup terhadap fungsi pendahulu $f(x) = x-1$, karena
+$0$ bilangan asli, sedangkan $-1$ bukan.
+\end{explain}
+
+\begin{defn}
+Suatu sifat $P$ dikatakan \emph{dipertahankan oleh} fungsi $f(x)$ apabila,
+untuk setiap objek $a$ dalam domain $f$, $P(a)$ mengimplikasikan $P(f(a))$
+(jika $a$ memiliki sifat $P$, maka $f(a)$ juga demikian).
+\end{defn}
+
+\begin{explain}
+Sifat ``merupakan bilangan genap'' dipertahankan oleh fungsi $f(x) = x+2$,
+karena jika $x$ genap, maka $x+2$ juga genap. Sifat merupakan bilangan genap
+tidak dipertahankan oleh fungsi penerus, karena jika $x$ genap, maka $x+1$
+ganjil.
+
+Induksi berlaku pada bilangan asli karena setiap bilangan asli dapat dicapai
+dari 0 dengan menerapkan fungsi penerus sebanyak berhingga kali. Hal ini
+merupakan ciri setiap himpunan yang padanya kita dapat melakukan induksi.
+\end{explain}
+
+\begin{defn}[Induksi pada $\Nat$]
+Jika 0 memiliki suatu sifat $P$, dan jika $P$ dipertahankan oleh fungsi
+penerus, maka setiap bilangan asli memiliki sifat $P$.
+\end{defn}
+
+\begin{ex} Jumlah bilangan asli dari 0 sampai $n$ ialah $\frac{n(n+1)}{2}$. \\
+
+\textbf{Kasus dasar.} Untuk $n=0$, jumlah tersebut ialah $0=
+\frac{0\cdot 1}{2}$.\\
+
+\textbf{Langkah induktif.} Misalkan sifat tersebut berlaku bagi $k$. Kita
+akan menunjukkan bahwa sifat itu berlaku bagi $k+1$. Dengan kata lain,
+misalkan $P(k)$ berlaku, yakni,
+\[ 0 + 1 + \ldots + k = \frac{k(k+1)}{2} \]
+Kita akan menunjukkan bahwa $P(k+1)$ berlaku, yakni bahwa
+\[ 0 + 1 + \ldots + k + (k+1) = \frac{(k+1)(k+2)}{2} \]
+dengan menggunakan asumsi bahwa $P(k)$ berlaku.
+
+\begin{align*}
+0 + 1 + \ldots + k &= \frac{k(k+1)}{2} \tag{Asumsi} \\
+0 + 1 + \ldots + k + (k+1) &= \frac{k(k+1)}{2} + (k+1)
+\tag{Tambahkan $k+1$ pada kedua ruas} \\
+&= \frac{k(k+1) + 2(k+1)}{2} \\
+&= \frac{k^2 + 3k + 2}{2} \\
+&=\frac{(k+1)(k+2)}{2}
+\end{align*}
+Jadi, langkah induktif berhasil, dan klaim tersebut telah kita buktikan.
+\end{ex}
+
+\begin{explain}
+Untuk !!{formula}s, unsur-unsur dasarnya ialah !!{formula}s atomik.
+!!{formula}s yang lebih kompleks diperoleh dengan menggabungkan
+!!{formula}s yang lebih sederhana menggunakan operator. Setiap operator dapat
+dipandang sebagai fungsi pada !!{formula}s yang menghasilkan !!{formula}
+baru dengan menggabungkan kedua formula tersebut menggunakan operator yang
+bersangkutan. Sebagai contoh, fungsi yang menggabungkan dua !!{formula}s
+$!!^a$ dan $!B$ menjadi suatu konjungsi dapat ditulis sebagai
+$\mathcal E _\land (!!^a, !B) = !!^a \land !B$. Kita dapat menyebut fungsi
+semacam itu \emph{fungsi pembentuk formula}. Himpunan !!{formula}s tertutup
+terhadap fungsi-fungsi ini: setiap kali $!!^a$ dan $!B$ merupakan
+!!{formula}s, demikian pula $\lnot !!^a$, $!!^a \land !B$, dan sebagainya.
+\end{explain}
+
+\begin{defn}[Induksi pada !!{formula}s]
+Jika setiap !!{formula} atomik memiliki sifat $P$ dan $P$ dipertahankan oleh
+fungsi-fungsi pembentuk !!{formula}, maka setiap !!{formula} memiliki sifat
+$P$.
+\end{defn}
+
+\begin{explain}
+Definisi ini menyarankan suatu ``resep'' bagi bukti induktif pada
+!!{formula}s. Jika kita diminta menunjukkan bahwa setiap !!{formula} memiliki
+sifat $P$, ikuti langkah-langkah berikut:\\
+
+\textbf{Kasus Dasar.} Misalkan $!!^a$ suatu !!{formula} atomik. [\ldots]
+Jadi, $!!^a$ memiliki sifat $P$.
+
+\textbf{Langkah Induktif.} Misalkan $!!^a$ dan $!B$ merupakan !!{formula}s
+yang keduanya memiliki sifat $P$.
+
+Kasus $\lnot$: [\ldots] Jadi, $\lnot !!^a$ memiliki sifat $P$.
+
+Kasus $\land$: [\ldots] Jadi, $!!^a \land !B$ memiliki sifat $P$.
+
+Kasus $\lor$: [\ldots] Jadi, $!!^a \lor !B$ memiliki sifat $P$.
+
+Kasus $\lif$: [\ldots] Jadi, $!!^a \lif !B$ memiliki sifat $P$.
+
+Kasus $\liff$: [\ldots] Jadi, $!!^a \liff !B$ memiliki sifat $P$.
+
+Kasus $\lforall[]$: [\ldots] Jadi, $\lforall[x] !!^a$ memiliki sifat $P$.
+
+Kasus $\lexists[]$: [\ldots] Jadi, $\lexists[x] !!^a$ memiliki sifat $P$. \\
+
+Jadi, setiap !!{formula} memiliki sifat $P$.
+\end{explain}
+
+\end{document}

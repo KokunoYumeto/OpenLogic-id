@@ -1,0 +1,69 @@
+% Bagian: intuitionistic-logic
+% Bab: tableaux
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{tab}{int}
+
+\olsection{Pendahuluan}
+
+!!^{tableau}s adalah pohon tertentu (yang bercabang ke bawah) dari
+!!{signed formula}, yakni pasangan yang terdiri atas tanda nilai kebenaran
+($\True$ atau $\False$) dan !!a{sentence}
+\[
+\sFmla{\True}{!A} \text{ atau } \sFmla{\False}{!A}.
+\]
+!!^a{tableau} dimulai dengan sejumlah \emph{asumsi}. Setiap
+!!{signed formula} berikutnya dihasilkan dengan menerapkan salah satu aturan
+inferensi. Beberapa aturan inferensi menambahkan satu atau lebih
+!!{signed formula} pada suatu ujung pohon; aturan lainnya menambahkan dua
+ujung baru sehingga menghasilkan dua cabang. Aturan menghasilkan
+!!{signed formula} yang !!{formula}-nya kurang kompleks daripada formula
+dalam !!{signed formula} yang dikenai aturan tersebut. Jika suatu cabang
+memuat sekaligus $\sFmla{\True}{!A}$ dan $\sFmla{\False}{!A}$, kita mengatakan
+bahwa cabang itu \emph{tertutup}. Jika setiap cabang dalam !!a{tableau}
+tertutup, seluruh !!{tableau} tersebut tertutup. !!^a{tableau} tertutup
+merupakan !!a{derivation} yang menunjukkan bahwa himpunan !!{signed formula}
+yang digunakan untuk memulai !!{tableau} tersebut tidak dapat dipenuhi. Hal
+ini dapat digunakan untuk mendefinisikan relasi~$\Proves$:
+$\Gamma \Proves !A$ jika dan hanya jika terdapat suatu himpunan berhingga
+$\Gamma_0 = \{!B_1, \dots, !B_n\} \subseteq \Gamma$ sedemikian sehingga
+terdapat !!{tableau} tertutup untuk asumsi-asumsi
+\[
+\{\sFmla{\False}{!A}, \sFmla{\True}{!B_1}, \dots, \sFmla{\True}{!B_n}\}.
+\]
+
+Untuk logika intuisionistik, kita harus memperluas pengertian
+!!{signed formula} sekaligus menyesuaikan aturan-aturan bagi konektif. Selain
+tanda ($\True$ atau $\False$), !!{formula} dalam !!{tableau} intuisionistik
+juga mempunyai \emph{prefiks}~$\sigma$. Prefiks adalah barisan takkosong dari
+bilangan bulat positif, yakni
+$\sigma \in (\PosInt)^* \setminus \{\emptyseq\}$. Kita menuliskan prefiks
+semacam itu tanpa tanda~$\tuple{\ }$ yang mengelilinginya, dan memisahkan
+!!{element} individual dengan tanda~$.$ alih-alih tanda~$,$. Jika $\sigma$
+adalah suatu prefiks, maka $\sigma.n$ adalah
+$\sigma \concat \tuple{n}$; misalnya, jika $\sigma = 1.2.1$, maka
+$\sigma.3$ adalah $1.2.1.3$. Jadi, sebagai contoh,
+\[
+\sFmla{\True}{!A \lif (!B \lif !C)}[1.2]
+\]
+adalah \emph{!!{signed formula} berprefiks} (atau, singkatnya,
+\emph{!!{formula} berprefiks}).
+
+Secara intuitif, prefiks menamai suatu dunia dalam model yang mungkin
+memenuhi !!{formula} pada suatu cabang !!a{tableau}; dan jika $\sigma$
+menamai suatu dunia, maka $\sigma.n$ menamai dunia yang terjangkau dari
+(dunia yang dinamai oleh)~$\sigma$.
+
+Dalam model intuisionistik, relasi keterjangkauan bersifat refleksif dan
+transitif. Dalam istilah prefiks, hal ini berarti bahwa $\sigma$ terjangkau
+dari $\sigma$ sendiri, begitu pula setiap prefiks yang memperpanjang
+$\sigma$, yakni setiap prefiks berbentuk $\sigma.n_1.\cdots.n_k$. Mari kita
+perkenalkan notasi $\sigma.*$ untuk menyatakan $\sigma$ sendiri beserta
+setiap perluasannya. Dengan kata lain, prefiks-prefiks $\sigma.*$ adalah
+semua dan hanya prefiks yang terjangkau dari~$\sigma$.
+
+\end{document}

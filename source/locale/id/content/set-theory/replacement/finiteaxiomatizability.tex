@@ -1,0 +1,119 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+	
+\olfileid[id]{sth}{replacement}{finiteaxiomatizability}
+\olsection{Lampiran: Keteraksiomatisasian Berhingga}
+Kita menutup bab ini dengan mengekstrak beberapa hasil dari Penggantian. Hasil
+pertama berasal dari \citet{Montague1961}; perhatikan bahwa ini bukan bukti
+\emph{di dalam}~$\ZF$, melainkan bukti \emph{mengenai}~$\ZF$:
+\begin{thm}\ollabel{zfnotfinitely}
+	$\ZF$ tidak dapat diaksiomatisasi secara berhingga. Secara lebih umum: jika
+	$\Th{T}$ berhingga dan $\Th{T}\Proves\ZF$, maka $\Th{T}$ tidak konsisten.
+
+	(Di sini, kita secara diam-diam membatasi pembahasan pada kalimat orde
+	pertama yang satu-satunya primitif nonlogis adalah~$\in$, dan menulis
+	$\Th{T}\Proves\ZF$ untuk menyatakan bahwa $\Th{T}\Proves\phi$ bagi semua
+	$\phi\in\ZF$.)
+\end{thm}
+\begin{proof}
+	Tetapkan suatu $\Th{T}$ berhingga sedemikian sehingga
+	$\Th{T}\Proves\ZF$. Jadi, $\Th{T}$ membuktikan Refleksi, yakni
+	\olref[sth][replacement][ref]{reflectionschema}. Karena $\Th{T}$
+	berhingga, kita dapat menulisnya kembali sebagai satu konjungsi~$\theta$.
+	Dengan merefleksikan formula ini, kita memperoleh
+	$\Th{T}\Proves\exists\beta(\theta\liff\theta^{V_\beta})$. Karena secara
+	sepele $\Th{T}\Proves\theta$, kita memperoleh
+	$\Th{T}\Proves\exists\beta\ \theta^{V_\beta}$.
+
+	Sekarang, misalkan $\psi(X)$ menyingkat:
+	\[
+		\theta^X \land X\text{ transitif} \land (\forall Y \in X)(Y\text{ transitif}\lif \lnot \theta^{Y})
+	\]
+	Secara kasar, ini mengatakan bahwa $X$ merupakan model transitif
+	dari~$\theta$ dan minimal menurut~$\in$ dalam hal tersebut. Dengan mengingat
+	bahwa $\Th{T}\Proves\exists\beta\ \theta^{V_\beta}$, serta menggunakan
+	fakta-fakta dasar mengenai peringkat di dalam~$\ZF$ dan karena itu di
+	dalam~$\Th{T}$, kita mempunyai:
+	\begin{equation}
+		\Th{T} \Proves \exists M \psi(M). \tag{*}\label{Mpsi}
+	\end{equation}
+	Dengan menggunakan konjung pertama dari~$\psi(X)$, setiap kali
+	$\Th{T}\Proves\sigma$, kita mempunyai
+	$\Th{T}\Proves\forall X(\psi(X)\lif\sigma^X)$. Jadi, berdasarkan
+	\eqref{Mpsi}:
+	\begin{align*}
+		\Th{T} &\Proves \forall X(\psi(X) \lif (\exists N \psi(N))^X)\\
+	\intertext{Dengan menggunakan hasil ini dan \eqref{Mpsi} sekali lagi:}
+		\Th{T} &\Proves \exists M(\psi(M) \land (\exists N \psi(N))^M)
+	\intertext{Maka, secara khusus:}
+		\Th{T} &\Proves \exists M(\psi(M) \land (\exists N \in M)((N\text{ transitif})^N \land (\theta^N)^M))
+	\intertext{Jadi, berdasarkan penalaran elementer mengenai transitivitas:}
+		\Th{T} &\Proves \exists M(\psi(M) \land (\exists N \in M)(N\text{ transitif} \land \theta^N)).
+	\end{align*}
+	Dengan demikian, $\Th{T}$ tidak konsisten.\footnote{``Penalaran
+	elementer'' ini melibatkan pembuktian beberapa ``fakta keabsolutan'' bagi
+	himpunan transitif.}
+\end{proof}
+
+Berikut hasil serupa yang dicatat oleh \citet[223]{Potter2004}:
+
+\begin{prop}\ollabel{finiteextensionofZ}
+	Misalkan $\Th{T}$ memperluas $\Z$ dengan berhingga banyak aksioma baru.
+	Jika $\Th{T}\Proves\ZF$, maka $\Th{T}$ tidak konsisten. (Di sini kita
+	menggunakan pembatasan diam-diam yang sama seperti dalam
+	\olref{zfnotfinitely}.)
+\end{prop}
+\begin{proof}
+	Gunakan $\theta$ bagi konjungsi semua aksioma~$\Th{T}$ \emph{kecuali}
+	instans-instans Pemisahan (yang banyaknya tak berhingga). Dengan
+	mendefinisikan $\psi$ dari~$\theta$ seperti dalam \olref{zfnotfinitely},
+	kita dapat menunjukkan bahwa $\Th{T}\Proves\exists M\psi(M)$.
+
+	Seperti dalam \olref{zfnotfinitely}, kita dapat menetapkan skema bahwa,
+	setiap kali $\Th{T}\Proves\sigma$, berlaku
+	$\Th{T}\Proves\forall X(\psi(X)\lif\sigma^X)$. Kemudian kita
+	menyelesaikan bukti tepat seperti dalam \olref{zfnotfinitely}.
+
+	Namun, menetapkan skema tersebut memerlukan sedikit lebih banyak pekerjaan
+	daripada dalam \olref{zfnotfinitely}. Bagaimanapun, instans-instans
+	Pemisahan terdapat dalam~$\Th{T}$, tetapi bukan konjung-konjung~$\theta$.
+	Kita dapat mengatasi kendala ini dengan membuktikan bahwa
+	$\Th{T}\Proves\forall X(X\text{ transitif}\lif\sigma^X)$ bagi setiap
+	instans Pemisahan~$\sigma$. Kita menyerahkannya kepada pembaca.
+\end{proof}
+\begin{prob}
+	Tunjukkan bahwa, bagi setiap instans Pemisahan~$\sigma$, berlaku
+	$\Z\Proves\forall X(X\text{ transitif}\lif\sigma^X)$. (Kita menggunakan
+	skema ini dalam
+	\olref[sth][replacement][finiteaxiomatizability]{finiteextensionofZ}.)
+\end{prob}
+\begin{prob}
+	Tunjukkan bahwa, untuk setiap $\phi\in\Z$, berlaku
+	$\ZF\Proves\phi^{V_{\omega+\omega}}$.
+\end{prob}
+\begin{prob}
+	Pastikan hasil-hasil skematis selebihnya yang digunakan dalam bukti
+	\olref[sth][replacement][finiteaxiomatizability]{zfnotfinitely} dan
+	\olref[sth][replacement][finiteaxiomatizability]{finiteextensionofZ}.
+\end{prob}
+
+Sebagaimana disebutkan dalam \olref[sth][replacement][absinf]{sec}, ini
+menunjukkan bahwa Penggantian benar-benar lebih kuat daripada
+\olref[ordinals][ordtype]{thmOrdinalRepresentation}. Atau, secara sedikit
+lebih tepat: jika $\Z$ + ``setiap pengurutan baik isomorfik dengan suatu
+ordinal unik'' konsisten, maka teori itu gagal membuktikan suatu instans
+Penggantian.
+
+
+	% By assumption, $\psi^{V_\alpha}$ has the form: 
+	% \[
+	% 	(\forall A \in V_\alpha)(\exists S \in V_\alpha)(\forall x \in V_\alpha)(x \in S \liff (\phi^{V_\alpha}(x) \land x \in A))
+	% \]
+	% To establish this holds, fix $A \in V_\alpha$. Using Separation, obtain: 
+	% \[
+	% 	S = \Setabs{x \in A}{\phi^{V_\alpha}(x)}
+	% \]
+	% Now $S \in V_\alpha$, since $S \subseteq A \in V_\alpha$, and clearly $(\forall x \in V_\alpha)(x \in S \liff (\phi^{V_\alpha}(x) \land x \in A)$.
+
+\end{document}

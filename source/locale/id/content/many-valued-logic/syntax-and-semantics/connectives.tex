@@ -1,0 +1,70 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: connectives
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{syn}{con}
+
+\olsection{Bahasa dan Konektif}
+
+Logika proposisional klasik, dan banyak logika lainnya, menggunakan suatu
+persediaan tetap \emph{konstanta proposisional} dan \emph{konektif}.
+Sebagai contoh, kita menggunakan unsur-unsur berikut sebagai unsur primitif:
+\begin{enumerate}
+\tagitem{prvFalse}{Konstanta proposisional untuk !!{falsity}~$\lfalse$.}{}
+\tagitem{prvTrue}{Konstanta proposisional untuk !!{truth}~$\ltrue$.}{}
+\item Konektif-konektif logis:
+  \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (negasi)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (konjungsi)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (disjungsi)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+\end{enumerate}
+\iftag{defNot,defOr,defAnd,defIf,defIff,defTrue,defFalse,defEx,defAll}{%
+Selain konektif primitif di atas, kita juga menggunakan simbol yang
+didefinisikan sebagai singkatan, seperti
+\startycommalist
+  \iftag{defNot}{\ycomma $\lnot$ (negasi)}{}%
+  \iftag{defAnd}{\ycomma $\land$ (konjungsi)}{}%
+  \iftag{defOr}{\ycomma $\lor$ (disjungsi)}{}%
+  \iftag{defIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{defIff}{\ycomma $\liff$ (!!{biconditional})}{}%
+  \iftag{defFalse}{\ycomma $\lfalse$ (!!{falsity})}{}%
+  \iftag{defTrue}{\ycomma $\ltrue$ (!!{truth})}.}{}
+
+Konektif yang sama juga digunakan dalam logika bernilai banyak. Akan tetapi,
+sering kali berguna untuk menyertakan beberapa versi, misalnya, konjungsi
+dalam logika yang sama; hal ini memerlukan simbol-simbol yang berbeda agar
+versi-versi tersebut tetap terpisah. Beberapa logika bernilai banyak juga
+menyertakan konektif yang tidak memiliki padanan dalam logika klasik. Karena
+itu, kita akan menggunakan kerangka yang sedikit lebih umum daripada biasanya.
+
+\begin{defn}
+  Suatu \emph{bahasa proposisional} terdiri atas suatu himpunan $\Lang L$
+  yang beranggotakan \emph{konektif}. Setiap konektif $\star$ mempunyai suatu
+  \emph{aritas}; konektif beraritas~$n$ disebut konektif \emph{$n$-tempat}.
+  Konektif beraritas~$0$ juga disebut \emph{konstanta}; konektif
+  beraritas~$1$ disebut \emph{uner}, sedangkan konektif beraritas~$2$
+  disebut \emph{biner}.
+\end{defn}
+
+\begin{ex}
+  Bahasa baku logika proposisional~$\Lang L_0$ terdiri atas konektif-konektif
+  berikut (beserta aritasnya):
+  $\lfalse$~($0$),
+  $\lnot$~($1$),
+  $\land$~($2$),
+  $\lor$~($2$),
+  $\lif$~($2$). Kebanyakan logika yang kita bahas menggunakan bahasa ini.
+  Menurut tradisi dan konvensi, beberapa logika menggunakan simbol yang
+  berbeda bagi konektif tertentu. Sebagai contoh, dalam logika produk,
+  konjungsi sering dilambangkan dengan $\odot$, bukan~$\land$. Kadang-kadang
+  berguna pula untuk menambahkan operator baru, misalnya operator ketertentuan
+  $\triangle$ ($1$-tempat).
+\end{ex}
+
+\end{document}

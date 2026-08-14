@@ -1,0 +1,53 @@
+% Part: methods
+% Chapter: induction
+% Section: strong-induction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mth}{ind}{str}
+
+\olsection{Induksi Kuat}
+
+Dalam prinsip induksi yang dibahas di atas, kita membuktikan $P(0)$ dan juga
+bahwa jika $P(k)$, maka $P(k+1)$. Pada bagian kedua, kita mengasumsikan bahwa
+$P(k)$ benar dan menggunakan asumsi ini untuk membuktikan $P(k+1)$. Tentu
+saja, secara ekuivalen kita dapat mengasumsikan $P(k-1)$ dan menggunakannya
+untuk membuktikan $P(k)$---bagian yang penting ialah bahwa kita mampu
+melakukan inferensi dari sebarang bilangan menuju penerusnya; bahwa kita
+dapat membuktikan klaim yang sedang dibahas bagi sebarang bilangan dengan
+asumsi bahwa klaim itu berlaku bagi pendahulunya.
+
+Ada suatu varian prinsip induksi yang tidak hanya mengasumsikan bahwa klaim
+tersebut berlaku bagi pendahulu $k-1$ dari $k$, tetapi bagi semua bilangan
+yang lebih kecil daripada~$k$, lalu menggunakan asumsi ini untuk menetapkan
+klaim bagi~$k$. Varian ini juga memberikan klaim $P(n)$ bagi semua~$n \in
+\Nat$. Sebab, setelah menetapkan $P(0)$, dengan demikian kita telah
+menetapkan bahwa $P$ berlaku bagi semua bilangan yang lebih kecil daripada
+$1$. Jika kita mengetahui bahwa apabila $P(l)$ bagi semua $l<k$, maka
+$P(k)$, kita khususnya mengetahui hal tersebut untuk $k=1$. Jadi, kita dapat
+menyimpulkan $P(1)$. Dengan ini kita telah membuktikan $P(0)$ dan $P(1)$,
+yakni $P(l)$ bagi semua $l<2$; karena kita juga memiliki kondisional bahwa
+jika $P(l)$ bagi semua $l<2$, maka $P(2)$, kita dapat menyimpulkan~$P(2)$,
+dan demikian seterusnya.
+
+Sesungguhnya, jika kita dapat menetapkan kondisional umum ``untuk semua
+$k$, jika $P(l)$ bagi semua $l<k$, maka $P(k)$'', kita tidak perlu lagi
+menetapkan $P(0)$ secara terpisah karena hal itu sudah mengikutinya. Ingatlah
+bahwa klaim umum seperti ``bagi semua $l<k$, $P(l)$'' benar jika tidak ada
+$l<k$. Ini merupakan kasus kuantifikasi hampa: ``semua $A$ adalah $B$''
+benar jika tidak ada $A$, dan
+$\lforall[x][(!A(x) \lif !B(x))]$ benar jika tidak ada $x$ yang memenuhi
+$!A(x)$. Dalam kasus ini, versi formalnya ialah
+``$\lforall[l][(l < k \lif P(l))]$''---dan pernyataan itu benar jika tidak
+ada $l < k$. Jika $k=0$, memang tepat itulah keadaannya: tidak ada $l<0$;
+karena itu, ``bagi semua $l<0$, $P(l)$'' benar, apa pun $P$-nya. Dengan
+demikian, bukti bagi ``jika $P(l)$ bagi semua $l<k$, maka $P(k)$'' secara
+otomatis menetapkan~$P(0)$.
+
+Varian ini berguna apabila penetapan klaim bagi~$k$ tidak dapat hanya
+bersandar pada klaim bagi $k-1$, tetapi mungkin memerlukan asumsi bahwa
+klaim itu benar bagi satu atau lebih $l<k$.
+
+\end{document}

@@ -1,0 +1,80 @@
+% Part: lambda-calculus
+% Chapter: lambda-definability
+% Section: truth-values
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{ldf}{tvr}
+\olsection{Nilai Kebenaran dan Relasi}
+
+Kita dapat mengodekan nilai kebenaran dalam kalkulus lambda murni sebagai
+berikut:
+\begin{align*}
+  \fn{true} & \ident \lambd[x][\lambd[y][x]]\\
+  \fn{false} & \ident \lambd[x][\lambd[y][y]]
+\end{align*}
+
+Nilai kebenaran direpresentasikan sebagai \emph{penyeleksi}, yakni fungsi yang
+menerima dua argumen dan mengembalikan salah satunya. Nilai kebenaran
+$\fn{true}$ memilih argumen pertamanya, sedangkan $\fn{false}$ memilih argumen
+keduanya. Sebagai contoh, $\fn{true}\, M N$ selalu tereduksi menjadi $M$,
+sementara $\fn{false}\, M N$ selalu tereduksi menjadi~$N$.
+
+\begin{defn}
+Kita menyebut suatu relasi $R \subseteq \Nat^n$ !!{lambda definable} jika
+terdapat suatu suku~$R$ sedemikian sehingga
+\begin{align*}
+  R\, \num{n_1} \dots \num{n_k} & \bred \fn{true}
+  \intertext{setiap kali $R(n_1, \dots, n_k)$ berlaku, dan}
+  R\, \num{n_1} \dots \num{n_k} & \bred \fn{false}
+\end{align*}
+dalam kasus lainnya.
+\end{defn}
+
+Sebagai contoh, relasi $\fn{IsZero} = \{0\}$, yang berlaku pada $0$ dan hanya
+pada $0$, bersifat !!{lambda definable} oleh
+\[
+  \fn{IsZero} \ident \lambd[n][n (\lambd[x][\fn{false}])\, \fn{true}].
+\]
+Bagaimana cara kerjanya? Karena numeral Church didefinisikan sebagai iterator
+(fungsi yang menerapkan argumen pertamanya pada argumen kedua sebanyak $n$
+kali), kita menetapkan nilai awal sebagai $\fn{true}$ dan, pada setiap langkah
+iterasi, mengembalikan $\fn{false}$ tanpa memedulikan hasil iterasi sebelumnya.
+Langkah ini akan diterapkan pada nilai awal sebanyak $n$ kali, dan hasilnya
+adalah $\fn{true}$ jika dan hanya jika langkah tersebut sama sekali tidak
+diterapkan, yakni ketika $n = 0$.
+
+Berdasarkan representasi nilai kebenaran ini, selanjutnya kita dapat
+mendefinisikan beberapa fungsi kebenaran. Berikut dua di antaranya, yaitu
+representasi negasi dan konjungsi:
+\begin{align*}
+  \fn{Not} & \ident \lambd[x][x\, \fn{false}\, \fn{true}]\\
+  \fn{And} & \ident \lambd[x][\lambd[y][xy \,\fn{false}]]
+\end{align*}
+Fungsi ``$\fn{Not}$'' menerima satu argumen dan mengembalikan $\fn{true}$ jika
+argumennya adalah $\fn{false}$, serta $\fn{false}$ jika argumennya
+adalah~$\fn{true}$. Fungsi ``$\fn{And}$'' menerima dua nilai kebenaran sebagai
+argumen dan seharusnya mengembalikan $\fn{true}$ jika dan hanya jika kedua
+argumennya adalah~$\fn{true}$. Nilai kebenaran direpresentasikan sebagai
+penyeleksi (seperti dijelaskan di atas), sehingga ketika $x$ adalah nilai
+kebenaran dan diterapkan pada dua argumen, hasilnya adalah argumen pertama jika
+$x$ adalah $\fn{true}$ dan argumen kedua dalam kasus lainnya. Sekarang
+$\fn{And}$ menerima dua argumen $x$ dan $y$, lalu memberikan $y$ dan
+$\fn{false}$ kepada argumen pertamanya, yaitu~$x$. Dengan mengandaikan bahwa
+$x$ adalah nilai kebenaran, hasilnya akan terevaluasi menjadi~$y$ jika $x$
+adalah $\fn{true}$, dan menjadi $\fn{false}$ jika $x$ adalah $\fn{false}$,
+tepat seperti yang diinginkan.
+
+Perhatikan bahwa di sini kita mengandaikan hanya nilai kebenaran yang digunakan
+sebagai argumen bagi $\fn{And}$. Jika fungsi itu diberi suku lain, hasilnya
+(yakni bentuk normalnya, jika ada) mungkin bukan nilai kebenaran.
+
+\begin{prob}
+  Definisikan fungsi $\fn{Or}$ dan $\fn{Xor}$ yang merepresentasikan fungsi
+  kebenaran disjungsi inklusif dan eksklusif dengan menggunakan pengodean nilai
+  kebenaran sebagai suku-$\lambd$.
+\end{prob}
+
+\end{document}

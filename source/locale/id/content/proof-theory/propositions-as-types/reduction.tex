@@ -1,0 +1,200 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: reduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{pty}{red}
+
+\olsection{Reduksi}
+
+Dalam !!{derivation}s deduksi alami, !!a{introduction} yang diikuti
+!!a{elimination} merupakan jalan memutar yang dapat ``direduksi''.
+Misalnya, \Intro{\land} yang diikuti \Elim{\land} ``saling meniadakan'',
+sebab kesimpulan \Elim{\land} selalu merupakan salah satu konjung dari
+konjungsi yang dihasilkan \Intro{\land}, sedangkan kedua premis
+\Intro{\land} adalah kedua konjung tersebut. Jadi, jika kita memerlukan
+!!a{derivation} bagi salah satu konjung, kita cukup menggunakan
+!!{derivation} itu tanpa memperkenalkan konjungsi lalu mengeliminasinya.
+Kita mempunyai
+\begin{gather*}
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!A_1$}
+  \AxiomC{}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!A_2$}
+  \RightLabel{$\Intro{\land}$}
+  \BinaryInfC{$!A_1 \land !A_2$}
+  \RightLabel{$\Elim{\land}_i$}
+  \UnaryInfC{$!A_i$}
+  \DisplayProof\bottomAlignProof
+  \quad
+  \redone
+  \quad
+  \AxiomC{}
+  \RightLabel{$\delta_i$}
+  \DeduceC{$!A_i$}
+  \DisplayProof
+\end{gather*}
+
+Kita dapat mempertimbangkan relasi reduksi serupa pada term bukti terkait
+yang disarankan oleh penyederhanaan ini. Jika $N_1$ merupakan term bukti
+bagi~$\delta_1$ dan $N_2$ term bukti bagi~$\delta_2$, kita dapat mengatakan
+bahwa term bukti bagi bukti di sebelah kiri tereduksi (dalam satu langkah)
+menjadi term bukti bagi bukti di sebelah kanan:
+\[
+  \proj{i}{\pair{N_1}{N_2}} \redone N_i
+\]
+Dalam kalkulus lambda bertipe, ini adalah aturan \emph{reduksi-$\beta$}
+bagi tipe hasil kali.
+
+Dalam deduksi alami, sepasang inferensi seperti \Intro{\land} yang diikuti
+\Elim{\land}, yakni pasangan yang dapat direduksi, disebut
+\emph{potongan}. Dalam kalkulus lambda bertipe, term di sebelah kiri
+$\redone$ disebut \emph{redex}, sedangkan term di sebelah kanan disebut
+\emph{kontraktum}. Berbeda dengan kalkulus lambda tak bertipe, yang hanya
+menganggap $(\lambd[x][N])Q$ sebagai redex, kalkulus lambda bertipe
+memperluas sintaksnya dengan term yang melibatkan $\pair{N}{M}$,
+$\proj{i}{N}$, $\inj{i}{!A}{N}$,
+$\dcase{N}{x_1}{M_1}{x_2}{M_2}$, dan $\abort{!A}{N}$, beserta redex yang
+bersesuaian.
+
+Demikian pula, kita mempunyai reduksi bagi disjungsi:
+\begin{gather*}
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta$}
+  \DeduceC{$!A_i$}
+  \RightLabel{$\Intro{\lor}$}
+  \UnaryInfC{$!A_1 \lor !A_2$}
+  \AxiomC{$\Discharge{!A_1}{x_1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C$}
+  \AxiomC{$\Discharge{!A_2}{x_2}$}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!C$}
+  \DischargeRule{$\Elim{\lor}$}{x_1,x_2}
+  \TrinaryInfC{$!C$}
+  \DisplayProof\bottomAlignProof
+  \quad
+  \redone
+  \quad
+  \AxiomC{}
+  \RightLabel{$\delta$}
+  \DeduceC{$!A_i$}
+  \RightLabel{$\delta_i$}
+  \DeduceC{$!C$}
+  \DisplayProof
+\end{gather*}
+Hal ini bersesuaian dengan reduksi pada term bukti:
+\begin{gather*}
+  \dcase{\inj[!A_i]{i}{M}}{x_1}{N_1}{x_2}{N_2}
+  \redone \Subst{N_i}{M}{x_i}
+\end{gather*}
+dengan $M$ sebagai term bukti bagi~$\delta$, dan $N_i$ sebagai term bukti
+bagi~$\delta_i$. Ini adalah aturan reduksi-$\beta$ bagi tipe jumlah. Di
+sini, $\Subst{M}{N}{x}$ berarti mengganti semua kemunculan bebas variabel~$x$
+dalam $M$ dengan~$N$.
+
+Reduksi tipe fungsi bersesuaian dengan penghapusan jalan memutar berupa
+\Intro\lif yang diikuti \Elim\lif.
+\begin{gather*}
+  \bottomAlignProof
+  \AxiomC{$\Discharge{!A}{x}$}
+  \RightLabel{$\delta$}
+  \DeduceC{$!B$}
+  \DischargeRule{$\Intro{\lif}$}{x}
+  \UnaryInfC{$!A \lif !B$}
+  \AxiomC{}
+  \RightLabel{$\delta'$}
+  \DeduceC{$!A$}
+  \RightLabel{$\Elim{\lif}$}
+  \BinaryInfC{$!B$}
+  \DisplayProof\bottomAlignProof
+  \quad
+  \redone
+  \quad
+  \AxiomC{}
+  \RightLabel{$\delta'$}
+  \DeduceC{$!A$}
+  \RightLabel{$\delta$}
+  \DeduceC{$!B$}
+  \DisplayProof
+\end{gather*}
+Bagi term bukti, hal ini sama dengan reduksi-$\beta$ biasa:
+\begin{gather*}
+  (\lambd[\typeof{x}{!A}][N]M)
+  \redone \Subst{N}{M}{x}
+\end{gather*}
+
+Selain konversi reduksi pada !!{proof}s, kita dapat mempertimbangkan
+konversi permutasi. Konversi ini berlaku pada (sub-)!!{proof}s yang berakhir
+dengan \Elim{\lor} lalu diikuti aturan !!{elimination} lain, misalnya:
+\begin{multline*}
+  \bottomAlignProof
+  \AxiomC{}
+  \RightLabel{$\delta$}
+  \DeduceC{$!A_i$}
+  \RightLabel{$\Intro{\lor}$}
+  \UnaryInfC{$!A_1 \lor !A_2$}
+  \AxiomC{$\Discharge{!A_1}{x_1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C_1 \land !C_2$}
+  \AxiomC{$\Discharge{!A_2}{x_2}$}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!C_1 \land !C_2$}
+  \DischargeRule{$\Elim{\lor}$}{x_1,x_2}
+  \TrinaryInfC{$!C_1 \land !C_2$}
+  \RightLabel{\Elim{\land}[i]}
+  \UnaryInfC{$!C_i$}
+  \DisplayProof\bottomAlignProof
+  \quad
+  \redone
+  \\
+  \AxiomC{}
+  \RightLabel{$\delta$}
+  \DeduceC{$!A_i$}
+  \RightLabel{$\Intro{\lor}$}
+  \UnaryInfC{$!A_1 \lor !A_2$}
+  \AxiomC{$\Discharge{!A_1}{x_1}$}
+  \RightLabel{$\delta_1$}
+  \DeduceC{$!C_1 \land !C_2$}
+  \RightLabel{\Elim{\land}[i]}
+  \UnaryInfC{$!C_i$}
+  \AxiomC{$\Discharge{!A_2}{x_2}$}
+  \RightLabel{$\delta_2$}
+  \DeduceC{$!C_1 \land !C_2$}
+  \RightLabel{\Elim{\land}[i]}
+  \UnaryInfC{$!C_i$}
+  \DischargeRule{$\Elim{\lor}$}{x_1,x_2}
+  \TrinaryInfC{$!C_i$}
+  \DisplayProof
+\end{multline*}
+Jika term bukti bagi $\delta$, $\delta_1$, dan $\delta_2$ masing-masing
+adalah $M$, $N_1$, dan $N_2$, aturan reduksi yang bersesuaian bagi term
+bukti, yakni term-$\lambd$, adalah:
+\[
+  \proj{i}{\dcase{M}{x_1}{N_1}{x_2}{N_2}} \redone
+  \dcase{M}{x_1}{\proj{i}{N_1}}{x_2}{\proj{i}{N_2}}
+\]
+
+Tentu saja, kita dapat menghapus jalan memutar bukan hanya pada akhir
+!!{proof}s, melainkan juga di dalam !!{proof}s, dengan menerapkan konversi reduksi
+pada sub-!!{proof} yang berakhir dengan jalan memutar. Demikian pula,
+reduksi-$\beta$ berlaku pada subterm dari term-$\lambd$. Jika $N$ merupakan
+subterm dari $M$ dan $N \redone N'$, kita dapat mengganti subterm $N$
+dalam~$M$ dengan $N'$ untuk memperoleh $M'$. Dalam hal ini kita juga menulis
+$M \redone M'$. Jika terdapat barisan
+$M=M_1 \redone M_2 \redone M_3 \redone \dots \redone M_k=M'$ (termasuk
+kasus $k=1$, yakni $M=M'$), kita menulis $M \red M'$.
+
+!!^a{proof} yang tidak memungkinkan penerapan konversi pada sub-!!{proof}
+mana pun disebut \emph{normal}. Demikian pula, term-$\lambd$ yang tidak
+memungkinkan penerapan konversi (pada subterm mana pun) disebut
+\emph{normal}. Term-$\lambd$ normal juga disebut \emph{bentuk normal}.
+
+\end{document}

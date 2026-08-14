@@ -1,0 +1,43 @@
+% Bagian: sets-functions-relations
+% Bab: functions
+% Subbagian: isomorphisms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+
+\begin{document}
+
+\olfileid[id]{sfr}{fun}{iso}
+\olsection{Isomorfisme}
+
+\begin{explain}
+Suatu \emph{isomorfisme} ialah bijeksi yang mempertahankan struktur
+himpunan-himpunan yang dihubungkannya, dengan struktur ditentukan oleh
+relasi-relasi yang berlaku di antara !!{element}s himpunan tersebut. Tinjaulah
+dua himpunan berikut, $X=\{1,2,3\}$ dan $Y=\{4,5,6\}$. Kedua himpunan ini
+memiliki struktur yang diberikan oleh relasi penerus, lebih kecil dari, dan
+lebih besar dari. Suatu isomorfisme antara kedua himpunan itu ialah
+!!a{bijection} yang mempertahankan struktur-struktur tersebut. Jadi, suatu
+fungsi !!a{bijective} $f \colon X \to Y$ merupakan isomorfisme jika $i<j$
+jika dan hanya jika $f(i)<f(j)$, $i>j$ jika dan hanya jika $f(i)>f(j)$, dan
+$j$ merupakan penerus $i$ jika dan hanya jika $f(j)$ merupakan penerus
+$f(i)$.
+\end{explain}
+
+\begin{defn}[Isomorfisme]
+Misalkan $U$ merupakan pasangan $\langle X, R\rangle$ dan $V$ merupakan
+pasangan $\langle Y, S\rangle$, dengan $X$ dan $Y$ himpunan, serta $R$ dan
+$S$ masing-masing relasi pada $X$ dan $Y$. Suatu !!{bijection} $f$ dari $X$
+ke $Y$ merupakan \emph{isomorfisme} dari $U$ ke $V$ jika dan hanya jika
+bijeksi itu mempertahankan struktur relasional, yakni, untuk sembarang $x_{1}$ dan $x_{2}$
+dalam $X$, berlaku $\tuple{x_1,x_2} \in R$ jika dan hanya jika
+$\tuple{f(x_1),f(x_2)} \in S$.
+\end{defn}
+
+\begin{ex}
+Tinjaulah dua himpunan $X=\{1,2,3\}$ dan $Y=\{4,5,6\}$, beserta relasi lebih
+kecil dari dan lebih besar dari. Fungsi $f\colon X \to Y$ dengan
+$f(x) = 7-x$ merupakan isomorfisme antara $\tuple{X,<}$ dan $\tuple{Y,>}$.
+\end{ex}
+
+\end{document}

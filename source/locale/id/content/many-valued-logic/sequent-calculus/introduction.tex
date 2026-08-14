@@ -1,0 +1,83 @@
+% Part: many-valued-logic
+% Chapter: sequent-calculus
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{seq}{int}
+
+\olsection{Pengantar}
+
+Kalkulus sekuen bagi logika klasik merupakan sistem !!{derivation} yang
+efisien dan sederhana. Jika suatu logika bernilai banyak didefinisikan oleh
+matriks dengan nilai kebenaran berhingga---yakni, jika $V$ berhingga---kita
+dapat memberikan suatu kalkulus sekuen bagi logika tersebut. Gagasan mengenai
+cara melakukannya berasal dari pertimbangan atas makna sekuen dan bentuk aturan
+inferensi dalam kasus klasik.
+
+Ingat kembali bahwa suatu sekuen
+\begin{align*}
+    !A_1, \dots, !A_m & \Sequent !B_1, \dots, !B_n
+\intertext{dapat ditafsirkan sebagai !!{formula}}
+    (!A_1 \land \cdots \land !A_m) & \lif (!B_1 \lor \cdots \lor
+!B_n).
+\end{align*}
+Dengan kata lain, !!^a{valuation}~$\pAssign{v}$ \emph{memenuhi} suatu sekuen
+$\Gamma\Sequent\Delta$ jika dan hanya jika $\pValue{v}(!A)=\False$ bagi
+suatu $!A\in\Gamma$ atau $\pValue{v}(!A)=\True$ bagi suatu
+$!A\in\Delta$. Dalam penafsiran ini, sekuen awal $!A\Sequent !A$ selalu
+dipenuhi, sebab $\pValue v(!A)=\True$ atau $\pValue v(!A)=\False$.
+
+Berikut adalah aturan inferensi bagi implikasi dalam~$\Log{LK}$, dengan
+formula samping $\Gamma$, $\Delta$ dihilangkan:
+
+\begin{defish}
+    \Axiom$ \fCenter !A$
+    \Axiom$ !B \fCenter $
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$ !A \lif !B \fCenter $
+    \DisplayProof
+    \hfill
+    \Axiom$ !A \fCenter !B$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$ \fCenter !A \lif !B $
+    \DisplayProof
+\end{defish}
+
+Jika kita menerapkan penafsiran semantik sekuen di atas, aturan
+$\LeftR{\lif}$ dapat dibaca sebagai pernyataan bahwa jika
+$\pValue v(!A)=\True$ dan $\pValue v(!B)=\False$, maka
+$\pValue v(!A\lif !B)=\False$. Serupa dengan itu, aturan
+$\RightR{\lif}$ mengatakan bahwa jika $\pValue v(!A)=\False$ atau
+$\pValue v(!B)=\True$, maka $\pValue v(!A\lif !B)=\True$. Bahkan,
+implikasi-implikasi tersebut sesungguhnya merupakan biimplikasi. Dalam
+perumusan baku aturan $\LeftR{\land}$ dan~$\RightR{\lor}$, implikasi yang
+bersesuaian bukan biimplikasi. Namun, terdapat versi alternatif dari aturan
+tersebut yang menghasilkan biimplikasi:
+
+\begin{defish}
+    \Axiom$!A, !B, \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\land}}
+    \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+    \DisplayProof
+    \hfill
+    \Axiom$ \Gamma \fCenter \Delta, !A, !B$
+    \RightLabel{\RightR{\lor}}
+    \UnaryInf$ \Gamma \fCenter \Delta, !A \lor !B$
+    \DisplayProof
+\end{defish}
+
+Jika gagasan dasar ini diterapkan kepada suatu logika bernilai~$n$, hasilnya
+ialah kalkulus sekuen dengan $n$ posisi, bukan dua posisi: satu posisi bagi
+setiap nilai kebenaran. Bagi suatu logika bernilai tiga dengan
+$V=\{\False,\Undef,\True\}$, sekuen merupakan ekspresi
+$\Gamma\mid\Pi\mid\Delta$. Sekuen ini dipenuhi oleh
+!!a{valuation}~$\pAssign v$ jika dan hanya jika
+$\pValue{v}(!A)=\False$ bagi suatu $!A\in\Gamma$, atau
+$\pValue{v}(!A)=\True$ bagi suatu $!A\in\Delta$, atau
+$\pValue{v}(!A)=\Undef$ bagi suatu $!A\in\Pi$. Akibatnya, sekuen awal
+$!A\mid !A\mid !A$ selalu dipenuhi.
+
+\end{document}

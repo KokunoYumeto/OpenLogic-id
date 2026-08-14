@@ -1,0 +1,606 @@
+% Part: proof-theory
+% Chapter: cut-elimination
+% Section: interpolation
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{cut}{itp}
+
+\olsection{Lema Maehara dan Teorema Interpolasi Craig}
+
+Teorema interpolasi, yang dikemukakan oleh William Craig, menyatakan bahwa
+jika $!A \Entails !B$, maka terdapat !!a{sentence}~$!C$ (sang
+\emph{interpolan}) sedemikian sehingga $!A \Entails !C$ dan $!C \Entails
+!B$. Yang penting, interpolan~$!C$ dapat dipilih sedemikian sehingga semua
+!!{constant} dan !!{predicate} yang muncul dalam~$!C$ muncul baik dalam~$!A$
+maupun~$!B$. (Kita mengasumsikan bahwa tidak ada !!{function} yang terlibat.)
+Tanpa pembatasan ini, $!A$ dan $!B$ secara sepele dapat berfungsi sebagai
+interpolan.
+
+Teorema interpolasi berlaku bagi logika orde pertama klasik dan pernah
+disebut sebagai ``sifat penting terakhir logika orde pertama'' yang
+ditemukan. Teorema ini mempunyai penerapan penting dalam teori model dan
+penalaran otomatis. Motivasi dan penerapan awalnya terdapat dalam filsafat
+ilmu, sebab teorema tersebut dapat digunakan untuk mengkaji gagasan-gagasan
+primitif yang melaluinya suatu teori dapat atau tidak dapat diaksiomatiskan.
+Teorema ini juga menyiratkan teorema keterdefinisian Beth, yang menyatakan
+bahwa jika suatu teori dapat mendefinisikan sebuah konsep secara implisit,
+teori itu dapat mendefinisikannya secara eksplisit.
+
+Seperti banyak hasil dalam logika matematika, teorema interpolasi dapat
+dibuktikan baik dengan metode teori model maupun teori bukti. Keunggulan
+metode teori-bukti ialah bahwa metode tersebut tidak hanya menunjukkan
+adanya suatu interpolan, tetapi juga menyediakan algoritme yang menghitung
+interpolan dari !!a{proof} bahwa $!A \Entails !B$, misalnya !!a{proof}
+dalam~\Log{G3c} dari $!A \Sequent !B$.
+
+Misalkan $\Lang L(!A)$ adalah himpunan !!{constant}s dan !!{predicate}s
+dalam~$!A$, dan $\Lang L(\Gamma) = \bigcup \Setabs{\Lang L(!A)}{!A \in
+\Gamma}$. Di seluruh bagian ini, kita mengasumsikan bahwa kita berurusan
+dengan !!{formula}s tanpa !!{function}s.
+
+\begin{thm}[Teorema Interpolasi Craig]\ollabel{thm:interpolation}
+Misalkan !!{language} dari~$!A$ adalah $\Lang L(!A)$ dan bahasa dari $!B$
+adalah $\Lang L(!B)$. Jika $\Log{G3c} \Proves !A \Sequent !B$, maka
+terdapat !!a{formula}~$!C$ dalam !!{language}~$\Lang L(!C) \subseteq
+\Lang L(!A) \cap \Lang L(!B)$ sedemikian sehingga $\Log{G3c} \Proves
+!A \Sequent !C$ dan $\Log{G3c} \Proves !C \Sequent !B$.
+\end{thm}
+
+Kita membuktikan suatu perumuman teorema interpolasi agar dapat memanfaatkan
+struktur !!{proof}s dalam~\Log{G3c}. Untuk itu, bayangkan anteseden dan
+sukseden sekuen masing-masing dipisahkan menjadi dua bagian. Kita menulis
+$\maeh{\Gamma_1}{\Gamma_2} \Sequent \maeh{\Delta_1}{\Delta_2}$ untuk
+menunjukkan bahwa $\Gamma_1$ dan $\Delta_1$ termasuk bagian pertama,
+sedangkan $\Gamma_2$ dan $\Delta_2$ termasuk bagian kedua. Teorema
+interpolasi lalu segera mengikuti dari lema berikut.
+
+\begin{lem}[Lema Maehara]\ollabel{lem:maehara}
+Jika $\Log{G3c} \Proves \maeh{\Gamma_1}{\Gamma_2} \Sequent
+\maeh{\Delta_1}{\Delta_2}$, maka terdapat !!a{formula}~$!C$ dalam
+!!{language}~$\Lang L(!C) \subseteq \Lang L(\Gamma_1, \Delta_1) \cap
+\Lang L(\Gamma_2, \Delta_2)$ sedemikian sehingga $\Log{G3c} \Proves
+\Gamma_1 \Sequent \Delta_1, !C$ dan $\Log{G3c} \Proves !C, \Gamma_2
+\Sequent \Delta_2$.
+\end{lem}
+
+\begin{proof}
+  Andaikan $\pi \Proves \maeh{\Gamma_1}{\Gamma_2} \Sequent
+  \maeh{\Delta_1}{\Delta_2}$. Kita membuktikan klaim tersebut melalui
+  induksi pada $n=\pheight{\pi}$.
+
+  Jika $n=0$, maka $\maeh{\Gamma_1}{\Gamma_2} \Sequent
+  \maeh{\Delta_1}{\Delta_2}$ merupakan aksioma, dan suatu !!{formula}
+  atomik~$!A$ muncul baik dalam $\Gamma_1, \Gamma_2$ maupun dalam
+  $\Delta_1, \Delta_2$. Ada empat kasus, bergantung pada apakah $!A$
+  termasuk bagian pertama atau kedua di kiri, dan apakah formula itu termasuk
+  bagian pertama atau kedua di kanan.
+  \begin{enumerate}
+    \item $!A \in \Gamma_1$ dan $!A \in \Delta_1$. Kita mencari~$!C$
+    sedemikian sehingga $\Gamma_1 \Sequent \Delta_1, !C$ dan $!C, \Gamma_2
+    \Sequent \Delta_2$ keduanya !!{provable}. Yang pertama sudah merupakan
+    aksioma terlepas dari pilihan~$!C$, sebab $!A$ muncul di kiri maupun
+    kanan. Satu-satunya pilihan yang menjamin $!C, \Gamma_2 \Sequent
+    \Delta_2$ !!{provable} ialah menetapkan $!C \ident \lfalse$.
+    \item $!A \in \Gamma_1$ dan $!A \in \Delta_2$. Maka $\Gamma_1
+    \Sequent \Delta_1, !A$ dan $!A, \Gamma_2 \Sequent \Delta_2$ keduanya
+    merupakan aksioma, sehingga kita dapat memilih $!C \ident !A$.
+    \item $!A \in \Gamma_2$ dan $!A \in \Delta_1$. Maka $!A, \Gamma_1
+    \Sequent \Delta_1$ dan $\Gamma_2 \Sequent \Delta_2, !A$ merupakan
+    aksioma, tetapi keduanya menempatkan~$!A$ pada sisi yang salah. Jadi,
+    $!A$ bukan interpolannya. Namun, dengan menggunakan $\RightR{\lnot}$
+    dan $\LeftR{\lnot}$, kita dapat !!{prove} $\Gamma_1 \Sequent
+    \Delta_1, \lnot!A$ dan $\lnot !A, \Gamma_2 \Sequent \Delta_2$.
+    \item $!A \in \Gamma_2$ dan $!A \in \Delta_2$. Latihan.
+  \end{enumerate}
+  Kasus ketika $\maeh{\Gamma_1}{\Gamma_2} \Sequent
+  \maeh{\Delta_1}{\Delta_2}$ merupakan aksioma karena $\lfalse \in
+  \Gamma_1$ atau $\lfalse \in \Gamma_2$ diserahkan sebagai latihan.
+
+  Jika $n>0$, $\pi$ berakhir dengan inferensi logis. Kita harus membedakan
+  kasus-kasus menurut aturan yang digunakan dan bagian tempat formula
+  prinsipal berada. Dalam setiap kasus, kita dapat menggunakan hipotesis
+  induksi bahwa lema tersebut berlaku bagi semua !!{proof}s~$\pi_1$ dengan
+  $\pheight{\pi_1} < n$, bagaimanapun sekuen akhir~$\pi_1$ dipartisi menjadi
+  dua bagian. Mari kita bahas beberapa kasus tertentu.
+  \begin{enumerate}
+    \item $\pi$ berakhir dengan $\RightR{\lnot}$ dan formula prinsipal
+    $\lnot !A$. Kita mempunyai dua kasus: bergantung pada apakah $\lnot !A$
+    termasuk bagian pertama atau kedua, $\pi$ berakhir dengan salah satu
+    dari
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{!A, \Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2}$
+    \RightLabel{\RightR{\lnot}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, \lnot !A}{\Delta_2}$
+    \DisplayProof
+    \]
+    atau
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{!A, \Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2}$
+    \RightLabel{\RightR{\lnot}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, \lnot !A}$
+    \DisplayProof
+    \]
+    Perhatikan bahwa jika !!{formula} prinsipal~$\lnot !A$ termasuk bagian
+    pertama, kita juga menempatkan !!{formula} aktif~$!A$ dalam bagian
+    pertama premis. Ini adalah pilihan yang dapat kita buat. Hipotesis
+    induksi juga berlaku seandainya formula aktif kita tempatkan dalam
+    bagian lain, tetapi kemudian kita tidak akan dapat menemukan interpolan
+    (latihan: cobalah).
+
+    Pertama, perhatikan keadaan pertama, ketika $\lnot !A$ termasuk bagian
+    pertama. Menurut hipotesis induksi, terdapat interpolan bagi sekuen akhir
+    $\pi_1$, yakni !!a{formula}~$!C_1$ sedemikian sehingga keduanya
+    \begin{align*}
+    !A, \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{dan} &
+    !C_1, \Gamma_2 & \Sequent \Delta_2
+    \intertext{dapat dibuktikan. Yang kita perlukan adalah !!a{formula}~$!C$
+    sedemikian sehingga keduanya berikut ini !!{provable}:}
+    \Gamma_1 & \Sequent \Delta_1, \lnot !A, !C &&\text{dan} &
+    !C, \Gamma_2 & \Sequent \Delta_2.
+    \end{align*}
+    Jelas kita dapat mengambil $!C \ident !C_1$: hipotesis induksi telah
+    memberi tahu kita bahwa sekuen di kanan !!{provable}, sedangkan sekuen
+    di kiri mengikuti dari sekuen yang diperoleh melalui hipotesis induksi
+    dengan~$\RightR{\lnot}$. Hipotesis induksi juga memberi tahu kita bahwa
+    $\Lang L(!C_1) \subseteq \Lang L(!A, \Gamma_1, \Delta_1) \cap \Lang
+    L(\Gamma_2, \Delta_2)$. Karena $\Lang L(\lnot !A) = \Lang L(!A)$ dan
+    $\Lang L(!C) = \Lang L(!C_1)$, kita mempunyai $\Lang L(!C_1)
+    \subseteq \Lang L(\Gamma_1, \Delta_1, \lnot !A) \cap \Lang
+    L(\Gamma_2, \Delta_2)$.
+
+    Dalam keadaan kedua, situasinya sedikit berbeda karena $\lnot !A$
+    termasuk bagian kedua. Kita juga menempatkan !!{formula} aktif dalam
+    premis pada bagian kedua dan menerapkan hipotesis induksi pada
+    \begin{align*}
+    \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{dan} &
+    !C_1, !A, \Gamma_2 & \Sequent \Delta_2
+    \intertext{yang dapat dibuktikan. Jika aturan \RightR{\lnot} kembali
+    kita terapkan pada sekuen kedua, kita memperoleh !!{proof}s dari}
+    \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{dan} &
+    !C_1, \Gamma_2 & \Sequent \Delta_2, \lnot !A.
+    \end{align*}
+    Ini kembali tepat merupakan sekuen-sekuen yang kita inginkan agar
+    !!{provable} jika $!C_1$ suatu interpolan; sekali lagi, tetapkan
+    $!C \ident !C_1$. Seperti sebelumnya, $\Lang L(!C_1) \subseteq \Lang
+    L(\Gamma_1, \Delta_1) \cap \Lang L(\Gamma_2, \Delta_2, \lnot !A)$.
+
+    \item $\pi$ berakhir dengan $\RightR{\lif}$ dan !!{formula} prinsipal
+    $!A \lif !B$. Kembali ada dua kasus, bergantung pada apakah $!A \lif
+    !B$ termasuk bagian pertama atau kedua. !!{proof}~$\pi$ berakhir dengan
+    salah satu dari
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{!A, \Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, !B}{\Delta_2}$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, !A \lif !B}{\Delta_2}$
+    \DisplayProof
+    \]
+    atau
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{!A, \Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, !B}$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, !A \lif !B}$
+    \DisplayProof
+    \]
+    Sekali lagi kita telah menempatkan !!{formula}s aktif dalam premis pada
+    bagian yang sama dengan !!{formula} prinsipal dalam kesimpulan. Dalam
+    keadaan pertama, kita menerapkan hipotesis induksi dan memperoleh
+    !!{proof}s dari
+    \begin{align*}
+    !A, \Gamma_1 & \Sequent \Delta_1, !B, !C_1 &&\text{dan} & !C_1, \Gamma_2 & \Sequent \Delta_2
+    \intertext{Sekuen di kiri merupakan premis yang sesuai bagi
+    \RightR{\lif}. Jadi, kita mempunyai sekuen-sekuen !!{provable} berikut:}
+    \Gamma_1 & \Sequent \Delta_1, !A \lif !B, !C_1 &&\text{dan} & !C_1, \Gamma_2 & \Sequent \Delta_2.
+    \end{align*}
+    Ini berarti $!C_1$ juga merupakan interpolan bagi sekuen akhir~$\pi$,
+    sehingga sekali lagi kita dapat mengambil $!C \ident !C_1$.
+
+    Keadaan lain ditangani dengan cara yang sama.
+
+    \item $\pi$ berakhir dengan $\LeftR{\lif}$ dan !!{formula} prinsipal
+    $!A \lif !B$. Jika $!A \lif !B$ termasuk bagian pertama,
+    !!{proof}~$\pi$ berakhir dengan
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, !A}{\Delta_2}$
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$\maeh{!B, \Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2}$
+    \BinaryInf$\maeh{!A \lif !B, \Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2}$
+    \DisplayProof
+    \]
+    Kini hipotesis induksi memberi kita empat sekuen !!{provable}, dua bagi
+    interpolan $!C_1$ dari premis kiri dan dua bagi interpolan $!C_2$ dari
+    premis kedua:
+    \begin{align*}
+    \Gamma_1 & \Sequent \Delta_1, !A, !C_1 &&\text{(1)} &
+    !C_1, \Gamma_2 & \Sequent \Delta_2 && \text{(2)}\\
+    !B, \Gamma_1 & \Sequent \Delta_1, !C_2 &&\text{(3)} &
+    !C_2, \Gamma_2 & \Sequent \Delta_2 && \text{(4)}.
+    \end{align*}
+    Sekuen (1) dan (3) dapat menjadi premis~\LeftR{\lif} jika kita
+    menerapkan pelemahan dan menambahkan $!C_2$ di kanan~(1) serta $!C_1$
+    di kanan~(3):
+    \[
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter \Delta_1, !A, !C_1, !C_2$
+    \AxiomC{}
+    \Deduce$!B, \Gamma_1 \fCenter \Delta_1, !C_1, !C_2$
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$!A \lif !B, \Gamma_1 \fCenter \Delta_1, !C_1, !C_2$
+    \DisplayProof
+    \]
+    Dengan menerapkan $\RightR{\lor}$, kita memperoleh sekuen
+    \[
+    !A \lif !B, \Gamma_1 \fCenter \Delta_1, !C_1 \lor !C_2.
+    \]
+    Ini mengisyaratkan bahwa $!C_1 \lor !C_2$ mungkin merupakan interpolan
+    kita dalam kasus ini. Dan memang, kita dapat !!{prove} sekuen lain yang
+    diperlukan dari sekuen (2) dan~(4) yang tersisa:
+    \[
+    \AxiomC{}
+    \Deduce$!C_1, \Gamma_2 \fCenter \Delta_2$
+    \AxiomC{}
+    \Deduce$!C_2, \Gamma_2 \fCenter \Delta_2$
+    \RightLabel{\LeftR{\lor}}
+    \BinaryInf$!C_1 \lor !C_2, \Gamma_2 \fCenter \Delta_2$
+    \DisplayProof
+    \]
+    Tinggal memeriksa bahwa $!C_1 \lor !C_2$ berada dalam bahasa yang benar.
+    Hipotesis induksi memberi kita
+    \begin{align*}
+    \Lang L(!C_1) & \subseteq
+    \Lang L(\Gamma_1, \Delta_1, !A) \cap \Lang L(\Gamma_2, \Delta_2) &\text{dan}\\
+    \Lang L(!C_2) & \subseteq
+    \Lang L(!B, \Gamma_1, \Delta_1) \cap \Lang L(\Gamma_2, \Delta_2)
+    \intertext{Karena}
+    \Lang L(!A) & \subseteq \Lang L(!A \lif !B) &\text{dan}\\
+    \Lang L(!B) & \subseteq \Lang L(!A \lif !B),
+    \intertext{kita memperoleh keduanya}
+    \Lang L(!C_1) & \subseteq
+    \Lang L(\Gamma_1, \Delta_1, !A \lif !B) \cap \Lang L(\Gamma_2, \Delta_2) &\text{dan}\\
+    \Lang L(!C_2) & \subseteq
+    \Lang L(\Gamma_1, \Delta_1, !A \lif !B) \cap \Lang L(\Gamma_2, \Delta_2)
+    \intertext{dan akibatnya, $\Lang L (!C_1 \lor !C_2) = {}$}
+    \Lang L(!C_1) \cup \Lang L(!C_2) & \subseteq
+    \Lang L(\Gamma_1, \Delta_1, !A \lif !B) \cap \Lang L(\Gamma_2, \Delta_2),
+    \end{align*}
+    seperti yang diperlukan.
+
+    Dalam kasus $!A \lif !B$ termasuk bagian kedua, situasinya berbeda,
+    tetapi ditangani dengan cara serupa. Hipotesis induksi kembali memberi
+    kita empat sekuen !!{provable}:
+    \begin{align*}
+    \Gamma_1 & \Sequent \Delta_1, !C_1 &&\text{(1)} &
+    !C_1, \Gamma_2 & \Sequent \Delta_2, !A && \text{(2)}\\
+    \Gamma_1 & \Sequent \Delta_1, !C_2 &&\text{(3)} &
+    !C_2, !B, \Gamma_2 & \Sequent \Delta_2 && \text{(4)}.
+    \end{align*}
+    Kini sekuen (2) dan (4)---ditambah beberapa !!{formula} yang
+    dilemahkan---menjadi premis~\LeftR{\lif}:
+    \[
+    \AxiomC{}
+    \Deduce$!C_1, !C_2, \Gamma_2 \fCenter \Delta_2, !A$
+    \AxiomC{}
+    \Deduce$!B, !C_1, !C_2, \Gamma_2 \fCenter \Delta_2$
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$!A \lif !B, !C_1, !C_2, \Gamma_2 \fCenter \Delta_2$
+    \DisplayProof
+    \]
+    Sekali lagi kita ingin mengubahnya menjadi sekuen dengan satu
+    !!{formula} yang dibangun dari $!C_1$ dan $!C_2$, tetapi kali ini kita
+    memerlukannya dalam anteseden (karena sekarang kita menangani bagian
+    kedua). Penerapan $\LeftR{\land}$ menyelesaikannya; kita harus mengambil
+    $!C \ident (!C_1 \land !C_2)$ sebagai interpolan. Kebetulan sekali,
+    kita dapat menggunakan sekuen (1) dan (3) yang tersisa untuk !!{prove}
+    sekuen yang bersesuaian bagi bagian lain:
+    \[
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter \Delta_1, !C_1$
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter \Delta_1, !C_2$
+    \RightLabel{\RightR{\land}}
+    \BinaryInf$\Gamma_1 \fCenter \Delta_1, !C_1 \land !C_2$
+    \DisplayProof
+    \]
+    Seperti sebelumnya, kita mempunyai $\Lang L(!C_1 \land !C_2)
+    \subseteq \Lang L(\Gamma_1, \Delta_1) \cap \Lang L(\Gamma_2,
+    \Delta_2, !A \lif !B)$.
+
+    \item $\pi$ berakhir dengan $\RightR{\lforall}$ dan !!{formula}
+    prinsipal~$\lforall[x][!A(x)]$:
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+    \maeh{\Delta_1, !A(c)}{\Delta_2}$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, \lforall[x][!A(x)]}{\Delta_2}$
+    \DisplayProof
+    \]
+    atau
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, !A(c)}$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1}{\Delta_2, \lforall[x][!A(x)]}$
+    \DisplayProof
+    \]
+    Dalam keadaan pertama, hipotesis induksi memberi kita !!{proof}s dari
+    $\Gamma_1 \Sequent \Delta_1, !A(c), !C_1$ dan $!C_1, \Gamma_2 \Sequent
+    \Delta_2$. Kita dapat menerapkan $\RightR{\lforall}$ pada yang pertama
+    untuk memperoleh $\Gamma_1 \Sequent \Delta_1,
+    \lforall[x][!A(x)], !C_1$. (Syarat eigenvariabel terpenuhi, karena telah
+    terpenuhi pada aturan \RightR{\lforall} di akhir~$\pi$.) Jadi, $!C_1$
+    akan menjadi interpolan jika syarat $\Lang L(!C_1) \subseteq \Lang
+    L(\Gamma_1, \Delta_1, \lforall[x][!A(x)]) \cap \Lang L(\Gamma_2,
+    \Delta_2)$ terpenuhi. Menurut hipotesis induksi, $\Lang L(!C_1)
+    \subseteq \Lang L(\Gamma_1, \Delta_1, !A(c)) \cap \Lang L(\Gamma_2,
+    \Delta_2)$. Jadi, kita harus mengkhawatirkan~$c$---dapatkah $c$ muncul
+    dalam~$!C_1$? Tidak. Jika $c$ muncul dalam $!C_1$, berlaku baik $c \in
+    \Lang L(\Gamma_1, \Delta_1, !A(c))$ (yang memang benar) maupun $c \in
+    \Lang L(\Gamma_2, \Delta_2)$. Namun, ini berarti $c$ muncul dalam
+    kesimpulan inferensi $\RightR{\lforall}$ dalam~$\pi$, yang melanggar
+    syarat eigenvariabel.
+
+    Keadaan lainnya serupa.
+
+    \item $\pi$ berakhir dengan $\RightR{\lexists}$ dan !!{formula}
+    prinsipal~$\lexists[x][!A(x)]$. Kembali ada dua keadaan. Kita membahas
+    keadaan ketika $\lexists[x][!A(x)]$ termasuk bagian pertama dan
+    menyerahkan keadaan lain sebagai latihan.
+
+    Dalam keadaan pertama, $\pi$ berakhir dengan
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, \lexists[x][!A(x)], !A(t)}{\Delta_2}$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$\maeh{\Gamma_1}{\Gamma_2} \fCenter
+      \maeh{\Delta_1, \lexists[x][!A(x)]}{\Delta_2}$
+    \DisplayProof
+    \]
+    Hipotesis induksi memberi kita !!{proof}s dari $\Gamma_1 \Sequent
+    \Delta_1, \lexists[x][!A(x)], !A(t), !C_1$ dan $!C_1, \Gamma_2
+    \Sequent \Delta_2$. Kita dapat menerapkan $\RightR{\lexists}$ pada
+    yang pertama untuk memperoleh $\Gamma_1 \Sequent \Delta_1,
+    \lexists[x][!A(x)], !C_1$. Jadi, $!C_1$ kembali akan menjadi interpolan
+    jika syarat $\Lang L(!C_1) \subseteq \Lang L(\Gamma_1, \Delta_1,
+    \lexists[x][!A(x)]) \cap \Lang L(\Gamma_2, \Delta_2)$ terpenuhi. Di
+    sini hipotesis induksi memberi kita $\Lang L(!C_1) \subseteq \Lang
+    L(\Gamma_1, \Delta_1, \lexists[x][!A(x)], !A(t)) \cap \Lang
+    L(\Gamma_2, \Delta_2)$. Ingatlah bahwa kita mengasumsikan tidak ada
+    !!{function}s. Artinya, suku~$t$ hanya dapat berupa !!a{constant}, yakni
+    $t \ident b$. Jika $b \notin \Lang L(!C_1)$ atau $b \in \Lang
+    L(\Gamma_1, \Delta_1, \lexists[x][!A(x)]) \cap \Lang L(\Gamma_2,
+    \Delta_2)$, tidak ada masalah: kita dapat mengambil $!C_1$ sebagai
+    interpolan. Namun, bagaimana jika $b \in \Lang L(!C_1)$ dan $b \notin
+    \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)]) \cap \Lang
+    L(\Gamma_2, \Delta_2)$? Pertama-tama, dengan mengganti semua kemunculan
+    $b$ dalam~$!C_1$ dengan !!a{variable}~$y$, kita dapat menulis
+    $!C_1 \ident \Subst{!C_1'}{b}{y}$ dengan $!C_1'$ tidak memuat~$b$.
+    Selain itu, berlaku $b \notin \Lang L(\Gamma_1, \Delta_1,
+    \lexists[x][!A(x)])$ atau $b \notin \Lang L(\Gamma_2, \Delta_2)$.
+    Masing-masing, kita dapat mengambil $!C \ident \lforall[y][!C_1'(y)]$
+    atau $!C \ident \lexists[y][!C_1'(y)]$. Dalam kasus pertama, kita
+    mempunyai:
+    \[
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], !A(b), !C_1'(b)$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$\Gamma_1 \fCenter \Delta_1, \lexists[x][!A(x)], !C_1'(b)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], \lforall[y][!C_1'(y)]$
+    \DisplayProof
+    \]
+    dan
+    \[
+    \AxiomC{}
+    \Deduce$!C_1'(b), \lforall[y][!C_1'(y)], \Gamma_2 \fCenter \Delta_2$
+    \RightLabel{\LeftR{\lforall}}
+    \UnaryInf$\lforall[y][!C_1'(y)], \Gamma_2 \fCenter \Delta_2$
+    \DisplayProof
+    \]
+    !!{proof}s dari sekuen teratas berasal dari hipotesis induksi (pada
+    yang kedua, kita menerapkan dapat diterimanya pelemahan dengan
+    $\lforall[y][!C_1'(y)]$ dalam anteseden). Syarat eigenvariabel pada
+    \RightR{\lforall} dalam !!{proof} pertama terpenuhi karena $b \notin
+    \Lang L(\Gamma_1, \Delta_1, \lexists[x][!A(x)])$, dan $!C_1'$ telah
+    didefinisikan agar tidak memuat~$b$.
+
+    Dalam kasus kedua, kita mempunyai (dari hipotesis induksi ditambah dapat
+    diterimanya pelemahan dengan~$\lexists[y][!C_1'(y)]$):
+    \[
+    \AxiomC{}
+    \Deduce$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], !A(b), \lexists[y][!C_1'(y)], !C_1'(b)$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], \lexists[y][!C_1'(y)], !C_1'(b)$
+    \RightLabel{\RightR{\lexists}}
+    \UnaryInf$\Gamma_1 \fCenter
+      \Delta_1, \lexists[x][!A(x)], \lexists[y][!C_1'(y)]$
+    \DisplayProof
+    \]
+    dan
+    \[
+    \AxiomC{}
+    \Deduce$!C_1'(b), \Gamma_2 \fCenter \Delta_2$
+    \RightLabel{\LeftR{\lexists}}
+    \UnaryInf$\lexists[y][!C_1'(y)], \Gamma_2 \fCenter \Delta_2$
+    \DisplayProof
+    \]
+    Syarat eigenvariabel pada \LeftR{\lexists} dalam !!{proof} kedua
+    terpenuhi karena $b \notin \Lang L(\Gamma_2, \Delta_2)$, dan $!C_1'$
+    telah didefinisikan agar tidak memuat~$b$.
+  \end{enumerate}
+  Kasus-kasus lain serupa; kita menyerahkannya sebagai latihan.
+\end{proof}
+
+\begin{prob}
+Andaikan kita mempunyai penghubung $\lnand$ dengan aturan
+\[
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$\Gamma \fCenter \Delta, !B$
+\RightLabel{\LeftR{\lnand}}
+\BinaryInf$!A \lnand !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\quad
+\Axiom$!A, !B, \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\lnand}}
+\UnaryInf$\Gamma \fCenter \Delta, !A \lnand !B$
+\DisplayProof
+\]
+Tunjukkan bahwa Lema Maehara tetap berlaku dengan mengerjakan kasus-kasus
+dalam bukti \olref{lem:maehara} ketika $\pi$ berakhir dengan salah satu
+aturan ini.
+\end{prob}
+
+Setelah menetapkan Lema Maehara, kita dapat menggunakannya untuk membuktikan
+Teorema Interpolasi Craig.
+
+\begin{proof}[Bukti \olref{thm:interpolation}]
+  Andaikan $!A \Sequent !B$ !!{provable}. Terapkan \olref{lem:maehara} pada
+  $\maeh{!A}{\ } \Sequent \maeh{\ }{!B}$ untuk memperoleh interpolan~$!C$.
+  Kita mempunyai $\Proves !A \Sequent !C$ dan $\Proves !C \Sequent !B$.
+\end{proof}
+
+Andaikan $\Gamma$ suatu teori (himpunan !!{sentence}s) dalam
+!!a{language}~$\Lang L$ yang memuat suatu predikat $n$-tempat~$R$. Kita
+mengatakan bahwa $\Gamma$ \emph{mendefinisikan secara implisit}~$R$ jika dan
+hanya jika
+\begin{align*}
+\Gamma, \Gamma'
+& \Entails \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) \liff
+R'(x_1, \dots, x_n))]],
+\intertext{dengan $\Gamma'$ sebagai $\Gamma$ setelah semua kemunculan~$R$
+diganti oleh~$R' \notin \Lang L$. Teori $\Gamma$ \emph{mendefinisikan
+secara eksplisit}~$R$ jika dan hanya jika terdapat suatu~$!A(x_1, \dots,
+x_n)$ yang tidak memuat~$R$ sedemikian sehingga}
+\Gamma &\Entails
+\lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n) \liff !A(x_1,
+\dots, x_n))]].
+\end{align*}
+Jelas bahwa jika $\Gamma$ mendefinisikan $R$ secara eksplisit, maka teori
+itu mendefinisikan~$R$ secara implisit. Konversnya tidak jelas, tetapi
+tetap berlaku:
+
+\begin{lem}[Teorema Keterdefinisian Beth]
+  Jika $\Gamma$ mendefinisikan~$R$ secara implisit, maka teori itu juga
+  mendefinisikannya secara eksplisit.
+\end{lem}
+
+\begin{proof}
+  Andaikan $\Gamma$ mendefinisikan~$R$ secara implisit. Misalkan $R'$ dan
+  $\Gamma'$ seperti di atas, serta $\Lang L' = \Lang L(\Gamma') = \Lang L
+  \setminus \{R\} \cup \{R'\}$. Menurut hipotesis, kita mempunyai
+  \begin{align*}
+    \Gamma, \Gamma' &
+    \Sequent \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n)
+    \liff R'(x_1, \dots, x_n))]]
+  \intertext{Misalkan $c_1$, \dots,~$c_n$ adalah !!{constant}s yang tidak
+  muncul dalam~$\Gamma$. Menurut lema keterbalikan, kita mempunyai}
+    \Gamma, \Gamma', R(c_1,\dots,c_n) & \Sequent R'(c_1, \dots, c_n)
+  \intertext{Terapkan Lema Maehara pada}
+    \maeh{\Gamma, R(c_1,\dots,c_n)}{\Gamma'} & \Sequent
+      \maeh{\ }{R'(c_1, \dots, c_n)}
+  \intertext{untuk menemukan interpolan~$!A(c_1, \dots, c_n)$. Dengan
+  mengganti konstanta-konstanta baru itu secara seragam oleh variabel bebas
+  yang bersesuaian, kita memperoleh formula dasarnya dan sekuen-sekuen}
+    \Gamma, R(c_1,\dots,c_n) & \Sequent !A(c_1, \dots, c_n) \\
+    !A(c_1, \dots, c_n), \Gamma' & \Sequent R'(c_1, \dots, c_n)
+  \intertext{sebagai sekuen-sekuen yang mempunyai !!{proof}s. Pembatasan
+  bahasa dalam Lema Maehara memberikan $\Lang L(!A) \subseteq
+  \Lang L(\Gamma) \setminus \{R\}$ setelah konstanta baru diganti oleh
+  variabel; khususnya, $!A$ tidak memuat~$R$. Ganti $R'$ dengan~$R$ di
+  mana-mana dalam !!{proof} sekuen kedua untuk memperoleh !!a{proof} dari}
+    !A(c_1, \dots, c_n), \Gamma & \Sequent R(c_1, \dots, c_n).
+  \end{align*}
+  Terapkan \RightR{\lif}, \RightR{\land}, dan \RightR{\lforall} untuk
+  memperoleh !!a{proof} dari
+  \[
+    \Gamma \Sequent \lforall[x_1][\dots\lforall[x_n][(R(x_1,\dots,x_n)
+    \liff !A(x_1, \dots, x_n))]].
+  \]
+  Ini menunjukkan bahwa $!A(x_1, \dots, x_n)$ mendefinisikan $R$ secara
+  eksplisit dalam~$\Gamma$.
+\end{proof}
+
+Hasil ketiga yang ekuivalen dengan interpolasi (dan, seperti interpolasi,
+dapat dibuktikan dengan Lema Maehara) adalah teorema berikut: Jika dua teori
+konsisten~$\Gamma_1$, $\Gamma_2$ memuat suatu teori lengkap $\Gamma$ dalam
+bahasa~$\Lang L(\Gamma) \subseteq \Lang L(\Gamma_1) \cap \Lang
+L(\Gamma_2)$, maka $\Gamma_1 \cup \Gamma_2$ konsisten.
+
+Ingat bahwa teori lengkap adalah teori sedemikian sehingga untuk setiap
+!!{sentence}~$!A$ dalam bahasanya berlaku $\Gamma \Proves !A$ atau $\Gamma
+\Proves \lnot !A$. Karena $\Gamma_1$ dan~$\Gamma_2$ merupakan perluasan
+konsisten dari~$\Gamma$, $\Gamma$ harus konsisten. Akibatnya, jika $!A$
+adalah !!a{sentence} dalam bahasa $\Lang L(\Gamma_1) \cap \Lang
+L(\Gamma_2)$, tidak mungkin berlaku $\Gamma_1 \Entails !A$ sekaligus
+$\Gamma_2 \Entails \lnot !A$. Untuk melihatnya, andaikan ada~$!A$ semacam
+itu. Jika $\Gamma_1 \Entails !A$, maka $\Gamma \Entails !A$. Jika tidak,
+menurut kelengkapan~$\Gamma$, berlaku $\Gamma \Entails \lnot !A$, dan
+karena $\Gamma \subseteq \Gamma_1$, berlaku $\Gamma_1 \Entails \lnot !A$,
+yang membuat $\Gamma_1$ tak konsisten. Jadi $\Gamma \Entails !A$, dan
+karena $\Gamma \subseteq \Gamma_2$, berlaku $\Gamma_2 \Entails !A$. Maka
+$\Gamma \Entails/ \lnot !A$, sebab jika tidak, $\Gamma_2$ tak konsisten.
+
+Ketiadaan !!a{sentence}~$!A$ dalam !!{language} gabungan~$\Lang
+L(\Gamma_1) \cap \Lang L(\Gamma_2)$ dengan $\Gamma_1 \Entails !A$ dan
+$\Gamma_2 \Entails \lnot !A$ adalah semua yang diperlukan bagi bukti,
+yang kita berikan di sini secara teori-bukti dengan menggunakan Lema
+Maehara.
+
+\begin{thm}[Teorema Konsistensi Gabungan Robinson]
+Andaikan $\Gamma_1$, $\Gamma_2$ merupakan teori konsisten dan bagi tidak
+ada~$!A$ dalam !!{language} $\Lang L(\Gamma_1) \cap \Lang L(\Gamma_2)$
+berlaku $\Gamma_1 \Entails !A$ dan $\Gamma_2 \Entails \lnot !A$. Maka
+$\Gamma_1 \cup \Gamma_2$ konsisten.
+\end{thm}
+
+\begin{proof}
+  Demi kontradiksi, andaikan $\Gamma_1 \cup \Gamma_2$ tak konsisten. Maka sekuen
+  $\Gamma_1, \Gamma_2 \Sequent \ $ mempunyai !!a{proof}. Terapkan Lema
+  Maehara pada $\maeh{\Gamma_1}{\Gamma_2} \Sequent \maeh{\ }{\ }$ untuk
+  memperoleh !!a{sentence}~$!A$ dalam !!{language}~$\Lang L(\Gamma_1)
+  \cap \Lang L(\Gamma_2)$ sedemikian sehingga $\Proves \Gamma_1 \Sequent
+  !A$ dan $\Proves !A, \Gamma_2 \Sequent \quad$. Dari yang terakhir, kita
+  memperoleh $\Proves \Gamma_2 \Sequent \lnot !A$. Namun, kita telah
+  mengasumsikan bahwa tidak ada !!{sentence} semacam itu.
+\end{proof}
+
+Di atas kita secara diam-diam mengasumsikan bahwa teori-teori $\Gamma$,
+$\Gamma_1$, dan $\Gamma_2$ berhingga. Menurut kekompakan, hasil-hasil
+tersebut juga berlaku bagi teori-teori tak hingga.
+
+\end{document}

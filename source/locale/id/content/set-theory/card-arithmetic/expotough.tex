@@ -1,0 +1,111 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+\olfileid[id]{sth}{card-arithmetic}{expotough}
+
+\olsection[Beberapa Penyederhanaan]{Beberapa Penyederhanaan dengan Eksponensiasi Kardinal}
+
+Walaupun mendefinisikan $\canonord$ agak rumit, hasil akhirnya ialah suatu
+pernyataan yang berguna mengenai penjumlahan dan perkalian kardinal,
+\olref[simp]{cardplustimesmax}. Akan tetapi, eksponensiasi transfinit tidak
+dapat disederhanakan dengan begitu langsung. Untuk menjelaskan alasannya,
+kita mulai dengan suatu hasil yang memperluas pola yang dikenal dari kasus
+hingga (walaupun buktinya berada pada tingkat abstraksi yang tinggi):
+
+\begin{prop}\ollabel{simplecardexpo}
+$\cardexpo{\cardfont{a}}{\cardfont{b} \cardplus \cardfont{c}} =
+\cardexpo{\cardfont{a}}{\cardfont{b}} \cardtimes
+\cardexpo{\cardfont{a}}{\cardfont{c}}$ dan
+$\cardexpo{(\cardexpo{\cardfont{a}}{\cardfont{b}})}{\cardfont{c}} =
+\cardexpo{\cardfont{a}}{\cardfont{b} \cardtimes \cardfont{c}}$, untuk
+sebarang kardinal $\cardfont{a}, \cardfont{b}, \cardfont{c}$.
+\end{prop}
+
+\begin{proof}
+Untuk klaim pertama, perhatikan suatu fungsi $f \colon
+(\cardfont{b}\disjointsum\cardfont{c}) \to \cardfont{a}$. Sekarang
+``pisahkan fungsi ini'' dengan mendefinisikan
+$f_\cardfont{b}(\beta) = f(\beta, 0)$ untuk setiap
+$\beta \in \cardfont{b}$, dan
+$f_\cardfont{c}(\gamma) = f(\gamma, 1)$ untuk setiap
+$\gamma \in \cardfont{c}$. Pemetaan
+$f \mapsto \tuple{f_{\cardfont{b}}, f_\cardfont{c}}$ merupakan
+!!a{bijection}
+$\funfromto{\cardfont{b} \disjointsum \cardfont{c}}{\cardfont{a}} \to
+(\funfromto{\cardfont{b}}{\cardfont{a}} \times
+\funfromto{\cardfont{c}}{\cardfont{a}})$.
+
+Untuk klaim kedua, perhatikan suatu fungsi
+$f \colon \cardfont{c} \to
+(\funfromto{\cardfont{b}}{\cardfont{a}})$; jadi, untuk setiap
+$\gamma \in \cardfont{c}$ kita mempunyai suatu fungsi
+$f(\gamma) \colon \cardfont{b} \to \cardfont{a}$. Sekarang definisikan
+$f^*(\beta, \gamma) = (f(\gamma))(\beta)$ untuk setiap
+$\tuple{\beta, \gamma} \in \cardfont{b} \times \cardfont{c}$.
+Pemetaan $f \mapsto f^*$ merupakan !!a{bijection}
+$\funfromto{\cardfont{c}}{(\funfromto{\cardfont{b}}{\cardfont{a}})}
+\to \funfromto{\cardfont{b} \cardtimes \cardfont{c}}{\cardfont{a}}$.
+\end{proof}
+
+Sekarang, yang kita \emph{inginkan} ialah suatu cara mudah untuk menghitung
+$\cardexpo{\cardfont{a}}{\cardfont{b}}$ ketika kita menangani kardinal tak
+hingga. Berikut suatu langkah yang baik ke arah tersebut:
+
+\begin{prop}\ollabel{cardexpo2reduct}
+Jika $2 \leq \cardfont{a} \leq \cardfont{b}$ dan $\cardfont{b}$ tak hingga,
+maka $\cardexpo{\cardfont{a}}{\cardfont{b}} =
+\cardexpo{2}{\cardfont{b}}$
+\end{prop}
+
+\begin{proof}
+\begin{align*}
+	\cardexpo{2}{\cardfont{b}} &\leq 
+	\cardexpo{\cardfont{a}}{\cardfont{b}}\text{, karena $2 \leq \cardfont{a}$}\\
+	&\leq \cardexpo{(2^\cardfont{a})}{\cardfont{b}}
+	\text{, berdasarkan \olref[opps]{lem:SizePowerset2Exp}}\\
+	&= \cardexpo{2}{\cardfont{a} \cardtimes \cardfont{b}}
+	\text{, berdasarkan \olref{simplecardexpo}} \\
+	&= \cardexpo{2}{\cardfont{b}}
+	\text{, berdasarkan \olref[simp]{cardplustimesmax}}
+\end{align*}
+\end{proof}
+
+Kita seharusnya tidak mengharapkan penyederhanaan lebih jauh, sebab
+$\cardfont{b} < \cardexpo{2}{\cardfont{b}}$ berdasarkan
+\olref[card-arithmetic][opps]{lem:SizePowerset2Exp}. Namun, hasil ini tidak
+memberi tahu kita apa yang harus dikatakan tentang
+$\cardexpo{\cardfont{a}}{\cardfont{b}}$ ketika
+$\cardfont{b} < \cardfont{a}$. Tentu saja, jika $\cardfont{b}$
+\emph{hingga}, kita mengetahui apa yang harus dilakukan.
+
+\begin{prop}
+Jika $\cardfont{a}$ tak hingga dan $0 < n \in \omega$, maka
+$\cardexpo{\cardfont{a}}{n} = \cardfont{a}$
+\end{prop}
+
+\begin{proof}
+$\cardexpo{\cardfont{a}}{n} = \cardfont{a} \cardtimes \cardfont{a}
+\cardtimes \ldots \cardtimes \cardfont{a} = \cardfont{a}$, berdasarkan
+\olref[simp]{cardplustimesmax}.
+\end{proof}
+\noindent
+Selain itu, dalam beberapa kasus lain, kita dapat mengendalikan ukuran
+$\cardexpo{\cardfont{a}}{\cardfont{b}}$:
+
+\begin{prop}
+Jika $2 \leq \cardfont{b} < \cardfont{a} \leq
+\cardexpo{2}{\cardfont{b}}$ dan $\cardfont{b}$ tak hingga, maka
+$\cardexpo{\cardfont{a}}{\cardfont{b}} = \cardexpo{2}{\cardfont{b}}$
+\end{prop}
+
+\begin{proof}
+$\cardexpo{2}{\cardfont{b}}\leq \cardexpo{\cardfont{a}}{\cardfont{b}}
+\leq \cardexpo{(\cardexpo{2}{\cardfont{b}})}{\cardfont{b}} =
+\cardexpo{2}{\cardfont{b}\cardtimes\cardfont{b}} =
+\cardexpo{2}{\cardfont{b}}$, dengan penalaran seperti dalam
+\olref{cardexpo2reduct}.
+\end{proof}
+\noindent
+Namun, setelah titik ini, persoalannya menjadi jauh lebih halus.
+
+\end{document}

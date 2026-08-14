@@ -1,0 +1,138 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: truth-at-w
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{syn}{trw}
+
+\olsection{Kebenaran pada Suatu Dunia}
+
+Setiap model modal menentukan !!{formula}s modal mana yang dianggap bernilai
+benar pada dunia mana di dalam model tersebut. Relasi ``model $\mModel{M}$
+membuat !!a{formula}~$!A$ bernilai benar pada dunia~$w$'' merupakan gagasan
+dasar semantik relasional. Relasi ini didefinisikan secara induktif dan, untuk
+operator nonmodal, bertepatan dengan pencirian biasa yang menggunakan tabel
+kebenaran.
+
+\begin{defn}\ollabel{defn:mmodels}
+  \emph{Kebenaran !!a{formula}~$!A$ pada dunia~$w$} dalam suatu~$\mModel M$,
+  dalam simbol: $\mSat{M}{!A}[w]$, didefinisikan secara induktif sebagai
+  berikut:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\mSat{M}{\lfalse}[w]$ tidak
+    pernah berlaku}.}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\mSat{M}{\ltrue}[w]$ selalu
+    berlaku}.}{}
+  \item $\mSat{M}{p}[w]$ jika dan hanya jika $w \in V(p)$.
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\mSat{M}{\indfrm}[w]$ jika dan
+    hanya jika $\mSat/{M}{!B}[w]$}.}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\mSat{M}{\indfrm}[w]$ jika
+    dan hanya jika $\mSat{M}{!B}[w]$ dan $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\mSat{M}{\indfrm}[w]$ jika
+    dan hanya jika $\mSat{M}{!B}[w]$ atau $\mSat{M}{!C}[w]$} (atau keduanya).}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\mSat{M}{\indfrm}[w]$ jika
+    dan hanya jika $\mSat/{M}{!B}[w]$ atau $\mSat{M}{!C}[w]$}.}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\mSat{M}{\indfrm}[w]$ jika
+    dan hanya jika $\mSat{M}{!B}[w]$ dan $\mSat{M}{!C}[w]$ keduanya berlaku,
+    atau $\mSat{M}{!B}[w]$ maupun $\mSat{M}{!C}[w]$ keduanya tidak berlaku}.}{}
+  \item\ollabel{defn:sub:mmodels-box}
+    \indcase{!A}{\Box !B}{$\mSat{M}{\indfrm}[w]$ jika dan hanya jika
+    $\mSat{M}{!B}[w']$ untuk semua $w' \in W$ dengan $Rww'$.}
+  \item\ollabel{defn:sub:mmodels-diamond}
+    \indcase{!A}{\Diamond !B}{$\mSat{M}{\indfrm}[w]$ jika dan hanya jika
+    $\mSat{M}{!B}[w']$ untuk sekurang-kurangnya satu $w' \in W$ dengan
+    $Rww'$.}
+  \end{enumerate}
+\end{defn}
+
+Perhatikan bahwa menurut klausa~\olref{defn:sub:mmodels-box},
+!!a{formula}~$\Box !B$ bernilai benar pada dunia~$w$ apabila tidak ada~$w'$
+dengan $Rww'$. Dalam kasus demikian, $\Box !B$ bernilai benar pada dunia~$w$
+secara \emph{vakum}. Selain itu, $\Box !B$ mungkin bernilai benar pada
+dunia~$w$ sekalipun $!B$ tidak bernilai benar pada dunia itu. Kebenaran~$!B$
+pada dunia~$w$ tidak menjamin kebenaran $\Diamond !B$ pada dunia~$w$. Namun,
+hal ini berlaku jika $Rww$, misalnya jika
+$R$ refleksif. Jika tidak ada $w'$ sedemikian sehingga $Rww'$, maka
+$\mSat/{M}{\Diamond !A}[w]$ untuk setiap~$!A$.
+
+\begin{prob}
+  Tinjau model dalam \olref[nml][syn][rel]{fig:simple}. Manakah di antara
+  pernyataan berikut yang berlaku?
+    \begin{enumerate}
+    \item $\mSat{M}{q}[w_1]$;
+    \item $\mSat{M}{\lnot q}[w_3]$;
+    \item $\mSat{M}{p \lor q}[w_1]$;
+    \item $\mSat{M}{\Box (p \lor q)}[w_1]$;
+    \item $\mSat{M}{\Box q}[w_3]$;
+    \item $\mSat{M}{\Box \bot}[w_3]$;
+    \item $\mSat{M}{\Diamond q}[w_1]$;
+    \item $\mSat{M}{\Box q}[w_1]$;
+    \item $\mSat{M}{\lnot \Box\Box \lnot q}[w_1]$.
+    \end{enumerate}
+\end{prob}
+
+% Prove duality of \Box and \Diamond
+\begin{tagblock}{prvDiamond}
+\begin{prop}\ollabel{prop:dual}
+  \begin{enumerate}
+  \item $\mSat{M}{\Box !A}[w]$ jika dan hanya jika $\mSat{M}{\lnot\Diamond\lnot !A}[w]$.
+  \item $\mSat{M}{\Diamond !A}[w]$ jika dan hanya jika $\mSat{M}{\lnot\Box\lnot !A}[w]$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+    \item $\mSat{M}{\lnot\Diamond\lnot !A}[w]$ jika dan hanya jika
+      $\mSat/{M}{\Diamond\lnot !A}[w]$ menurut definisi $\mSat{M}{}[w]$.
+      $\mSat{M}{\Diamond\lnot !A}[w]$ jika dan hanya jika untuk suatu $w'$
+      dengan $Rww'$, $\mSat{M}{\lnot !A}[w']$. Maka,
+      $\mSat/{M}{\Diamond\lnot !A}[w]$ jika dan hanya jika untuk semua $w'$
+      dengan $Rww'$, $\mSat/{M}{\lnot !A}[w']$. Kita juga mempunyai
+      $\mSat/{M}{\lnot !A}[w']$ jika dan hanya jika $\mSat{M}{!A}[w']$.
+      Secara keseluruhan, kita memperoleh
+      $\mSat{M}{\lnot\Diamond\lnot !A}[w]$ jika dan hanya jika untuk semua
+      $w'$ dengan $Rww'$, $\mSat{M}{!A}[w']$. Sekali lagi menurut definisi
+      $\mSat{M}{}[w]$, hal itu berlaku jika dan hanya jika
+      $\mSat{M}{\Box !A}[w]$.
+    \item \iftag{probDiamond}{Latihan.}{$\mSat{M}{\lnot\Box\lnot !A}[w]$
+      jika dan hanya jika $\mSat/{M}{\Box\lnot !A}$. $\mSat{M}{\Box\lnot
+      !A}[w]$ jika dan hanya jika untuk semua $w'$ dengan $Rww'$,
+      $\mSat{M}{\lnot !A}[w']$. Maka, $\mSat/{M}{\Box\lnot !A}[w]$ jika
+      dan hanya jika untuk suatu $w'$ dengan $Rww'$,
+      $\mSat/{M}{\lnot !A}[w']$. Kita juga mempunyai $\mSat/{M}{\lnot
+        !A}[w']$ jika dan hanya jika $\mSat{M}{!A}[w']$. Secara keseluruhan,
+      kita memperoleh $\mSat{M}{\lnot\Box\lnot !A}[w]$ jika dan hanya jika
+      untuk suatu~$w'$ dengan $Rww'$, $\mSat{M}{!A}[w']$. Sekali lagi
+      menurut definisi $\mSat{M}{}[w]$, hal itu berlaku jika dan hanya jika
+      $\mSat{M}{\Diamond !A}[w]$.}
+  \end{enumerate}
+\end{proof}
+
+\begin{probtag}{probDiamond}
+  Lengkapi pembuktian \olref[nml][syn][trw]{prop:dual}.
+\end{probtag}
+\end{tagblock}
+
+\begin{prob}
+  Misalkan $\mModel{M} = \tuple{W, R, V}$ suatu model, dan andaikan $w_1,
+  w_2 \in W$ sedemikian sehingga:
+  \begin{enumerate}
+  \item $w_1 \in V(p)$ jika dan hanya jika $w_2 \in V(p)$ (untuk setiap
+    !!{propositional variable} $p$); dan
+  \item untuk semua $w \in W$: $Rw_1w$ jika dan hanya jika $Rw_2w$.
+  \end{enumerate}
+  Dengan menggunakan induksi pada !!{formula}s, tunjukkan bahwa untuk semua
+  !!{formula}s $!A$: $\mSat{M}{!A}[w_1]$ jika dan hanya jika
+  $\mSat{M}{!A}[w_2]$.
+\end{prob}
+
+\begin{probtag}{prvDiamond}
+  Misalkan $\mModel{M} = \tuple{W, R, V}$. Tunjukkan bahwa
+  $\mSat{M}{\lnot\Diamond !A}[w]$ jika dan hanya jika
+  $\mSat{M}{\Box\lnot!A}[w]$.
+\end{probtag}
+
+\end{document}

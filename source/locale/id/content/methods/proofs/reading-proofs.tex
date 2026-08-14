@@ -1,0 +1,118 @@
+% Part: methods
+% Chapter: proofs
+% Section: reading-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mth}{prf}{rea}
+\olsection{Membaca Bukti}
+
+Bukti-bukti yang Anda temukan dalam buku teks dan artikel sangat
+jarang memberikan semua perincian yang sejauh ini kita sertakan dalam
+contoh. Penulis sering tidak menarik perhatian pada saat mereka
+membedakan kasus, memberikan bukti tidak langsung, atau menggunakan
+suatu definisi. Jadi, ketika membaca bukti dalam buku teks, Anda sering
+harus melengkapi sendiri perincian tersebut agar dapat memahami bukti.
+Melakukan hal ini juga merupakan latihan yang baik untuk menguasai
+berbagai langkah yang harus Anda lakukan dalam suatu bukti. Mari kita
+lihat sebuah contoh.
+
+\begin{prop}[Absorpsi]
+Untuk semua himpunan $A$, $B$,
+\[
+A \cap (A \cup B) = A
+\]
+\end{prop}
+
+\begin{proof}
+Jika $z \in A \cap (A \cup B)$, maka $z \in A$, sehingga $A \cap (A
+\cup B) \subseteq A$. Sekarang andaikan $z \in A$. Maka $z \in A \cup
+B$ juga, dan oleh karena itu $z \in A \cap (A \cup B)$ juga.
+\end{proof}
+
+Bukti hukum absorpsi di atas sangat padat. Tidak ada penyebutan
+definisi yang digunakan, tidak ada ``kita harus membuktikan bahwa''
+sebelum kita membuktikannya, dan seterusnya. Mari kita uraikan bukti
+itu. Proposisi yang dibuktikan merupakan klaim umum tentang sebarang
+himpunan $A$ dan $B$, dan ketika bukti menyebut $A$ atau $B$, keduanya
+merupakan variabel bagi himpunan sembarang. Klaim-klaim umum yang
+ditetapkan bukti adalah apa yang diperlukan untuk membuktikan identitas
+himpunan, yaitu bahwa setiap !!{element} dari ruas kiri identitas
+merupakan !!a{element} dari ruas kanan, dan sebaliknya.
+
+\begin{quote}
+``Jika $z \in A \cap (A \cup B)$, maka $z \in A$, sehingga $A \cap (A
+  \cup B) \subseteq A$.''
+\end{quote}
+
+Ini adalah paruh pertama pembuktian identitas: bagian ini menetapkan
+bahwa jika suatu~$z$ sembarang merupakan !!a{element} dari ruas kiri,
+maka ia juga merupakan !!a{element} dari ruas kanan, yaitu $A \cap (A
+\cup B) \subseteq A$. Asumsikan bahwa $z \in A \cap (A \cup B)$.
+Karena $z$ merupakan !!a{element} dari irisan dua himpunan jika dan
+hanya jika ia merupakan !!a{element} dari kedua himpunan tersebut,
+kita dapat menyimpulkan bahwa $z \in A$ dan juga $z \in A \cup B$.
+Khususnya, $z \in A$, dan itulah yang ingin kita tunjukkan. Karena hanya
+itulah yang harus dilakukan untuk paruh pertama, kita mengetahui bahwa
+sisa bukti pastilah merupakan pembuktian paruh kedua, yaitu bukti bahwa
+$A \subseteq A \cap (A \cup B)$.
+
+\begin{quote}
+``Sekarang andaikan $z \in A$. Maka $z \in A \cup B$ juga, dan oleh
+karena itu $z \in A \cap (A \cup B)$ juga.''
+\end{quote}
+
+Kita mulai dengan mengasumsikan bahwa $z \in A$, karena kita sedang
+menunjukkan bahwa untuk sebarang~$z$, jika $z \in A$, maka $z \in A
+\cap (A \cup B)$. Untuk menunjukkan bahwa $z \in A \cap (A \cup B)$,
+kita harus menunjukkan (menurut definisi ``$\cap$'') bahwa (i) $z \in
+A$ dan juga (ii) $z \in A \cup B$. Di sini, (i) hanyalah asumsi kita,
+sehingga tidak ada lagi yang perlu dibuktikan, dan itulah sebabnya
+bukti tidak menyebutnya lagi. Untuk (ii), ingat bahwa $z$ merupakan
+!!a{element} dari gabungan himpunan jika dan hanya jika ia merupakan
+!!a{element} dari sekurang-kurangnya salah satu himpunan tersebut.
+Karena $z \in A$, dan $A \cup B$ adalah gabungan $A$ dan $B$, hal ini
+berlaku di sini. Jadi, $z \in A \cup B$. Kita telah menunjukkan baik
+(i) $z \in A$ maupun (ii) $z \in A \cup B$; maka, menurut definisi
+``$\cap$'', $z \in A \cap (A \cup B)$. Bukti tersebut tidak
+menyebutkan definisi-definisi itu; pembaca diasumsikan telah
+menginternalisasikannya. Jika Anda belum melakukannya, Anda harus
+kembali dan mengingatkan diri tentang definisi-definisi tersebut.
+Kemudian Anda juga harus mengenali mengapa dari $z \in A$ mengikuti $z
+\in A \cup B$, dan dari $z \in A$ serta $z \in A \cup B$ mengikuti
+$z \in A \cap (A \cup B)$.
+
+Berikut versi lain dari bukti di atas, dengan segala sesuatu dinyatakan
+secara eksplisit:
+\begin{proof}{}
+[Menurut definisi $=$ untuk himpunan, untuk menunjukkan $A \cap (A
+  \cup B) = A$ kita harus menunjukkan (a) $A \cap (A \cup B)
+  \subseteq A$ dan (b) $A \subseteq A \cap (A \cup B)$. (a): Menurut
+  definisi $\subseteq$, kita harus menunjukkan bahwa jika $z \in A
+  \cap (A \cup B)$, maka $z \in A$.] Jika $z \in A \cap (A \cup B)$,
+maka $z \in A$ [sebab menurut definisi $\cap$, $z \in A \cap (A \cup
+B)$ jika dan hanya jika $z \in A$ dan $z \in A \cup B$], sehingga $A
+\cap (A \cup B) \subseteq A$. [(b): Menurut definisi $\subseteq$, kita
+harus menunjukkan bahwa jika $z \in A$, maka $z \in A \cap (A \cup
+B)$.] Sekarang andaikan [(1)] $z \in A$. Maka [(2)] $z \in A \cup B$
+juga [sebab berdasarkan (1), $z \in A$ atau $z \in B$, yang menurut
+definisi $\cup$ berarti $z \in A \cup B$], dan oleh karena itu $z \in
+A \cap (A \cup B)$ juga [sebab definisi $\cap$ mensyaratkan $z \in A$,
+yaitu (1), dan $z \in A \cup B$, yaitu (2)].
+\end{proof}
+
+\begin{prob}
+Uraikan bukti $A \cup (A \cap B) = A$ berikut dengan menyebutkan semua
+pola inferensi yang digunakan, mengapa setiap langkah mengikuti asumsi
+atau klaim yang telah ditetapkan sebelumnya, dan di mana kita harus
+merujuk pada definisi tertentu.
+\begin{proof}
+  Jika $z \in A \cup (A \cap B)$, maka $z \in A$ atau $z \in A \cap
+  B$. Jika $z \in A \cap B$, maka $z \in A$. Setiap $z \in A$ juga
+  memenuhi $\in A \cup (A \cap B)$.
+\end{proof}
+\end{prob}
+
+\end{document}

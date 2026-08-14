@@ -1,0 +1,289 @@
+% Part: lambda-calculus
+% Chapter: syntax
+% Section: alpha
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{syn}{alp}
+\olsection{Konversi-$\alpha$}
+
+Apakah hubungan antara $\lambd[x][x]$ dan $\lambd[y][y]$? Keduanya
+menyatakan fungsi identitas. Tentu saja, secara sintaktis keduanya merupakan
+suku yang berbeda. Perbedaannya hanya terletak pada nama variabel terikat, dan
+salah satunya merupakan hasil ``penggantian nama'' variabel terikat dalam suku
+yang lain. Hal ini disebut \emph{konversi-$\alpha$}.
+
+\begin{defn}[Pengubahan variabel terikat, $\aconvone$]
+  Jika suatu suku $M$ memuat kemunculan $\lambd[x][N]$, $x \neq y$,
+  $y \notin \FV{N}$, dan $\Subst{N}{y}{x}$ terdefinisi, maka penggantian
+  kemunculan ini dengan
+  \begin{equation*}
+    \lambd[y][\Subst{N}{y}{x}]
+  \end{equation*}
+  yang menghasilkan $M'$ disebut \emph{pengubahan variabel terikat}, dan
+  ditulis $M \redone[\alpha] M'$.
+\end{defn}
+
+\begin{defn}[Kompatibilitas relasi]
+  Suatu relasi $R$ pada suku-suku dikatakan \emph{kompatibel}
+  jika memenuhi syarat-syarat berikut:
+  \begin{enumerate}
+  \item Jika $R N N'$, maka $R \lambd[x][N] \lambd[x][N']$.
+  \item Jika $R P P'$, maka $R (PQ) (P'Q)$.
+  \item Jika $R Q Q'$, maka $R (PQ) (PQ')$.
+  \end{enumerate}
+\end{defn}
+
+Jadi, mari kita rumuskan ulang definisi tersebut:
+\begin{defn}[Pengubahan variabel terikat, $\aconvone$]
+  \emph{Pengubahan variabel terikat} ($\redone[\alpha]$) adalah
+  relasi kompatibel terkecil pada suku-suku yang memenuhi syarat berikut:
+  \begin{align*}
+    &\lambd[x][N] \redone[\alpha] \lambd[y][\Subst{N}{y}{x}] && \text{jika
+      $x \neq y$, $y \notin \FV{N}$} \\
+    & &&\text{dan $\Subst{N}{y}{x}$ terdefinisi}
+  \end{align*}
+\end{defn}
+
+``Terkecil'' di sini berarti bahwa relasi tersebut hanya memuat pasangan yang
+disyaratkan oleh kompatibilitas dan syarat tambahan di atas, dan tidak memuat
+pasangan lain. Jadi, relasi ini juga dapat didefinisikan sebagai berikut:
+
+\begin{defn}[Pengubahan variabel terikat, $\aconvone$] \ollabel{defn:aconvone}
+  \emph{Pengubahan variabel terikat} ($\aconvone$) didefinisikan secara
+  induktif sebagai berikut:
+  \begin{enumerate}
+  \item Jika $N \aconvone N'$, maka $\lambd[x][N] \aconvone
+    \lambd[x][N']$. \ollabel{defn:aconvone1}
+  \item Jika $P \aconvone P'$, maka $(PQ) \aconvone (P'Q)$.
+    \ollabel{defn:aconvone2}
+  \item Jika $Q \aconvone Q'$, maka $(PQ) \aconvone (PQ')$.
+    \ollabel{defn:aconvone3}
+  \item Jika $x \neq y$, $y \notin \FV{N}$, dan $\Subst{N}{y}{x}$
+    terdefinisi, maka
+    $\lambd[x][N] \redone[\alpha] \lambd[y][\Subst{N}{y}{x}]$.
+    \ollabel{defn:aconvone4}
+  \end{enumerate}
+\end{defn}
+
+Definisi-definisi tersebut ekuivalen, tetapi pembuktiannya kita serahkan
+sebagai latihan. Mulai sekarang, kita akan menggunakan definisi induktif.
+
+\begin{defn}[Konversi-$\alpha$, $\aconv$]
+  \emph{Konversi-$\alpha$} ($\aconv$) adalah relasi refleksif dan transitif
+  terkecil pada suku-suku yang memuat $\aconvone$.
+\end{defn}
+
+Seperti di atas, ``terkecil'' berarti bahwa relasi tersebut hanya memuat
+pasangan yang disyaratkan oleh refleksivitas, transitivitas, dan $\aconvone$,
+sehingga kita memperoleh definisi ekuivalen berikut:
+
+\begin{defn}[Konversi-$\alpha$, $\aconv$] \ollabel{defn:aconv}
+  \emph{Konversi-$\alpha$} ($\aconv$) didefinisikan secara induktif sebagai
+  berikut:
+  \begin{enumerate}
+  \item Jika $P \aconv Q$ dan $Q \aconv R$, maka $P \aconv R$.
+    \ollabel{defn:aconv1}
+  \item Jika $P \aconvone Q$, maka $P \aconv Q$. \ollabel{defn:aconv2}
+  \item $P \aconv P$. \ollabel{defn:aconv3}
+  \end{enumerate}
+\end{defn}
+
+\begin{ex}
+  $\lambd[x][f x]$ dapat dikonversi-$\alpha$ menjadi $\lambd[y][f y]$, dan
+  sebaliknya. Secara informal, keduanya merupakan fungsi yang menerima sebuah
+  argumen dan mengembalikan hasil penerapan $f$ pada argumen tersebut, dengan
+  $f$ merujuk kepada variabel lingkungan.
+
+  $\lambd[x][f x]$ tidak dapat dikonversi-$\alpha$ menjadi $\lambd[x][g x]$.
+  Secara informal, kedua suku itu masing-masing merujuk kepada variabel
+  lingkungan $f$ dan~$g$, sehingga merupakan fungsi yang berbeda: keduanya
+  berperilaku berbeda dalam lingkungan tempat $f$ dan $g$ berbeda.
+\end{ex}
+
+\begin{prob}
+  Apakah pasangan-pasangan suku berikut dapat dikonversi-$\alpha$?
+  \begin{enumerate}
+  \item $\lambd[x][\lambd[y][x]]$ dan $\lambd[y][\lambd[x][y]]$
+  \item $\lambd[x][\lambd[y][x]]$ dan $\lambd[c][\lambd[b][a]]$
+  \item $\lambd[x][\lambd[y][x]]$ dan $\lambd[c][\lambd[b][a]]$
+  \end{enumerate}
+\end{prob}
+
+\begin{lem}\ollabel{lem:fv-one}
+  Jika $P \aconvone Q$, maka $\FV{P} = \FV{Q}$.
+\end{lem}
+
+\begin{proof}
+  Dengan induksi pada !!{derivation} $P \aconvone Q$.
+  \begin{enumerate}
+  \item Jika aturan terakhir adalah \olref{defn:aconvone4}, maka $P$
+    berbentuk $\lambd[x][N]$ dan $Q$ berbentuk
+    $\lambd[y][\Subst{N}{y}{x}]$, dengan $x \neq y$, $y \notin \FV{N}$,
+    dan $\Subst{N}{y}{x}$ terdefinisi. Kita membedakan kasus menurut apakah
+    $x \in \FV{N}$:
+    \begin{enumerate}
+    \item Jika $x \in \FV{N}$, maka:
+      \begin{align*}
+        \FV{\lambd[y][\Subst{N}{y}{x}]} &=
+        \FV{\Subst{N}{y}{x}} \setminus \{y\} \\
+        & = ((\FV{N} \setminus \{x\}) \cup \{y\}) \setminus \{y\}
+         && \text{menurut \olref[sub]{thm:infv}} \\
+        & = \FV{N} \setminus \{x\} \\
+        & = \FV{\lambd[x][N]}
+      \end{align*}
+    \item Jika $x \notin \FV{N}$, maka:
+      \begin{align*}
+        \FV{\lambd[y][\Subst{N}{y}{x}]}
+        & = \FV{\Subst{N}{y}{x}} \setminus \{y\} \\
+        & = \FV{N} \setminus \{x\}
+         && \text{menurut \olref[sub]{thm:notinfv}} \\
+        & = \FV{\lambd[x][N]}.
+      \end{align*}
+    \end{enumerate}
+  \item Ketiga kasus lainnya diserahkan sebagai latihan.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[lam][syn][alp]{lem:fv-one}.
+\end{prob}
+
+\begin{lem}\ollabel{lem:inv}
+  Jika $P \aconvone Q$, maka $Q \aconvone P$.
+\end{lem}
+
+\begin{proof}
+  Induksi pada !!{derivation} $P \aconvone Q$.
+  \begin{enumerate}
+  \item Jika aturan terakhir adalah \olref{defn:aconvone4}, maka $P$
+    berbentuk $\lambd[x][N]$ dan $Q$ berbentuk
+    $\lambd[y][\Subst{N}{y}{x}]$, dengan $x \neq y$, $y \notin \FV{N}$,
+    dan $\Subst{N}{y}{x}$ terdefinisi. Pertama, kita mempunyai $y \notin
+    \FV{\Subst{N}{y}{x}}$ menurut \olref[sub]{thm:clr}. Menurut
+    \olref[sub]{thm:inv}, $\Subst{\Subst{N}{y}{x}}{x}{y}$ tidak hanya
+    terdefinisi, tetapi juga sama dengan~$N$. Maka, berdasarkan
+    \olref{defn:aconvone4}, kita mempunyai
+    $\lambd[y][\Subst{N}{y}{x}] \aconvone
+    \lambd[x][\Subst{\Subst{N}{y}{x}}{x}{y}] = \lambd[x][N]$.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[lam][syn][alp]{lem:inv}.
+\end{prob}
+
+\begin{thm}
+  Konversi-$\alpha$ merupakan relasi ekuivalensi pada suku-suku; yakni, relasi
+  itu refleksif, simetris, dan transitif.
+\end{thm}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Untuk setiap suku $M$, $M$ dapat diubah menjadi $M$ dengan
+    \emph{nol} kali pengubahan variabel terikat.
+  \item Jika $P$ dapat dikonversi-$\alpha$ menjadi $Q$ melalui serangkaian
+    pengubahan variabel terikat, maka dari $Q$ kita cukup membalik pengubahan
+    tersebut (berdasarkan \olref{lem:inv}) dalam urutan terbalik untuk
+    memperoleh~$P$.
+  \item Jika $P$ dapat dikonversi-$\alpha$ menjadi $Q$ melalui serangkaian
+    pengubahan variabel terikat, dan $Q$ menjadi $R$ melalui rangkaian lain,
+    maka kita dapat mengubah $P$ menjadi $R$ dengan terlebih dahulu menerapkan
+    rangkaian pertama, lalu rangkaian kedua.
+  \end{enumerate}
+\end{proof}
+
+Mulai sekarang, kita mengatakan bahwa $M$ dan $N$ \emph{$\alpha$-ekuivalen},
+$M \aeq N$, jika dan hanya jika $M$ dapat dikonversi-$\alpha$ menjadi $N$
+(yang, sebagaimana baru saja kita tunjukkan, berlaku jika dan hanya jika $N$
+dapat dikonversi-$\alpha$ menjadi~$M$).
+
+\begin{thm}\ollabel{thm:fv}
+  Jika $M \aeq N$, maka $\FV{M} = \FV{N}$.
+\end{thm}
+
+\begin{proof}
+  Langsung dari \olref{lem:fv-one}.
+\end{proof}
+
+\begin{lem}\ollabel{lem:sub:R}
+  Jika $R \aeq R'$ dan $\Subst{M}{R}{y}$ terdefinisi, maka
+  $\Subst{M}{R'}{y}$ terdefinisi dan $\alpha$-ekuivalen dengan
+  $\Subst{M}{R}{y}$.
+\end{lem}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[lam][syn][alp]{lem:sub:R}.
+\end{prob}
+
+Ingat bahwa dalam \olref[sub]{sec}, substitusi tidak terdefinisi dalam
+beberapa kasus. Namun, dengan menggunakan konversi-$\alpha$ pada suku-suku,
+kita dapat membuat substitusi selalu terdefinisi dengan mengganti nama
+variabel terikat. Hasilnya mempertahankan ekuivalensi-$\alpha$, sebagaimana
+ditunjukkan dalam teorema berikut:
+
+\begin{thm}\ollabel{thm:sub}
+  Untuk sebarang $M$, $R$, dan~$y$, terdapat $M'$ sedemikian sehingga
+  $M \aeq M'$ dan $\Subst{M'}{R}{y}$ terdefinisi. Lebih lanjut, jika terdapat
+  pasangan lain $M'' \aeq M$ dan $R''$ dengan $\Subst{M''}{R''}{y}$
+  terdefinisi dan $R'' \aeq R$, maka
+  $\Subst{M'}{R}{y} \aeq \Subst{M''}{R''}{y}$.
+\end{thm}
+
+\begin{proof}
+  Dengan induksi pada pembentukan $M$:
+  \begin{enumerate}
+  \item $M$ adalah variabel~$z$: latihan.
+  \item Andaikan $M$ berbentuk $\lambd[x][N]$. Pilih suatu variabel $z$ yang
+    berbeda dari $x$ dan $y$, serta sedemikian sehingga $z \notin \FV{N}$
+    dan $z \notin \FV{R}$. Berdasarkan hipotesis induksi, terdapat $N'$
+    sedemikian sehingga $N' \aeq N$ dan $\Subst{N'}{z}{x}$ terdefinisi. Maka
+    $\lambd[x][N] \aeq \lambd[x][N']$ juga, berdasarkan
+    \olref{defn:aconvone}\olref{defn:aconvone1}. Sekarang
+    $\lambd[x][N'] \aeq \lambd[z][\Subst{N'}{z}{x}]$ berdasarkan
+    \olref{defn:aconvone}\olref{defn:aconvone4}. Kita dapat melakukan hal ini
+    karena $z \ne x$, $z \notin \FV{N'}$, dan $\Subst{N'}{z}{x}$
+    terdefinisi. Terakhir,
+    $\Subst{\lambd[z][\Subst{N'}{z}{x}]}{R}{y}$ terdefinisi, karena
+    $z \neq y$ dan $z \notin \FV{R}$.
+
+    Lebih lanjut, jika terdapat $N''$ dan $R''$ lain yang memenuhi
+    syarat-syarat yang sama,
+    \begin{multline*}
+      \Subst{(\lambd[z][\Subst{N''}{z}{x}])}{R''}{y} \\
+    \begin{aligned}
+      &= \lambd[z][\Subst{\Subst{N''}{z}{x}}{R''}{y}] \\
+      &\aeq \lambd[z][\Subst{\Subst{N''}{z}{x}}{R}{y}] && \text{menurut
+        \olref{lem:sub:R}}\\
+      &\aeq \lambd[z][\Subst{\Subst{N'}{z}{x}}{R}{y}]
+      && \text{menurut hipotesis induksi}\\
+      &=\Subst{(\lambd[z][\Subst{N'}{z}{x}])}{R}{y}
+    \end{aligned}
+    \end{multline*}
+    \item $M$ berbentuk $(PQ)$: latihan.
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[lam][syn][alp]{thm:sub}.
+\end{prob}
+
+\begin{cor}\ollabel{cor:sub}
+  Untuk sebarang $M$, $R$, dan~$y$, terdapat pasangan $M'$ dan $R'$
+  sedemikian sehingga $M' \aeq M$, $R \aeq R'$, dan $\Subst{M'}{R'}{y}$
+  terdefinisi. Lebih lanjut, jika terdapat pasangan lain $M'' \aeq M$ dan
+  $R'' \aeq R$ dengan $\Subst{M''}{R''}{y}$ terdefinisi, maka
+  $\Subst{M'}{R'}{y} \aeq \Subst{M''}{R''}{y}$.
+\end{cor}
+
+\begin{proof}
+  Langsung dari \olref{thm:sub}.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,45 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{spine}{zf}
+\olsection{$\Z$ dan $\ZF$: Sebuah Tonggak Penting}
+
+Dengan Fondasi, kita mencapai satu lagi tonggak penting. Kita telah
+mempertimbangkan teori $\Zminus$ dan $\ZFminus$, yang kita katakan merupakan
+teori tertentu yang ``dikurangi'' sesuatu. Sesuatu itu ialah Fondasi. Jadi:
+
+\begin{defn}
+Teori $\Z$ menambahkan Fondasi kepada $\Zminus$. Jadi, aksioma-aksiomanya
+ialah Ekstensionalitas, Gabungan, Pasangan, Himpunan Kuasa, Ketakhinggaan,
+Fondasi, dan semua instans skema Pemisahan.
+
+Teori $\ZF$ menambahkan Fondasi kepada $\ZFminus$. Dengan kata lain, $\ZF$
+menambahkan semua instans Penggantian kepada~$\Z$.
+\end{defn}
+
+Namun, mungkin satu pertanyaan telah terlintas dalam pikiran Anda. Jika
+Regularitas ekuivalen dengan Fondasi di atas $\ZFminus$, dan pembenaran
+Regularitas sudah jelas, mengapa kita harus mengambil jalan memutar dan
+menjadikan Fondasi, bukan Regularitas, sebagai aksioma dasar kita?
+
+Dengan mengesampingkan alasan historis (mengenai siapa yang merumuskan apa
+dan kapan), alasan dasarnya adalah bahwa Fondasi dapat disajikan tanpa
+menggunakan definisi $V_\alpha$. Definisi itu bergantung pada seluruh
+pekerjaan dalam \olref[recursion]{sec}: kita perlu membuktikan Rekursi
+Transfinit untuk menunjukkan bahwa definisi tersebut dapat dibenarkan.
+Namun, bukti Rekursi Transfinit kita menggunakan \emph{Penggantian}. Jadi,
+meskipun Fondasi dan Regularitas ekuivalen modulo $\ZFminus$, keduanya tidak
+ekuivalen modulo $\Zminus$.
+
+Sesungguhnya, persoalannya lebih drastis daripada yang disiratkan oleh
+pengamatan sederhana ini. Walaupun hal itu jauh melampaui cakupan buku ini,
+ternyata baik $\Zminus$ maupun $\Z$ terlalu lemah untuk mendefinisikan
+$V_\alpha$. Jadi, jika Anda hanya bekerja dalam $\Z$, Regularitas (sebagaimana
+kita merumuskannya) bahkan tidak \emph{bermakna}. Inilah sebabnya aksioma
+resmi kita ialah Fondasi, bukan Regularitas.
+
+Mulai sekarang, kita akan bekerja dalam $\ZF$ (kecuali dinyatakan lain),
+tanpa komentar lebih lanjut.
+
+\end{document}

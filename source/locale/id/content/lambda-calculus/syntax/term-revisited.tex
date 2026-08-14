@@ -1,0 +1,95 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: term-revisited
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{syn}{tr}
+\olsection{Suku sebagai Kelas Ekuivalensi-$\alpha$}
+
+Mulai sekarang, kita akan memandang suku hingga ekuivalensi-$\alpha$. Artinya,
+ketika kita menulis suatu suku, yang kita maksud adalah kelas
+ekuivalensi-$\alpha$ tempat suku itu berada. Sebagai contoh, kita menulis
+$\lambd[a][\lambd[b][a c]]$ untuk himpunan semua suku yang $\alpha$-ekuivalen
+dengannya, seperti $\lambd[a][\lambd[b][a c]]$,
+$\lambd[b][\lambd[a][b c]]$, dan seterusnya.
+
+Selain itu, sementara pada bagian-bagian sebelumnya huruf seperti $N, Q$
+digunakan untuk menyatakan suatu suku, mulai sekarang kita menggunakannya
+untuk menyatakan suatu kelas, dan kelas-kelas inilah, alih-alih suku, yang
+menjadi objek kajian kita selanjutnya. Huruf seperti $x, y$ tetap menyatakan
+variabel.
+
+Kita juga menggunakan notasi $\rep{M}$ untuk menyatakan sebarang
+!!{element} dari kelas~$M$, serta $\rep{M}[0], \rep{M}[1]$, dan seterusnya,
+jika kita memerlukan lebih dari satu.
+
+Kita menggunakan kembali notasi suku untuk menyederhanakan perumusan. Kita
+mempunyai definisi berikut pada kelas-kelas:
+\begin{defn}
+  \begin{enumerate}
+  \item $\lambd[x][N]$ didefinisikan sebagai kelas yang memuat
+    $\lambd[x][\rep{N}]$.
+  \item $PQ$ didefinisikan sebagai kelas yang memuat $\rep{P}\rep{Q}$.
+  \end{enumerate}
+\end{defn}
+
+Tidak sulit untuk melihat bahwa keduanya terdefinisi dengan baik, karena
+konversi-$\alpha$ kompatibel.
+
+\begin{defn} \ollabel{def:fv}
+  \emph{Variabel bebas} dari suatu kelas ekuivalensi-$\alpha$~$M$, atau
+  $\FV{M}$, didefinisikan sebagai $\FV{\rep{M}}$.
+\end{defn}
+
+Definisi ini terdefinisi dengan baik karena $\FV{\rep{M}[0]} =
+\FV{\rep{M}[1]}$, sebagaimana ditunjukkan dalam \olref[alp]{thm:fv}.
+
+Kita juga menggunakan kembali notasi substitusi pada kelas-kelas:
+\begin{defn} \ollabel{def:sub}
+  \emph{Substitusi} $R$ bagi $y$ dalam $M$, atau $\Subst{M}{R}{y}$,
+  didefinisikan sebagai $\Subst{\rep{M}}{\rep{R}}{y}$, untuk sebarang
+  $\rep{M}$ dan $\rep{R}$ yang membuat substitusi tersebut terdefinisi.
+\end{defn}
+
+Definisi ini juga terdefinisi dengan baik, sebagaimana ditunjukkan dalam
+\olref[alp]{cor:sub}.
+
+Perhatikan bagaimana definisi ini sangat menyederhanakan penalaran kita.
+Sebagai contoh:
+\begin{align}
+  \Subst{\lambd[x][x]}{y}{x} & \ollabel{eq:1}\\
+  &= \Subst{\lambd[z][z]}{y}{x} \ollabel{eq:2}\\
+  &= \lambd[z][\Subst{z}{y}{x}] \\
+  &= \lambd[z][z]
+\end{align}
+
+\olref{eq:1} tidak terdefinisi jika kita masih memandangnya sebagai
+substitusi pada suku. Akan tetapi, sebagaimana disebutkan sebelumnya, sekarang
+kita memandangnya sebagai substitusi pada kelas; itulah sebabnya
+\olref{eq:2} dapat dilakukan: kita dapat mengganti $\lambd[x][x]$ dengan
+$\lambd[z][z]$ karena keduanya termasuk dalam kelas yang sama.
+
+Atas alasan yang sama, mulai sekarang kita akan mengandaikan bahwa wakil yang
+kita pilih selalu memenuhi syarat yang diperlukan bagi substitusi. Sebagai
+contoh, ketika melihat $\Subst{\lambd[x][N]}{R}{y}$, kita akan mengandaikan
+bahwa wakil $\lambd[x][N]$ dipilih sedemikian sehingga $x \neq y$ dan
+$x \notin \FV{R}$.
+
+Karena agak janggal menyebut $\lambd[x][x]$ sebuah ``kelas'', mulai sekarang
+mari kita menyebut objek-objek tersebut suku-$\Lambda$ (atau cukup ``suku''
+dalam bagian selanjutnya), untuk membedakannya dari suku-$\lambda$ yang telah
+kita kenal.
+
+\begin{editorial}
+  Kita belum dapat meninggalkan suku: seluruh definisi suku-$\Lambda$
+  didasarkan pada suku-$\lambda$, dan kita belum menyediakan metode untuk
+  mendefinisikan fungsi pada suku-$\Lambda$. Artinya, semua fungsi semacam itu
+  harus terlebih dahulu didefinisikan pada suku-$\lambda$, lalu
+  ``diproyeksikan'' ke suku-$\Lambda$, sebagaimana kita lakukan untuk
+  substitusi. Namun, kita mengandaikan pembaca dapat memahami secara intuitif
+  bagaimana fungsi pada suku-$\Lambda$ dapat didefinisikan.
+\end{editorial}
+\end{document}

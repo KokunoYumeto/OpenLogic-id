@@ -1,0 +1,91 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: entailment
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{syn}{ent}
+
+\olsection{Perikutan}
+
+\begin{explain}
+  Dengan definisi kebenaran pada suatu dunia, kita dapat mendefinisikan relasi
+  perikutan di antara !!{formula}s. !!^a{formula}~$!B$ mengakibatkan~$!A$
+  jika dan hanya jika, setiap kali $!B$ bernilai benar, $!A$ juga bernilai
+  benar. Di sini, ``setiap kali'' berarti baik ``model mana pun yang kita
+  tinjau'' maupun ``dunia mana pun dalam model itu yang kita tinjau.''
+\end{explain}
+
+\begin{defn}
+  Jika $\Gamma$ merupakan himpunan !!{formula}s dan $!A$ merupakan
+  !!a{formula}, maka
+  $\Gamma$ \emph{mengakibatkan}~$!A$, dalam simbol:
+  $\Gamma \Entails !A$, jika dan hanya jika untuk setiap model
+  $\mModel{M} = \tuple{W, R, V}$ dan dunia $w \in W$, jika
+  $\mSat{M}{!B}[w]$ untuk setiap $!B \in \Gamma$, maka
+  $\mSat{M}{!A}[w]$. Jika $\Gamma$ hanya memuat satu !!{formula}~$!B$,
+  kita menulis $!B \Entails !A$.
+\end{defn}
+
+\begin{ex}
+  Untuk menunjukkan bahwa !!a{formula} mengakibatkan formula lain, kita harus
+  bernalar tentang semua model dengan menggunakan definisi
+  $\mSat{M}{}[w]$. Sebagai contoh, untuk menunjukkan
+  $p \lif \Diamond p \Entails \Box\lnot p \lif \lnot p$, kita dapat
+  berargumen sebagai berikut: Tinjaulah suatu model
+  $\mModel{M} = \tuple{W, R, V}$ dan $w \in W$, dan andaikan
+  $\mSat{M}{p \lif \Diamond p}[w]$. Kita harus menunjukkan bahwa
+  $\mSat{M}{\Box\lnot p \lif \lnot p}[w]$. Andaikan tidak. Maka
+  $\mSat{M}{\Box\lnot p}[w]$ dan $\mSat/{M}{\lnot p}[w]$. Karena
+  $\mSat/{M}{\lnot p}[w]$, $\mSat{M}{p}[w]$. Berdasarkan asumsi,
+  $\mSat{M}{p \lif \Diamond p}[w]$, sehingga
+  $\mSat{M}{\Diamond p}[w]$. Menurut definisi
+  $\mSat{M}{\Diamond p}[w]$, terdapat suatu $w'$ dengan $Rww'$ sedemikian
+  sehingga $\mSat{M}{p}[w']$. Karena $\mSat{M}{\Box \lnot p}[w]$ juga,
+  $\mSat{M}{\lnot p}[w']$, suatu kontradiksi.
+
+  Untuk menunjukkan bahwa !!a{formula}~$!B$ tidak mengakibatkan formula
+  lain~$!A$, kita harus memberikan contoh tandingan, yakni suatu model
+  $\mModel{M} = \tuple{W, R, V}$ yang di dalamnya kita menunjukkan bahwa pada
+  suatu dunia~$w \in W$, $\mSat{M}{!B}[w]$ tetapi
+  $\mSat/{M}{!A}[w]$. Mari kita tunjukkan bahwa
+  $p \lif \Diamond p \Entails/ \Box p \lif p$. Tinjaulah model dalam
+  \olref{fig:counterex}. Kita memiliki $\mSat{M}{\Diamond p}[w_1]$ sehingga
+  $\mSat{M}{p \lif \Diamond p}[w_1]$. Namun, karena
+  $\mSat{M}{\Box p}[w_1]$ tetapi $\mSat/{M}{p}[w_1]$, kita memperoleh
+  $\mSat/{M}{\Box p \lif p}[w_1]$.
+  \begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label=right:\mFalse{p}]{$w_1$}; 
+      \node[world] (w2) [label=right:\mTrue{p}, above left=of w1]{$w_2$}; 
+      \node[world] (w3) [label=right:\mTrue{p}, above right=of w1] {$w_3$};
+      \draw[->] (w1) to (w2);
+      \draw[->] (w1) to (w3);
+    \end{tikzpicture}
+  \end{center}
+  \caption{Contoh tandingan bagi $p \lif \Diamond p
+  \Entails \Box p \lif p$.}
+  \ollabel{fig:counterex}
+  \end{figure}
+  
+  Sering kali contoh tandingan yang sangat sederhana sudah cukup. Model
+  $\mModel{M'} = \{W', R', V'\}$ dengan $W' = \{w\}$,
+  $R' = \emptyset$, dan $V'(p) = \emptyset$ juga merupakan contoh tandingan:
+  Karena $\mSat/{M'}{p}[w]$, $\mSat{M'}{p \lif \Diamond p}[w]$. Karena tidak
+  ada dunia yang dapat diakses dari~$w$, kita memiliki
+  $\mSat{M'}{\Box p}[w]$, sehingga $\mSat/{M'}{\Box p \lif p}[w]$.
+\end{ex}
+
+\begin{prob}
+  Tunjukkan bahwa $\Box (!A \land !B) \Entails \Box !A$.
+\end{prob}
+
+\begin{prob}
+  Tunjukkan bahwa $\Box (p \lif q) \Entails/ p \lif \Box q$ dan
+  $p \lif \Box q \Entails/\Box (p \lif q)$.
+\end{prob}
+
+\end{document}

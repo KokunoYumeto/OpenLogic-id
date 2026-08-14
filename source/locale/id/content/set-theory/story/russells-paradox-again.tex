@@ -1,0 +1,72 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{story}{rus}
+\olsection{Paradoks Russell (Lagi)}
+
+Dalam \olref[sfr][][]{part}, kita bekerja dengan teori himpunan naif. Namun,
+menurut suatu konsepsi yang \emph{sangat} naif, himpunan hanyalah ekstensi
+predikat. Gagasan naif ini mengharuskan prinsip berikut:
+
+\begin{defish}
+  \emph{Komprehensi Naif.} $\Setabs{x}{\phi(x)}$ ada untuk setiap formula $\phi$.
+\end{defish}
+
+Walaupun menggoda, prinsip ini dapat dibuktikan tidak konsisten. Kita telah
+melihatnya dalam \olref[sfr][set][rus]{sec}, tetapi hasil ini begitu penting
+dan begitu langsung sehingga layak diulangi. Apa adanya.
+
+\begin{thm}[Paradoks Russell]
+Tidak ada himpunan $R = \Setabs{x}{x \notin x}$
+\end{thm}
+
+\begin{proof}
+Jika $R = \Setabs{x}{x \notin x}$ ada, maka
+$R \in R$ jika dan hanya jika $R \notin R$, yang merupakan kontradiksi.
+\end{proof}
+
+Russell menemukan hasil ini pada Juni 1901. (Namun, ia tidak menyajikan
+paradoks itu tepat dalam bentuk yang baru saja kita gunakan, sebab ia sedang
+mempertimbangkan teori himpunan Frege sebagaimana diuraikan dalam
+\emph{Grundgesetze}. Kita akan kembali ke hal ini dalam \olref[blv]{sec}.)
+Russell menulis surat kepada Frege pada 16 Juni 1902 untuk menjelaskan
+ketidakkonsistenan dalam sistem Frege. Untuk korespondensi tersebut dan
+sedikit latar belakang, lihat \citet[pp.~124--8]{Heijenoort1967}.
+
+Perlu ditekankan bahwa bukti dua baris ini merupakan hasil \emph{logika
+murni}. Memang, dalam notasi $\Setabs{x}{x \notin x}$ kita secara tersirat
+menggunakan sebuah aksioma (nonlogis?), yaitu Ekstensionalitas; sebab
+$\Setabs{x}{\phi(x)}$ dimaksudkan sebagai \emph{satu-satunya} himpunan
+(berdasarkan Ekstensionalitas) dari objek-objek yang memenuhi $\phi$, jika
+himpunan seperti itu ada. Namun, bahkan kesan penggunaan Ekstensionalitas
+dapat kita hindari dengan menyatakan hasilnya sebagai berikut:
+\emph{tidak ada himpunan yang anggotanya tepat semua himpunan yang bukan
+anggota dirinya sendiri}. Dan hal ini tidak banyak berkaitan dengan himpunan.
+Sebagaimana diamati Russell sendiri, penalaran yang persis serupa akan
+membawa Anda pada kesimpulan: \emph{tidak ada pria yang mencukur tepat semua
+pria yang tidak mencukur dirinya sendiri}. Atau: \emph{tidak ada anjing pug
+yang mengendus tepat semua anjing pug yang tidak mengendus dirinya sendiri}.
+Dan seterusnya. Secara skematis, bentuk hasilnya hanyalah:
+\[
+\lnot \exists x \forall z(Rzx \liff \lnot R zz).
+\]
+Dan itu hanyalah sebuah (skema) teorema logika orde pertama. Akibatnya, kita
+tidak dapat menghindari Paradoks Russell hanya dengan mengutak-atik teori
+himpunan kita; paradoks itu muncul bahkan sebelum kita \emph{sampai} pada
+teori himpunan. Jika kita hendak menggunakan logika orde pertama (klasik),
+kita harus \emph{menerima} bahwa tidak ada himpunan
+$R = \Setabs{x}{x\notin x}$.
+
+Kesimpulannya ialah sebagai berikut. Jika Anda ingin menerima Komprehensi
+Naif sembari \emph{menghindari} ketidakkonsistenan, Anda tidak dapat sekadar
+mengutak-atik \emph{teori himpunannya}. Sebaliknya, Anda harus merombak
+\emph{logikanya}.
+
+Tentu saja, teori-teori himpunan dengan logika nonklasik pernah diajukan.
+Namun, teori-teori itu---paling tidak---tidak standar. Pendekatan standar
+terhadap Paradoks Russell ialah memperlakukannya sebagai bukti langsung atas
+ketiadaan, lalu mencoba mempelajari cara hidup dengannya. Itulah pendekatan
+yang akan kita ikuti.
+
+\end{document}

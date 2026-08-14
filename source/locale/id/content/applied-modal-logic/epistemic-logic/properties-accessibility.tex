@@ -1,0 +1,80 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: properties-accessibility
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{aml}{el}{acc}
+
+\olsection{Relasi Aksesibilitas dan Prinsip Epistemik}
+
+Berdasarkan apa yang telah kita ketahui tentang korespondensi kerangka dalam
+logika modal normal, kita mungkin ingin melihat bentuk !!{formula}s penciri
+ketika diberi penafsiran epistemik. Kita telah mengatakan bahwa logika
+epistemik biasanya ditafsirkan dalam S5. Jadi, mari kita lihat bagaimana
+berbagai prinsip epistemik direpresentasikan dan bagaimana prinsip-prinsip
+itu berkorespondensi dengan berbagai syarat kerangka.
+
+Ingat dari logika modal normal bahwa !!{formula}s modal yang berbeda mencirikan
+sifat relasi aksesibilitas yang berbeda. Tabel berikut memilih beberapa di
+antaranya yang berkorespondensi dengan prinsip epistemik tertentu.
+
+\begin{table}[t]
+    \begin{tabular}{| p{.48\textwidth} || p{.48\textwidth} |}
+      \hline
+      {\emph{Jika $R$ bersifat \dots}} & {\emph{maka \dots benar
+      dalam~$\mModel{M}$:}} \\
+      \hline \hline
+
+      & $\Knows (p \lif q) \lif (\Knows p \lif \Knows q)$
+      \hfill \newline{(Ketertutupan)} \\
+      \hline
+      \emph{refleksif}: $\forall w Rww$
+      & $\Knows p \lif p$ \hfill \newline{(Veridikalitas)} \\
+      \hline
+      \emph{transitif}: \newline
+      $\forall u \forall v \forall w ((Ruv \land Rvw) \lif Ruw)$ &
+      $\Knows p \lif \Knows \Knows p$ \hfill
+           \newline{(Introspeksi Positif)} \\
+      \hline
+      \emph{Euklidean}: \newline
+      $\forall w \forall u \forall v ((Rwu \land Rwv) \lif Ruv)$ &
+      $\lnot \Knows p \lif \Knows \lnot \Knows p$ \hfill
+        \newline{(Introspeksi Negatif)} \\
+      \hline
+    \end{tabular}
+    \caption{Empat prinsip epistemik.}
+    \ollabel{tab:four}
+  \end{table}
+
+Veridikalitas, yang berkorespondensi dengan aksioma~$T$, sering dianggap
+sebagai prinsip yang paling tidak kontroversial karena merepresentasikan
+pernyataan bahwa jika !!a{formula} diketahui, formula itu harus benar.
+Ketertutupan, serta Introspeksi Positif dan Negatif, jauh lebih
+diperdebatkan.
+
+Ketertutupan, yang berkorespondensi dengan aksioma~$K$, merepresentasikan
+gagasan bahwa pengetahuan seorang agen tertutup terhadap implikasi. Dalam
+beberapa kasus, hal ini mungkin tampak masuk akal. Sebagai contoh, saya
+mungkin tahu bahwa jika saya berada di Victoria, saya berada di Pulau
+Vancouver. Dengan mengesampingkan skenario skeptis yang ganjil, saya memang
+tahu bahwa saya berada di Victoria, dan ini semestinya juga menunjukkan
+bahwa saya tahu bahwa saya berada di Pulau Vancouver. Jadi, dalam kasus ini,
+ketertutupan logis pengetahuan saya mungkin terasa relatif intuitif. Di sisi
+lain, kita tidak selalu memikirkan semua konsekuensi pengetahuan kita,
+sehingga hal ini dapat menghasilkan akibat yang kurang intuitif dalam kasus
+lain.
+
+Introspeksi Positif, yang terkadang dikenal sebagai prinsip KK, kadang
+dirumuskan sebagai pernyataan bahwa jika saya mengetahui sesuatu, saya tahu
+bahwa saya mengetahuinya. Prinsip ini merupakan padanan epistemik aksioma~4.
+Sejalan dengan itu, introspeksi negatif dirumuskan sebagai pernyataan bahwa
+jika saya \emph{tidak} mengetahui sesuatu, saya tahu bahwa saya tidak
+mengetahuinya; prinsip ini merupakan padanan aksioma~5. Keduanya tampaknya
+memiliki contoh penyangkal yang cukup lazim, tempat saya tidak yakin apakah
+saya mengetahui sesuatu yang sebenarnya memang saya ketahui.
+
+
+\end{document}

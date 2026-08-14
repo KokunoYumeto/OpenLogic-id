@@ -1,0 +1,60 @@
+% Part: normal-modal-logic
+% Chapter: frame-correspondence
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{frd}{int}
+
+\olsection{Pengantar}
+
+Salah satu pertanyaan yang menarik bagi ahli logika modal ialah hubungan antara
+relasi aksesibilitas dan kebenaran !!{formula}s tertentu dalam model yang
+mempunyai relasi aksesibilitas tersebut. Sebagai contoh, andaikan relasi
+aksesibilitas bersifat refleksif, yakni bagi setiap $w\in W$ berlaku~$Rww$.
+Dengan kata lain, setiap dunia dapat diakses dari dirinya sendiri. Ini berarti
+bahwa ketika $\Box !A$ benar pada suatu dunia~$w$, dunia~$w$ sendiri termasuk
+di antara dunia-dunia terakses tempat~$!A$ harus benar. Jadi, jika relasi
+aksesibilitas~$R$ dari~$\mModel{M}$ bersifat refleksif, maka apa pun dunia~$w$
+dan formula~$!A$ yang dipilih, $\Box !A\lif !A$ benar di sana (dengan kata
+lain, skema $\Box p\lif p$ beserta semua instansiasi substitusinya benar
+dalam~$\mModel{M}$).
+
+Akan tetapi, konversnya salah. Sebagai contoh, tidak benar bahwa jika
+$\Box p\lif p$ benar dalam~$\mModel{M}$, maka $R$ refleksif. Kita dapat
+dengan mudah menemukan model tak refleksif~$\mModel{M}$ dengan
+$\Box p\lif p$ benar pada semua dunia: ambil model dengan satu dunia~$w$ yang
+tidak dapat diakses dari dirinya sendiri, tetapi dengan $w\in V(p)$. Dengan
+memilih nilai kebenaran~$p$ secara sesuai, kita dapat membuat instansiasi
+$\Box p\lif p$ benar dalam suatu model yang tidak refleksif.
+
+Solusinya ialah menghilangkan penetapan variabel~$V$ dari persoalan tersebut.
+Jika kita mensyaratkan agar $\Box p\lif p$ benar pada semua dunia
+dalam~$\mModel{M}$ tanpa memandang dunia mana yang berada dalam~$V(p)$, maka
+$R$ harus refleksif. Sebab, dalam setiap model tak refleksif, terdapat
+setidaknya satu dunia~$w$ sedemikian sehingga $Rww$ tidak berlaku. Jika kita
+menetapkan $V(p)=W\setminus\{w\}$, maka $p$ benar pada setiap dunia selain~$w$,
+dan dengan demikian benar pada setiap dunia yang dapat diakses dari~$w$
+(sebab $w$ dijamin tidak dapat diakses dari~$w$, dan $w$ merupakan satu-satunya
+dunia tempat~$p$ salah). Di pihak lain, $p$ salah pada~$w$, sehingga
+$\Box p\lif p$ salah pada~$w$.
+
+Hal ini menyarankan agar kita memperkenalkan notasi bagi struktur model tanpa
+valuasi: struktur ini kita sebut \emph{kerangka}. Suatu kerangka
+$\mModel{F}$ hanyalah pasangan~$\tuple{W,R}$ yang terdiri atas suatu himpunan
+dunia beserta relasi aksesibilitas. Setiap model~$\tuple{W,R,V}$ kemudian,
+sebagaimana kita katakan, \emph{berbasis pada} kerangka~$\tuple{W,R}$.
+Sebaliknya, suatu kerangka menentukan kelas model yang berbasis padanya; dan
+suatu kelas kerangka menentukan kelas model yang berbasis pada salah satu
+kerangka dalam kelas tersebut. Kita dapat mendefinisikan
+$\mModel{F}\Entails !A$, yakni pengertian bahwa !!a{formula} \emph{valid}
+pada suatu kerangka, dengan: $\mSat{M}{!A}$ bagi semua~$\mModel{M}$ yang
+berbasis pada~$\mModel{F}$.
+
+Dengan notasi ini, kita dapat menetapkan hubungan korespondensi antara
+!!{formula}s dan kelas kerangka: sebagai contoh,
+$\mModel{F}\Entails\Box p\lif p$ jika dan hanya jika $\mModel{F}$ refleksif.
+
+\end{document}

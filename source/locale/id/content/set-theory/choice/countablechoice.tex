@@ -1,0 +1,171 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{choice}{countablechoice}
+\olsection{Pilihan Terhitung}
+
+Mudah dibuktikan, tanpa menggunakan Pilihan/Pengurutan Baik sama sekali,
+bahwa:
+
+\begin{lem}[dalam $\Zminus$]
+Setiap himpunan hingga mempunyai suatu fungsi pilihan.
+\end{lem}
+
+\begin{proof}
+Misalkan $a = \{b_1, \ldots, b_n\}$. Demi kesederhanaan, andaikan setiap
+$b_i\neq\emptyset$. Jadi, terdapat objek-objek $c_1,\ldots,c_n$ sedemikian
+sehingga $c_1\in b_1,\ldots,c_n\in b_n$. Berdasarkan
+\olref[z][pairs]{prop:pairsconsequences}, himpunan
+$\{\langle b_1,c_1\rangle,\ldots,\langle b_n,c_n\rangle\}$ ada; himpunan
+ini merupakan suatu fungsi pilihan bagi~$a$.
+\end{proof}
+
+Namun, keadaan menjadi lebih keruh begitu kita mempertimbangkan
+himpunan-himpunan tak hingga. Sebagai contoh, pertimbangkan perluasan
+``minimal'' berikut dari hasil di atas:
+
+\begin{defish}
+\emph{Pilihan Terhitung.} Setiap himpunan \emph{terhitung} mempunyai suatu
+fungsi pilihan.
+\end{defish}
+
+Ini merupakan suatu kasus khusus Pilihan. Ternyata prinsip ini cukup sering
+digunakan tanpa kesadaran yang jelas akan penggunaannya. Berikut dua contoh
+yang bagus.\footnote{Berasal dari \citet[\S9.4]{Potter2004} dan Luca
+Incurvati.}
+
+\begin{ex}
+Berikut suatu gagasan alami: bagi sebarang himpunan $A$, berlaku
+$\cardle{\omega}{A}$ atau $\cardeq{A}{n}$ bagi suatu $n\in\omega$. Ini
+merupakan salah satu cara untuk menyatakan gagasan intuitif bahwa setiap
+himpunan bersifat hingga atau tak hingga. Cantor dan banyak matematikawan
+lain mengemukakan klaim ini tanpa membuktikannya. Dengan kehati-hatian kita,
+kita telah membuktikannya dalam
+\olref[cardinals][classing]{generalinfinitycharacter}. Namun, dalam bukti itu
+kita bekerja dalam $\ZFC$ karena mengandaikan bahwa setiap himpunan $A$
+dapat diurutkan baik, sehingga keberadaan $\card{A}$ terjamin. Artinya, kita
+secara eksplisit mengandaikan Pilihan.
+
+Sesungguhnya, \citet{Dedekind1888} memberikan buktinya sendiri bagi klaim
+ini sebagai berikut:
+
+\begin{thm}[dalam $\Zminus + \text{Pilihan Terhitung}$]
+Untuk sebarang $A$, berlaku $\cardle{\omega}{A}$ atau $\cardeq{A}{n}$ bagi
+suatu $n \in \omega$.
+\end{thm}
+
+\begin{proof}
+Andaikan $\cardneq{A}{n}$ bagi semua $n\in\omega$. Maka, khususnya, bagi
+setiap $n<\omega$ terdapat himpunan bagian $A_n\subseteq A$ dengan tepat
+$\cardexpo{2}{n}$ anggota. Dengan menggunakan barisan
+$A_0,A_1,A_2,\ldots$, bagi setiap $n$ kita definisikan:
+\[
+	B_n = A_n \setminus \bigcup_{i < n} A_i.
+\]
+Sekarang perhatikan:
+\begin{align*}
+	\card{\bigcup_{i < n}A_i}
+	&\leq \card{A_0} + \card{A_1} + \ldots + \card{A_{n-1}}\\
+	&=1 + 2 + \ldots + 2^{n-1}\\
+	& = 2^n - 1\\
+	& < 2^n = \card{A_n}
+\end{align*}
+Karena itu, setiap $B_n$ mempunyai sekurang-kurangnya satu anggota,
+$c_n$. Selain itu, himpunan-himpunan $B_n$ saling lepas; jadi, jika
+$c_n=c_m$, maka $n=m$. Namun, setiap $c_n\in A$. Dengan demikian, fungsi
+$f(n)=c_n$ merupakan suatu injeksi $\omega\to A$.
+\end{proof}
+\noindent
+Dedekind tidak menandai bahwa ia telah menggunakan Pilihan Terhitung. Namun,
+\emph{apakah Anda} melihat penggunaannya? Perhatikan kembali.
+(Sungguh: \emph{perhatikan kembali}.)
+
+Bukti tersebut menggunakan Pilihan Terhitung dua kali. Kita menggunakannya
+sekali untuk memperoleh barisan himpunan $A_0,A_1,A_2$, \dots\@ lalu sekali
+lagi untuk memilih anggota $c_n$ dari setiap~$B_n$. Selain itu, penggunaan
+Pilihan ini tidak dapat dihilangkan. \citet[hlm.~138]{Cohen1966}
+membuktikan bahwa hasil tersebut gagal jika kita sama sekali tidak mempunyai
+suatu bentuk Pilihan. Artinya, konsisten dengan $\ZF$ bahwa terdapat
+himpunan-himpunan yang \emph{tidak dapat dibandingkan} dengan~$\omega$.
+\end{ex}
+
+\begin{ex}
+Pada \citeyear{Cantor1878}, Cantor menyatakan bahwa suatu gabungan terhitung
+dari himpunan-himpunan terhitung bersifat terhitung. Ia tidak menyajikan
+bukti, barangkali karena menganggap bukti tersebut jelas. Dengan
+kehati-hatian kita, kita telah membuktikan versi yang lebih umum dari hasil
+ini dalam \olref[card-arithmetic][simp]{kappaunionkappasize}. Namun, bukti
+kita secara eksplisit mengandaikan Pilihan. Bahkan bukti hasil yang kurang
+umum pun memerlukan Pilihan Terhitung.
+
+\begin{thm}[dalam $\Zminus + \text{Pilihan Terhitung}$]
+Jika $A_n$ terhitung bagi setiap $n\in\omega$, maka
+$\bigcup_{n<\omega}A_n$ terhitung.
+\end{thm}
+
+\begin{proof}
+Tanpa mengurangi keumuman, andaikan setiap $A_n\neq\emptyset$. Jadi, bagi
+setiap $n\in\omega$, terdapat !!a{surjection}
+$f_n\colon\omega\to A_n$. Definisikan
+$f\colon\omega\times\omega\to\bigcup_{n<\omega}A_n$ dengan
+$f(m,n)=f_n(m)$. Hasilnya mengikuti karena $\omega\times\omega$ terhitung
+(\olref[sfr][siz][zigzag]{natsquaredenumerable}) dan $f$ merupakan
+!!a{surjection}.
+\end{proof}
+\noindent
+Apakah Anda melihat penggunaan Pilihan Terhitung? Prinsip itu digunakan
+untuk memilih barisan fungsi $f_0,f_1,f_2,\dots$.\footnote{Penggunaan Pilihan
+yang serupa terjadi dalam
+\olref[card-arithmetic][simp]{kappaunionkappasize}, ketika kita memberikan
+instruksi ``Untuk setiap $\beta\in\cardfont{a}$, tetapkan
+!!a{injection} $f_\beta$''.} Sekali lagi, hasil tersebut gagal jika tidak
+ada prinsip Pilihan sama sekali. Secara khusus,
+\citet{FefermanLevy1963} membuktikan bahwa konsisten dengan $\ZF$ bahwa
+suatu gabungan terhitung dari himpunan-himpunan terhitung mempunyai
+kardinalitas~$\beth_1$. Berikut pernyataan yang jauh lebih lucu mengenai
+pokok ini dari Russell:
+\begin{quote}
+  Hal ini digambarkan oleh seorang jutawan yang membeli sepasang kaus kaki
+  setiap kali ia membeli sepasang sepatu bot, dan tidak pernah pada waktu
+  lain. Kegemarannya membeli keduanya begitu besar sehingga akhirnya ia
+  mempunyai $\aleph_0$ pasang sepatu bot dan $\aleph_0$ pasang kaus
+  kaki\dots\@ Di antara sepatu bot kita dapat membedakan yang kanan dan yang
+  kiri, sehingga kita dapat memilih satu dari setiap pasang: kita dapat
+  memilih semua sepatu bot kanan atau semua sepatu bot kiri. Namun, bagi kaus
+  kaki tidak ada prinsip pemilihan seperti itu yang tersedia, dan tanpa
+  mengandaikan aksioma multiplikatif [yakni, pada hakikatnya Pilihan], kita
+  tidak dapat memastikan bahwa terdapat suatu kelas yang terdiri atas satu
+  kaus kaki dari setiap pasang.
+  \citep[hlm.~126]{Russell1919}
+\end{quote}
+Singkatnya, suatu bentuk Pilihan diperlukan untuk membuktikan hal berikut:
+Jika Anda mempunyai pasangan kaus kaki dalam jumlah terhitung, maka Anda
+mempunyai (hanya) sejumlah terhitung kaus kaki. Bahkan, tanpa Pilihan
+Terhitung (atau sesuatu yang ekuivalen), gabungan terhitung dari
+himpunan-himpunan terhitung dapat gagal bersifat terhitung.
+\end{ex}
+
+Pelajarannya ialah bahwa Pilihan Terhitung digunakan berulang kali tanpa
+banyak disadari oleh para penggunanya. Pertanyaan filosofisnya ialah:
+Bagaimana kita dapat \emph{membenarkan} Pilihan Terhitung?
+
+Suatu upaya pembenaran intuitif mungkin mengacu pada suatu supertugas.
+Andaikan kita membuat pilihan pertama dalam $\nicefrac{1}{2}$ menit,
+pilihan kedua dalam $\nicefrac{1}{4}$ menit, \dots, pilihan ke-$n$ dalam
+$\nicefrac{1}{2^n}$ menit, \dots\@ Dalam waktu $1$~menit, kita akan telah
+membuat suatu barisan pilihan sepanjang $\omega$ dan mendefinisikan suatu
+fungsi pilihan.
+
+Namun, apa yang sebenarnya dapat ditunjukkan oleh eksperimen pikiran seperti
+itu? Pertama, ia bergantung pada pemahaman yang sangat harfiah terhadap
+gagasan ``memilih''. Selain itu, ia tampak mengikat matematika pada
+kemungkinan metafisis.
+
+Yang lebih penting, hal itu tidak akan memberikan pembenaran bagi Pilihan
+\emph{secara penuh}, bukan \emph{sekadar} Pilihan Terhitung. Sebab, jika kita
+memerlukan \emph{setiap} himpunan mempunyai suatu fungsi pilihan, kita perlu
+mampu melakukan ``supertugas dengan panjang ordinal sebarang''. Terus
+terang, gagasan itu menggelikan.
+
+\end{document}

@@ -1,0 +1,72 @@
+% Bagian: intuitionistic-logic
+% Bab: introduction
+% Subbagian: axiomatic-derivations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{int}{axd}
+
+\olsection{\usetoken{P}{derivation} Aksiomatik}
+
+!!{derivation}s aksiomatik bagi logika proposisional intuisionistik merupakan
+sistem !!{derivation} yang paling sederhana secara konseptual dan yang pertama
+secara historis. Sistem ini bekerja tepat seperti dalam logika proposisional
+klasik.
+
+\begin{defn}[!!^{derivability}]
+Jika $\Gamma$ merupakan himpunan !!{formula}s dari $\Lang L$, maka suatu
+\emph{!!{derivation}} dari $\Gamma$ ialah urutan berhingga $!A_1$, \dots,
+~$!A_n$ dari !!{formula}s sedemikian sehingga, bagi setiap $i \le n$, salah
+satu dari hal berikut berlaku:
+\begin{enumerate}
+\item $!A_i \in \Gamma$; atau
+\item $!A_i$ merupakan suatu aksioma; atau
+\item $!A_i$ diperoleh dari suatu $!A_j$ dan $!A_k$, dengan $j < i$ dan $k <
+  i$, melalui modus ponens; yakni, $!A_k \ident !A_j \lif !A_i$.
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[Aksioma]
+Himpunan~$\PAx$ dari \emph{aksioma} bagi logika proposisional intuisionistik
+terdiri atas semua !!{formula}s dalam bentuk-bentuk berikut:
+\begin{align}
+  & (!A \land !B) \lif !A \ollabel{ax:land1}\\
+  & (!A \land !B) \lif !B \ollabel{ax:land2}\\
+  & !A \lif (!B \lif (!A \land !B)) \ollabel{ax:land3}\\
+  & !A \lif (!A \lor !B) \ollabel{ax:lor1}\\
+  & !A \lif (!B \lor !A) \ollabel{ax:lor2}\\
+  & (!A \lif !C) \lif ((!B \lif !C) \lif ((!A \lor !B) \lif !C)) \ollabel{ax:lor3}\\
+  & !A \lif (!B \lif !A) \ollabel{ax:lif1}\\
+  & (!A \lif (!B \lif !C)) \lif ((!A \lif !B) \lif (!A \lif !C)) \ollabel{ax:lif2}\\
+  & \lfalse \lif !A \ollabel{ax:lfalse1}
+\end{align}
+\end{defn}
+
+\begin{defn}[!!^{derivability}]
+!!^a{formula}~$!A$ \emph{!!{derivable}} dari $\Gamma$, ditulis $\Gamma
+\Proves !A$, jika terdapat !!a{derivation} dari $\Gamma$ yang berakhir pada
+$!A$.
+\end{defn}
+
+\begin{defn}[Teorema]
+!!^a{formula}~$!A$ merupakan \emph{teorema} jika terdapat !!a{derivation}
+bagi~$!A$ dari himpunan kosong. Kita menulis $\Proves !A$ jika $!A$ merupakan
+teorema, dan $\Proves/ !A$ jika bukan.
+\end{defn}
+
+\begin{prop}
+  Jika $\Gamma \Proves !A$ dalam sistem !!{derivation} aksiomatik bagi logika
+  intuisionistik, maka $\Gamma \Proves !A$ juga dalam logika klasik. Khususnya,
+  jika $!A$ merupakan teorema intuisionistik, formula itu juga merupakan
+  teorema klasik.
+\end{prop}
+
+\begin{proof}
+  Setiap aksioma intuisionistik juga merupakan aksioma klasik, sehingga setiap
+  !!{derivation} dalam logika intuisionistik juga merupakan !!a{derivation}
+  dalam logika klasik.
+\end{proof}
+
+\end{document}

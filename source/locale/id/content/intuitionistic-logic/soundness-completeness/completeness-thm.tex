@@ -1,0 +1,53 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: completeness-thm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{sc}{cpl}
+
+\olsection{Teorema Kelengkapan}
+
+\begin{thm}\ollabel{thm:completeness}
+  Jika $\Gamma \Entails !A$, maka $\Gamma \Proves !A$.
+\end{thm}
+
+\begin{proof}
+  Kita membuktikan kontraposisinya. Andaikan $\Gamma \Proves/ !A$.
+  Berdasarkan \olref[lin]{lem:lindenbaum}, terdapat himpunan prima
+  $\Gamma^*\supseteq\Gamma$ sedemikian sehingga
+  $\Gamma^*\Proves/ !A$. Pertimbangkan model kanonis
+  $\mModel{M(\Gamma^*)}$ bagi $\Gamma^*$ sebagaimana didefinisikan dalam
+  \olref[mod]{defn:canonical-model}. Untuk setiap $!B\in\Gamma$, berlaku
+  $\Gamma^*\Proves !B$. Perhatikan bahwa
+  $\Gamma^*(\emptyseq)=\Gamma^*$. Berdasarkan Lema Kebenaran
+  (\olref[tru]{lem:truth}), kita mempunyai
+  $\mSat{M(\Gamma^*)}{!B}[\emptyseq]$ untuk semua $!B\in\Gamma$, serta
+  $\mSat/{M(\Gamma^*)}{!A}[\emptyseq]$. Ini menunjukkan bahwa
+  $\Gamma\Entails/ !A$.
+\end{proof}
+
+\begin{prob}
+  Tunjukkan bahwa jika $!A$ hanya memuat !!{propositional variable}s,
+  $\lor$, dan~$\land$, maka $\Entails/ !A$. Gunakan hasil ini untuk
+  menyimpulkan bahwa $\lif$ tidak dapat didefinisikan dalam logika
+  intuisionistik dari $\lor$ dan~$\land$.
+\end{prob}
+
+\begin{prob}
+  Dengan menggunakan teorema kelengkapan, buktikan bahwa jika
+  $\Proves !A\lor !B$, maka $\Proves !A$ atau $\Proves !B$.
+  (Petunjuk: Andaikan $\mSat/{M_1}{!A}$ dan $\mSat/{M_2}{!B}$, lalu
+  konstruksikan model baru~$\mModel{M}$ sedemikian sehingga
+  $\mSat/{M}{!A\lor !B}$.)
+\end{prob}
+
+\begin{prob}
+  Tunjukkan bahwa jika $\mModel{M}$ merupakan model relasional yang
+  menggunakan tatanan linear, maka
+  $\mSat{M}{(!A\lif !B)\lor(!B\lif !A)}$.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,89 @@
+% Pembaca lengkap Open Logic Project dalam Bahasa Indonesia.
+% Sumber Inggris beku: OpenLogicProject/OpenLogic
+% 9620cc73f9c8e0ad003c514a5d3748f29611c4c0.
+
+\documentclass[openany]{memoir}
+
+% `cleveref` Open Logic belum memiliki opsi Indonesian. Babel tetap memuat
+% Indonesian; `\ollanguage` bernilai english hanya selama cleveref dimuat.
+\PassOptionsToPackage{english,indonesian}{babel}
+
+\newcommand*{\olpath}{../..}
+\newcommand*{\ollangid}{id}
+\newcommand*{\ollanguage}{english}
+
+\usepackage{mathpazo}
+\usepackage{helvet}
+\usepackage{courier}
+\linespread{1.05}
+
+\usepackage{gitinfo2}
+
+\input{\olpath/sty/open-logic.sty}
+\renewcommand*{\ollanguage}{indonesian}
+\input{\olpath/sty/open-logic-defer.sty}
+
+% `gitinfo2` emits `Release: (None) ((None))` when the checkout has no
+% generated Git metadata.  Bind both its memoir footer and OLP's short
+% revision text deterministically to the frozen source instead.
+\makeatletter
+\renewcommand*{\@gitFootRev}{Revisi sumber: 9620cc7 (12-07-2026)}
+\makeatother
+\renewcommand*{\ifgitinfo}{\sffamily\footnotesize
+  revisi~9620cc7~(12-07-2026)}
+
+\includeenv{editorial}
+\problemsperchapter
+\let\cleardoublepage\clearpage
+\pagestyle{plain}
+
+\begin{document}
+
+\selectlanguage{indonesian}
+
+\begin{titlingpage}
+\begin{raggedleft}
+\HUGE
+\selectfont\bfseries\sffamily
+\MakeUppercase{\OLTname}
+\vskip 3ex
+\normalfont\huge
+Edisi Lengkap Bahasa Indonesia
+\vskip 4ex
+\textbf{\href{http://openlogicproject.org/}{\OLPname}}
+\vskip 4ex
+\Large
+Revisi sumber beku:\\
+\texttt{9620cc73f9c8e0ad003c514a5d3748f29611c4c0}\\
+12 Juli 2026
+\end{raggedleft}
+
+\vfill
+
+\ollicense
+
+\vskip 2ex
+\small
+Terjemahan Bahasa Indonesia ini merupakan adaptasi dari sumber Inggris
+Open Logic Project pada revisi beku
+\texttt{9620cc73f9c8e0ad003c514a5d3748f29611c4c0}. Seluruh perubahan bahasa
+dan koreksi sumber terbatas dicatat dalam berkas pelokalan dan catatan
+provenans yang menyertainya. Open Logic Project tidak menyokong atau
+mengesahkan terjemahan ini.
+
+\end{titlingpage}
+
+\pagestyle{giheadings}
+
+\include{content/open-logic-about}
+
+\tableofcontents*
+
+\olimport[content]{content}
+
+\photocredits
+
+\bibliographystyle{\olpath/bib/natbib-oup}
+\bibliography{\olpath/bib/open-logic}
+
+\end{document}

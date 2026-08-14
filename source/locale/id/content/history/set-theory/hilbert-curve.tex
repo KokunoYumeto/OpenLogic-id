@@ -1,0 +1,157 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{his}{set}{hilbertcurve}
+
+\olsection{Lampiran: Kurva Pengisi Ruang Hilbert}
+
+Dalam bab \olref[pathology]{sec}, kita menyebutkan bahwa bukti Cantor bahwa
+suatu garis dan suatu persegi mempunyai jumlah titik yang tepat sama
+(\olref[his][set][cantorplane]{thm:cantorplane}) mendorong Peano bertanya
+apakah mungkin terdapat suatu \emph{kurva} pengisi ruang. Ia memperoleh
+jawaban positif pada 1890. Dalam bagian ini, kita menjelaskan (secara
+informal) cara mengonstruksi kurva pengisi ruang Hilbert (dengan sedikit
+modifikasi).\footnote{Untuk penjelasan yang lebih ketat, lihat
+\cite{Rose2010}. Modifikasi tersebut berupa penyertaan bagian-bagian merah
+dari kurva-kurva di bawah. Hal ini sedikit mempermudah pemeriksaan
+bahwa kurva tersebut kontinu.}
+
+Kita harus mendefinisikan suatu fungsi $h$ sebagai limit dari barisan fungsi
+$h_1,h_2,h_3$, \dots\@ Pertama, kita uraikan konstruksinya. Kemudian, kita
+tunjukkan bahwa ia mengisi ruang. Terakhir, kita tunjukkan bahwa ia
+merupakan suatu kurva.
+
+Kita akan mengambil daerah hasil $h$ sebagai persegi satuan,
+$\unitsquare$. Berikut hampiran pertama kita terhadap $h$, yakni~$h_1$:
+\begin{center}
+	\begin{tikzpicture}
+	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
+	\draw[step = 40pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
+	\draw[oldiagcolorC, thick] (20pt, 0)--(20pt, 20pt);
+	\draw[oldiagcolorC, thick] (60pt, 0)--(60pt, 20pt);
+	\begin{scope}[xshift=20pt, yshift=20pt]
+	\draw [black, thick, l-system={Hilbert curve, step=40pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\end{tikzpicture}
+\end{center}
+Untuk memudahkan pencatatan, kita menempatkan kisi $2\times2$ pada persegi
+tersebut. Kita dapat membayangkan kurva bermula di kuadran kiri bawah,
+bergerak ke kiri atas, lalu ke kanan atas, dan akhirnya ke kanan bawah.
+Berikut tahap kedua konstruksinya, yakni~$h_2$:
+\begin{center}
+	\begin{tikzpicture}
+	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
+	\draw[step = 20pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
+	\draw[oldiagcolorC, thick] (0pt, 10pt)--(10pt, 10pt);
+	\draw[oldiagcolorC, thick] (70pt, 10pt)--(80pt, 10pt);
+	\draw[thick, oldiagcolorE] (10pt, 30pt)--(10pt, 50pt);
+	\draw[thick, oldiagcolorE] (30pt, 50pt)--(50pt, 50pt);
+	\draw[thick, oldiagcolorE] (70pt, 50pt)--(70pt, 30pt); \begin{scope}[xshift=10pt, yshift=30pt]
+	\draw [thick, rotate=270,black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=10pt, yshift=50pt]
+	\draw [thick, black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=50pt, yshift=50pt]
+	\draw [thick, black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=70pt, yshift=10pt]
+	\draw [thick, rotate=90,black, l-system={Hilbert curve, step=20pt, angle=90, axiom=L, order=1}]  lindenmayer system;
+	\end{scope}
+	\end{tikzpicture}
+\end{center}
+Warna-warna yang berbeda membantu menjelaskan cara $h_2$ dikonstruksi.
+Mula-mula, kita menempatkan salinan diperkecil dari bagian $h_1$ selain
+bagian !!{colorC} pada kiri bawah, kiri atas, kanan atas, dan kanan bawah
+persegi kita (digambar hitam). Kemudian, kita menghubungkan keempat bangun
+ini (dengan garis !!{colorE}). Terakhir, kita menghubungkan bangun tersebut
+dengan batas persegi (menggunakan garis !!{colorC}).
+
+Sekarang beralih ke $h_3$. Sebagaimana $h_2$ dibuat dari empat salinan
+terhubung dan diperkecil dari bagian $h_1$ yang bukan merah, $h_3$ terdiri
+atas empat salinan diperkecil dari bagian $h_2$ yang bukan merah (digambar
+hitam), yang kemudian dihubungkan (dengan garis !!{colorE}) dan akhirnya
+dihubungkan dengan batas persegi (menggunakan garis !!{colorC}).
+\begin{center}
+	\begin{tikzpicture}
+	\draw[gray] (0pt, 0pt) rectangle (80pt, 80pt);
+	\draw[step = 10pt, gray, very thin] (0pt, 0pt) grid (80pt, 80pt);
+	\draw[thick, oldiagcolorC](5pt, 0pt)--(5pt, 5pt);
+	\draw[thick, oldiagcolorC] (75pt, 0pt)--(75pt, 5pt);
+	\draw[thick, oldiagcolorE] (75pt, 45pt)--(75pt, 35pt);
+	\draw[thick, oldiagcolorE] (5pt, 35pt)--(5pt, 45pt);
+	\draw[thick, oldiagcolorE] (35pt, 45pt)--(45pt, 45pt);
+	\draw[thick, oldiagcolorE] (75pt, 45pt)--(75pt, 35pt); \begin{scope}[xshift=5pt, yshift=35pt]
+	\draw [rotate=270, thick, black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=5pt, yshift=45pt]
+	\draw [thick, black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=45pt, yshift=45pt]
+	\draw [thick, black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
+	\end{scope}
+	\begin{scope}[xshift=75pt, yshift=5pt]
+	\draw [thick, rotate=90,black, l-system={Hilbert curve, step=10pt, angle=90, axiom=L, order=2}]  lindenmayer system;
+	\end{scope}
+	\end{tikzpicture}
+\end{center}
+Sekarang kita melihat pola umum untuk mendefinisikan $h_{n+1}$ dari~$h_n$.
+Akhirnya, kita mendefinisikan kurva $h$ \emph{itu sendiri} dengan
+mempertimbangkan limit titik demi titik dari fungsi-fungsi berturutan
+$h_1,h_2$, \dots\@ Artinya, bagi setiap $x\in\unitline$:
+\begin{align*}
+	h(x) &= \lim_{n \rightarrow \infty} h_n(x)
+\end{align*}
+Sekarang kita menunjukkan bahwa kurva ini mengisi ruang. Ketika menggambar
+kurva $h_n$, kita menempatkan kisi $2^n\times2^n$ pada $\unitsquare$.
+Berdasarkan Teorema Pythagoras, panjang diagonal setiap petak kisi ialah:
+\[
+\sqrt{\left(\nicefrac{1}{2^{n}}\right)^2+
+\left(\nicefrac{1}{2^{n}}\right)^2} = 2^{(\frac{1}{2}-n)}
+\]
+dan jelas $h_n$ melewati setiap petak kisi. Jadi, setiap titik dalam
+$\unitsquare$ berjarak \emph{paling jauh} $2^{(\frac{1}{2}-n)}$ dari suatu
+titik pada~$h_n$. Sekarang, $h$ didefinisikan sebagai limit fungsi-fungsi
+$h_1,h_2,h_3$, \dots\@ Jadi, jarak maksimum sebarang titik dari $h$
+diberikan oleh:
+\[
+\lim_{n \rightarrow \infty} 2^{(\frac{1}{2}-n)} = 0.
+\]
+Artinya, setiap titik dalam $\unitsquare$ berjarak $0$ dari~$h$. Dengan kata
+lain, setiap titik $\unitsquare$ terletak \emph{pada} kurva. Jadi, $h$
+mengisi ruang!{}
+
+Masih perlu ditunjukkan bahwa $h$ memang merupakan suatu \emph{kurva}. Untuk
+menunjukkannya, kita harus mendefinisikan pengertian tersebut. Definisi
+modern dikembangkan dari definisi yang diberikan Jordan pada 1887 (yakni
+hanya beberapa tahun sebelum kurva pengisi ruang pertama diberikan):
+
+\begin{defn}
+Suatu kurva ialah pemetaan kontinu dari $\unitline$ ke $\Real^2$.
+\end{defn}
+
+Definisi ini cukup intuitif: secara intuitif, suatu kurva merupakan pemetaan
+``mulus'' yang membawa suatu garis kanonis ke bidang $\Real^2$. Fungsi
+kita, $h$, memang merupakan pemetaan dari $\unitline$ ke $\Real^2$. Jadi,
+kita hanya perlu menunjukkan bahwa $h$ kontinu. Kita mendefinisikan
+kontinuitas dalam \olref[limits]{sec} dengan menggunakan notasi
+$\epsilon$/$\delta$.
+
+Setiap $h_n$ kontinu: fungsi itu menelusuri secara berurutan segmen-segmen
+garis dalam konstruksi tahap ke-$n$. Selain itu, konstruksi menjamin bahwa
+fungsi-fungsi $h_m$ dengan $m>n$ memperhalus lintasan di dalam petak-petak
+kisi tahap ke-$n$ tanpa berpindah ke petak jauh. Karena diameter setiap
+petak ialah $2^{(\frac{1}{2}-n)}$, jarak maksimum antara $h_m(x)$ dan
+$h_n(x)$, seragam bagi semua $x\in\unitline$, cenderung ke~$0$ ketika
+$n\to\infty$. Jadi, $h_n$ berkonvergensi secara seragam menuju~$h$.
+
+Sekarang tetapkan $x\in\unitline$ dan $\epsilon>0$. Pilih $n$ sedemikian
+sehingga $h_n$ berada dalam $\nicefrac{\epsilon}{3}$ dari $h$ pada setiap
+titik. Karena $h_n$ kontinu, terdapat suatu bagian terbuka $I$ dari
+$\unitline$ yang memuat $x$ sedemikian sehingga, bagi setiap $y\in I$,
+$h_n(y)$ berada dalam $\nicefrac{\epsilon}{3}$ dari $h_n(x)$. Berdasarkan
+pertaksamaan segitiga, $h(y)$ kemudian berada dalam $\epsilon$ dari $h(x)$.
+Dengan demikian, $h$ kontinu, sehingga benar-benar merupakan suatu kurva.
+
+\end{document}

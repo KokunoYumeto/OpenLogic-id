@@ -1,0 +1,60 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{replacement}{strength}
+\olsection{Kekuatan Penggantian}
+
+Kita mulai dengan sebuah pengamatan sederhana mengenai kekuatan Penggantian:
+jika kita tidak melampaui $\Z$, kita tidak dapat membuktikan keberadaan
+ordinal von Neumann mana pun yang lebih besar daripada atau sama dengan
+$\omega + \omega$.
+
+Berikut sketsa alasannya. Dengan bekerja dalam~$\ZF$, perhatikan himpunan
+$V_{\omega+\omega}$. Himpunan ini berperan sebagai domain suatu \emph{model}
+bagi~$\Z$. Untuk melihatnya, kita memperkenalkan notasi bagi
+\emph{relativisasi} suatu formula:
+\begin{defn}\ollabel{formularelativization}
+	Untuk sebarang himpunan $M$ dan sebarang formula $\phi$, misalkan $\phi^M$
+	merupakan formula yang dihasilkan dengan membatasi semua kuantor $\phi$
+	ke~$M$. Artinya, ganti ``$\lexists[x]$'' dengan
+	``$(\lexists[x \in M])$'', dan ganti ``$\lforall[x]$'' dengan
+	``$(\lforall[x \in M])$''.
+\end{defn}\noindent
+Dapat ditunjukkan bahwa bagi setiap aksioma $\phi$ dari~$\Z$, berlaku
+$\ZF \vdash \phi^{V_{\omega+\omega}}$. Namun, $\omega+\omega$ tidak
+\emph{berada di dalam} $V_{\omega+\omega}$, berdasarkan
+\olref[spine][rank]{ordsetrankalpha}. Jadi, $\Z$ konsisten dengan
+ketiadaan $\omega+\omega$.
+
+Inilah sebabnya kita mengatakan dalam \olref[ordinals][replacement]{sec}
+bahwa \olref[ordinals][ordtype]{thmOrdinalRepresentation} tidak dapat
+dibuktikan tanpa Penggantian. Sebab, di dalam~$\Z$ mudah untuk mendefinisikan
+suatu pengurutan baik secara eksplisit yang secara intuitif
+\emph{seharusnya} mempunyai tipe urutan $\omega+\omega$. Memang, kita
+memberikan contoh informalnya dalam \olref[ordinals][idea]{sec}, ketika kita
+menyajikan pengurutan pada bilangan asli berikut:
+\begin{align*}
+	n \lessdot m \text{ jika dan hanya jika }&\text{salah satu: }n < m\text{ dan }m-n\text{ genap,}\\
+	& \text{atau $n$ genap dan $m$ ganjil.}
+\end{align*}
+Namun, jika $\omega+\omega$ tidak ada, pengurutan baik ini tidak isomorfik
+dengan ordinal mana pun. Jadi, $\Z$ \emph{tidak} membuktikan
+\olref[ordinals][ordtype]{thmOrdinalRepresentation}.
+
+Jika sudut pandangnya dibalik: Penggantian memungkinkan kita membuktikan
+keberadaan $\omega+\omega$, dan karena itu harus memungkinkan kita
+membuktikan keberadaan $V_{\omega+\omega}$. Bukan hanya itu. Bagi
+\emph{setiap} pengurutan baik yang dapat kita definisikan,
+\olref[ordinals][ordtype]{thmOrdinalRepresentation} memberi tahu kita bahwa
+terdapat suatu $\alpha$ yang isomorfik dengan pengurutan baik itu, dan karena
+itu bahwa $V_\alpha$ ada. Dengan demikian, secara langsung Penggantian
+menjamin bahwa hierarki himpunan harus \emph{sangat tinggi}.
+
+Selama beberapa bagian berikutnya, lalu sekali lagi dalam
+\olref[card-arithmetic][fix]{sec}, kita akan memahami dengan lebih baik
+\emph{seberapa} tinggi hierarki yang dipaksakan oleh Penggantian. Pokok
+sederhananya, untuk saat ini, ialah bahwa Penggantian memang benar-benar
+\emph{memerlukan} pembenaran!
+
+\end{document}

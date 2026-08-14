@@ -1,0 +1,110 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{spine}{Valphabasic}
+\olsection{Sifat-Sifat Dasar Tahap}
+
+Untuk menonjolkan arti penting definisi $V_\alpha$ bagi landasan teori, kita
+akan menyajikan beberapa hasil dasar mengenainya. Kita mulai dengan sebuah
+definisi:\footnote{Tidak ada istilah baku untuk ``poten''; nama inilah yang
+digunakan oleh \citet{ButtonLT1}.}
+\begin{defn}
+	Himpunan $A$ disebut \emph{poten} jika dan hanya jika
+	$\forall x((\exists y \in A)x \subseteq y \lif x \in A)$.
+\end{defn}
+\begin{lem}\ollabel{Valphabasicprops}
+Untuk setiap ordinal $\alpha$:
+\begin{enumerate}
+	\item\ollabel{Valphatrans} Setiap $V_\alpha$ bersifat transitif.
+	\item\ollabel{Valphapotent} Setiap $V_\alpha$ bersifat poten.
+	\item\ollabel{Valphacum} Jika $\gamma \in \alpha$, maka $V_\gamma
+	\in V_\alpha$ (dan karena itu juga $V_\gamma \subseteq V_\alpha$
+	berdasarkan \olref{Valphatrans}).
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Kita membuktikannya dengan induksi transfinit (serentak). Untuk langkah
+induksi, andaikan \olref{Valphatrans}--\olref{Valphacum} berlaku bagi setiap
+ordinal $\beta < \alpha$.
+
+Kasus $\alpha = \emptyset$ bersifat langsung.
+
+Andaikan $\alpha = \ordsucc{\beta}$. Untuk menunjukkan
+\olref{Valphacum}, jika $\gamma \in \alpha$, maka
+$V_\gamma \subseteq V_\beta$ menurut hipotesis, sehingga
+$V_\gamma \in \Pow{V_\beta} = V_\alpha$. Untuk menunjukkan
+\olref{Valphapotent}, andaikan $A \subseteq B \in V_\alpha$, yakni
+$A \subseteq B \subseteq V_\beta$; maka $A \subseteq V_\beta$, sehingga
+$A \in V_\alpha$. Untuk menunjukkan \olref{Valphatrans}, perhatikan bahwa
+jika $x \in A \in V_\alpha$, maka $A \subseteq V_\beta$, sehingga
+$x \in V_\beta$, lalu $x \subseteq V_\beta$ karena $V_\beta$ transitif
+menurut hipotesis, dan dengan demikian $x \in V_\alpha$.
+
+Andaikan $\alpha$ merupakan ordinal limit. Untuk menunjukkan
+\olref{Valphacum}, jika $\gamma \in \alpha$, maka
+$\gamma \in \ordsucc{\gamma} \in \alpha$, sehingga
+$V_\gamma \in V_{\ordsucc{\gamma}}$ menurut asumsi, dan karenanya
+$V_\gamma \in \bigcup_{\beta \in \alpha} V_\beta = V_\alpha$. Untuk
+menunjukkan \olref{Valphatrans} dan \olref{Valphapotent}, cukup perhatikan
+bahwa gabungan himpunan-himpunan transitif (berturut-turut, poten) bersifat
+transitif (berturut-turut, poten).
+\end{proof}
+
+\begin{lem}\ollabel{Valphanotref}
+Untuk setiap ordinal $\alpha$, $V_\alpha \notin V_\alpha$.
+\end{lem}
+
+\begin{proof}
+Dengan induksi transfinit. Jelas bahwa
+$V_\emptyset \notin V_\emptyset$.
+
+Jika $V_{\ordsucc{\alpha}} \in V_{\ordsucc{\alpha}} = \Pow{V_\alpha}$,
+maka $V_{\ordsucc{\alpha}} \subseteq V_\alpha$; dan karena
+$V_\alpha \in V_{\ordsucc{\alpha}}$ berdasarkan
+\olref{Valphabasicprops}, kita memperoleh $V_\alpha \in V_\alpha$.
+Dengan mengambil kontraposisinya: jika $V_\alpha \notin V_\alpha$, maka
+$V_{\ordsucc{\alpha}} \notin V_{\ordsucc{\alpha}}$.
+
+Jika $\alpha$ merupakan limit dan
+$V_\alpha \in V_\alpha = \bigcup_{\beta \in \alpha}V_\beta$, maka
+$V_\alpha \in V_\beta$ untuk suatu $\beta \in \alpha$; tetapi kemudian
+$V_\beta \in V_\alpha$ juga, sehingga $V_\beta \in V_\beta$ berdasarkan
+\olref{Valphabasicprops} (dua kali). Dengan mengambil kontraposisinya, jika
+$V_\beta \notin V_\beta$ untuk semua $\beta \in \alpha$, maka
+$V_\alpha \notin V_\alpha$.
+\end{proof}
+
+\begin{cor}
+Untuk sembarang ordinal $\alpha, \beta$: $\alpha \in \beta$ jika dan hanya
+jika $V_\alpha \in V_\beta$.
+\end{cor}
+
+\begin{proof}
+\Olref{Valphabasicprops} memberikan satu arah. Sebaliknya, andaikan
+$V_\alpha \in V_\beta$. Maka $\alpha \neq \beta$ berdasarkan
+\olref{Valphanotref}; dan $\beta \notin \alpha$, sebab jika tidak, kita akan
+memperoleh $V_\beta \in V_\alpha$, dan kemudian
+$V_\beta \in V_\beta$ berdasarkan \olref{Valphabasicprops} (dua kali),
+bertentangan dengan \olref{Valphanotref}. Jadi, $\alpha \in \beta$
+berdasarkan Trikotomi.
+\end{proof}
+\noindent
+Semua ini memungkinkan kita memandang setiap $V_\alpha$ sebagai tahap
+ke-$\alpha$ dalam hierarki. Berikut alasannya.
+
+$V_\alpha$ kita tentu dapat dipandang terbentuk melalui suatu proses
+\emph{iteratif}, sebab penggunaan ordinal oleh kita melacak gagasan iterasi.
+Selain itu, jika suatu tahap terbentuk sebelum tahap lain, yakni
+$V_\beta \in V_\alpha$, yakni $\beta \in \alpha$, maka proses pembentukan
+kita bersifat \emph{kumulatif}, karena $V_\beta \subseteq V_\alpha$.
+Akhirnya, kita memang membentuk \emph{semua} koleksi himpunan yang mungkin
+yang tersedia pada suatu tahap sebelumnya, sebab setiap tahap penerus
+$V_{\ordsucc{\alpha}}$ merupakan himpunan kuasa pendahulunya $V_\alpha$.
+
+Singkatnya: dengan $\ZFminus$, kita \emph{hampir} selesai merumuskan visi
+kita tentang hierarki kumulatif-iteratif himpunan. (Meskipun, tentu saja, kita
+masih perlu membenarkan Penggantian.)
+
+\end{document}

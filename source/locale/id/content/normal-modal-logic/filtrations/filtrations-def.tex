@@ -1,0 +1,189 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: filtrations-def
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{fil}{fil}
+
+\olsection{Filtrasi}
+
+Alih-alih mendefinisikan ``filtrasi'' tunggal dari $\mModel{M}$
+melalui~$\Gamma$, kita mendefinisikan kapan suatu model~$\mModel{M^*}$
+dianggap sebagai filtrasi dari~$\mModel{M}$. Semua filtrasi mempunyai himpunan
+dunia~$W^*$ yang sama dan valuasi~$V^*$ yang sama. Namun, filtrasi yang
+berbeda mungkin mempunyai relasi aksesibilitas~$R^*$ yang berbeda. Agar
+dianggap sebagai filtrasi, $R^*$ harus memenuhi sejumlah syarat. Syarat-syarat
+ini tepat merupakan apa yang kita perlukan untuk membuktikan hasil utama,
+yakni bahwa $\mSat{M}{!A}[w]$ jika dan hanya jika
+$\mSat{M^*}{!A}[{[w]}]$, asalkan $!A \in \Gamma$.
+
+\begin{defn}\ollabel{defn:filtration}
+  Misalkan $\Gamma$ tertutup terhadap subformula dan
+  $\mModel{M} = \tuple{W, R, V}$. Suatu \emph{filtrasi dari $\mModel{M}$
+  melalui $\Gamma$} adalah sebarang model
+  $\mModel{M^*} = \tuple{W^*,R^*,V^*}$, dengan:
+  \begin{enumerate}
+  \item $W^* = \Setabs{[w]}{w \in W}$;
+  \item \ollabel{defn:filtration-R}%
+    Bagi sebarang $u,v \in W$:
+    \begin{enumerate}
+    \item \ollabel{defn:filtration-R1}%
+      Jika $Ruv$, maka $R^*[u][v]$;
+    \tagitem{prvBox}{\ollabel{defn:filtration-R2}%
+      Jika $R^*[u][v]$, maka bagi sebarang $\Box !A \in \Gamma$, jika
+      $\mSat{M}{\Box!A}[u]$, maka $\mSat{M}{!A}[v]$}{};
+    \tagitem{prvDiamond}{\ollabel{defn:filtration-R3}%
+      Jika $R^*[u][v]$, maka bagi sebarang $\Diamond !A \in \Gamma$, jika
+      $\mSat{M}{!A}[v]$, maka $\mSat{M}{\Diamond!A}[u]$.}{}
+    \end{enumerate}
+  \item $V^*(p) = \Setabs{[u]}{u \in V(p)}$.
+  \end{enumerate}
+\end{defn}
+
+Ada gunanya memikirkan apa itu $V^*(p)$: himpunan yang terdiri atas
+kelas-kelas ekuivalensi~$[w]$ dari semua dunia~$w$ tempat $p$ bernilai benar
+dalam~$\mModel{M}$. Di satu pihak, jika $w \in V(p)$, maka $[w] \in V^*(p)$
+menurut definisi tersebut. Namun, jika $[w] \in V^*(p)$, belum tentu
+$w \in V(p)$. Jika $[w] \in V^*(p)$, kita hanya mendapat jaminan bahwa
+$[w] = [u]$ bagi \emph{suatu}~$u \in V(p)$. Tentu saja, $[w] = [u]$
+berarti bahwa $w \equiv u$. Jadi, apabila $[w] \in V^*(p)$, kita (hanya)
+dapat menyimpulkan bahwa $w \equiv u$ bagi suatu $u \in V(p)$.
+
+\begin{thm}\ollabel{thm:filtrations}
+  Jika $\mModel{M^*}$ merupakan filtrasi dari $\mModel{M}$ melalui $\Gamma$,
+  maka bagi setiap $!A \in \Gamma$ dan $w \in W$, berlaku
+  $\mSat{M}{!A}[w]$ jika dan hanya jika $\mSat{M^*}{!A}[{[w]}]$.
+\end{thm}
+
+\begin{proof}
+  Dengan induksi pada $!A$, menggunakan fakta bahwa $\Gamma$ tertutup
+  terhadap subformula. Karena $!A \in \Gamma$ dan $\Gamma$ tertutup terhadap
+  sub-!!{formula}s, semua sub-!!{formula}s dari~$!A$ juga $\in
+  \Gamma$. Jadi, pada setiap langkah induktif, hipotesis induksi berlaku
+  bagi sub-!!{formula}s dari~$!A$.
+  \begin{enumerate}
+    \tagitem{prvFalse}{\indcase{!A}{\lfalse}{Baik
+        $\mSat{M}{\indfrm}[w]$ maupun
+        $\mSat{M^*}{\indfrm}[{[w]}]$ tidak berlaku.}}{}
+    \tagitem{prvTrue}{\indcase{!A}{\ltrue}{Keduanya berlaku:
+        $\mSat{M}{\indfrm}[w]$ dan
+        $\mSat{M^*}{\indfrm}[{[w]}]$.}}{}
+    \item \indcase{!A}{p}{Arah dari kiri ke kanan langsung berlaku, sebab
+      $\mSat{M}{\indfrm}[w]$ hanya jika $w \in V(p)$, yang mengimplikasikan
+      $[w] \in V^*(p)$, yakni $\mSat{M^*}{\indfrm}[{[w]}]$. Sebaliknya,
+      andaikan $\mSat{M^*}{\indfrm}[{[w]}]$, yakni $[w] \in V^*(p)$. Maka
+      bagi suatu $v \in V(p)$, $w \equiv v$. Tentu saja, dengan demikian juga
+      $\mSat{M}{p}[v]$. Karena $w \equiv v$, dunia $w$ dan $v$ membuat
+      !!{formula}s yang sama dari~$\Gamma$ bernilai benar. Karena menurut
+      asumsi $p \in \Gamma$ dan $\mSat{M}{p}[v]$, maka
+      $\mSat{M}{\indfrm}[w]$.}
+
+    \tagitem{prvNot}{\iftag{probNot}{Latihan.}{\indcase{!A}{\lnot
+          !B}{$\mSat{M}{\indfrm}[w]$ jika dan hanya jika
+          $\mSat/{M}{!B}[w]$. Menurut hipotesis induksi,
+          $\mSat/{M}{!B}[w]$ jika dan hanya jika
+          $\mSat/{M^*}{!B}[{[w]}]$. Terakhir,
+          $\mSat/{M^*}{!B}[{[w]}]$ jika dan hanya jika
+          $\mSat{M^*}{\indfrm}[{[w]}]$.}}}{}
+
+    \tagitem{prvAnd}{\iftag{probAnd}{Latihan.}{\indcase{!A}{(!B \land
+          !C)}{$\mSat{M}{\indfrm}[w]$ jika dan hanya jika
+          $\mSat{M}{!B}[w]$ dan $\mSat{M}{!C}[w]$. Menurut hipotesis
+          induksi, $\mSat{M}{!B}[w]$ jika dan hanya jika
+          $\mSat{M^*}{!B}[{[w]}]$, dan $\mSat{M}{!C}[w]$ jika dan hanya
+          jika $\mSat{M^*}{!C}[{[w]}]$. Selanjutnya,
+          $\mSat{M^*}{\indfrm}[{[w]}]$ jika dan hanya jika
+          $\mSat{M^*}{!B}[{[w]}]$ dan
+          $\mSat{M^*}{!C}[{[w]}]$.}}}{}
+
+    \tagitem{prvOr}{\iftag{probOr}{Latihan.}{\indcase{!A}{(!B \lor
+          !C)}{$\mSat{M}{\indfrm}[w]$ jika dan hanya jika
+          $\mSat{M}{!B}[w]$ atau $\mSat{M}{!C}[w]$. Menurut hipotesis
+          induksi, $\mSat{M}{!B}[w]$ jika dan hanya jika
+          $\mSat{M^*}{!B}[{[w]}]$, dan $\mSat{M}{!C}[w]$ jika dan hanya
+          jika $\mSat{M^*}{!C}[{[w]}]$. Selanjutnya,
+          $\mSat{M^*}{\indfrm}[{[w]}]$ jika dan hanya jika
+          $\mSat{M^*}{!B}[{[w]}]$ atau
+          $\mSat{M^*}{!C}[{[w]}]$.}}}{}
+
+    \tagitem{prvIf}{\iftag{probIf}{Latihan.}{\indcase{!A}{(!B \lif
+          !C)}{$\mSat{M}{\indfrm}[w]$ jika dan hanya jika
+          $\mSat/{M}{!B}[w]$ atau $\mSat{M}{!C}[w]$. Menurut hipotesis
+          induksi, $\mSat{M}{!B}[w]$ jika dan hanya jika
+          $\mSat{M^*}{!B}[{[w]}]$, dan $\mSat{M}{!C}[w]$ jika dan hanya
+          jika $\mSat{M^*}{!C}[{[w]}]$. Selanjutnya,
+          $\mSat{M^*}{\indfrm}[{[w]}]$ jika dan hanya jika
+          $\mSat/{M^*}{!B}[{[w]}]$ atau
+          $\mSat{M^*}{!C}[{[w]}]$.}}}{}
+
+    \tagitem{prvIff}{\iftag{probIff}{Latihan.}{\indcase{!A}{(!B \liff
+          !C)}{$\mSat{M}{\indfrm}[w]$ jika dan hanya jika
+          $\mSat{M}{!B}[w]$ dan $\mSat{M}{!C}[w]$, atau
+          $\mSat/{M}{!B}[w]$ dan $\mSat/{M}{!C}[w]$. Menurut hipotesis
+          induksi, $\mSat{M}{!B}[w]$ jika dan hanya jika
+          $\mSat{M^*}{!B}[{[w]}]$, dan $\mSat{M}{!C}[w]$ jika dan hanya
+          jika $\mSat{M^*}{!C}[{[w]}]$. Selanjutnya,
+          $\mSat{M^*}{\indfrm}[{[w]}]$ jika dan hanya jika
+          $\mSat{M^*}{!B}[{[w]}]$ dan
+          $\mSat{M^*}{!C}[{[w]}]$, atau
+          $\mSat/{M^*}{!B}[{[w]}]$ dan
+          $\mSat/{M^*}{!C}[{[w]}]$.}}}{}
+
+    \tagitem{prvBox}{\iftag{probBox}{Latihan.}{\indcase{!A}{\Box
+          !B}{Andaikan $\mSat{M}{\indfrm}[w]$; untuk menunjukkan bahwa
+          $\mSat{M^*}{\indfrm}[{[w]}]$, misalkan $v$ sedemikian sehingga
+          $R^*[w][v]$. Dari
+          \olref{defn:filtration}\olref{defn:filtration-R2}, kita memperoleh
+          $\mSat{M}{!B}[v]$, dan menurut hipotesis induksi
+          $\mSat{M^*}{!B}[{[v]}]$. Karena $v$ sebarang, diperoleh
+          $\mSat{M^*}{\indfrm}[{[w]}]$.
+
+          Sebaliknya, andaikan $\mSat{M^*}{\indfrm}[{[w]}]$ dan misalkan $v$
+          sebarang sedemikian sehingga $Rwv$. Dari
+          \olref{defn:filtration}\olref{defn:filtration-R1}, kita memperoleh
+          $R^*[w][v]$, sehingga $\mSat{M^*}{!B}[{[v]}]$; menurut hipotesis
+          induksi $\mSat{M}{!B}[v]$, dan karena $v$ sebarang, diperoleh
+          $\mSat{M}{\indfrm}[w]$.}}}{}
+
+    \tagitem{prvDiamond}{\iftag{probDiamond}{Latihan.}{\indcase{!A}{\Diamond
+          !B}{Andaikan $\mSat{M}{\indfrm}[w]$. Maka bagi suatu $v \in W$,
+          $Rwv$ dan $\mSat{M}{!B}[v]$. Menurut hipotesis induksi
+          $\mSat{M^*}{!B}[{[v]}]$, dan berdasarkan
+          \olref{defn:filtration}\olref{defn:filtration-R1}, kita memperoleh
+          $R^*[w][v]$. Jadi, $\mSat{M^*}{\indfrm}[{[w]}]$.
+
+          Sekarang andaikan $\mSat{M^*}{\indfrm}[{[w]}]$. Maka bagi suatu
+          $[v] \in W^*$ dengan $R^*[w][v]$,
+          $\mSat{M^*}{!B}[{[v]}]$. Menurut hipotesis induksi
+          $\mSat{M}{!B}[v]$. Berdasarkan
+          \olref{defn:filtration}\olref{defn:filtration-R3}, kita memperoleh
+          $\mSat{M}{\indfrm}[w]$.}}}{}
+  \end{enumerate}
+\end{proof}
+
+\begin{prob}
+  Lengkapi pembuktian \olref[nml][fil][fil]{thm:filtrations}.
+\end{prob}
+
+Apa yang berlaku bagi kebenaran pada dunia-dunia dalam suatu model juga
+berlaku bagi kebenaran dalam suatu model dan validitas dalam suatu kelas model.
+
+\begin{cor}
+  Misalkan $\Gamma$ tertutup terhadap subformula. Maka:
+  \begin{enumerate}
+  \item Jika $\mModel{M^*}$ merupakan filtrasi dari $\mModel{M}$
+    melalui~$\Gamma$, maka bagi sebarang $!A \in \Gamma$:
+    $\mSat{M}{!A}$ jika dan hanya jika $\mSat{M^*}{!A}$.
+  \item Jika $\mClass{C}$ merupakan kelas model dan $\Gamma(\mClass{C})$
+    merupakan kelas filtrasi-$\Gamma$ dari model-model dalam $\mClass{C}$,
+    maka sebarang !!{formula}~$!A \in \Gamma$ valid dalam $\mClass{C}$ jika
+    dan hanya jika formula itu valid dalam $\Gamma(\mClass{C})$.
+  \end{enumerate}
+\end{cor}
+
+
+
+\end{document}

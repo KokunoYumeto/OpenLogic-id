@@ -1,0 +1,61 @@
+% Bagian: second-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{syn}{int}
+
+\olsection{Pengantar}
+
+Dalam logika orde pertama, kita menggabungkan simbol-simbol nonlogis suatu
+bahasa tertentu, yakni !!{constant}s, !!{function}s, dan !!{predicate}s yang
+dimilikinya, dengan simbol-simbol logis untuk mengungkapkan hal-hal mengenai
+!!{structure}s orde pertama. Hal ini dilakukan dengan menggunakan gagasan
+keterpenuhan, yang menghubungkan !!a{structure}~$\Struct{M}$, bersama suatu
+penugasan variabel~$s$, dengan !!a{formula}~$!A$: $\Sat{M}{!A}[s]$ berlaku jika
+dan hanya jika apa yang diungkapkan oleh~$!A$ adalah benar ketika
+!!{constant}s, !!{function}s, dan !!{predicate}s yang muncul di dalamnya
+ditafsirkan sebagaimana ditentukan oleh~$\Struct{M}$, dan variabel-variabel
+bebasnya ditafsirkan sebagaimana ditentukan oleh~$s$. Interpretasi
+!!{identity}~$\eq$ sudah melekat
+dalam definisi $\Sat{M}{!A}[s]$, demikian pula interpretasi~$\lforall$ dan
+$\lexists$. Yang pertama selalu ditafsirkan sebagai relasi identitas pada
+!!{domain}~$\Domain{M}$ struktur tersebut, dan kuantor selalu ditafsirkan
+sebagai merentang atas seluruh !!{domain}. Namun, yang sangat penting,
+kuantifikasi hanya diperbolehkan atas anggota-anggota !!{domain}, sehingga
+hanya !!{variable}s objek yang diperbolehkan mengikuti suatu kuantor.
+
+Dalam logika orde kedua, baik bahasa maupun definisi keterpenuhan diperluas
+sehingga mencakup variabel fungsi dan predikat bebas maupun terikat, serta
+kuantifikasi atas variabel-variabel tersebut. Variabel-variabel ini
+berhubungan dengan !!{function}s dan !!{predicate}s dengan cara yang sama
+seperti variabel objek berhubungan dengan !!{constant}s. Variabel-variabel
+tersebut memainkan peran yang sama dalam pembentukan suku dan !!{formula}s
+logika orde kedua, dan kuantifikasi atasnya ditangani dengan cara serupa.
+Dalam semantik \emph{standar}, kuantor orde kedua merentang atas semua objek
+yang mungkin dari tipe yang tepat (fungsi beraritas~$n$ dari $\Domain{M}^n$
+ke~$\Domain{M}$ bagi variabel fungsi, dan relasi beraritas~$n$ bagi variabel
+predikat). Misalnya, meskipun
+$\lforall[\Obj{v_0}][(\Obj{P^1_0}(\Obj{v_0}) \lor \lnot
+  \Obj{P^1_0}(\Obj{v_0}))]$ merupakan suatu formula baik dalam logika orde
+pertama maupun dalam logika orde kedua, dalam logika orde kedua kita juga
+dapat mempertimbangkan
+$\lforall[\Obj{V^1_0}][\lforall[\Obj{v_0}][(\Obj{V^1_0}(\Obj{v_0}) \lor
+    \lnot \Obj{V^1_0}(\Obj{v_0}))]]$ dan
+$\lexists[\Obj{V^1_0}][\lforall[\Obj{v_0}][(\Obj{V^1_0}(\Obj{v_0}) \lor
+    \lnot \Obj{V^1_0}(\Obj{v_0}))]]$. Karena kedua formula ini tidak memuat
+variabel bebas, keduanya merupakan !!{sentence}s logika orde kedua. Di sini,
+$\Obj{V^1_0}$ merupakan variabel predikat orde kedua beraritas~$1$.
+Interpretasi yang diperbolehkan bagi~$\Obj{V^1_0}$ sama dengan yang dapat kita
+tetapkan kepada suatu !!{predicate} beraritas~$1$ seperti~$\Obj{P^1_0}$, yakni
+himpunan-himpunan bagian dari~$\Domain{M}$. Kuantifikasi atasnya lalu berarti
+menyatakan bahwa
+$\lforall[\Obj{v_0}][(\Obj{V^1_0}(\Obj v_0) \lor \lnot
+  \Obj{V^1_0}(\Obj{v_0}))]$ berlaku bagi semua cara menetapkan suatu himpunan
+bagian dari~$\Domain{M}$ sebagai nilai~$\Obj{V^1_0}$, atau bagi setidaknya satu
+cara. Karena setiap himpunan memuat atau tidak memuat suatu objek tertentu,
+kedua kalimat itu benar dalam setiap !!{structure}.
+\end{document}

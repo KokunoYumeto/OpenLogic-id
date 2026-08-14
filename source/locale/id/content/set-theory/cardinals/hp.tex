@@ -1,0 +1,102 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{cardinals}{hp}
+\olsection{Lampiran: Prinsip Hume}
+
+Dalam \olref[cp]{sec}, kita menguraikan Prinsip Cantor. Prinsip tersebut
+berbunyi:
+\begin{align*}
+	\card{A} = \card{B} & \text{ jika dan hanya jika } A \approx B.
+\intertext{Hal ini sangat mirip dengan prinsip yang kini disebut
+\emph{Prinsip Hume}, yang menyatakan:}
+	\fregenum{x} {F(x)} = \fregenum{x}{G(x)} & \text{ jika dan hanya jika } F \sim G
+\end{align*}
+di mana `$F \sim G$' menyingkat pernyataan bahwa objek-objek yang memenuhi
+$F$ tepat sama banyaknya dengan objek-objek yang memenuhi $G$, yakni bahwa
+kedua kumpulan itu dapat dipasangkan melalui suatu bijeksi, yakni:
+\begin{align*}
+	\exists R(&\forall v\forall y(Rvy \lif (Fv \land Gy)) \land {}\\
+		&\forall v(Fv \lif \lexists![y][Rvy]) \land {}\\
+		&\forall y(Gy \lif \lexists![v][Rvy]))
+\end{align*}
+Namun, terdapat perbedaan tipe antara Prinsip Hume dan Prinsip Cantor. Dalam
+pernyataan Prinsip Cantor, variabel ``$A$'' dan ``$B$'' merupakan suku orde
+pertama yang menyatakan \emph{himpunan}. Dalam pernyataan Prinsip Hume,
+``$F$'', ``$G$'', dan ``$R$'' \emph{bukan} suku orde pertama; alih-alih,
+semuanya berada dalam \emph{posisi predikat}. (Mungkin semuanya menyatakan
+\emph{sifat}.) Jadi, kita dapat menguraikan Prinsip Hume dalam bahasa biasa
+sebagai berikut: banyaknya objek yang memenuhi $F$ sama dengan banyaknya
+objek yang memenuhi $G$ jika dan hanya jika kedua kumpulan objek itu dapat
+dipasangkan secara bijektif. Prinsip ini disebut
+\emph{Prinsip Hume} karena Hume pernah menulis:
+\begin{quote}
+  Apabila dua bilangan dipadankan sedemikian rupa sehingga bilangan yang satu
+  selalu mempunyai suatu satuan yang bersesuaian dengan setiap satuan pada
+  bilangan yang lain, kita menyatakan keduanya sama.
+  \citep[Pt.III Bk.1 \S1]{Hume1740}
+\end{quote}
+Prinsip Hume diangkat ke kedudukan penting dalam matematika dan logika
+kontemporer oleh \citet[\S63]{Frege1884}, yang mengutip bagian dari Hume ini
+sebelum (pada dasarnya) menguraikan secara garis besar prinsip yang kita
+sebut Prinsip Hume.
+
+Anda patut memperhatikan kemiripan struktural antara Prinsip Hume dan Hukum
+Dasar~V. Kita merumuskannya dalam \olref[story][blv]{sec} sebagai berikut:
+\[
+	\fregeext{x}{F(x)} = \fregeext{x}{G(x)} \text{ jika dan hanya jika } \lforall[x][(F(x) \liff G(x))].
+\]
+Pada titik ini, beberapa ulasan dan perbandingan mungkin membantu.
+
+Terdapat dua cara memahami suatu prinsip seperti Prinsip Hume atau Hukum
+Dasar~V: secara \emph{predikatif} atau secara \emph{impredikatif} (ingat
+\olref[story][predicative]{sec}). Pada pembacaan impredikatif atas Hukum
+Dasar~V, untuk setiap~$F$, objek $\fregeext{x}{F(x)}$ berada dalam domain
+kuantifikasi yang kita gunakan untuk merumuskan Hukum Dasar~V itu sendiri.
+Demikian pula, pada pembacaan impredikatif atas Prinsip Hume, untuk
+setiap~$F$, objek $\fregenum{x}{F(x)}$ berada dalam domain kuantifikasi yang
+kita gunakan untuk merumuskan Prinsip Hume. Sebaliknya, menurut pemahaman
+\emph{predikatif}, objek $\fregeext{x}{F(x)}$ dan~$\fregenum{x}{F(x)}$ akan
+menjadi entitas dari suatu domain yang \emph{berbeda}.
+
+Jika kita membaca Hukum Dasar~V secara impredikatif, prinsip tersebut
+menghasilkan ketidakkonsistenan melalui Komprehensi Naif (untuk rinciannya,
+lihat \olref[story][blv]{sec}). Seperti Komprehensi Naif, prinsip tersebut
+dapat dibuat konsisten dengan membacanya secara \emph{predikatif}. Namun,
+kemungkinan besar prinsip itu tidak akan melakukan semua yang kita inginkan.
+
+Akan tetapi, Prinsip Hume \emph{dapat} dibaca secara impredikatif dengan
+konsisten. Dengan pembacaan tersebut, prinsip ini cukup kuat.
+
+Sebagai ilustrasi, perhatikan predikat ``$x \neq x$'', yang jelas tidak
+dipenuhi oleh apa pun. Prinsip Hume kini menghasilkan suatu objek
+$\# x( x\neq x)$. Kita dapat memperlakukannya sebagai bilangan~$0$.
+Sekarang, berdasarkan pemahaman \emph{impredikatif}---dan \emph{hanya}
+berdasarkan pemahaman impredikatif---entitas $0$ ini berada dalam domain
+kuantifikasi awal kita. Jadi, kita dapat secara bermakna menerapkan Prinsip
+Hume dengan predikat ``$x = 0$'' untuk memperoleh suatu objek
+$\#x (x = 0)$. Kita dapat memperlakukannya sebagai bilangan~$1$. Lebih jauh,
+Prinsip Hume menyiratkan bahwa $0 \neq 1$, sebab tidak mungkin terdapat
+bijeksi dari objek-objek yang tidak identik dengan dirinya sendiri ke
+objek-objek yang identik dengan $0$ (tidak ada objek jenis pertama, tetapi
+terdapat satu objek jenis kedua). Sekarang, dengan kembali bekerja secara
+impredikatif, $1$~berada dalam domain kuantifikasi awal kita. Jadi, kita dapat
+secara bermakna menerapkan Prinsip Hume dengan predikat
+``$(x = 0 \lor x = 1)$'' untuk memperoleh suatu objek
+$\#x(x = 0 \lor x = 1)$. Kita dapat memperlakukannya sebagai bilangan~$2$,
+dan kita dapat menunjukkan bahwa $0\neq 2$, $1 \neq 2$, dan seterusnya.
+
+Singkatnya, jika dipahami secara impredikatif, Prinsip Hume menyiratkan bahwa
+terdapat \emph{tak hingga banyak objek}. Hal ini mendorong para
+\emph{logisis neo-Fregean} untuk menjadikan Prinsip Hume sebagai landasan
+aritmetika.
+
+Namun, Frege \emph{sendiri} tidak menjadikan Prinsip Hume sebagai landasan
+aritmetikanya. Sebaliknya, Frege membuktikan Prinsip Hume dari suatu definisi
+eksplisit: $\fregenum{x}{F(x)}$ didefinisikan sebagai ekstensi konsep
+$F \sim \Phi$. Dalam istilah modern, kita mungkin mencoba menyatakannya
+sebagai $\fregenum{x}{F(x)} = \Setabs{G}{F \sim G}$; tetapi langkah ini akan
+membawa kita kembali ke masalah-masalah Komprehensi Naif.
+
+\end{document}

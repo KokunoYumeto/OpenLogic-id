@@ -1,0 +1,64 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: normal-modal-logics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{syn}{nor}
+
+\olsection{Logika Modal Normal}
+
+Suatu logika modal dapat dipandang sebagai sebarang himpunan !!{formula}s
+yang berperilaku cukup baik. Ada beberapa logika modal yang secara khusus
+menarik, baik karena memiliki interpretasi dan penerapan yang menarik,
+tetapi terutama karena secara teoretis telah dipahami dengan baik. Inilah
+yang disebut logika modal normal.
+
+\begin{defn}\ollabel{defn:modal-logic}
+Suatu \emph{logika modal}~$\Log L$ adalah himpunan !!{formula}s dalam
+bahasa modal dasar yang
+\begin{enumerate}
+\item memuat semua tautologi proposisional;
+\item tertutup di bawah substitusi seragam; dan
+\item tertutup di bawah modus ponens, yakni setiap kali $!A$ dan $(!A \lif
+  !B) \in \Log L$, maka $!B \in \Log L$ pula.
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+Beberapa himpunan !!{formula}s yang memang tidak terlalu menarik, tetapi
+memenuhi definisi ini dan karena itu terhitung sebagai logika modal, ialah:
+\begin{enumerate}
+\item himpunan semua tautologi;
+\item himpunan semua !!{formula}s (logika modal tak konsisten).
+\end{enumerate}
+\end{ex}
+
+\begin{defn}\label{defn:normal-modal-logic}
+Suatu logika modal~$\Log L$ \emph{normal} jika dan hanya jika
+\begin{enumerate}
+\item logika itu memuat keduanya,
+\begin{align}
+\tag{K} \Box(p \lif q) & \lif (\Box p \lif \Box q) \\
+\tag{Dual} \Diamond p & \liff \lnot \Box \lnot p,
+\end{align}
+\item dan tertutup di bawah nesesitasi, yakni setiap kali $!A \in
+  \Log L$, maka $\Box !A \in \Log L$ pula.
+\end{enumerate}
+\end{defn}
+
+Kita akan menjumpai dua cara utama untuk mendefinisikan logika modal. Cara
+pertama bersifat teori-bukti, sebagai himpunan !!{formula}s yang dapat
+diturunkan dalam sistem !!{derivation} tertentu. Cara kedua bersifat
+teori-model, sebagai himpunan !!{formula}s yang valid dalam kelas model
+tertentu. Ini mencerminkan keadaan dalam logika proposisional biasa (atau,
+dalam hal ini, logika orde pertama). Di sana pun kita dapat memilih suatu
+himpunan !!{formula}s dengan dua cara berbeda, misalnya sebagai himpunan
+tautologi yang benar dalam semua penetapan nilai-kebenaran dan sebagai
+himpunan semua !!{formula}s yang !!{derivable} dalam suatu sistem
+!!{derivation}. Bagi logika modal normal, cara ganda untuk menentukan logika
+modal ini dimungkinkan dengan menggunakan model relasional dan sistem bukti
+aksiomatik (jenis Hilbert).
+\end{document}

@@ -1,0 +1,346 @@
+% Part: proof-theory
+% Chapter: normalization
+% Section: reductions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{nor}{red}
+
+\olsection{Konversi Reduksi}
+
+Jika suatu potongan dalam !!a{proof} di \Log{N1i} mempunyai panjang~$1$,
+potongan itu merupakan segmen yang terdiri atas satu kemunculan !!{formula},
+dan !!{formula} tersebut sekaligus merupakan kesimpulan !!a{introduction}
+dan premis utama !!a{elimination}. Dalam bukti normalisasi, potongan seperti
+itu ``direduksi'' dengan mengganti sub-!!{proof} yang berakhir dengan
+pasangan !!{introduction}/!!{elimination} tersebut dengan !!{proof} baru
+yang menghapus pasangan inferensi itu. Penggantian tersebut dapat
+menghasilkan potongan baru. Namun, kita dapat meyakinkan diri bahwa
+potongan-potongan baru mempunyai peringkat lebih rendah daripada potongan
+yang direduksi. Jadi, !!{proof} baru mempunyai panjang potongan lebih rendah
+(karena potongan maksimal berpanjang~$1$ telah dihapus) atau peringkat
+potongan !!{proof} itu lebih rendah (jika potongan maksimal tersebut merupakan
+satu-satunya potongan maksimal).
+
+Sebagai contoh, jika inferensi yang terlibat ialah \Intro{\lif} dan
+\Elim{\lif}, $!A \ident !B \lif !C$, dan terdapat
+sub-!!{proof}~$\delta_1$ yang berakhir dengan:
+\[
+\AxiomC{$\Discharge{!B}{x}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$!C$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!B \lif !C$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\DeduceC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DisplayProof
+\]
+Untuk menghapus potongan ini, kita mengganti subbukti~$\delta_1$ dalam
+$\delta$ dengan yang berikut:
+\[
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\DeduceC{$!B$}
+\RightLabel{$\Subst{\delta_2}{\delta_3}{!B^x}$}
+\DeduceC{$!C$}
+\DisplayProof
+\]
+Dengan $\Subst{\delta_2}{\delta_3}{!B^x}$ kita maksudkan !!{proof} yang
+diperoleh dari~$\delta_2$ dengan mengganti setiap asumsi~$!B$ berlabel~$x$
+dengan seluruh !!{proof}~$\delta_3$. !!^a{proof} ini tidak lagi mempunyai
+asumsi terbuka berbentuk~$!B$ dengan label~$x$. Tidak ada asumsi lain yang
+berlabel~$x$, sebab seperti biasa kita mengandaikan bahwa tidak ada dua
+!!{formula}s yang muncul sebagai asumsi dengan label sama. Oleh karena itu,
+!!{proof} baru mempunyai asumsi terbuka yang sama dengan~$\delta_1$; setiap
+inferensi dalam~$\delta_2$ yang melepaskan asumsi melepaskan asumsi yang
+sama dalam~$\Subst{\delta_2}{\delta_3}{!B^x}$; dan setiap inferensi dalam
+$\delta_3$ yang melepaskan asumsi dapat menghasilkan beberapa salinan yang
+melepaskan asumsi bersesuaian dalam~$\Subst{\delta_2}{\delta_3}{!B^x}$.
+
+Setiap potongan yang seluruhnya terletak dalam $\delta_2$ atau $\delta_3$,
+maupun seluruhnya di luar~$\delta_1$ dalam~$\delta$, tidak berubah: potongan
+itu masih melibatkan !!{formula}s yang sama dan melewati inferensi yang sama,
+sehingga khususnya mempunyai peringkat dan panjang sama dengan potongan
+bersesuaian dalam~$\delta$. Kita telah menghapus suatu potongan maksimal
+berpanjang~$1$ dan karena itu telah mengurangi panjang potongan, atau
+mengurangi peringkat potongan (jika panjang potongan~$\delta$ adalah~$1$
+dan ini merupakan satu-satunya potongan maksimal).
+
+Namun, dua hal dapat terjadi:
+\begin{enumerate}
+  \item Dengan mengganti semua asumsi $!B^x$ dengan $\delta_3$, kita telah
+  menggandakan semua potongan dalam~$\delta_3$. Jika beberapa di antaranya
+  merupakan potongan maksimal, panjang potongan !!{proof} baru dapat lebih
+  besar daripada panjang potongan !!{proof} lama. Kita harus menjamin agar
+  hal itu tidak terjadi. Caranya ialah menerapkan konversi reduksi hanya pada
+  potongan maksimal yang \emph{paling kanan}, yaitu potongan sedemikian
+  sehingga tidak ada potongan maksimal pada cabang melalui~$\delta$ yang
+  berada di sebelah kanan potongan yang direduksi. Jika terdapat potongan
+  dalam~$\delta_3$, potongan itu berada di sebelah kanan potongan yang sedang
+  direduksi, sehingga kita tidak sedang menangani potongan paling kanan.
+  Dengan selalu memilih potongan paling kanan, kita menjamin bahwa kita
+  mengurangi panjang potongan !!{proof}, atau bahkan mengurangi peringkat
+  potongannya.
+  \item Jika suatu asumsi $!B^x$ dalam $\delta_2$ merupakan premis utama
+  !!a{elimination}, dan inferensi terakhir~$\delta_3$ adalah \Elim{\lor},
+  \Elim{\lexists}, atau !!a{introduction}, kita telah menghasilkan potongan
+  baru dengan mencangkokkan~$\delta_3$ pada $\delta_2$ di asumsi tersebut.
+  Hal yang tadinya sekadar asumsi dalam~$\delta_2$ kini merupakan potongan
+  berpanjang~$1$ (kesimpulan !!a{introduction} dan premis utama
+  !!a{elimination}) atau kemunculan !!{formula} terakhir suatu segmen
+  potongan (premis utama !!a{elimination} dan kesimpulan \Elim{\lor} atau
+  \Elim{\lexists}). Jika $B^x$ merupakan premis minor \Elim{\lor} atau
+  \Elim{\lexists}, kemunculan itu sebelumnya sudah merupakan kemunculan
+  !!{formula} pertama suatu segmen, dan mungkin suatu segmen potongan. Dalam
+  !!{proof} baru, segmen tersebut kini mungkin lebih panjang. Namun,
+  perhatikan bahwa !!{formula} yang membentuk potongan baru atau segmen
+  potongan yang sudah ada ini ialah~$!B$, dan
+  $\depth{!B} < \depth{!B \lif !C}$. Jadi, walaupun kita mungkin telah
+  menambahkan potongan atau memperpanjang potongan, tidak satu pun darinya
+  merupakan potongan maksimal. Dengan demikian, kita telah mengurangi
+  peringkat potongan, atau, jika masih ada potongan berperingkat sama, telah
+  mengurangi panjang potongan.
+\end{enumerate}
+
+Proses mereduksi potongan berpanjang~$1$ disebut \emph{konversi reduksi}
+(atau \emph{konversi jalan memutar}). Pola bagi beberapa pasangan aturan
+diberikan dalam \olref{tab:reduction-conversions}. (Pola lainnya dibiarkan
+sebagai latihan.)
+
+\begin{table}
+\begin{multline*}
+\bottomAlignProof
+\AxiomC{$\Discharge{!B}{x}$}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!C$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!B \lif !C$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DisplayProof
+\quad \longrightarrow\quad
+\shoveright{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!B$}
+\RightLabel{$\Subst{\delta_2}{\delta_3}{!B^x}$}
+\shortDeduce
+\DeduceC{$!C$}
+\DisplayProof}
+\\[4ex]
+\shoveleft{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!C$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!B \land !C$}
+\RightLabel{\Elim{\land}[1]}
+\UnaryInfC{$!B$}
+\DisplayProof
+\quad \longrightarrow\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\DisplayProof}\qquad
+\shoveright{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!C$}
+\RightLabel{\Intro{\land}}
+\BinaryInfC{$!B \land !C$}
+\RightLabel{\Elim{\land}[2]}
+\UnaryInfC{$!C$}
+\DisplayProof
+\quad \longrightarrow\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!C$}
+\DisplayProof}
+\\[4ex]
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\RightLabel{\Intro{\lor}[1]}
+\UnaryInfC{$!B \lor !C$}
+\AxiomC{$\Discharge{!B}{x}$}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!D$}
+\AxiomC{$\Discharge{!C}{y}$}
+\RightLabel{$\delta_4$}
+\shortDeduce
+\DeduceC{$!D$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!D$}
+\DisplayProof
+\quad \longrightarrow\quad
+\shoveright{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B$}
+\RightLabel{$\Subst{\delta_3}{\delta_2}{!B^x}$}
+\shortDeduce
+\DeduceC{$!D$}
+\DisplayProof}
+\\[2ex]
+\shoveleft{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B(c)$}
+\RightLabel{\Intro{\lforall}}
+\UnaryInfC{$\lforall[x][!B(x)]$}
+\RightLabel{\Elim{\lforall}}
+\UnaryInfC{$!B(t)$}
+\DisplayProof
+\quad \longrightarrow\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\Subst{\delta_2}{t}{c}$}
+\shortDeduce
+\DeduceC{$!B(t)$}
+\DisplayProof}
+\\[4ex]
+\shoveright{\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B(t)$}
+\RightLabel{\Intro{\lexists}}
+\UnaryInfC{$\lexists[x][!B(x)]$}
+\AxiomC{$\Discharge{!B(c)}{x}$}
+\RightLabel{$\delta_3$}
+\shortDeduce
+\DeduceC{$!D$}
+\DischargeRule{\Elim{\lexists}}{x}
+\BinaryInfC{$!D$}
+\DisplayProof
+\quad \longrightarrow\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\shortDeduce
+\DeduceC{$!B(t)$}
+\RightLabel{$\Subst{\Subst{\delta_3}{t}{c}}{\delta_2}{!B(t)^x}$}
+\shortDeduce
+\DeduceC{$!D$}
+\DisplayProof}
+\end{multline*}
+\caption{Beberapa konversi reduksi bagi \Log{N1i}.}
+\ollabel{tab:reduction-conversions}
+\end{table}
+
+\begin{prob}
+Berikan konversi reduksi bagi \Intro{\lnot} yang diikuti \Elim{\lnot}.
+\end{prob}
+
+Masih ada satu kasus yang harus dipertimbangkan. Definisi potongan mencakup
+kasus ketika panjang potongan adalah~$1$ dan $!A$ merupakan kesimpulan
+\FalseInt{} sekaligus premis utama !!a{elimination}. Kasus ini ditangani
+dengan cara yang serupa dengan kasus ketika $!A$ merupakan kesimpulan
+!!a{introduction}. Sebagai contoh, ganti
+\[
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!B \lif !C$}
+\AxiomC{}
+\RightLabel{$\delta_3$}
+\DeduceC{$!B$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!C$}
+\DisplayProof
+\quad\text{dengan}\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!C$}
+\DisplayProof
+\]
+Kita harus sedikit berhati-hati dalam kasus $!A \ident (!B \lor !C)$ atau
+$!A \ident \lexists[x][!B(x)]$. Misalnya, jika kita mengganti
+\[
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!B \lor !C$}
+\AxiomC{$\Discharge{!B}{x}$}
+\RightLabel{$\delta_3$}
+\DeduceC{$!D$}
+\AxiomC{$\Discharge{!C}{y}$}
+\RightLabel{$\delta_4$}
+\DeduceC{$!D$}
+\DischargeRule{\Elim{\lor}}{x\,y}
+\TrinaryInfC{$!D$}
+\DisplayProof
+\quad\text{dengan}\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!D$}
+\DisplayProof
+\]
+kita mungkin memperkenalkan potongan baru dengan !!{formula} potongan~$!D$,
+dan tidak ada jaminan bahwa
+$\depth{!D} < \depth{!B \lor !C}$!{} Jadi, kita harus menempuh cara yang
+sama seperti pada reduksi \Intro{\lor}/\Elim{\lor}, yakni menggantinya
+dengan
+\[
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!B$}
+\RightLabel{$\delta_3$}
+\DeduceC{$!D$}
+\DisplayProof
+\quad\text{atau}\quad
+\bottomAlignProof
+\AxiomC{}
+\RightLabel{$\delta_2$}
+\DeduceC{$\lfalse$}
+\RightLabel{\FalseInt}
+\UnaryInfC{$!C$}
+\RightLabel{$\delta_4$}
+\DeduceC{$!D$}
+\DisplayProof
+\]
+
+\end{document}

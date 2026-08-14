@@ -1,0 +1,121 @@
+% Part: many-valued-logic
+% Chapter: three-valued-logics
+% Section: goedel
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{thr}{god}
+
+\olsection{Logika G\"odel}
+
+Kurt G\"odel memperkenalkan suatu barisan logika bernilai~$n$ yang masing-masing
+memuat semua !!{formula}s yang valid dalam logika intuisionistik dan termuat
+dalam logika klasik. Berikut adalah logika pertama yang menarik dalam barisan
+tersebut:
+
+\begin{defn}\ollabel{defn:goedel}
+\emph{Logika G\"odel bernilai~$3$}~$\LogGod$ didefinisikan dengan menggunakan
+matriks berikut:
+\begin{enumerate}
+  \item Bahasa proposisional baku~$\Lang L_0$ dengan $\lfalse$, $\lnot$,
+  $\land$, $\lor$, $\lif$.
+  \item Himpunan nilai kebenaran~$V=\{\True,\Undef,\False\}$.
+  \item $\True$ merupakan satu-satunya nilai yang ditetapkan, yakni
+  $V^+=\{\True\}$.
+  \item Bagi $\lfalse$, kita mempunyai $\tf{\lfalse}=\False$. Fungsi
+  kebenaran bagi konektif lainnya diberikan oleh tabel-tabel berikut:
+  \begin{center}
+    \begin{tabular}{c|c}
+      $\tf{\lnot}[\LogGod]$ & \\
+      \hline
+      $\True$ & $\False$ \\
+      $\Undef$ & $\False$ \\
+      $\False$ & $\True$
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc}
+      $\tf{\land}[\LogGod]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\
+      $\Undef$ & $\Undef$ & $\Undef$ & $\False$\\
+      $\False$ & $\False$ & $\False$ & $\False$
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc}
+      $\tf{\lor}[\LogGod]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\True$ & $\True$ \\
+      $\Undef$ & $\True$ & $\Undef$ & $\Undef$ \\
+      $\False$ & $\True$ & $\Undef$ & $\False$
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc}
+      $\tf{\lif}[\LogGod]$ & $\True$ & $\Undef$ & $\False$ \\
+      \hline
+      $\True$ & $\True$ & $\Undef$ & $\False$ \\
+      $\Undef$ & $\True$ & $\True$ & $\False$  \\
+      $\False$ & $\True$ & $\True$ & $\True$
+    \end{tabular}
+  \end{center}
+\end{enumerate}
+\end{defn}
+
+Perhatikan bahwa tabel kebenaran bagi $\land$ dan~$\lor$ sama seperti dalam
+logika \L ukasiewicz dan logika Kleene kuat, sedangkan tabel kebenaran bagi
+$\lnot$ dan~$\lif$ berbeda pada masing-masing logika. Dalam logika G\"odel,
+$\tf{\lnot}(\Undef)=\False$. Berbeda dari logika \L ukasiewicz dan logika
+Kleene, $\tf{\lif}(\Undef,\False)=\False$; berbeda dari logika Kleene
+(tetapi sama seperti dalam logika \L ukasiewicz),
+$\tf{\lif}(\Undef,\Undef)=\True$.
+
+Sebagaimana disiratkan oleh hubungan dengan logika intuisionistik yang disebut
+di atas, $\LogGod[3]$ dekat dengan logika intuisionistik. Semua kebenaran
+intuisionistik merupakan tautologi dalam~$\LogGod[3]$, dan banyak tautologi
+klasik yang tidak valid secara intuisionistik juga bukan tautologi
+dalam~$\LogGod[3]$. Sebagai contoh, formula-formula berikut bukan tautologi:
+\begin{align*}
+  & p \lor \lnot p && (p \lif q) \lif (\lnot p \lor q) \\
+  & \lnot\lnot p \lif p && \lnot(\lnot p \land \lnot q) \lif (p \lor q) \\
+  & ((p \lif q) \lif p) \lif p && \lnot(p \lif q) \lif (p \land \lnot q)
+\end{align*}
+Akan tetapi, tidak setiap tautologi dari~$\LogGod[3]$ valid secara
+intuisionistik; contohnya ialah $\lnot\lnot p\lor\lnot p$ dan
+$(p\lif q)\lor(q\lif p)$.
+
+\begin{prob}
+  Berikan tabel kebenaran untuk menunjukkan bahwa formula-formula berikut
+  merupakan tautologi dari~$\LogGod[3]$:
+  \begin{align*}
+    & \lnot\lnot p \lor \lnot p\\
+    & (p \lif q) \lor (q \lif p) \\
+    & \lnot(p \land q) \lif (\lnot p \lor \lnot q) \\
+    & (p \lif q) \lor (q \lif r) \lor (r \lif s)
+  \end{align*}
+\end{prob}
+
+\begin{prob}
+  Berikan tabel kebenaran untuk menunjukkan bahwa formula-formula berikut
+  bukan tautologi dari~$\LogGod[3]$:
+  \begin{align*}
+    & (p \lif q) \lif (\lnot p \lor q) \\
+    & \lnot(\lnot p \land \lnot q) \lif (p \lor q) \\
+    & ((p \lif q) \lif p) \lif p \\
+    & \lnot(p \lif q) \lif (p \land \lnot q)
+  \end{align*}
+\end{prob}
+
+\begin{prob}
+  Manakah di antara relasi-relasi berikut yang berlaku dalam logika G\"odel?
+  Berikan tabel kebenaran bagi masing-masing relasi.
+  \begin{enumerate}
+    \item $p,p\lif q\Entails q$
+    \item $p\lor q,\lnot p\Entails q$
+    \item $p\land q\Entails p$
+    \item $p\Entails p\land p$
+    \item $p\Entails p\lor q$
+  \end{enumerate}
+\end{prob}
+
+\end{document}

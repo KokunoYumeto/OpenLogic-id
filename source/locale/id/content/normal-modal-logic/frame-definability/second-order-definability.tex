@@ -1,0 +1,160 @@
+% Part: normal-modal-logic
+% Chapter: frame-correspondence
+% Section: standard-translation
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{frd}{st}
+
+\olsection{Keterdefinisian Orde Kedua}
+
+Tidak setiap sifat kerangka yang dapat didefinisikan oleh formula modal dapat
+didefinisikan secara orde pertama. Akan tetapi, jika kita mengizinkan
+kuantifikasi atas predikat satu-tempat (yakni kuantifikasi orde kedua monadik),
+kita dapat mendefinisikan semua sifat kerangka yang dapat didefinisikan secara
+modal. Caranya ialah memanfaatkan hubungan sistematis antara kondisi yang
+membuat suatu !!{formula} modal benar pada suatu dunia dan !!{formula}s orde
+pertama. Hubungan ini disebut terjemahan standar formula modal ke dalam
+formula orde pertama dalam bahasa yang bukan hanya memuat !!{predicate}
+dua-tempat~$Q$ bagi relasi aksesibilitas, tetapi juga !!{predicate}
+satu-tempat~$P_i$ bagi !!{propositional variable}s~$\Obj p_i$ yang muncul
+dalam~$!A$.
+
+\begin{defn}
+  \emph{Terjemahan standar}~$\ST_x(!A)$ didefinisikan secara induktif sebagai
+  berikut:
+  \begin{enumerate}
+  \tagitem{prvFalse}{\indcase{!A}{\lfalse}{$\ST_x(\indfrm)=\lfalse$.}}{}
+  \tagitem{prvTrue}{\indcase{!A}{\ltrue}{$\ST_x(\indfrm)=\ltrue$.}}{}
+  \item \indcase{!A}{\Obj p_i}{$\ST_x(\indfrm)=\Atom{P_i}{x}$.}
+  \tagitem{prvNot}{\indcase{!A}{\lnot !B}{$\ST_x(\indfrm)=\lnot \ST_x(!B)$.}}{}
+  \tagitem{prvAnd}{\indcase{!A}{(!B \land !C)}{$\ST_x(\indfrm)=(\ST_x(!B)
+      \land \ST_x(!C))$.}}{}
+  \tagitem{prvOr}{\indcase{!A}{(!B \lor !C)}{$\ST_x(\indfrm)=(\ST_x(!B)
+      \lor \ST_x(!C))$.}}{}
+  \tagitem{prvIf}{\indcase{!A}{(!B \lif !C)}{$\ST_x(\indfrm)=(\ST_x(!B)
+      \lif \ST_x(!C))$.}}{}
+  \tagitem{prvIff}{\indcase{!A}{(!B \liff !C)}{$\ST_x(\indfrm)=(\ST_x(!B)
+      \liff \ST_x(!C))}$.}{}
+  \tagitem{prvBox}{\indcase{!A}{\Box !B}{$\ST_x(\indfrm)=
+      \lforall[y][(\Atom{Q}{x,y} \lif \ST_y(!B))]$.}}{}
+  \tagitem{prvDiamond}{\indcase{!A}{\Diamond !B}{$\ST_x(\indfrm)=
+      \lexists[y][(\Atom{Q}{x,y} \land \ST_y(!B))]$.}}{}
+  \end{enumerate}
+\end{defn}
+
+Sebagai contoh, $\ST_x(\Box p\lif p)$ ialah
+$\lforall[y][(\Atom{Q}{x,y}\lif\Atom{P}{y})]\lif\Atom{P}{x}$. Setiap
+!!{structure} bagi bahasa~$\ST_x(!A)$ memerlukan suatu domain, suatu relasi
+dua-tempat yang ditetapkan kepada~$Q$, dan himpunan-himpunan bagian domain
+yang ditetapkan kepada !!{predicate}s satu-tempat~$P_i$. Dengan kata lain,
+komponen-komponen !!a{structure} semacam itu tepat merupakan komponen suatu
+model bagi~$!A$: domainnya ialah himpunan dunia, relasi dua-tempat yang
+ditetapkan kepada~$Q$ ialah relasi aksesibilitas, dan himpunan bagian yang
+ditetapkan kepada~$P_i$ tidak lain dari penetapan~$V(\Obj p_i)$. Karena itu,
+tidak mengherankan jika pemenuhan~$!A$ dalam suatu model modal bertepatan
+dengan pemenuhan~$\ST_x(!A)$ dalam !!{structure} yang bersesuaian.
+
+\begin{prop}\ollabel{prop:st}
+  Misalkan $\mModel{M}=\tuple{W,R,V}$, misalkan $\Struct{M'}$ merupakan
+  !!{structure} orde pertama dengan $\Domain{M'}=W$,
+  $\Assign{Q}{M'}=R$, dan $\Assign{P_i}{M'}=V(\Obj p_i)$, serta misalkan
+  $s(x)=w$. Maka
+  \[
+  \mSat{M}{!A}[w] \text{ jika dan hanya jika } \Sat{M'}{\ST_x(!A)}[s].
+  \]
+\end{prop}
+
+\begin{proof}
+  Melalui induksi pada~$!A$.
+\end{proof}
+
+\begin{prop}
+  Andaikan $!A$ suatu !!{formula} modal dan
+  $\mModel{F}=\tuple{W,R}$ suatu kerangka. Misalkan $\Struct{F'}$ merupakan
+  !!{structure} orde pertama dengan $\Domain{F'}=W$ dan
+  $\Assign{Q}{F'}=R$, dan misalkan $!A'$ merupakan formula orde kedua
+  \[
+  \lforall[X_1][\dots\lforall[X_n][\lforall[x][
+        \SSubst{\ST_x(!A)}{\subst{X_1}{P_1}, \dots,
+          \subst{X_n}{P_n}}]]],
+  \]
+  dengan $P_1$, \dots, $P_n$ semua !!{predicate}s satu-tempat
+  dalam~$\ST_x(!A)$. Maka
+  \[
+  \mModel{F}\Entails !A \text{ jika dan hanya jika } \Sat{F'}{!A'}.
+  \]
+\end{prop}
+
+\begin{proof}
+  $\Sat{F'}{!A'}$ jika dan hanya jika, bagi setiap !!{structure}
+  $\mModel{M'}$ dengan $\Assign{P_i}{M'}\subseteq W$ bagi
+  $i=1$, \dots,~$n$, dan bagi setiap~$s$ dengan $s(x)\in W$, berlaku
+  $\Sat{M'}{\ST_x(!A)}[s]$. Menurut \olref{prop:st}, hal itu berlaku jika
+  dan hanya jika, bagi semua model~$\mModel{M}$ yang berbasis
+  pada~$\mModel{F}$ dan setiap dunia~$w\in W$, berlaku
+  $\mSat{M}{!A}[w]$; yakni, $\mModel{F}\Entails !A$.
+\end{proof}
+
+\begin{defn}
+  Suatu kelas kerangka~$\mClass{F}$ \emph{dapat didefinisikan secara orde
+  kedua} jika terdapat !!a{sentence}~$!A$ dalam bahasa orde kedua dengan satu
+  !!{predicate} dua-tempat~$P$, dan semua kuantor orde keduanya merentang hanya
+  atas variabel himpunan monadik, sedemikian sehingga
+  $\mModel{F}=\tuple{W,R}\in\mClass{F}$ jika dan hanya jika
+  $\Sat{M}{!A}$ dalam !!{structure}~$\Struct{M}$ dengan $\Domain{M}=W$ dan
+  $\Assign{P}{M}=R$.
+\end{defn}
+
+\begin{cor}
+  Jika suatu kelas kerangka dapat didefinisikan oleh !!a{formula}~$!A$, kelas
+  relasi aksesibilitas yang bersesuaian dapat didefinisikan oleh suatu kalimat
+  orde kedua monadik.
+\end{cor}
+
+\begin{proof}
+  Kalimat orde kedua monadik~$!A'$ dalam pembuktian sebelumnya mempunyai sifat
+  yang disyaratkan.
+\end{proof}
+
+Sebagai contoh, perhatikan kembali !!{formula}~$\Box p\lif p$. Formula itu
+mendefinisikan refleksivitas. Tentu saja refleksivitas dapat didefinisikan
+secara orde pertama oleh !!{sentence}~$\lforall[x][\Atom{Q}{x,x}]$. Akan
+tetapi, refleksivitas juga dapat didefinisikan oleh !!{sentence} orde kedua
+monadik
+\[
+\lforall[X][\lforall[x][(\lforall[y][(\Atom{Q}{x,y} \lif \Atom{X}{y})]
+    \lif \Atom{X}{x})]].
+\]
+Tentu saja ini berarti bahwa kedua kalimat tersebut ekuivalen. Berikut cara
+untuk meyakinkan diri secara langsung. Mula-mula andaikan kalimat orde kedua
+itu benar dalam !!a{structure}~$\Struct{M}$. Karena $x$ dan~$X$
+dikuantifikasi secara universal, bagian selebihnya harus berlaku bagi
+sebarang $x\in W$ dan himpunan~$X\subseteq W$, misalnya himpunan
+$\Setabs{z}{Rxz}$ dengan $R=\Assign{Q}{M}$. Jadi, bagi sebarang~$s$ dengan
+$s(x)\in W$ dan $s(X)=\Setabs{z}{Rxz}$, berlaku
+$\Sat{M}{\lforall[y][(\Atom{Q}{x,y}\lif\Atom{X}{y})]\lif
+    \Atom{X}{x}}[s]$. Namun, menurut cara kita memilih~$s(X)$, hal itu berarti
+$\Sat{M}{\lforall[y][(\Atom{Q}{x,y}\lif\Atom{Q}{x,y})]\lif
+    \Atom{Q}{x,x}}[s]$, yang ekuivalen dengan~$\Atom{Q}{x,x}$ karena
+antesedennya valid. Karena $s(x)$ sebarang, kita memperoleh
+$\Sat{M}{\lforall[x][\Atom{Q}{x,x}]}$.
+
+Sekarang andaikan $\Sat{M}{\lforall[x][\Atom{Q}{x,x}]}$, dan tunjukkan bahwa
+$\Sat{M}{\lforall[X][\lforall[x][(\lforall[y][(\Atom{Q}{x,y}\lif
+        \Atom{X}{y})]\lif\Atom{X}{x})]]}$. Pilih sebarang penetapan~$s$ dan
+andaikan $\Sat{M}{\lforall[y][(\Atom{Q}{x,y}\lif\Atom{X}{y})]}[s]$.
+Misalkan $s'$ merupakan varian-$y$ dari~$s$ dengan $s'(y)=s(x)$; kita
+mempunyai $\Sat{M}{\Atom{Q}{x,y}\lif\Atom{X}{y}}[s']$, yakni
+$\Sat{M}{\Atom{Q}{x,x}\lif\Atom{X}{x}}[s]$. Karena
+$\Sat{M}{\lforall[x][\Atom{Q}{x,x}]}$, antesedennya benar, sehingga kita
+memperoleh $\Sat{M}{\Atom{X}{x}}[s]$, seperti yang perlu ditunjukkan.
+
+Karena beberapa kelas kerangka yang dapat didefinisikan tidak dapat
+didefinisikan secara orde pertama, tidak setiap !!{sentence} orde kedua
+monadik yang berbentuk~$!A'$ ekuivalen dengan suatu !!{sentence} orde pertama.
+Tidak ada metode efektif untuk menentukan kalimat mana yang demikian.
+
+\end{document}

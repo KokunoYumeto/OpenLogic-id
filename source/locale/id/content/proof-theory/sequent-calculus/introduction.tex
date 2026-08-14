@@ -1,0 +1,130 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{seq}{int}
+
+\olsection{Pendahuluan}
+
+Kalkulus sekuen adalah sistem !!{proof} yang diperkenalkan pada dekade 1930-an
+oleh Gerhard Gentzen. Sistem ini tidak terutama dimaksudkan sebagai metode
+praktis untuk !!{proving} sesuatu. Sebaliknya, Gentzen menggunakannya untuk
+membuktikan hasil-hasil tertentu tentang kemungkinan struktur !!{proof}s dan
+sifat-sifatnya. Pertanyaan semacam inilah yang menjadi pokok perhatian teori
+bukti.
+
+Sebagaimana tersirat dari namanya, kalkulus sekuen bekerja dengan
+\emph{sekuen}, bukan dengan !!{formula}s. Sekuen adalah pasangan barisan atau
+multihimpunan !!{formula}s. Sistem asal Gentzen (\Log{LK} dan \Log{LJ})
+menggunakan barisan; para ahli teori bukti kini lebih menyukai multihimpunan.
+Multihimpunan menyerupai himpunan, tetapi suatu !!{element} dapat muncul lebih
+dari sekali di dalam multihimpunan. Namun, seperti dalam himpunan, urutan
+!!{element}s tidak penting. Jadi, ekspresi $\{!A,!A,!B\}$ dan
+$\{!A,!B,!A\}$ mendeskripsikan multihimpunan yang sama, tetapi multihimpunan
+itu berbeda dari $\{!A,!B\}$ dan $\{!A,!A,!B,!B\}$, karena dua yang terakhir
+memuat jumlah $!A$ dan $!B$ yang berbeda dari yang pertama.
+
+Secara tradisional, multihimpunan !!{formula}s dalam teori bukti ditulis
+dengan huruf Yunani kapital. Jadi, ketika kita menulis $\Gamma$, $\Delta$,
+$\Pi$, $\Lambda$, atau $\Theta$, kita memaksudkannya sebagai multihimpunan
+!!{formula}s dari logika yang sedang digunakan. Secara tradisional pula,
+alih-alih menulis $\tuple{\Gamma,\Delta}$, para ahli teori bukti memisahkan
+kedua komponennya dengan simbol sekuen; kita menggunakan~$\Sequent$.
+
+\begin{defn}[Sekuen]
+Suatu \emph{sekuen} adalah ekspresi berbentuk
+\[
+\Gamma \Sequent \Delta
+\]
+dengan $\Gamma$ dan $\Delta$ sebagai multihimpunan berhingga (mungkin kosong)
+dari !!{formula}s. $\Gamma$ disebut \emph{anteseden}, sedangkan $\Delta$
+disebut \emph{sukseden}.
+\end{defn}
+
+Misalkan $!G$ adalah konjungsi !!{formula}s dalam~$\Gamma$ (dengan konjungsi
+kosong dianggap sebagai~$\ltrue$), dan $!D$ adalah disjungsi !!{formula}s
+dalam~$\Delta$ (dengan disjungsi kosong dianggap sebagai~$\lfalse$). Maka
+sekuen $\Gamma\Sequent\Delta$ benar (dalam suatu struktur~$\Struct{M}$) jika
+dan hanya jika $!G\lif !D$ benar. Dalam logika klasik, hal ini sama dengan
+mengatakan bahwa suatu !!{formula} dalam~$\Gamma$ salah atau suatu
+!!{formula} dalam~$\Delta$ benar.
+
+Jika $\Gamma$ merupakan multihimpunan !!{formula}s, kita menulis
+$\Gamma,!A$ (atau $!A,\Gamma$) bagi hasil penambahan $!A$ ke~$\Gamma$.
+Jika $\Delta$ juga merupakan multihimpunan !!{formula}s, maka
+$\Gamma,\Delta$ adalah gabungan multihimpunan keduanya---jika $\Gamma$
+memuat $!A$ dengan \emph{multiplisitas}~$n$ (yakni, memuat $n$ salinan~$!A$)
+dan $\Delta$ memuat $!A$ dengan multiplisitas~$m$, maka $\Gamma,\Delta$
+memuat $!A$ dengan multiplisitas~$n+m$. Jika multihimpunan pada salah satu
+sisi sekuen kosong, biasanya kita membiarkan sisi itu kosong. Misalnya,
+$\Sequent !A$ adalah sekuen dengan anteseden kosong dan sukseden yang memuat
+$!A$ dengan multiplisitas~$1$.
+
+!!^a{proof} dalam kalkulus sekuen adalah pohon sekuen, dengan sekuen-sekuen
+teratas (atau awal) sebagai aksioma dalam sistem yang ditinjau; jika suatu
+sekuen terletak di bawah satu atau dua sekuen lain, sekuen tersebut harus
+mengikuti secara benar melalui suatu aturan inferensi dalam sistem. Mula-mula
+kita akan meninjau dua sistem sekuen berbeda bagi logika klasik,
+$\Log{G1c}$ dan~$\Log{G3c}$. Aksioma dan aturannya diberikan dalam
+\cref{pt:seq:int:tab:G1c,pt:seq:int:tab:G3c}.
+\oliflabeldef{fol:seq::chap}{ (Sistem asal Gentzen \Log{LK} dideskripsikan
+dalam \olref[fol][seq][]{chap}.)}{}
+
+\subfile{rules-G1c}
+\subfile{rules-G3c}
+
+Kedua sistem berbeda secara halus, dan perbedaan tersebut menyebabkan sifat
+teori-bukti yang berbeda. \Log{G1c} mempunyai aksioma $!A\Sequent !A$ tanpa
+!!{formula} lain yang diizinkan. \Log{G3c} mempunyai aksioma berbentuk
+$!C,\Gamma\Sequent\Delta,!C$ dengan !!{formula}s ``samping'' sebarang dalam
+$\Gamma$ dan~$\Delta$, tetapi !!{formula}~$!C$ yang muncul pada kedua sisi
+harus \emph{atomik}. \Log{G1c} masing-masing mempunyai dua versi aturan
+$\LeftR{\land}$ dan $\RightR{\lor}$, sedangkan \Log{G3c} masing-masing hanya
+mempunyai satu. Selain itu, \Log{G1c} mempunyai ``aturan struktural''
+tambahan yang disebut ``kontraksi''
+(\LeftR{\Contraction}, \RightR{\Contraction}) dan ``pelemahan''
+(\LeftR{\Weakening}, \RightR{\Weakening}).
+
+Sistem \Log{G1c} dan \Log{G3c} sama-sama sahih dan lengkap bagi logika
+klasik. Dengan kata lain, setiap sekuen yang !!{provable} dalam sistem ini
+benar dalam setiap !!{structure}, dan setiap sekuen yang benar dalam setiap
+!!{structure} mempunyai !!a{proof}. Jadi, pertanyaan \emph{apakah} suatu
+sekuen mempunyai !!a{proof} juga dapat dijawab dengan metode logika lain
+(misalnya metode teori model). Karena kedua sistem !!{prove} tepat sekuen
+yang benar dalam setiap !!{structure}, keduanya secara khusus membuktikan
+sekuen-sekuen yang sama.
+
+Namun, teori bukti tidak hanya membahas \emph{apakah} sesuatu dapat
+dibuktikan, tetapi juga \emph{bagaimana}. Para ahli teori bukti mengajukan
+pertanyaan seperti ``Dapatkah aturan tertentu selalu dihindari?'', ``Dapatkah
+aturan ini ditambahkan pada sistem tanpa membuat sekuen baru menjadi dapat
+dibuktikan?'', atau ``Dapatkah !!{proof}s dalam satu sistem diubah menjadi
+!!{proof}s dalam sistem lain?'' Jika jawaban atas pertanyaan semacam itu
+adalah ``ya'', faktanya sering dibuktikan melalui induksi pada kompleksitas
+!!{proof}s, atau secara ekuivalen melalui induksi pada struktur !!{proof}s.
+Hal ini tidak hanya menghasilkan bukti bagi fakta tersebut (misalnya, jika
+\Log{G1c} membuktikan suatu sekuen, maka \Log{G3c} membuktikan sekuen yang
+sama), tetapi juga suatu prosedur (misalnya, untuk mengubah !!{proof}s dalam
+\Log{G1c} menjadi !!{proof}s dalam~\Log{G3c}).
+
+Salah satu hasil utama teori bukti adalah \emph{teorema eliminasi potongan}.
+Teorema itu menunjukkan bahwa kita dapat menambahkan aturan potongan
+\[
+\Axiom$\Gamma \fCenter \Delta, !A$
+\Axiom$!A, \Pi \fCenter \Lambda$
+\RightLabel{\Cut}
+\BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
+\DisplayProof
+\]
+pada sistem sekuen tanpa mengubah sekuen mana yang !!{provable}. Lebih jauh,
+buktinya memberikan metode yang mengubah setiap !!{proof} yang menggunakan
+aturan \Log{G1c} (atau \Log{G3c}) bersama \Cut{} menjadi bukti yang hanya
+menggunakan aturan \Log{G1c} (atau \Log{G3c}). Dengan kata lain, prosedur
+ini ``mengeliminasi'' aturan \Cut{} dari !!{proof}s yang menggunakannya;
+karena itulah namanya.
+
+\end{document}

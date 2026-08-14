@@ -1,0 +1,158 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: lindenbaum
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{sc}{lin}
+
+\olsection{Lema Lindenbaum}
+
+Teorema kelengkapan bagi logika intuisionistik dibuktikan dengan mengandaikan
+$\Gamma \Proves/ !A$ dan mengonstruksi model yang memenuhi
+$\mSat{M}{\Gamma}$ dan~$\mSat/{M}{!A}$.
+
+Dalam logika klasik, relasi !!{derivability} dapat direduksi menjadi gagasan
+konsistensi karena !!a{formula}~$!A$ !!{derivable} dari suatu himpunan
+!!{formula}s jika dan hanya jika himpunan itu bersama negasi~$!A$ tidak
+konsisten. Hal ini tidak mungkin dilakukan dalam logika intuisionistik. Dalam
+logika intuisionistik, jika $\lnot!A$ tidak konsisten, kita hanya memperoleh
+$\Proves \lnot\lnot !A$. Karena $\lnot\lnot!A \lif !A$ secara umum tidak
+berlaku secara intuisionistik, kita tidak dapat menyimpulkan
+$\Proves !A$.
+
+Oleh karena itu, ketika mengonstruksi model~$\mModel{M}$, kita perlu terus
+mencatat ketak-!!{derivability} !!{formula}~$!A$. Dengan demikian, kita tidak
+dapat menggunakan himpunan lengkap $\Gamma^* \supseteq \Gamma$ untuk
+membangun model~$\mModel{M}$, sebab dalam setiap himpunan lengkap
+$\Gamma^*$, berlaku $\Gamma^* \Proves !A \lor \lnot !A$.
+
+Sebagai ganti himpunan lengkap~$\Gamma^*$, kita menggunakan gagasan himpunan
+prima formula:
+
+\begin{defn}\ollabel{defn:prime}
+  Suatu himpunan !!{formula}s~$\Gamma$ disebut 
+  \emph{prima} jika dan hanya jika
+  \begin{enumerate}
+  \item\ollabel{defn:prime1} $\Gamma$ konsisten, yakni
+    $\Gamma \Proves/ \lfalse$;
+  \item\ollabel{defn:prime2} jika $\Gamma \Proves !A$, maka
+    $!A \in \Gamma$; dan
+  \item\ollabel{defn:prime3} jika $!A \lor !B \in \Gamma$, maka
+    $!A \in \Gamma$ atau $!B \in \Gamma$.
+  \end{enumerate}
+\end{defn}
+
+\begin{lem}[Lema Lindenbaum]
+  \ollabel{lem:lindenbaum} Jika $\Gamma \Proves/ !A$, terdapat
+  $\Gamma^* \supseteq \Gamma$ sedemikian sehingga $\Gamma^*$ prima dan
+  $\Gamma^* \Proves/ !A$.
+\end{lem}
+
+\begin{proof}
+  Misalkan $!B_1 \lor !C_1$, $!B_2 \lor !C_2$, \dots, merupakan enumerasi
+  semua !!{formula}s berbentuk~$!B \lor !C$. Kita akan mendefinisikan suatu
+  barisan menaik himpunan !!{formula}s~$\Gamma_n$, dengan setiap
+  $\Gamma_{n+1}$ didefinisikan sebagai $\Gamma_n$ bersama satu !!{formula}
+  baru. $\Gamma^*$ akan menjadi gabungan semua~$\Gamma_n$. !!^{formula}s
+  baru dipilih sedemikian sehingga $\Gamma^*$ prima dan tetap memenuhi
+  $\Gamma^* \Proves/ !A$. Ini berarti bahwa pada setiap tahap kita harus
+  menemukan disjungsi pertama~$!B_i \lor !C_i$ sedemikian sehingga:
+  \begin{enumerate}
+  \item\ollabel{gamma-1} $\Gamma_n \Proves !B_i \lor !C_i$
+  \item\ollabel{gamma-2} $!B_i \notin \Gamma_n$ dan
+    $!C_i \notin \Gamma_n$.
+  \end{enumerate}
+  Kita menambahkan $!B_i$ ke $\Gamma_n$ jika
+  $\Gamma_n \cup \{!B_i\} \Proves/ !A$, dan menambahkan $!C_i$ jika tidak.
+  Kita perlu menunjukkan bahwa prosedur ini berhasil. Untuk sementara,
+  definisikan $i(n)$ sebagai $i$ terkecil sedemikian sehingga
+  \olref{gamma-1} dan~\olref{gamma-2} berlaku.
+
+  Definisikan $\Gamma_0 = \Gamma$ dan
+  \[
+  \Gamma_{n+1} = \begin{cases}
+    \Gamma_n \cup \{!B_{i(n)}\} &
+    \text{jika $\Gamma_n \cup \{!B_{i(n)}\} \Proves/ !A$} \\
+    \Gamma_n \cup \{!C_{i(n)}\} & \text{jika tidak}
+    \end{cases}
+  \]
+  Jika $i(n)$ tidak terdefinisi, yakni jika setiap kali
+  $\Gamma_n \Proves !B \lor !C$, berlaku $!B \in \Gamma_n$ atau
+  $!C \in \Gamma_n$, kita menetapkan $\Gamma_{n+1}=\Gamma_n$. Sekarang
+  tetapkan $\Gamma^* = \bigcup_{n=0}^\infty \Gamma_n$.
+
+  Pertama, kita menunjukkan bahwa untuk semua $n$,
+  $\Gamma_n \Proves/ !A$. Kita melakukan induksi pada~$n$. Untuk $n=0$,
+  klaim berlaku berdasarkan hipotesis teorema, yakni
+  $\Gamma \Proves/ !A$. Jika $n>0$, kita harus menunjukkan bahwa jika
+  $\Gamma_n \Proves/ !A$, maka $\Gamma_{n+1} \Proves/ !A$. Jika $i(n)$
+  tidak terdefinisi, $\Gamma_{n+1}=\Gamma_n$ dan tidak ada yang perlu
+  dibuktikan. Jadi, andaikan $i(n)$ terdefinisi. Agar ringkas, tetapkan
+  $i=i(n)$.
+
+  Kita membuktikan kontraposisi klaim tersebut. Andaikan
+  $\Gamma_{n+1} \Proves !A$. Berdasarkan konstruksi,
+  $\Gamma_{n+1}=\Gamma_n\cup\{!B_i\}$ jika
+  $\Gamma_n\cup\{!B_i\}\Proves/ !A$; jika tidak,
+  $\Gamma_{n+1}=\Gamma_n\cup\{!C_i\}$. Jelas bahwa kasus pertama tidak
+  mungkin, sebab dalam kasus itu $\Gamma_{n+1}\Proves/ !A$. Jadi,
+  $\Gamma_n\cup\{!B_i\}\Proves !A$ dan
+  $\Gamma_{n+1}=\Gamma_n\cup\{!C_i\}$. Menurut definisi $i(n)$,
+  $\Gamma_n\Proves !B_i\lor !C_i$. Kita mempunyai
+  $\Gamma_n\cup\{!B_i\}\Proves !A$. Kita juga mempunyai
+  $\Gamma_{n+1}=\Gamma_n\cup\{!C_i\}\Proves !A$. Oleh karena itu,
+  $\Gamma_n\Proves !A$, sebagaimana hendak ditunjukkan.
+
+  Jika $\Gamma^*\Proves !A$, terdapat suatu himpunan bagian berhingga
+  $\Gamma'\subseteq\Gamma^*$ sedemikian sehingga $\Gamma'\Proves !A$.
+  Jika $\Gamma'=\emptyset$, maka $\Gamma_0\Proves !A$, yang langsung
+  bertentangan dengan hasil di atas. Jika $\Gamma'\ne\emptyset$, setiap
+  $!D\in\Gamma'$ harus termuat dalam $\Gamma_i$ untuk suatu~$i$. Misalkan
+  $n$ merupakan indeks terbesar di antara indeks-indeks tersebut. Karena
+  $\Gamma_i\subseteq\Gamma_n$ jika $i\le n$, berlaku
+  $\Gamma'\subseteq\Gamma_n$. Namun, ini mengakibatkan
+  $\Gamma_n\Proves !A$, bertentangan dengan hasil di atas bahwa
+  $\Gamma_n\Proves/ !A$.
+
+  Terakhir, kita menunjukkan bahwa $\Gamma^*$ prima, yakni memenuhi syarat
+  \olref{defn:prime1}, \olref{defn:prime2}, dan~\olref{defn:prime3} dalam
+  \olref{defn:prime}.
+
+  Pertama, $\Gamma^*\Proves/ !A$, sehingga $\Gamma^*$ konsisten dan
+  \olref{defn:prime1} berlaku.
+
+  Sekarang kita menunjukkan bahwa jika $\Gamma^*\Proves !B\lor !C$, maka
+  $!B\in\Gamma^*$ atau $!C\in\Gamma^*$. Ini membuktikan
+  \olref{defn:prime3}, sebab jika $!B\lor !C\in\Gamma^*$, maka
+  $\Gamma^*\Proves !B\lor !C$. Jadi, andaikan
+  $\Gamma^*\Proves !B\lor !C$, tetapi $!B\notin\Gamma^*$ dan
+  $!C\notin\Gamma^*$. Karena $\Gamma^*\Proves !B\lor !C$, berlaku
+  $\Gamma_n\Proves !B\lor !C$ untuk suatu~$n$. $!B\lor !C$ muncul dalam
+  enumerasi semua disjungsi, katakanlah sebagai $!B_j\lor !C_j$.
+  $!B_j\lor !C_j$ memenuhi sifat-sifat dalam definisi $i(n)$: kita
+  mempunyai $\Gamma_n\Proves !B_j\lor !C_j$, sedangkan
+  $!B_j\notin\Gamma_n$ dan $!C_j\notin\Gamma_n$. Pada setiap tahap selama
+  disjungsi ke-$j$ belum diproses, satu disjungsi yang memenuhi syarat dan
+  berindeks tidak lebih dari~$j$ tersingkir karena kita menambahkan salah satu
+  disjungennya. Hanya ada berhingga banyak indeks demikian. Karena itu, pada
+  suatu tahap~$m$ akan berlaku $j=i(m)$. Namun, kemudian
+  $!B\in\Gamma_{m+1}$ atau
+  $!C\in\Gamma_{m+1}$, bertentangan dengan asumsi bahwa
+  $!B\notin\Gamma^*$ dan $!C\notin\Gamma^*$.
+
+  Sekarang andaikan $\Gamma^*\Proves !B$. Maka
+  $\Gamma^*\Proves !B\lor !B$. Namun, kita baru saja membuktikan bahwa jika
+  $\Gamma^*\Proves !B\lor !B$, maka $!B\in\Gamma^*$. Jadi, $\Gamma^*$
+  memenuhi~\olref{defn:prime2} dalam~\olref{defn:prime}.
+\end{proof}
+
+\begin{prob}
+Tunjukkan bahwa jika $\Gamma \Proves/ \bot$, maka $\Gamma$ konsisten dalam
+logika klasik, yakni terdapat suatu valuasi yang membuat semua formula
+dalam~$\Gamma$ benar.
+\end{prob}
+
+\end{document}

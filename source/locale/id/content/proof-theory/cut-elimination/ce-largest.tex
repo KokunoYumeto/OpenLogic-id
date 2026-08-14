@@ -1,0 +1,352 @@
+% Part: proof-theory
+% Chapter: cut-elimination
+% Section: ce-largest
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{cut}{inv}
+
+\olsection{Menghapus Potongan Berperingkat Terbesar}
+
+Bukti \olref[seq][inv]{lem:G3c-invert} menunjukkan bahwa jika \Log{G3c}
+!!{prove} kesimpulan suatu aturan logis (selain \RightR{\lexists} dan
+\LeftR{\lforall}), maka sistem itu juga !!{prove} setiap premis aturan itu
+tanpa menambah !!{height} bukti. Kita dapat menunjukkan hasil yang lebih
+kuat: hal ini berlaku pula untuk $\Log{G3c} + \CutCS$.
+
+Seperti sebelumnya, kita mendefinisikan \emph{peringkat potongan} suatu
+inferensi \CutCS{} sebagai kedalaman !!{formula} potongannya.
+
+\begin{lem}\ollabel{lem:inv-G3c-cut}
+Jika $\Log{G3c} + \CutCS$ !!{prove} kesimpulan suatu aturan logis~$R$
+selain \RightR{\lexists} atau \LeftR{\lforall} dengan menggunakan
+!!a{proof}~$\pi$, maka sistem itu juga !!{prove} setiap premis dengan
+!!{proof}~$\pi'$ (atau !!{proof}s~$\pi'$, $\pi''$, bergantung pada apakah
+aturan tersebut mempunyai satu atau dua premis). Selain itu,
+(a)~$\pheight{\pi'}\le\pheight{\pi}$ (dan
+$\pheight{\pi''}\le\pheight{\pi}$) serta (b)~banyaknya inferensi \CutCS{}
+maupun peringkat masing-masing sama dalam~$\pi'$ (dan $\pi''$) seperti
+dalam~$\pi$.
+\end{lem}
+
+\begin{proof}
+Dengan memeriksa bukti
+\cref{pt:seq:inv:lem:G3c-invert,pt:seq:inv:lem:invert-quant}. Bukti tersebut
+berjalan melalui induksi pada~$\pheight{\pi}$. Dalam kasus dasar, kita
+mengganti suatu aksioma dengan aksioma lain. Jadi, kondisi (a) dan~(b)
+terpenuhi secara sepele. Jika aturan terakhir dalam~$\pi$ adalah~$R$,
+sub-!!{proof}s langsungnya adalah !!{proof}s~$\pi_i$ yang kita inginkan,
+dan (a) maupun~(b) terpenuhi. Dalam semua kasus lain, kita menerapkan
+hipotesis induksi pada sub-!!{proof}s langsung dari~$\pi$, yakni yang
+menuju ke premis-premis inferensi terakhir~$R$, lalu menerapkan aturan~$R$
+yang sama pada hasilnya. Kondisi (a) dan~(b) berlaku bagi sub-!!{proof}s
+langsung bukti baru, sehingga (a) dan~(b) berlaku bagi seluruh bukti. Tinggal
+memeriksa kasus ketika inferensi terakhir adalah~\CutCS. Sekali lagi, kita
+hanya membahas satu contoh: andaikan $\pi$ merupakan !!a{proof} dari
+kesimpulan $!B \land !C, \Gamma \Sequent \Delta$ milik
+\LeftR{\land}, dan berakhir dengan~\CutCS:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!B \land !C, \Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A, !B \land !C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B \land !C, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Hipotesis induksi berlaku pada $\pi_1$ dan~$\pi_2$ (yang juga merupakan
+!!{proof}s atas instansiasi kesimpulan $\LeftR{\land}$) dan menghasilkan
+!!{proof}s $\pi_1'$ dan~$\pi_2'$ masing-masing dari $!B, !C, \Gamma
+\fCenter \Delta, !A$ dan $!A, !B, !C, \Gamma \fCenter \Delta$. Kita
+menggabungkannya dengan \CutCS{} untuk memperoleh~$\pi'$:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, !C, \Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!A, !B, !C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B, !C, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Jelaslah bahwa (a) dan~(b) terpenuhi.
+\end{proof}
+
+Perhatikan bahwa cara ini tidak akan berhasil jika kita menggunakan \Cut{}
+alih-alih \CutCS, sebab kesimpulan !!{proof} terakhir itu akan mempunyai dua
+salinan $!B, !C, \Gamma$ dalam anteseden dan dua salinan $\Delta$ dalam
+suksedennya. Kita harus mengacu pada dapat diterimanya kontraksi, tetapi
+bukti \olref[seq][inv]{prop:G3c-cont-adm} menggunakan lema keterbalikan.
+Dengan demikian, kita akan berargumen secara melingkar.
+
+Kita dapat menggunakan \cref{pt:cut:inv:lem:inv-G3c-cut} untuk memberikan
+bukti alternatif eliminasi potongan. Dalam bukti ini, kita tidak secara
+berturut-turut menghapus kemunculan teratas inferensi \CutCS{}, melainkan
+kemunculan inferensi \CutCS{} yang berperingkat maksimal. Artinya, kita
+memulai dengan !!a{proof}~$\pi$ dalam $\Log{G3c} + \CutCS$, lalu menghapus
+suatu potongan di mana saja di dalamnya (mungkin dengan menggantinya dengan
+potongan berperingkat lebih rendah)---dan terus melakukannya hingga tidak ada
+potongan yang tersisa. Satu-satunya syarat ialah bahwa di atas potongan yang
+kita tangani tidak terdapat potongan berperingkat sama atau lebih tinggi.
+
+\begin{lem}\ollabel{lem:max-cut-red-G3c}
+Jika $\pi$ adalah !!a{proof} dalam $\Log{G3c}+\CutCS$ yang berakhir dengan
+inferensi~\CutCS{} berperingkat~$n$, dan selebihnya hanya menggunakan
+aturan-aturan~$\Log{G3c}$ serta inferensi \CutCS{} berperingkat $<n$, maka
+terdapat bukti~$\pi'$ atas sekuen akhir yang sama dalam~$\Log{G3c} +
+\CutCS$, dengan setiap inferensi \CutCS{} berperingkat~$<n$.
+\end{lem}
+
+\begin{proof}
+!!{proof}~$\pi$ berakhir dengan:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Kita membedakan kasus-kasus menurut bentuk~$!A$.
+
+Andaikan $!A$ atomik. Perhatikan bahwa syarat semua inferensi \CutCS{} dalam
+$\pi_1$ dan $\pi_2$ harus mempunyai peringkat $< \depth{!A} = 0$
+menyiratkan bahwa tidak mungkin ada inferensi \CutCS{} dalam~$\pi_1$
+ataupun~$\pi_2$. Kita menunjukkan bahwa $\Gamma \Sequent \Delta$ mempunyai
+bukti bebas-potongan melalui induksi pada $\pheight{\pi_2}$. Jika
+$\pheight{\pi_2} = 0$, maka $!A, \Gamma \Sequent \Delta$ adalah suatu
+aksioma. Jika $!A$ tidak prinsipal, suatu $!C$ atomik merupakan
+!!a{element} dari~$\Gamma$ maupun $\Delta$, dan $\Gamma \Sequent \Delta$
+sendiri merupakan aksioma. Jika $!A$ prinsipal, maka $\Delta = \Delta',
+!A$. Dalam hal ini, $\pi_1$ berakhir dengan $\Gamma \Sequent \Delta', !A,
+!A$. Kita memperoleh bukti bebas-potongan dari $\Gamma \Sequent \Delta',
+!A$ dengan menerapkan \olref[seq][inv]{prop:G3c-cont-adm} (dapat diterimanya
+kontraksi). Jika $\pheight{\pi_2} > 0$, bukti itu berakhir dengan suatu
+aturan~$R$. Ambil salah satu premis aturan tersebut: premis itu berbentuk
+$!A, \Gamma', \Pi \Sequent \Delta', \Lambda$, dengan $\Pi$ dan $\Lambda$
+sebagai !!{formula}s aktif dari~$R$. Penerapan
+\olref[seq][adm]{prop:weak-G3c-adm} pada~$\pi_1$ dan $\pi_2$ menghasilkan
+!!{proof}s dari $\Gamma, \Gamma', \Pi \Sequent \Delta, \Delta', \Lambda,
+!A$ dan $!A, \Gamma, \Gamma', \Pi \Sequent \Delta, \Delta', \Lambda$,
+yang memenuhi hipotesis induksi. Dengan demikian, kita memperoleh !!a{proof}
+dari $\Gamma, \Gamma', \Pi \Sequent \Delta, \Delta', \Lambda$ untuk
+setiap premis~$R$. Penerapan $R$ menghasilkan $\Gamma, \Gamma \Sequent
+\Delta, \Delta$, lalu \olref[seq][inv]{prop:G3c-cont-adm} memberikan bukti
+bebas-potongan dari $\Gamma \Sequent \Delta$.
+
+Jika $!A$ tidak atomik, kita membedakan kasus-kasus menurut !!{main
+operator} dari~$!A$. Dalam setiap kasus, kita menerapkan
+\olref{lem:inv-G3c-cut} untuk memperoleh !!{proof}s atas premis-premis aturan
+kiri dan kanan dengan $!A$ sebagai formula prinsipal. Lalu kita melanjutkan
+seperti dalam kasus~E pada bukti \olref[top]{lem:cut-adm-G3c}.
+\begin{enumerate}
+  \item $!A \ident \lnot !B$. !!{proof}s $\pi_1$ dan $\pi_2$ berakhir
+  dengan $\Gamma \Sequent \Delta, \lnot !B$ dan $\lnot !B, \Gamma \Sequent
+  \Delta$. Menurut \olref{lem:inv-G3c-cut}, terdapat !!{proof}s $\pi_1'$
+  dan $\pi_2'$ dari $!B, \Gamma \Sequent \Delta$ dan $\Gamma \Sequent
+  \Delta, !B$. !!{proof}~$\pi'$ ialah:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_2'$}
+  \Deduce$\Gamma \fCenter \Delta, !B$
+  \AxiomC{}
+  \RightLabel{$\pi_1'$}
+  \Deduce$!B, \Gamma \fCenter \Delta$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma \fCenter \Delta$
+  \DisplayProof
+  \]
+  \item $!A \ident (!B \lor !C)$. !!{proof}s $\pi_1$ dan $\pi_2$
+  berakhir dengan $\Gamma \Sequent \Delta, !B \lor !C$ dan $!B \lor !C,
+  \Gamma \Sequent \Delta$. Menurut \olref{lem:inv-G3c-cut} (keterbalikan
+  untuk \RightR{\lor} yang diterapkan pada~$\pi_1$), terdapat !!a{proof}
+  $\pi_1'$ dari $\Gamma \Sequent \Delta, !B, !C$. Menurut
+  \olref{lem:inv-G3c-cut} (keterbalikan untuk \LeftR{\lor} yang diterapkan
+  pada~$\pi_2$), terdapat !!a{proof} $\pi_2'$ dari $!B, \Gamma \Sequent
+  \Delta$ dan !!a{proof} $\pi_2''$ dari $!C, \Gamma \Sequent \Delta$.
+  Dengan menerapkan \olref[seq][adm]{prop:weak-G3c-adm} pada $\pi_2''$,
+  kita juga memperoleh !!a{proof}~$\pi_2'''$ dari $!C, \Gamma \Sequent
+  \Delta, !B$. !!{proof}~$\pi'$ ialah:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1'$}
+  \Deduce$\Gamma \fCenter \Delta, !B, !C$
+  \AxiomC{}
+  \RightLabel{$\pi_2'''$}
+  \Deduce$!C, \Gamma \fCenter \Delta, !B$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma \fCenter \Delta, !B$
+  \AxiomC{}
+  \RightLabel{$\pi_2'$}
+  \Deduce$!B, \Gamma \fCenter \Delta$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma \fCenter \Delta$
+  \DisplayProof
+  \]
+  \item $!A \ident (!B \land !C)$. Latihan.
+  \item $!A \ident (!B \lif !C)$. !!{proof}s $\pi_1$ dan $\pi_2$
+  berakhir dengan $\Gamma \Sequent \Delta, !B \lif !C$ dan $!B \lif !C,
+  \Gamma \Sequent \Delta$. Menurut \olref{lem:inv-G3c-cut} (keterbalikan
+  untuk \RightR{\lif} yang diterapkan pada~$\pi_1$), terdapat !!a{proof}
+  $\pi_1'$ dari $!B, \Gamma \Sequent \Delta, !C$. Menurut
+  \olref{lem:inv-G3c-cut} (keterbalikan untuk \LeftR{\lif} yang diterapkan
+  pada~$\pi_2$), terdapat !!a{proof} $\pi_2'$ dari $\Gamma \Sequent
+  \Delta, !B$ dan !!a{proof} $\pi_2''$ dari $!C, \Gamma \Sequent \Delta$.
+  Dengan menerapkan \olref[seq][adm]{prop:weak-G3c-adm} pada $\pi_2''$,
+  kita juga memperoleh !!a{proof}~$\pi_2'''$ dari $!C, !B, \Gamma \Sequent
+  \Delta$. !!{proof}~$\pi'$ ialah:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_2'$}
+  \Deduce$\Gamma \fCenter \Delta, !B$
+  \AxiomC{}
+  \RightLabel{$\pi_1'$}
+  \Deduce$!B, \Gamma \fCenter \Delta, !C$
+  \AxiomC{}
+  \RightLabel{$\pi_2'''$}
+  \Deduce$!C, !B, \Gamma \fCenter \Delta$
+  \RightLabel{\CutCS}
+  \BinaryInf$!B, \Gamma \fCenter \Delta$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma \fCenter \Delta$
+  \DisplayProof
+  \]
+  \item $!A \ident \lforall[x][!B(x)]$. !!{proof}s $\pi_1$ dan
+  $\pi_2$ berakhir dengan $\Gamma \Sequent \Delta,
+  \lforall[x][!B(x)]$ dan $\lforall[x][!B(x)], \Gamma \Sequent \Delta$.
+  Menurut \olref{lem:inv-G3c-cut}, terdapat !!a{proof}~$\pi_1'$ dari
+  $\Gamma \Sequent \Delta, !B(c)$.
+
+  Sekarang perhatikan !!{proof}~$\pi_2$. Bukti itu berakhir dengan
+  $\lforall[x][!B(x)], \Gamma \Sequent \Delta$. Dengan bergerak ke atas
+  dari sekuen akhir~$\pi_2$, tandai setiap kemunculan
+  $\lforall[x][!B(x)]$ di sebelah kiri sekuen yang ``menuju ke'' kemunculan
+  $\lforall[x][!B(x)]$ dalam sekuen akhir~$\pi_2$, yakni: (a)~Tandai
+  $\lforall[x][!B(x)]$ dalam sekuen akhir~$\pi_2$. (b)~Jika
+  $\lforall[x][!B(x)]$ muncul dalam konteks kesimpulan suatu aturan dan
+  ditandai, tandai kemunculan yang bersesuaian dalam premis-premis aturan
+  itu. (c)~Jika $\lforall[x][!B(x)]$ prinsipal dalam kesimpulan aturan
+  \LeftR{\lforall} dan ditandai, tandai kemunculan aktif yang bersesuaian
+  dari $\lforall[x][!B(x)]$ dan $!B(t)$ dalam premisnya.
+
+  Sekarang perhatikan semua kemunculan $\lforall[x][!B(x)]$ yang ditandai
+  tersebut. Tidak satu pun aktif dalam aturan selain \LeftR{\lforall}
+  (hanya !!{formula}s aktif dari \LeftR{\lforall} yang ditandai). Hapus
+  semua kemunculan $\lforall[x][!B(x)]$ yang ditandai dalam $\pi_2$. Jika
+  hasilnya merupakan !!{proof} yang benar, kemunculan-kemunculan yang
+  $\lforall[x][!B(x)]$ yang ditandai tadi tidak pernah aktif; semuanya
+  berasal langsung dari aksioma.
+  !!{proof} itu berakhir dengan~$\Gamma \Sequent \Delta$, sehingga kita
+  dapat mengganti $\pi$ dengannya. Kita telah menghapus suatu potongan
+  berperingkat maksimal.
+
+  Jika tidak, hasil kita bukan bukti yang benar karena kita telah menghapus
+  !!{formula}s $\lforall[x][!B(x)]$ yang aktif dalam beberapa inferensi
+  \LeftR{\lforall}. Kita telah mengubah inferensi-inferensi itu menjadi
+  ``inferensi'' berbentuk
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_t$}
+  \Deduce$!B(t), \Pi \fCenter \Lambda$
+  \RightLabel{\LeftR{\lforall}}
+  \UnaryInf$\Pi \fCenter \Lambda$
+  \DisplayProof
+  \]
+  Ganti setiap ``inferensi'' teratas semacam itu dengan
+  \[
+  \AxiomC{}
+  \RightLabel{$\Subst{\pi_1'}{t}{c}[\Pi \Sequent \Lambda]$}
+  \Deduce$\Gamma, \Pi \fCenter \Delta, \Lambda, !B(t)$
+  \AxiomC{}
+  \RightLabel{$\pi_t[\Gamma \Sequent \Delta]$}
+  \Deduce$!B(t), \Gamma, \Pi \fCenter \Delta, \Lambda$
+  \RightLabel{\CutCS}
+  \BinaryInf$\Gamma, \Pi \fCenter \Delta, \Lambda$
+  \DisplayProof
+  \]
+  dan tambahkan $\Gamma$ di sebelah kiri serta $\Delta$ di sebelah kanan
+  setiap sekuen di bawahnya. Ulangi sampai semua ``inferensi''
+  \LeftR{\lforall} dengan $!B(t)$ yang ditandai dalam premis telah diganti
+  oleh inferensi \CutCS{} atas suatu~$!B(t)$. Sekuen akhir !!{proof} yang
+  dihasilkan (dan kini benar-benar merupakan !!{proof}) berbentuk $\Gamma,
+  \dots, \Gamma \Sequent \Delta, \dots, \Delta$. Terapkan dapat diterimanya
+  kontraksi untuk mengubahnya menjadi !!a{proof} dari~$\Gamma \Sequent
+  \Delta$, lalu ganti $\pi$ dengannya. Kita telah mengganti satu potongan
+  atas $\lforall[x][!B(x)]$ dengan (mungkin banyak) potongan atas $!B(t)$,
+  tetapi semuanya berperingkat lebih rendah. Setiap potongan yang telah
+  muncul dalam $\pi_1$ atau $\pi_2$ tetap ada, tetapi semuanya juga
+  berperingkat lebih rendah.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+Periksa kasus $!A \ident (!B \land !C)$ dalam bukti
+\olref{lem:max-cut-red-G3c}. Artinya, tunjukkan bahwa jika terdapat
+!!a{proof}~$\pi$ yang berakhir dengan
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !B \land !C$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!B \land !C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+dengan $\pi_1$ dan $\pi_2$ hanya memuat potongan berperingkat
+$<\depth{!B \land !C}$, maka terdapat !!a{proof}~$\pi'$ dari $\Gamma
+\Sequent \Delta$ yang hanya memuat potongan berperingkat
+$<\depth{!B \land !C}$.
+\end{prob}
+
+% \begin{prob}
+% Periksa kasus $!A \ident \lexists[x][!B(x)]$ dalam bukti
+% \olref{lem:max-cut-red-G3c}.
+% \end{prob}
+
+
+\olref{lem:max-cut-red-G3c} menetapkan bahwa kita dapat mengganti inferensi
+\CutCS{} berperingkat tertinggi dalam !!a{proof} dengan inferensi-inferensi
+\CutCS{} berperingkat lebih rendah. Sekali lagi, kita dapat menggunakan lema
+ini untuk menunjukkan bahwa kita dapat mengeliminasi berapa pun banyaknya
+inferensi \CutCS{} dari !!a{proof}, dengan menerapkannya secara berturut-turut
+pada sub-!!{proof}s teratas yang berakhir dengan \CutCS{} maksimal.
+
+\begin{thm}\ollabel{thm:cut-elim-G3c-largest}
+Setiap !!{proof} $\pi$ dalam $\Log{G3c} + \CutCS$ dapat ditransformasikan
+menjadi bukti dalam~\Log{G3c}.
+\end{thm}
+
+\begin{proof}
+  Pertama, kita buktikan klaim berikut. Misalkan $d$ suatu peringkat yang
+  tidak dilampaui oleh peringkat potongan mana pun dalam~$\pi$, dan $n$ banyaknya
+  potongan berperingkat~$d$. Semua potongan itu dapat dihapus. Buktinya
+  berjalan melalui induksi pada~$n$. Jika $n=0$, tidak ada yang perlu
+  dibuktikan. Jika $n>0$, pilih potongan teratas berperingkat~$d$, dan
+  misalkan $\pi_1$ sub-!!{proof} yang berakhir dengannya. Menurut
+  \olref{lem:max-cut-red-G3c}, terdapat !!a{proof}~$\pi_1'$ atas sekuen akhir
+  yang sama, dengan semua potongan berperingkat $<d$. Ganti $\pi_1$ dengan
+  $\pi_1'$ dalam~$\pi$. Hasilnya ialah !!a{proof} yang memuat $n-1$
+  potongan berperingkat~$d$, sehingga hipotesis induksi berlaku.
+
+  Jika $\pi$ tidak memuat potongan, teorema sudah terbukti. Jika
+  tidak, sebut peringkat maksimalnya~$d$. Sekarang hasilnya mengikuti
+  melalui induksi pada parameter ini. Jika $d=0$, semua
+  potongan atomik, dan menurut hasil sebelumnya semuanya dapat dihapus. Jika
+  $d>0$, hasil sebelumnya memberikan suatu bukti tempat semua potongan
+  berperingkat $d$ telah diganti oleh potongan berperingkat~$<d$. Karena $d$
+  adalah peringkat maksimal potongan dalam~$\pi$, kita memperoleh bukti
+  dengan peringkat maksimal potongan $<d$, sehingga hipotesis induksi
+  berlaku.
+\end{proof}
+
+\end{document}

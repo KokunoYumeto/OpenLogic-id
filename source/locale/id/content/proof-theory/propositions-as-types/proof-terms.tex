@@ -1,0 +1,139 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: proof-terms
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{pty}{ter}
+
+\olsection{Term Bukti}
+
+Kita memberi asumsi-asumsi dalam \Log{N1i} label variabel (misalnya,
+$!A^x$) sebagai label pengosongan. Dalam \Log{N2i}, setiap sekuen
+$\Gamma \Sequent !A$ mempunyai suatu daftar pasangan
+variabel--!!{formula} dalam konteks~$\Gamma$ di sebelah kiri. Jadi, dalam
+\Log{N2i}, setiap sekuen dalam !!a{proof} tidak hanya membawa informasi
+tentang apa yang dicapai !!{proof} tersebut sejauh ini (yakni, bahwa
+$!A$ telah di-!!{prove}), tetapi juga asumsi mana yang masih terbuka pada setiap
+titik (yakni, $\Gamma$). Bagaimana jika kita juga menyertakan dalam
+setiap sekuen informasi tentang \emph{bagaimana} $!A$ di-!!{prove}? Untuk
+itu, kita dapat mendefinisikan sistem \Log{tN2i} \emph{berlabel term},
+yang sekuennya berbentuk $\Gamma \Sequent N : !A$. $\Gamma$ dan $!A$
+sama seperti sebelumnya: yang pertama adalah himpunan pasangan berbentuk
+$x:!B$, sedangkan yang kedua adalah !!{formula} yang telah ditunjukkan oleh
+sub-!!{proof} yang berakhir pada sekuen tersebut sebagai konsekuensi
+asumsi-asumsi dalam~$\Gamma$. $N$ adalah term tertentu yang mengodekan
+!!{proof} yang berakhir pada sekuen tersebut.
+
+Term yang kita berikan kepada setiap sekuen dibangun dari variabel $x$,
+$y$, \dots, dengan menggunakan simbol fungsi yang mengodekan inferensi
+yang telah dilaksanakan. Kita memerlukan simbol fungsi tersendiri bagi
+setiap aturan inferensi. Simbol fungsi yang bersesuaian dengan aturan
+!!{introduction} disebut ``konstruktor,'' sedangkan yang bersesuaian
+dengan aturan !!{elimination} disebut ``destruktor.'' Setiap simbol
+fungsi menerima sebanyak argumen sebanyak jumlah premis aturannya.
+Misalnya, simbol fungsi bagi \Intro{\land} dan \Elim{\land}[1] dapat
+berupa $c^\land$ (berargumen dua) dan $d^\land_1$ (berargumen satu). Dalam
+\Log{tN2i}, aturan-aturan ini kemudian menjadi
+\[
+\Axiom$\Gamma_1 \fCenter N: !A$
+\Axiom$\Gamma_2 \fCenter M: !B$
+\RightLabel{\Intro{\land}}
+\BinaryInf$\Gamma_1, \Gamma_2 \fCenter c^\land(N, M) : !A \land !B $
+\DisplayProof
+\quad
+\Axiom$\Gamma \fCenter N: !A \land !B$
+\RightLabel{\Elim{\land}[1]}
+\UnaryInf$\Gamma \fCenter d^\land_1(N) : !A$
+\DisplayProof
+\]
+Jika suatu aturan inferensi mengosongkan asumsi, yakni aturan itu mempunyai
+premis yang menunjukkan !!{formula} berlabel~$x:!A$ dalam suatu premis
+tetapi label tersebut tidak ada dalam konteks kesimpulan, kita juga harus
+menunjukkan hal ini dalam term bukti. Simbol fungsi yang terkait dengan
+aturan semacam itu \emph{mengikat} variabel yang bersesuaian. Misalnya,
+aturan \Intro{\lif} beralih dari premis $x:!A, \Gamma \Sequent !B$ menuju
+$\Gamma \Sequent !A \lif !B$. Konstruktor $c^{\lif}$ menerima satu
+argumen, tetapi juga harus menunjukkan bahwa variabel $x$ menjadi
+terikat. Inilah cara term bukti menyatakan bahwa asumsi berlabel~$x$
+telah dikosongkan. Misalnya, jika term bukti untuk premis ialah~$N$, kita
+dapat menulis term bukti untuk kesimpulan sebagai $c^{\lif}([x]N)$ dan
+aturannya sebagai
+\[
+\Axiom$x:!A, \Gamma \fCenter N: !B$
+\RightLabel{\Intro{\lif}}
+\UnaryInf$\Gamma \fCenter c^{\lif}([x]N) : !A \lif !B$
+\DisplayProof
+\]
+
+Agar !!a{proof} dapat direkonstruksi sepenuhnya, kita memerlukan beberapa
+informasi tambahan. Jika !!{formula}s premis suatu aturan tidak sepenuhnya
+menentukan !!{formula} kesimpulannya, kita harus menambahkan informasi itu
+kepada term. Hal ini terjadi dalam \Intro{\lif}, sehingga kita akan
+menulis $c^{\lif}([x:!A]N)$. Hal ini juga terjadi dalam \Intro{\lor}
+dan~\FalseInt, sehingga kita memakai simbol fungsi yang membawa informasi
+tersebut, misalnya,
+\[
+\Axiom$\Gamma \fCenter N:!A$
+\RightLabel{\Intro{\lor}[1]}
+\UnaryInf$\Gamma \fCenter c^{\lor{!B}}_1(N):!A \lor !B$
+\DisplayProof
+\quad
+\Axiom$\Gamma \fCenter N:\lfalse$
+\RightLabel{\FalseInt}
+\UnaryInf$\Gamma \fCenter d^\lfalse_{!A}(N):!A$
+\DisplayProof
+\]
+
+Dengan gagasan ini, kita dapat membangun sistem deduksi alami bergaya
+sekuen yang setiap sekuennya berbentuk $\Gamma \Sequent N : !A$, dengan
+$N$ suatu \emph{term bukti}.
+
+Ternyata terdapat hubungan erat antara term bukti semacam itu dan term
+dalam apa yang disebut \emph{kalkulus lambda bertipe}. Untuk menghormati
+hubungan ini, kita akan memakai simbol yang digunakan dalam literatur
+tentang kalkulus lambda, bukan simbol konstruktor dan destruktor umum di
+atas. Misalnya, alih-alih menulis $c^{\lif}([x:!A]N)$ kita menulis
+$\lambd[\typeof{x}{!A}][N]$; alih-alih $d^{\lif}(N,M)$ kita menulis
+$(NM)$; kita menulis $\pair{N}{M}$ alih-alih $c^\land(N,M)$, dan
+$\proj{i}{N}$ alih-alih~$d^\land_i(N)$.
+
+\begin{defn}
+  Term bukti dihasilkan secara induktif oleh aturan-aturan berikut:
+  \begin{enumerate}
+  \item Setiap variabel $x$ merupakan term bukti (Aksioma).
+  \item Jika $x$ adalah variabel, $!A$ adalah !!a{formula}, dan $N$
+    merupakan term bukti, maka $\lambd[\typeof{x}{!A}][N]$ juga merupakan
+    term bukti~(\Intro\lif).
+  \item Jika $N$ dan $M$ merupakan term bukti, maka $(NM)$ juga merupakan
+    term bukti~(\Elim\lif).
+  \item Jika $N$ dan $M$ merupakan term bukti, maka $\pair{N}{M}$ merupakan
+    term bukti~(\Intro\land).
+  \item Jika $N$ merupakan term bukti, maka $\proj{i}{N}$ juga merupakan
+    term bukti, dengan $i$ sama dengan $1$ atau~$2$~(\Elim\land[i]).
+  \item Jika $N$ merupakan term bukti dan $!A$ merupakan formula, maka
+    $\inj[!A]{i}{N}$ merupakan term bukti, dengan $i$ sama dengan $1$
+    atau~$2$~(\Intro\lor[i]).
+  \item Jika $M$, $N_1$, dan $N_2$ merupakan term bukti, serta $x_1$ dan
+    $x_2$ merupakan variabel, maka
+    $\dcase{M}{x_1}{N_1}{x_2}{N_2}$ merupakan term
+    bukti~(\Elim\lor).
+  \item Jika $N$ merupakan term bukti dan $!A$ adalah !!a{formula}, maka
+    $\abort{!A}{N}$ merupakan term bukti~(\FalseInt).
+  \end{enumerate}
+\end{defn}
+
+Tidak setiap term bukti merupakan term bukti dari !!a{proof}. Misalnya,
+term $\pair{N}{M}$ mengodekan bukti yang berakhir dengan inferensi
+\Intro{\land}, sehingga !!{formula} akhirnya adalah konjungsi
+$!A \land !B$. Formula itu tidak dapat menjadi premis mayor suatu aturan
+\Elim{\lif}, sehingga $(\pair{N}{M}P)$ tidak dapat menjadi term bukti
+dari bukti yang benar. Hanya term bukti yang mengikuti aturan
+\Log{tN2ip} yang merupakan term bukti \emph{benar}. Aturan-aturan ini
+diberikan dalam \olref{tab:tN2ip}.
+
+\subfile{rules-tN2}
+
+\end{document}

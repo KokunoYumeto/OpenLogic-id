@@ -1,0 +1,58 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+	
+\olfileid[id]{sth}{z}{nat}
+\olsection{Memilih Bilangan Asli Kita}
+
+%Let us take it for granted that the informal principle \stagesinf{}
+%can be justified. It is also, though, worth commenting on the
+%particular axiom we extracted from that informal principle. 
+
+Dalam \olref[infinity-again]{defnomega}, kita secara eksplisit mendefinisikan
+ungkapan ``bilangan asli.'' Bagaimana Anda seharusnya memahami ketetapan ini?
+Ketetapan itu bukan klaim metafisis, melainkan sekadar keputusan untuk
+\emph{memperlakukan} himpunan tertentu sebagai bilangan asli. Kita telah
+menyinggung alasan untuk berpikir demikian dalam
+\olref[sfr][rel][ref]{sec}, \olref[sfr][arith][ref]{sec}, dan
+\olref[sfr][infinite][dedekindsproof]{sec}. Namun, kita dapat mengemukakan
+alasan-alasan itu dengan lebih tajam.
+
+Aksioma Ketakhinggaan kita mengikuti \citet{VonNeumann1925}. Akan tetapi,
+berikut aksioma lain yang dapat kita pilih sebagai gantinya:
+
+\begin{defish}
+\emph{Aksioma Ketakhinggaan Zermelo
+\citeyear{Zermelo1908Untersuchungen}.} Terdapat himpunan~$A$ sedemikian
+sehingga $\emptyset\in A$ dan $(\forall x\in A)\{x\}\in A$.
+\end{defish}
+
+Seandainya kita menggunakan aksioma Zermelo alih-alih Aksioma Ketakhinggaan
+yang diilhami von Neumann, kita juga akan memperoleh suatu himpunan yang tak
+hingga Dedekind dan, dengan demikian, suatu aljabar Dedekind. Dalam pendekatan
+Zermelo, anggota istimewa aljabar kita tetap $\emptyset$ (pengganti~$0$),
+tetapi injeksinya diberikan oleh pemetaan $x\mapsto\{x\}$, bukan
+$x\mapsto x\cup\{x\}$. Konsekuensi paling sederhana ialah bahwa Zermelo
+memperlakukan $2$ sebagai $\{\{\emptyset\}\}$, sedangkan kita (mengikuti von
+Neumann) memperlakukan $2$ sebagai
+$\{\emptyset,\{\emptyset\}\}$.
+
+Mengapa memilih satu aksioma Ketakhinggaan dan bukan yang lain? Alasan praktis
+utama ialah bahwa pendekatan von Neumann dapat ``diperluas'' dengan baik untuk
+menangani bilangan transfinit. Kita akan menjelajahinya mulai
+\olref[ordinals][]{chap}. Namun, dari sudut pandang sederhana
+\emph{mengerjakan aritmetika}, kedua pendekatan sama-sama memadai. Jadi, jika
+seseorang mengatakan bahwa bilangan asli \emph{adalah} himpunan, pertanyaan
+yang jelas ialah: \emph{Himpunan yang mana?}
+
+Pertanyaan persis ini menjadi terkenal berkat \citet{Benacerraf1965}. Namun,
+patut ditekankan bahwa pertanyaan itu hanyalah contoh paling terkenal dari
+suatu fenomena yang telah kita jumpai berkali-kali. Pokok dasarnya adalah
+sebagai berikut. Teori himpunan memberi kita cara untuk \emph{menyimulasikan}
+berbagai jenis entitas ``intuitif'': bilangan real, rasional, bulat, dan asli;
+tetapi juga pasangan terurut, fungsi, dan relasi. Akan tetapi, teori himpunan
+tidak pernah memberi kita pilihan simulasi yang \emph{unik}. \emph{Selalu}
+ada pilihan alternatif yang---secara langsung---dapat melayani kita dengan
+sama baiknya.
+
+\end{document}

@@ -1,0 +1,65 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{z}{power}
+\olsection{Himpunan Kuasa}
+
+Kita lanjutkan dengan aksioma lain:
+
+\begin{axiom}[Himpunan Kuasa]
+Untuk sebarang himpunan $A$, himpunan
+$\Pow{A}=\Setabs{x}{x\subseteq A}$ ada.
+\[
+	\forall A \exists P \forall x(x \in P \liff (\forall z \in x)z \in A)
+\]
+\end{axiom}
+
+Pembenaran bagi aksioma ini cukup langsung. Andaikan $A$ dibentuk pada
+tahap~$S$. Maka semua anggota~$A$ telah tersedia sebelum~$S$ (berdasarkan
+\stagesacc). Jadi, dengan penalaran seperti dalam pembenaran kita bagi
+Pemisahan, setiap himpunan bagian dari~$A$ telah terbentuk paling lambat pada
+tahap~$S$. Karena itu, semuanya tersedia untuk dibentuk menjadi satu himpunan
+pada sebarang tahap sesudah~$S$. Kita tahu bahwa suatu tahap demikian ada,
+sebab $S$ bukan tahap terakhir (berdasarkan \stagessucc). Jadi, $\Pow{A}$
+ada.
+
+Berikut suatu konsekuensi yang berguna dari Himpunan Kuasa:
+
+\begin{prop}\label{thm:Products}
+Dengan diberikan sebarang himpunan $A,B$, hasil kali Kartesius
+$A\times B$ ada.
+\end{prop}
+
+\begin{proof}
+Himpunan $\Pow{\Pow{A\cup B}}$ ada berdasarkan Himpunan Kuasa dan
+\olref[sth][z][pairs]{prop:pairsconsequences}. Jadi, berdasarkan Pemisahan,
+himpunan berikut ada:
+\[
+	C = \Setabs{z \in \Pow{\Pow{A \cup B}}}{(\exists x \in A)(\exists y \in B) z = \tuple{x, y}}.
+\]
+Untuk sebarang $x\in A$ dan $y\in B$, himpunan $\tuple{x,y}$ ada berdasarkan
+\olref[sth][z][pairs]{prop:pairsconsequences}. Selain itu, karena
+$x,y\in A\cup B$, kita mempunyai $\{x\},\{x,y\}\in\Pow{A\cup B}$, dan
+$\tuple{x,y}\in\Pow{\Pow{A\cup B}}$. Jadi, $A\times B=C$.
+\end{proof}
+
+Dalam bukti ini, Himpunan Kuasa berinteraksi dengan Pemisahan. Hal itu tidak
+mengherankan. Tanpa Pemisahan, Himpunan Kuasa bukanlah prinsip yang sangat
+\emph{kuat}. Bagaimanapun, Pemisahan memberi tahu kita himpunan bagian mana
+dari suatu himpunan yang ada, dan dengan demikian menentukan seberapa
+``gemuk'' setiap himpunan kuasa.
+
+\begin{prob}
+Tunjukkan bahwa, untuk sebarang himpunan $A,B$: (i) himpunan semua relasi
+dengan domain~$A$ dan daerah hasil~$B$ ada; dan (ii) himpunan semua fungsi
+dari $A$ ke~$B$ ada.
+\end{prob}
+
+\begin{prob}
+Misalkan $A$ suatu himpunan dan $\sim$ suatu relasi ekuivalensi pada~$A$.
+Buktikan bahwa himpunan kelas-kelas ekuivalensi di bawah $\sim$ pada~$A$,
+yakni $\equivclass{A}{\sim}$, ada.
+\end{prob}
+
+\end{document}

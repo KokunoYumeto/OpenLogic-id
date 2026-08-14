@@ -1,0 +1,263 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: admissible-derivable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{seq}{adm}
+
+\olsection{Aturan Admisibel dan Aturan yang Dapat Diturunkan}
+
+Banyak hasil dalam teori bukti membahas---atau menggunakan---hasil tentang
+apakah segala sesuatu yang dapat kita !!{prove} dengan aturan tertentu juga dapat
+kita !!{prove} tanpa aturan tersebut. Teorema eliminasi potongan merupakan contoh
+yang paling dikenal. Teorema itu menunjukkan bahwa setiap sekuen yang dapat
+kita !!{prove} dengan aturan suatu sistem sekuen beserta~\Cut{} juga dapat
+kita !!{prove} tanpa~\Cut. Karena sifat semacam ini sangat penting, sifat itu
+mempunyai nama.
+
+\begin{defn}
+Suatu aturan~$R$ \emph{admisibel} dalam sistem sekuen jika setiap sekuen yang
+dapat dibuktikan dalam sistem tersebut bersama aturan~$R$ juga dapat
+dibuktikan tanpa~$R$.
+\end{defn}
+
+\begin{ex}\ollabel{ex:land-deriv}
+Aturan $\LeftR{\land}$ mempunyai bentuk berbeda dalam \Log{G1c} dan
+\Log{G3c}. Dalam \Log{G1c} terdapat dua versi aturan: satu dengan konjung
+kiri~$!A$ dari !!{formula} utama~$!A \land !B$ dalam premis, dan satu lagi
+dengan konjung kanan~$!B$:
+\[
+\Axiom$ !A, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_1$}
+\UnaryInf$ !A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\qquad
+\Axiom$!B, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_2$}
+\UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Sebaliknya, \Log{G3c} hanya mempunyai satu aturan:
+\[
+\Axiom$ !A, !B, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_3$}
+\UnaryInf$ !A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Sekarang kita dapat bertanya, ``Apakah aturan $\LeftR{\land}_3$ dari
+\Log{G3c} admisibel dalam \Log{G1c}?'' Jawabannya ya: setiap inferensi yang
+menggunakan $\LeftR{\land}_3$ dapat kita simulasikan secara langsung hanya
+dengan aturan \Log{G1c}. Selain $\LeftR{\land}_1$ dan $\LeftR{\land}_2$,
+kita juga memerlukan aturan struktural~$\LeftR{\Contraction}$:
+\[
+\Axiom$!A, !B, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_1$}
+\UnaryInf$!A \land !B, !B, \Gamma \fCenter \Delta$
+\RightLabel{$\LeftR{\land}_2$}
+\UnaryInf$!A \land !B, !A \land !B, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\Contraction}}
+\UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+\end{ex}
+
+Menyimulasikan inferensi yang menggunakan satu aturan dengan aturan-aturan
+lain merupakan salah satu cara menunjukkan bahwa suatu aturan admisibel.
+Namun, itu bukan satu-satunya cara, dan beberapa aturan bersifat admisibel
+tetapi tidak dapat disimulasikan demikian. Aturan yang dapat disimulasikan
+disebut \emph{dapat diturunkan}.
+
+\begin{defn}
+Suatu aturan~$R$,
+\[
+\AxiomC{$S_1$}
+\AxiomC{$\dots$}
+\AxiomC{$S_n$}
+\RightLabel{$R$}
+\TrinaryInfC{$S$}
+\DisplayProof
+\]
+disebut \emph{dapat diturunkan} dalam suatu sistem jika terdapat
+!!{proof} skematis bagi sekuen~$S$ yang menggunakan aturan dan aksioma sistem
+tersebut beserta sekuen-sekuen awal tambahan berbentuk $S_1$, \dots,~$S_n$.
+\end{defn}
+
+!!^{proof} yang diberikan dalam \olref{ex:land-deriv} menunjukkan bahwa
+$\LeftR{\land}_3$ dapat diturunkan dalam~\Log{G1c}, karena !!{proof}
+tersebut merupakan !!{proof} skematis bagi kesimpulan $\LeftR{\land}_3$ dari
+premis-premis $\LeftR{\land}_3$ sebagai sekuen awal, dengan hanya memakai
+aturan \Log{G1c}. (Bukti itu tidak menggunakan satu pun aksioma \Log{G1c}.)
+
+\begin{prop}\ollabel{prop:lor-G3-adm}
+Aturan $\LeftR{\land}$ dan $\RightR{\lor}$ dari~\Log{G3c} dapat diturunkan
+dalam~\Log{G1c}.
+\end{prop}
+
+\begin{proof}
+  Bukti bagi $\LeftR{\land}$ diberikan dalam \olref{ex:land-deriv}. Bukti
+  bagi $\RightR{\lor}$ dibiarkan sebagai latihan.
+\end{proof}
+
+\begin{prob}
+Tunjukkan bahwa aturan $\RightR{\lor}$ dari \Log{G3c} dapat diturunkan
+dalam~\Log{G1c}.
+\end{prob}
+
+\begin{prob}
+Andaikan $\liff$ merupakan !!{operator} terdefinisi: $!A \liff !B$ adalah
+singkatan bagi $(!A \lif !B) \land (!B \lif !A)$. Tunjukkan bahwa aturan
+\begin{enumerate}
+\item \Axiom$\Gamma, !A, !B \fCenter \Delta$
+\Axiom$\Gamma \fCenter \Delta, !A, !B$
+\RightLabel{\LeftR{\liff}}
+\BinaryInf$!A \liff !B, \Gamma \fCenter \Delta$
+\DisplayProof
+\item
+\Axiom$!A, \Gamma \fCenter \Delta, !B$
+\Axiom$!B, \Gamma \fCenter \Delta, !A$
+\RightLabel{\RightR{\liff}}
+\BinaryInf$\Gamma \fCenter \Delta, !A \liff !B$
+\DisplayProof
+\end{enumerate}
+dapat diturunkan dalam (a)~\Log{G1c} dan (b)~\Log{G3c}.
+\end{prob}
+
+\begin{ex}\ollabel{ex:weak-adm}
+Aturan $\RightR{\Weakening}$ dari \Log{G1c},
+\[
+\Axiom$ \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A$
+\DisplayProof
+\]
+bersifat admisibel dalam~\Log{G3c}. Gagasan buktinya sederhana: andaikan
+terdapat !!a{proof}~$\pi$ bagi premis $\Gamma \Sequent \Delta$ dalam
+\Log{G3c}. Tambahkan !!{formula}~$!A$ pada sukseden setiap sekuen dalam~$\pi$.
+Aksioma tetap merupakan aksioma; inferensi yang benar tetap merupakan
+inferensi yang benar. Objek akhirnya bukan !!{formula}, melainkan sekuen
+akhir !!{proof} yang baru, yaitu
+$\Gamma \Sequent \Delta,!A$.
+
+Namun, aturan $\RightR{\Weakening}$ tidak dapat diturunkan dalam~\Log{G3c}.
+Andaikan sebaliknya, yakni andaikan kita dapat menemukan !!a{proof} bagi
+$\Gamma \Sequent \Delta,!A$ dengan hanya memakai aksioma dan aturan
+\Log{G3c}, serta mungkin sekuen awal tambahan~$\Gamma \Sequent \Delta$.
+Jika !!{proof} ini sepenuhnya skematis, sebagaimana disyaratkan agar
+$\RightR{\Weakening}$ dapat diturunkan, kita dapat mengubahnya menjadi
+!!a{proof} bagi~$\Sequent !A$ dengan menghapus $\Gamma$ dan~$\Delta$. Hal ini
+akan mengubah sekuen awal tambahan~$\Gamma \Sequent \Delta$ menjadi sekuen
+kosong~$\quad \Sequent \quad$. Karena sekuen kosong sama sekali tidak memuat
+!!{formula}, sedangkan semua aturan \Log{G3c} mensyaratkan sekurang-kurangnya
+satu !!{formula} aktif dalam premisnya, sekuen kosong tidak dapat menjadi
+premis inferensi mana pun dalam !!{proof} skematis ini. Akibatnya, !!{proof}
+tersebut hanya dapat bersifat skematis jika tidak benar-benar menggunakan
+sekuen tambahan $\Gamma \Sequent \Delta$ sebagai sekuen awal. Dengan kata
+lain, bukti itu akan menjadi derivasi skematis bagi
+$\Gamma \Sequent \Delta,!A$ yang hanya memakai aksioma dan aturan
+\Log{G3c}; dengan demikian, kita akan menunjukkan bahwa setiap sekuen
+berbentuk ini mempunyai !!a{proof} dalam~\Log{G3c}. Namun, hal itu mustahil,
+karena \Log{G3c} sahih dan karena itu hanya dapat !!{prove} sekuen yang benar
+dalam setiap !!{structure}. Dengan mengambil
+$\Gamma=\Delta=\emptyset$ dan $!A\ident\lfalse$, \Log{G3c} harus dapat
+!!{prove}, misalnya, sekuen $\quad \Sequent \lfalse$, padahal tidak.
+\end{ex}
+
+Sekarang kita berikan bukti induktif yang baik bahwa pelemahan merupakan
+aturan admisibel dalam~\Log{G3c}. Bahkan, hasil yang sedikit lebih kuat
+berlaku, sebagaimana ditunjukkan argumen intuitif tadi: dengan menambahkan
+$!A$ pada sisi kanan setiap sekuen dalam~$\pi$, kita tidak mengubah struktur
+!!{proof}, dan khususnya tidak menambah tingginya. Karena hal ini penting,
+sifat tersebut layak mendapat definisi tersendiri.
+
+\begin{defn}
+Suatu aturan~$R$,
+\[
+\AxiomC{$S_1$}
+\AxiomC{$\dots$}
+\AxiomC{$S_n$}
+\RightLabel{$R$}
+\TrinaryInfC{$S$}
+\DisplayProof
+\]
+bersifat \emph{admisibel dengan mempertahankan !!{height}}
+(atau \emph{!!{hp}-admisibel}) dalam suatu sistem jika, setiap kali
+$\Proves[h_i] S_i$ bagi $i=1$, \dots,~$n$, berlaku $\Proves_m S$ dengan
+$m=\max(h_1,\dots,h_n)$.
+\end{defn}
+
+Perhatikan bahwa agar suatu aturan bersifat admisibel dengan mempertahankan
+!!{height}, cukup bahwa setiap kali premis-premis~$S_i$ mempunyai
+!!{proof}s~$\pi_i$ dengan !!{height}~$h_i=\pheight{\pi_i}$, terdapat
+!!a{proof}~$\pi$ bagi kesimpulan dengan !!{height}~$\pheight{\pi}$ yang
+tidak melebihi maksimum dari~$h_i$. Khususnya, jika hanya ada satu premis
+$S_1$, cukup bahwa $\pheight{\pi}\leq\pheight{\pi_1}$. Dalam kasus
+$\RightR{\Weakening}$ dan $\LeftR{\Weakening}$, kita bahkan mempunyai
+$\pheight{\pi}=\pheight{\pi_1}$, tetapi kesamaan ini tidak diperlukan.
+
+\begin{prop}\ollabel{prop:weak-G3c-adm}
+Aturan $\RightR{\Weakening}$ dan $\LeftR{\Weakening}$ dari \Log{G1c}
+bersifat admisibel dengan mempertahankan !!{height} dalam~\Log{G3c}.
+\end{prop}
+
+\begin{proof}
+  Kita menunjukkan bahwa jika $\Log{G3c}\Proves\Gamma\Sequent\Delta$
+  dengan !!{proof}~$\pi$ yang mempunyai !!{height}~$\pheight{\pi}=n$, maka terdapat
+  \Log{G3c}-!!{proof}~$\pi'$ bagi $\Gamma\Sequent\Delta,!A$ dengan
+  $\pheight{\pi'}=n$. Kita membuktikannya melalui induksi pada~$n$. Jika
+  $n=0$, maka $\pi$ hanya berupa aksioma $\Gamma\Sequent\Delta$ (yakni,
+  suatu $!C$ atomik muncul baik dalam $\Gamma$ maupun~$\Delta$), dan
+  $\Gamma\Sequent\Delta,!A$ juga merupakan aksioma. Jika
+  $n=\pheight{\pi}>0$, !!{proof}~$\pi$ mempunyai inferensi terakhir. Kita
+  membedakan kasus berdasarkan aturan yang digunakan. Kita berikan satu
+  contoh saja: andaikan inferensi terakhir adalah $\RightR{\land}$. Maka
+  $\Delta=\Delta',!B\land !C$, dan sub-!!{proof}s langsung $\pi_1$ dan
+  $\pi_2$ dari inferensi terakhir mempunyai sekuen akhir masing-masing
+  $\Gamma\Sequent\Delta',!B$ dan $\Gamma\Sequent\Delta',!C$. Dengan kata
+  lain, $\pi$ berbentuk:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$\Gamma \fCenter \Delta', !B$
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$\Gamma \fCenter \Delta', !C$
+  \RightLabel{\RightR{\land}}
+  \BinaryInf$\Gamma \fCenter \Delta', !B \land !C$
+  \DisplayProof
+  \]
+  Kita juga mempunyai
+  $n=\max(\pheight{\pi_1},\pheight{\pi_2})+1$. Jadi,
+  $\pheight{\pi_1}<n$ dan $\pheight{\pi_2}<n$, sehingga hipotesis induksi
+  berlaku: terdapat !!{proof}s $\pi_1'$ dan $\pi_2'$ bagi
+  $\Gamma\Sequent\Delta',!B,!A$ dan $\Gamma\Sequent\Delta',!C,!A$.
+  Dengan menggunakan aturan $\RightR{\land}$, kita memperoleh
+  !!a{proof}~$\pi'$ bagi $\Gamma\Sequent\Delta',!B\land !C,!A$:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1'$}
+  \Deduce$\Gamma \fCenter \Delta', !B, !A$
+  \AxiomC{}
+  \RightLabel{$\pi_2'$}
+  \Deduce$\Gamma \fCenter \Delta', !C, !A$
+  \RightLabel{\RightR{\land}}
+  \BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !A$
+  \DisplayProof
+  \]
+  Kita mempunyai
+  $\pheight{\pi'}=\max(\pheight{\pi_1'},\pheight{\pi_2'})+1
+  =\max(\pheight{\pi_1},\pheight{\pi_2})+1=\pheight{\pi}$.
+  Kasus bagi $\LeftR{\Weakening}$ bersifat simetris.
+\end{proof}
+
+\olref{prop:weak-G3c-adm} sangat berguna. Kita memperkenalkan notasi bagi
+penerapan berulangnya: jika $\pi$ merupakan !!a{proof} bagi
+$\Gamma\Sequent\Delta$, maka $\pi[\Pi\Sequent\Lambda]$ adalah hasil
+penerapan admisibilitas pelemahan di sebelah kiri dengan semua !!{formula}s
+dalam~$\Pi$ dan admisibilitas pelemahan di sebelah kanan dengan semua
+!!{formula}s dalam~$\Lambda$. Hasilnya adalah !!a{proof} bagi
+$\Gamma,\Pi\Sequent\Delta,\Lambda$.
+
+\end{document}

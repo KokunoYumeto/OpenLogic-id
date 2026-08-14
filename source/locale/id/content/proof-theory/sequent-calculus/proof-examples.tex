@@ -1,0 +1,352 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: proof-examples
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{seq}{ex}
+
+\olsection{Contoh Pembuktian}
+
+Untuk memberikan !!{proof}s atas sekuen, biasanya lebih mudah bekerja
+dari sekuen akhir ke arah atas: pilih !!a{formula} di dalamnya sebagai
+!!{formula} aktif, tuliskan premis-premis aturan yang bersesuaian di atas
+sekuen itu, lalu ulangi proses tersebut sampai menghasilkan aksioma.
+Sebagai contoh, andaikan kita hendak membuktikan sekuen
+\[(!C \land !D) \lif !E \Sequent !C \lif (!D \lif !E)\]
+Tinjau $!C \lif (!D \lif !E)$: formula ini berbentuk $!A \lif !B$ dan
+muncul di sebelah kanan sekuen. Mencocokkan seluruh sekuen dengan aturan
+$\RightR{\lif}$ dari \Log{G1c},
+\[\Axiom$ !A, \Gamma \fCenter \Delta, !B$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$ \Gamma \fCenter \Delta, !A \lif !B $
+\DisplayProof\]
+menyarankan agar kita mengambil $\Gamma = \{(!C \land !D) \lif !E\}$,
+$\Delta = \emptyset$, $!A \ident !C$, dan $!B \ident !D \lif !E$.
+Jadi, inferensi terakhir suatu bukti dapat berupa
+\[\Axiom$ !C, (!C \land !D) \lif !E \fCenter !D \lif !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
+\DisplayProof\]
+Jika gagasan ini kita ulangi dengan memusatkan perhatian pada $!D \lif
+!E$ sebagai formula aktif, kita memperoleh
+\[\Axiom$ !D, !C, (!C \land !D) \lif !E \fCenter !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$!C, (!C \land !D) \lif !E \fCenter !D \lif !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
+\DisplayProof\]
+Sekarang kita harus memusatkan perhatian pada $(!C \land !D) \lif !E$
+dan memakai aturan $\LeftR{\lif}$ dari \Log{G1c},
+\[\Axiom$ \Gamma \fCenter \Delta, !A$
+\Axiom$ !B, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$ !A \lif !B, \Gamma \fCenter \Delta$
+\DisplayProof\]
+Hal ini menghasilkan
+\[\Axiom$!D, !C \fCenter !E, !C \land !D$
+\Axiom$!D, !C, !E \fCenter !E$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$ !D, !C, (!C \land !D) \lif !E \fCenter !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$!C, (!C \land !D) \lif !E \fCenter !D \lif !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
+\DisplayProof\]
+Dengan menjadikan !!{formula} $!C \land !D$ pada sekuen paling kiri di
+baris teratas sebagai formula prinsipal dan menggunakan aturan
+$\RightR{\land}$, kita memperoleh
+\[
+\Axiom$!D, !C \fCenter !E, !C$
+\Axiom$!D, !C \fCenter !E, !D$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!D, !C \fCenter !E, !C \land !D$
+\Axiom$!D, !C, !E \fCenter !E$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$ !D, !C, (!C \land !D) \lif !E \fCenter !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$!C, (!C \land !D) \lif !E \fCenter !D \lif !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
+\DisplayProof
+\]
+Sejauh ini semuanya berjalan baik. Perhatikan bahwa segala sesuatu yang
+kita lakukan juga berlaku dalam \Log{G3c}, karena aturan yang sejauh ini
+kita gunakan sama dalam \Log{G1c} dan~\Log{G3c}. Kita telah sampai pada
+sebuah fragmen !!a{proof} yang semua sekuen teratasnya memuat
+!!a{formula} yang sama di sebelah kiri dan kanan. Namun, sekuen-sekuen
+tersebut belum benar-benar merupakan aksioma.
+
+Dalam \Log{G1c}, kita harus memberikan !!{proof}s atas sekuen-sekuen
+teratas dari aksioma berbentuk $!A \Sequent !A$. Hal ini mudah dilakukan
+dengan aturan pelemahan. Sebagai contoh, kita dapat !!{prove} sekuen teratas
+paling kiri $!D, !C \Sequent !E, !C$ sebagai berikut:
+\[
+\Axiom$!C \fCenter !C$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!D, !C \fCenter !C$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$!D, !C \fCenter !E, !C$
+\DisplayProof
+\]
+Secara keseluruhan, kita mempunyai !!a{proof} dalam \Log{G1c} yang
+berbentuk sebagai berikut:
+\[
+\Axiom$!C \fCenter !C$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!D, !C \fCenter !C$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$!D, !C \fCenter !E, !C$
+\Axiom$!D \fCenter !D$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!D, !C \fCenter !D$
+\RightLabel{\RightR{\Weakening}}
+\UnaryInf$!D, !C \fCenter !E, !D$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!D, !C \fCenter !E, !C \land !D$
+\Axiom$!E \fCenter !E$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!C, !E \fCenter !E$
+\RightLabel{\LeftR{\Weakening}}
+\UnaryInf$!D, !C, !E \fCenter !E$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$ !D, !C, (!C \land !D) \lif !E \fCenter !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$!C, (!C \land !D) \lif !E \fCenter !D \lif !E$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$(!C \land !D) \lif !E \fCenter !C \lif (!D \lif !E)$
+\DisplayProof
+\]
+Struktur bukti ini (khususnya ketinggiannya) tidak bergantung pada apa
+!!{formula}s $!C$, $!D$, dan~$!E$ itu. Kita dapat mengganti simbol-simbol
+tersebut dalam !!{proof} di atas dengan !!{formula}s apa pun dan hasilnya
+tetap merupakan !!a{proof} dalam~\Log{G1c}. Bukti dalam \Log{G1c} itu
+bersifat \emph{skematis}.
+
+Dalam \Log{G3c}, aksioma adalah sekuen berbentuk $!A, \Gamma \Sequent
+\Delta, !A$ dengan syarat $!A$ atomik. Jadi, meskipun $!D, !C \Sequent
+!E, !C$ tampak seperti aksioma \Log{G3c} ($\Gamma = \{!D\}$; $\Delta =
+\{!E\}$), sekuen tersebut \emph{benar-benar} merupakan aksioma hanya jika
+$!C$ memang atomik. Fragmen bukti kita menjadi bukti lengkap dalam
+\Log{G3c} hanya jika $!C$, $!D$, dan $!E$ merupakan !!{formula}s atomik.
+
+Meskipun, secara tegas, kita belum menunjukkan bahwa
+\[\Log{G3c} \Proves (!C \land !D) \lif !E \fCenter !C \lif (!D \lif
+!E),\] dalam praktiknya inilah semua yang perlu (dan dapat) kita lakukan.
+Alasannya ialah bahwa setiap sekuen berbentuk $!A, \Gamma \Sequent
+\Delta, !A$ dapat dibuktikan dalam \Log{G3c}, bahkan jika $!A$ sendiri
+tidak atomik. Kita dapat menunjukkan hal ini dengan induksi pada
+kedalaman~$\depth{!A}$ dari~$!A$.
+
+\begin{defn}\ollabel{defn:depth}
+\emph{Kedalaman}~$\depth{!A}$ dari !!a{formula} didefinisikan sebagai berikut:
+\begin{enumerate}
+  \item Jika $!A$ atomik, $\depth{!A} = 0$.
+  \item Jika $!A \ident \lnot !B$, $!A \ident \lforall[x][!B(x)]$,
+  atau $!A \ident \lexists[x][!B(x)]$, maka $\depth{!A} = \depth{!B} + 1$.
+  \item Jika $!A \ident (!B \land !C)$, $!A \ident (!B \lor !C)$, atau
+  $!A \ident (!B \lif !C)$, maka $\depth{!A} =
+  \max(\depth{!B},\depth{!C}) + 1$.
+\end{enumerate}
+\end{defn}
+
+Tidak sulit membuktikan bahwa $\depth{A(x)} = \depth{A(t)}$ untuk setiap
+term~$t$. Fakta yang penting bagi kita ialah bahwa, dalam setiap aturan,
+kedalaman !!{formula} prinsipal selalu lebih besar daripada kedalaman
+!!{formula}s aktif. Sebagai contoh, kita mempunyai:
+\begin{align*}
+\depth{P(x)} = \depth{P(a)} & = 0,\\
+\depth{\lforall[x][P(x)]} & = 1,\\
+\depth{(\lforall[x][P(x)] \lif P(a))} & = \max(1,0) + 1 = 2.
+\end{align*}
+Kita dapat menggunakan fakta ini untuk membuktikan beberapa hasil dengan
+induksi pada~$\depth{!A}$, misalnya hasil berikut.
+
+\begin{prop}\ollabel{prop:G1c-axioms}
+Untuk setiap~$!A$, terdapat !!a{proof} dalam $\Log{G1c}$ atas $!A
+\Sequent !A$ yang semua aksiomanya atomik.
+\end{prop}
+
+\begin{proof}
+  Dengan induksi pada~$\depth{!A}$. Jika $\depth{!A} = 0$, maka $!A$
+  atomik dan $!A \Sequent !A$ sendiri sudah merupakan !!a{proof}
+  dalam~\Log{G1c} dengan bentuk yang diperlukan. Jika $\depth{!A} > 0$,
+  $!A$ dibangun dari !!{formula}s yang berkedalaman lebih rendah, misalnya
+  $!A \ident \lnot !B$, $!A \ident (!B \land !C)$, atau $!A \ident
+  \lforall[x][!B(x)]$. Hipotesis induksinya ialah bahwa, untuk semua $!D$
+  dengan $\depth{!D} < \depth{!A}$, $\Log{G1c} \Proves !D \Sequent !D$
+  dari aksioma-aksioma atomik.
+
+  Jika $!A \ident \lnot !B$, maka $\depth{!B} < \depth{!A}$ dan, menurut
+  hipotesis induksi, terdapat !!a{proof}~$\pi_1$ dalam \Log{G1c} dari
+  aksioma atomik atas $!B \Sequent !B$. Kita dapat memperluasnya menjadi
+  !!a{proof} atas $\lnot !B \Sequent \lnot !B$ sebagai berikut:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!B \fCenter !B$
+  \RightLabel{\LeftR{\lnot}}
+  \UnaryInf$\lnot !B, !B \fCenter $
+  \RightLabel{\RightR{\lnot}}
+  \UnaryInf$\lnot !B \fCenter \lnot !B$
+  \DisplayProof
+\]
+
+  Jika $!A \ident (!B \land !C)$, maka $\depth{!B} < \depth{!A}$ dan
+  $\depth{!C} < \depth{!A}$. Menurut hipotesis induksi, terdapat
+  !!{proof}s~$\pi_1$ dan~$\pi_2$ dalam \Log{G1c} dari aksioma atomik
+  masing-masing atas $!B \Sequent !B$ dan $!C \Sequent !C$. Kita dapat
+  memperluasnya menjadi !!a{proof} atas $!B \land !C \Sequent !B \land
+  !C$ sebagai berikut:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!B \fCenter !B$
+  \RightLabel{\LeftR{\Weakening}}
+  \UnaryInf$!B, !C, \fCenter !B$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!B \land !C, !C\fCenter !B$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!B \land !C, !B \land !C \fCenter !B$
+  \AxiomC{}
+  \RightLabel{$\pi_2$}
+  \Deduce$!C \fCenter !C$
+  \RightLabel{\LeftR{\Weakening}}
+  \UnaryInf$!B, !C, \fCenter !C$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!B \land !C, !C \fCenter !C$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!B \land !C, !B \land !C \fCenter !C$
+  \RightLabel{\RightR{\land}}
+  \BinaryInf$!B \land !C, !B \land !C \fCenter !B \land !C$
+  \RightLabel{\LeftR{\Contraction}}
+  \UnaryInf$!B \land !C \fCenter !B \land !C$
+  \DisplayProof
+  \]
+
+  Sekarang andaikan $!A \ident \lforall[x][B(x)]$. Ambil
+  !!a{constant}~$c$ yang tidak muncul dalam $\lforall[x][B(x)]$. Maka
+  $\depth{B(c)} = \depth{!B(x)} < \depth{!A}$ dan, menurut hipotesis
+  induksi, terdapat !!a{proof}~$\pi_1$ dalam \Log{G1c} dari aksioma atomik
+  atas $!B(c) \Sequent !B(c)$. Kita dapat memperluasnya menjadi
+  !!a{proof} atas $\lforall[x][B(x)] \Sequent \lforall[x][B(x)]$
+  sebagai berikut:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!B(c) \fCenter !B(c)$
+  \RightLabel{\LeftR{\lforall}}
+  \UnaryInf$\lforall[x][!B(x)] \fCenter !B(c)$
+  \RightLabel{\RightR{\lforall}}
+  \UnaryInf$\lforall[x][!B(x)] \fCenter \lforall[x][!B(x)]$
+  \DisplayProof
+\]
+
+  Kasus-kasus yang tersisa diserahkan sebagai latihan.
+\end{proof}
+
+\begin{prob}
+  Lengkapi bukti \olref{prop:G1c-axioms} dengan mengerjakan kasus-kasus
+  ketika $!A \ident (!B \lor !C)$, $!A \ident (!B \lif !C)$, dan
+  $!A \ident \lexists[x][B(x)]$.
+\end{prob}
+
+Untuk keperluan kita, dalam kasus $!A \ident \lnot !B$ kita juga dapat
+menggunakan !!{proof}
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!B \fCenter !B$
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\fCenter !B, \lnot !B$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !B \fCenter \lnot !B$
+\DisplayProof
+\]
+Namun, ada sistem sekuen yang tidak memungkinkan cara ini. Kalkulus sekuen
+intuisionistik \Log{G1i} serupa dengan \Log{G1c}, kecuali bahwa semua
+sekuennya dibatasi agar memuat paling banyak satu !!a{formula} di sebelah
+kanan. Jika $\Delta = \emptyset$, !!{proof} pertama juga merupakan
+!!a{proof} dalam~\Log{G1i}, tetapi yang kedua bukan, sebab salah satu
+sekuennya memuat $!B$ sekaligus~$\lnot !B$ di sebelah kanan.
+
+Perhatikan bahwa bahkan dalam \Log{G1c} kita tidak dapat menggunakan urutan
+aturan yang berbeda dalam kasus $!A \ident \lforall[x][!B(x)]$. Yang
+berikut \emph{bukan} !!a{proof}:
+  \[
+  \AxiomC{}
+  \RightLabel{$\pi_1$}
+  \Deduce$!B(c) \fCenter !B(c)$
+  \RightLabel{\RightR{\lforall}}
+  \UnaryInf$!B(c) \fCenter \lforall[x][!B(x)]$
+  \RightLabel{\LeftR{\lforall}}
+  \UnaryInf$\lforall[x][!B(x)] \fCenter \lforall[x][!B(x)]$
+  \DisplayProof
+\]
+karena syarat variabel eigen pada~$\RightR{\lforall}$ dilanggar.
+
+\begin{prop}\ollabel{prop:G3c-axioms}
+Setiap sekuen berbentuk $!A, \Gamma \Sequent \Delta, !A$ (dengan $!A$
+yang \emph{tidak} harus atomik) dapat dibuktikan dalam~\Log{G3c}.
+\end{prop}
+
+\begin{proof}
+Buktinya sangat mirip dengan bukti \olref{prop:G1c-axioms}, tetapi kita
+harus berhati-hati dengan hipotesis induksi. Kasus $n = \depth{!A} = 0$
+kembali mudah. Jika $n=0$, $!A$ atomik, dan $!A, \Gamma \Sequent \Delta,
+!A$ merupakan aksioma~\Log{G3c}.
+
+Sekarang andaikan $n>0$. Kita kembali membedakan beberapa kasus. Hipotesis
+induksinya ialah: untuk setiap $!D$ dengan $\depth{!D} < n$, serta setiap
+$\Pi$ dan $\Lambda$, $\Log{G3c} \Proves !D, \Pi \Sequent \Lambda, !D$.
+Berikut kasus untuk $!A \ident (!B \land !C)$. Kita menggunakan hipotesis
+induksi dua kali: pertama untuk $!D = !B$, $\Pi = !C, \Gamma$, dan
+$\Lambda = \Delta$ sehingga diperoleh !!a{proof}~$\pi_1$ atas $!B, !C,
+\Gamma \Sequent \Delta, !B$; kedua untuk $!D = !C$, $\Pi = !B, \Gamma$,
+dan $\Lambda = \Delta$ sehingga diperoleh !!a{proof}~$\pi_2$ atas $!B,
+!C, \Gamma \Sequent \Delta, !C$. Berikut !!{proof} atas~$!B \land !C,
+\Gamma \Sequent \Delta, !B \land !C$:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!B, !C, \Gamma \fCenter \Delta, !B$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!B \land !C, \Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!B, !C, \Gamma \fCenter \Delta, !C$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!B \land !C, \Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!B \land !C, \Gamma \fCenter \Delta, !B \land !C$
+\DisplayProof
+\]
+
+Untuk $!A \ident \lforall[x][!B(x)]$, pilih !!a{constant} yang tidak
+muncul dalam~$\lforall[x][!B(x)]$, $\Gamma$, ataupun~$\Delta$. Terapkan
+hipotesis induksi dengan $!D = !B(c)$, $\Pi = \lforall[x][!B(x)], \Gamma$,
+dan $\Lambda = \Delta$. Hal ini menghasilkan !!a{proof}~$\pi_1$ atas
+$!B(c), \lforall[x][!B(x)], \Gamma \Sequent \Delta, !B(c)$, yang dapat
+kita lanjutkan sebagai berikut:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!B(c), \lforall[x][!B(x)], \Gamma \fCenter \Delta, !B(c)$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$\lforall[x][!B(x)], \Gamma \fCenter \Delta, !B(c)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$\lforall[x][!B(x)], \Gamma \fCenter \Delta, \lforall[x][!B(x)]$
+\DisplayProof
+\]
+Syarat variabel eigen pada $\RightR{\lforall}$ terpenuhi berkat cara kita
+memilih~$c$.
+\end{proof}
+
+\begin{prob}
+  Lanjutkan bukti \olref{prop:G3c-axioms} dengan mengerjakan kasus-kasus
+  ketika $!A \ident (!B \lif !C)$ dan $!A \ident \lexists[x][B(x)]$.
+\end{prob}
+
+\end{document}

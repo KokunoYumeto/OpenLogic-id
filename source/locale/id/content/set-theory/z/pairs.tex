@@ -1,0 +1,75 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{z}{pairs}
+\olsection{Pasangan}
+
+Aksioma berikutnya yang akan kita pertimbangkan adalah sebagai berikut:
+
+\begin{axiom}[Pasangan]
+Untuk sebarang himpunan $a,b$, himpunan $\{a,b\}$ ada.
+\[
+	\forall a \forall b \exists P \forall x (x \in P \liff (x = a \lor x = b))
+\]
+\end{axiom}
+
+Berikut cara membenarkan aksioma ini dengan menggunakan konsepsi iteratif.
+Andaikan $a$ tersedia pada tahap~$S$, dan $b$ tersedia pada tahap~$T$.
+Misalkan $M$ adalah tahap yang lebih akhir di antara $S$ dan~$T$. Karena $a$
+dan $b$ sama-sama tersedia pada tahap~$M$, himpunan $\{a,b\}$ merupakan
+kumpulan yang mungkin dan tersedia pada setiap tahap sesudah~$M$.
+
+Namun, tunggu!{} Mengapa kita mengandaikan bahwa memang \emph{ada} tahap sesudah
+$M$? Jika tidak ada, pembenaran kita gagal. Jadi, untuk membenarkan Pasangan,
+kita harus menambahkan satu prinsip lagi pada kisah yang disampaikan dalam
+\olref[sth][z][story]{sec}, yakni:
+\begin{enumerate}
+	\item[] \stagessucc. Tidak ada tahap terakhir.
+\end{enumerate}
+Apakah prinsip ini dapat dibenarkan? Tidak ada bagian kisah Shoenfield yang
+menyatakan \emph{secara eksplisit} bahwa tidak ada tahap terakhir. Meskipun
+demikian, sekalipun prinsip itu---secara tegas---merupakan tambahan pada kisah
+kita, prinsip tersebut sangat selaras dengan gagasan dasar bahwa himpunan
+dibentuk secara bertahap. Untuk selanjutnya, kita akan menerimanya. Dengan
+demikian, kita juga menerima Aksioma Pasangan.
+
+Berbekal aksioma baru ini, kita dapat membuktikan keberadaan jauh lebih banyak
+himpunan. Sebagai contoh:
+
+\begin{prop}\ollabel{prop:pairsconsequences}
+Untuk sebarang himpunan $a$ dan~$b$, himpunan-himpunan berikut ada:
+	\begin{enumerate}
+		\item\ollabel{singleton} $\{a\}$
+		\item\ollabel{binunion} $a \cup b$
+		\item\ollabel{tuples} $\tuple{a,b}$
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+\olref{singleton}. Berdasarkan Pasangan, $\{a,a\}$ ada; menurut
+Ekstensionalitas, himpunan ini sama dengan $\{a\}$.
+
+\olref{binunion}. Berdasarkan Pasangan, $\{a,b\}$ ada. Maka
+$a\cup b=\bigcup\{a,b\}$ ada berdasarkan Gabungan.
+
+\olref{tuples}. Berdasarkan \olref{singleton}, $\{a\}$ ada. Berdasarkan
+Pasangan, $\{a,b\}$ ada. Maka
+$\{\{a\},\{a,b\}\}=\tuple{a,b}$ ada, sekali lagi berdasarkan Pasangan.
+\end{proof}
+
+\begin{prob}
+Tunjukkan bahwa, untuk sebarang himpunan $a,b,c$, himpunan $\{a,b,c\}$ ada.
+\end{prob}
+
+\begin{prob}
+Tunjukkan bahwa, untuk sebarang himpunan $a_1,\ldots,a_n$, himpunan
+$\{a_1,\ldots,a_n\}$ ada.
+\end{prob}
+
+%\begin{proof} By two applications of Pairs, $\{\{a_1, a_2\}, \{a_1,
+%   a_3\}\}$ exists. By Union and Extensionality, $\bigcup \{\{a_1,
+%   a_2\}, \{a_1, a_3\}\} = \{a_1, a_2, a_3\}$ exists. Repeat this
+%   trick as often as necessary. \end{proof}
+
+\end{document}

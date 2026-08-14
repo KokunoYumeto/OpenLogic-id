@@ -1,0 +1,93 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: sublogics
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{syn}{sub}
+
+\olsection{Logika Bernilai Banyak sebagai Sublogika dari~$\LogCL$}
+
+Logika bernilai banyak yang biasa digunakan semuanya didefinisikan dengan
+matriks yang nilai fungsi kebenarannya, bagi argumen dalam
+$\{\True,\False\}$, sama dengan nilai fungsi kebenaran klasik. Secara khusus,
+dalam logika-logika ini, jika $x\in\{\True,\False\}$, maka
+$\tf{\lnot}[\Log L](x)=\tf{\lnot}[\LogCL](x)$; dan jika $\star$ merupakan
+salah satu dari $\land$, $\lor$, $\lif$ serta
+$x,y\in\{\True,\False\}$, maka
+$\tf{\star}[\Log L](x,y)=\tf{\star}[\LogCL](x,y)$. Dengan kata lain,
+fungsi kebenaran bagi $\lnot$, $\land$, $\lor$, dan~$\lif$, ketika dibatasi
+pada $\{\True,\False\}$, persis sama dengan fungsi kebenaran klasik.
+
+\begin{prop}\ollabel{prop:mvl-cl}
+  Andaikan suatu logika bernilai banyak~$\Log L$ memuat konektif $\lnot$,
+  $\land$, $\lor$, $\lif$ dalam bahasanya, $\True,\False\in V$, dan fungsi
+  kebenarannya memenuhi:
+  \begin{enumerate}
+    \item\ollabel{prop:not} $\tf{\lnot}[\Log L](x)=\tf{\lnot}[\LogCL](x)$
+    jika $x=\True$ atau $x=\False$;
+    \item\ollabel{prop:land} $\tf{\land}[\Log L](x,y)=\tf{\land}[\LogCL](x,y)$,
+    \item\ollabel{prop:lor} $\tf{\lor}[\Log L](x,y)=\tf{\lor}[\LogCL](x,y)$,
+    \item\ollabel{prop:lif} $\tf{\lif}[\Log L](x,y)=\tf{\lif}[\LogCL](x,y)$,
+    jika $x,y\in\{\True,\False\}$.
+  \end{enumerate}
+  Maka, bagi setiap valuasi~$\pAssign v$ ke dalam~$V$ sedemikian sehingga
+  $\pAssign v(p)\in\{\True,\False\}$, dan bagi setiap formula dalam
+  fragmen klasik yang dibangun dari variabel proposisional hanya dengan
+  keempat konektif dalam hipotesis, berlaku
+  $\pValue v[\Log L](!A)=\pValue v[\LogCL](!A)$.
+\end{prop}
+
+\begin{proof}
+  Dengan induksi pada~$!A$.
+  \begin{enumerate}
+  \item Jika $!A\ident p$ bersifat atomik, kita mempunyai
+  $\pValue v[\Log L](!A)=\pAssign v(p)=\pValue v[\LogCL](!A)$.
+  \item Jika $!A\ident\lnot B$, kita mempunyai
+  \begin{align*}
+    \pValue v[\Log L](!A) & = \tf{\lnot}[\Log L](\pValue v[\Log L](!B)) & &\text{berdasarkan \olref[val]{defn:pValue}}\\
+    & = \tf{\lnot}[\Log L](\pValue v[\LogCL](!B)) && \text{berdasarkan hipotesis induksi}\\
+    & = \tf{\lnot}[\LogCL](\pValue v[\LogCL](!B))
+&&\text{berdasarkan asumsi \olref{prop:not},}\\
+&&&\text{karena $\pValue v[\LogCL](!B)\in\{\True,\False\}$,}\\
+& = \pValue v[\LogCL](!A) &&\text{berdasarkan \olref[val]{defn:pValue}}.
+\end{align*}
+\item Jika $!A\ident(!B\land !C)$, kita mempunyai
+\begin{align*}
+  \pValue v[\Log L](!A) & = \tf{\land}[\Log L](\pValue v[\Log L](!B), \pValue v[\Log L](!C)) & &\text{berdasarkan \olref[val]{defn:pValue}}\\
+  & = \tf{\land}[\Log L](\pValue v[\LogCL](!B),\pValue v[\LogCL](!C)) && \text{berdasarkan hipotesis induksi}\\
+  & = \tf{\land}[\LogCL](\pValue v[\LogCL](!B),\pValue v[\LogCL](!C))
+&&\text{berdasarkan asumsi \olref{prop:land},}\\
+&&&\text{karena $\pValue v[\LogCL](!B),\pValue v[\LogCL](!C)\in\{\True,\False\}$,}\\
+& = \pValue v[\LogCL](!A) &&\text{berdasarkan \olref[val]{defn:pValue}}.
+\end{align*}
+\end{enumerate}
+Kasus $!A\ident(!B\lor !C)$ dan $!A\ident(!B\lif !C)$ serupa.
+\end{proof}
+
+\begin{cor}
+  Jika suatu logika bernilai banyak memenuhi syarat-syarat dalam
+  \olref{prop:mvl-cl}, $\True\in V^+$, dan $\False\notin V^+$, maka pada
+  fragmen klasik bersama berlaku
+  ${\Entails[\Log L]}\subseteq{\Entails[\LogCL]}$; yakni, jika
+  $\Gamma\Entails[\Log L]!B$, maka $\Gamma\Entails[\LogCL]!B$. Secara
+  khusus, setiap tautologi dari~$\Log L$ dalam fragmen tersebut juga
+  merupakan tautologi klasik.
+\end{cor}
+
+\begin{proof}
+  Kita membuktikan kontraposisinya. Andaikan
+  $\Gamma\Entails/[\LogCL]!B$. Maka terdapat suatu
+  !!{valuation}~$\pAssign v\colon\PVar\to\{\True,\False\}$ sedemikian
+  sehingga $\pValue v[\LogCL](!A)=\True$ bagi setiap $!A\in\Gamma$ dan
+  $\pValue v[\LogCL](!B)=\False$. Karena $\True,\False\in V$,
+  !!{valuation}~$\pAssign v$ juga merupakan !!a{valuation} bagi~$\Log L$.
+  Berdasarkan \olref{prop:mvl-cl}, $\pValue v[\Log L](!A)=\True$ bagi setiap
+  $!A\in\Gamma$ dan $\pValue v[\Log L](!B)=\False$. Karena
+  $\True\in V^+$ dan $\False\notin V^+$, berarti
+  $\pSat{v}{\Gamma}[\Log L]$ dan $\pSat/{v}{!B}[\Log L]$; dengan kata lain,
+  $\Gamma\Entails/[\Log L]!B$.
+\end{proof}
+\end{document}

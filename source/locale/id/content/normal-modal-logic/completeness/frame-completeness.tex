@@ -1,0 +1,235 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: frame-completeness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{com}{fra}
+
+\olsection{Kelengkapan Kerangka}
+
+Teorema kelengkapan bagi \Log{K} dapat diperluas ke sistem modal lainnya
+setelah kita menunjukkan bahwa model kanonik bagi suatu logika tertentu
+mempunyai sifat kerangka yang bersesuaian.
+
+\begin{thm}\ollabel{thm:completeframeprops}
+  Jika suatu logika modal normal $\Sigma$ memuat salah satu !!{formula}s pada
+  sisi kiri \olref{tab:correspondencetable}, maka model kanonik bagi~$\Sigma$
+  mempunyai sifat yang bersesuaian pada sisi kanan.
+\end{thm}
+
+\begin{table}[htp]
+  \centering
+    \begin{tabular}{| l || l |}
+      \hline
+      \emph{Jika $\Sigma$ memuat \dots} & \emph{\dots model kanonik bagi
+        $\Sigma$ bersifat:} \\
+      \hline \hline
+      \Ax{D}:\;\; $\Box!A \lif \Diamond !A$ & \quad serial; \\
+      \hline
+      \Ax{T}:\;\; $\Box!A \lif !A$ &\quad  refleksif;\\
+      \hline
+      \Ax{B}: \;\;$!A \lif \Box\Diamond!A$ &\quad  simetris; \\
+      \hline
+      \Ax{4}: \;\; $\Box!A \lif \Box\Box!A$ & \quad transitif; \\
+      \hline
+      \Ax{5}: \;\; $\Diamond !A \lif \Box\Diamond!A$& \quad Euklidean.\\
+      \hline
+    \end{tabular}
+    \caption{Fakta korespondensi dasar.}
+    \ollabel{tab:correspondencetable}
+\end{table}
+
+\begin{proof}
+  Kita membahas masing-masing sifat secara berurutan.
+
+  Andaikan $\Sigma$ memuat \Ax{D}, dan misalkan $\Delta \in W^\Sigma$; kita
+  perlu menunjukkan bahwa terdapat suatu $\Delta'$ sedemikian sehingga
+  $R^\Sigma \Delta\Delta'$. Cukup ditunjukkan bahwa $\Box^{-1}\Delta$
+  $\Sigma$-konsisten, sebab berdasarkan Lema Lindenbaum kemudian terdapat
+  suatu himpunan lengkap dan $\Sigma$-konsisten~$\Delta' \supseteq
+  \Box^{-1}\Delta$, dan berdasarkan definisi $R^\Sigma$
+  \iftag{prvBox}{}{serta \olref[mod]{lem:box-iff-diamond}, }berlaku
+  $R^\Sigma \Delta\Delta'$. Jadi, demi memperoleh kontradiksi, andaikan
+  $\Box^{-1}\Delta$ \emph{tidak} $\Sigma$-konsisten, yakni
+  $\Box^{-1}\Delta \Proves[\Sigma] \lfalse$. Berdasarkan
+  \olref[mod]{lem:box2}, $\Delta \Proves[\Sigma] \Box\lfalse$; dan karena
+  $\Sigma$ memuat \Ax{D}, berlaku pula
+  $\Delta \Proves[\Sigma] \Diamond\lfalse$. Namun, $\Sigma$ normal, sehingga
+  $\Sigma \Proves \lnot\Diamond \lfalse$
+  (\olref[prf][nor]{prop:notDiamondBot}); karena itu, berlaku pula $\Delta
+  \Proves[\Sigma] \lnot\Diamond \lfalse$, bertentangan dengan konsistensi
+  $\Delta$.
+
+  Sekarang andaikan $\Sigma$ memuat \Ax{T}, dan misalkan $\Delta \in
+  W^\Sigma$. Kita ingin menunjukkan bahwa $R^\Sigma \Delta\Delta$,
+  yakni,\iftag{prvBox}{}{ berdasarkan \olref[mod]{lem:box-iff-diamond},}
+  $\Box^{-1}\Delta \subseteq \Delta$. Namun, jika $\Box!A \in \Delta$,
+  maka berdasarkan \Ax{T} berlaku pula $!A \in \Delta$, seperti yang
+  diinginkan.
+
+  Sekarang andaikan $\Sigma$ memuat \Ax{B}, dan andaikan $R^\Sigma
+  \Delta\Delta'$ bagi $\Delta$, $\Delta' \in W^\Sigma$. Kita perlu
+  menunjukkan bahwa $R^\Sigma \Delta'\Delta$, yakni,\iftag{prvBox}{
+    $\Box^{-1}\Delta' \subseteq \Delta$. Berdasarkan
+    \olref[mod]{lem:box-iff-diamond}, hal ini ekuivalen dengan}{}
+  $\Diamond\Delta \subseteq \Delta'$. Jadi, andaikan $!A \in \Delta$.
+  Berdasarkan \Ax{B}, berlaku pula $\Box\Diamond!A \in \Delta$. Berdasarkan
+  hipotesis bahwa $R^\Sigma \Delta\Delta'$\iftag{prvBox}{}{ dan
+    \olref[mod]{lem:box-iff-diamond}}, kita memperoleh
+  $\Box^{-1}\Delta \subseteq \Delta'$, sehingga
+  $\Diamond!A \in \Delta'$, seperti yang diperlukan.
+
+  Sekarang andaikan $\Sigma$ memuat \Ax{4}, serta andaikan $R^\Sigma
+  \Delta_1\Delta_2$ dan $R^\Sigma \Delta_2\Delta_3$. Kita perlu menunjukkan
+  $R^\Sigma \Delta_1\Delta_3$. Dari hipotesis\iftag{prvBox}{}{ dan
+    \olref[mod]{lem:box-iff-diamond}}, kita memperoleh sekaligus
+  $\Box^{-1}\Delta_1 \subseteq \Delta_2$ dan
+  $\Box^{-1}\Delta_2 \subseteq \Delta_3$. Untuk menunjukkan
+  $R^\Sigma \Delta_1\Delta_3$, cukup ditunjukkan bahwa
+  $\Box^{-1}\Delta_1 \subseteq \Delta_3$. Jadi, misalkan $!B \in
+  \Box^{-1}\Delta_1$, yakni $\Box!B \in \Delta_1$. Berdasarkan \Ax{4},
+  berlaku pula $\Box\Box!B \in \Delta_1$; dan berdasarkan hipotesis, pertama
+  kita memperoleh $\Box!B \in \Delta_2$, lalu $!B \in \Delta_3$, seperti
+  yang diinginkan.
+
+  Sekarang andaikan $\Sigma$ memuat \Ax{5}, serta andaikan $R^\Sigma
+  \Delta_1\Delta_2$ dan $R^\Sigma \Delta_1\Delta_3$. Kita perlu menunjukkan
+  $R^\Sigma \Delta_2\Delta_3$. Hipotesis pertama menghasilkan
+  $\Box^{-1}\Delta_1 \subseteq \Delta_2$\iftag{prvBox}{}{ berdasarkan
+    \olref[mod]{lem:box-iff-diamond}}, sedangkan hipotesis kedua ekuivalen
+  dengan $\Diamond\Delta_3 \subseteq \Delta_1$\iftag{prvBox}{,
+    berdasarkan \olref[mod]{lem:box-iff-diamond}}{}. Untuk menunjukkan
+  $R^\Sigma \Delta_2\Delta_3$\iftag{prvBox}{, berdasarkan
+    \olref[mod]{lem:box-iff-diamond}, cukup}{, kita harus}
+  menunjukkan bahwa $\Diamond\Delta_3 \subseteq \Delta_2$. Jadi, misalkan
+  $\Diamond!A \in \Diamond\Delta_3$, yakni $!A \in \Delta_3$. Berdasarkan
+  hipotesis kedua, $\Diamond!A \in \Delta_1$; dan berdasarkan \Ax{5},
+  berlaku pula $\Box\Diamond!A \in \Delta_1$. Namun, kini hipotesis pertama
+  menghasilkan $\Diamond!A \in \Delta_2$, seperti yang diinginkan.
+  \end{proof}
+
+Sebagai suatu akibat, kita memperoleh hasil kelengkapan bagi sejumlah sistem.
+Sebagai contoh, kita mengetahui bahwa $\Log{S5} = \Log{KT5} =
+\Log{KTB4}$ lengkap terhadap kelas semua model refleksif dan Euklidean, yang
+sama dengan kelas semua model refleksif, simetris, dan transitif.
+
+\begin{thm}\ollabel{thm:generaldet}
+  Misalkan $\mClass{C}_\Ax{D}$, $\mClass{C}_\Ax{T}$,
+  $\mClass{C}_\Ax{B}$, $\mClass{C}_\Ax{4}$, dan
+  $\mClass{C}_\Ax{5}$ masing-masing merupakan kelas semua model serial,
+  refleksif, simetris, transitif, dan Euklidean. Maka, bagi sebarang skema
+  $!A_1$, \dots, $!A_n$ di antara \Ax{D}, \Ax{T}, \Ax{B}, \Ax{4}, dan
+  \Ax{5}, sistem $\Log{K}!A_1 \dots !A_n$ ditentukan oleh kelas model
+  $\mClass{C} = \mClass{C}_{!A_1} \cap \dots
+  \cap \mClass{C}_{!A_n}$.
+\end{thm}
+
+\begin{prop}
+  Misalkan $\Sigma$ suatu logika modal normal; maka:
+  \begin{enumerate}
+  \item\ollabel{prop:anotherfive-a}%
+    Jika $\Sigma$ memuat skema $\Diamond!A \lif \Box
+    !A$, maka model kanonik bagi $\Sigma$ bersifat fungsional parsial.
+  \item Jika $\Sigma$ memuat skema $\Diamond!A \liff \Box
+    !A$, maka model kanonik bagi $\Sigma$ bersifat fungsional.
+  \item Jika $\Sigma$ memuat skema $\Box\Box!A \lif \Box
+    !A$, maka model kanonik bagi $\Sigma$ bersifat rapat lemah.
+  \end{enumerate}
+(lihat \olref[frd][acc]{tab:anotherfive} untuk definisi sifat-sifat kerangka
+  ini).
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Andaikan bahwa $\Sigma$ memuat skema $\Diamond !A \lif
+    \Box !A$. Untuk menunjukkan bahwa $R^\Sigma$ bersifat fungsional parsial,
+    kita perlu membuktikan bahwa bagi sebarang $\Delta_1$, $\Delta_2$,
+    $\Delta_3 \in W^\Sigma$, jika $R^\Sigma \Delta_1\Delta_2$ dan $R^\Sigma
+    \Delta_1\Delta_3$, maka $\Delta_2=\Delta_3$. Karena $R^\Sigma
+    \Delta_1\Delta_2$, kita mempunyai $\Box^{-1}\Delta_1 \subseteq \Delta_2$;
+    dan karena $R^\Sigma \Delta_1\Delta_3$, berlaku pula
+    $\Box^{-1}\Delta_1 \subseteq \Delta_3$\iftag{prvBox}{}{, keduanya
+      berdasarkan \olref[mod]{lem:box-iff-diamond}}. Identitas
+    $\Delta_2=\Delta_3$ akan mengikuti jika kita dapat menetapkan kedua
+    inklusi $\Delta_2 \subseteq \Delta_3$ dan $\Delta_3 \subseteq
+    \Delta_2$. Bagi inklusi pertama, misalkan $!A \in \Delta_2$; maka
+    $\Diamond!A \in \Delta_1$, dan berdasarkan skema serta ketertutupan
+    deduktif $\Delta_1$, berlaku pula $\Box!A \in \Delta_1$. Karena hipotesis
+    menyatakan bahwa $R^\Sigma \Delta_1\Delta_3$, diperoleh
+    $!A \in \Delta_3$. Inklusi kedua serupa.
+
+  \item Hal ini langsung mengikuti dari bagian~\olref{prop:anotherfive-a}
+    dan pembuktian serialitas dalam \olref{thm:completeframeprops}.
+
+  \item Andaikan $\Sigma$ memuat skema $\Box\Box!A \lif \Box!A$; untuk
+    menunjukkan bahwa $R^\Sigma$ rapat lemah, misalkan $R^\Sigma
+    \Delta_1\Delta_2$. Kita perlu menunjukkan bahwa terdapat suatu himpunan
+    lengkap dan $\Sigma$-konsisten~$\Delta_3$ sedemikian sehingga
+    $R^\Sigma \Delta_1\Delta_3$ dan $R^\Sigma \Delta_3\Delta_2$. Misalkan:
+    \[
+    \Gamma = \Box^{-1}\Delta_1 \cup \Diamond\Delta_2.
+    \]
+    Cukup ditunjukkan bahwa $\Gamma$ $\Sigma$-konsisten, sebab berdasarkan
+    Lema Lindenbaum himpunan itu kemudian dapat diperluas menjadi suatu
+    himpunan lengkap dan $\Sigma$-konsisten~$\Delta_3$ sedemikian sehingga
+    $\Box^{-1}\Delta_1 \subseteq \Delta_3$ dan
+    $\Diamond\Delta_2 \subseteq \Delta_3$, yakni
+    $R^\Sigma \Delta_1\Delta_3$\iftag{prvBox}{}{ (berdasarkan
+      \olref[mod]{lem:box-iff-diamond})} dan $R^\Sigma
+    \Delta_3\Delta_2$\iftag{prvBox}{ (berdasarkan
+      \olref[mod]{lem:box-iff-diamond})}{}.
+
+    Demi memperoleh kontradiksi, andaikan $\Gamma$ tak konsisten. Maka
+    terdapat !!{formula}s $\Box!A_1$, \dots, $\Box!A_n \in \Delta_1$
+    dan $!B_1$, \dots,~$!B_m \in \Delta_2$ sedemikian sehingga
+    \[!A_1, \dots, !A_n, \Diamond!B_1, \dots, \Diamond!B_m \Proves[\Sigma]
+    \lfalse.\] Karena $\Diamond (!B_1 \land \dots \land !B_m) \to
+    (\Diamond!B_1 \land \dots \land \Diamond!B_m)$ !!{derivable} dalam
+    setiap logika modal normal, kita bernalar sebagai berikut dan memperoleh
+    kontradiksi dengan konsistensi~$\Delta_2$:
+    \begin{align*}
+      !A_1, \dots, !A_n, & \Diamond!B_1, \dots,
+      \Diamond!B_m \Proves[\Sigma] \lfalse \\
+      !A_1, \dots,!A_n & \Proves[\Sigma] (\Diamond!B_1 \land
+      \dots \land \Diamond!B_m) \lif \lfalse\\
+      & \qquad\text{berdasarkan teorema deduksi}\\
+      & \qquad\text{\olref[prf][prp]{prop:derivabilityfacts}\olref[prf][prp]{prop:derivabilityfacts-deduction}, dan \Taut} \\
+      !A_1, \dots,!A_n & \Proves[\Sigma]
+      \Diamond(!B_1 \land
+      \dots \land !B_m) \lif \lfalse\\
+      & \qquad \text{karena $\Sigma$ normal} \\
+      !A_1, \dots,!A_n & \Proves[\Sigma]
+      \lnot\Diamond (!B_1 \land \dots \land !B_m)\\
+      & \qquad\text{berdasarkan \PL} \\
+      !A_1, \dots,!A_n & \Proves[\Sigma]
+      \Box\lnot (!B_1 \land \dots \land !B_m)\\
+      & \qquad\text{$\Box\lnot$ untuk $\lnot\Diamond$} \\
+      \Box!A_1, \dots,\Box!A_n
+      & \Proves[\Sigma] \Box\Box \lnot (!B_1 \land \dots \land !B_m)\\
+      & \qquad\text{berdasarkan \olref[mod]{lem:box1}} \\
+      \Box!A_1, \dots,\Box!A_n
+      & \Proves[\Sigma]
+      \Box\lnot (!B_1 \land \dots \land !B_m)\\
+      &\qquad\text{berdasarkan skema $\Box\Box!A \lif \Box!A$} \\
+      \Delta_1 & \Proves[\Sigma]
+      \Box\lnot (!B_1 \land \dots \land !B_m)\\
+      &\qquad\text{berdasarkan monotonisitas, \olref[prf][prp]{prop:derivabilityfacts}\olref[prf][prp]{prop:derivabilityfacts-monotonicity}} \\
+      & \Box\lnot (!B_1 \land \dots \land !B_m) \in \Delta_1\\
+      &\qquad\text{berdasarkan ketertutupan deduktif}; \\
+      & \lnot (!B_1 \land \dots \land !B_m) \in \Delta_2\\
+      &\qquad \text{karena }
+      R^\Sigma \Delta_1\Delta_2.
+    \end{align*}
+  \end{enumerate}
+\end{proof}
+
+Berdasarkan contoh-contoh ini, orang mungkin mengira bahwa setiap sistem
+logika modal~$\Sigma$ bersifat \emph{lengkap}, dalam arti bahwa sistem itu
+membuktikan setiap formula yang valid pada setiap kerangka tempat setiap
+teorema dalam~$\Sigma$ valid. Sayangnya, terdapat banyak sistem yang tidak
+lengkap dalam arti ini.
+
+\end{document}

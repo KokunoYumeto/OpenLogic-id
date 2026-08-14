@@ -1,0 +1,268 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: normalization
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{pty}{nor}
+
+\olsection{Normalisasi}
+
+Dalam bagian ini kita membuktikan bahwa, melalui suatu urutan reduksi,
+setiap deduksi dapat direduksi menjadi deduksi normal; hasil ini disebut
+\emph{sifat normalisasi}. Kita akan menggunakan korespondensi proposisi
+sebagai tipe: kita menunjukkan bahwa setiap term bukti dapat direduksi
+menjadi bentuk normal; normalisasi bagi !!{derivation}s deduksi alami
+kemudian mengikuti.
+
+Pertama-tama kita mendefinisikan beberapa fungsi yang mengukur
+kompleksitas term. \emph{Panjang}~$\len{!A}$ suatu !!a{formula}s didefinisikan
+oleh
+\begin{align*}
+  \len{p} &= 0\\
+  \len{!A \land !B} &= \len{!A} + \len{!B} + 1\\
+  \len{!A \lor !B} &= \len{!A} + \len{!B} + 1 \\
+  \len{!A \lif !B} &= \len{!A} + \len{!B} + 1.
+\end{align*}
+Kompleksitas suatu redex~$M$ diukur oleh \emph{peringkat
+potongannya}~$\cutrank{M}$:
+\begin{align*}
+  \cutrank{(\lambd[\typeof{x}{!A}][\typeof{N}{!B}])Q} &=
+  \len{!A} + \len{!B} + 1 \\
+  \cutrank{\ande{i}{\andi{\typeof{M}{!A}}{\typeof{N}{!B}}}} &=
+  \len{!A} + \len{!B} + 1 \\
+  \cutrank{\ore{\ori{i}{!A_{i}}{\typeof{M}{!A_i}}}
+    {\typeof{x_1}{!A_1}}{\typeof{N_1}{!C}}
+    {\typeof{x_2}{!A_2}}{\typeof{N_2}{!C}}} &=
+  \len{!A_1} + \len{!A_2} + 1.
+\end{align*}
+Kompleksitas suatu term bukti diukur oleh redex paling kompleks di
+dalamnya, dan bernilai $0$ jika term itu normal:
+\[
+  \maxrank{M} = \max \bigl(\{\cutrank{N} \mid
+    N \text{ adalah subterm dari } M
+    \text{ dan merupakan redex}\} \cup \{0\}\bigr).
+\]
+
+\begin{lem}\ollabel{lem:subst}
+  Jika $\Subst{M}{\typeof{N}{!A}}{\typeof{x}{!A}}$ merupakan redex dan
+  $M \not\ident x$, maka salah satu kasus berikut berlaku:
+  \begin{enumerate}
+  \item $M$ sendiri merupakan redex; atau
+  \item $M$ berbentuk $\ande{i}{x}$, dan $N$ berbentuk
+    $\andi{P_1}{P_2}$;
+  \item $M$ berbentuk $\ore{x}{x_1}{P_1}{x_2}{P_2}$, dan $N$ berbentuk
+    $\ori{i}{}{Q}$; atau
+  \item $M$ berbentuk $x Q$, dan $N$ berbentuk $\lambd[x][P]$.
+  \end{enumerate}
+  Dalam kasus pertama, $\cutrank{\Subst{M}{N}{x}} = \cutrank{M}$;
+  dalam kasus-kasus lain,
+  $\cutrank{\Subst{M}{N}{x}} = \len{!A}$.
+\end{lem}
+\begin{proof}
+  Bukti melalui induksi pada~$M$.
+  \begin{enumerate}
+  \item Jika $M$ merupakan variabel tunggal $y$ dan $y \not\ident x$,
+    maka $\Subst{y}{N}{x}$ ialah $y$, sehingga bukan redex.
+  \item Jika $M$ berbentuk $\andi{N_1}{N_2}$, atau $\lambd[x][N]$, atau
+    $\ori{i}{!A}{N}$, maka
+    $\Subst{M}{\typeof{N}{!A}}{\typeof{x}{!A}}$ juga berbentuk demikian,
+    sehingga bukan redex.
+  \item Jika $M$ berbentuk $\ande{i}{P}$, kita mempertimbangkan dua kasus.
+    \begin{enumerate}
+      \item Jika $P$ berbentuk $\andi{P_1}{P_2}$, maka $M \ident
+        \ande{i}{\andi{P_1}{P_2}}$ merupakan redex, dan jelas
+        \[
+        \Subst{M}{N}{x} \ident
+        \ande{i}{\andi{\Subst{P_1}{N}{x}}{\Subst{P_2}{N}{x}}}
+        \]
+        juga merupakan redex. Peringkat potongannya sama.
+      \item Jika $P$ merupakan variabel tunggal, variabel itu haruslah
+        $x$ agar substitusi menghasilkan redex, dan $N$ harus berbentuk
+        $\andi{P_1}{P_2}$. Sekarang tinjau
+        \[
+        \Subst{M}{N}{x} \ident
+        \Subst{\ande{i}{x}}{\andi{P_1}{P_2}}{x},
+        \]
+        yang sama dengan $\ande{i}{\andi{P_1}{P_2}}$. Peringkat
+        potongannya sama dengan $\len{!A}$.
+    \end{enumerate}
+  \end{enumerate}
+  Kasus $\ore{N}{x_1}{N_1}{x_2}{N_2}$ dan $P Q$ serupa.
+\end{proof}
+
+\begin{lem}
+  Jika $M$ berkontraksi menjadi $M'$, dan $\cutrank{M} >
+  \cutrank{N}$ untuk setiap subterm-redex sejati $N$ dari $M$, maka
+  $\cutrank{M} > \maxrank{M'}$.
+\end{lem}
+
+\begin{proof}
+  Bukti dengan membedakan kasus.
+  \begin{enumerate}
+  \item Jika $M$ berbentuk $\ande{i}{\andi{M_1}{M_2}}$, maka $M'$ ialah
+    $M_i$; karena setiap subterm dari $M_i$ juga merupakan subterm sejati
+    dari $M$, klaim tersebut berlaku.
+  \item Jika $M$ berbentuk
+    $(\lambd[\typeof{x}{!A}][N])\typeof{Q}{!A}$, maka $M'$ ialah
+    $\Subst{N}{\typeof{Q}{!A}}{\typeof{x}{!A}}$. Tinjau suatu redex dalam
+    $M'$. Redex itu bersesuaian dengan suatu redex dalam $N$ yang
+    mempunyai peringkat potongan sama, yang menurut asumsi lebih kecil
+    daripada $\cutrank{M}$; atau peringkat potongannya sama dengan
+    $\len{!A}$, yang menurut definisi lebih kecil daripada
+    $\cutrank{(\lambd[x^{!A}][N])Q}$.
+  \item Jika $M$ berbentuk
+    \[
+    \ore{\ori{i}{}{\typeof{N}{!A_i}}}
+        {\typeof{x_1}{!A_1}}{\typeof{N_1}{!C}}
+        {\typeof{x_2}{!A_2}}{\typeof{N_2}{!C}},
+    \]
+    maka $M' \ident \Subst{N_i}{N}{\typeof{x_i}{!A_i}}$. Tinjau suatu
+    redex dalam~$M'$. Redex itu bersesuaian dengan suatu redex dalam
+    $N_i$ yang mempunyai peringkat potongan sama, yang menurut asumsi
+    lebih kecil daripada $\cutrank{M}$; atau peringkat potongannya sama
+    dengan $\len{!A_i}$, yang menurut definisi lebih kecil daripada
+    $\cutrank{\ore{\ori{i}{}{\typeof{N}{!A_i}}}
+      {\typeof{x_1}{!A_1}}{\typeof{N_1}{!C}}
+      {\typeof{x_2}{!A_2}}{\typeof{N_2}{!C}}}$.
+  \end{enumerate}
+\end{proof}
+
+\begin{thm}
+  Semua term bukti tereduksi menjadi bentuk normal; semua
+  !!{derivation}s tereduksi menjadi !!{derivation}s normal.
+\end{thm}
+
+\begin{proof}
+  Klaim kedua mengikuti klaim pertama. Kita membuktikan klaim pertama
+  melalui induksi lengkap pada $m=\maxrank{M}$, dengan $M$ suatu term
+  bukti.
+  \begin{enumerate}
+
+  \item Jika $m=0$, $M$ sudah normal.
+  \item
+    Jika tidak, kita melakukan induksi pada~$n$, yaitu banyaknya redex
+    dalam $M$ yang mempunyai peringkat potongan sama dengan~$m$.
+    \begin{enumerate}
+    \item Jika $n=1$, pilih redex $N$ sedemikian rupa sehingga
+      $m = \cutrank{N} > \cutrank{P}$ bagi setiap subterm sejati $P$
+      yang juga merupakan redex. Redex semacam itu harus ada karena
+      setiap term hanya mempunyai berhingga banyak subterm.
+
+      Misalkan $N'$ adalah hasil reduksi $N$. Menurut lema,
+      $\maxrank{N'} < \maxrank{N}$, sehingga $n$, yaitu banyaknya redex
+      dengan $\cutrank=m$, berkurang. Dengan demikian $m$ berkurang
+      (sebesar $1$ atau lebih), dan kita dapat menerapkan hipotesis
+      induksi untuk~$m$.
+    \item Untuk langkah induksi, andaikan $n>1$. Prosesnya serupa, tetapi
+      $n$ hanya berkurang menjadi suatu bilangan positif sehingga $m$
+      tidak berubah. Kita cukup menerapkan hipotesis induksi untuk~$n$.
+    \end{enumerate}
+  \end{enumerate}
+\end{proof}
+
+Fakta bahwa term-$\lambd$ bertipe ternormalisasi berarti bahwa setiap
+term semacam itu \emph{memiliki bentuk normal}. Jika kita memandang
+reduksi-$\beta$ term-$\lambd$ menuju bentuk normalnya sebagai pelaksanaan
+komputasi, dan bentuk normal sebagai nilai komputasinya, ini berarti
+bahwa setiap komputasi dalam kalkulus-$\lambd$ bertipe akhirnya berhenti
+dan menghasilkan suatu nilai. Lebih lanjut, preservasi tipe memastikan
+bahwa nilai tersebut memiliki tipe yang tepat. Misalnya, jika $N$
+bertipe $!A \lif !B$ (yakni, ia merupakan fungsi yang seharusnya bekerja
+pada argumen bertipe~$!A$ dan menghasilkan nilai bertipe~$!B$), dan kita
+menerapkannya kepada term~$M$ bertipe~$!A$ (masukan), maka $(NM)$
+tereduksi menjadi term~$N'$ (keluaran), dan keluaran tersebut dijamin
+bertipe~$!B$.
+
+Sebenarnya, term dalam kalkulus-$\lambd$ bertipe bukan hanya tereduksi
+menjadi bentuk normal menurut satu cara penerapan reduksi-$\beta$ kepada
+subterm; \emph{setiap} cara menerapkan reduksi-$\beta$ kepada subterm
+akhirnya berhenti dalam bentuk normal. Sifat ini disebut
+\emph{normalisasi kuat}. Artinya, bukan hanya ada suatu cara untuk
+menjamin bahwa komputasi akhirnya berhenti dan menghasilkan nilai,
+melainkan \emph{setiap} cara menjalankan komputasi pada akhirnya
+menghasilkan nilai.
+
+Bagaimana kita mengetahui bahwa cara-cara berbeda menjalankan komputasi
+menghasilkan nilai yang \emph{sama}? Sejauh ini kita hanya mengetahui
+(dari preservasi tipe) bahwa semua nilai yang dihasilkan bertipe sama.
+Kalkulus-$\lambd$ bertipe memiliki sifat penting lain: ia
+\emph{konfluen}, atau mempunyai sifat \emph{Church--Rosser}. Jika
+$N \red N_1$ dan $N \red N_2$, maka ada suatu term~$N'$ sedemikian rupa
+sehingga $N_1 \red N'$ dan $N_2 \red N'$. Ingat bahwa $N \red N'$
+berarti $N'$ dihasilkan dari nol atau lebih langkah reduksi~$\redone$.
+Jika $N_1$ berada dalam bentuk normal, satu-satunya term $N'$ sedemikian
+rupa sehingga $N_1 \red N'$ ialah $N_1$ sendiri (melalui nol langkah
+reduksi~$\redone$). Karena itu, jika $N_1$ dan $N_2$ keduanya berada
+dalam bentuk normal, maka $N_1 = N' = N_2$. Dengan kata lain, karena
+$\red$ ternormalisasi kuat, setiap cara mereduksi suatu term akhirnya
+menghasilkan bentuk normal. Karena $\red$ bersifat Church--Rosser, setiap
+dua bentuk normal sama. Jadi, komputasi dalam kalkulus-$\lambd$ bertipe
+selalu berhenti dan nilainya (bentuk normalnya) sama tanpa bergantung pada
+cara komputasi berlangsung.
+
+Membuktikan bahwa suatu relasi bersifat konfluen biasanya sulit. Namun,
+kita dapat dengan mudah menetapkan syarat yang lebih lemah berikut:
+
+\begin{prop}[Sifat Church--Rosser Lemah]
+Jika $N \redone N_1$ dan $N \redone N_2$, maka ada term~$N'$ sedemikian
+rupa sehingga $N_1 \red N'$ dan $N_2 \red N'$.
+\end{prop}
+
+\begin{proof}
+  Kedua term $N_1$ dan $N_2$ masing-masing dihasilkan dari $N$ dengan
+  mengganti redex $M_1$ atau $M_2$ dengan hasil reduksinya. Redex
+  $M_1$ dan $M_2$ adalah subterm dari $N$ dan tidak dapat bertumpang
+  tindih sebagian. Jadi, salah satunya merupakan subterm dari yang lain,
+  atau keduanya muncul di tempat berbeda yang tidak bertumpang tindih
+  dalam~$N$. Tinjau kasus kedua: $N$ berbentuk $N(M_1,M_2)$. Mengganti
+  $M_1$ dengan hasil reduksinya $M_1'$ menghasilkan $N_1$, yaitu
+  $N(M_1',M_2)$, sedangkan mengganti $M_2$ dengan hasil reduksinya $M_2'$
+  menghasilkan $N_2$, yaitu $N(M_1,M_2')$. Keduanya tereduksi menjadi
+  $N(M_1',M_2')$. Untuk kasus lainnya, andaikan $M_2$ merupakan subterm
+  dari~$M_1$ (kasus sebaliknya simetris), dan bedakan kasus menurut jenis
+  redex~$M_1$. Misalnya, jika $M_1 \ident
+  \proj{1}{\pair{O_1}{O_2}}$, ia tereduksi menjadi $O_1$. Jika $M_2$
+  merupakan subterm $O_1$, mengonversi $M_2$ menghasilkan $O_1'$.
+  Jadi, mengonversi $M_1$ terlebih dahulu lalu $M_2$ menghasilkan
+  $O_1'$. Namun, mengonversi $M_2$ terlebih dahulu menghasilkan
+  $\proj{1}{\pair{O_1'}{O_2}}$, dan term ini juga tereduksi
+  menjadi~$O_1'$.
+\end{proof}
+
+\begin{lem}[Lema Newman]
+Jika $\red$ ternormalisasi kuat dan memiliki sifat Church--Rosser lemah,
+maka $\red$ bersifat konfluen.
+\end{lem}
+
+\begin{proof}
+  Karena $\red$ ternormalisasi kuat, setiap barisan reduksi maksimal
+  berakhir dalam bentuk normal. Bentuk normal unik jika dan hanya jika
+  $\red$ bersifat konfluen. Andaikan suatu term $N$ mempunyai dua bentuk
+  normal berbeda, $N'$ dan $N''$, yang dihasilkan oleh barisan reduksi
+  \begin{align*}
+  N & = N_1' \redone N_2' \redone \dots \redone N_k' = N'
+    \text{ dan}\\
+  N & = N_1'' \redone N_2'' \redone \dots \redone N_l'' = N''.
+  \end{align*}
+  (Kedua barisan reduksi harus mempunyai panjang $>0$, sebab jika panjang
+  salah satunya nol maka $N$ sudah berada dalam bentuk normal dan
+  tidak dapat mempunyai bentuk normal lain.)
+
+  Jika $N_2'=N_2''$, term ini mempunyai dua bentuk normal berbeda,
+  $N'$ dan $N''$. Jika $N_2' \neq N_2''$, sifat Church--Rosser lemah
+  memberikan suatu $N'''$ sedemikian rupa sehingga $N_2' \red N'''$
+  dan $N_2'' \red N'''$. Karena normalisasi kuat, $N'''$ tereduksi
+  menjadi suatu bentuk normal~$Q$. Jika $Q \neq N'$, maka $N_2'$
+  mempunyai dua bentuk normal berbeda, $N'$ dan $Q$; jika $Q=N'$,
+  maka, karena $N'\neq N''$, $N_2''$ mempunyai dua bentuk normal
+  berbeda, $N''$ dan $Q$. Jadi, apabila $N$ mempunyai dua bentuk normal
+  berbeda, terdapat $N_1$ sedemikian rupa sehingga $N \redone N_1$ dan
+  $N_1$ mempunyai dua bentuk normal berbeda. Jelas kita dapat meneruskan
+  cara ini dan menghasilkan $N \redone N_1 \redone N_2 \redone \dots$,
+  tetapi hal itu mustahil karena $\redone$ ternormalisasi kuat.
+\end{proof}
+
+\end{document}

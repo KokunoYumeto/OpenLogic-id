@@ -1,0 +1,138 @@
+% Part: normal-modal-logic
+% Chapter: completeness
+% Section: complete-consistent-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{com}{ccs}
+
+\olsection{Himpunan Lengkap dan $\Sigma$-Konsisten}
+
+Andaikan $\Sigma$ merupakan suatu himpunan !!{formula}s modal---anggaplah
+formula-formula itu sebagai aksioma atau prinsip pendefinisi suatu logika
+modal normal. Suatu himpunan $\Gamma$ $\Sigma$-konsisten jika dan hanya jika
+$\Gamma \Proves/[\Sigma] \lfalse$, yakni jika tidak terdapat !!{derivation}
+dari~$!A_1 \lif (!A_2 \lif \cdots (!A_n \lif \lfalse)\dots)$ berdasarkan
+$\Sigma$, dengan setiap $!A_i \in \Gamma$. Kita akan membangun suatu model
+``kanonik'' yang setiap dunianya diambil sebagai jenis khusus himpunan
+$\Sigma$-konsisten: himpunan yang bukan hanya $\Sigma$-konsisten, melainkan
+maksimal demikian, dalam arti bahwa himpunan tersebut menentukan nilai
+kebenaran setiap !!{formula} modal: untuk setiap $!A$, berlaku $!A \in
+\Gamma$ atau $\lnot !A \in \Gamma$:
+
+\begin{defn}
+  Suatu himpunan $\Gamma$ \emph{lengkap dan $\Sigma$-konsisten} jika dan
+  hanya jika himpunan itu $\Sigma$-konsisten dan, untuk setiap~$!A$, berlaku
+  $!A \in \Gamma$ atau $\lnot !A \in \Gamma$.
+\end{defn}
+
+Himpunan lengkap dan $\Sigma$-konsisten~$\Gamma$ mempunyai sejumlah sifat
+yang berguna. Salah satunya, himpunan tersebut tertutup secara deduktif,
+yakni jika $\Gamma \Proves[\Sigma] !A$, maka $!A \in \Gamma$. Secara khusus,
+ini berarti bahwa setiap instansiasi dari !!a{formula}~$!A \in \Sigma$ juga
+memenuhi $!A \in \Gamma$. Selain itu, keanggotaan dalam $\Gamma$
+mencerminkan syarat kebenaran bagi penghubung proposisional. Hal ini akan
+penting ketika kita mendefinisikan ``model kanonik.''
+
+\begin{prop}\ollabel{prop:ccs-properties}
+  Andaikan $\Gamma$ lengkap dan $\Sigma$-konsisten. Maka:
+  \begin{enumerate}
+  \item \ollabel{prop:ccs-closed}%
+    $\Gamma$ tertutup secara deduktif dalam~$\Sigma$.
+  \item \ollabel{prop:ccs-sigma}%
+    $\Sigma \subseteq \Gamma$.
+  \tagitem{prvFalse}{\ollabel{prop:ccs-lfalse}%
+    $\lfalse \notin \Gamma$}{}
+  \tagitem{prvTrue}{\ollabel{prop:ccs-ltrue}%
+    $\ltrue \in \Gamma$}{}
+  \item \ollabel{prop:ccs-lnot}%
+    $\lnot!A \in \Gamma$ jika dan hanya jika $!A \notin
+    \Gamma$.
+  \tagitem{prvAnd}{\ollabel{prop:ccs-land}%
+    $!A \land !B \in \Gamma$ jika dan hanya jika $!A \in \Gamma$ dan $!B \in \Gamma$}{}
+  \tagitem{prvOr}{\ollabel{prop:ccs-lor}%
+    $!A \lor !B \in \Gamma$ jika dan hanya jika $!A \in \Gamma$ atau $!B \in \Gamma$}{}
+  \tagitem{prvIf}{\ollabel{prop:ccs-lif}%
+    $!A \lif !B \in \Gamma$ jika dan hanya jika $!A \notin \Gamma$ atau $!B \in \Gamma$}{}
+  \tagitem{prvIff}{\ollabel{prop:ccs-liff}%
+    $!A \liff !B \in \Gamma$ jika dan hanya jika $!A \in \Gamma$ dan $!B \in
+    \Gamma$, atau $!A \notin \Gamma$ dan $!B \notin \Gamma$}{}
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Andaikan $\Gamma \Proves[\Sigma] !A$, tetapi $!A \notin
+    \Gamma$. Karena $\Gamma$ lengkap dan $\Sigma$-konsisten,
+    $\lnot!A \in \Gamma$. Hal ini akan membuat $\Gamma$ tak konsisten,
+    sebab $!A, \lnot !A \Proves[\Sigma] \lfalse$.
+
+  \item Jika $!A \in \Sigma$, maka $\Gamma \Proves[\Sigma] !A$, dan $!A
+    \in \Gamma$ berdasarkan ketertutupan deduktif, yakni
+    kasus~\olref{prop:ccs-closed}.
+
+  \tagitem{prvFalse}{Jika $\lfalse \in \Gamma$, maka $\Gamma
+    \Proves[\Sigma] \lfalse$, sehingga $\Gamma$ akan menjadi
+    tidak $\Sigma$-konsisten.}{}
+
+  \tagitem{prvTrue}{$\Gamma \Proves[\Sigma] \ltrue$, sehingga $\ltrue \in
+    \Gamma$ berdasarkan ketertutupan deduktif, yakni
+    kasus~\olref{prop:ccs-closed}.}{}
+
+\item Jika $\lnot!A \in \Gamma$, maka berdasarkan konsistensi $!A \notin
+    \Gamma$; dan jika $!A \notin \Gamma$, maka $\lnot!A \in \Gamma$ karena
+    $\Gamma$ lengkap dan $\Sigma$-konsisten.
+
+  \tagitem{prvAnd}{\iftag{probAnd}{Latihan.}{Andaikan $!A \land !B \in
+      \Gamma$. Karena $(!A \land !B) \lif !A$ merupakan instansiasi
+      tautologis, $!A \in \Gamma$ berdasarkan ketertutupan deduktif, yakni
+      kasus~\olref{prop:ccs-closed}. Demikian pula untuk $!B \in \Gamma$.
+      Sebaliknya, andaikan $!A \in \Gamma$ dan $!B \in \Gamma$. Maka
+      ketertutupan deduktif mengakibatkan $(!A \land !B) \in \Gamma$, sebab
+      $!A \lif (!B \lif (!A \land !B))$ merupakan instansiasi tautologis.}}{}
+
+  \tagitem{prvOr}{\iftag{probOr}{Latihan.}{Andaikan $!A \lor !B \in
+      \Gamma$, serta $!A \notin \Gamma$ dan $!B \notin \Gamma$. Karena
+      $\Gamma$ lengkap dan $\Sigma$-konsisten, $\lnot!A \in \Gamma$ dan
+      $\lnot !B \in \Gamma$. Maka $\lnot(!A \lor !B) \in \Gamma$ sebab
+      $\lnot !A \lif (\lnot !B \lif \lnot (!A \lor !B))$ merupakan
+      instansiasi tautologis. Hal ini berarti bahwa $\Gamma$ tak
+      $\Sigma$-konsisten, suatu kontradiksi.}}{}
+
+  \tagitem{prvIf}{\iftag{probIf}{Latihan.}{Andaikan $!A \lif !B \in
+      \Gamma$ dan $!A \in \Gamma$; maka $\Gamma \Proves[\Sigma] !B$,
+      sehingga $!B \in \Gamma$ berdasarkan ketertutupan deduktif.
+      Sebaliknya, jika $!A \lif !B \notin \Gamma$, maka karena $\Gamma$
+      lengkap dan $\Sigma$-konsisten, $\lnot (!A \lif !B) \in \Gamma$.
+      Karena $\lnot(!A \lif !B) \lif !A$ merupakan instansiasi tautologis,
+      $!A \in \Gamma$ berdasarkan ketertutupan deduktif. Karena
+      $\lnot(!A \lif !B) \lif \lnot !B$ merupakan instansiasi tautologis,
+      $\lnot !B \in \Gamma$. Maka $!B \notin \Gamma$ karena $\Gamma$
+      $\Sigma$-konsisten.}}{}
+
+  \tagitem{prvIff}{\iftag{probIff}{Latihan.}{Andaikan $!A \liff !B \in
+      \Gamma$. Jika $!A \in \Gamma$, maka $!B \in \Gamma$, sebab $(!A
+      \liff !B) \lif (!A \lif !B)$ merupakan instansiasi tautologis.
+      Demikian pula, jika $!B \in \Gamma$, maka $!A \in \Gamma$. Jadi,
+      berlaku sekaligus $!A \in \Gamma$ dan $!B \in \Gamma$, atau tidak
+      berlaku baik $!A \in \Gamma$ maupun $!B \in \Gamma$.
+
+      Sebaliknya, andaikan $!A \liff !B \notin \Gamma$. Karena $\Gamma$
+      lengkap dan $\Sigma$-konsisten, $\lnot (!A \liff !B) \in \Gamma$.
+      Karena $\lnot(!A \liff !B) \lif (!A \lif \lnot !B)$ merupakan
+      instansiasi tautologis, jika $!A \in \Gamma$, maka $\lnot !B \in
+      \Gamma$, dan karena $\Gamma$ $\Sigma$-konsisten, $!B \notin \Gamma$.
+      Demikian pula, jika $!B \in \Gamma$, maka $!A \notin \Gamma$.
+      Jadi, tidak berlaku bahwa sekaligus $!A \in \Gamma$ dan $!B \in
+      \Gamma$, dan juga tidak berlaku bahwa sekaligus $!A \notin \Gamma$
+      dan $!B \notin \Gamma$.}}{}
+  \end{enumerate}
+\end{proof}
+
+\begin{probtag}{probAnd,probOr,probIf,probIff}
+  Lengkapi pembuktian \olref[nml][com][ccs]{prop:ccs-properties}.
+\end{probtag}
+
+\end{document}

@@ -1,0 +1,220 @@
+% Bagian: second-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: satisfaction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{syn}{sat}
+
+\olsection{Keterpenuhan}
+
+\begin{explain}
+Untuk mendefinisikan relasi keterpenuhan $\Sat{M}{!A}[s]$ bagi !!{formula}s
+orde kedua, kita harus memperluas definisi-definisi tersebut agar mencakup
+!!{variable}s orde kedua. Gagasan !!a{structure} sama bagi logika orde kedua
+dan logika orde pertama. Perbedaannya hanya terletak pada penugasan
+variabel~$s$: penugasan ini sekarang harus memberikan nilai bukan hanya bagi
+!!{variable}s orde pertama, melainkan juga bagi !!{variable}s orde kedua.
+\end{explain}
+
+\begin{defn}[Penugasan Variabel]
+Suatu \emph{penugasan variabel}~$s$ bagi !!a{structure}~$\Struct{M}$ ialah
+fungsi yang memetakan setiap
+\begin{enumerate}
+\item !!{variable} objek~$\Obj{v_i}$ ke suatu anggota dari~$\Domain M$,
+  yakni, $s(\Obj{v_i}) \in \Domain{M}$;
+\item variabel relasi beraritas~$n$~$\Obj{V_i^n}$ ke suatu relasi
+  beraritas~$n$ pada~$\Domain{M}$, yakni,
+  $s(\Obj{V_i^n}) \subseteq \Domain{M}^n$;
+\item variabel fungsi beraritas~$n$~$\Obj{u_i^n}$ ke suatu fungsi
+  beraritas~$n$ dari $\Domain{M}^n$ ke~$\Domain{M}$, yakni,
+  $s(\Obj{u_i^n})\colon \Domain{M}^n \to \Domain{M}$.
+\end{enumerate}
+\end{defn}
+
+\begin{explain}
+!!^a{structure} menetapkan !!a{value} kepada setiap !!{constant}, fungsi
+kepada setiap !!{function}, dan relasi kepada setiap !!{predicate}; sedangkan
+penugasan variabel orde kedua menetapkan objek, relasi, dan fungsi kepada
+masing-masing variabel objek, relasi, dan fungsi. Bersama-sama, keduanya
+memungkinkan kita menetapkan suatu nilai kepada setiap suku.
+\end{explain}
+
+\begin{defn}[\usetoken{S}{value} Suatu Suku]
+Jika $t$ merupakan suku dari bahasa~$\Lang L$, $\Struct M$ merupakan
+!!a{structure} bagi~$\Lang L$, dan $s$ merupakan penugasan
+!!a{variable} bagi~$\Struct M$, maka \emph{!!{value}}~$\Value{t}{M}[s]$
+didefinisikan seperti bagi suku-suku orde pertama, dengan tambahan klausa
+berikut:
+\begin{quote}
+\indcase{t}{\Atom{u}{t_1, \ldots, t_n}}{
+\[
+\Value{\indfrm}{M}[s] = s(u)(\Value{t_1}{M}[s], \ldots,
+\Value{t_n}{M}[s]).
+\]}
+\end{quote}
+\end{defn}
+
+\begin{defn}[Varian-$x$]
+Jika $s$ merupakan penugasan !!a{variable} bagi !!a{structure}~$\Struct M$,
+maka setiap penugasan !!{variable}~$s'$ bagi~$\Struct M$ yang hanya mungkin
+berbeda dari~$s$ dalam nilai yang ditetapkannya kepada~$x$ disebut
+\emph{varian-$x$} dari~$s$. Jika $s'$ merupakan varian-$x$ dari~$s$, kita
+menulis $\varAssign{s'}{s}{x}$. (Demikian pula bagi variabel orde kedua $X$
+atau~$u$.)
+\end{defn}
+
+\begin{defn}
+  Jika $s$ merupakan penugasan !!a{variable} bagi !!a{structure}~$\Struct M$
+  dan $m \in \Domain{M}$, maka penugasan~$\Subst{s}{m}{x}$ ialah penugasan
+  !!{variable} yang didefinisikan oleh
+  \[\Subst{s}{m}{x}(y) = \begin{cases}
+    m & \text{jika } y \ident x\\
+    s(y) & \text{jika tidak}.
+  \end{cases}\]
+  Jika $X$ merupakan !!{variable} relasi beraritas~$n$ dan $R \subseteq
+  \Domain{M}^n$, maka $\Subst{s}{R}{X}$ ialah penugasan !!{variable} yang
+  didefinisikan oleh
+  \[\Subst{s}{R}{X}(y) = \begin{cases}
+    R & \text{jika } y \ident X\\
+    s(y) & \text{jika tidak}.
+  \end{cases}\]
+  Jika $u$ merupakan !!{variable} fungsi beraritas~$n$ dan
+  $f\colon \Domain{M}^n \to \Domain{M}$, maka $\Subst{s}{f}{u}$ ialah
+  penugasan !!{variable} yang didefinisikan oleh
+  \[\Subst{s}{f}{u}(y) = \begin{cases}
+    f & \text{jika } y \ident u\\
+    s(y) & \text{jika tidak}.
+  \end{cases}\]
+  Dalam setiap kasus, $y$ dapat berupa sebarang !!{variable} orde pertama
+  atau orde kedua.
+\end{defn}
+
+\begin{defn}[Keterpenuhan]
+Bagi !!{formula}s orde kedua~$!A$, definisi keterpenuhan sama seperti
+\olref[fol][syn][sat]{defn:satisfaction}, dengan penambahan berikut:
+\begin{enumerate}
+\item \indcase{!A}{\Atom{X}{t_1, \dots, t_n}}{$\Sat{M}{\indfrm}[s]$
+  jika dan hanya jika $\langle \Value{t_1}{M}[s], \dots,
+  \Value{t_n}{M}[s] \rangle \in s(X)$.}
+\tagitem{prvAll}{%
+  \indcase{!A}{\lforall[X][!B]}{$\Sat{M}{\indfrm}[s]$ jika dan hanya jika
+  bagi setiap $R \subseteq \Domain{M}^n$,
+  $\Sat{M}{!B}[\Subst{s}{R}{X}]$.}}{}
+
+\tagitem{prvEx}{%
+  \indcase{!A}{\lexists[X][!B]}{$\Sat{M}{\indfrm}[s]$ jika dan hanya jika
+  bagi setidaknya satu $R \subseteq \Domain{M}^n$ berlaku
+  $\Sat{M}{!B}[\Subst{s}{R}{X}]$.}}{}
+
+\tagitem{prvAll}{%
+  \indcase{!A}{\lforall[u][!B]}{$\Sat{M}{\indfrm}[s]$ jika dan hanya jika
+  bagi setiap $f\colon \Domain{M}^n \to \Domain{M}$,
+  $\Sat{M}{!B}[\Subst{s}{f}{u}]$.}}{}
+
+\tagitem{prvEx}{%
+  \indcase{!A}{\lexists[u][!B]}{$\Sat{M}{\indfrm}[s]$ jika dan hanya jika
+  bagi setidaknya satu $f\colon \Domain{M}^n \to \Domain{M}$ berlaku
+  $\Sat{M}{!B}[\Subst{s}{f}{u}]$.}}{}
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+  Perhatikan !!{formula} $\lforall[z][(\Atom{X}{z} \liff \lnot
+    \Atom{Y}{z})]$. Formula ini tidak memuat kuantor orde kedua, tetapi
+  memuat !!{variable}s orde kedua $X$ dan~$Y$ (di sini dipahami beraritas
+  satu). !!{sentence} orde pertama yang bersesuaian,
+  $\lforall[z][(\Atom{P}{z} \liff \lnot \Atom{R}{z})]$, menyatakan bahwa
+  apa pun yang termasuk dalam interpretasi~$P$ tidak termasuk dalam
+  interpretasi~$R$, dan sebaliknya. Dalam !!a{structure}, interpretasi
+  !!a{predicate}~$P$ diberikan oleh interpretasi~$\Assign{P}{M}$. Namun,
+  bagi !!{variable}s orde kedua seperti $X$ dan~$Y$, interpretasinya diberikan
+  bukan oleh !!{structure} itu sendiri, melainkan oleh suatu penugasan
+  !!a{variable}. Karena !!{formula} orde kedua tersebut bukan
+  !!a{sentence} (formula itu memuat !!{variable}s bebas $X$ dan~$Y$), formula
+  itu hanya terpenuhi relatif terhadap !!a{structure}~$\Struct{M}$ bersama
+  suatu penugasan !!a{variable}~$s$.
+
+  $\Sat{M}{\lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})]}[s]$
+  berlaku tepat ketika !!{element}s dari~$s(X)$ bukan !!{element}s
+  dari~$s(Y)$, dan sebaliknya, yakni, jika dan hanya jika
+  $s(Y) = \Domain{M} \setminus s(X)$. Misalnya, ambil
+  $\Domain{M} = \{1, 2, 3\}$. Karena tidak ada !!{predicate}s,
+  !!{function}s, ataupun !!{constant}s yang terlibat, hanya domain
+  dari~$\Struct{M}$ yang relevan. Sekarang, bagi $s_1(X) = \{1, 2\}$ dan
+  $s_1(Y) = \{3\}$, kita mempunyai
+  $\Sat{M}{\lforall[z][(\Atom{X}{z} \liff \lnot
+      \Atom{Y}{z})]}[s_1]$.
+
+  Sebaliknya, jika $s_2(X) = \{1, 2\}$ dan $s_2(Y) = \{2, 3\}$, maka
+  $\Sat/{M}{\lforall[z][(\Atom{X}{z} \liff \lnot
+      \Atom{Y}{z})]}[s_2]$. Alasannya,
+  $\Sat{M}{\Atom{X}{z}}[\Subst{s_2}{2}{z}]$ (karena
+  $2 \in \Subst{s_2}{2}{z}(X)$), tetapi
+  $\Sat/{M}{\lnot \Atom{Y}{z}}[\Subst{s_2}{2}{z}]$ (karena juga
+  $2 \in \Subst{s_2}{2}{z}(Y)$).
+\end{ex}
+
+\begin{ex}
+  $\Sat{M}{\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
+  \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]}[s]$ berlaku jika
+  terdapat $N \subseteq \Domain{M}$ sedemikian sehingga
+  $\Sat{M}{(\lexists[y][\Atom{Y}{y}] \land \lforall[z][(\Atom{X}{z}
+  \liff \lnot \Atom{Y}{z})])}[\Subst{s}{N}{Y}]$. Hal itu terjadi bagi
+  sebarang $N \neq \emptyset$ (sehingga
+  $\Sat{M}{\lexists[y][\Atom{Y}{y}]}[\Subst{s}{N}{Y}]$) yang, seperti dalam
+  contoh sebelumnya, memenuhi $N = \Domain{M} \setminus s(X)$. Dengan kata
+  lain,
+  $\Sat{M}{\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
+  \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]}[s]$ jika dan hanya
+  jika $\Domain{M} \setminus s(X)$ tidak kosong, yakni,
+  $s(X) \neq \Domain{M}$. Jadi, !!{formula} tersebut terpenuhi, misalnya,
+  jika $\Domain{M} = \{1, 2, 3\}$ dan $s(X) = \{1, 2\}$, tetapi tidak jika
+  $s(X) = \{1, 2, 3\} = \Domain{M}$.
+
+  Karena !!{formula} itu tidak terpenuhi setiap kali $s(X) = \Domain{M}$,
+  !!{sentence}
+  \[
+  \lforall[X][\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
+      \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]]
+  \]
+  tidak pernah terpenuhi: bagi setiap !!{structure}~$\Struct{M}$, penugasan
+  $s(X) = \Domain{M}$ akan membuat !!{sentence} tersebut salah. Di sisi lain,
+  kalimat
+  \[
+  \lexists[X][\lexists[Y][(\lexists[y][\Atom{Y}{y}] \land
+      \lforall[z][(\Atom{X}{z} \liff \lnot \Atom{Y}{z})])]]
+  \]
+  terpenuhi relatif terhadap setiap penugasan~$s$, karena kita selalu dapat
+  menemukan $N \subseteq \Domain{M}$ dengan $N \neq \Domain{M}$ (misalnya,
+  $N = \emptyset$).
+\end{ex}
+
+\begin{ex}
+  !!{sentence} orde kedua~$\lforall[X][\lforall[y][X(y)]]$ menyatakan bahwa
+  setiap relasi beraritas~$1$, yakni setiap sifat, berlaku atas setiap objek.
+  Hal itu jelas tidak pernah benar, sebab dalam setiap~$\Struct{M}$, bagi
+  penugasan variabel~$s$ dengan $s(X) = \emptyset$ dan
+  $s(y) = a \in \Domain{M}$, kita mempunyai $\Sat/{M}{X(y)}[s]$. Ini berarti
+  bahwa $!A \lif \lforall[X][\lforall[y][X(y)]]$ ekuivalen dalam logika orde
+  kedua dengan $\lnot !A$, yakni: $\Sat{M}{!A \lif
+  \lforall[X][\lforall[y][X(y)]]}$ jika dan hanya jika
+  $\Sat{M}{\lnot !A}$. Dengan kata lain, dalam logika orde kedua kita dapat
+  mendefinisikan $\lnot$ dengan menggunakan $\lforall$ dan~$\lif$.
+\end{ex}
+
+\begin{prob}
+  Tunjukkan bahwa dalam logika orde kedua $\lforall$ dan~$\lif$ dapat
+  mendefinisikan penghubung-penghubung lainnya:
+  \begin{enumerate}
+    \item Buktikan bahwa dalam logika orde kedua $!A \land !B$ ekuivalen
+    dengan $\lforall[X][(!A \lif (!B \lif \lforall[x][X(x)])\lif
+    \lforall[x][X(x)])]$.
+    \item Temukan suatu formula orde kedua yang hanya menggunakan $\lforall$
+    dan~$\lif$ serta ekuivalen dengan $!A \lor !B$.
+  \end{enumerate}
+\end{prob}
+
+\end{document}

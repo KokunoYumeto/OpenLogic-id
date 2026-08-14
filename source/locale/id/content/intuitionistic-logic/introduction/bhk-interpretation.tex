@@ -1,0 +1,158 @@
+% Bagian: intuitionistic-logic
+% Bab: introduction
+% Subbagian: bhk-interpretation
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{int}{bhk}
+
+\olsection{Interpretasi Brouwer--Heyting--Kolmogorov}
+
+\begin{editorial}
+  Bukti kesahihan proposisi intuisionistik dengan menggunakan interpretasi
+  BHK membingungkan; bukti-bukti tersebut perlu dijelaskan dengan lebih baik.
+\end{editorial}
+
+Terdapat suatu interpretasi konstruktif informal bagi konektif intuisionistik,
+yang biasanya dikenal sebagai interpretasi Brouwer--Heyting--Kolmogorov.
+Interpretasi ini menggunakan gagasan ``konstruksi'', yang dapat dipandang
+sebagai bukti konstruktif. (Kita tidak menggunakan istilah ``bukti'' dalam
+interpretasi BHK agar tidak tertukar dengan gagasan !!a{derivation} dalam suatu
+sistem !!{derivation} formal.) Berdasarkan gagasan intuitif ini, interpretasi
+BHK menjelaskan makna konektif intuisionistik.
+
+\begin{enumerate}
+\item Kita mengandaikan bahwa kita mengetahui apa yang membentuk suatu
+  konstruksi bagi pernyataan atomik.
+\item Konstruksi bagi $!A_1 \land !A_2$ ialah pasangan $\tuple{M_1, M_2}$,
+  dengan $M_1$ suatu konstruksi bagi~$!A_1$ dan $M_2$ suatu konstruksi
+  bagi~$!A_2$.
+\item Konstruksi bagi $!A_1 \lor !A_2$ ialah pasangan $\tuple{s, M}$,
+  dengan $s$ bernilai~$1$ dan $M$ suatu konstruksi bagi~$!A_1$, atau $s$
+  bernilai~$2$ dan $M$ suatu konstruksi bagi~$!A_2$.
+\item Konstruksi bagi $!A \lif !B$ ialah fungsi yang mengubah suatu konstruksi
+  bagi~$!A$ menjadi konstruksi bagi~$!B$.
+\item Tidak ada konstruksi bagi~$\lfalse$ (absurditas).
+\item $\lnot !A$ didefinisikan sebagai sinonim bagi $!A \lif \lfalse$.
+  Artinya, konstruksi bagi $\lnot !A$ ialah fungsi yang mengubah suatu
+  konstruksi bagi~$!A$ menjadi konstruksi bagi~$\lfalse$.
+\end{enumerate}
+
+\begin{ex}
+Sebagai contoh, ambillah $\lnot \lfalse$. Suatu konstruksi baginya ialah
+fungsi yang, ketika menerima sebarang konstruksi bagi $\lfalse$ sebagai
+masukan, menghasilkan konstruksi bagi~$\lfalse$ sebagai keluaran. Jelaslah
+bahwa fungsi identitas~$\Id{}$ merupakan konstruksi semacam itu: jika diberi
+suatu konstruksi~$M$ bagi~$\lfalse$, maka $\Id{}(M) = M$ menghasilkan
+konstruksi bagi~$\lfalse$.
+\end{ex}
+
+Secara umum, $\lnot !A$ berarti ``Konstruksi bagi $!A$ mustahil.''
+
+\begin{ex}
+Mari kita buktikan $!A \lif \lnot \lnot !A$ bagi sebarang proposisi~$!A$,
+yakni $!A \lif ((!A \lif \lfalse) \lif \lfalse)$. Konstruksinya harus berupa
+fungsi~$f$ yang, ketika diberi konstruksi~$M$ bagi $!A$, mengembalikan
+konstruksi~$f(M)$ bagi $(!A \lif \lfalse) \lif \lfalse$. Berikut cara~$f$
+membangun konstruksi bagi $(!A \lif \lfalse) \lif \lfalse$: Kita harus
+mendefinisikan fungsi $g$ yang, ketika diberi konstruksi~$h$ bagi $!A \lif
+\lfalse$ sebagai masukan, menghasilkan konstruksi bagi~$\lfalse$. Kita dapat
+mendefinisikan $g$ sebagai berikut: terapkan masukan~$h$ pada konstruksi~$M$
+bagi $!A$ (yang telah kita terima sebelumnya). Karena keluaran~$h(M)$ dari $h$
+merupakan konstruksi bagi $\lfalse$, maka $f(M)(h) = h(M)$ merupakan konstruksi
+bagi~$\lfalse$ jika $M$ merupakan konstruksi bagi~$!A$.
+\end{ex}
+
+\begin{ex}
+Mari kita berikan konstruksi bagi $\lnot(!A \land \lnot !A)$, yakni $(!A
+\land (!A \lif \lfalse)) \lif \lfalse$. Konstruksi ini merupakan fungsi~$f$
+yang, ketika diberi konstruksi~$M$ bagi $!A \land (!A \lif \lfalse)$ sebagai
+masukan, menghasilkan konstruksi bagi~$\lfalse$. Konstruksi bagi konjungsi
+$!B_1 \land !B_2$ ialah pasangan $\tuple{N_1, N_2}$, dengan $N_1$ suatu
+konstruksi bagi~$!B_1$ dan $N_2$ suatu konstruksi bagi~$!B_2$. Kita dapat
+mendefinisikan fungsi $p_1$ dan $p_2$ yang, dari suatu konstruksi bagi
+$!B_1 \land !B_2$, masing-masing mengambil kembali konstruksi bagi $!B_1$
+dan $!B_2$:
+\begin{align*}
+  p_1(\tuple{N_1, N_2}) &= N_1\\
+  p_2(\tuple{N_1, N_2}) &= N_2
+\end{align*}
+Berikut yang dilakukan $f$: Mula-mula, fungsi itu menerapkan $p_1$ pada
+masukannya~$M$. Hasilnya ialah suatu konstruksi bagi~$!A$. Kemudian fungsi itu
+menerapkan $p_2$ pada~$M$, sehingga menghasilkan konstruksi bagi $!A \lif
+\lfalse$. Konstruksi semacam itu sendiri merupakan fungsi~$p_2(M)$ yang, jika
+diberi konstruksi bagi~$!A$ sebagai masukan, menghasilkan konstruksi
+bagi~$\lfalse$. Dengan kata lain, jika kita menerapkan $p_2(M)$ pada $p_1(M)$,
+kita memperoleh konstruksi bagi~$\lfalse$. Jadi, kita dapat mendefinisikan
+$f(M) = p_2(M)(p_1(M))$.
+\end{ex}
+
+\begin{ex}
+Mari kita berikan konstruksi bagi $((!A \land !B) \lif !C) \lif (!A \lif
+(!B \lif !C))$, yakni suatu fungsi $f$ yang mengubah konstruksi~$g$ bagi
+$(!A \land !B) \lif !C$ menjadi konstruksi bagi $(!A \lif (!B \lif !C))$.
+Konstruksi $g$ sendiri merupakan fungsi (dari konstruksi bagi $!A \land !B$
+ke konstruksi bagi~$!C$). Keluaran $f(g)$ ialah fungsi~$h_g$ dari konstruksi
+bagi $!A$ ke fungsi dari konstruksi bagi~$!B$ ke konstruksi bagi~$!C$.
+
+Baiklah, ini membingungkan. Kita harus membangun fungsi tertentu~$h_g$, yang
+akan menjadi keluaran $f$ bagi masukan~$g$. Masukan bagi~$h_g$ ialah
+konstruksi~$M$ bagi~$!A$. Keluaran $h_g(M)$ seharusnya berupa fungsi~$k_{g,M}$
+dari konstruksi~$N$ bagi~$!B$ ke konstruksi bagi~$!C$. Tetapkan
+$k_{g,M}(N) = g(\tuple{M, N})$. Ingat bahwa $\tuple{M, N}$ merupakan
+konstruksi bagi~$!A \land !B$. Jadi, $k_{g,M}$ merupakan konstruksi bagi $!B
+\lif !C$: fungsi ini memetakan konstruksi~$N$ bagi~$!B$ ke konstruksi
+bagi~$!C$. Sekarang tetapkan $h_g(M) = k_{g,M}$. Ini merupakan fungsi yang
+memetakan konstruksi~$M$ bagi~$!A$ ke konstruksi $k_{g,M}$ bagi $!B \lif !C$.
+Terakhir, tetapkan $f(g) = h_g$. Ini merupakan fungsi yang memetakan
+konstruksi $g$ bagi $(!A \land !B) \lif !C$ ke konstruksi bagi $!A \lif (!B
+\lif !C)$. Fiuh!{}
+\end{ex}
+
+Pernyataan $!A \lor \lnot !A$ disebut Hukum Tiada Jalan Tengah. Kita dapat
+membuktikannya bagi beberapa $!A$ tertentu (misalnya, $\lfalse \lor \lnot
+\lfalse$), tetapi tidak secara umum. Alasannya ialah bahwa disjungsi
+intuisionistik memerlukan konstruksi bagi salah satu disjungnya, sedangkan ada
+pernyataan yang saat ini belum dapat dibuktikan ataupun disangkal (misalnya,
+konjektur Goldbach). Akan tetapi, hukum tiada jalan tengah juga tidak dapat
+Anda sangkal: yakni, $\lnot \lnot (!A \lor \lnot !A)$ berlaku.
+
+\begin{ex}
+Untuk membuktikan $\lnot \lnot (!A \lor \lnot !A)$, kita memerlukan fungsi~$f$
+yang mengubah konstruksi bagi $\lnot(!A \lor \lnot !A)$, yakni bagi $(!A \lor
+(!A \lif \lfalse)) \lif \lfalse$, menjadi konstruksi bagi~$\lfalse$. Dengan
+kata lain, kita memerlukan fungsi $f$ sedemikian sehingga $f(g)$ merupakan
+konstruksi bagi~$\lfalse$ jika $g$ merupakan konstruksi bagi $\lnot(!A \lor
+\lnot !A)$.
+
+Andaikan $g$ merupakan konstruksi bagi $\lnot(!A \lor \lnot !A)$, yakni fungsi
+yang mengubah konstruksi bagi $!A \lor \lnot !A$ menjadi konstruksi
+bagi~$\lfalse$. Konstruksi bagi $!A \lor \lnot !A$ ialah pasangan
+$\tuple{s, M}$, dengan $s = 1$ dan $M$ suatu konstruksi bagi $!A$, atau $s = 2$
+dan $M$ suatu konstruksi bagi $\lnot !A$. Misalkan $h_1$ ialah fungsi yang
+memetakan konstruksi~$M_1$ bagi $!A$ ke konstruksi bagi $!A \lor \lnot !A$:
+fungsi ini memetakan $M_1$ ke $\tuple{1, M_1}$. Misalkan pula $h_2$ ialah
+fungsi yang memetakan konstruksi~$M_2$ bagi $\lnot !A$ ke konstruksi bagi
+$!A \lor \lnot !A$: fungsi ini memetakan $M_2$ ke $\tuple{2, M_2}$.
+
+Misalkan $k$ adalah $\comp{h_1}{g}$: ini merupakan fungsi yang, jika diberi
+konstruksi bagi~$!A$, mengembalikan konstruksi bagi~$\lfalse$; jadi, fungsi ini
+merupakan konstruksi bagi~$!A \lif \lfalse$ atau $\lnot !A$. Sekarang misalkan
+$l$ adalah $\comp{h_2}{g}$. Ini merupakan fungsi yang, jika diberi konstruksi
+bagi $\lnot !A$, menghasilkan konstruksi bagi~$\lfalse$. Karena $k$ merupakan
+konstruksi bagi $\lnot !A$, maka $l(k)$ merupakan konstruksi bagi~$\lfalse$.
+
+Secara keseluruhan, yang telah kita lakukan ialah menguraikan cara mengubah
+konstruksi~$g$ bagi $\lnot(!A \lor \lnot !A)$ menjadi konstruksi
+bagi~$\lfalse$; yakni, fungsi $f$ yang memetakan konstruksi~$g$ bagi
+$\lnot(!A \lor \lnot !A)$ ke konstruksi $l(k)$ bagi~$\lfalse$ merupakan
+konstruksi bagi $\lnot\lnot(!A \lor \lnot !A)$.
+\end{ex}
+
+Sebagaimana dapat Anda lihat, penggunaan interpretasi BHK untuk menunjukkan
+kesahihan intuisionistik !!{formula}s dengan cepat menjadi rumit dan
+membingungkan. Untunglah, terdapat sistem !!{derivation} yang lebih baik bagi
+logika intuisionistik, serta interpretasi semantik yang lebih tepat.
+\end{document}

@@ -1,0 +1,100 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: bisimulations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{aml}{el}{bsd}
+
+\olsection{Bisimulasi}
+
+Satu pertanyaan yang masih dapat kita ajukan mengenai daya ungkap bahasa
+epistemik kita menyangkut hubungan antara model dan formula yang berlaku di
+dalamnya. Dari hasil korespondensi kerangka, kita telah melihat bahwa jika
+formula tertentu valid dalam suatu kerangka, formula itu juga memastikan
+bahwa kerangka tersebut memenuhi sifat tertentu. Namun, apakah bahasa modal
+kita, misalnya, memungkinkan kita membedakan suatu dunia yang mempunyai
+panah refleksif dari rantai dunia tak hingga yang masing-masing menuju dunia
+berikutnya? Dengan kata lain, adakah formula~$A$ yang berlaku hanya pada salah
+satu dari kedua dunia tersebut?
+
+Bisimulasi merupakan relasi yang dapat kita definisikan di antara model
+relasional untuk menyatakan bahwa model-model itu pada dasarnya mempunyai
+struktur yang sama. Seperti akan kita lihat, bisimulasi menangkap suatu
+pengertian kesetaraan antarmodel yang dapat dinyatakan dalam bahasa epistemik
+kita.
+
+\begin{defn}[Bisimulasi]
+Misalkan $M_1=\tuple{W_1,R_1,V_1}$ dan $M_2=\tuple{W_2,R_2,V_2}$ merupakan
+dua model relasional. Misalkan pula $\mathcal{R}\subseteq W_1\times W_2$
+merupakan relasi biner. Kita mengatakan bahwa $\mathcal{R}$ merupakan
+\emph{bisimulasi} jika, untuk setiap
+$\tuple{w_1,w_2}\in\mathcal{R}$, berlaku:
+
+\begin{enumerate}
+  \item $w_1\in V_1(p)$ jika dan hanya jika $w_2\in V_2(p)$ untuk semua
+    !!{propositional variable}s~$p$.
+  \item Untuk semua agen $a\in G$ dan dunia $v_1\in W_1$, jika
+    $R_{1,a}w_1v_1$, maka terdapat $v_2\in W_2$ sedemikian sehingga
+    $R_{2,a}w_2v_2$ dan $\tuple{v_1,v_2}\in\mathcal{R}$.
+  \item Untuk semua agen $a\in G$ dan dunia $v_2\in W_2$, jika
+    $R_{2,a}w_2v_2$, maka terdapat $v_1\in W_1$ sedemikian sehingga
+    $R_{1,a}w_1v_1$ dan $\tuple{v_1,v_2}\in\mathcal{R}$.
+\end{enumerate}
+
+Jika terdapat bisimulasi antara $M_1$ dan $M_2$ yang menghubungkan dunia
+$w_1$ dan $w_2$, kita juga dapat menulis
+$\tuple{M_1,w_1}\leftrightarroweq\tuple{M_2,w_2}$ dan menyebut
+$\tuple{M_1,w_1}$ dan $\tuple{M_2,w_2}$ \emph{bisimilar}.
+\end{defn}
+
+Klausa yang berbeda dalam relasi bisimulasi menjamin hal yang berbeda.
+Klausa~1 menjamin bahwa dunia bisimilar memenuhi formula bebas modal yang
+sama karena klausa itu menjamin kesesuaian pada semua !!{propositional
+variable}s. Kedua klausa lainnya, yang masing-masing kadang disebut klausa
+``maju'' dan ``mundur,'' menjamin bahwa relasi aksesibilitas mempunyai
+struktur yang sama.
+
+\begin{thm}
+Jika $\tuple{M_1,w_1}\leftrightarroweq\tuple{M_2,w_2}$, maka, untuk setiap
+!!{formula}~$!A$, berlaku $\mSat{M_1}{!A}[w_1]$ jika dan hanya jika
+$\mSat{M_2}{!A}[w_2]$.
+\end{thm}
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) {$w_1$};
+      \node[world] (w2) [above left=of w1]{$w_2$};
+      \node[world] (w3) [above right=of w1] {$w_3$};
+      \draw[<->] (w1) to node {$a$} (w2);
+      \draw[->,loop below] (w1) to node {$a$} (w1);
+      \draw[<->] (w1) to [swap] node {$a$} (w3);
+      \draw[->,loop above] (w2) to node {$a$} (w2) ;
+      \draw[->,loop above] (w3) to node {$a$} (w3) ;
+
+      \node[world](v1)[right of=w1, xshift=1.5in]{$v_1$};
+      \node[world](v2)[above of=v1]{$v_2$};
+      \draw[<->] (v1) to node {$a$} (v2);
+      \draw[->,loop below] (v1) to node {$a$} (v1);
+      \draw[->,loop above] (v2) to node {$a$} (v2) ;
+
+      \draw[-,dotted] (w1) to (v1) ;
+      \draw[-,dotted,bend left=45] (w2) to (v2) ;
+      \draw[-,dotted,bend left=30] (w3) to (v2) ;
+    \end{tikzpicture}
+  \end{center}
+  \caption{Dua model bisimilar.}
+  \ollabel{fig:bisimilar}
+\end{figure}
+
+Walaupun kedua model dalam \olref{fig:bisimilar} tidak sama persis, terdapat
+bisimulasi yang menghubungkan dunia $w_1$ dan~$v_1$. Bisimulasi ini juga
+menghubungkan $w_2$ dan $w_3$ dengan~$v_2$; gagasannya ialah bahwa tidak ada
+sesuatu yang dapat dinyatakan dalam bahasa modal kita yang benar-benar dapat
+membedakan dunia-dunia itu. Namun, situasinya akan berbeda jika $w_2$ dan
+$w_3$ memenuhi !!{propositional variable}s yang berbeda.
+
+\end{document}

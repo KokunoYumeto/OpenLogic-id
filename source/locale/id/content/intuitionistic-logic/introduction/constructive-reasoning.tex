@@ -1,0 +1,92 @@
+% Bagian: intuitionistic-logic
+% Bab: introduction
+% Subbagian: constructive-reasoning
+
+\documentclass[../../../include/open-logic-chapter]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{int}{cr}
+
+\section{Penalaran Konstruktif}
+
+Berbeda dari perluasan logika klasik dengan operator modal atau kuantor
+orde kedua, logika intuisionistik bersifat ``nonklasik'' karena membatasi
+logika klasik. Logika klasik bersifat \emph{nonkonstruktif} dalam berbagai
+hal. Logika intuisionistik dimaksudkan untuk menangkap jenis penalaran yang
+lebih ``konstruktif'', yang menjadi ciri suatu bentuk matematika konstruktif.
+Contoh-contoh berikut dapat menggambarkan beberapa motivasi yang mendasarinya.
+
+Andaikan seseorang mengaku telah menentukan suatu bilangan asli~$n$ dengan
+sifat bahwa jika $n$ genap, hipotesis Riemann benar, dan jika $n$ ganjil,
+hipotesis Riemann salah. Kabar bagus!{} Benar atau tidaknya hipotesis Riemann
+merupakan salah satu pertanyaan terbuka besar dalam matematika, dan orang itu
+tampaknya telah mereduksi masalah tersebut menjadi masalah perhitungan, yakni
+menentukan apakah suatu bilangan tertentu genap atau bukan.
+
+Berapakah nilai ajaib~$n$? Orang itu menguraikannya sebagai berikut: $n$
+adalah bilangan asli yang sama dengan $2$ jika hipotesis Riemann benar, dan
+$3$ jika tidak.
+
+Dengan marah, Anda menuntut uang Anda kembali. Dari sudut pandang klasik,
+uraian di atas memang menentukan satu nilai unik bagi $n$; tetapi yang
+sesungguhnya Anda inginkan ialah nilai $n$ yang diberikan secara
+\emph{eksplisit}.
+
+Sebagai contoh lain yang mungkin tidak terlalu dibuat-buat, pertimbangkan
+pertanyaan berikut. Kita tahu bahwa suatu bilangan irasional dapat dipangkatkan
+dengan bilangan rasional dan menghasilkan bilangan rasional. Misalnya,
+$\sqrt{2}^2 = 2$. Yang kurang jelas ialah apakah suatu bilangan irasional dapat
+dipangkatkan dengan bilangan \emph{irasional} dan menghasilkan bilangan
+rasional. Teorema berikut memberikan jawaban afirmatif:
+
+\begin{thm}
+Terdapat bilangan irasional $a$ dan $b$ sedemikian sehingga $a^b$ rasional.
+\end{thm}
+
+\begin{proof}
+Pertimbangkan $\sqrt{2}^{\sqrt{2}}$. Jika bilangan ini rasional, kita selesai:
+kita dapat mengambil $a = b = \sqrt{2}$. Jika tidak, bilangan itu irasional.
+Selanjutnya,
+\[
+(\sqrt{2}^{\sqrt{2}})^{\sqrt{2}} = \sqrt{2}^{\sqrt{2} \cdot
+  \sqrt{2}} = \sqrt{2}^2 = 2,
+\]
+yang rasional. Jadi, dalam kasus ini, ambil $a$ sebagai
+$\sqrt{2}^{\sqrt{2}}$, dan ambil $b$ sebagai~$\sqrt 2$.
+\end{proof}
+
+Apakah ini merupakan bukti yang valid? Kebanyakan matematikawan merasa
+demikian. Namun, sekali lagi, ada sesuatu yang agak tidak memuaskan di sini:
+kita telah membuktikan keberadaan sepasang bilangan real dengan sifat tertentu
+tanpa dapat mengatakan pasangan bilangan \emph{mana} yang dimaksud. Hasil yang
+sama dapat dibuktikan dengan cara yang \emph{memberikan} pasangan $a$, $b$ di
+dalam bukti itu sendiri: ambil $a = \sqrt{3}$ dan $b = \log_3 4$. Maka
+\[
+a^b = \sqrt{3}^{\log_3 4} = 3^{1/2 \cdot \log_3 4} = (3^{\log_3
+  4})^{1/2} = 4^{1/2}= 2,
+\]
+karena $3^{\log_3 x} = x$.
+
+Logika intuisionistik dirancang untuk menangkap jenis penalaran yang tidak
+memperbolehkan langkah seperti dalam bukti pertama. Membuktikan keberadaan
+suatu $x$ yang memenuhi~$!A(x)$ berarti kita harus memberikan suatu~$x$
+tertentu dan bukti bahwa nilai itu memenuhi~$!A$, seperti dalam bukti kedua.
+Membuktikan bahwa $!A$ atau $!B$ berlaku mengharuskan kita dapat membuktikan
+salah satunya.
+
+Secara formal, logika intuisionistik diperoleh dengan membatasi suatu sistem
+!!a{derivation} bagi logika klasik dengan cara tertentu. Dari sudut pandang
+matematis, semua itu hanyalah sistem deduktif formal, tetapi, sebagaimana telah
+dicatat, sistem-sistem tersebut dimaksudkan untuk menangkap suatu jenis
+penalaran matematis. Orang dapat menganggapnya sebagai jenis penalaran yang
+dibenarkan oleh pandangan filosofis tertentu tentang matematika (seperti
+intuisionisme Brouwer); orang dapat menganggapnya sebagai jenis penalaran
+matematis yang lebih ``konkret'' dan memuaskan (sejalan dengan konstruktivisme
+Bishop); dan orang dapat memperdebatkan apakah uraian formal tersebut
+menangkap motivasi informalnya. Namun, apa pun pendirian filosofis kita, kita
+dapat mengkaji logika intuisionistik sebagai logika yang disajikan secara
+formal; dan apa pun alasannya, banyak ahli logika matematika tertarik untuk
+melakukannya.
+
+\end{document}

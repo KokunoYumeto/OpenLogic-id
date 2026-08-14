@@ -1,0 +1,43 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{spine}{valpha}
+
+\olsection{Mendefinisikan Tahap-Tahap sebagai $V_\alpha$}
+
+Dalam \olref[sth][ordinals][]{chap}, kita mendefinisikan pengurutan baik dan
+ordinal (von Neumann). Dalam bab ini, kita akan menggunakannya untuk
+mencirikan hierarki himpunan \emph{itu sendiri}. Untuk melakukannya, ingat
+bahwa dalam \olref[sth][ordinals][opps]{sec}, kita mendefinisikan gagasan
+ordinal suksesor dan limit. Kita menggunakan gagasan-gagasan tersebut dalam
+definisi berikut:
+
+\begin{defn}\ollabel{defValphas}
+	\begin{align*}
+	V_\emptyset &\defis \emptyset\\
+	V_{\ordsucc{\alpha}} &\defis \Pow{V_\alpha} & &
+	\text{untuk sembarang ordinal }\alpha\\
+	V_{\alpha} &\defis \bigcup_{\gamma < \alpha} V_\gamma & &
+	\text{ketika }\alpha\text{ merupakan ordinal limit}
+\end{align*}
+\end{defn}
+\noindent
+Ini akan menjadi definisi melalui \emph{rekursi transfinit} pada ordinal.
+Dalam hal ini, kita perlu membandingkannya dengan definisi rekursif
+fungsi-fungsi pada bilangan asli.\footnote{Bdk.\ definisi penjumlahan,
+perkalian, dan eksponensiasi dalam
+\olref[sfr][infinite][dedekind]{sec}.} Seperti ketika menangani bilangan
+asli, kita mendefinisikan suatu kasus dasar dan kasus-kasus suksesor; tetapi
+ketika menangani ordinal, kita juga perlu menjelaskan perilaku kasus-kasus
+\emph{limit}.
+
+Definisi $V_\alpha$ ini akan menjadi suatu tonggak penting. Secara informal,
+kita telah memotivasi hierarki himpunan sebagai pembentukan himpunan melalui
+\emph{tahap-tahap}. Pada dasarnya, $V_\alpha$ tepat merupakan tahap-tahap
+tersebut. Namun, yang penting, ini merupakan pencirian \emph{internal} atas
+tahap-tahap. Alih-alih menyarankan suatu \emph{model} yang mungkin bagi
+teori tersebut, kita akan mendefinisikan tahap-tahap itu \emph{di dalam}
+teori himpunan kita.
+
+\end{document}

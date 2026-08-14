@@ -1,0 +1,41 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: church-rosser
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{int}{cr}
+\olsection{Sifat Church--Rosser}
+
+\begin{thm}
+\ollabel{thm:church-rosser}
+Misalkan $M$, $N_1$, dan $N_2$ adalah suku sedemikian sehingga $M \red N_1$
+dan $M \red N_2$. Maka ada suatu suku $P$ sedemikian sehingga $N_1 \red P$
+dan $N_2 \red P$.
+\end{thm}
+
+\begin{cor}
+Andaikan $M$ dapat direduksi ke bentuk normal. Maka bentuk normal ini tunggal.
+\end{cor}
+
+\begin{proof}
+Jika $M \red N_1$ dan $M \red N_2$, berdasarkan teorema sebelumnya terdapat
+suatu suku~$P$ sedemikian sehingga $N_1$ dan $N_2$ keduanya tereduksi
+menjadi~$P$. Jika $N_1$ dan~$N_2$ keduanya berbentuk normal, hal ini hanya
+mungkin jika $N_1 \ident P \ident N_2$.
+\end{proof}
+
+Terakhir, kita mengatakan bahwa dua suku $M$ dan~$N$ \emph{$\beta$-ekuivalen},
+atau cukup \emph{ekuivalen}, jika keduanya tereduksi menjadi suatu suku yang
+sama; dengan kata lain, jika terdapat $P$ sedemikian sehingga $M \red P$ dan
+$N \red P$. Hal ini ditulis $M \equal[\beta] N$. Dengan menggunakan
+\olref{thm:church-rosser}, Anda dapat memeriksa bahwa $\equal[\beta]$ adalah
+relasi ekuivalensi dengan sifat tambahan bahwa, untuk setiap $M$ dan~$N$, jika
+$M \red N$ atau $N \red M$, maka $M \equal[\beta] N$. (Bahkan, dapat
+ditunjukkan bahwa $\equal[\beta]$ merupakan relasi ekuivalensi \emph{terkecil}
+yang mempunyai sifat tersebut.)
+
+\end{document}
+

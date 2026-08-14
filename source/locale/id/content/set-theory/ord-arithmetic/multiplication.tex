@@ -1,0 +1,113 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{ord-arithmetic}{mult}
+
+\olsection{Perkalian Ordinal}
+
+Sekarang kita beralih ke perkalian ordinal, yang kita dekati dengan cara yang
+sangat mirip dengan penjumlahan ordinal. Andaikan kita hendak mengalikan
+$\alpha$ dengan~$\beta$. Untuk melakukannya, bayangkan suatu kisi persegi
+panjang dengan lebar $\alpha$ dan tinggi $\beta$; hasil kali $\alpha$ dan
+$\beta$ diperoleh dengan bergerak sepanjang setiap baris, lalu bergerak
+melalui baris berikutnya\ldots{} sampai seluruh kisi telah dilalui. Dengan
+kata lain, hasil kali $\alpha$ dan $\beta$ diperoleh dengan mengganti
+\emph{setiap} anggota dalam $\beta$ dengan suatu salinan~$\alpha$.
+
+Untuk memformalkan gagasan ini, kita cukup menggunakan pengurutan
+leksikografis terbalik pada hasil kali Kartesius $\alpha$ dan~$\beta$:
+
+\begin{defn}
+Untuk sebarang ordinal $\alpha, \beta$, hasil kalinya ialah
+$\alpha \ordtimes \beta = \ordtype{\alpha \times \beta, \rlexless}$.
+\end{defn}
+\noindent
+Sekali lagi, kita harus memastikan bahwa definisi ini terbentuk dengan baik:
+
+\begin{lem}\ollabel{ordtimeslessiswo}
+$\tuple{\alpha \times \beta, \rlexless}$ merupakan pengurutan baik bagi
+sebarang ordinal $\alpha$ dan~$\beta$.
+\end{lem}
+
+\begin{proof}
+Tepat seperti pada \olref[add]{ordsumlessiswo}.
+\end{proof}
+\noindent
+Tidak sulit pula membuktikan bahwa perkalian berperilaku sebagai berikut:
+
+\begin{lem}\ollabel{ordtimesrecursion}
+Untuk sebarang ordinal $\alpha, \beta$:
+\begin{align*}
+	\alpha \ordtimes 0 &= 0\\
+	\alpha \ordtimes (\beta \ordplus 1) &=
+		(\alpha \ordtimes \beta) \ordplus \alpha\\
+	\alpha  \ordtimes \beta &=
+		\supstrict_{\delta < \beta}(\alpha \ordtimes \delta) &&
+		\text{jika $\beta$ merupakan ordinal limit}.
+\end{align*}
+\end{lem}
+
+\begin{proof}
+Diserahkan sebagai latihan.
+\end{proof}
+
+Sesungguhnya, sebagaimana dalam kasus penjumlahan, kita dapat mendefinisikan
+perkalian ordinal melalui persamaan-persamaan rekursi ini alih-alih memberikan
+definisi langsung. Seperti halnya penjumlahan, beberapa perilakunya juga
+terasa akrab:
+
+\begin{lem}\ollabel{ordinalmultiplicationisnice}
+Jika $\alpha, \beta, \gamma$ ordinal, maka:
+\begin{enumerate}
+	\item\ollabel{ordtimes1} jika $\alpha \neq 0$ dan $\beta < \gamma$,
+	maka $\alpha \ordtimes \beta < \alpha \ordtimes \gamma$;
+	\item\ollabel{ordtimes2} jika $\alpha \neq 0$ dan $\alpha \ordtimes
+	\beta = \alpha\ordtimes\gamma$, maka $\beta = \gamma$;
+	\item\ollabel{ordtimes3} $\alpha \ordtimes (\beta \ordtimes
+	\gamma) = (\alpha \ordtimes \beta) \ordtimes \gamma$;
+	\item\ollabel{ordtimes4} jika $\alpha \leq \beta$, maka $\alpha
+	\ordtimes \gamma \leq \beta \ordtimes \gamma$;
+	\item\ollabel{ordtimes5} $\alpha \ordtimes (\beta \ordplus
+	\gamma) = (\alpha \ordtimes \beta )\ordplus (\alpha\ordtimes
+	\gamma)$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Diserahkan sebagai latihan.
+\end{proof}
+
+Anda dapat membuktikan (atau mencari) hasil-hasil lain sesuka hati. Akan
+tetapi, mengingat \olref[ord-arithmetic][add]{ordsumnotcommute}, hasil berikut
+seharusnya tidak mengejutkan:
+
+\begin{prop}
+Perkalian ordinal tidak komutatif: $2 \ordtimes \omega =
+\omega < \omega \ordtimes 2$.
+\end{prop}
+
+\begin{proof}
+$2 \ordtimes \omega = \supstrict_{n < \omega}(2\ordtimes n) = \omega \in
+\supstrict_{n < \omega}(\omega \ordplus n) = \omega \ordplus \omega =
+\omega \ordtimes 2$.
+\end{proof}
+\noindent
+Sekali lagi, alasan intuitifnya cukup lugas. Untuk menghitung $2 \ordtimes
+\omega$, kita mengganti setiap bilangan asli dengan dua entitas. Tipe urutan
+yang sama akan diperoleh jika kita cukup menyisipkan semua bilangan
+``setengah'' ke dalam bilangan asli, yakni jika kita mempertimbangkan
+pengurutan alami pada $\Setabs{\nicefrac{n}{2}}{n \in \omega}$. Dengan
+ungkapan ini, jelas bahwa tipe urutannya sama dengan tipe urutan $\omega$
+sendiri. Namun, untuk menghitung $\omega \ordtimes 2$, kita menempatkan dua
+salinan $\omega$, yang satu sesudah yang lain.
+
+\begin{prob}
+Buktikan
+\olref[sth][ord-arithmetic][mult]{ordtimeslessiswo},
+\olref[sth][ord-arithmetic][mult]{ordtimesrecursion},
+dan
+\olref[sth][ord-arithmetic][mult]{ordinalmultiplicationisnice}.
+\end{prob}
+
+\end{document}

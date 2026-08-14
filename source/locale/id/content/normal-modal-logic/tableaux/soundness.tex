@@ -1,0 +1,285 @@
+% Bagian: normal-modal-logic
+% Bab: tableaux
+% Subbagian: soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{tab}{sou}
+
+\olsection{Kesahihan bagi \Log{K}}
+
+\begin{editorial}
+  Pembuktian kesahihan ini menggunakan kembali pembuktian kesahihan bagi
+  logika proposisional klasik, yakni membuktikan semuanya dari awal. Hal itu
+  sesuai jika anda menginginkan pembuktian kesahihan yang mandiri. Jika anda
+  sudah melihat kesahihan bagi tableau biasa, bagian ini akan terasa
+  berulang. Rencananya, pembaca kelak dapat memilih antara versi mandiri dan
+  versi yang bertumpu pada kasus nonmodal.
+\end{editorial}
+
+\begin{explain}
+  Untuk menunjukkan bahwa !!{tableau} berprefiks sahih, kita harus
+  menunjukkan bahwa jika
+  \[
+  \sFmla{\True}{!B_1}[1], \dots, \sFmla{\True}{!B_n}[1],
+  \sFmla{\False}{!A}[1]
+  \]
+  mempunyai !!{tableau} tertutup, maka
+  $!B_1, \dots, !B_n \Entails !A$. Lebih mudah membuktikan
+  kontraposisinya: jika untuk suatu $\mModel{M}$ dan dunia~$w$,
+  $\mSat{M}{!B_i}[w]$ bagi semua $i=1$, \dots,~$n$, tetapi
+  $\mSat/{M}{!A}[w]$, maka tidak ada !!{tableau} yang dapat tertutup. Model
+  tandingan semacam itu menunjukkan bahwa asumsi-asumsi awal !!{tableau}
+  dapat dipenuhi. Strategi buktinya ialah menunjukkan bahwa setiap kali
+  semua !!{formula} berprefiks pada suatu cabang !!a{tableau} dapat dipenuhi,
+  penerapan aturan apa pun menghasilkan sekurang-kurangnya satu cabang yang
+  telah diperluas dan juga dapat dipenuhi. Karena cabang tertutup tidak dapat
+  dipenuhi, setiap !!{tableau} bagi suatu himpunan !!{formula} berprefiks
+  yang dapat dipenuhi harus mempunyai sekurang-kurangnya satu cabang terbuka.
+
+  Untuk menerapkan strategi ini dalam kasus modal, kita harus memperluas
+  definisi ``dapat dipenuhi'' agar mencakup model modal dan prefiks. Namun,
+  setelah itu tersedia, buktinya langsung.
+\end{explain}
+
+\begin{defn}
+  Misalkan $P$ suatu himpunan prefiks, yakni
+  $P \subseteq (\PosInt)^* \setminus \{\emptyseq\}$, dan misalkan
+  $\mModel{M}$ suatu model. Fungsi~$f\colon P \to W$ adalah
+  \emph{interpretasi atas}~$P$ dalam~$\mModel{M}$ jika, setiap kali
+  $\sigma$ dan $\sigma.n$ keduanya berada dalam~$P$, berlaku
+  $Rf(\sigma)f(\sigma.n)$.
+
+  Secara relatif terhadap interpretasi atas prefiks~$P$, kita dapat
+  mendefinisikan:
+  \begin{enumerate}
+  \item $\mModel{M}$ memenuhi $\sFmla{\True}{!A}[\sigma]$ jika dan hanya jika
+    $\mSat{M}{!A}[f(\sigma)]$.
+  \item $\mModel{M}$ memenuhi $\sFmla{\False}{!A}[\sigma]$ jika dan hanya jika
+    $\mSat/{M}{!A}[f(\sigma)]$.
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}
+  Misalkan $\Gamma$ suatu himpunan !!{formula} berprefiks, dan misalkan
+  $P(\Gamma)$ himpunan prefiks yang muncul di dalamnya. Jika $f$ adalah
+  interpretasi atas~$P(\Gamma)$ dalam $\mModel{M}$, kita mengatakan bahwa
+  $\mModel{M}$ memenuhi $\Gamma$ terhadap~$f$,
+  $\mSat{M}{\Gamma}[f]$, jika $\mModel{M}$ memenuhi setiap !!{formula}
+  berprefiks dalam~$\Gamma$ terhadap~$f$. Himpunan $\Gamma$ \emph{dapat
+  dipenuhi} jika dan hanya jika terdapat model~$\mModel{M}$ dan
+  interpretasi~$f$ atas $P(\Gamma)$ sedemikian sehingga
+  $\mSat{M}{\Gamma}[f]$.
+\end{defn}
+
+\begin{prop}
+  Jika $\Gamma$ memuat sekaligus $\sFmla{\True}{!A}[\sigma]$ dan
+  $\sFmla{\False}{!A}[\sigma]$ untuk suatu !!{formula}~$!A$ dan
+  prefiks~$\sigma$, maka $\Gamma$ tidak dapat dipenuhi.
+\end{prop}
+
+\begin{proof}
+  Tidak mungkin terdapat model~$\mModel{M}$ dan interpretasi~$f$ atas
+  $P(\Gamma)$ sedemikian sehingga sekaligus
+  $\mSat{M}{!A}[f(\sigma)]$ dan $\mSat/{M}{!A}[f(\sigma)]$.
+\end{proof}
+
+\begin{thm}[Kesahihan]
+  \ollabel{thm:tableau-soundness}
+  Jika $\Gamma$ mempunyai !!{tableau} tertutup, maka $\Gamma$ tidak dapat
+  dipenuhi.
+\end{thm}
+
+\begin{proof}
+Kita menyebut suatu cabang !!a{tableau} dapat dipenuhi jika dan hanya jika
+himpunan !!{signed formula} pada cabang itu dapat dipenuhi, dan kita
+menyebut !!a{tableau} dapat dipenuhi jika tableau tersebut memuat
+sekurang-kurangnya satu cabang yang dapat dipenuhi.
+
+Kita menunjukkan hal berikut: memperluas !!{tableau} yang dapat dipenuhi
+dengan salah satu aturan inferensi selalu menghasilkan !!{tableau} yang
+dapat dipenuhi. Hal ini akan membuktikan teorema tersebut: setiap
+!!{tableau} tertutup dihasilkan dengan menerapkan aturan-aturan inferensi
+pada !!{tableau} yang hanya terdiri atas asumsi-asumsi dari~$\Gamma$. Jadi,
+jika $\Gamma$ dapat dipenuhi, setiap !!{tableau} untuknya juga dapat
+dipenuhi. Namun, !!{tableau} tertutup jelas tidak dapat dipenuhi, karena
+semua cabangnya tertutup dan cabang tertutup tidak dapat dipenuhi.
+
+Andaikan kita mempunyai !!{tableau} yang dapat dipenuhi, yakni !!a{tableau}
+dengan sekurang-kurangnya satu cabang yang dapat dipenuhi. Penerapan suatu
+aturan inferensi entah menambahkan !!{signed formula} pada suatu cabang atau
+membelah suatu cabang menjadi dua. Jika !!{tableau} tersebut mempunyai
+cabang yang dapat dipenuhi dan tidak diperluas oleh penerapan aturan yang
+sedang dibahas, cabang itu tetap dapat dipenuhi dalam !!{tableau} yang telah
+diperluas; jadi, tableau yang telah diperluas dapat dipenuhi. Karena itu,
+kita hanya perlu membahas kasus ketika suatu aturan diterapkan pada cabang
+yang dapat dipenuhi.
+
+Misalkan $\Gamma$ adalah himpunan !!{signed formula} pada cabang tersebut,
+dan misalkan $\sFmla{S}{!A}[\sigma] \in \Gamma$ adalah !!{signed formula}
+yang dikenai aturan. Jika aturan tersebut tidak membelah cabang, kita harus
+menunjukkan bahwa cabang yang telah diperluas, yakni $\Gamma$ bersama
+kesimpulan-kesimpulan aturan tersebut, masih dapat dipenuhi. Jika aturan
+tersebut membelah cabang, kita harus menunjukkan bahwa sekurang-kurangnya
+satu dari kedua cabang yang dihasilkan dapat dipenuhi.
+\tagfalse{prvDiamond}
+Pertama, kita membahas inferensi-inferensi yang hanya mempunyai satu premis.
+\begin{enumerate}
+\item Cabang diperluas dengan menerapkan $\TRule{\True}{\lnot}$ pada
+  $\sFmla{\True}{\lnot !B}[\sigma] \in \Gamma$. Cabang yang telah
+  diperluas kemudian memuat !!{signed formula}s dalam $\Gamma \cup
+  \{\sFmla{\False}{!B}[\sigma]\}$. Andaikan $\mSat{M}{\Gamma}[f]$.
+  Khususnya, $\mSat{M}{\lnot !B}[f(\sigma)]$. Maka
+  $\mSat/{M}{!B}[f(\sigma)]$; dengan kata lain, $\mModel{M}$ memenuhi
+  $\sFmla{\False}{!B}[\sigma]$ terhadap~$f$.
+\item Cabang diperluas dengan menerapkan $\TRule{\False}{\lnot}$ pada
+  $\sFmla{\False}{\lnot !B}[\sigma] \in \Gamma$: Latihan.
+\item Cabang diperluas dengan menerapkan $\TRule{\True}{\land}$ pada
+  $\sFmla{\True}{!B \land !C}[\sigma] \in \Gamma$, yang menghasilkan dua
+  !!{signed formula} baru pada cabang tersebut:
+  $\sFmla{\True}{!B}[\sigma]$ dan $\sFmla{\True}{!C}[\sigma]$. Andaikan
+  $\mSat{M}{\Gamma}[f]$, khususnya
+  $\mSat{M}{!B \land !C}[f(\sigma)]$. Maka
+  $\mSat{M}{!B}[f(\sigma)]$ dan $\mSat{M}{!C}[f(\sigma)]$. Ini berarti
+  bahwa $\mModel{M}$ memenuhi $\sFmla{\True}{!B}[\sigma]$ dan
+  $\sFmla{\True}{!C}[\sigma]$ sekaligus terhadap~$f$.
+\item Cabang diperluas dengan menerapkan $\TRule{\False}{\lor}$ pada
+  $\sFmla{\False}{!B \lor !C}[\sigma] \in \Gamma$: Latihan.
+\item Cabang diperluas dengan menerapkan $\TRule{\False}{\lif}$ pada
+  $\sFmla{\False}{!B \lif !C}[\sigma] \in \Gamma$. Penerapan ini
+  menghasilkan dua !!{signed formula} baru pada cabang tersebut:
+  $\sFmla{\True}{!B}[\sigma]$ dan $\sFmla{\False}{!C}[\sigma]$. Andaikan
+  $\mSat{M}{\Gamma}[f]$, khususnya
+  $\mSat/{M}{!B \lif !C}[f(\sigma)]$. Maka
+  $\mSat{M}{!B}[f(\sigma)]$ dan $\mSat/{M}{!C}[f(\sigma)]$. Ini berarti
+  bahwa $\mModel{M}, f$ memenuhi $\sFmla{\True}{!B}[\sigma]$ dan
+  $\sFmla{\False}{!C}[\sigma]$ sekaligus.
+
+\iftag{prvBox}{%
+\item Cabang diperluas dengan menerapkan $\TRule{\True}{\Box}$ pada
+  $\sFmla{\True}{\Box !B}[\sigma] \in \Gamma$:
+  \iftag{probBox}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\True}{!B}[\sigma.n]$ pada cabang tersebut, untuk suatu
+    $\sigma.n \in P(\Gamma)$ (karena $\sigma.n$ harus sudah digunakan).
+    Andaikan $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat{M}{\Box !B}[f(\sigma)]$. Karena $f$ adalah interpretasi atas
+    prefiks dan $\sigma$, $\sigma.n \in P(\Gamma)$, kita mengetahui bahwa
+    $Rf(\sigma)f(\sigma.n)$. Jadi, $\mSat{M}{!B}[f(\sigma.n)]$; dengan kata
+    lain, $\mModel{M}, f$ memenuhi $\sFmla{\True}{!B}[\sigma.n]$.}
+
+\item Cabang diperluas dengan menerapkan $\TRule{\False}{\Box}$ pada
+  $\sFmla{\False}{\Box !B}[\sigma] \in \Gamma$:
+  \iftag{probBox}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\False}{!B}[\sigma.n]$, dengan $\sigma.n$ sebagai prefiks
+    baru pada cabang tersebut, yakni $\sigma.n \notin P(\Gamma)$.
+    Karena $\Gamma$ dapat dipenuhi, terdapat $\mModel{M}$ dan
+    interpretasi~$f$ atas $P(\Gamma)$ sedemikian sehingga
+    $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat/{M}{\Box !B}[f(\sigma)]$. Kita harus menunjukkan bahwa
+    $\Gamma \cup \{\sFmla{\False}{!B}[\sigma.n]\}$ dapat dipenuhi. Untuk
+    itu, kita mendefinisikan suatu interpretasi atas
+    $P(\Gamma) \cup \{\sigma.n\}$ sebagai berikut.
+
+  Karena $\mSat/{M}{\Box !B}[f(\sigma)]$, terdapat suatu $w \in W$
+  sedemikian sehingga $Rf(\sigma)w$ dan $\mSat/{M}{!B}[w]$. Misalkan $f'$
+  sama seperti $f$, kecuali bahwa $f'(\sigma.n) = w$. Karena
+  $f'(\sigma) = f(\sigma)$ dan $Rf(\sigma)w$, berlaku
+  $Rf'(\sigma)f'(\sigma.n)$; jadi, $f'$ adalah interpretasi atas
+  $P(\Gamma) \cup \{\sigma.n\}$. Jelas
+  $\mSat/{M}{!B}[f'(\sigma.n)]$. Karena
+  $f(\sigma') = f'(\sigma')$ bagi semua prefiks
+  $\sigma' \in P(\Gamma)$, berlaku $\mSat{M}{\Gamma}[f']$. Jadi,
+  $\mModel{M}, f'$ memenuhi
+  $\Gamma \cup \{\sFmla{\False}{!B}[\sigma.n]\}$.}
+  }{}
+
+\iftag{prvDiamond}{%
+\item Cabang diperluas dengan menerapkan $\TRule{\True}{\Diamond}$ pada
+  $\sFmla{\True}{\Diamond !B}[\sigma] \in \Gamma$:
+  \iftag{probDiamond}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\True}{!B}[\sigma.n]$, dengan $\sigma.n$ sebagai prefiks
+    baru pada cabang tersebut, yakni $\sigma.n \notin P(\Gamma)$.
+    Karena $\Gamma$ dapat dipenuhi, terdapat $\mModel{M}$ dan
+    interpretasi~$f$ atas $P(\Gamma)$ sedemikian sehingga
+    $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat{M}{\Diamond !B}[f(\sigma)]$. Kita harus menunjukkan bahwa
+    $\Gamma \cup \{\sFmla{\True}{!B}[\sigma.n]\}$ dapat dipenuhi. Untuk
+    itu, kita mendefinisikan suatu interpretasi atas
+    $P(\Gamma) \cup \{\sigma.n\}$ sebagai berikut.
+
+  Karena $\mSat{M}{\Diamond !B}[f(\sigma)]$, terdapat suatu $w \in W$
+  sedemikian sehingga $Rf(\sigma)w$ dan $\mSat{M}{!B}[w]$. Misalkan $f'$
+  sama seperti $f$, kecuali bahwa $f'(\sigma.n) = w$. Karena
+  $f'(\sigma) = f(\sigma)$ dan $Rf(\sigma)w$, berlaku
+  $Rf'(\sigma)f'(\sigma.n)$; jadi, $f'$ adalah interpretasi atas
+  $P(\Gamma) \cup \{\sigma.n\}$. Jelas
+  $\mSat{M}{!B}[f'(\sigma.n)]$. Karena
+  $f(\sigma') = f'(\sigma')$ bagi semua prefiks
+  $\sigma' \in P(\Gamma)$, berlaku $\mSat{M}{\Gamma}[f']$. Jadi,
+  $\mModel{M}, f'$ memenuhi
+  $\Gamma \cup \{\sFmla{\True}{!B}[\sigma.n]\}$.}
+\item Cabang diperluas dengan menerapkan $\TRule{\False}{\Diamond}$ pada
+  $\sFmla{\False}{\Diamond !B}[\sigma] \in \Gamma$:
+  \iftag{probDiamond}{Latihan.}{Penerapan ini menghasilkan !!{signed formula}
+    baru~$\sFmla{\False}{!B}[\sigma.n]$ pada cabang tersebut, untuk suatu
+    $\sigma.n \in P(\Gamma)$ (karena $\sigma.n$ harus sudah digunakan).
+    Andaikan $\mSat{M}{\Gamma}[f]$, khususnya
+    $\mSat/{M}{\Diamond !B}[f(\sigma)]$. Karena $f$ adalah interpretasi
+    atas prefiks dan $\sigma$, $\sigma.n \in P(\Gamma)$, kita mengetahui
+    bahwa $Rf(\sigma)f(\sigma.n)$. Jadi,
+    $\mSat/{M}{!B}[f(\sigma.n)]$; dengan kata lain, $\mModel{M}, f$
+    memenuhi $\sFmla{\False}{!B}[\sigma.n]$.}
+  }{}
+\end{enumerate}
+Sekarang mari kita bahas inferensi-inferensi yang mempunyai dua premis.
+\begin{enumerate}
+\item Cabang diperluas dengan menerapkan $\TRule{\False}{\land}$ pada
+  $\sFmla{\False}{!B \land !C}[\sigma] \in \Gamma$, yang menghasilkan
+  dua cabang: cabang kiri berlanjut melalui
+  $\sFmla{\False}{!B}[\sigma]$ dan cabang kanan melalui
+  $\sFmla{\False}{!C}[\sigma]$. Andaikan $\mSat{M}{\Gamma}[f]$,
+  khususnya $\mSat/{M}{!B \land !C}[f(\sigma)]$. Maka
+  $\mSat/{M}{!B}[f(\sigma)]$ atau $\mSat/{M}{!C}[f(\sigma)]$. Dalam kasus
+  pertama, $\mModel{M}, f$ memenuhi $\sFmla{\False}{!B}[\sigma]$; dengan
+  kata lain, cabang kiri dapat dipenuhi. Dalam kasus kedua, $\mModel{M}, f$
+  memenuhi $\sFmla{\False}{!C}[\sigma]$; dengan kata lain, cabang kanan
+  dapat dipenuhi.
+\item Cabang diperluas dengan menerapkan $\TRule{\True}{\lor}$ pada
+    $\sFmla{\True}{!B \lor !C}[\sigma] \in \Gamma$: Latihan.
+\item Cabang diperluas dengan menerapkan $\TRule{\True}{\lif}$ pada
+    $\sFmla{\True}{!B \lif !C}[\sigma] \in \Gamma$: Latihan.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+Lengkapi pembuktian \olref[nml][tab][sou]{thm:tableau-soundness}.
+\end{prob}
+
+\begin{cor}
+\ollabel{cor:entailment-soundness}
+Jika $\Gamma \Proves !A$, maka $\Gamma \Entails !A$.
+\end{cor}
+
+\begin{proof}
+  Jika $\Gamma \Proves !A$, maka untuk suatu $!B_1$, \dots, $!B_n \in
+  \Gamma$, himpunan
+  $\Delta = \{\sFmla{\False}{!A}[1], \sFmla{\True}{!B_1}[1],
+  \dots, \sFmla{\True}{!B_n}[1]\}$ mempunyai !!{tableau} tertutup. Kita
+  hendak menunjukkan bahwa $\Gamma \Entails !A$. Andaikan tidak demikian;
+  maka untuk suatu $\mModel{M}$ dan $w$, berlaku
+  $\mSat{M}{!B_i}[w]$ bagi $i=1$, \dots,~$n$, tetapi
+  $\mSat/{M}{!A}[w]$. Misalkan $f(1) = w$; maka $f$ adalah interpretasi atas
+  $P(\Delta)$ dalam~$\mModel{M}$, dan $\mModel{M}$ memenuhi~$\Delta$
+  terhadap~$f$. Namun, menurut \olref{thm:tableau-soundness}, $\Delta$
+  tidak dapat dipenuhi karena mempunyai !!{tableau} tertutup; ini suatu
+  kontradiksi. Jadi, haruslah $\Gamma \Entails !A$.
+\end{proof}
+
+\begin{cor}
+\ollabel{cor:weak-soundness}
+Jika $\Proves !A$, maka $!A$ benar dalam semua model.
+\end{cor}
+
+\end{document}

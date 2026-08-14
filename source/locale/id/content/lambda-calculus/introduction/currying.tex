@@ -1,0 +1,69 @@
+% Part: lambda-calculus
+% Chapter: representability
+% Section: currying
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{rep}{cur}
+\olsection{Kurisasi}
+
+Suatu abstrak-$\lambd$, $\lambd[x][M]$, merepresentasikan fungsi satu
+argumen. Hal ini cukup membatasi ketika kita ingin mendefinisikan fungsi yang
+menerima beberapa argumen. Salah satu cara mengatasinya ialah memperluas
+kalkulus-$\lambd$ agar memungkinkan pembentukan pasangan, tripel, dan
+seterusnya; dalam hal itu, misalnya, fungsi tiga-tempat $\lambd[x][M]$ akan
+mengharapkan argumennya berupa tripel. Namun, lebih praktis jika hal ini
+dilakukan melalui \emph{kurisasi} (currying).
+
+Mari kita perhatikan sebuah contoh. Untuk sementara, anggaplah bahwa kita
+mempunyai operasi~$+$ dalam kalkulus-$\lambd$. Fungsi penjumlahan beraritas~2,
+yakni menerima dua argumen. Namun, abstrak-$\lambd$ hanya memberi kita fungsi
+satu argumen: sintaksisnya tidak mengizinkan ekspresi seperti
+$\lambd[(x,y)][(x+y)]$. Meskipun demikian, kita dapat mempertimbangkan fungsi
+satu-tempat~$f_x(y)$ yang diberikan oleh $\lambd[y][(x+y)]$, yang menambahkan
+$x$ pada argumen tunggalnya~$y$. Sebenarnya, ini bukan satu fungsi, melainkan
+keluarga fungsi ``tambahkan~$x$'' yang berbeda-beda, satu untuk setiap
+bilangan~$x$. Sekarang kita dapat mendefinisikan fungsi satu-tempat lain~$g$
+sebagai $\lambd[x][f_x]$. Ketika diterapkan pada argumen~$x$, $g(x)$
+mengembalikan fungsi~$f_x$---jadi, nilai-nilainya sendiri adalah fungsi. Jika
+kita menerapkan $g$ pada~$x$, kemudian menerapkan hasilnya pada~$y$, kita
+memperoleh $(g(x))y=f_x(y)=x+y$. Dengan cara ini, fungsi satu-tempat~$g$ dapat
+melaksanakan pekerjaan yang sama dengan fungsi penjumlahan dua-tempat.
+``Kurisasi'' sekadar merujuk pada kiat mengubah fungsi dua-tempat menjadi
+fungsi satu-tempat yang nilai-nilainya juga fungsi satu-tempat.
+
+Berikut adalah contoh yang sungguh berada dalam sintaksis kalkulus-$\lambd$.
+Bagaimana kita merepresentasikan fungsi $f(x,y)=x$? Jika kita ingin
+mendefinisikan fungsi yang menerima dua argumen dan mengembalikan argumen
+pertama, kita dapat menulis $\lambd[x][\lambd[y][x]]$, yang secara harfiah
+merupakan fungsi yang menerima argumen~$x$ dan mengembalikan fungsi
+$\lambd[y][x]$. Fungsi $\lambd[y][x]$ menerima argumen lain~$y$, tetapi
+mengabaikannya dan selalu mengembalikan~$x$. Mari kita lihat apa yang terjadi
+ketika $\lambd[x][\lambd[y][x]]$ diterapkan pada dua argumen:
+\begin{align*}
+  (\lambd[x][\lambd[y][x]])MN
+  \bredone & (\lambd[y][M])N \\
+  \bredone & M
+\end{align*}
+
+Secara umum, untuk menulis fungsi dengan parameter $x_1$, \dots,~$x_n$ yang
+didefinisikan oleh suatu suku~$N$, kita dapat menulis
+$\lambd[x_1][\lambd[x_2][\ldots\lambd[x_n][N]]]$. Jika kita menerapkan $n$
+argumen padanya, kita memperoleh:
+\begin{multline*}
+  (\lambd[x_1][\lambd[x_2][\ldots\lambd[x_n][N]]]) M_1 \dots M_n \bredone\\
+  \begin{aligned}
+  \bredone {} & (\Subst{(\lambd[x_2][\ldots\lambd[x_n][N]])}{M_1}{x_1}) M_2
+  \dots M_n\\
+   \eqs {} & (\lambd[x_2][\ldots\lambd[x_n][\Subst{N}{M_1}{x_1}]]) M_2
+            \dots M_n \\
+  \vdots & \\
+  \bredone {} &\Subst{\Subst{N}{M_1}{x_1}\ldots}{M_n}{x_n}
+  \end{aligned}
+\end{multline*}
+Baris terakhir secara harfiah berarti menyubstitusikan $M_i$ sebagai pengganti
+$x_i$ dalam badan definisi fungsi, tepat seperti yang kita inginkan ketika
+menerapkan beberapa argumen pada suatu fungsi.
+\end{document}

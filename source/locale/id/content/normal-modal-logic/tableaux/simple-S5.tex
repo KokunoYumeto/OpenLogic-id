@@ -1,0 +1,89 @@
+% Bagian: normal-modal-logic
+% Bab: tableaux
+% Subbagian: simple-S5
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{tab}{s5}
+
+\olsection{\usetoken{P}{tableau} Sederhana bagi \Log{S5}}
+
+\Log{S5} sahih dan lengkap terhadap kelas model universal, yakni model yang
+setiap dunianya dapat diakses dari setiap dunia. Dalam model universal,
+relasi aksesibilitas tidak berpengaruh: ``terdapat dunia~$w$ dengan
+$\mSat{M}{!A}[w]$'' benar jika dan hanya jika terdapat dunia~$w$ semacam itu
+yang dapat diakses dari~$u$. Jadi, dalam \Log{S5}, kita dapat mendefinisikan
+model hanya sebagai suatu himpunan dunia dan suatu penetapan~$V$. Hal ini
+menyarankan bahwa kita juga seharusnya dapat menyederhanakan aturan
+!!{tableau}. Dalam kasus umum, kita memakai barisan bilangan bulat positif
+sebagai prefiks agar dapat melacak prefiks mana yang menamai dunia yang dapat
+diakses dari dunia lain: $\sigma.n$ menamai suatu dunia yang dapat diakses
+dari~$\sigma$. Namun, dalam \Log{S5}, setiap dunia dapat diakses dari setiap
+dunia, sehingga pelacakan tersebut tidak diperlukan. Sebagai gantinya, kita
+dapat menggunakan bilangan bulat positif sebagai prefiks. Aturan yang
+disederhanakan diberikan dalam \olref{tab:rules-S5}.
+
+\begin{table}
+  \begin{center}
+    \def\arraystretch{3}\def\fCenter{}
+    \begin{tabular}{|c|c|}
+    \hline
+    \iftag{prvBox}{
+      \AxiomC{\sFmla{\True}{\Box !A}[n]}
+      \RightLabel{\TRule{\True}{\Box}}
+      \UnaryInfC{\sFmla{\True}{!A}[m]}
+      \DisplayProof
+      &
+      \AxiomC{\sFmla{\False}{\Box !A}[n]}
+      \RightLabel{\TRule{\False}{\Box}}
+      \UnaryInfC{\sFmla{\False}{!A}[m]}
+      \DisplayProof\\
+      $m$ sudah digunakan & $m$ baru
+      \\[1ex]
+      \hline}{}
+    \iftag{prvDiamond}{
+      \AxiomC{\sFmla{\True}{\Diamond !A}[n]}
+      \RightLabel{\TRule{\True}{\Diamond}}
+      \UnaryInfC{\sFmla{\True}{!A}[m]}
+      \DisplayProof
+      &
+      \AxiomC{\sFmla{\False}{\Diamond !A}[n]}
+      \RightLabel{\TRule{\False}{\Diamond}}
+      \UnaryInfC{\sFmla{\False}{!A}[m]}
+      \DisplayProof\\
+      $m$ baru & $m$ sudah digunakan
+      \\[1ex]
+      \hline}{}
+    \end{tabular}
+  \end{center}
+  \caption{Aturan yang disederhanakan bagi \Log{S5}.}
+  \ollabel{tab:rules-S5}
+\end{table}
+
+\begin{ex}
+  Kita memberikan tableau tertutup yang disederhanakan untuk menunjukkan
+  bahwa $\Log{S5} \Proves \Ax{5}$, yakni
+  $\Diamond!A \lif \Box\Diamond!A$.
+  \begin{oltableau}
+    [\pFmla{\False}{\Diamond\formula{A} \lif \Box\Diamond \formula{A}}{1},
+      just = \TAss
+      [\pFmla{\True}{\Diamond \formula{A}}{1}, just = {\TRule{\False}{\lif}[1]}
+        [\pFmla{\False}{\Box\Diamond \formula{A}}{1},
+          just = {\TRule{\False}{\lif}[1]}
+          [\pFmla{\False}{\Diamond \formula{A}}{2},
+            just = {\TRule{\False}{\Box}[3]}
+            [\pFmla{\True}{\formula{A}}{3},
+              just = {\TRule{\True}{\Diamond}[2]}
+                [\pFmla{\False}{\formula{A}}{3},
+                  just = {\TRule{\False}{\Diamond}[4]}, close]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+\end{ex}
+
+\end{document}

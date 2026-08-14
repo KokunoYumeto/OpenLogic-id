@@ -1,0 +1,92 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{syn}{int}
+
+\olsection{Pengantar}
+
+Logika modal membahas \emph{proposisi modal} dan relasi perikutan di antara
+proposisi-proposisi tersebut. Berikut ini beberapa contoh proposisi modal:
+\begin{enumerate}
+\item Niscaya bahwa $2+2=4$.
+\item Niscaya mungkin bahwa besok akan turun hujan.
+\item Jika niscaya mungkin bahwa~$!A$, maka mungkin bahwa~$!A$.
+\end{enumerate}
+Kemungkinan dan keniscayaan bukanlah satu-satunya modalitas: perangkai uner
+lainnya juga digolongkan sebagai modalitas, misalnya, ``seharusnya demikian
+bahwa~$!A$,'' ``akan demikian bahwa~$!A$,'' ``Dana mengetahui bahwa~$!A$,''
+atau ``Dana meyakini bahwa~$!A$.''
+
+Logika modal pertama kali muncul dalam \emph{De Interpretatione} karya
+Aristoteles: dialah yang pertama kali mengamati bahwa keniscayaan
+mengimplikasikan kemungkinan, tetapi tidak sebaliknya; bahwa kemungkinan dan
+keniscayaan dapat saling didefinisikan; bahwa jika $!A \land !B$ mungkin
+benar, maka $!A$ mungkin benar dan $!B$ mungkin benar, tetapi tidak
+sebaliknya; dan bahwa jika $!A \to !B$ niscaya, maka apabila $!A$ niscaya,
+$!B$ juga niscaya.
+
+Pendekatan modern pertama terhadap logika modal adalah karya C.~I. Lewis,
+yang berpuncak pada buku Lewis dan Langford, \emph{Symbolic Logic}
+(1932). Lewis \& Langford tidak puas dengan representasi implikasi melalui
+kondisional material: $!A \lif !B$ merupakan pengganti yang buruk bagi
+``$!A$ mengimplikasikan $!B$.'' Sebagai gantinya, mereka mengusulkan agar
+implikasi dicirikan sebagai ``Niscaya, jika $!A$ maka $!B$,'' yang
+disimbolkan sebagai $!A \strictif !B$. Dalam upaya memilah berbagai
+sifatnya, Lewis mengidentifikasi lima sistem modal yang berbeda, \Log{S1},
+\ldots, \Log{S4}, \Log{S5}; dua sistem terakhir masih digunakan hingga kini.
+
+Pendekatan Lewis dan Langford sepenuhnya bersifat \emph{sintaktis}: mereka
+mengidentifikasi aksioma dan aturan yang masuk akal serta menyelidiki apa yang
+dapat dibuktikan dengan sarana tersebut. Pendekatan semantik lama tak
+terjangkau, sampai Rudolf Carnap melakukan upaya pertama dalam \emph{Meaning
+  and Necessity} (1947) dengan menggunakan gagasan \emph{deskripsi keadaan},
+yakni kumpulan kalimat atomik (kalimat yang ``benar'' dalam deskripsi keadaan
+tersebut). Setelah memperluas definisi kebenaran ke kalimat sebarang $!A$,
+Carnap mendefinisikan $!A$ sebagai \emph{benar secara niscaya} jika kalimat
+itu benar dalam semua deskripsi keadaan. Pendekatan Carnap tidak dapat
+menangani modalitas \emph{berulang}, sebab kalimat berbentuk ``Mungkin secara
+niscaya \ldots mungkin $!A$'' selalu tereduksi ke modalitas terdalam.
+
+Terobosan besar dalam semantik modal hadir melalui artikel Saul Kripke ``A
+Completeness Theorem in Modal Logic'' (JSL 1959). Kripke mendasarkan
+pekerjaannya pada gagasan Leibniz bahwa suatu pernyataan benar secara niscaya
+jika pernyataan itu benar ``di semua dunia mungkin.'' Namun, gagasan ini
+menghadapi kelemahan yang sama seperti pendekatan Carnap, sebab kebenaran
+suatu pernyataan pada dunia $w$ (atau deskripsi keadaan $s$) sama sekali tidak
+bergantung pada $w$. Karena itu, Kripke mengandaikan bahwa dunia-dunia
+dihubungkan oleh suatu \emph{relasi aksesibilitas} $R$, dan bahwa pernyataan
+berbentuk ``Niscaya $!A$'' bernilai benar pada dunia $w$ jika dan hanya jika
+$!A$ bernilai benar pada semua dunia $w'$ yang \emph{dapat diakses dari}
+$w$. Semantik yang menyediakan suatu versi pendekatan ini disebut semantik
+Kripke dan memungkinkan perkembangan logika-logika modal (dalam bentuk
+jamak) yang begitu pesat.
+
+Ketika ditafsirkan dengan semantik Kripke, logika modal memperlihatkan kepada
+kita bagaimana \emph{struktur relasional} tampak ``dari dalam.'' Struktur
+relasional hanyalah suatu himpunan yang dilengkapi dengan relasi biner
+(misalnya, himpunan siswa di kelas yang diurutkan menurut nomor jaminan sosial
+mereka merupakan struktur relasional). Namun, struktur relasional sebenarnya
+hadir dalam segala macam ranah: selain kemungkinan relatif keadaan dunia,
+kita dapat memiliki keadaan epistemik suatu agen yang dihubungkan oleh
+kemungkinan epistemik, atau keadaan suatu sistem dinamis beserta transisi
+keadaannya, dan sebagainya. Logika modal dapat digunakan untuk memodelkan
+semuanya: yang pertama memberi kita logika modal aletik biasa; yang lainnya
+memberi kita logika epistemik, logika dinamis, dan sebagainya.
+
+Kita berfokus pada satu sudut pandang tertentu yang dikenal oleh para ahli
+logika modal sebagai ``teori korespondensi.'' Salah satu penemuan awal Kripke
+yang paling penting ialah bahwa banyak sifat relasi aksesibilitas~$R$
+(apakah relasi itu transitif, simetris, dan sebagainya) dapat dicirikan
+\emph{dalam bahasa modal} itu sendiri melalui ``skema modal'' yang sesuai.
+Sebagai contoh, para ahli logika modal mengatakan bahwa refleksivitas $R$
+``berkorespondensi'' dengan skema ``Jika niscaya~$!A$, maka~$!A$''. Kita
+terutama mengkaji teori korespondensi sejumlah sistem klasik logika modal
+(misalnya, \Log{S4} dan \Log{S5}) yang diperoleh melalui kombinasi skema
+\Ax{D}, \Ax{T}, \Ax{B}, \Ax{4}, dan~\Ax{5}.
+
+\end{document}

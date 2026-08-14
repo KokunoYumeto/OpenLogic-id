@@ -1,0 +1,61 @@
+% Part: proof-theory
+% Chapter: normalization
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{nor}{int}
+
+\olsection{Pendahuluan}
+
+Jika Anda telah !!{prove} suatu implikasi~$!A \lif !B$, Anda mungkin dapat
+menggunakannya dalam !!a{proof} bagi~$!B$ dengan memakai~\Elim{\lif}.
+Tentu saja, hal ini juga memerlukan !!a{proof}~$\delta_1$ bagi~$!A$.
+!!^a{proof}~$\delta_1$ Anda bagi~$!A \lif !B$ kemungkinan besar berakhir
+dengan~\Intro{\lif}, yang mengubah !!a{proof}~$\delta_2$ bagi~$!B$ dari
+asumsi terbuka~$!A$ menjadi bukti bagi~$!A \lif !B$. Jika demikian,
+!!{proof} terakhir Anda berbentuk
+\[
+\AxiomC{$\Discharge{!A}{x}$}
+\RightLabel{$\delta_2$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\AxiomC{}
+\RightLabel{$\delta_1$}
+\DeduceC{$!A$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!B$}
+\DisplayProof
+\]
+Walaupun strategi Anda efisien karena menggunakan kembali sesuatu yang
+sudah tersedia (!!a{proof} bagi~$!A \lif !B$), !!{proof} Anda sendiri tidak
+efisien. Memperkenalkan $!A \lif !B$ hanya untuk segera mengeliminasinya
+tampak sebagai jalan memutar. Semestinya terdapat cara yang lebih langsung
+untuk !!{prove}~$!B$.
+
+Sesungguhnya, cara seperti itu selalu ada. ``Jalan memutar'' seperti di
+atas---!!a{introduction} yang langsung diikuti !!a{elimination}---selalu
+dapat dihapus dari !!{proof}s deduksi alami. Proses ini disebut
+\emph{normalisasi}, dan hasilnya adalah !!{proof} \emph{normal} (atau
+!!a{proof} \emph{dalam bentuk normal}).
+
+Bukti hasil ini, seperti teorema eliminasi potongan dalam kalkulus sekuen,
+cukup rumit dan mengharuskan kita mempertimbangkan banyak kasus. Hasil itu
+lebih sulit dibuktikan bagi \Log{N1c} klasik daripada bagi \Log{N1i}
+intuisionistik. Sebagaimana eliminasi potongan menunjukkan bahwa Anda tidak
+dapat !!{prove} lebih banyak dengan menggunakan aturan \Cut{} dalam kalkulus
+sekuen, normalisasi menunjukkan bahwa jalan memutar tidak memungkinkan Anda
+membuktikan lebih banyak daripada ketika jalan memutar itu dihindari.
+Terdapat kemiripan lain: !!{proof}s normal dapat jauh lebih panjang daripada
+!!{proof} terpendek dengan jalan memutar yang memberikan hasil sama,
+sebagaimana !!{proof}s dalam kalkulus sekuen dapat jauh lebih pendek dengan
+potongan daripada !!{proof} bebas-potongan terpendek. Sifat sub!!{formula},
+yakni bahwa Anda selalu dapat !!{prove} suatu hasil hanya dengan memakai
+sub!!{formula}s dari hasil itu dalam !!{proof} Anda, mengikuti normalisasi
+bagi deduksi alami sebagaimana sifat tersebut mengikuti eliminasi potongan
+bagi kalkulus sekuen.
+
+\end{document}

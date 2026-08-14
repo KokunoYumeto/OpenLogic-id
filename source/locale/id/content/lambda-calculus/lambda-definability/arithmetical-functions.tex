@@ -1,0 +1,145 @@
+% Part: lambda-calculus
+% Chapter: lambda-definablity
+% Section: arithmetical-functions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{rep}{arf}
+\olsection{Fungsi Aritmetika yang \usetoken{S}{lambda definable}}
+
+\begin{prop}
+  \ollabel{prop:succ-ld}
+  Fungsi penerus~$\Succ$ bersifat !!{lambda definable}.
+\end{prop}
+
+\begin{proof}
+Suku yang !!{lambda define}s fungsi penerus ialah
+\begin{align*}
+  \fn{Succ} & \ident \lambd[a][\lambd[fx][f ({a} f x)]].
+  \intertext{Menurut konvensi kita, ini merupakan bentuk singkat dari}
+  \fn{Succ} & \ident \lambd[a][\lambd[f][\lambd[x][(f (({a} f) x))]]].
+  \intertext{$\fn{Succ}$ adalah fungsi yang menerima suatu bilangan~$a$
+    sebagai argumen dan terevaluasi menjadi fungsi lain,
+    $\lambd[fx][f ({a} f x)]$. Fungsi itu sendiri bukan numeral Church.
+    Namun, jika argumen $a$ adalah numeral Church, fungsi itu tereduksi menjadi
+    numeral Church. Perhatikan:}
+   (\lambd[a][\lambd[fx][f ({a} f x)]])\,\num{n} & \redone
+   \lambd[fx][f ({\num{n}} f x)].
+   \intertext{Suku tertanam $\num{n}fx$ adalah suatu redex karena
+     $\num{n}$ adalah $\lambd[fx][f^nx]$. Jadi, $\num{n}fx \redone f^nx$;
+     karena itu, untuk keseluruhan suku kita memperoleh}
+   \fn{Succ}\, \num n & \red \lambd[fx][f(f^n(x))],
+\end{align*}
+yakni, $\num{n+1}$.
+\end{proof}
+
+\begin{ex}
+  Mari kita lihat apa yang terjadi ketika kita menerapkan $\fn{Succ}$
+  pada~$\num{0}$, yakni $\lambd[fx][x]$. Kita akan menuliskan suku-sukunya
+  secara lengkap:
+  \begin{align*}
+    \fn{Succ}\, \num{0} & \ident (\lambd[a][\lambd[f][\lambd[x][(f (({a} f) x))]]])(\lambd[f][\lambd[x][x]])\\
+    & \redone \lambd[f][\lambd[x][(f (({(\lambd[f][\lambd[x][x]])} f) x))]] \\
+    & \redone \lambd[f][\lambd[x][(f ({(\lambd[x][x])} x))]] \\
+    & \redone \lambd[f][\lambd[x][(f x)]] \ident \num{1}\\
+  \end{align*}
+\end{ex}
+
+\begin{prob}
+  Suku
+  \begin{align*}
+    \fn{Succ}' & \ident \lambd[{n}][\lambd[fx][{n} f (f x)]]
+  \end{align*}
+  !!{lambda define}s fungsi penerus. Jelaskan mengapa demikian.
+\end{prob}
+
+\begin{prop}
+  \ollabel{prop:add-ld}
+  Fungsi penjumlahan~$\Add$ bersifat !!{lambda definable}.
+\end{prop}
+
+\begin{proof}
+Suku-suku berikut !!{lambda define} penjumlahan:
+\begin{align*}
+  \fn{Add} & \ident \lambd[{a}{b}][\lambd[fx][{a} f ({b} f x)]]
+\intertext{atau, sebagai alternatif,}
+  \fn{Add}' & \ident \lambd[{a}{b}][{a}\, \fn{Succ} \, {b}].
+\intertext{Penjumlahan yang pertama bekerja sebagai berikut: mula-mula
+  $\fn{Add}$ menerima dua bilangan ${a}$ dan ${b}$. Hasilnya adalah suatu
+  fungsi yang menerima $f$ dan $x$, lalu mengembalikan $af(bfx)$. Jika $a$
+  dan $b$ adalah numeral Church $\num{n}$ dan $\num{m}$, suku ini tereduksi
+  menjadi $f^{n+m}(x)$, yang identik dengan $f^{n}(f^{m}(x))$. Atau, secara
+  bertahap:}
+  (\lambd[{a}{b}][\lambd[fx][{a} f ({b} f x)]])\num n\,\num m & \redone
+  \lambd[fx][\num{n}\, f (\num {m}\, f x)] \\
+  & \redone \lambd[fx][\num{n}\, f (f^m x)] \\
+  & \redone \lambd[fx][f^n (f^m x)] \ident \num {n+m}.
+\intertext{Representasi penjumlahan yang kedua, $\fn{Add'}$, bekerja dengan
+  cara berbeda. Jika diterapkan pada dua numeral Church $\num{n}$ dan
+  $\num{m}$,}
+\fn{Add}' \num n \,\num m
+& \redone \num{n}\, \fn{Succ}\, \num{m}.
+\intertext{Namun, $\num{n} f x$ selalu tereduksi menjadi $f^n(x)$. Jadi,}
+  \num{n}\,  \fn{Succ}\, \num{m} & \red \fn{Succ}^n(\num{m}).
+\end{align*}
+Karena $\fn{Succ}$ !!{lambda define}s fungsi penerus, dan fungsi penerus yang
+diterapkan $n$ kali pada~$m$ menghasilkan $n+m$, suku ini pada gilirannya
+tereduksi menjadi~$\num{n+m}$.
+\end{proof}
+
+\begin{prop}
+  \ollabel{prop:mult-ld}
+  Perkalian bersifat !!{lambda definable} oleh suku
+  \[
+  \fn{Mult} \ident \lambd[ab][\lambd[fx][a (b f) x]]
+  \]
+\end{prop}
+
+\begin{proof}
+  Untuk melihat cara kerjanya, andaikan kita menerapkan $\fn{Mult}$ pada
+  numeral Church $\num{n}$ dan $\num{m}$: $\fn{Mult} \, \num{n} \, \num{m}$
+  tereduksi menjadi $\lambd[fx][\num{n}(\num{m}\, f)x]$. Suku $\num{m} f$
+  mendefinisikan suatu fungsi yang menerapkan $f$ pada argumennya sebanyak
+  $m$ kali. Akibatnya, $\num{n} (\num{m} f) x$ menerapkan fungsi
+  ``terapkan $f$ sebanyak $m$ kali'' itu sendiri sebanyak $n$ kali pada~$x$.
+  Dengan kata lain, kita menerapkan $f$ pada $x$ sebanyak $n\cdot m$ kali.
+  Namun, suku normal yang dihasilkan tidak lain adalah numeral Church
+  $\num{nm}$.
+\end{proof}
+
+\begin{editorial}
+Kita sebenarnya dapat menyederhanakan suku ini lebih lanjut dengan
+reduksi-$\eta$:
+\[
+  \fn{Mult} \ident \lambd[ab][\lambd[f][a (b f)]].
+\]
+
+Namun, untuk itu kita harus menjelaskan reduksi-$\eta$ terlebih dahulu.
+\end{editorial}
+
+\begin{prob}
+Suku berikut !!{lambda define} perkalian:
+\[
+  \fn{Mult}' \ident \lambd[ab][a (\fn{Add}\, a) \num{0}].
+\]
+Jelaskan mengapa definisi ini bekerja.
+\end{prob}
+
+Definisi perpangkatan sebagai suku-$\lambd$ ternyata sangat sederhana:
+\[
+  \fn{Exp} \ident \lambd[be][e b].
+\]
+Argumen pertama $b$ adalah basis dan argumen kedua~$e$ adalah eksponen.
+Secara intuitif, berdasarkan pengodean bilangan kita, $e f$ adalah $f^e$.
+Jika hal ini sulit dipahami, kita juga dapat mendefinisikan perpangkatan
+melalui perkalian berulang:
+\[
+  \fn{Exp}' \ident \lambd[be][e (\fn{Mult}\, b) \num{1}].
+\]
+
+Fungsi pendahulu dan pengurangan pada numeral Church tidak sesederhana yang
+mungkin kita duga: keduanya memerlukan pengodean pasangan.
+
+\end{document}

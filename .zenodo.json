@@ -1,0 +1,38 @@
+{
+  "creators": [
+    {"name": "Open Logic Project"}
+  ],
+  "contributors": [
+    {"name": "OpenAI 5.6 Sol, Ultra mode", "type": "Other"}
+  ],
+  "title": "Open Logic Project — Edisi Lengkap Bahasa Indonesia / Complete Indonesian Edition (OLP-0722, 722/722)",
+  "version": "OLP-0722-20260814",
+  "publication_date": "2026-08-14",
+  "access_right": "open",
+  "description": "<p><strong>Edisi lengkap Bahasa Indonesia / Complete Indonesian edition:</strong> all 722/722 frozen Open Logic Project content modules are translated. The 1,116-page linked reader covers the 642 canonical-reader-reachable modules; 80 retained non-reader modules remain in the editable corpus and are explicitly outside build/render applicability. Frozen authority: commit <code>9620cc73f9c8e0ad003c514a5d3748f29611c4c0</code>, tree <code>f67757bb9305b173634082ab4cefd5601a707a34</code>, under CC BY 4.0.</p><p>All 722 targets passed exact source/hash replay and model-review admission. The reader passed a deterministic build, text-layer checks, and all-page visual inspection. Editable source and evidence packages preserve terminology, translation decisions, source-backed emendations, build/render receipts, hashes, closure records, and hostile-compaction recovery state.</p><p>Exact release DOI: <a href=\"https://doi.org/10.5281/zenodo.21932787\">10.5281/zenodo.21932787</a>. Stable Indonesian concept DOI: <a href=\"https://doi.org/10.5281/zenodo.21932786\">10.5281/zenodo.21932786</a>. Repository: <a href=\"https://github.com/KokunoYumeto/OpenLogic-id\">KokunoYumeto/OpenLogic-id</a>.</p><p>Performed at the direction of Floris by <q>OpenAI 5.6 Sol, Ultra mode</q> (<q>OpenAI's current flagship model for complex work</q>). No Open Logic Project endorsement is implied.</p>",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0",
+      "relation": "isDerivedFrom",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://github.com/KokunoYumeto/OpenLogic-id",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ],
+  "keywords": [
+    "Open Logic Project",
+    "Proyek Logika Terbuka",
+    "Bahasa Indonesia",
+    "Indonesian",
+    "translation",
+    "mathematical logic",
+    "open textbook"
+  ],
+  "license": "cc-by-4.0",
+  "upload_type": "publication",
+  "publication_type": "book",
+  "language": "ind"
+}

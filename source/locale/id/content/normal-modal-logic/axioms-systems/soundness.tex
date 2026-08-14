@@ -1,0 +1,58 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: soundness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{prf}{snd}
+
+\olsection{Kesahihan}
+
+Suatu sistem !!{derivation} disebut sahih jika semua yang dapat !!{derive}
+bersifat valid. Ketika membahas sistem modal, yakni !!{derivation}s yang
+selain menggunakan~\Ax{K} juga dapat menggunakan instansiasi beberapa
+!!{formula}s $!A_1$, \dots,~$!A_n$, kita menginginkan agar setiap formula
+yang !!{derivable} benar dalam setiap model tempat $!A_1$, \dots, $!A_n$
+benar.
+
+\begin{thm}[Teorema Kesahihan]\ollabel{thm:soundness}
+  Jika setiap instansiasi dari $!A_1$, \dots, $!A_n$ valid, berturut-turut,
+  dalam kelas model $\mClass{C}_1$, \dots, $\mClass{C}_n$, maka
+  $\Log{K}!A_1\dots !A_n\Proves !B$ mengimplikasikan bahwa $!B$ valid dalam
+  kelas model $\mClass{C}_1\cap\dots\cap\mClass{C}_n$.
+\end{thm}
+
+\begin{proof}
+  Melalui induksi pada panjang pembuktian. Agar ringkas, tetapkan
+  $\mClass{C}=\mClass{C}_1\cap\dots\cap\mClass{C}_n$.
+  \begin{enumerate}
+  \item Dasar induksi: Jika $!B$ mempunyai pembuktian dengan panjang~$1$,
+    maka formula itu merupakan instansiasi tautologis, instansiasi
+    \Ax{K},\iftag{prvDiamond}{ atau~\Dual{},}{} atau instansiasi salah satu
+    dari $!A_1$, \dots,~$!A_n$. Dalam kasus pertama, $!B$ valid dalam
+    $\mClass{C}$, sebab instansiasi tautologis valid dalam kelas model
+    \emph{mana pun}, menurut \olref[syn][tau]{prop:valid-taut}. Hal yang sama
+    berlaku dalam kasus kedua menurut
+    \olref[syn][sch]{prop:Kvalid}\iftag{prvDiamond}{ dan
+      \olref[syn][sch]{prop:Dual-valid}}{}. Terakhir, dalam kasus ketiga,
+    karena $!B$ valid dalam $\mClass{C}_i$ dan
+    $\mClass{C}\subseteq\mClass{C}_i$, $!B$ juga valid dalam~$\mClass{C}$
+    menurut \olref[syn][val]{prop:subset-class}.
+  \item Langkah induksi: Andaikan $!B$ mempunyai pembuktian dengan panjang
+    $k>1$. Jika $!B$ merupakan instansiasi tautologis, instansiasi
+    \Ax{K},\iftag{prvDiamond}{ instansiasi~\Dual{},}{} atau instansiasi salah
+    satu dari $!A_1$, \dots, $!A_n$, kita melanjutkan seperti pada langkah
+    sebelumnya. Jadi, andaikan $!B$ diperoleh melalui~\MP{} dari !!{formula}s
+    sebelumnya $!C\lif !B$ dan~$!C$. Maka $!C\lif !B$ dan~$!C$ mempunyai
+    pembuktian dengan panjang~$<k$, dan menurut hipotesis induksi keduanya
+    valid dalam~$\mClass{C}$. Menurut \olref[syn][sch]{prop:soundMP}, $!B$
+    juga valid dalam~$\mClass{C}$. Terakhir, andaikan $!B$ diperoleh melalui
+    \Nec{} dari~$!C$ (sehingga $!B=\Box!C$). Menurut hipotesis induksi, $!C$
+    valid dalam~$\mClass{C}$; menurut \olref[syn][val]{prop:Nec-rule},
+    demikian pula~$!B$.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

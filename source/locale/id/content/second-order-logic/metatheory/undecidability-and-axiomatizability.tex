@@ -1,0 +1,55 @@
+% Bagian: second-order-logic
+% Bab: metatheory
+% Subbagian: undecidability-and-axiomatizability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{met}{nax}
+
+\olsection{Logika Orde Kedua Tidak Dapat Diaksiomatisasi}
+
+
+\begin{thm}
+\ollabel{thm:sol-undecidable}
+Logika orde kedua tidak dapat diputuskan.
+\end{thm}
+
+\begin{proof}
+Suatu !!{sentence} orde pertama valid dalam logika orde pertama jika dan hanya
+jika kalimat itu valid dalam logika orde kedua, sedangkan logika orde pertama
+tidak dapat diputuskan.
+\end{proof}
+
+\begin{thm}
+\ollabel{cor:sol-not-axiomatizable}
+Tidak ada sistem !!{derivation} yang sahih dan lengkap bagi logika orde kedua.
+\end{thm}
+
+\begin{proof}
+Misalkan $!A$ adalah !!a{sentence} dalam bahasa aritmetika. $\Sat{N}{!A}$
+jika dan hanya jika $\Th{PA^2} \Entails !A$. Misalkan $!P$ adalah konjungsi
+kesembilan aksioma dari~$\Th{PA^2}$. $\Th{PA^2} \Entails !A$ jika dan hanya
+jika $\Entails !P \lif !A$, yakni $\Sat{M}{!P \lif !A}$. Sekarang tinjau
+!!{sentence}
+$\lforall[z][\lforall[u][\lforall[u'][\lforall[u''][\lforall[L][(!P' \lif !A')]]]]]$
+yang diperoleh dengan mengganti $\Obj{0}$ dengan $z$, $\prime$ dengan
+variabel fungsi satu-tempat $u$, $+$ dan $\times$ masing-masing dengan
+variabel fungsi dua-tempat $u'$ dan $u''$, serta $<$ dengan variabel relasi
+dua-tempat~$L$, lalu menguantifikasi semuanya secara universal. Kalimat ini
+valid dalam logika orde kedua murni jika dan hanya jika kalimat asal valid,
+jika dan hanya jika $\Th{PA^2} \Entails !A$, jika dan hanya jika
+$\Sat{N}{!A}$. Jadi, jika terdapat sistem pembuktian yang sahih dan lengkap
+bagi logika orde kedua, kita dapat menggunakannya untuk mendefinisikan suatu
+enumerasi yang dapat dihitung $f\colon \Nat \to \Sent[L_A]$ atas
+!!{sentence}s yang benar dalam~$\Struct{N}$. Fungsi ini dapat
+direpresentasikan dalam~$\Th{Q}$ oleh suatu formula orde pertama~$!B_f(x,
+y)$. Maka !!{formula}~$\lexists[x][!B_f(x, y)]$ akan mendefinisikan himpunan
+!!{sentence} orde pertama yang benar dalam~$\Struct{N}$, bertentangan dengan
+Teorema Tarski.
+\end{proof}
+
+
+
+\end{document}

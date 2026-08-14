@@ -1,0 +1,156 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{card-arithmetic}{opps}
+\olsection{Mendefinisikan Operasi Dasar}
+
+Karena kita tidak perlu melacak urutan, aritmetika kardinal agak lebih mudah
+didefinisikan daripada aritmetika ordinal. Kita akan mendefinisikan
+penjumlahan, perkalian, dan eksponensiasi secara bersamaan.
+
+\begin{defn}
+Jika $\cardfont{a}$ dan $\cardfont{b}$ merupakan kardinal:
+\begin{align*}
+	\cardfont{a} \cardplus \cardfont{b} &\defis 
+	\card{\cardfont{a} \disjointsum \cardfont{b}}\\
+	\cardfont{a} \cardtimes \cardfont{b} &\defis 
+	\card{\cardfont{a} \times \cardfont{b}}\\
+	\cardexpo{\cardfont{a}}{\cardfont{b}} &\defis 
+	\card{\funfromto{\cardfont{b}}{\cardfont{a}}}
+\end{align*}
+di mana $\funfromto{X}{Y} = \Setabs{f}{f \text{ merupakan fungsi } X \to Y}$.
+(Mudah ditunjukkan bahwa $\funfromto{X}{Y}$ ada untuk sebarang himpunan $X$
+dan $Y$; kita menyerahkannya sebagai latihan.)
+\end{defn}
+
+\begin{prob}
+Buktikan dalam $\Zminus$ bahwa $\funfromto{X}{Y}$ ada untuk sebarang himpunan
+$X$ dan~$Y$. Dengan bekerja dalam $\ZF$, hitung
+$\setrank{\funfromto{X}{Y}}$ dari $\setrank{X}$ dan $\setrank{Y}$ dengan cara
+seperti dalam \olref[sth][ord-arithmetic][using-addition]{rankcomputation}.
+\end{prob}
+
+Penjelasan berikut mungkin membantu memahami definisi ini. Mengenai
+penjumlahan: definisi tersebut menggunakan gagasan jumlah lepas,
+$\disjointsum$, sebagaimana didefinisikan dalam
+\olref[ord-arithmetic][add]{defdissum}; mudah dilihat bahwa definisi ini
+memberikan hasil yang benar untuk kasus-kasus hingga. Mengenai perkalian:
+\olref[sfr][set][pai]{cardnmprod} memberi tahu kita bahwa jika $A$ mempunyai
+$n$ anggota dan $B$ mempunyai $m$ anggota, maka $A \times B$ mempunyai
+$n \cdot m$ anggota; jadi, definisi kita sekadar menggeneralisasi gagasan
+tersebut menjadi perkalian transfinit. Eksponensiasi serupa: kita hanya
+menggeneralisasi gagasan dari kasus hingga ke kasus transfinit. Bahkan, dalam
+beberapa hal, aritmetika kardinal transfinit jauh lebih menyerupai aritmetika
+``biasa'' daripada aritmetika ordinal transfinit:
+
+\begin{prop}\ollabel{cardplustimescommute}
+$\cardplus$ dan $\cardtimes$ bersifat komutatif dan asosiatif.
+\end{prop}
+
+\begin{proof}
+Untuk komutativitas, berdasarkan
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}, cukup diamati bahwa
+$\cardeq{(\cardfont{a} \disjointsum
+\cardfont{b})}{(\cardfont{b} \disjointsum \cardfont{a})}$ dan
+$\cardeq{(\cardfont{a} \times \cardfont{b})}{(\cardfont{b} \times
+\cardfont{a})}$. Kita menyerahkan asosiativitas sebagai latihan.
+\end{proof}
+
+\begin{prob}
+Buktikan bahwa $\cardplus$ dan $\cardtimes$ bersifat asosiatif.
+\end{prob}
+
+\begin{prop}
+$A$ bersifat tak hingga jika dan hanya jika
+$\card{A} \cardplus 1 = 1 \cardplus \card{A} = \card{A}$.
+\end{prop}
+
+\begin{proof}
+Seperti dalam \olref[cardinals][classing]{generalinfinitycharacter}, hal ini
+mengikuti dari
+\olref[ord-arithmetic][using-addition]{ordinfinitycharacter} dan
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}.
+\end{proof}
+
+Hal ini menjelaskan mengapa kita perlu menggunakan simbol yang berbeda bagi
+penjumlahan/perkalian ordinal dan kardinal: keduanya sungguh-sungguh
+merupakan operasi yang \emph{berbeda}. Pasangan hasil berikut menunjukkan
+bahwa eksponensiasi ordinal dan kardinal juga merupakan operasi yang berbeda.
+(Ingat bahwa \olref[z][infinity-again]{defnomega} menyiratkan bahwa
+$2 = \{0, 1\}$):
+
+\begin{lem}\ollabel{lem:SizePowerset2Exp}
+$\card{\Pow{A}} = \cardexpo{2}{\card{A}}$, untuk sebarang $A$.
+\end{lem}
+
+\begin{proof}
+Untuk setiap himpunan bagian $B \subseteq A$, misalkan
+$\chi_B \in \funfromto{A}{2}$ diberikan oleh:
+\begin{align*}
+	\chi_{B}(x) &\defis
+	\begin{cases}
+		1 & \text{jika }x\in B\\
+		0 & \text{jika tidak.}
+	\end{cases}
+\end{align*}
+Sekarang misalkan $f(B) = \chi_B$; ini mendefinisikan !!a{bijection}
+$f \colon \Pow{A} \to \funfromto{A}{2}$. Jadi
+$\cardeq{\Pow{A}}{\funfromto{A}{2}}$. Dengan demikian,
+$\cardeq{\Pow{A}}{\funfromto{\card{A}}{2}}$, sehingga
+$\card{\Pow{A}} = \card{\funfromto{\card{A}}{2}} =
+2^{\card{A}}$.
+\end{proof}
+
+Bukti ringkas ini pada dasarnya mencakup pembahasan dalam
+\olref[sfr][siz][red-alt]{sec}. Di sana, kita menunjukkan cara
+``mereduksi'' ketakterhitungan $\Pow{\omega}$ menjadi ketakterhitungan
+himpunan semua string biner tak hingga, $\Bin^\omega$. Pada dasarnya,
+$\Bin^{\omega}$ hanyalah $\funfromto{\omega}{2}$; dan bukti sebelumnya
+menunjukkan bahwa penalaran yang kita gunakan dalam
+\olref[sfr][siz][red-alt]{sec} akan tetap berlaku dengan menggunakan
+sebarang himpunan~$A$ sebagai pengganti~$\omega$. Hasil tersebut juga
+memberikan suatu fakta singkat tentang eksponensiasi kardinal:
+
+\begin{cor}\ollabel{cantorcor}
+$\cardfont{a} < \cardexpo{2}{\cardfont{a}}$ untuk sebarang
+kardinal~$\cardfont{a}$.
+\end{cor}
+
+\begin{proof}
+Dari Teorema Cantor (\olref[sfr][siz][car]{thm:cantor}) dan
+\olref{lem:SizePowerset2Exp}.
+\end{proof}
+\noindent
+Jadi $\omega < \cardexpo{2}{\omega}$. Namun, perhatikan bahwa ini merupakan
+hasil tentang eksponensiasi \emph{kardinal}. Hasil ini perlu dibandingkan
+dengan eksponensiasi \emph{ordinal}, sebab dalam kasus kedua berlaku
+$\omega = \ordexpo{2}{\omega}$ (lihat
+\olref[ord-arithmetic][expo]{sec}).
+
+Selagi membahas eksponensiasi kardinal, kita juga dapat menjelaskan secara
+sedikit lebih tepat ``cara'' $\Real$ bersifat !!{nonenumerable}.
+
+\begin{thm}\ollabel{continuumis2aleph0}
+$\card{\Real} = \cardexpo{2}{\omega}$
+\end{thm}
+
+\begin{proof}[Kerangka bukti]
+Terdapat banyak cara untuk membuktikannya. Cara yang paling langsung ialah
+menunjukkan bahwa $\cardle{\Pow{\omega}}{\Real}$ dan
+$\cardle{\Real}{\Pow{\omega}}$, lalu menggunakan Schr\"oder--Bernstein untuk
+menyimpulkan bahwa $\cardeq{\Real}{\Pow{\omega}}$, dan menggunakan
+\olref[card-arithmetic][opps]{lem:SizePowerset2Exp} untuk menyimpulkan bahwa
+$\card{\Real} = \cardexpo{2}{\omega}$. Kita menyerahkan sebagai latihan
+(yang mencerahkan) untuk mendefinisikan injeksi
+$f \colon \Pow{\omega} \to \Real$ dan
+$g \colon \Real \to \Pow{\omega}$.
+\end{proof}
+
+\begin{prob}
+Lengkapi bukti \olref[sth][card-arithmetic][opps]{continuumis2aleph0} dengan
+menunjukkan bahwa $\cardle{\Pow{\omega}}{\Real}$ dan
+$\cardle{\Real}{\Pow{\omega}}$.
+\end{prob}
+
+\end{document}

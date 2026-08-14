@@ -1,0 +1,56 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: lambda-definability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{int}{rep}
+\olsection{Fungsi Aritmetika yang \usetoken{S}{lambda definable}}
+
+Bagaimana kalkulus lambda dapat berfungsi sebagai model komputasi? Pada
+awalnya, bahkan belum jelas bagaimana pernyataan ini harus dipahami. Untuk
+membahas komputabilitas pada bilangan asli, kita perlu menemukan representasi
+yang sesuai bagi bilangan-bilangan tersebut. Berikut adalah representasi yang
+ternyata bekerja dengan sangat baik.
+
+\begin{defn}
+Untuk setiap bilangan asli~$n$, definisikan \emph{numeral Church} $\num{n}$
+sebagai suku lambda $\lambd[x][\lambd[y][(x(x(x(\dots x(y)))))]]$, dengan
+tepat $n$ kemunculan~$x$.
+\end{defn}
+
+Suku-suku $\num{n}$ merupakan ``iterator'': pada masukan~$f$, $\num{n}$
+mengembalikan fungsi yang memetakan $y$ ke $f^n(y)$. Perhatikan bahwa setiap
+numeral berbentuk normal. Sekarang kita dapat menyatakan apa artinya suatu suku
+lambda ``menghitung'' fungsi pada bilangan asli.
+
+\begin{defn}
+Misalkan $f(x_0, \dots, x_{k-1})$ adalah fungsi parsial beraritas~$k$ dari
+$\Nat^k$ ke~$\Nat$. Kita mengatakan bahwa suatu suku-$\lambd$~$F$
+\emph{!!{lambda define}s}~$f$ jika dan hanya jika, untuk setiap barisan bilangan
+asli $n_0$, \dots,~$n_{k-1}$,
+\[
+F\, \num{n_0}\, \num{n_1} \dots \num{n_{k-1}} \red \num{f(n_0, n_1, \dots,
+  n_{k-1})}
+\]
+apabila $f(n_0, \dots, n_{k-1})$ terdefinisi, sedangkan
+$F\,\num{n_0}\,\num{n_1}\dots\num{n_{k-1}}$ tidak memiliki bentuk normal
+dalam kasus lainnya.
+\end{defn}
+
+\begin{thm}
+\ollabel{thm:lambda-def}
+Suatu fungsi $f$ merupakan fungsi dapat dihitung parsial jika dan hanya jika
+fungsi itu !!{lambda defined} oleh suatu suku lambda.
+\end{thm}
+
+\begin{explain}
+Teorema ini cukup mencolok. Sebagai model komputasi, kalkulus lambda merupakan
+kalkulus yang sangat sederhana; satu-satunya operasinya adalah abstraksi lambda
+dan aplikasi!{} Namun, dengan sumber daya yang terbatas ini kita tetap dapat
+mengimplementasikan setiap prosedur komputasi.
+\end{explain}
+
+\end{document}

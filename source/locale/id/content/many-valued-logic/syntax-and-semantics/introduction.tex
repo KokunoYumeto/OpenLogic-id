@@ -1,0 +1,67 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{syn}{int}
+
+\olsection{Pengantar}
+
+Dalam logika klasik, kita menangani !!{formula}s yang dibangun dari
+!!{propositional variable}s dengan menggunakan konektif proposisional
+$\lnot$, $\land$, $\lor$, $\lif$, dan~$\liff$. Ketika mendefinisikan
+semantik bagi logika klasik, kita menggunakan dua nilai kebenaran, yakni
+$\True$ dan~$\False$. Kita menafsirkan !!{propositional variable}s melalui
+!!a{valuation}~$\pAssign{v}$, yang menetapkan salah satu nilai kebenaran
+$\True$, $\False$ kepada setiap !!{propositional variable}. Setiap
+!!{valuation} kemudian menentukan suatu nilai kebenaran $\pValue{v}(!A)$
+bagi setiap !!{formula}~$!A$, dan !!^a{formula} dipenuhi oleh
+!!a{valuation}~$\pAssign{v}$, $\pSat{v}{!A}$, jika dan hanya jika
+$\pValue{v}(!A)=\True$.
+
+Logika bernilai banyak memperumum logika klasik bernilai dua dengan
+memperbolehkan nilai kebenaran selain $\True$ dan~$\False$. Jadi, dalam
+logika bernilai banyak, !!a{valuation}~$\pAssign{v}$ merupakan fungsi yang
+menetapkan salah satu dari sejumlah nilai kebenaran yang mungkin kepada setiap
+!!{propositional variable}~$p$. Kita pada umumnya akan menyebut himpunan nilai
+kebenaran yang diperbolehkan sebagai~$V$. Logika klasik merupakan logika
+bernilai banyak dengan $V=\{\True,\False\}$, dan nilai kebenaran
+$\pValue{v}(!A)$ dihitung dengan menggunakan tabel kebenaran karakteristik
+yang sudah dikenal bagi konektif-konektif tersebut.
+
+Begitu kita menambahkan nilai kebenaran lain, terdapat lebih dari satu pilihan
+yang wajar mengenai cara menghitung $\pValue{v}(!A)$ bagi konektif yang kita
+baca sebagai ``dan'', ``atau'', ``tidak'', serta ``jika---maka''. Jadi, suatu
+logika bernilai banyak tidak hanya ditentukan oleh himpunan nilai
+kebenarannya, tetapi juga oleh \emph{fungsi kebenaran} yang kita pilih bagi
+setiap konektif. Akan tetapi, setelah semua fungsi itu dipilih untuk suatu
+logika bernilai banyak~$\Log L$, nilai kebenaran
+$\pValue{v}(!A)[\Log L]$ ditentukan secara tunggal oleh valuasinya, sama
+seperti dalam logika klasik. Seperti logika klasik, logika bernilai banyak
+bersifat \emph{fungsional-kebenaran}.
+
+Dengan unsur-unsur semantik ini, kita dapat mendefinisikan padanan konsep
+semantik tautologi, perikutan, dan keterpenuhan. Dalam logika klasik,
+!!a{formula} merupakan tautologi jika nilai kebenarannya
+$\pValue{v}(!A)=\True$ bagi setiap~$\pAssign{v}$. Dalam logika bernilai
+banyak, hal ini juga perlu diperumum. Pertama, himpunan nilai kebenaran~$V$
+tidak disyaratkan memuat~$\True$. Sebagai contoh, beberapa logika bernilai
+banyak menggunakan bilangan---misalnya semua bilangan rasional antara $0$
+dan~$1$---sebagai himpunan nilai kebenarannya. Dalam hal seperti itu, $1$
+biasanya mengambil peran~$\True$. Dalam logika lain, peran tersebut tidak
+hanya dimainkan oleh satu nilai kebenaran, melainkan oleh beberapa nilai.
+Karena itu, kita mensyaratkan agar setiap logika bernilai banyak mempunyai
+suatu himpunan~$V^+$ yang terdiri atas \emph{nilai-nilai yang ditetapkan}.
+Kita kemudian dapat mengatakan bahwa !!a{formula} dipenuhi oleh
+!!a{valuation}~$\pAssign{v}$, $\pSat{v}{!A}[\Log L]$, jika dan hanya jika
+$\pValue{v}(!A)[\Log L]\in V^+$. !!^a{formula}~$!A$ merupakan tautologi
+dari logika tersebut, $\Entails[\Log L] !A$, jika dan hanya jika
+$\pValue{v}(!A)[\Log L]\in V^+$ bagi setiap~$\pAssign{v}$. Terakhir, kita
+mengatakan bahwa $!A$ merupakan konsekuensi logis dari suatu himpunan
+!!{formula}s, $\Gamma\Entails[\Log L]!A$, jika setiap !!{valuation} yang
+memenuhi semua !!{formula}s dalam~$\Gamma$ juga memenuhi~$!A$.
+
+\end{document}

@@ -1,0 +1,53 @@
+% part: intuitionistic-logic
+% chapter: soundness-completeness
+% section: decidability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{sc}{dec}
+
+\olsection{Keterputusan}
+Perhatikan bahwa bukti teorema kelengkapan memberikan, untuk setiap
+$\Gamma\Proves/ !A$, sebuah model dengan tak berhingga banyak dunia yang
+menjadi saksi bahwa $\Gamma\Entails/ !A$. Proposisi berikut menunjukkan bahwa
+untuk membuktikan $\Entails !A$, cukup dibuktikan bahwa $\mSat{M}{!A}$ untuk
+semua model berhingga (yakni model dengan himpunan dunia berhingga).
+
+\begin{thm}\ollabel{thm:decidability}
+  Jika $\Entails/ !A$, terdapat suatu model berhingga sedemikian sehingga
+  $\mSat/{M'}{!A}$.
+\end{thm}
+
+\begin{proof}
+  Andaikan $\mModel{M}=\tuple{W,R,V}$ sedemikian sehingga
+  $\mSat/{M}{!A}$, dan misalkan $P$ merupakan himpunan semua
+  !!{subformula}s dari~$!A$. Definisikan
+  $\mModel{M'}=\tuple{W',R',V'}$ dengan menetapkan
+  $W'=\Setabs{[w]}{w\in W}$, dengan
+  $[w]=\Setabs{!B\in P}{\mSat{M}{!B}[w]}$; tetapkan $R'$ sebagai relasi
+  himpunan bagian; dan tetapkan
+  $V'(p)=\Setabs{[w]}{p\in[w]}$. Jelas bahwa $W'$ berhingga dan
+  $\mModel{M'}$ merupakan !!a{relational model}.
+
+  Dengan induksi pada~$!B$, dapat ditunjukkan bahwa
+  \[
+    \mSat{M}{!B}[w] \text{ jika dan hanya jika }
+    \mSat{M'}{!B}[{[w]}]
+  \]
+  untuk semua $!B\in P$. Pembuktiannya diserahkan sebagai latihan kepada
+  pembaca. Karena $!A\in P$, hasil tersebut memberikan model tandingan
+  berhingga bagi~$!A$.
+\end{proof}
+
+\begin{prob}
+Selesaikan bukti \olref[int][sc][dec]{thm:decidability} dengan menunjukkan
+bahwa $\mSat{M}{!B}[w]$ jika dan hanya jika
+$\mSat{M'}{!B}[{[w]}]$ untuk semua !!{subformula}s~$!B$ dari~$!A$.
+\end{prob}
+
+Berdasarkan \olref{thm:decidability}, terdapat suatu algoritme untuk
+memutuskan apakah~$\Entails !A$.
+
+\end{document}

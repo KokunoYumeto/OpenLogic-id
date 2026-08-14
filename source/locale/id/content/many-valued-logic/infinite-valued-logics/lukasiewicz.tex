@@ -1,0 +1,111 @@
+% Part: many-valued-logic
+% Chapter: three-valued-logics
+% Section: lukasiewicz
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{inf}{luk}
+
+\olsection{Logika \L ukasiewicz}
+
+\begin{editorial}
+  Ini adalah ``rintisan'' singkat untuk suatu bagian mengenai logika \L
+  ukasiewicz bernilai tak hingga.
+\end{editorial}
+
+\begin{defn}\ollabel{def:lukasiewicz} Logika \L ukasiewicz bernilai tak
+hingga~$\LogLuk[\infty]$ didefinisikan dengan menggunakan matriks berikut:
+\begin{enumerate}
+  \item Bahasa proposisional baku~$\Lang L_0$ dengan
+  $\lnot$, $\land$, $\lor$, $\lif$.
+  \item Himpunan nilai kebenaran~$V_\infty$.
+  \item $1$ merupakan satu-satunya nilai kebenaran yang ditetapkan, yakni
+  $V^+ = \{1\}$.
+  \item Fungsi kebenaran diberikan oleh fungsi-fungsi berikut:
+  \begin{align*}
+    \tf{\lnot}[\LogLuk](x) & = 1 - x\\
+    \tf{\land}[\LogLuk](x,y) & = \min(x,y)\\
+    \tf{\lor}[\LogLuk](x,y) & = \max(x,y)\\
+    \tf{\lif}[\LogLuk](x,y) & = \min(1,1-(x-y)) = \begin{cases}
+      1 & \text{jika } x \le y\\
+      1-(x-y) & \text{selain itu.}
+    \end{cases}
+    \end{align*}
+\end{enumerate}
+Logika \L ukasiewicz bernilai~$m$ didefinisikan dengan cara yang sama,
+kecuali $V = V_m$.
+\end{defn}
+
+\begin{prop}
+  Logika $\LogLuk[3]$ yang didefinisikan oleh
+  \olref[thr][luk]{def:lukasiewicz} sama dengan $\LogLuk[3]$ yang
+  didefinisikan oleh \olref{def:lukasiewicz}.
+\end{prop}
+
+\begin{proof}
+  Hal ini dapat dilihat dengan membandingkan tabel kebenaran untuk
+  konektif-konektif yang diberikan dalam
+  \olref[thr][luk]{def:lukasiewicz} dengan tabel kebenaran yang ditentukan
+  oleh persamaan-persamaan dalam \olref{def:lukasiewicz}:
+  \begin{center}
+    \begin{tabular}{c|c} 
+      $\tf{\lnot}$ & \\ 
+      \hline  
+      $1$ & $0$ \\ 
+      $1/2$ & $1/2$ \\
+      $0$ & $1$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\land}[\LogLuk[3]]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1/2$ & $0$ \\ 
+      $1/2$ & $1/2$ & $1/2$ & $0$\\ 
+      $0$ & $0$ & $0$ & $0$ 
+    \end{tabular}
+    \\[2ex]
+    \begin{tabular}{c|ccc} 
+      $\tf{\lor}[\LogLuk[3]]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1$ & $1$ \\ 
+      $1/2$ & $1$ & $1/2$ & $1/2$ \\
+      $0$ & $1$ & $1/2$ & $0$ 
+    \end{tabular}
+    \quad
+    \begin{tabular}{c|ccc} 
+      $\tf{\lif}[\LogLuk[3]]$ & $1$ & $1/2$ & $0$ \\ 
+      \hline 
+      $1$ & $1$ & $1/2$ & $0$ \\ 
+      $1/2$ & $1$ & $1$ & $1/2$  \\ 
+      $0$ & $1$ & $1$ & $1$ 
+    \end{tabular}
+  \end{center} 
+\end{proof}
+
+\begin{prop}\ollabel{prop:luk-infty-m}
+  Jika $\Gamma \Entails[\LogLuk[\infty]] !B$, maka $\Gamma
+  \Entails[\LogLuk[m]] !B$ untuk setiap~$m \ge 2$.
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[mvl][inf][luk]{prop:luk-infty-m}.
+\end{prob}
+
+Faktanya, kebalikannya juga berlaku.
+
+Logika \L ukasiewicz bernilai tak hingga merupakan logika kabur yang paling
+populer. Dalam literatur logika kabur, implikasi sering didefinisikan sebagai
+$\lnot !A \lor !B$. Hasilnya adalah logika Kleene kuat bernilai tak hingga.
+
+\begin{prob}
+  Tunjukkan bahwa $(p \lif q) \lor (q \lif p)$ merupakan tautologi
+  dari~$\LogLuk[\infty]$.
+\end{prob}
+
+\end{document}

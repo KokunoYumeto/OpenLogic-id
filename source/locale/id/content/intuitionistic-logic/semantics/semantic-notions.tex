@@ -1,0 +1,78 @@
+% part: intuitionistic-logic
+% chapter: semantics
+% section: semantic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{sem}{sem}
+
+\olsection{Gagasan Semantik}
+
+\begin{defn}
+  Kita mengatakan bahwa $!A$ \emph{benar dalam model
+  $\mModel{M}=\tuple{W,R,V}$}, $\mSat{M}{!A}$, jika dan hanya jika
+  $\mSat{M}{!A}[w]$ untuk semua $w\in W$. $!A$ disebut \emph{valid},
+  $\Entails !A$, jika dan hanya jika $!A$ benar dalam semua model. Kita
+  mengatakan bahwa suatu himpunan !!{formula}s~$\Gamma$
+  \emph{mengikutkan}~$!A$, $\Gamma\Entails !A$, jika dan hanya jika, untuk
+  setiap model~$\mModel{M}$ dan setiap~$w$ sedemikian sehingga
+  $\mSat{M}{\Gamma}[w]$, berlaku $\mSat{M}{!A}[w]$.
+\end{defn}
+
+\begin{prop}\ollabel{prop:sat-entails}
+  \begin{enumerate}
+  \item\ollabel{prop:sat-entails1} Jika $\mSat{M}{\Gamma}[w]$ dan
+    $\Gamma\Entails !A$, maka $\mSat{M}{!A}[w]$.
+  \item\ollabel{prop:sat-entails2} Jika $\mSat{M}{\Gamma}$ dan
+    $\Gamma\Entails !A$, maka $\mSat{M}{!A}$.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  \begin{enumerate}
+  \item Hal ini langsung mengikuti definisi perikutan.
+  \item Andaikan $\mSat{M}{\Gamma}$. Karena $\Gamma\Entails !A$, menurut
+    \olref{prop:sat-entails1}, untuk setiap $w\in W$, jika
+    $\mSat{M}{\Gamma}[w]$, maka $\mSat{M}{!A}[w]$. Karena
+    $\mSat{M}{\Gamma}[w]$ untuk setiap $w\in W$, berlaku
+    $\mSat{M}{!A}[w]$ untuk setiap $w\in W$. Jadi, $\mSat{M}{!A}$.
+  \end{enumerate}
+\end{proof}
+
+
+\begin{defn}\ollabel{defn:restrict}
+  Andaikan $\mModel{M}$ merupakan model relasional dan $w\in W$.
+  \emph{Restriksi} $\mModel{M}_w=\tuple{W_w,R_w,V_w}$ dari~$\mModel{M}$
+  pada~$w$ diberikan oleh:
+  \begin{align*}
+    W_w &= \Setabs{u\in W}{Rwu},\\
+    R_w &= R\cap(W_w)^2, \text{ dan}\\
+    V_w(p) &= V(p)\cap W_w.
+  \end{align*}
+\end{defn}
+
+\begin{prop}\ollabel{prop:restrict}
+  $\mSat{M}{!A}[w]$ jika dan hanya jika $\mSat{M_w}{!A}$.
+\end{prop}
+
+\begin{prob}
+  Buktikan \olref[int][sem][sem]{prop:restrict}.
+\end{prob}
+
+\begin{prop}
+  Andaikan bahwa, untuk setiap model~$\mModel{M}$ sedemikian sehingga
+  $\mSat{M}{\Gamma}$, berlaku $\mSat{M}{!A}$. Maka
+  $\Gamma\Entails !A$.
+\end{prop}
+
+\begin{proof}
+  Andaikan $\mSat{M}{\Gamma}[w]$. Dengan menerapkan
+  \olref{prop:restrict} kepada setiap~$!B\in\Gamma$, kita memperoleh
+  $\mSat{M_w}{\Gamma}$. Berdasarkan asumsi, $\mSat{M_w}{!A}$. Dengan
+  menerapkan kembali \olref{prop:restrict}, kita memperoleh
+  $\mSat{M}{!A}[w]$.
+\end{proof}
+
+\end{document}

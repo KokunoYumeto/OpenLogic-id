@@ -1,0 +1,102 @@
+% Bagian: proof-theory
+% Bab: sequent-calculus
+% Subbagian: translations
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{seq}{tr}
+
+\olsection{Penerjemahan antara \Log{G1c} dan \Log{G3c}}
+
+Kita telah menyebutkan bahwa \Log{G1c} dan \Log{G3c} sama-sama sahih dan
+lengkap bagi logika klasik, yakni masing-masing membuktikan tepat sekuen-sekuen
+yang benar dalam setiap !!{structure}. Secara khusus, keduanya membuktikan
+sekuen-sekuen yang sama. Sekarang kita dapat membuktikan fakta ini tanpa
+memutar melalui teorema kesahihan dan kelengkapan, melainkan dengan cara yang
+murni bersifat teori bukti. Bukti semacam itu memberikan
+\emph{transformasi} dari !!{proof}s dalam \Log{G1c} menjadi !!{proof}s dalam
+\Log{G3c}, dan sebaliknya.
+
+\begin{prop}
+Jika $\Log{G1c} \Proves S$, maka $\Log{G3c} \Proves S$.
+\end{prop}
+
+\begin{proof}
+  Kita tunjukkan bahwa jika $\pi$ merupakan !!a{proof} dalam \Log{G1c}, maka
+  terdapat !!a{proof}~$\pi'$ bagi~$S$ dalam \Log{G3c}. Kita melakukannya
+  dengan induksi pada $n = \pheight{\pi}$.
+
+  Jika $n = 0$, maka $\pi$ merupakan aksioma. Aksioma $\lfalse \Sequent
+  \quad$ juga merupakan aksioma dalam~\Log{G3c} (ambil konteks $\Gamma,
+  \Delta$ kosong). Dalam \Log{G1c}, aksioma $!A \Sequent !A$ diperbolehkan
+  untuk $!A$ sembarang, bukan hanya yang atomik. Namun, dalam
+  \olref[ex]{prop:G3c-axioms} kita telah membuktikan bahwa semua sekuen
+  semacam itu !!{provable} dalam~\Log{G3c}.
+  
+  Jika $n>0$, $\pi$ berakhir pada suatu aturan~$R$. Hipotesis induksi menjamin
+  bahwa terdapat !!{proof}s bagi premis-premis aturan itu dalam~\Log{G3c},
+  yakni sub-!!{proof}s langsungnya memiliki terjemahan dalam~\Log{G3c}. Jika
+  aturan~$R$ juga merupakan aturan dalam \Log{G3c}, kita menerapkannya pada
+  !!{proof}s terjemahan bagi premis-premis tersebut. Untuk aturan-aturan yang
+  bukan merupakan aturan dalam~\Log{G3c}, kita telah menunjukkan bahwa
+  aturan-aturan itu setidaknya admisibel. Jadi, jika aturan~$R$ adalah
+  $\LeftR{\land}$ atau $\RightR{\lor}$, terapkan
+  \olref[adm]{prop:lor-G3-adm}. Jika aturan itu aturan pelemahan, terapkan
+  \olref[adm]{prop:weak-G3c-adm}. Jika aturan itu aturan kontraksi, terapkan
+  \olref[inv]{prop:G3c-cont-adm}.
+\end{proof}
+
+\begin{prop}
+Jika $\Log{G3c} \Proves S$, maka $\Log{G1c} \Proves S$.
+\end{prop}
+
+\begin{proof}
+  Sekali lagi kita menggunakan induksi pada !!{height} suatu !!a{proof}~$\pi$
+  bagi $S$. Dalam~\Log{G1c}, kita dapat !!{prove} setiap aksioma \Log{G3c}
+  dari suatu aksioma beserta beberapa penerapan aturan \LeftR{\Weakening} dan
+  \RightR{\Weakening}:
+  \[
+  \Axiom$!C \fCenter !C$
+  \RightLabel{\LeftR{\Weakening}}
+  \Deduce$!C, \Gamma \fCenter !C$
+  \RightLabel{\RightR{\Weakening}}
+  \Deduce$!C, \Gamma \fCenter \Delta, !C$
+  \DisplayProof
+\qquad
+  \Axiom$\lfalse \fCenter$
+  \RightLabel{\LeftR{\Weakening}}
+  \Deduce$\lfalse, \Gamma \fCenter$
+  \RightLabel{\RightR{\Weakening}}
+  \Deduce$\lfalse, \Gamma \fCenter \Delta$
+  \DisplayProof
+  \]
+  Jika $\pi$ berakhir pada aturan~$R$, hipotesis induksi menghasilkan
+  !!{proof}s dalam \Log{G1c} bagi premis-premisnya, dan kita dapat menerapkan
+  aturan~$R$ yang sama pada !!{proof}s tersebut. Pengecualiannya ialah aturan
+  \LeftR{\land} dan \RightR{\lor}, yang berbeda antara \Log{G1c}
+  dan~\Log{G3c}. Versi \Log{G3c} dapat diturunkan dalam \Log{G1c} sebagai
+  berikut:
+  \[
+  \Axiom$!A, !B, \Gamma \fCenter \Delta$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!A \land !B, !B, \Gamma \fCenter \Delta$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$!A \land !B, !A \land !B, \Gamma \fCenter \Delta$
+  \RightLabel{\LeftR{\Contraction}}
+  \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+    \DisplayProof
+\qquad
+  \Axiom$\Gamma \fCenter \Delta, !A, !B$
+  \RightLabel{\RightR{\lor}}
+  \UnaryInf$\Gamma \fCenter \Delta, !A \lor !B, !B$
+  \RightLabel{\RightR{\lor}}
+  \UnaryInf$\Gamma \fCenter \Delta, !A \lor !B, !A \lor !B$
+  \RightLabel{\RightR{\Contraction}}
+  \UnaryInf$\Gamma \fCenter \Delta, !A \lor !B$
+    \DisplayProof
+  \]
+\end{proof}
+
+\end{document}

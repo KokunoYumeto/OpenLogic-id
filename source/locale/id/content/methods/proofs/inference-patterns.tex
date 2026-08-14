@@ -1,0 +1,386 @@
+% Part: methods
+% Chapter: proofs
+% Section: inference-patterns
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mth}{prf}{pat}
+
+\olsection{Pola Inferensi}
+
+Bukti tersusun atas inferensi-inferensi individual. Ketika membuat
+inferensi, kita biasanya menandainya dengan menggunakan kata seperti
+``jadi'', ``dengan demikian'', atau ``oleh karena itu''. Inferensi itu
+sering bertumpu pada satu atau dua fakta yang sudah tersedia dalam
+bukti---mungkin sesuatu yang telah kita asumsikan, atau sesuatu yang
+telah kita simpulkan melalui inferensi sebelumnya. Agar jelas, kita
+dapat memberi label pada hal-hal tersebut, lalu dalam inferensi kita
+menunjukkan pernyataan lain mana yang sedang digunakan. Inferensi juga
+sering memuat penjelasan tentang \emph{mengapa} kesimpulan baru kita
+mengikuti hal-hal yang mendahuluinya. Ada beberapa pola inferensi umum
+yang sangat sering digunakan dalam bukti; beberapa di antaranya akan
+kita bahas di bawah. Pola inferensi tertentu, seperti pembuktian dengan
+induksi, lebih rumit (dan akan dibahas kemudian).
+
+Kita telah membahas satu pola inferensi: menguraikan, atau menerapkan,
+suatu definisi. Ketika menguraikan definisi, kita hanya menyatakan
+kembali sesuatu yang melibatkan definiendum dengan menggunakan
+definiens. Misalnya, andaikan dalam suatu bukti kita telah menetapkan
+bahwa $D = E$ (a). Kita dapat menerapkan definisi $=$ untuk himpunan dan
+menarik inferensi: ``Dengan demikian, menurut definisi dan berdasarkan
+(a), setiap !!{element} dari~$D$ merupakan !!a{element} dari~$E$, dan
+sebaliknya.''
+
+Agak membingungkan, kita sering tidak menuliskan pembenaran suatu
+inferensi pada saat inferensi itu dibuat, tetapi sebelumnya. Andaikan
+kita belum membuktikan bahwa $D = E$, tetapi ingin membuktikannya. Jika
+$D = E$ merupakan kesimpulan yang dituju, kita juga dapat menyatakan
+kembali tujuan tersebut dengan menerapkan definisi: untuk membuktikan
+$D = E$, kita harus membuktikan bahwa setiap !!{element} dari~$D$
+merupakan !!a{element} dari~$E$, dan sebaliknya. Jadi bukti kita akan
+berbentuk: (a) buktikan bahwa setiap !!{element} dari~$D$ merupakan
+!!a{element} dari~$E$; (b) setiap !!{element} dari~$E$ merupakan
+!!a{element} dari~$D$; (c) oleh karena itu, berdasarkan (a) dan (b)
+serta definisi $=$, $D = E$. Namun, biasanya kita tidak menulisnya
+dengan cara ini. Sebagai gantinya, kita mungkin menulis seperti
+berikut:
+\begin{quote}
+Kita ingin menunjukkan $D = E$. Menurut definisi~$=$, ini sama dengan
+menunjukkan bahwa setiap !!{element} dari~$D$ merupakan !!a{element}
+dari~$E$, dan sebaliknya.
+
+(a) \dots{} (bukti bahwa setiap !!{element} dari~$D$ merupakan
+!!a{element} dari~$E$) \dots
+
+(b) \dots{} (bukti bahwa setiap !!{element} dari~$E$ merupakan
+!!a{element} dari~$D$) \dots
+\end{quote}
+
+\subsection{Menggunakan Konjungsi}
+
+Pola inferensi yang mungkin paling sederhana ialah menarik salah satu
+konjungsi dari suatu konjungsi sebagai kesimpulan. Dengan kata lain:
+jika kita telah mengasumsikan atau membuktikan bahwa $p$ dan~$q$, kita
+berhak menyimpulkan bahwa~$p$ (dan juga bahwa~$q$). Inferensi ini begitu
+mendasar sehingga sering tidak disebutkan. Misalnya, setelah
+menguraikan definisi $D = E$, kita telah menetapkan bahwa setiap
+!!{element} dari~$D$ merupakan !!a{element} dari~$E$, dan sebaliknya.
+Dari sini kita dapat menyimpulkan bahwa setiap !!{element} dari~$E$
+merupakan !!a{element} dari~$D$ (itulah bagian ``dan sebaliknya'').
+
+\subsection{Membuktikan Konjungsi}
+
+Kadang-kadang, apa yang diminta untuk Anda buktikan berbentuk
+konjungsi; Anda akan diminta untuk ``membuktikan $p$ dan $q$.'' Dalam
+hal ini, Anda hanya perlu melakukan dua hal: membuktikan $p$, lalu
+membuktikan $q$. Anda dapat membagi bukti menjadi dua bagian dan, agar
+jelas, memberi label pada keduanya. Ketika membuat catatan awal, Anda
+mungkin menulis ``(1) Buktikan $p$'' di bagian atas halaman dan ``(2)
+Buktikan $q$'' di tengah halaman. (Tentu saja, Anda mungkin tidak
+secara eksplisit diminta membuktikan suatu konjungsi, tetapi mendapati
+bahwa bukti Anda mengharuskan pembuktian konjungsi. Misalnya, jika
+diminta membuktikan bahwa $D = E$, setelah menguraikan definisi~$=$ Anda
+akan mendapati bahwa Anda harus membuktikan: setiap !!{element} dari
+~$D$ merupakan !!a{element} dari~$E$ \emph{dan} setiap !!{element}
+dari~$E$ merupakan !!a{element} dari~$D$.)
+
+\subsection{Membuktikan Disjungsi}
+
+Ketika apa yang Anda buktikan berbentuk disjungsi (yaitu, pernyataan
+berbentuk ``$p$ atau $q$''), cukup ditunjukkan bahwa salah satu
+disjungnya benar. Namun, pada dasarnya hampir tidak pernah terjadi
+bahwa salah satu disjung langsung mengikuti asumsi teorema Anda. Yang
+lebih sering terjadi, asumsi-asumsi teorema itu sendiri berbentuk
+disjungsi, atau Anda sedang menunjukkan bahwa semua objek dari suatu
+jenis memiliki salah satu dari dua sifat, tetapi sebagian objek
+memiliki sifat pertama dan yang lain memiliki sifat kedua. Di sinilah
+pembuktian dengan kasus berguna (lihat di bawah).
+
+\subsection{Bukti Kondisional}
+
+Banyak teorema yang akan Anda jumpai berbentuk kondisional (yaitu,
+menunjukkan bahwa jika $p$ berlaku, maka $q$ juga benar). Kasus-kasus
+ini mudah disiapkan---cukup asumsikan anteseden kondisional (dalam
+kasus ini, $p$), kemudian buktikan kesimpulan~$q$ darinya. Jadi, jika
+teorema Anda berbunyi ``Jika $p$, maka $q$'', mulailah bukti dengan
+``asumsikan $p$'', dan pada akhirnya Anda seharusnya telah membuktikan
+~$q$.
+
+Kondisional dapat dinyatakan dengan berbagai cara. Jadi, sebagai ganti
+``Jika $p$, maka $q$'', sebuah teorema dapat menyatakan bahwa ``$p$
+hanya jika $q$'', ``$q$ jika $p$'', atau ``$q$, asalkan $p$.'' Semua
+ini bermakna sama dan mengharuskan kita mengasumsikan $p$ lalu
+membuktikan~$q$ dari asumsi tersebut. Ingat bahwa bikondisional (``$p$
+jika dan hanya jika $q$'') sebenarnya merupakan dua kondisional yang
+digabungkan: jika $p$, maka $q$, dan jika $q$, maka~$p$. Jadi, yang
+perlu Anda lakukan adalah dua kali menjalankan bukti kondisional: satu
+untuk kondisional pertama dan satu lagi untuk kondisional kedua.
+Namun, kadang-kadang pernyataan ``jika dan hanya jika'' dapat
+dibuktikan dengan merangkai sejumlah pernyataan ``jika dan hanya jika''
+lain sehingga Anda berawal dari ``$p$'' dan berakhir pada ``$q$''---
+tetapi dalam hal itu Anda harus memastikan bahwa setiap langkah
+memang benar-benar berupa ``jika dan hanya jika''.
+
+\subsection{Klaim Universal}
+
+Menggunakan klaim universal itu sederhana: jika sesuatu benar untuk
+apa pun, maka hal itu benar untuk setiap objek tertentu. Jadi,
+misalnya, jika hipotesis bukti Anda adalah $A \subseteq B$, ini berarti
+(setelah definisi~$\subseteq$ diuraikan) bahwa untuk setiap $x \in A$,
+$x \in B$. Dengan demikian, jika Anda sudah mengetahui bahwa $z \in
+A$, Anda dapat menyimpulkan $z \in B$.
+
+Membuktikan klaim universal mungkin tampak sedikit rumit. Biasanya
+pernyataan semacam ini berbentuk: ``Jika $x$ memiliki~$P$, maka ia
+memiliki~$Q$'' atau ``Semua $P$ adalah $Q$.'' Tentu saja, bentuknya
+mungkin tidak persis demikian, dan diperlukan sedikit latihan untuk
+mengetahui secara tepat apa yang diminta untuk Anda buktikan. Namun,
+kita sering harus membuktikan bahwa semua objek yang memiliki suatu
+sifat juga memiliki sifat tertentu lainnya.
+
+Cara membuktikan klaim universal adalah memperkenalkan nama atau
+variabel bagi objek-objek yang memiliki sifat pertama, kemudian
+menunjukkan bahwa objek-objek tersebut juga memiliki sifat kedua. Kita
+dapat mengungkapkannya dengan mengatakan bahwa untuk membuktikan
+sesuatu bagi \emph{semua}~$P$, Anda harus membuktikannya bagi
+suatu~$P$ \emph{sembarang}. Nama yang diperkenalkan merupakan
+nama bagi suatu~$P$ sembarang. Kita biasanya menggunakan huruf tunggal
+sebagai nama bagi objek sembarang tersebut, dan huruf-huruf itu lazim
+mengikuti konvensi: misalnya, $n$ digunakan untuk bilangan asli, $!A$
+untuk !!{formula}, $A$ untuk himpunan, $f$ untuk fungsi, dan seterusnya.
+
+Kuncinya ialah mempertahankan keumuman di sepanjang bukti. Anda mulai
+dengan mengasumsikan bahwa suatu objek sembarang (``$x$'') memiliki
+sifat~$P$, lalu menunjukkan (hanya berdasarkan definisi atau hal yang
+boleh diasumsikan) bahwa $x$ memiliki sifat~$Q$. Karena Anda tidak
+menetapkan secara khusus apa itu $x$, selain bahwa ia memiliki sifat
+$P$, Anda dapat menyatakan bahwa segala sesuatu yang memiliki $P$
+juga memiliki sifat~$Q$. Singkatnya, $x$ mewakili \emph{semua} objek
+yang memiliki sifat~$P$.
+
+\begin{prop}
+  Untuk semua himpunan $A$ dan $B$, $A \subseteq A \cup B$.
+\end{prop}
+
+\begin{proof}
+  Misalkan $A$ dan $B$ adalah himpunan sembarang. Kita ingin menunjukkan
+  bahwa $A \subseteq A \cup B$. Menurut definisi $\subseteq$, ini sama
+  dengan: untuk setiap $x$, jika $x \in A$, maka $x \in A \cup B$.
+  Jadi, misalkan $x \in A$ adalah !!{element} sembarang dari~$A$. Kita
+  harus menunjukkan bahwa $x \in A \cup B$. Karena $x \in A$, maka
+  $x \in A$ atau $x \in B$. Dengan demikian, $x \in
+  \Setabs{x}{x \in A \lor x \in B}$. Namun, menurut definisi $\cup $,
+  hal itu berarti $x \in A \cup B$.
+\end{proof}
+
+
+\subsection{Pembuktian dengan Kasus}
+
+Andaikan Anda memiliki suatu disjungsi sebagai asumsi atau sebagai
+kesimpulan yang telah ditetapkan---Anda telah mengasumsikan atau
+membuktikan bahwa $p$ atau $q$ benar. Anda ingin membuktikan $r$. Anda
+melakukannya dalam dua langkah: pertama, Anda mengasumsikan bahwa $p$
+benar dan membuktikan~$r$; kemudian Anda mengasumsikan bahwa $q$ benar
+dan sekali lagi membuktikan~$r$. Cara ini berhasil karena kita
+mengasumsikan atau mengetahui bahwa salah satu dari kedua alternatif
+itu berlaku. Kedua langkah tersebut menetapkan bahwa masing-masing
+alternatif sudah cukup untuk memastikan kebenaran~$r$. (Jika keduanya
+benar, kita tidak hanya memiliki satu, melainkan dua alasan mengapa
+$r$~benar. Tidak perlu membuktikan secara terpisah bahwa $r$~benar
+dengan mengasumsikan $p$ sekaligus~$q$.) Untuk menunjukkan apa yang
+sedang kita lakukan, kita mengumumkan bahwa kita ``membedakan kasus.''
+Misalnya, andaikan kita mengetahui bahwa $x \in B \cup C$. $B \cup C$
+didefinisikan sebagai $\Setabs{x}{x \in B \text{ atau } x \in C}$.
+Dengan kata lain, menurut definisi, $x \in B$ atau $x \in C$. Untuk
+membuktikan bahwa $x \in A$ dari sini, mula-mula kita mengasumsikan
+bahwa $x \in B$ dan membuktikan $x \in A$ dari asumsi tersebut;
+kemudian kita mengasumsikan $x \in C$ dan sekali lagi membuktikan $x
+\in A$ darinya. Di bawah asumsi itu, Anda akan menulis ``Kita bedakan
+kasus'', lalu di bawahnya ``Kasus (1): $x \in B$'', dan di tengah
+halaman ``Kasus (2): $x \in C$.'' Setelah itu, Anda akan melengkapi
+bagian atas dan bagian bawah halaman.
+
+Pembuktian dengan kasus sangat berguna jika apa yang Anda buktikan
+sendiri berbentuk disjungsi. Berikut contoh sederhana:
+
+\begin{prop}
+Andaikan $B \subseteq D$ dan $C \subseteq E$. Maka $B \cup C \subseteq
+D \cup E$.
+\end{prop}
+
+\begin{proof}
+  Asumsikan (a) bahwa $B \subseteq D$ dan (b) $C \subseteq E$. Menurut
+  definisi, setiap $x \in B$ juga memenuhi $\in D$ (c), dan setiap
+  $x \in C$ juga memenuhi $\in E$ (d). Untuk menunjukkan bahwa $B
+  \cup C \subseteq D \cup E$, kita harus menunjukkan bahwa jika $x \in
+  B \cup C$, maka $x \in D \cup E$ (menurut definisi $\subseteq$). $x
+  \in B \cup C$ jika dan hanya jika $x \in B$ atau $x \in C$ (menurut
+  definisi~$\cup$). Demikian pula, $x \in D \cup E$ jika dan hanya jika
+  $x \in D$ atau $x \in E$. Jadi, kita harus menunjukkan: untuk setiap
+  $x$, jika $x \in B$ atau $x \in C$, maka $x \in D$ atau $x \in E$.
+
+  \begin{quote}
+  Sejauh ini kita baru menguraikan definisi!{} Kita telah merumuskan
+  kembali proposisi tanpa $\subseteq$ dan $\cup$, dan kini tinggal
+  mencoba membuktikan suatu klaim kondisional universal. Berdasarkan
+  pembahasan di atas, hal ini dilakukan dengan mengasumsikan bahwa $x$
+  adalah suatu objek yang bagian ``jika'' diasumsikan benar untuknya,
+  lalu kita akan menunjukkan bahwa bagian ``maka'' juga benar. Dengan
+  kata lain, kita akan mengasumsikan bahwa $x \in B$ atau $x \in C$
+  dan menunjukkan bahwa $x \in D$ atau $x \in E$.
+  \footnote{Paragraf ini hanya menjelaskan apa yang sedang kita
+    lakukan---paragraf ini bukan bagian dari bukti, dan Anda tidak
+    perlu menguraikan semua perincian ini ketika menuliskan bukti
+    sendiri.}
+  \end{quote}
+
+  Andaikan $x \in B$ atau $x \in C$. Kita harus menunjukkan bahwa $x
+  \in D$ atau $x \in E$. Kita bedakan kasus.
+
+  Kasus 1: $x \in B$. Berdasarkan (c), $x \in D$. Dengan demikian, $x
+  \in D$ atau $x \in E$. (Di sini kita telah membuat inferensi yang
+  dibahas dalam subbagian sebelumnya!)
+
+  Kasus 2: $x \in C$. Berdasarkan (d), $x \in E$. Dengan demikian, $x
+  \in D$ atau $x \in E$.
+ \end{proof}
+
+
+\subsection{Membuktikan Klaim Eksistensi}
+
+Ketika diminta membuktikan suatu klaim eksistensi, soalnya biasanya
+berbentuk ``buktikan bahwa ada~$x$ sedemikian sehingga $\dots x
+\dots$'', yaitu bahwa terdapat suatu objek yang memiliki sifat yang
+dideskripsikan oleh ``$\dots x \dots$''. Dalam hal ini, Anda harus
+menentukan objek yang sesuai dan menunjukkan bahwa objek itu memiliki
+sifat yang dipersyaratkan. Ini terdengar langsung, tetapi bukti jenis
+ini dapat cukup rumit. Biasanya bukti itu melibatkan tindakan
+\emph{membangun} atau \emph{mendefinisikan} suatu objek dan membuktikan
+bahwa objek yang didefinisikan demikian memiliki sifat yang
+dipersyaratkan. Menemukan objek yang tepat mungkin sulit, membuktikan
+bahwa objek itu memiliki sifat yang dipersyaratkan mungkin sulit, dan
+kadang-kadang bahkan sulit untuk menunjukkan bahwa Anda benar-benar
+berhasil mendefinisikan suatu objek!{}
+
+Pada umumnya, Anda akan menuliskannya dengan menentukan objek tersebut,
+misalnya ``misalkan $x$ adalah \dots'' (dengan \dots{} menentukan objek
+yang dimaksud), mungkin membuktikan bahwa $\dots$ memang
+mendeskripsikan objek yang ada, lalu melanjutkan dengan menunjukkan
+bahwa $x$ memiliki sifat~$Q$. Berikut contoh sederhana.
+
+\begin{prop}
+  Andaikan $x \in B$. Maka ada~$A$ sedemikian sehingga $A \subseteq B$
+  dan $A \neq \emptyset$.
+\end{prop}
+
+\begin{proof}
+  Asumsikan $x \in B$. Misalkan $A = \{x\}$.
+  \begin{quote}
+    Di sini kita telah mendefinisikan himpunan~$A$ dengan mencacah
+    !!{element}-nya. Karena kita mengasumsikan bahwa $x$ adalah suatu
+    objek, dan kita selalu dapat membentuk himpunan dengan mencacah
+    !!{element}-nya, di sini kita tidak perlu menunjukkan bahwa kita
+    telah berhasil mendefinisikan himpunan~$A$. Namun, kita masih harus
+    menunjukkan bahwa $A$ memiliki sifat-sifat yang dipersyaratkan
+    oleh proposisi. Tanpa itu, buktinya belum lengkap!{}
+  \end{quote}
+  Karena $x \in A$, $A \neq \emptyset$.
+  \begin{quote}
+    Hal ini bertumpu pada definisi $A$ sebagai $\{x\}$ dan fakta yang
+    jelas bahwa $x \in \{x\}$ dan $x \notin \emptyset$.
+  \end{quote}
+  Karena $x$ merupakan satu-satunya !!{element} dari~$\{x\}$, dan $x
+  \in B$, setiap !!{element} dari~$A$ juga merupakan !!a{element}
+  dari~$B$. Menurut definisi~$\subseteq$, $A \subseteq B$.
+\end{proof}
+
+\subsection{Menggunakan Klaim Eksistensi}
+
+Andaikan Anda mengetahui bahwa suatu klaim eksistensi benar (Anda
+telah membuktikannya, atau klaim itu merupakan hipotesis yang dapat
+Anda gunakan), misalnya ``untuk suatu~$x$, $x \in A$'' atau ``ada $x
+\in A$.'' Jika ingin menggunakannya dalam bukti, Anda dapat berpura-pura
+bahwa Anda mempunyai nama untuk salah satu objek yang menurut hipotesis
+Anda ada. Karena $A$ memuat setidaknya satu objek, ada objek yang dapat
+dirujuk oleh nama tersebut. Tentu saja, Anda mungkin tidak dapat
+memilih atau mendeskripsikannya lebih lanjut (selain bahwa objek itu
+memenuhi $\in A$). Namun, untuk keperluan bukti, Anda dapat berpura-pura
+telah memilihnya dan memberinya nama. Penting untuk memilih nama yang
+belum pernah Anda gunakan (dan tidak muncul dalam hipotesis); jika
+tidak, sesuatu dapat menjadi keliru. Dalam bukti, Anda menandai hal
+ini dengan beralih dari ``untuk suatu $x$, $x \in A$'' menjadi
+``Misalkan $a \in A$.'' Sekarang Anda dapat bernalar tentang~$a$,
+menggunakan hipotesis lain, dan seterusnya, sampai memperoleh
+kesimpulan~$p$. Jika $p$ tidak lagi menyebut~$a$, maka $p$ tidak
+bergantung pada asumsi bahwa $a \in A$, dan Anda telah menunjukkan
+bahwa kesimpulan itu hanya mengikuti asumsi ``untuk suatu $x$, $x \in
+A$.''
+
+\begin{prop}
+Jika $A \neq \emptyset$, maka $A \cup B \neq \emptyset$.
+\end{prop}
+
+\begin{proof}
+  Andaikan $A \neq \emptyset$. Jadi, untuk suatu $x$, $x \in A$.
+  \begin{quote}
+    Di sini mula-mula kita hanya menyatakan kembali hipotesis
+    proposisi. Hipotesis ini, yaitu $A \neq \emptyset$, menyembunyikan
+    klaim eksistensial yang baru Anda peroleh setelah menguraikan
+    beberapa definisi. Definisi $=$ memberi tahu kita bahwa $A =
+    \emptyset$ jika dan hanya jika setiap $x \in A$ juga memenuhi
+    $\in \emptyset$, dan setiap $x \in \emptyset$ juga memenuhi $\in
+    A$. Dengan menyangkal kedua sisi, kita memperoleh: $A \neq
+    \emptyset$ jika dan hanya jika terdapat suatu $x \in A$ yang
+    memenuhi $\notin \emptyset$, atau terdapat suatu $x \in
+    \emptyset$ yang memenuhi $\notin A$. Karena tidak ada apa pun
+    yang memenuhi $\in \emptyset$, disjung kedua tidak pernah benar,
+    dan ``$x \in A$ dan $x \notin \emptyset$'' menyederhana menjadi
+    $x \in A$. Jadi, $A \neq \emptyset$ jika dan hanya jika untuk suatu
+    $x$, $x \in A$. Ini adalah klaim eksistensi. Sekarang kita
+    menggunakan klaim eksistensi tersebut dengan memperkenalkan nama
+    bagi salah satu !!{element} dari~$A$:
+  \end{quote}
+  Misalkan $a \in A$.
+  \begin{quote}
+    Sekarang kita telah memperkenalkan nama bagi salah satu objek yang
+    memenuhi~$\in A$. Kita akan terus bernalar tentang~$a$, tetapi
+    berhati-hati agar hanya mengasumsikan bahwa $a \in A$, dan tidak
+    mengasumsikan hal lain:
+  \end{quote}
+  Karena $a \in A$, maka $a \in A \cup B$, menurut definisi~$\cup$.
+  Jadi, untuk suatu $x$, $x \in A \cup B$, yaitu $A \cup B \neq
+  \emptyset$.
+  \begin{quote}
+    Pada langkah terakhir itu, kita beralih dari ``$a \in A \cup B$''
+    ke ``untuk suatu $x$, $x \in A \cup B$.'' Pernyataan terakhir tidak
+    lagi menyebut $a$, sehingga kita tahu bahwa ``untuk suatu $x$, $x
+    \in A \cup B$'' mengikuti ``untuk suatu $x$, $x \in A$'' saja.
+    Namun, itu berarti bahwa $A \cup B \neq \emptyset$.
+  \end{quote}
+\end{proof}
+
+Mungkin merupakan kebiasaan yang baik untuk membedakan variabel
+terikat seperti ``$x$'' dari nama hipotetis seperti $a$, sebagaimana
+yang telah kita lakukan. Namun, dalam praktiknya kita sering tidak
+membedakannya dan hanya menggunakan $x$, seperti berikut:
+\begin{quote}
+Andaikan $A \neq \emptyset$, yaitu ada $x \in A$. Menurut definisi
+$\cup$, $x \in A \cup B$. Jadi, $A \cup B \neq \emptyset$.
+\end{quote}
+Namun, ketika melakukannya, Anda harus sangat berhati-hati untuk
+menggunakan $x$ dan $y$ yang berbeda bagi klaim eksistensi yang
+berbeda. Misalnya, berikut ini \emph{bukan} bukti yang benar untuk
+``Jika $A \neq \emptyset$ dan $B \neq \emptyset$, maka $A \cap B \neq
+\emptyset$'' (yang memang tidak benar).
+\begin{quote}
+Andaikan $A \neq \emptyset$ dan $B \neq \emptyset$. Jadi, untuk suatu
+$x$, $x \in A$, dan juga untuk suatu $x$, $x \in B$. Karena $x \in A$
+dan $x \in B$, kita memperoleh $x \in A \cap B$, menurut
+definisi~$\cap$. Jadi, $A \cap B \neq \emptyset$.
+\end{quote}
+Dapatkah Anda menemukan tempat terjadinya langkah yang keliru dan
+menjelaskan mengapa hasil tersebut tidak berlaku?
+
+\end{document}

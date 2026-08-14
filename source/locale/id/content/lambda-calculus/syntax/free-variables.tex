@@ -1,0 +1,118 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: free-variables
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{syn}{fv}
+\olsection{Variabel Bebas}
+
+Kalkulus lambda membahas fungsi, dan abstraksi lambda adalah cara fungsi
+terbentuk. Secara intuitif, $\lambd[x][M]$ adalah fungsi yang nilainya
+diberikan oleh~$M$ ketika argumen fungsi ditetapkan sebagai nilai bagi~$x$.
+Namun, tidak
+setiap kemunculan~$x$ dalam~$M$ relevan: jika $M$ memuat abstraksi lain
+$\lambd[x][N]$, kemunculan-kemunculan $x$ dalam~$N$ relevan bagi
+$\lambd[x][N]$, tetapi tidak bagi $\lambd[x][M]$. Jadi, suatu abstraksi lambda
+$\lambd[x]$ di dalam $\lambd[x][M]$ \emph{mengikat} kemunculan-kemunculan $x$
+dalam~$M$ yang belum diikat oleh abstraksi lambda lain---yakni,
+kemunculan-kemunculan \emph{bebas} $x$ dalam~$M$.
+
+\begin{defn}[Lingkup]
+Jika $\lambd[x][M]$ muncul di dalam suatu suku~$N$, maka kemunculan $M$ yang
+bersesuaian merupakan \emph{lingkup} dari~$\lambd[x]$.
+\end{defn}
+
+
+\begin{defn}[Kemunculan bebas dan terikat]
+  Suatu kemunculan variabel $x$ dalam suku~$M$ bersifat \emph{bebas} jika
+  tidak berada dalam lingkup suatu $\lambd[x]$, dan bersifat \emph{terikat}
+  jika sebaliknya. Suatu kemunculan variabel~$x$ dalam $\lambd[x][M]$ diikat
+  oleh $\lambd[x]$ yang pertama jika dan hanya jika kemunculan $x$ dalam~$M$
+  bebas.
+\end{defn}
+
+\begin{ex}
+  Dalam $\lambd[x][x y]$, $x$ dan $y$ sama-sama berada dalam lingkup
+  $\lambd[x]$, sehingga $x$ diikat oleh $\lambd[x]$. Karena $y$ tidak berada
+  dalam lingkup sebarang $\lambd[y]$, variabel itu bebas. Dalam
+  $\lambd[x][x x]$, kedua kemunculan $x$ diikat oleh~$\lambd[x]$, karena
+  keduanya bebas dalam
+  $xx$. Dalam $((\lambd[x][xx])x)$, kemunculan terakhir~$x$ bebas, karena
+  tidak berada dalam lingkup suatu $\lambd[x]$. Dalam
+  $\lambd[x][(\lambd[x][x])x]$, lingkup $\lambd[x]$ pertama adalah
+  $(\lambd[x][x])x$, sedangkan lingkup $\lambd[x]$ kedua adalah kemunculan
+  kedua dari belakang~$x$. Dalam $(\lambd[x][x])x$, kemunculan terakhir $x$
+  bebas, sedangkan kemunculan kedua dari belakang terikat. Jadi, kemunculan
+  kedua dari belakang $x$ dalam $\lambd[x][(\lambd[x][x])x]$ diikat oleh
+  $\lambd[x]$ kedua, dan kemunculan terakhir diikat oleh $\lambd[x]$ pertama.
+\end{ex}
+
+Untuk suatu suku $P$, kita dapat memeriksa semua kemunculan variabel di
+dalamnya dan memperoleh suatu himpunan variabel bebas. Himpunan ini dinyatakan
+dengan $\FV{P}$ dan mempunyai definisi alami sebagai berikut:
+
+\begin{defn}[Variabel bebas suatu suku] \ollabel{def:fv}
+  Himpunan \emph{variabel bebas} suatu suku didefinisikan secara induktif
+  sebagai berikut:
+  \begin{enumerate}
+    \item $\FV{x} = \{x\}$ \ollabel{def:fv1}
+    \item $\FV{\lambd[x][N]} = \FV{N} \setminus \{x\}$    \ollabel{def:fv2}
+    \item $\FV{PQ} = \FV{P} \cup \FV{Q}$ \ollabel{def:fv3}
+  \end{enumerate}
+\end{defn}
+
+\begin{prob}
+  \begin{enumerate}
+  \item Tentukan lingkup $\lambd[g]$ dan kedua $\lambd[x]$ dalam suku ini:
+    $\lambd[g][(\lambd[x][g (x x)]) \lambd[x][g (x x)]]$.
+  \item Dalam $\lambd[g][(\lambd[x][g (x x)]) \lambd[x][g (x x)]]$,
+    apakah semua kemunculan variabel terikat? Oleh abstraksi mana masing-masing
+    kemunculan itu diikat?
+    \item Tentukan $\FV{\lambd[x][(\lambd[y][(\lambd[z][x y]) z]) y]}$.
+  \end{enumerate}
+\end{prob}
+
+\begin{explain}
+Variabel bebas menyerupai acuan kepada dunia luar (yakni,
+\emph{lingkungan}), dan suku yang memuat variabel bebas dapat dipandang
+sebagai suku yang baru ditentukan sebagian, karena perilakunya bergantung pada
+cara kita menata lingkungannya. Sebagai contoh, dalam suku $\lambd[x][f x]$,
+yang menerima argumen~$x$ dan mengembalikan hasil penerapan $f$ pada argumen
+tersebut, variabel~$f$ bebas. Nilai suku ini bergantung pada lingkungan tempat
+suku tersebut berada, khususnya pada nilai $f$ dalam lingkungan itu.
+
+Jika kita menerapkan abstraksi pada suku ini, kita memperoleh
+$\lambd[f][\lambd[x][f x]]$. Suku ini tidak lagi bergantung pada variabel
+lingkungan $f$, karena sekarang suku tersebut menyatakan fungsi yang menerima
+dua argumen dan mengembalikan hasil penerapan argumen pertama pada argumen
+kedua. Mengubah $f$ dalam lingkungan tidak akan memengaruhi perilaku suku ini,
+karena suku tersebut hanya menggunakan apa pun yang diberikan sebagai
+argumen, bukan nilai $f$ dalam lingkungan.
+\end{explain}
+
+\begin{defn}[Suku tertutup, kombinator]
+  Suku tanpa variabel bebas disebut \emph{suku tertutup}, atau
+  \emph{kombinator}.
+\end{defn}
+
+\begin{lem}\ollabel{lem:fv}
+  \begin{enumerate}
+    \item \ollabel{lem:fv-abs} Jika $y \neq x$, maka $y \in
+      \FV{\lambd[x][N]}$ jika dan hanya jika $y \in \FV{N}$.
+    \item \ollabel{lem:fv-app} $y \in \FV{PQ}$ jika dan hanya jika $y \in
+      \FV{P}$ atau $y \in \FV{Q}$.
+    \end{enumerate}
+\end{lem}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[lam][syn][fv]{lem:fv}.
+\end{prob}
+
+\end{document}

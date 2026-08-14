@@ -1,0 +1,77 @@
+% Part: applied-modal-logics
+% Chapter: temporal-logic
+% Section: possible-histories
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{aml}{tl}{poss}
+
+\olsection{Riwayat yang Mungkin}
+
+Model relasional logika temporal yang telah kita gunakan sangat luwes karena
+kita tidak perlu mengenakan pembatasan apa pun pada relasi aksesibilitas. Ini
+berarti model temporal dapat bercabang pada masa lampau maupun masa depan,
+tetapi kita mungkin ingin mempertimbangkan konsepsi percabangan yang lebih
+``modal,'' tempat kita memandang barisan peristiwa sebagai riwayat yang
+mungkin. Hal ini tidak mesti mengharuskan kita mengubah bahasa, meskipun kita
+juga dapat menambahkan operator modal ``biasa'' kita, $\Box$ dan~$\Diamond$,
+serta mempertimbangkan penambahan relasi aksesibilitas epistemik untuk
+merepresentasikan perubahan pengetahuan agen dari waktu ke waktu.
+
+\begin{defn}
+  Suatu \emph{model riwayat mungkin} bagi bahasa temporal ialah tripel
+  $\mModel{M}=\tuple{T,C,V}$, dengan
+  \begin{enumerate}
+    \item $T$ merupakan himpunan tak kosong yang ditafsirkan sebagai
+      keadaan-keadaan dalam waktu.
+    \item $C$ merupakan himpunan lintasan komputasi, atau \emph{riwayat yang
+      mungkin}, dari suatu sistem. Dengan kata lain, $C$ merupakan himpunan
+      barisan~$\sigma$ dari keadaan $s_1$, $s_2$,~$s_3$, \dots, dengan setiap
+      $s_i\in T$.
+    \item $V$ merupakan fungsi yang menetapkan kepada setiap !!{propositional
+      variable}~$p$ suatu himpunan~$V(p)$ yang terdiri atas titik-titik waktu.
+  \end{enumerate}
+  Untuk menyederhanakan pembahasan, pada umumnya kita juga mengandaikan bahwa
+  jika suatu riwayat termasuk dalam~$C$, demikian pula semua sufiksnya.
+  Sebagai contoh, jika $s_1$, $s_2$,~$s_3$ merupakan barisan dalam~$C$,
+  demikian pula $s_2$, $s_3$ dan~$s_3$.
+  Selain itu, jika dua keadaan $s_i$ dan~$s_j$ muncul dalam suatu
+  barisan~$\sigma$, kita menulis $s_i\prec_\sigma s_j$ jika $i<j$. Jika
+  $t\in V(p)$, kita mengatakan bahwa $p$ \emph{benar pada}~$t$.
+\end{defn}
+
+Satu perubahan yang relevan ialah bahwa ketika kita mengevaluasi kebenaran
+!!a{formula} pada titik waktu~$t$ dalam model~$\mModel M$, kita melakukannya
+relatif terhadap suatu riwayat~$\sigma$ yang memuat $t$ sebagai keadaan.
+Namun, kita tidak perlu mengubah semantik !!{propositional variable}s atau
+konektif fungsional-kebenaran. Semuanya tetap persis seperti dalam
+\olref[sem]{defn:tmodels}, sebab tidak satu pun di antaranya mengacu
+pada~$\sigma$. Akan tetapi, sekarang kita mendefinisikan ulang operator masa
+depan~$\Ftemp$ dan menambahkan operator~$\Diamond$ berkenaan dengan
+riwayat-riwayat tersebut.
+
+\begin{defn}\ollabel{defn:phmodels}
+  \emph{Kebenaran !!a{formula}~$!A$ pada~$t,\sigma$} dalam~$\mModel M$,
+  dengan simbol $\mSat{M}{!A}[t,\sigma]$:
+  \begin{enumerate}
+  \item\ollabel{defn:sub:phmodels-f} \indcase{!A}{\Ftemp
+    !B}{$\mSat{M}{\indfrm}[t,\sigma]$ jika dan hanya jika
+    $\mSat{M}{!B}[t',\sigma]$ untuk suatu $t'\in T$ dengan
+    $t\prec_\sigma t'$.}
+  \item\ollabel{defn:sub:phmodels-diamond} \indcase{!A}{\Diamond
+    !B}{$\mSat{M}{\indfrm}[t,\sigma]$ jika dan hanya jika
+    $\mSat{M}{!B}[t,\sigma']$ untuk suatu $\sigma'\in C$ yang memuat~$t$.}
+  \end{enumerate}
+\end{defn}
+
+Operator temporal dan modal lainnya dapat didefinisikan dengan cara serupa.
+Namun, sekarang kita dapat merepresentasikan pernyataan yang menggabungkan
+kala dan modalitas. Sebagai contoh, kita dapat menyimbolkan ``$p$ tidak akan
+terjadi, tetapi mungkin saja terjadi'' dengan formula
+$\lnot\Ftemp p\land\Diamond\Ftemp p$. Formula ini berlaku pada suatu titik
+dan riwayat tempat $p$ tidak menjadi benar pada keadaan penerus, tetapi
+terdapat riwayat alternatif tempat $p$ akan menjadi benar.
+
+\end{document}

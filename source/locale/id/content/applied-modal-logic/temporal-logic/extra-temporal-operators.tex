@@ -1,0 +1,44 @@
+% Part: applied-modal-logics
+% Chapter: temporal-logic
+% Section: extra-operators
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{aml}{tl}{ext}
+
+\olsection{Operator Tambahan bagi Logika Temporal}
+
+Selain operator uner untuk masa lampau dan masa depan, logika temporal
+terkadang juga memuat operator biner $\Since$ dan~$\Until$, yang dimaksudkan
+untuk melambangkan ``sejak'' dan ``hingga.'' Ini berarti menambahkan $\Since$
+dan~$\Until$ ke dalam bahasa logika temporal serta menambahkan klausa berikut
+ke dalam definisi !!{formula} temporal:
+
+\begin{itemize}
+\item[] Jika $!A$ dan $!B$ merupakan !!{formula}s, maka $(\Since !A !B)$ dan
+  $(\Until !A !B)$ keduanya merupakan !!{formula}s.
+\end{itemize}
+
+Semantik bagi operator-operator ini kemudian diberikan sebagai berikut:
+
+\begin{defn}\ollabel{defn:since-until}
+  \emph{Kebenaran !!a{formula}~$!A$ pada~$t$} dalam~$\mModel M$:
+  \begin{enumerate}
+  \item\ollabel{defn:sub:mmodels-since} \indcase{!A}{\Since !B
+    !C}{$\mSat{M}{\indfrm}[t]$ jika dan hanya jika $\mSat{M}{!B}[t']$ untuk
+    suatu $t'\in T$ dengan $t'\prec t$, dan untuk semua $s$ dengan
+    $t'\prec s\prec t$, $\mSat{M}{!C}[s]$}
+  \item\ollabel{defn:sub:mmodels-until} \indcase{!A}{\Until !B
+    !C}{$\mSat{M}{\indfrm}[t]$ jika dan hanya jika $\mSat{M}{!B}[t']$ untuk
+    suatu $t'\in T$ dengan $t\prec t'$, dan untuk semua $s$ dengan
+    $t\prec s\prec t'$, $\mSat{M}{!C}[s]$}
+  \end{enumerate}
+\end{defn}
+
+Pembacaan intuitif $\Since !B !C$ ialah ``Sejak $!B$ berlaku, $!C$ telah
+berlaku.'' Pembacaan intuitif $\Until !B !C$ ialah ``Hingga $!B$ berlaku,
+$!C$ akan berlaku.''
+
+\end{document}

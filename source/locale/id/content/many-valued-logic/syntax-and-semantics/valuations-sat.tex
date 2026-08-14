@@ -1,0 +1,49 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: valuations-sat
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{syn}{val}
+
+\olsection{\usetoken{P}{valuation} dan Keterpenuhan}
+
+\begin{defn}[!!^{valuation}s]
+Misalkan $V$ merupakan suatu himpunan nilai kebenaran. Suatu
+\emph{!!{valuation}} bagi~$\Lang{L}$ ke dalam~$V$ merupakan fungsi
+$\pAssign{v}$ yang menetapkan !!a{element} dari~$V$ kepada setiap
+!!{propositional variable} dalam bahasa tersebut, yakni
+$\pAssign{v}\colon\PVar\to V$.
+\end{defn}
+
+\begin{defn}\ollabel{defn:pValue}
+  Jika diberikan !!a{valuation}~$\pAssign{v}$ ke dalam himpunan nilai
+  kebenaran~$V$ dari suatu logika bernilai banyak~$\Log L$, definisikan fungsi
+  evaluasi $\pValue{v}\colon\Frm[L]\to V$ secara induktif sebagai berikut:
+  \begin{enumerate}
+    \item $\pValue{v}(\Obj p_n)=\pAssign{v}(\Obj p_n)$;
+    \item Jika $\star$ merupakan konektif $0$-tempat, maka
+    $\pValue{v}(\star)=\tf{\star}[\Log L]$;
+    \item Jika $\star$ merupakan konektif $n$-tempat, maka
+    \[
+      \pValue{v}(\star(!A_1,\dots,!A_n))=\tf{\star}[\Log L]
+      (\pValue{v}(!A_1),\dots,\pValue{v}(!A_n)).
+    \]
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}[Keterpenuhan]
+\ollabel{defn:satisfaction} !!^{formula}~$!A$ \emph{dipenuhi} oleh
+  !!a{valuation}~$\pAssign{v}$, $\pSat{v}{!A}[\Log L]$, jika dan hanya jika
+  $\pValue{v}(!A)[\Log L]\in V^+$, dengan $V^+$ sebagai himpunan nilai
+  kebenaran yang ditetapkan dari~$\Log L$.
+
+  Kita menulis $\pSat/{v}{!A}[\Log L]$ dengan arti ``tidak berlaku
+  $\pSat{v}{!A}[\Log L]$.'' Jika $\Gamma$ merupakan suatu himpunan
+  !!{formula}s, maka $\pSat{v}{\Gamma}[\Log L]$ jika dan hanya jika
+  $\pSat{v}{!A}[\Log L]$ bagi setiap~$!A\in\Gamma$.
+\end{defn}
+
+\end{document}

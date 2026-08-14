@@ -1,0 +1,143 @@
+% Part: normal-modal-logic
+% Chapter: frame-correspondence
+% Section: equivalence-S5
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{frd}{es5}
+
+\olsection{Relasi Ekuivalensi dan \Log{S5}}
+
+Logika modal \Log{S5} dicirikan sebagai himpunan !!{formula}s yang valid pada
+semua kerangka universal, yakni setiap dunia dapat diakses dari setiap dunia,
+termasuk dari dirinya sendiri. Dalam keadaan demikian, $\Box$ bersesuaian
+dengan keniscayaan dan $\Diamond$ dengan kemungkinan: $\Box !A$ benar jika
+$!A$ benar pada \emph{setiap} dunia, dan $\Diamond !A$ benar jika $!A$ benar
+pada \emph{suatu} dunia. Ternyata, \Log{S5} juga dapat dicirikan sebagai
+!!{formula}s yang valid pada semua kerangka refleksif, simetris, dan transitif,
+yakni pada semua \emph{relasi ekuivalensi}.
+
+\begin{defn}
+  Suatu relasi biner~$R$ pada~$W$ merupakan \emph{relasi ekuivalensi} jika dan
+  hanya jika relasi itu refleksif, simetris, dan transitif. Suatu relasi~$R$
+  pada~$W$ \emph{universal} jika dan hanya jika $Ruv$ bagi semua $u,v\in W$.
+\end{defn}
+
+Karena \Ax{T}, \Ax{B}, dan~\Ax{4} mencirikan kerangka refleksif, simetris, dan
+transitif, kerangka yang relasi aksesibilitasnya merupakan relasi ekuivalensi
+tepat merupakan kerangka tempat ketiga !!{formula} itu valid. Ternyata relasi
+ekuivalensi juga dapat dicirikan oleh kombinasi !!{formula}s lainnya, sebab
+kondisi-kondisi yang kita gunakan untuk mendefinisikan relasi ekuivalensi
+ekuivalen dengan kombinasi kondisi lain yang sudah dikenal pada~$R$.
+
+\begin{prop}\ollabel{prop:equivalences}
+  Kondisi-kondisi berikut ekuivalen:
+  \begin{enumerate}
+  \item $R$ merupakan relasi ekuivalensi;
+  \item $R$ refleksif dan Euklidean;
+  \item $R$ serial, simetris, dan Euklidean;
+  \item $R$ serial, simetris, dan transitif.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  Latihan.
+\end{proof}
+
+\begin{prob}
+  Buktikan \olref[nml][frd][es5]{prop:equivalences} dengan menunjukkan:
+  \begin{enumerate}
+  \item Jika $R$ simetris dan transitif, maka $R$ Euklidean.
+  \item Jika $R$ refleksif, maka $R$ serial.
+  \item Jika $R$ refleksif dan Euklidean, maka $R$ simetris.
+  \item Jika $R$ simetris dan Euklidean, maka $R$ transitif.
+  \item Jika $R$ serial, simetris, dan transitif, maka $R$ refleksif.
+  \end{enumerate}
+  Jelaskan mengapa hal ini cukup untuk membuktikan bahwa kondisi-kondisi
+  tersebut ekuivalen.
+\end{prob}
+
+\olref{prop:equivalences} merupakan padanan semantik bagi
+\olref[prf][prs]{prop:S5}: proposisi itu memberikan pencirian ekuivalen bagi
+logika modal kerangka tempat~$R$ merupakan relasi ekuivalensi (logika yang
+secara tradisional disebut~\Log{S5}).
+
+Apa hubungan antara relasi universal dan relasi ekuivalensi? Meskipun setiap
+relasi universal merupakan relasi ekuivalensi, jelas bahwa tidak setiap relasi
+ekuivalensi universal. Akan tetapi, !!{formula}s yang valid pada semua relasi
+universal persis sama dengan formula-formula yang valid pada semua relasi
+ekuivalensi.
+
+\begin{prop}
+  Misalkan $R$ suatu relasi ekuivalensi, dan bagi setiap $w\in W$ definisikan
+  \emph{kelas ekuivalensi} dari~$w$ sebagai himpunan
+  $[w]=\{w'\in W:Rww'\}$. Maka:
+  \begin{enumerate}
+  \item $w\in[w]$;
+  \item $R$ universal pada setiap kelas ekuivalensi~$[w]$;
+  \item Koleksi kelas-kelas ekuivalensi mempartisi~$W$ menjadi himpunan bagian
+    yang saling lepas dan bersama-sama mencakup seluruh~$W$.
+  \end{enumerate}
+\end{prop}
+
+\begin{prop}\ollabel{prop:S5=univ}
+  !!^a{formula}~$!A$ valid pada semua kerangka
+  $\mModel{F}=\tuple{W,R}$ tempat~$R$ merupakan relasi ekuivalensi, jika dan
+  hanya jika formula itu valid pada semua kerangka
+  $\mModel{F}=\tuple{W,R}$ tempat~$R$ universal. Karena itu, logika kerangka
+  universal tidak lain dari~\Log{S5}.
+\end{prop}
+
+\begin{proof}
+  Mudah diperiksa bahwa relasi universal~$R$ pada~$W$ merupakan relasi
+  ekuivalensi. Karena itu, jika $!A$ valid pada semua kerangka tempat~$R$
+  merupakan relasi ekuivalensi, maka $!A$ valid pada semua kerangka universal.
+  Bagi arah lainnya, kita berargumen secara kontrapositif: andaikan $!B$
+  merupakan !!a{formula} yang gagal pada suatu dunia~$w$ dalam model
+  $\mModel{M}=\tuple{W,R,V}$ yang berbasis pada kerangka~$\tuple{W,R}$,
+  dengan~$R$ relasi ekuivalensi pada~$W$. Jadi,
+  $\mSat/{M}{!B}[w]$. Definisikan model
+  $\mModel{M}'=\tuple{W',R',V'}$ sebagai berikut:
+  \begin{enumerate}
+  \item $W'=[w]$;
+  \item $R'$ universal pada~$W'$;
+  \item $V'(p)=V(p)\cap W'$.
+  \end{enumerate}
+  (Jadi, himpunan dunia~$W'$ dalam~$\mModel{M}'$ digambarkan oleh daerah
+  berarsir dalam \olref{fig:partition}.) Mudah dilihat bahwa $R$ dan~$R'$
+  berimpit pada~$W'$. Selanjutnya dapat ditunjukkan melalui induksi pada
+  !!{formula}s bahwa bagi semua $w'\in W'$ berlaku
+  $\mSat{M'}{!A}[w']$ jika dan hanya jika $\mSat{M}{!A}[w']$, bagi setiap
+  $!A$ (hal ini masuk akal karena $W'\subseteq W$). Khususnya,
+  $\mSat/{M'}{!B}[w]$, sehingga $!B$ gagal dalam suatu model yang berbasis
+  pada kerangka universal.
+\end{proof}
+
+\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}[node distance=2cm, auto, thick]
+    \clip [rounded corners] (0,0) -- (6,0) -- (6,4) -- (0,4) --  cycle;
+    \begin{scope}
+      \clip (0,0) -- (2,0)  .. controls (1.5,1.5) and (4.5,1.5)
+      .. (4,4) -- (0,4) -- (0,0) -- cycle;
+      \filldraw[fill=gray!40] (0,4) -- (0,2) .. controls (1.5,1.5)
+      and (4.5,1.5) .. (4.5,0) -- (6,0) -- (6,4) -- (0,4) --  cycle;
+    \end{scope}
+    \draw [name path=line1] (2,0) .. controls (1.5,1.5) and (4.5,1.5) .. (4,4);
+    \draw [name path=line2] (0,2)  .. controls (1.5,1.5) and (4.5,1.5) .. (4.5,0);
+    \path [name intersections={of=line1 and line2}];
+    \draw [rounded corners, use as bounding box, very thick] (0,0)
+    -- (6,0) -- (6,4) -- (0,4) --  cycle;
+    \node at (2,3) {$[w]$} ;
+    \node at (1,1) {$[u]$} ;
+    \node at (3,0.75) {$[v]$} ;
+    \node at (4.75,2) {$[z]$} ;
+  \end{tikzpicture}
+  \caption{Partisi~$W$ menjadi kelas-kelas ekuivalensi.}
+  \ollabel{fig:partition}
+\end{figure}
+
+\end{document}
+

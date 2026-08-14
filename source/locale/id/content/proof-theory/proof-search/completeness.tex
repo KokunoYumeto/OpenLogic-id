@@ -1,0 +1,203 @@
+% Part: proof-theory
+% Chapter: proof-search
+% Section: completeness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{ps}{cpl}
+
+\olsection{Kelengkapan}
+
+Sekarang kita menunjukkan bahwa algoritma pencarian bukti tidak mungkin
+gagal: jika algoritma itu batal atau tidak pernah berhenti, tidak ada
+!!{proof} bagi sekuen awal~$\Gamma \Sequent \Delta$. Untuk melakukannya,
+kita mendefinisikan !!a{structure}~$\Struct M$ sedemikian sehingga bagi
+semua $!A \in \Gamma$, $\Sat{M}{!A}$, dan bagi semua~$!A \in \Delta$,
+$\Sat/{M}{!A}$. Dengan kata lain, semua !!{formula}s dalam~$\Gamma$ benar
+dan semua !!{formula}s dalam~$\Delta$ salah dalam~$\Struct M$, sehingga
+$\Gamma \Sequent \Delta$ tidak valid. Karena \Log{G3c} sahih,
+$\Gamma \Sequent \Delta$ tidak mempunyai !!{proof}.
+
+Kita mendefinisikan $\Struct{M}$ dari pasangan $\Theta, \Xi$ yang terdiri
+atas !!{formula}s dan suatu himpunan~$C$ dari !!{constant}s. Kita memperoleh
+$\Theta$, $\Xi$, dan~$C$ dari suatu \emph{cabang kegagalan} pada pelaksanaan
+pencarian bukti yang gagal (batal atau tidak berhenti). Cabang kegagalan
+adalah barisan sekuen $\Pi_n \Sequent \Lambda_n$ dan himpunan
+!!{constant}s~$C_n$ sedemikian sehingga $\Pi_0 \Sequent \Lambda_0$ adalah
+sekuen akhir $\Gamma \Sequent \Delta$, dan
+$\Pi_{n+1} \Sequent \Lambda_{n+1}$ adalah suatu premis dari
+$\Pi_n \Sequent \Lambda_n$ yang dihasilkan pada tahap~$n+1$ dan yang
+untuknya algoritma tidak menemukan !!a{proof}. Premis seperti itu jelas harus
+ada bagi setiap~$n$, sebab jika tidak, algoritma telah menemukan
+!!a{proof}. Kita mengambil $C_n$ sebagai himpunan !!{constant}s yang
+dikaitkan dengan~$\Pi_n \Sequent \Lambda_n$.
+
+Jika algoritma batal pada sekuen paling atas yang hanya terdiri atas
+!!{formula}s atomik, cabang yang berakhir pada sekuen itu merupakan cabang
+kegagalan. Jika algoritma tidak pernah berhenti, algoritma terus menghasilkan
+pohon yang semakin besar. Pohon-pohon ini dapat dipandang sebagai tahapan
+pertumbuhan suatu pohon tak hingga (yakni pohon yang diperoleh setelah
+menjalankan langkah algoritma sebanyak tak hingga). Pohon itu tak hingga,
+tetapi bercabang berhingga (setiap simpul hanya mempunyai satu atau dua
+anak---sekuen-sekuen yang tepat berada di atasnya). Berdasarkan Lemma
+K\H{o}nig, setiap pohon tak hingga yang bercabang berhingga harus mempunyai
+cabang tak hingga. Cabang tak hingga seperti itu merupakan cabang kegagalan
+ketika algoritma pencarian berjalan selamanya.
+
+Jika barisan $\Pi_n \Sequent \Lambda_n$ dan $C_n$ merupakan cabang
+kegagalan, tetapkan $\Theta = \bigcup_n \Pi_n$ dan
+$\Xi = \bigcup_n \Lambda_n$ (dengan menghapus indeks dan kemunculan ganda
+!!{formula}s), serta $C = \bigcup_n C_n$.
+
+Sekarang kita siap mendefinisikan~$\Struct{M}$.
+\begin{enumerate}
+\item Domain $\Domain{M}$ adalah himpunan suku yang dapat dibentuk dari~$C$
+dan !!{function}s dalam~$\Gamma \Sequent \Delta$, jika ada, tetapi tanpa
+!!{variable}s.
+\item Jika $c \in \Domain{M}$, maka $\Assign{c}{M} = c$.
+\item Jika $f$ adalah !!{function} $m$-tempat dalam
+$\Gamma \Sequent \Delta$, dan $t_1$, \dots, $t_m \in \Domain{M}$, maka
+$\Assign{f}{M}(t_1, \dots, t_m) = f(t_1, \dots, t_m)$.
+\item Jika $R$ adalah !!{predicate} $m$-tempat dalam
+$\Gamma \Sequent \Delta$, maka
+$\Assign{R}{M} = \Setabs{\tuple{t_1, \dots, t_m} \in
+\Domain{M}^m}{R(t_1, \dots, t_m) \in \Theta}$.
+\end{enumerate}
+$\Struct{M}$ merupakan \emph{model suku}: domainnya adalah himpunan suku,
+dan !!{constant}s serta !!{function}s ditafsirkan sedemikian sehingga
+$\Value{t}{M} = t$. !!^{formula}s atomik dalam~$\Theta$ digunakan untuk
+mendefinisikan $\Assign{R}{M}$ sedemikian sehingga
+$\Sat{M}{R(t_1, \dots, t_m)}$ jika dan hanya jika
+$R(t_1, \dots, t_m) \in \Theta$.
+
+\begin{lem}\ollabel{lem:truth}
+Bagi semua $!A \in \Theta \cup \Xi$:
+\begin{enumerate}
+  \item Jika $!A \in \Theta$, maka $\Sat{M}{!A}$.
+  \item Jika $!A \in \Xi$, maka $\Sat/{M}{!A}$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Lakukan induksi pada $\depth{!A}$.
+
+Pertama, andaikan $!A$ atomik, yakni $!A \ident \lfalse$ atau
+$!A \ident R(t_1, \dots, t_m)$.
+
+Karena $\Pi_n \Sequent \Lambda_n$ merupakan cabang kegagalan, tidak ada
+$\Pi_n$ yang memuat $\lfalse$ (jika ada, $\Pi_n \Sequent \Lambda_n$
+merupakan aksioma). Berdasarkan definisi~$\Struct{M}$,
+$\Sat{M}{R(t_1, \dots, t_m)}$ jika dan hanya jika
+$R(t_1, \dots, t_m) \in \Theta$. Secara bersama-sama, kedua hal ini
+memberikan: jika $!A \in \Theta$, maka $\Sat{M}{!A}$.
+
+Jika $!A$ atomik dan $!A \in \Pi_n$, maka $!A \in \Pi_{n+1}$; dan jika
+$!A \in \Lambda_n$, maka $!A \in \Lambda_{n+1}$. (Hal ini mengikuti cara
+algoritma pencarian bukti menghasilkan sekuen penerus.) Jadi, jika
+$!A \in \Theta \cap \Xi$, maka bagi suatu~$n$,
+$!A \in \Pi_n \cap \Lambda_n$. Ini berarti
+$\Pi_n \Sequent \Lambda_n$ merupakan aksioma, sedangkan cabang kegagalan
+tidak dapat memuat aksioma. Jadi, berdasarkan konstruksi,
+$!A \notin \Theta \cap \Xi$ bagi $!A$ atomik; akibatnya, jika
+$!A \in \Xi$, maka $!A \notin \Theta$. Berdasarkan definisi~$\Struct{M}$,
+hal ini menyiratkan bahwa jika $!A \in \Xi$, maka $\Sat/{M}{!A}$.
+
+Untuk langkah induksi, andaikan (1) dan (2) berlaku bagi semua !!{formula}s
+dengan !!{depth} lebih rendah daripada~$!A$. Kita membuktikan (1) dan (2)
+bagi $!A$ dengan membedakan beberapa kasus.
+
+Pertama, perhatikan bahwa ketika $!A^i$ muncul dalam
+$\Pi_n \Sequent \Lambda_n$, maka $!A^i$ juga muncul dalam
+$\Pi_{n+1} \Sequent \Lambda_{n+1}$, kecuali jika $i$ merupakan indeks
+terkecil dalam $\Pi_n \Sequent \Lambda_n$. Karena indeks terkecil meningkat
+pada sekuen paling atas yang ditambahkan pada setiap tahap, pada akhirnya
+kita mencapai $\Pi_n \Sequent \Lambda_n$ tempat $!A^i$ muncul dan $i$
+merupakan indeks terkecil. Pada tahap $n+1$, algoritma mereduksi~$!A^i$.
+Dengan kata lain, jika $!A \in \Theta$, maka bagi suatu $n$,
+$\Pi_n = \Pi_n', !A^i$ dan $i$ merupakan indeks terkecil. Jika
+$!A \in \Xi$, maka bagi suatu $n$,
+$\Lambda_n = \Lambda_n', !A^i$ dan $i$ merupakan indeks terkecil.
+
+\begin{enumerate}
+  \item $!A \in \Theta$ dan $!A \ident !B \land !C$. Maka bagi suatu
+  $n$, $\Pi_n = \Pi_n', (!B \land !C)^i$.
+  $\Pi_{n+1} \Sequent \Lambda_{n+1}$ adalah premis bersesuaian dari
+  \LeftR{\land}, yakni
+  $\Pi_{n+1} = \Pi_n', !B^k, !C^{k+1}$. Akibatnya,
+  $!B, !C \in \Theta$. Berdasarkan hipotesis induksi,
+  $\Sat{M}{!B}$ dan $\Sat{M}{!C}$. Berdasarkan definisi $\Sat{M}{}$,
+  kita memperoleh $\Sat{M}{!B \land !C}$.
+
+  \item $!A \in \Xi$ dan $!A \ident !B \land !C$. Maka bagi suatu $n$,
+  $\Lambda_n = \Lambda_n', !B \land !C$.
+  $\Pi_{n+1} \Sequent \Lambda_{n+1}$ adalah salah satu dari dua premis
+  \RightR{\land} dengan kesimpulan
+  $\Pi_n \Sequent \Lambda'_n, !B \land !C$, yakni
+  $\Lambda_{n+1} = \Lambda_n', !B^k$ atau
+  $\Lambda_{n+1} = \Lambda_n', !C^k$. Akibatnya,
+  $!B \in \Xi$ atau $!C \in \Xi$. Berdasarkan hipotesis induksi,
+  $\Sat/{M}{!B}$ atau $\Sat/{M}{!C}$. Berdasarkan definisi $\Sat{M}{}$,
+  kita memperoleh $\Sat/{M}{!B \land !C}$.
+
+  \item Kasus $!A \ident \lnot !B$, $!A \ident !B \lor !C$, dan
+  $!A \ident !B \lif !C$ serupa dan dibiarkan sebagai latihan.
+
+  \item $!A \in \Theta$ dan $!A \ident \lexists[x][!B(x)]$. Maka bagi
+  suatu $n$, $\Pi_n = \Pi_n', \lexists[x][!B(x)]^i$.
+  $\Pi_{n+1} \Sequent \Lambda_{n+1}$ adalah premis bersesuaian dari
+  \LeftR{\lexists}, yakni $\Pi_{n+1} = \Pi_n', !B(c)^k$ bagi suatu~$c$.
+  Akibatnya, $!B(c) \in \Theta$ dan~$c \in C$. Berdasarkan hipotesis
+  induksi, $\Sat{M}{!B(c)}$. Berdasarkan definisi $\Sat{M}{}$, kita
+  memperoleh $\Sat{M}{\lexists[x][!B(x)]}$.
+
+  \item $!A \in \Xi$ dan $!A \ident \lexists[x][!B(x)]$. Maka bagi suatu
+  $n$, $\Lambda_n = \Lambda_n', \lexists[x][!B(x)]^i$. Setiap kali
+  $\lexists[x][!B(x)]$ direduksi, $\lexists[x][!B(x)]$ tetap berada di sisi
+  kanan sekuen premis dengan indeks baru. Karena itu,
+  $\lexists[x][!B(x)]$ direduksi tak hingga kali di sisi kanan pada cabang
+  kegagalan jika formula tersebut muncul di sana. Setiap suku
+  $t \in \Domain{M}$ akhirnya menjadi ``suku pertama yang
+  hanya memuat konstanta dalam~$C_n$ dan belum digunakan dalam suatu reduksi
+  $\lexists[x][!B(x)]$ di sisi kanan'' pada cabang kegagalan. Jadi, bagi
+  setiap $t \in \Domain{M}$, $!B(t) \in \Lambda_n$ bagi suatu~$n$, dan
+  akibatnya $!B(t) \in \Xi$. Berdasarkan hipotesis induksi,
+  $\Sat/{M}{!B(t)}$ bagi semua $t \in \Domain{M}$. Berdasarkan definisi
+  $\Sat{M}{}$, kita memperoleh $\Sat/{M}{\lexists[x][!B(x)]}$.
+
+  \item Kasus $!A \ident \lforall[x][!B(x)]$ serupa dan dibiarkan sebagai
+  latihan.
+\end{enumerate}
+\end{proof}
+
+\begin{cor}\ollabel{cor:complete} Algoritma pencarian bukti bagi
+\Log{G3c} lengkap: jika algoritma itu batal atau tidak pernah berhenti,
+sekuen awal~$\Gamma \Sequent \Delta$ tidak valid dan karenanya tidak
+mempunyai !!{proof}.
+\end{cor}
+
+\begin{proof}
+  Jika algoritma batal atau tidak pernah berhenti, terdapat cabang kegagalan
+  yang darinya $\Struct{M}$ dapat didefinisikan. Berdasarkan
+  \olref{lem:truth}, bagi semua $!A \in \Gamma$, $\Sat{M}{!A}$, dan bagi
+  semua $!A \in \Delta$, $\Sat/{M}{!A}$. (Ingat bahwa
+  $\Pi_0 = \Gamma$ dan $\Lambda_0 = \Delta$, sehingga
+  $\Gamma \subseteq \Theta$ dan $\Delta \subseteq \Xi$.) Jadi,
+  $\Gamma \Sequent \Delta$ tidak valid. Berdasarkan kesahihan~\Log{G3c},
+  $\Gamma \Sequent \Delta$ tidak mempunyai !!{proof}.
+\end{proof}
+
+\begin{cor}
+\Log{G3c} lengkap: jika $\Gamma \Sequent \Delta$ valid, maka
+$\Log{G3c} \Proves \Gamma \Sequent \Delta$.
+\end{cor}
+
+\begin{proof}
+  Kita membuktikan kontraposisinya. Andaikan $\Log{G3c} \Proves/
+  \Gamma \Sequent \Delta$. Algoritma pencarian bukti harus batal atau tidak
+  pernah berhenti karena tidak ada !!{proof} yang dapat ditemukan.
+  Berdasarkan \olref{cor:complete}, $\Gamma \Sequent \Delta$ tidak valid.
+\end{proof}
+
+\end{document}

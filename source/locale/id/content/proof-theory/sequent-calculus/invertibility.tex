@@ -1,0 +1,404 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: invertibility
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{seq}{inv}
+
+\olsection{Keterbalikan Aturan}
+
+\begin{defn}
+Suatu aturan~$R$,
+\[
+\AxiomC{$S_1$}
+\AxiomC{$\dots$}
+\AxiomC{$S_n$}
+\RightLabel{$R$}
+\TrinaryInfC{$S$}
+\DisplayProof
+\]
+disebut \emph{dapat dibalik} dalam suatu sistem jika, setiap kali
+$\Proves S$, berlaku $\Proves[h_i] S_i$ untuk $i = 1$, \dots,~$n$.
+Aturan tersebut disebut \emph{dapat dibalik dengan mempertahankan
+!!{height}} (atau \emph{!!{hp}-dapat dibalik}) dalam suatu sistem jika,
+setiap kali $\Proves_n S$, berlaku $\Proves[n] S_i$ untuk $i = 1$,
+\dots,~$n$.
+\end{defn}
+
+\begin{lem}\ollabel{lem:G3c-invert}
+Aturan-aturan~\Log{G3c} untuk $\lnot$, $\land$, $\lor$, dan $\lif$
+dapat dibalik dengan mempertahankan !!{height}, yakni:
+\begin{enumerate}
+  \item \RightR{\lnot}: Jika $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, \lnot !A$, maka $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
+  \Delta$.
+  \item \LeftR{\lnot}: Jika $\Log{G3c} \Proves[n] \Gamma, \lnot !A
+  \Sequent \Delta$, maka $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
+  !A$.
+  \item \RightR{\land}: Jika $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A \land !B$, maka $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A$ dan $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !B$.
+  \item \LeftR{\land}: Jika $\Log{G3c} \Proves[n] \Gamma, !A \land !B
+  \Sequent \Delta$, maka $\Log{G3c} \Proves[n] !A, !B, \Gamma \Sequent
+  \Delta$.
+  \item \RightR{\lor}: Jika $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A \lor !B$, maka $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A, !B$.
+  \item \LeftR{\lor}: Jika $\Log{G3c} \Proves[n] !A \lor !B, \Gamma \Sequent
+  \Delta$, maka $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
+  \Delta$ dan $\Log{G3c} \Proves[n] !B, \Gamma \Sequent
+  \Delta$.
+  \item \RightR{\lif}: Jika $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A \lif !B$, maka $\Log{G3c} \Proves[n] !A, \Gamma \Sequent
+  \Delta, !B$.
+  \item \LeftR{\lif}: Jika $\Log{G3c} \Proves[n] !A \lif !B, \Gamma
+  \Sequent \Delta$, maka $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
+  !A$ dan $\Log{G3c} \Proves[n] !B, \Gamma \Sequent \Delta$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Kita harus menunjukkan bahwa, untuk setiap aturan~$R$ dari~\Log{G3c},
+jika terdapat !!a{proof}~$\pi$ atas kesimpulan~$S$ dari~$R$, maka juga
+terdapat !!{proof}s~$\pi_i$ atas premis-premis $S_i$ dari~$R$, dengan
+$\pheight{\pi_i} \le \pheight{\pi}$. Tinjau aturan \LeftR{\land}:
+andaikan terdapat !!a{proof}~$\pi$ dengan sekuen akhir berbentuk $!A
+\land !B, \Gamma \Sequent \Delta$. Kita harus menunjukkan bahwa
+terdapat !!a{proof} $\pi'$ atas $!A, !B, \Gamma \Sequent \Delta$
+dengan $\pheight{\pi'} \le \pheight{\pi}$. Kita melakukannya dengan
+induksi pada $n = \pheight{\pi}$.
+
+Jika $n = 0$, $\pi$ hanya terdiri atas sebuah aksioma: $!A \land !B,
+\Gamma \Sequent \Delta$. Dalam \Log{G3c}, aksioma berbentuk $!C,
+\Gamma \Sequent \Delta, !C$ dengan $!C$ atomik. Dengan kata lain,
+$!C$ tidak mungkin sama dengan $!A \land !B$. Jika $!A \land !B,
+\Gamma \Sequent \Delta$ merupakan aksioma, suatu $!C$ atomik harus
+merupakan !!a{element} dari $\Gamma$ sekaligus~$\Delta$. Namun demikian,
+$!A, !B, \Gamma \Sequent \Delta$ juga merupakan aksioma, sehingga kita
+telah memperoleh !!{proof}~$\pi'$ yang dicari (yang juga mempunyai
+!!{height}~$0$).
+
+Jika $n>0$, bukti tersebut berakhir dengan sebuah inferensi. Kita harus
+membuktikan klaim untuk~$n$, tetapi boleh mengandaikan bahwa klaim itu
+benar bagi setiap !!{proof} dengan ketinggian~$<n$, sekalipun konteksnya
+berbeda. Dengan kata lain, untuk setiap $k<n$ serta setiap $\Pi$ dan
+$\Lambda$, jika $!A \land !B, \Pi \Sequent \Lambda$ mempunyai
+!!a{proof} dengan !!{height}~$k$, maka terdapat !!a{proof} dengan
+!!{height}~$\le k$ atas $!A, !B, \Pi \Sequent \Lambda$.
+
+Ada dua kasus: $!A \land !B$ di sebelah kiri bersifat prinsipal, atau
+tidak. Jika bersifat prinsipal, inferensi terakhir adalah \LeftR{\land}
+dan sub-!!{proof} langsung~$\pi_1$ berakhir pada $!A, !B, \Gamma
+\Sequent \Delta$. Hasilnya berlaku dalam kasus ini karena
+$\pheight{\pi_1} < \pheight{\pi}$.
+
+Jika $!A \land !B$ tidak prinsipal, suatu !!{formula} lainlah yang
+prinsipal, sedangkan $!A \land !B$ termasuk dalam konteks inferensi
+terakhir. Hipotesis induksi lalu berlaku bagi sub-!!{proof}s langsung
+dari aturan terakhir~$R$, dan menghasilkan !!a{proof}~$\pi_1'$ atau dua
+!!{proof}s~$\pi_1'$ dan~$\pi_2'$ dengan !!{height} yang tidak lebih besar
+daripada ketinggian sub-!!{proof}s langsung dari~$\pi$. Sekuen akhir
+$\pi_1'$ dan $\pi_2'$ memuat $!A, !B$ dalam konteks di sebelah kiri,
+menggantikan $!A \land !B$. Terapkan aturan~$R$ untuk memperoleh
+bukti~$\pi'$. Sebagai contoh, andaikan $\pi$ berakhir dengan~\LeftR{\lif}:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$!A \land !B, \Gamma' \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A \land !B, \Gamma', !D \fCenter \Delta$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!A \land !B, \Gamma', !C \lif !D \fCenter \Delta$
+\DisplayProof
+\]
+Di sini $!C \lif !D$ di sebelah kiri bersifat prinsipal, sedangkan
+konteks di sebelah kiri ialah $!A \land !B, \Gamma'$ (yakni,
+$\Gamma = \Gamma', !C \lif !D$). Hipotesis induksi menghasilkan
+!!{proof}s $\pi_1'$ dan $\pi_2'$ masing-masing atas $!A, !B, \Gamma'
+\Sequent \Delta, !C$ dan $!A, !B, \Gamma', !D \Sequent \Delta$.
+Kedua sekuen ini kembali dapat menjadi premis aturan \LeftR{\lif}
+untuk memperoleh~$\pi'$:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!A, !B, \Gamma' \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!A, !B, \Gamma', !D \fCenter \Delta$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!A, !B, \Gamma', !C \lif !D \fCenter \Delta$
+\DisplayProof
+\]
+Kita mempunyai
+\begin{align*}
+\pheight{\pi} & = \max(\pheight{\pi_1}, \pheight{\pi_2}) + 1\\
+\pheight{\pi'} & = \max(\pheight{\pi_1'}, \pheight{\pi_2'}) + 1
+\intertext{menurut definisi, dan}
+\pheight{\pi_1'} & \le \pheight{\pi_1}\\
+\pheight{\pi_2'} & \le \pheight{\pi_2}
+\intertext{menurut hipotesis induksi. Jadi,}
+\pheight{\pi'} & \le \pheight{\pi}.
+\end{align*}
+\end{proof}
+
+\begin{prob}
+Berikan bukti \olref{lem:G3c-invert} untuk \RightR{\lif}.
+\end{prob}
+
+\begin{lem}\ollabel{lem:invert-quant}
+Aturan \RightR{\lforall} dan \LeftR{\lexists} dapat dibalik dengan
+mempertahankan !!{height} dalam arti berikut:
+\begin{enumerate}
+  \item Jika $\Log{G3c} \Proves[n] \Gamma \Sequent \Delta,
+  \lforall[x][!A(x)]$, maka $\Log{G3c} \Proves[n] \Gamma \Sequent
+  \Delta, !A(c)$, dan
+  \item jika $\Log{G3c} \Proves[n] \lexists[x][!A(x)], \Gamma \Sequent
+  \Delta$, maka $\Log{G3c} \Proves[n] !A(c), \Gamma \Sequent \Delta$,
+\end{enumerate}
+untuk setiap $c$ yang tidak muncul dalam $\Gamma$, $\Delta$, dan
+$\lforall[x][!A(x)]$ atau $\lexists[x][!A(x)]$, secara berturut-turut.
+\end{lem}
+
+\begin{proof}
+  Kita menunjukkan (1) dan menyerahkan (2) sebagai latihan. Argumennya
+  mirip dengan bukti \olref{lem:G3c-invert}. Pada langkah induksi,
+  kembali terdapat dua kasus. Kasus ketika $\lforall[x][!A(x)]$
+  prinsipal segera selesai: premis inferensi $\RightR{\lforall}$ terakhir
+  berbentuk sebagaimana diperlukan, yakni $\Gamma \Sequent \Delta,
+  !A(a)$, dan sub-!!{proof} langsung~$\pi_1$ yang berakhir padanya
+  memenuhi $\pheight{\pi_1} < \pheight{\pi}$. Selain itu, syarat
+  variabel eigen memastikan bahwa $a$ tidak muncul dalam $\Gamma$,
+  $\Delta$, ataupun $\lforall[x][!A(x)]$. Karena kita boleh mengandaikan
+  $\pi_1$ reguler, $\Subst{\pi_1}{c}{a}$ merupakan !!a{proof} dengan
+  !!{height} yang sama atas $\Gamma \Sequent \Delta, !A(c)$ menurut
+  \olref[qua]{lem:subst-regular}.
+
+  Dalam kasus kedua, $\lforall[x][!A(x)]$ tidak prinsipal dalam
+  inferensi terakhir; suatu formula lainlah yang prinsipal. Kita kembali
+  meninjau satu kasus sebagai contoh. Andaikan inferensi terakhir adalah
+  ~\RightR{\land}. Suatu !!{formula} dalam $\Delta$ berbentuk~$!B \land
+  !C$ dan bersifat prinsipal. Adapun !!{proof}~$\pi$ berakhir dengan
+  \[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', \lforall[x][!A(x)], !B$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma \fCenter \Delta', \lforall[x][!A(x)], !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', \lforall[x][!A(x)], !B \land !C$
+\DisplayProof
+\]
+dengan $\Delta = \Delta', !B \land !C$. Ambil $c$ sebagai
+!!a{constant} yang tidak muncul dalam $\Delta$; maka jelas bahwa konstanta itu
+juga tidak muncul dalam $\Delta', !B$ maupun $\Delta', !C$. Jadi,
+hipotesis induksi berlaku bagi $\pi_1$ dan~$\pi_2$; kita memperoleh
+!!{proof}s~$\pi_1'$ dan $\pi_2'$ dengan $\pheight{\pi_1'} \le
+\pheight{\pi_1}$ serta $\pheight{\pi_2'} \le \pheight{\pi_2}$.
+Bentuk !!{proof}~$\pi'$ yang diperlukan atas $\Gamma \Sequent \Delta, !A(c)$
+ialah:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta', !A(c), !B$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta', !A(c), !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', !A(c), !B \land !C$
+\DisplayProof
+\]
+dengan $\pheight{\pi'} = \max(\pheight{\pi_1'}, \pheight{\pi_2'})+1
+\le \pheight{\pi}$.
+\end{proof}
+
+\Olref{lem:G3c-invert} berperan penting dalam bukti teorema eliminasi
+potongan. Namun, lema itu juga dapat dipakai untuk menunjukkan hasil berikut:
+
+\begin{prop}\ollabel{prop:G3c-cont-adm}
+Aturan kontraksi \LeftR{\Contraction} dan \RightR{\Contraction}
+dari~\Log{G1c} bersifat admisibel dalam~\Log{G3c} dengan mempertahankan
+!!{height}.
+\end{prop}
+
+\begin{proof}
+Kita memberikan argumen untuk \RightR{\Contraction} dan
+\LeftR{\Contraction} sekaligus. Andaikan $\pi$ merupakan !!a{proof} atas
+$\Gamma \Sequent \Delta, !A, !A$ atau atas $!A, !A, \Gamma \Sequent
+\Delta$ dalam~\Log{G3c}. Kita harus menunjukkan bahwa juga terdapat
+!!a{proof}~$\pi'$ dalam \Log{G3c} atas $\Gamma \Sequent \Delta, !A$ atau $!A,
+\Gamma \Sequent \Delta$, secara berturut-turut, dengan
+$\pheight{\pi'} \le \pheight{\pi}$. Kita melakukannya dengan induksi
+pada $n = \pheight{\pi}$.
+
+Jika $n=0$, $\pi$ hanyalah sebuah aksioma. Namun, jika $\Gamma \Sequent
+\Delta, !A, !A$ merupakan aksioma~\Log{G3c}, demikian pula $\Gamma
+\Sequent \Delta, !A$: entah suatu $!C$ atomik merupakan !!a{element}
+dari $\Gamma$ sekaligus~$\Delta$, atau $!A$ bersifat atomik dan merupakan
+!!a{element} dari~$\Gamma$. Penalaran yang sama berlaku jika sekuen
+akhirnya ialah $!A, !A, \Gamma \Sequent \Delta$.
+
+Jika $n>0$, $\pi$ berakhir dengan suatu aturan~$R$. Jika $!A$ tidak
+prinsipal dalam inferensi terakhir ini, kita dapat memperoleh
+!!a{proof}~$\pi'$ seperti dalam bukti \olref{lem:G3c-invert}, yaitu dengan
+menerapkan hipotesis induksi pada sub-!!{proof}s langsung dari~$\pi$ dan
+menerapkan aturan~$R$ yang sama pada satu atau dua !!{proof} yang dihasilkan.
+Hipotesis induksinya ialah bahwa jika terdapat !!a{proof} dengan
+!!{height}~$k<n$ atas $\Pi \Sequent \Lambda, !D, !D$ atau atas $!D, !D,
+\Pi \Sequent \Lambda$, maka terdapat !!a{proof} dengan !!{height}~$\le k$
+atas $\Pi \Sequent \Lambda, !D$ atau $!D, \Pi \Sequent \Lambda$, secara
+berturut-turut. (Perhatikan bahwa hipotesis induksi tetap berlaku jika
+konteks atau !!{formula} yang dikontraksi berbeda dari $\Gamma$, $\Delta$,
+atau~$!A$!)
+
+Sebagai contoh, andaikan $R$ adalah $\RightR{\land}$ dan $\pi$~berakhir
+dengan
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', !B, !A, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma \fCenter \Delta', !C, !A, !A$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !A, !A$
+\DisplayProof
+\]
+dengan $\Delta = \Delta', !B \land !C$. Hipotesis induksi menghasilkan
+!!{proof}s $\pi_1'$ dan $\pi_2'$ atas $\Gamma \fCenter \Delta', !B, !A$
+dan $\Gamma \fCenter \Delta', !C, !A$, secara berturut-turut, dengan
+$\pheight{\pi_1'} \le \pheight{\pi_1}$ dan $\pheight{\pi_2'} \le
+\pheight{\pi_2}$. Adapun !!{proof}~$\pi'$ ialah:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta', !B, !A$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta', !C, !A$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !A$
+\DisplayProof
+\]
+
+Jika $!A$ prinsipal dalam inferensi terakhir, kita menerapkan lema
+keterbalikan (\olref{lem:G3c-invert}) pada sub-!!{proof}s langsung
+dari~$\pi$, kemudian hipotesis induksi, lalu aturan~$R$ sekali lagi.
+Sebagai contoh, andaikan $\pi$ membuktikan $\Gamma \Sequent \Delta,
+!A, !A$, dengan $!A \ident (!B \land !C)$ dan formula itu prinsipal dalam
+inferensi terakhir. Maka $\pi$ berbentuk sebagai berikut:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !B \land !C, !B$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$\Gamma \fCenter \Delta, !B \land !C, !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta, !B \land !C, !B \land !C$
+\DisplayProof
+\]
+Terapkan \olref{lem:G3c-invert} pada $\pi_1$ untuk memperoleh
+!!a{proof}~$\pi_1'$ atas $\Gamma \Sequent \Delta, !B, !B$. (Penerapan
+itu juga menghasilkan !!a{proof} atas $\Gamma \Sequent \Delta, !C,
+!B$, tetapi kita tidak memerlukannya.) Demikian pula, dengan menerapkan
+\olref{lem:G3c-invert} pada~$\pi_2$, kita memperoleh !!a{proof}~$\pi_2'$
+atas $\Gamma \Sequent \Delta, !C, !C$. Karena pembalikan
+\RightR{\land} mempertahankan !!{height}, $\pheight{\pi_1'} \le
+\pheight{\pi_1} < \pheight{\pi}$ dan $\pheight{\pi_2'} \le
+\pheight{\pi_2} < \pheight{\pi}$. Karena itu, hipotesis induksi berlaku
+bagi $\pi_1'$ dan $\pi_2'$: terdapat !!{proof}s~$\pi_1''$ dan $\pi_2''$
+masing-masing atas $\Gamma \Sequent \Delta, !B$ dan $\Gamma \Sequent
+\Delta, !C$, dengan $\pheight{\pi_1''} \le \pheight{\pi_1'} \le
+\pheight{\pi_1}$ dan $\pheight{\pi_2''} \le \pheight{\pi_2'} \le
+\pheight{\pi_2}$. Adapun !!{proof}~$\pi'$ kemudian ialah:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$\Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta, !B \land !C$
+\DisplayProof
+\]
+dengan $\pheight{\pi'} \le \pheight{\pi}$.
+
+Kita harus memberikan perhatian khusus kepada aturan kuantor dalam
+kasus-kasus ketika !!{formula} tersebut prinsipal.
+
+Andaikan $!A \ident \lforall[x][!B(x)]$ prinsipal di sebelah kanan. Maka
+$\pi$ berakhir dengan
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, \lforall[x][!B(x)], !B(a)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!B(x)], \lforall[x][!B(x)]$
+\DisplayProof
+\]
+Menurut \olref{lem:invert-quant}, terdapat !!a{proof}~$\pi_1'$ dengan
+!!{height} $\le \pheight{\pi_1}$ atas $\Gamma \fCenter \Delta, !B(c),
+!B(a)$ untuk setiap~$c$ yang tidak muncul dalam $\Gamma \fCenter \Delta,
+\lforall[x][!B(x)], !B(a)$. Kita boleh mengandaikan bahwa $\pi_1'$
+reguler; maka, menurut \olref[qua]{lem:subst-regular}, !!{proof}
+$\Subst{\pi_1'}{a}{c}$ merupakan !!a{proof} atas $\Gamma \fCenter
+\Delta, !B(a), !B(a)$ yang juga memiliki !!{height}~$\le
+\pheight{\pi_1}$. Kini hipotesis induksi berlaku dan memberi kita
+!!a{proof}~$\pi_1''$ atas $\Gamma \fCenter \Delta, !B(a)$. Terapkan
+aturan \RightR{\lforall} untuk memperoleh~$\pi'$:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma \fCenter \Delta, !B(a)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!B(x)]$
+\DisplayProof
+\]
+dengan $\pheight{\pi'} \le \pheight{\pi}$.
+
+Sekarang andaikan $!A \ident \lexists[x][!B(x)]$ dan formula itu prinsipal
+di sebelah kanan. Maka $\pi$ berbentuk sebagai berikut:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, \lexists[x][!B(x)], \lexists[x][!B(x)], !B(t)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$\Gamma \fCenter \Delta, \lexists[x][!B(x)], \lexists[x][!B(x)]$
+\DisplayProof
+\]
+Hipotesis induksi berlaku bagi~$\pi_1$, sehingga terdapat
+!!a{proof}~$\pi_1'$ atas $\Gamma \Sequent \Delta, \lexists[x][!B(x)],
+!B(t)$. (Perhatikan bahwa lema keterbalikan tidak diperlukan di sini!)
+Adapun !!{proof}~$\pi'$ kemudian ialah:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta, \lexists[x][!B(x)], !B(t)$
+\RightLabel{\RightR{\lexists}}
+\UnaryInf$\Gamma \fCenter \Delta, \lexists[x][!B(x)]$
+\DisplayProof
+\]
+dengan $\pheight{\pi'} \le \pheight{\pi}$.
+\end{proof}
+
+\begin{prob}
+Uraikan garis besar bukti \olref{prop:G3c-cont-adm} untuk
+\LeftR{\Contraction}. Jelaskan kasus-kasus ketika $!A \ident (!B \land
+!C)$ dan $!A \ident (!B \lif !C)$.
+\end{prob}
+
+\begin{prob}
+Uraikan garis besar bukti \olref{prop:G3c-cont-adm} untuk
+\LeftR{\Contraction} bagi kasus-kasus kuantor yang tersisa, yakni ketika
+$!A \ident \lforall[x][!B(x)]$ dan $!A \ident \lexists[x][!B(x)]$.
+\end{prob}
+
+
+\end{document}

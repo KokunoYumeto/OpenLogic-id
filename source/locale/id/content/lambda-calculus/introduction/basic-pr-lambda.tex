@@ -1,0 +1,33 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: basic-pr-lambda
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{int}{bas}
+\olsection{Fungsi Rekursif Primitif Dasar \usetoken{S}{lambda definable}}
+
+\begin{lem}
+Fungsi $\Zero$, $\Succ$, dan $\Proj{n}{i}$ bersifat !!{lambda definable}.
+\end{lem}
+
+\begin{proof}
+$\Zero$ hanyalah
+$\lambd[x][\lambd[y][y]]$.
+
+Fungsi penerus~$\Succ$ didefinisikan oleh
+$\fn{Succ}(u)=\lambd[x][\lambd[y][x(uxy)]]$. Pikirkanlah mengapa definisi ini
+bekerja; untuk setiap numeral $\num{n}$ yang dipandang sebagai iterator dan
+setiap fungsi~$f$, $\fn{Succ}(\num{n})f$ adalah fungsi yang, pada masukan~$y$,
+menerapkan $f$ sebanyak $n$ kali mulai dari~$y$, kemudian menerapkannya sekali
+lagi.
+
+Tidak banyak yang perlu dikatakan mengenai proyeksi:
+$\fn{Proj}^n_i(x_0, \dots, x_{n-1})=x_i$. Dengan kata lain, menurut konvensi
+kita, $\fn{Proj}^n_i$ adalah suku lambda
+$\lambd[x_0][\dots \lambd[x_{n-1}][x_i]]$.
+\end{proof}
+
+\end{document}

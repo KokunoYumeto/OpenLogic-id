@@ -1,0 +1,116 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{spine}{foundation}
+
+\olsection{Fondasi}
+
+Kita baru \emph{hampir} selesai---dan belum \emph{sepenuhnya}
+selesai---karena tidak ada sesuatu pun dalam $\ZFminus$ yang menjamin bahwa
+\emph{setiap} himpunan berada dalam suatu $V_\alpha$, yakni bahwa setiap
+himpunan dibentuk pada suatu tahap.
+
+Sekarang, terdapat suatu pengertian (matematis) yang cukup langsung yang
+menurutnya kita tidak \emph{peduli} apakah terdapat himpunan di luar
+hierarki. (Jika memang ada, kita dapat mengabaikannya begitu saja.) Namun,
+kita telah memotivasi \emph{konsep} himpunan kita dengan gagasan bahwa setiap
+himpunan dibentuk pada suatu tahap (lihat \stageshier{} dalam
+\olref[z][story]{sec}). Jadi, kita hendak meniadakan kemungkinan adanya
+himpunan yang berada di luar hierarki. Karena itu, kita harus menambahkan
+aksioma baru yang memastikan bahwa setiap himpunan muncul di suatu tempat
+dalam hierarki.
+
+Karena $V_\alpha$ merupakan tahap-tahap kita, kita dapat saja
+mempertimbangkan untuk menambahkan pernyataan berikut sebagai aksioma:
+
+\begin{defish}
+\emph{Regularitas.} $\forall A \exists \alpha\, A \subseteq V_\alpha$
+\end{defish}
+
+Pendekatan ini sepenuhnya masuk akal. Namun, karena alasan yang akan
+dijelaskan pada bagian berikutnya, kita justru akan mengadopsi aksioma
+alternatif:
+
+\begin{axiom}[Fondasi]
+$(\forall A \neq \emptyset)(\exists B \in A)A \cap B = \emptyset$.
+\end{axiom}
+
+Dengan sedikit usaha, kita dapat menunjukkan (dalam $\ZFminus$) bahwa Fondasi
+mengimplikasikan Regularitas:
+\begin{defn}
+Untuk setiap himpunan $A$, tetapkan:
+\begin{align*}
+	\text{cl}_0(A) &= A,\\
+	\text{cl}_{n+1}(A) &= \bigcup \text{cl}_n(A),\\
+	\text{trcl}(A) &= \bigcup_{n < \omega} \text{cl}_{n}(A).
+\end{align*}
+Kita menyebut $\text{trcl}(A)$ sebagai \emph{penutupan transitif} dari $A$.
+\end{defn}
+\noindent
+Nama ``penutupan transitif'' memang tepat:
+\begin{prop}\ollabel{subsetoftrcl}
+$A \subseteq \trcl{A}$ dan $\trcl{A}$ merupakan himpunan transitif.
+\end{prop}
+
+\begin{proof}
+Jelas bahwa $A = \text{cl}_0(A) \subseteq \text{trcl}(A)$. Dan jika
+$x \in b \in \trcl{A}$, maka $b \in \text{cl}_n(A)$ untuk suatu $n$,
+sehingga $x \in \text{cl}_{n+1}(A) \subseteq \text{trcl}(A)$.
+\end{proof}
+
+\begin{lem}\ollabel{lem:TransitiveWellFounded}
+Jika $A$ merupakan himpunan transitif, maka terdapat suatu $\alpha$ sehingga
+$A \subseteq V_\alpha$.
+\end{lem}
+
+\begin{proof}
+Dengan mengingat definisi ``$\supstrict(X)$'' dari
+\olref[ordinals][opps]{defsupstrict}, definisikan dua himpunan:
+\begin{align*}
+	D  &= \Setabs{x \in A}{\forall \delta\ x \nsubseteq V_\delta}\\
+	\alpha &= \supstrict\Setabs{\delta}{(\exists x \in A)
+	(x \subseteq V_\delta \land (\forall \gamma \in \delta)x \nsubseteq V_\gamma)}
+\end{align*}
+Andaikan $D = \emptyset$. Jadi, jika $x \in A$, maka terdapat suatu
+$\delta$ sehingga $x \subseteq V_\delta$ dan, berdasarkan pengurutan baik
+ordinal, $(\forall \gamma \in \delta)x \nsubseteq V_\gamma$; karena itu
+$\delta \in \alpha$, sehingga $x \in V_\alpha$ berdasarkan
+\olref[spine][Valphabasic]{Valphabasicprops}. Maka
+$A \subseteq V_{\alpha}$, sebagaimana diperlukan.
+
+Jadi, cukup ditunjukkan bahwa $D = \emptyset$. Untuk reductio, andaikan tidak.
+Berdasarkan Fondasi, terdapat suatu $B \in D \subseteq A$ sehingga
+$D \cap B = \emptyset$. Jika $x \in B$, maka $x \in A$ karena $A$
+transitif; dan karena $x \notin D$, diperoleh bahwa
+$\exists \delta\ x \subseteq V_\delta$. Sekarang tetapkan
+\[
+	\beta = \supstrict\Setabs{\delta}{(\exists x \in B)(x \subseteq V_\delta \land (\forall \gamma < \delta)x \nsubseteq V_\gamma)}.
+\]
+Seperti sebelumnya, $B \subseteq V_\beta$, bertentangan dengan klaim bahwa
+$B \in D$.
+\end{proof}
+
+\begin{thm}\ollabel{zfentailsregularity}
+Regularitas berlaku.
+\end{thm}
+
+\begin{proof}
+Tetapkan $A$; sekarang $A \subseteq \trcl{A}$ berdasarkan
+\olref{subsetoftrcl}, dan yang disebut terakhir bersifat transitif. Jadi,
+terdapat suatu
+$\alpha$ sehingga $A \subseteq \trcl{A} \subseteq V_\alpha$ berdasarkan
+\olref{lem:TransitiveWellFounded}.
+\end{proof}
+
+Hasil-hasil ini menunjukkan bahwa $\ZFminus$ membuktikan implikasi
+$\emph{Fondasi}\Rightarrow\emph{Regularitas}$. Dalam
+\olref[spine][rank]{zfminusregularityfoundation}, kita akan menunjukkan bahwa
+$\ZFminus$ membuktikan
+$\emph{Regularitas}\Rightarrow\emph{Fondasi}$. Dengan demikian, Fondasi dan
+Regularitas \emph{ekuivalen} (modulo $\ZFminus$). Namun, ini berarti bahwa,
+dengan mengandaikan $\ZFminus$, kita dapat membenarkan Fondasi dengan
+memperhatikan bahwa aksioma itu ekuivalen dengan Regularitas. Dan kita dapat
+langsung membenarkan Regularitas berdasarkan \stageshier{}.
+
+\end{document}

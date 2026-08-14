@@ -1,0 +1,86 @@
+% Bagian: second-order-logic
+% Bab: sol-and-sets
+% Subbagian: comparing-sets
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{set}{cmp}
+
+\olsection{Membandingkan Himpunan}
+
+\begin{prop}
+!!^{formula} $\lforall[x][(X(x) \lif Y(x))]$ mendefinisikan relasi himpunan
+bagian, yakni $\Sat{M}{\lforall[x][(X(x) \lif Y(x))]}[s]$ jika dan hanya jika
+$s(X) \subseteq s(Y)$.
+\end{prop}
+
+\begin{prop}
+!!^{formula} $\lforall[x][(X(x) \liff Y(x))]$ mendefinisikan relasi identitas
+pada himpunan, yakni $\Sat{M}{\lforall[x][(X(x) \liff Y(x))]}[s]$ jika dan
+hanya jika $s(X) = s(Y)$.
+\end{prop}
+
+\begin{prop}
+!!^{formula} $\lexists[x][X(x)]$ mendefinisikan sifat tidak kosong, yakni
+$\Sat{M}{\lexists[x][X(x)]}[s]$ jika dan hanya jika $s(X) \neq
+\emptyset$.
+\end{prop}
+
+Suatu himpunan~$X$ tidak lebih besar daripada himpunan~$Y$,
+$\cardle{X}{Y}$, jika dan hanya jika terdapat fungsi !!a{injective}
+$f\colon X \to Y$. Karena kita dapat mengungkapkan bahwa suatu fungsi
+bersifat injektif, dan juga bahwa nilai-nilainya untuk argumen dalam~$X$
+berada dalam~$Y$, kita juga dapat mendefinisikan relasi tidak lebih besar
+daripada di antara himpunan-himpunan bagian domain.
+
+\begin{prop}
+Formula
+\[
+\lexists[u][(\lforall[x][(X(x) \lif Y(u(x)))] \land
+  \lforall[x][\lforall[y][((X(x) \land X(y) \land
+    \eq[u(x)][u(y)]) \lif \eq[x][y])]])]
+\]
+mendefinisikan relasi tidak lebih besar daripada.
+\end{prop}
+
+Dua himpunan berukuran sama, atau ``berkardinalitas sama,''
+$\cardeq{X}{Y}$, jika dan hanya jika terdapat fungsi
+!!a{bijective}~$f\colon X \to Y$.
+
+\begin{prop}
+Formula
+\begin{multline*}
+  \lexists[u][(\lforall[x][(X(x) \lif Y(u(x)))] \land {}\\
+    \lforall[x][\lforall[y][((X(x) \land X(y) \land
+      \eq[u(x)][u(y)]) \lif \eq[x][y])]]
+  \land {} \\\lforall[y][(Y(y) \lif \lexists[x][(X(x)
+      \land \eq[y][u(x)])])])]
+\end{multline*}
+mendefinisikan relasi berkardinalitas sama.
+\end{prop}
+
+Kita akan menyingkat !!{formula}s ini, secara berturut-turut, sebagai
+$X \subseteq Y$, $X = Y$, $X \neq \emptyset$, $\cardle{X}{Y}$, dan
+$\cardeq{X}{Y}$. (Ini mungkin sedikit membingungkan karena kita menggunakan
+notasi yang sama ketika berbicara secara informal tentang himpunan $X$ dan
+$Y$---tetapi di sini notasi tersebut merupakan singkatan bagi !!{formula}s
+dalam logika orde kedua yang melibatkan variabel relasi satu-tempat $X$
+dan~$Y$.)
+
+\begin{prop}
+!!^{sentence} $\lforall[X][\lforall[Y][((\cardle{X}{Y} \land
+    \cardle{Y}{X}) \lif \cardeq{X}{Y})]]$ valid.
+\end{prop}
+
+\begin{proof}
+!!^{sentence} tersebut dipenuhi dalam !!a{structure}~$\Struct{M}$ jika untuk
+sebarang himpunan bagian $X \subseteq \Domain{M}$ dan
+$Y \subseteq \Domain{M}$, jika $\cardle{X}{Y}$ dan $\cardle{Y}{X}$, maka
+$\cardeq{X}{Y}$. Namun, hal ini berlaku bagi \emph{sebarang} himpunan $X$
+dan $Y$---inilah Teorema Schr\"oder--Bernstein.
+\end{proof}
+
+
+\end{document}

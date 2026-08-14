@@ -1,0 +1,235 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: translation-G2i
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{nat}{tgi}
+
+\olsection{Menerjemahkan dari \Log{G2i} ke \Log{N2i}}
+
+Anteseden sekuen dalam \Log{G2i} adalah multihimpunan~$\Gamma$ dari
+!!{formula}, sedangkan anteseden sekuen dalam \Log{N2i} adalah
+himpunan~$\Gamma'$ dari formula berlabel dengan sifat bahwa setiap label
+hanya muncul satu kali. Kita katakan bahwa suatu himpunan~$\Gamma'$ dari
+!!{formula} berlabel \emph{bersesuaian dengan} multihimpunan~$\Gamma$
+jika, untuk setiap !!{formula}~$!A$, banyaknya !!{element} dalam
+$\Gamma'$ yang berbentuk $x:!A$ kurang dari atau sama dengan
+multiplisitas~$!A$ (yakni banyaknya salinan~$!A$) dalam~$\Gamma$.
+
+\begin{prop}\ollabel{prop:G2i-to-N2i}
+Jika $\Log{G2i}+\Cut \Proves \Gamma \Sequent \Delta$, maka
+$\Log{N2i} \Proves \Gamma' \Sequent !C$, dengan
+$!C\ident\lfalse$ jika $\Delta$ kosong dan
+$\Delta=\{!A\}$ jika tidak, serta $\Gamma'$ bersesuaian
+dengan~$\Gamma$.
+\end{prop}
+
+\begin{proof}
+  Kita menunjukkan bahwa jika $\pi$ adalah !!a{proof} atas
+  $\Gamma \Sequent \Delta$ dalam $\Log{G2i}+\Cut$, maka terdapat
+  suatu~$\Gamma'$ yang bersesuaian dengan~$\Gamma$ dan
+  !!a{proof}~$\delta$ atas~$\Gamma'\Sequent !C$ dalam~\Log{N2i}.
+  Kita melakukannya melalui induksi pada $n=\pheight{\pi}$.
+
+  Jika $n=0$, maka $\pi$ merupakan aksioma. Jika $\pi$ adalah aksioma
+  $\lfalse\Sequent\quad$, maka $\delta$ adalah aksioma
+  $x:\lfalse\Sequent\lfalse$; yakni,
+  $\Gamma'=\{x:\lfalse\}$ dan $!C\ident\lfalse$. Jika $\pi$ merupakan
+  aksioma berbentuk $!A\Sequent !A$, maka $\delta$ adalah
+  $x:!A\Sequent !A$.
+
+  Jika $n>0$, $\pi$ berakhir pada suatu aturan~$R$. Hipotesis induksi
+  menjamin adanya !!{proof} atas sekuen-sekuen yang bersesuaian dengan
+  premis aturan tersebut dalam~\Log{N2i}. Kita dapat mengasumsikan bahwa
+  semua label pelepasan dalam bukti-bukti itu berbeda, dan bahwa suatu
+  label $x$ hanya muncul di atas inferensi yang melepaskannya, jika
+  label itu dilepaskan sama sekali (dengan mengganti label bila perlu).
+  Lalu kita menunjukkan cara menggabungkan !!{proof} tersebut
+  untuk menghasilkan bukti atas $\Gamma'\Sequent !C$ yang sesuai.
+  Kita membedakan kasus menurut~$R$.
+
+  \begin{enumerate}
+    \item Jika $R$ adalah \RightR{\Weakening}, $\pi$ berakhir pada
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma \fCenter$
+    \RightLabel{\RightR{\Weakening}}
+    \UnaryInf$\Gamma \fCenter !A$
+    \DisplayProof
+    \]
+    Hipotesis induksi yang diterapkan pada $\pi_1$ menghasilkan
+    !!a{proof} atas~$\Gamma'\Sequent\lfalse$. Kita menerapkan
+    $\FalseInt$ untuk memperoleh !!a{proof} atas
+    $\Gamma'\Sequent !A$.
+
+    \item Jika $R$ adalah \LeftR{\Weakening}, $\pi$ berakhir pada
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\Weakening}}
+    \UnaryInf$!A, \Gamma \fCenter \Delta$
+    \DisplayProof
+    \]
+    Hipotesis induksi yang diterapkan pada $\pi_1$ menghasilkan
+    !!a{proof} atas~$\Gamma'\Sequent !C$, yang kita ambil
+    sebagai~$\delta$. Perhatikan bahwa jika $\Gamma'$ bersesuaian
+    dengan~$\Gamma$, maka $\Gamma'$ juga bersesuaian dengan
+    $!A,\Gamma$: banyaknya $x:!A$ dalam $\Gamma'$ tidak melebihi
+    banyaknya salinan~$!A$ dalam~$\Gamma$, sehingga juga tidak melebihi
+    banyaknya salinan $!A$ dalam $\Gamma\cup\{!A\}$.
+
+    \item Jika $R$ adalah \LeftR{\Contraction}, $\pi$ berakhir pada
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$!A, !A, \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\Contraction}}
+    \UnaryInf$!A, \Gamma \fCenter \Delta$
+    \DisplayProof
+    \]
+    Hipotesis induksi yang diterapkan pada $\pi_1$ menghasilkan
+    !!a{proof} atas~$\Pi,\Gamma'\Sequent !C$, dengan
+    $\Pi\subseteq\{x:!A,y:!A\}$. Jika
+    $\Pi=\{x:!A,y:!A\}$, ganti semua !!{formula} berlabel $y:!A$
+    dalam~$\delta$ dengan $x:!A$. Karena $x$ muncul dalam konteks
+    sekuen akhir~$\delta$, kita dapat mengasumsikan bahwa tidak ada
+    inferensi dalam~$\delta$ yang melepaskan !!a{formula} berbentuk
+    $x:!B$; yakni, tidak ada $x:!B$ di sebelah kiri sekuen
+    dalam~$\delta$ yang aktif. Akibatnya, hasilnya tetap merupakan
+    !!a{proof} dalam~\Log{N2i}.
+
+    \item Jika $R$ adalah $\RightR{\lif}$, $\pi$ berakhir pada
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$!A, \Gamma \fCenter !B$
+    \RightLabel{\RightR{\lif}}
+    \UnaryInf$\Gamma \fCenter !A \lif !B$
+    \DisplayProof
+    \]
+    Berdasarkan hipotesis induksi, terdapat !!a{proof}~$\delta_1$
+    atas $x:!A,\Gamma'\Sequent !B$ atau
+    $\Gamma'\Sequent !B$, dengan $\Gamma'$ bersesuaian
+    dengan~$\Gamma$. Kita mengambil $\delta$ sebagai $\delta_1$ yang
+    diikuti satu penerapan \Intro{\lif}.
+
+    \item Jika $R$ adalah \LeftR{\lif}, $\pi$ berakhir pada
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma_1 \fCenter !A$
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$!B, \Gamma_2 \fCenter \Delta$
+    \RightLabel{\LeftR{\lif}}
+    \BinaryInf$!A \lif !B, \Gamma_1, \Gamma_2 \fCenter \Delta$
+    \DisplayProof
+    \]
+    Hipotesis induksi menghasilkan !!{proof}~$\delta_1$ atas
+    $\Gamma_1'\Sequent !A$ serta $\delta_2$ atas
+    $x:!B,\Gamma_2'\Sequent !C$ atau atas
+    $\Gamma_2'\Sequent !C$. Jika $\delta_2$ berbentuk yang terakhir,
+    $\delta_2$ dapat berperan sebagai~$\delta$. Jika tidak, kita dapat
+    mengganti semua formula dan label pelepasan dalam~$\delta_1$
+    untuk memastikan bahwa tidak ada label yang muncul sekaligus dalam
+    $\delta_1$ dan~$\delta_2$. Maka
+    $\Gamma_1'\cup\Gamma_2'$ bersesuaian dengan
+    $\Gamma_1\cup\Gamma_2$. Karena $x:!B$ muncul dalam sekuen akhir
+    $\delta_2$, $x:!B$ tidak dapat aktif dalam inferensi apa pun
+    berlabel pelepasan~$x$ dalam~$\delta_2$. Ganti setiap aksioma
+    $x:!B\Sequent !B$ dalam~$\delta_2$ dengan !!{proof}~$\delta_3$
+    \[
+    \Axiom$x: !A \lif !B \fCenter !A \lif !B$
+    \AxiomC{}
+    \RightLabel{$\delta_1$}
+    \Deduce$\Gamma_1' \fCenter !A$
+    \RightLabel{\Elim{\lif}}
+    \BinaryInf$x: !A \lif !B, \Gamma_1' \fCenter !B$
+    \DisplayProof
+    \]
+    dan ganti setiap kemunculan $x:!B$ dalam~$\delta_2$ dengan
+    $x:!A\lif !B$. Hasil
+    $\Subst{\delta_2}{\delta_3}{x:!B}$ merupakan !!a{proof} atas
+    $x:!A\lif !B,\Gamma_1',\Gamma_2'\Sequent !C$.
+
+    \item Jika $R$ adalah \RightR{\land}, $\pi$ berakhir pada
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma_1 \fCenter !A$
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$\Gamma_2 \fCenter !B$
+    \RightLabel{\RightR{\land}}
+    \BinaryInf$\Gamma_1, \Gamma_2 \fCenter !A \land !B$
+    \DisplayProof
+    \]
+    Hipotesis induksi menghasilkan bukti~$\delta_1$ atas
+    $\Gamma_1'\Sequent !A$ dan $\delta_2$ atas
+    $\Gamma_2'\Sequent !B$. Dengan mengganti semua formula dan label
+    pelepasan dalam~$\delta_2$, kita dapat memastikan bahwa tidak ada
+    label yang muncul sekaligus dalam $\delta_1$ dan $\delta_2$.
+    Maka $\Gamma_1'\cup\Gamma_2'$ bersesuaian dengan
+    $\Gamma_1\cup\Gamma_2$. Kita memperoleh !!a{proof}~$\delta$
+    dengan menerapkan $\Intro{\land}$ pada sekuen akhir $\delta_1$
+    dan~$\delta_2$.
+
+    \item Jika $R$ adalah $\LeftR{\land}$, $\pi$ berakhir, misalnya,
+    pada
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$!A, \Gamma \fCenter \Delta$
+    \RightLabel{\LeftR{\land}}
+    \UnaryInf$!A \land !B, \Gamma \fCenter \Delta$
+    \DisplayProof
+    \]
+    Berdasarkan hipotesis induksi, terdapat !!a{proof}~$\delta_1$
+    atas $x:!A,\Gamma'\Sequent !C$ atau
+    $\Gamma'\Sequent !C$, dengan $\Gamma'$ bersesuaian
+    dengan~$\Gamma$. Dalam kasus kedua, kita dapat mengambil
+    $\delta_1$ sebagai~$\delta$. Dalam kasus pertama, perhatikan bahwa
+    karena $x:!A$ muncul dalam sekuen akhir, $x:!A$ tidak aktif dalam
+    inferensi mana pun berlabel pelepasan~$x$ dalam~$\delta_1$.
+    Ganti setiap aksioma $x:!A\Sequent !A$ dengan !!{proof}~$\delta_2$
+    \[
+    \Axiom$x: !A \land !B \fCenter !A \land !B$
+    \RightLabel{\Elim{\land}}
+    \UnaryInf$x: !A \land !B \fCenter !A$
+    \DisplayProof
+    \]
+    dan setiap kemunculan $x:!A$ dengan $x:!A\land !B$; yakni,
+    tinjau $\Subst{\delta_1}{\delta_2}{x:!A}$. Ini merupakan
+    !!a{proof} atas
+    $x:!A\land !B,\Gamma'\Sequent !C$.
+
+    \item Jika $R$ adalah \Cut, $\pi$ berakhir pada
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_1$}
+    \Deduce$\Gamma_1 \fCenter !A$
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$!A, \Gamma_2 \fCenter \Delta$
+    \RightLabel{\Cut}
+    \BinaryInf$\Gamma_1, \Gamma_2 \fCenter \Delta$
+    \DisplayProof
+    \]
+    Hipotesis induksi menghasilkan bukti~$\delta_1$ atas
+    $\Gamma_1'\Sequent !A$ dan $\delta_2$ atas
+    $x:!A,\Gamma_2'\Sequent !C$ atau atas
+    $\Gamma_2'\Sequent !C$. Dalam kasus kedua, ambil $\delta$ sebagai
+    $\delta_2$. Jika tidak, ganti setiap aksioma
+    $x:!A\Sequent !A$ dalam $\delta_2$ dengan $\delta_1$ untuk
+    memperoleh~$\delta$ sebagai !!{proof}
+    $\Subst{\delta_2}{\delta_1}{x:!A}$ atas
+    $\Gamma_1',\Gamma_2'\Sequent !C$.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

@@ -1,0 +1,63 @@
+% Bagian: counterfactuals
+% Bab: minimal-change-semantics
+% Subbagian: contraposition
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cnt}{min}{cpo}
+
+\olsection{Kontraposisi}
+
+Kondisional material dan kondisional ketat ekuivalen dengan kontraposisinya.
+Kontrafaktual tidak demikian. Berikut suatu contoh dari Kratzer:
+\begin{quote}
+  Seandainya Goethe tidak wafat pada 1832, sekarang ia (tetap) sudah wafat.
+
+  Seandainya Goethe belum wafat sekarang, ia akan wafat pada 1832.
+\end{quote}
+Kalimat pertama benar: manusia tidak hidup selama ratusan tahun. Kalimat
+kedua jelas salah: seandainya Goethe belum wafat sekarang, ia masih hidup,
+sehingga tidak mungkin telah wafat pada 1832.
+
+\begin{ex}\ollabel{ex:contraposition-counterex}
+  Semantik bola membuat kontraposisi tidak valid, yakni kita mempunyai $p
+  \cif q \Entails/ \lnot q \cif \lnot p$. Pahami $p$ sebagai ``Goethe tidak
+  wafat pada 1832'' dan $q$ sebagai ``Goethe sudah wafat sekarang.'' Kita
+  dapat menangkap hal ini dalam suatu model $\mModel{M_1} = \tuple{W, O, V}$
+  dengan $W = \{w, w_1, w_2\}$, $O_w = \{\{w\}, \{w, w_1\}, \{w, w_1,
+  w_2\}\}$, $V(p) = \{w_1, w_2\}$, dan $V(q) = \{w, w_1\}$. Jadi, $w$
+  adalah dunia aktual tempat Goethe wafat pada 1832 dan kini sudah wafat;
+  $w_1$ adalah dunia (dekat) tempat Goethe wafat, misalnya, pada 1833 dan kini
+  juga sudah wafat; dan $w_2$ adalah dunia (jauh) tempat Goethe masih hidup.
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=.6,layerwidth=1.5]\tiny
+  \spheresystem{3}
+  \begin{scope}
+    \clip \propositionplot{0}{.8}{50}{4.5} -- (4.5,-4.5) -- (-4.5,-4.5) -- (-4.5,4.5) -- (4.5,4.5);
+    \spherelayer{3}
+  \end{scope}
+  \propositionintersect{0}{2}{110}{5.5}
+  \proposition{0}{.8}{50}{4.5}
+  \path (0,0) node[world] {$w$};
+  \spherepos{0}{2}{node[world] {$w_1$}}
+  \spherepos{-50}{3}{node[world] {$w_2$}}
+  \spherepos{28}{3}{node {$q$}}
+  \spherepos{42}{3}{node {$\lnot q$}}
+  \spherepos{-55}{4}{node {$p$}}
+  \spherepos{-67}{4}{node {$\lnot p$}}
+\end{tikzpicture}
+\caption{Model tandingan bagi kontraposisi}
+\ollabel{fig:contraposition}
+\end{center}
+\end{figure}
+Terdapat bola yang memuat dunia-$p$, yaitu $S = \{w, w_1\}$, dan $p \lif q$
+benar pada semua dunia di dalamnya, sehingga $\mSat{M_1}{p \cif q}[w]$.
+Namun, bola yang memuat dunia-$\lnot q$, $\{w, w_1, w_2\}$, memuat suatu
+dunia, yaitu~$w_2$, tempat $q$ salah dan $p$ benar, sehingga
+$\mSat/{M_1}{\lnot q \lif \lnot p}[w_2]$.
+\end{ex}
+
+\end{document}

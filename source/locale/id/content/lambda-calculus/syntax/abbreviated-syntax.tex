@@ -1,0 +1,45 @@
+% Part: lambda-calculus
+% Chapter: syntax
+% Section: abbreviated-syntax
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{syn}{abb}
+\olsection{Sintaksis Singkat}
+
+Suku-suku sebagaimana didefinisikan dalam \olref[trm]{defn:term} terkadang
+merepotkan untuk ditulis, sehingga berguna untuk memperkenalkan sintaksis yang
+lebih ringkas. Tentu saja, kita harus berhati-hati memastikan bahwa suku-suku
+dalam notasi ringkas tersebut juga dapat dibaca secara unik. Salah satu versi
+yang digunakan secara luas, yang disebut \emph{suku singkat}, adalah sebagai
+berikut.
+
+\begin{enumerate}
+\item Apabila tanda kurung dihilangkan, aplikasi berlangsung dari kiri ke
+  kanan. Sebagai contoh, jika $M$, $N$, $P$, dan~$Q$ adalah suku, maka $MNPQ$
+  menyingkat $(((MN)P)Q)$.
+\item Sekali lagi, apabila tanda kurung dihilangkan, abstraksi lambda diberi
+  lingkup seluas mungkin. Sebagai contoh, $\lambd[x][MNP]$ dibaca sebagai
+  $(\lambd[x][((MN)P)])$.
+\item Satu lambda dapat digunakan untuk mengabstraksikan beberapa variabel.
+  Sebagai contoh, $\lambd[xyz][M]$ menyingkat
+  $\lambd[x][\lambd[y][\lambd[z][M]]]$.
+\end{enumerate}
+
+Sebagai contoh,
+\[
+\lambd[xy][xxyx \lambd[z][xz]]
+\]
+menyingkat
+\[
+(\lambd[x][(\lambd[y][((((xx)y)x)(\lambd[z][(xz)]))])]).
+\]
+
+\begin{prob}
+Uraikan suku singkat $\lambd[g][(\lambd[x][g (x x)])
+  \lambd[x][g (x x)]]$ ke bentuk lengkapnya.
+\end{prob}
+
+\end{document}

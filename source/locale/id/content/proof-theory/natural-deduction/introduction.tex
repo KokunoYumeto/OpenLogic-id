@@ -1,0 +1,118 @@
+% Part: proof-theory
+% Chapter: natural-deduction
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{nat}{int}
+
+\olsection{Pendahuluan}
+
+Deduksi alami adalah keluarga sistem !!{proof} yang di dalamnya setiap
+penghubung logis atau kuantor memiliki sepasang inferensi: satu yang
+``mengintroduksi'' operator tersebut (disebut !!a{introduction}) dan satu
+yang ``mengeliminasi'' operator tersebut (disebut !!a{elimination}).
+Misalnya, \Intro{\lif} memiliki !!{formula} berbentuk~$!A \lif !B$ sebagai
+kesimpulan, sedangkan \Elim{\lif} memiliki !!{formula} berbentuk~$!A \lif
+!B$ sebagai premis.
+
+Dua versi pertama deduksi alami diperkenalkan pada tahun 1930-an oleh
+Gerhard Gentzen dan Stanisław Jaśkowski. Sistem Gentzen merupakan sistem
+yang paling sering dibahas oleh para teoretikus bukti, sedangkan sistem
+Jaśkowski melahirkan sistem-sistem yang paling luas digunakan dalam
+pengajaran. Dalam kedua sistem itu, kita dapat memulai dengan
+\emph{asumsi}---!!{formula} yang tidak perlu di-!!{prove}, tetapi dapat
+digunakan dalam !!{proving} !!{formula} lain. Seluruh !!{proof} dapat
+bergantung pada asumsi-asumsi semacam itu. Karena asumsi-asumsi tersebut
+belum dibuktikan, !!{proof} itu tidak menetapkan kesimpulannya
+(\emph{!!{formula} akhir}), melainkan hanya bahwa kesimpulannya mengikuti
+dari asumsi-asumsi tersebut.
+
+Sebagian aturan inferensi mempunyai kesimpulan yang tidak lagi bergantung
+pada asumsi tertentu: aturan-aturan itu ``melepaskan'' asumsi.
+Misalnya, aturan \Intro{\lif} mengambil !!a{proof} atas kesimpulan~$!B$
+dari asumsi~$!A$, dan mempunyai $!A \lif !B$ sebagai kesimpulannya.
+!!{proof} yang berakhir pada $!A \lif !B$ tidak lagi bergantung
+pada~$!A$; asumsi $!A$ telah dilepaskan. Dalam sistem Gentzen,
+!!{proof} merupakan pohon !!{formula}; asumsi-asumsinya adalah
+!!{formula} paling atas; dan aturan seperti~\Intro{\lif} membawa label
+yang menunjukkan asumsi mana yang dilepaskan. Dalam sistem Jaśkowski,
+bagian !!{proof} yang bergantung pada suatu asumsi dipisahkan dengan cara
+tertentu, misalnya diberi inden di belakang garis vertikal atau ditempatkan
+dalam kotak. Asumsi~$!A$ yang dilepaskan dan konsekuen $!B$ dari
+kondisional menjadi baris pertama dan terakhir di dalam kotak, sedangkan
+kesimpulan~$!A \lif !B$ dari \Intro{\lif} berada di luar kotak.
+
+Sistem-sistem tersebut bersifat ``alami'' karena aturan inferensinya
+mencerminkan cara kita (atau setidaknya matematikawan) bernalar secara
+alami. Untuk menetapkan hasil hipotetis (suatu kondisional), kita
+mengasumsikan antesedennya dan menggunakannya untuk membuktikan
+konsekuennya. Itulah~\Intro{\lif}. Ketika kita mengetahui kondisional
+$!A \lif !B$ dan antesedennya~$!A$, kita menyimpulkan~$!B$.
+Itulah~\Elim{\lif}. Kita menggunakan bukti dengan kasus untuk menunjukkan
+bahwa, dengan mengasumsikan disjungsi~$!A \lor !B$, suatu kesimpulan
+berlaku. Itulah~\Elim{\lor}. Untuk membuktikan klaim umum
+$\lforall[x][!A(x)]$, kita membuktikan bahwa $!A(c)$ berlaku untuk
+$c$ yang sebarang. Itulah~\Intro{\lforall}. Demikian seterusnya.
+
+Sebagai contoh, berikut !!{proof} sederhana atas~$!A \lif (!A \lor !B)$
+dalam deduksi alami bergaya Gentzen:
+\[
+\AxiomC{$\Discharge{!A}{x}$}
+\RightLabel{\Intro{\lor}}
+\UnaryInfC{$!A \lor !B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif (!A \lor !B)$}
+\DisplayProof
+\]
+Bukti ini bermula dengan asumsi~$!A$, menggunakan \Intro{\lor} untuk
+menyimpulkan~$!A \lor !B$, lalu menggunakan \Intro{\lif} untuk
+menyimpulkan~$!A \lif (!A \lor !B)$. Inferensi \Intro{\lif} melepaskan
+asumsi~$!A$; hal ini ditunjukkan oleh label~$x$.
+
+Para teoretikus bukti lebih menyukai sistem asli Gentzen yang bekerja
+dengan pohon !!{formula}, meskipun salah satu variannya juga penting dalam
+teori bukti. !!^a{proof} atas~$!A$ dari asumsi-asumsi~$\Gamma$ menunjukkan
+bahwa $!A$ mengikuti dari~$\Gamma$, yakni $\Gamma \Entails !A$. Aturan
+inferensi deduksi alami dapat dibaca secara alami sebagai aturan yang
+memberi tahu kita sesuatu tentang relasi konsekuensi semacam itu. Misalnya,
+\Intro{\lif} mengatakan bahwa jika $\Gamma + !A \Entails !B$, maka
+$\Gamma \Entails !A \lif !B$. Wajar pula jika aturan-aturan tersebut
+dirumuskan langsung agar bekerja sekaligus pada asumsi dan kesimpulan yang
+mengikuti darinya dalam premis serta kesimpulan aturan inferensi; yakni,
+aturan itu bekerja pada sekuen $\Gamma \Sequent !A$. Bukti sederhana di
+atas akan tampak sebagai berikut dalam sistem semacam itu:
+\[
+\Axiom$x:!A \fCenter !A$
+\RightLabel{\Intro{\lor}}
+\UnaryInf$x:!A \fCenter !A \lor !B$
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInf$\fCenter !A \lif (!A \lor !B)$
+\DisplayProof
+\]
+Seperti terlihat, aturan-aturannya sama: aturan itu bekerja pada
+!!{formula} di sebelah kanan~$\Sequent$, sedangkan !!{formula} di sebelah
+kiri hanya mencantumkan asumsi yang menjadi tempat ketergantungan pada
+setiap langkah.
+
+Pasangan lengkap aturan !!{introduction}/!!{elimination} itu sendiri
+tidak lengkap bagi logika klasik. Kita perlu menambahkan dua aturan yang
+berkaitan dengan~$\lfalse$. Yang pertama ialah
+``aturan absurditas intuisionistik''~\FalseInt, atau ``ledakan,''
+yang mengatakan bahwa dari $\lfalse$ kita dapat menyimpulkan apa pun.
+Yang kedua ialah prinsip klasik bukti tak langsung~\FalseCl{} (atau
+``aturan absurditas klasik''), yang mengatakan bahwa jika kita dapat
+!!{prove}~$\lfalse$ dari~$\lnot !A$, maka kita telah !!{prove}~$!A$.
+Jika \FalseCl{} ditiadakan, kita memperoleh sistem yang sesuai untuk
+logika intuisionistik. Jika keduanya ditiadakan, kita memperoleh apa yang
+dikenal sebagai ``logika minimal.''
+
+Kita akan membahas deduksi alami bergaya Gentzen untuk logika klasik dan
+intuisionistik. Sistem-sistem ini adalah \Log{N1c} dan \Log{N1i}.
+Sistem \Log{N2c} dan \Log{N2i} merupakan sistem yang bersesuaian, tetapi
+bekerja pada sekuen $\Gamma \Sequent !A$, bukan pada satu
+!!{formula}~$!A$.
+
+\end{document}

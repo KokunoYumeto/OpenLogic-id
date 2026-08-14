@@ -1,0 +1,57 @@
+% Part: normal-modal-logic
+% Chapter: syntax-and-semantics
+% Section: relational-models
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{syn}{rel}
+
+\olsection{Model Relasional}
+
+Konsep dasar semantik bagi logika modal normal ialah \emph{model
+relasional}. Model ini terdiri atas suatu himpunan dunia yang dihubungkan oleh
+``relasi aksesibilitas'' biner, beserta suatu penetapan yang menentukan
+!!{propositional variable} mana yang dianggap ``benar'' pada dunia mana.
+
+\begin{defn}
+  Suatu \emph{model} bagi bahasa modal dasar adalah tripel $\mModel{M}
+  = \tuple{W, R, V}$, dengan
+  \begin{enumerate}
+  \item $W$ suatu himpunan ``dunia'' tak kosong,
+  \item $R$ suatu relasi aksesibilitas biner pada~$W$, dan
+  \item $V$ suatu fungsi yang menetapkan kepada setiap !!{propositional
+    variable}~$p$ suatu himpunan dunia mungkin $V(p)$.
+  \end{enumerate}
+  Jika $Rww'$ berlaku, kita mengatakan bahwa $w'$ \emph{dapat diakses
+    dari}~$w$. Jika $w \in V(p)$, kita mengatakan bahwa $p$ \emph{bernilai
+    benar pada dunia}~$w$.
+\end{defn}
+
+Keunggulan besar semantik relasional ialah bahwa model dapat direpresentasikan
+melalui diagram sederhana, seperti diagram dalam \olref{fig:simple}. Dunia
+direpresentasikan oleh simpul, dan dunia~$w'$ dapat diakses dari~$w$ tepat
+ketika terdapat panah dari~$w$ ke~$w'$. Selain itu, kita melabeli suatu simpul
+(dunia) dengan~$\mTrue{p}$ jika $w \in V(p)$, dan jika tidak,
+dengan~\mFalse{p}. \olref{fig:simple} merepresentasikan model dengan
+$W = \{w_1, w_2, w_3\}$, $R = \{\tuple{w_1, w_2},\tuple{w_1,
+  w_3}\}$, $V(p) = \{w_1, w_2\}$, dan $V(q) = \{w_2\}$.
+
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={[align=right]right:\mTrue{p}\\ \mFalse{q}}]{$w_1$}; 
+      \node[world] (w2) [label={[align=right]right:\mTrue{p}\\ \mTrue{q}},
+        above right=of w1]{$w_2$}; 
+      \node[world] (w3) [label={[align=right]right:\mFalse{p}\\ \mFalse{q}},
+        below right=of w1] {$w_3$};
+      \draw[->] (w1) to (w2);
+      \draw[->] (w1) to (w3);
+    \end{tikzpicture}
+  \end{center}
+  \caption{Sebuah model sederhana.}
+  \ollabel{fig:simple}
+\end{figure}
+
+\end{document}

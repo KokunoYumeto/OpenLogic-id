@@ -1,0 +1,71 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: syntax
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{int}{syn}
+\olsection{Sintaksis Kalkulus Lambda}
+
+Kita mulai dengan suatu barisan variabel $x$, $y$, $z$,~\dots dan beberapa
+simbol konstanta $a$, $b$, $c$,~\dots. Himpunan suku didefinisikan secara
+induktif sebagai berikut:
+\begin{enumerate}
+\item Setiap variabel adalah suku.
+\item Setiap konstanta adalah suku.
+\item Jika $M$ dan $N$ adalah suku, maka $(MN)$ juga suku.
+\item Jika $M$ adalah suku dan $x$ adalah variabel, maka
+  $(\lambd[x][M])$ adalah suku.
+\end{enumerate}
+Suku berbentuk $(MN)$ disebut \emph{aplikasi}, sedangkan suku berbentuk
+$(\lambd[x][M])$ disebut \emph{abstraksi}.
+
+Sistem tanpa konstanta sama sekali disebut kalkulus lambda \emph{murni}. Kita
+terutama akan bekerja dalam kalkulus-$\lambd$ murni, sehingga semua huruf kecil
+menyatakan variabel. Kita menggunakan huruf besar ($M$, $N$, dan seterusnya)
+untuk menyatakan suku-suku kalkulus-$\lambd$.
+
+Kita akan mengikuti beberapa konvensi notasi:
+
+\begin{conv}
+\begin{enumerate}
+\item Apabila tanda kurung dihilangkan, aplikasi dikelompokkan dari kiri ke
+  kanan. Sebagai contoh, jika $M$, $N$, $P$, dan $Q$ adalah suku, maka $MNPQ$
+  menyingkat $(((MN)P)Q)$.
+\item Sekali lagi, apabila tanda kurung dihilangkan, abstraksi lambda diberi
+  cakupan seluas mungkin. Sebagai contoh, $\lambd[x][MNP]$ dibaca sebagai
+  $(\lambd[x][((MN)P)])$.
+\item Satu lambda dapat digunakan untuk mengabstraksikan beberapa variabel.
+  Sebagai contoh, $\lambd[xyz][M]$ menyingkat
+  $\lambd[x][\lambd[y][\lambd[z][M]]]$.
+\end{enumerate}
+\end{conv}
+
+Sebagai contoh,
+\[
+\lambd[xy][xxyx \lambd[z][xz]]
+\]
+menyingkat
+\[
+\lambd[x][\lambd[y][((((xx)y)x)(\lambd[z][(xz)]))]].
+\]
+Konvensi-konvensi ini perlu dihafalkan. Pada awalnya konvensi tersebut akan
+membingungkan, tetapi Anda akan terbiasa; setelah beberapa waktu, konvensi itu
+akan jauh kurang membingungkan daripada harus menghadapi belantara tanda
+kurung.
+
+Dua suku yang hanya berbeda dalam nama variabel terikat disebut
+$\alpha$-ekuivalen; misalnya, $\lambd[x][x]$ dan $\lambd[y][y]$. Akan lebih
+praktis jika keduanya dipandang sebagai suku yang ``sama''; dengan kata lain,
+ketika kita mengatakan bahwa $M$ dan $N$ sama, yang dimaksud juga mencakup
+``hingga penggantian nama variabel terikat.'' Variabel yang berada dalam
+cakupan suatu $\lambd$ disebut ``terikat'', sedangkan variabel lainnya disebut
+``bebas.'' Tidak ada variabel bebas dalam contoh sebelumnya; tetapi dalam
+\[
+(\lambd[z][yz])x
+\]
+$y$ dan $x$ bebas, sedangkan $z$ terikat.
+
+\end{document}

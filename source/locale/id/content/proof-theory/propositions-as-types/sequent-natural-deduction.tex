@@ -1,0 +1,136 @@
+% part: intuitionistic-logic
+% chapter: propositions-as-types
+% section: sequent-natural-deduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{int}{pty}{snd}
+
+\olsection{Deduksi Alami Sekuen}
+
+Kita menulis $\Gamma \Sequent !A$ jika terdapat !!{derivation} deduksi alami
+dengan $\Gamma$ sebagai asumsi yang !!{undischarged} dan $!A$ sebagai
+kesimpulan; jika $\Gamma$ kosong, kita menulis $\Sequent !A$.
+
+Kita menulis $\Gamma, !A_1, \dots, !A_n$ untuk
+$\Gamma \cup \{!A_1, \dots, !A_n\}$, dan $\Gamma, \Delta$ untuk
+$\Gamma \cup \Delta$.
+
+Perhatikan bahwa jika kita mempunyai $\Gamma \Sequent !A \land !B$, yakni
+!!a{derivation} dengan $\Gamma$ sebagai asumsi yang !!{undischarged} dan
+$!A \land !B$ sebagai !!{formula} akhir, maka dengan menerapkan
+\Elim{\land} di bagian bawah kita memperoleh !!a{derivation} dengan asumsi
+yang !!{undischarged} sama dan $!A$ sebagai kesimpulan. Dengan kata lain,
+jika $\Gamma \Sequent !A \land !B$, maka $\Gamma \Sequent !A$.
+\begin{prooftree}
+  \Axiom$\Gamma \fCenter !A \land !B$
+  \RightLabel{$\Elim{\land}$}
+  \UnaryInf$\Gamma \fCenter !A$
+  \DisplayProof\qquad\bottomAlignProof
+  \Axiom$\Gamma \fCenter !A \land !B$
+  \RightLabel{$\Elim{\land}$}
+  \UnaryInf$\Gamma \fCenter !B$
+\end{prooftree}
+Label $\Elim{\land}$ menunjukkan hubungannya dengan aturan bernama sama
+dalam deduksi alami.
+
+Demikian pula, andaikan kita mempunyai $\Gamma, !A \Sequent !B$, yakni
+!!a{derivation} dengan asumsi yang !!{undischarged} $\Gamma, !A$ dan
+!!{formula} akhir~$!B$. Jika kita menerapkan aturan \Intro{\lif}, kita
+mempunyai !!a{derivation} dengan $\Gamma$ sebagai asumsi yang
+!!{undischarged} dan $!A \lif !B$ sebagai !!{formula} akhir, yakni
+$\Gamma \Sequent !A \lif !B$. Perhatikan bahwa dengan notasi ini, kita
+!!{discharge} asumsi secara lebih eksplisit.
+\begin{prooftree}
+  \Axiom $\Gamma, !A \fCenter !B$
+  \RightLabel{$\Intro{\lif}$}
+  \UnaryInf $\Gamma \fCenter !A \lif !B$
+\end{prooftree}
+
+Dengan cara yang sama, kita dapat menarik kesimpulan dari aturan-aturan lain,
+yang diperinci sebagai berikut:
+\begin{gather*}
+  \Axiom $\Gamma \fCenter !A$
+  \Axiom $\Delta \fCenter !B$
+  \RightLabel{$\Intro{\land}$}
+  \BinaryInf $\Gamma,\Delta \fCenter !A \land !B$
+  \DisplayProof\\
+  \Axiom $\Gamma \fCenter !A \land !B$
+  \RightLabel{$\Elim{\land}_1$}
+  \UnaryInf $\Gamma \fCenter !A$
+  \DisplayProof
+  \qquad
+  \Axiom $\Gamma \fCenter !A \land !B$
+  \RightLabel{$\Elim{\land}_2$}
+  \UnaryInf $\Gamma \fCenter !B$
+  \DisplayProof
+  \\
+  \Axiom $\Gamma \fCenter !A$
+  \RightLabel{$\Intro{\lor}_1$}
+  \UnaryInf $\Gamma \fCenter !A \lor !B$
+  \DisplayProof\qquad
+  \Axiom $\Gamma \fCenter !B$
+  \RightLabel{$\Intro{\lor}_2$}
+  \UnaryInf $\Gamma \fCenter !A \lor !B$
+  \DisplayProof\\
+  \Axiom $\Gamma \fCenter !A \lor !B$
+  \Axiom $\Delta, !A \fCenter !C$
+  \Axiom $\Delta', !B \fCenter !C$
+  \RightLabel{$\Elim{\lor}$}
+  \TrinaryInf $\Gamma, \Delta, \Delta' \fCenter !C$
+  \DisplayProof
+  \\
+  \Axiom $\Gamma, !A \fCenter !B$
+  \RightLabel{$\Intro{\lif}$}
+  \UnaryInf $\Gamma \fCenter !A \lif !B$
+  \DisplayProof
+  \qquad
+  \Axiom $\Delta \fCenter !A \lif !B$
+  \Axiom $\Gamma \fCenter !A$
+  \RightLabel{$\Elim{\lif}$}
+  \BinaryInf $\Gamma, \Delta \fCenter !B$
+  \DisplayProof
+  \\
+  \Axiom $\Gamma \fCenter \lfalse$
+  \RightLabel{$\FalseInt$}
+  \UnaryInf $\Gamma \fCenter !A$
+  \DisplayProof
+\end{gather*}
+
+Setiap asumsi dengan sendirinya merupakan !!a{derivation} bagi $!A$
+dari~$!A$; dengan kata lain, kita selalu mempunyai $!A \Sequent !A$.
+
+\begin{prooftree}
+  \AxiomC{$ $}
+  \UnaryInfC{$!A \fCenter !A$}
+\end{prooftree}
+
+Secara bersama-sama, aturan-aturan ini dapat dipandang sebagai kalkulus
+tentang keberadaan !!{derivation}s deduksi alami. Aturan-aturan itu juga
+dapat dipandang sebagai varian notasi deduksi alami, tempat setiap langkah
+mencatat bukan hanya !!{formula} yang kita !!{derive}, melainkan juga asumsi
+yang !!{undischarged} dan yang kita gunakan untuk !!{derive} formula tersebut.
+
+Sebagai contoh, dengan $!B$ sebagai singkatan bagi
+$(!A \lor (!A \lif \lfalse))\lif \lfalse$, kita memperoleh:
+\begin{prooftree}
+  \Axiom$!A \fCenter !A$
+  \RightLabel{$\Intro{\lor}[1]$}
+  \UnaryInf$!A \fCenter !A \lor (!A \lif \lfalse)$
+  \Axiom$!B \fCenter !B$
+  \RightLabel{$\Elim{\lif}$}
+  \BinaryInf$!A, !B \fCenter \lfalse$
+  \RightLabel{$\Intro{\lif}$}
+  \UnaryInf$!B \fCenter !A \lif \lfalse$
+  \RightLabel{$\Intro{\lor}[2]$}
+  \UnaryInf$!B \fCenter !A \lor (!A \lif \lfalse)$
+  \Axiom$!B \fCenter !B$
+  \RightLabel{$\Elim{\lif}$}
+  \BinaryInf$!B \fCenter \lfalse$
+  \RightLabel{$\Intro{\lif}$}
+  \UnaryInf$\fCenter !B \lif \lfalse$
+\end{prooftree}
+
+\end{document}

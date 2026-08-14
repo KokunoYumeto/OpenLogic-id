@@ -1,0 +1,70 @@
+% Bagian: counterfactuals
+% Bab: minimal-change-semantics
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{cnt}{min}{int}
+
+\olsection{Pendahuluan}
+
+Stalnaker dan Lewis mengajukan penjelasan tentang kondisional kontrafaktual
+seperti ``seandainya korek api itu digesek, korek itu akan menyala.''
+Penjelasan mereka merupakan usulan tentang cara memahami secara tepat syarat
+kebenaran kalimat semacam itu. Gagasan di balik kedua usulan tersebut adalah
+sebagai berikut: untuk menilai apakah suatu kondisional kontrafaktual benar,
+kita harus mempertimbangkan dunia-dunia mungkin yang perbedaannya dari keadaan
+dunia aktual seminimal mungkin sehingga antesedennya menjadi benar. Jika
+konsekuennya benar di dunia-dunia mungkin ini, kontrafaktual tersebut benar.
+Sebagai contoh, andaikan saya memegang sebatang korek api dan sekotak korek api.
+Di dunia aktual, saya hanya memandang keduanya dan memikirkan apa yang akan
+terjadi seandainya saya menggesek korek api itu. Perubahan minimal dari dunia
+aktual tempat saya menggesek korek api ialah dunia tempat saya memutuskan untuk
+bertindak dan menggeseknya. Perubahan itu minimal dalam arti bahwa tidak ada
+hal lain yang berubah: saya tidak sekaligus melompat ke udara, menggesek korek
+api tidak sekaligus membakar rambut saya, jari-jari saya tidak tiba-tiba
+kehilangan seluruh kekuatannya, saya tidak pada saat yang sama diguyur air
+dalam penyergapan dengan SuperSoaker, dan sebagainya. Dalam kemungkinan
+alternatif itu, korek api tersebut menyala. Jadi, benar bahwa seandainya saya
+menggesek korek api itu, korek tersebut akan menyala.
+
+Penjelasan intuitif ini dapat dipadukan dengan semantik formal bagi logika
+kontrafaktual. Lewis memperkenalkan simbol ``$\boxright$'' untuk kondisional
+kontrafaktual, sedangkan Stalnaker memakai simbol~``$>$''. Kita akan
+memakai~$\cif$ dan menambahkannya sebagai konektif biner ke dalam logika
+proposisi. Jadi, selain !!{formula}s berbentuk $!A \lif !B$, kita juga
+mempunyai !!{formula}s berbentuk~$!A \cif !B$. Seperti semantik relasional
+bagi logika modal, semantik formal ini didasarkan pada model-model tempat
+!!{formula}s dinilai pada dunia-dunia, dan syarat keterpenuhan yang
+mendefinisikan $\mSat{M}{!A \cif !B}[w]$ diberikan dalam hubungannya dengan
+$\mSat{M}{!A}[w']$ dan $\mSat{M}{!B}[w']$ untuk suatu dunia (lain)~$w'$.
+Dunia $w'$ yang mana? Secara intuitif, dunia yang paling dekat dengan~$w$ di
+antara dunia-dunia tempat~$\mSat{M}{!A}[w']$. Karena itu, suatu relasi
+``kedekatan'' juga harus disertakan dalam model.
+
+Lewis memperkenalkan cara yang bermanfaat untuk merepresentasikan situasi
+kontrafaktual secara grafis. Setiap dunia mungkin berada di pusat suatu
+himpunan bola bersarang yang memuat dunia-dunia lain---bola-bola ini kita
+gambar sebagai lingkaran sepusat. Dunia-dunia yang berada di antara dua bola
+semuanya sama dekat dengan dunia di pusat; dunia-dunia yang termuat
+dalam bola yang lebih dalam lebih dekat, sedangkan dunia-dunia dalam bola yang
+mengelilinginya lebih jauh.
+\begin{center}
+\begin{tikzpicture}[scale=.7]\small
+  \spheresystem{5}
+  \draw (0,0) node {$w$};
+  \propositionintersect{0}{4}{40}{3.5}
+  {\tikzset{proposition/.append={smooth,tension=1.4}}
+  \proposition[shift={(1.6,-1)}]{90}{1}{30}{4}}
+  \path (1.5,3) node[below] {$\formula{B}$};
+  \path (3,0) node {$\formula{A}$};
+\end{tikzpicture}
+\end{center}
+Dunia-$!A$ yang paling dekat adalah dunia-dunia $w'$ tempat~$!A$ dipenuhi
+yang terletak dalam bola terkecil di sekitar dunia pusat~$w$ (daerah abu-abu).
+Secara intuitif, $!A \cif !B$ dipenuhi pada~$w$ jika $!B$ benar pada semua
+dunia-$!A$ yang paling dekat.
+
+\end{document}

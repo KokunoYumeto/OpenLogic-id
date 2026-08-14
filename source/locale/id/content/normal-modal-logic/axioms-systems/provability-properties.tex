@@ -1,0 +1,51 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: provability-properties
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{prf}{prp}
+
+\olsection{Sifat \usetoken{S}{derivability}}
+
+\begin{prop}\ollabel{prop:derivabilityfacts}
+  Misalkan $\Sigma$ suatu sistem modal dan $\Gamma$ suatu himpunan
+  !!{formula}s modal. Sifat-sifat berikut berlaku:
+  \begin{enumerate}
+  \item\ollabel{prop:derivabilityfacts-monotonicity} \emph{Monotonisitas}:
+    Jika $\Gamma\Proves[\Sigma]!A$ dan $\Gamma\subseteq\Delta$, maka
+    $\Delta\Proves[\Sigma]!A$;
+  \item\ollabel{prop:derivabilityfacts-reflexivity}
+    \emph{Refleksivitas}: Jika $!A\in\Gamma$, maka
+    $\Gamma\Proves[\Sigma]!A$;
+  \item\ollabel{prop:derivabilityfacts-cut} \emph{Transitivitas}: Jika
+    $\Gamma\Proves[\Sigma]!A$ dan
+    $\Delta\cup\{!A\}\Proves[\Sigma]!B$, maka
+    $\Gamma\cup\Delta\Proves[\Sigma]!B$;
+  \item\ollabel{prop:derivabilityfacts-deduction} \emph{Teorema deduksi}:
+    $\Gamma\cup\{!B\}\Proves[\Sigma]!A$ jika dan hanya jika
+    $\Gamma\Proves[\Sigma]!B\lif !A$;
+  \item\ollabel{prop:derivabilityfacts-ruleT} \emph{Aturan T}: Jika
+    $\Gamma\Proves[\Sigma]!A_1$, \dots, $\Gamma\Proves[\Sigma]!A_n$, dan
+    $!A_1\lif(!A_2\lif\cdots(!A_n\lif !B)\cdots)$ merupakan instansiasi
+    tautologis, maka $\Gamma\Proves[\Sigma]!B$.
+  \end{enumerate}
+\end{prop}
+
+Pembuktiannya merupakan latihan mudah. Bagian
+\olref{prop:derivabilityfacts-ruleT} dari \olref{prop:derivabilityfacts}
+memberi kita, misalnya, bahwa jika $\Gamma\Proves[\Sigma]!A\lor !B$ dan
+$\Gamma\Proves[\Sigma]\lnot !A$, maka $\Gamma\Proves[\Sigma]!B$.
+Selain itu, dalam pembahasan berikut kita menulis
+$\Gamma,!A\Proves[\Sigma]!B$ alih-alih
+$\Gamma\cup\{!A\}\Proves[\Sigma]!B$.
+
+\begin{defn}
+  Suatu himpunan~$\Gamma$ \emph{tertutup secara deduktif} relatif terhadap
+  suatu sistem~$\Sigma$ jika dan hanya jika $\Gamma\Proves[\Sigma]!A$
+  mengimplikasikan $!A\in\Gamma$.
+\end{defn}
+
+\end{document}

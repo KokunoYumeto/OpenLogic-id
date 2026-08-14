@@ -1,0 +1,72 @@
+% Bagian: second-order-logic
+% Bab: metatheory
+% Subbagian: compactness
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{met}{com}
+
+\olsection{Logika Orde Kedua Tidak Kompak}
+
+\begin{explain}
+Sebut suatu himpunan kalimat~$\Gamma$ \emph{dapat dipenuhi secara berhingga}
+jika setiap himpunan bagian berhingganya dapat dipenuhi. Logika orde pertama
+mempunyai sifat bahwa jika suatu himpunan !!{sentence}~$\Gamma$ dapat
+dipenuhi secara berhingga, maka himpunan itu dapat dipenuhi. Sifat ini disebut
+\emph{kekompakan}. Sifat ini mempunyai bentuk ekuivalen yang melibatkan
+perikutan: jika $\Gamma \Entails !A$, maka sudah berlaku $\Gamma_0 \Entails
+!A$ untuk suatu himpunan bagian berhingga~$\Gamma_0 \subseteq \Gamma$. Dalam
+bentuk ini, sifat tersebut merupakan konsekuensi langsung dari teorema
+kelengkapan: sebab jika $\Gamma \Entails !A$, berdasarkan kelengkapan
+$\Gamma \Proves !A$. Namun, suatu !!{derivation} hanya dapat menggunakan
+berhingga banyak !!{sentence} dari~$\Gamma$.
+
+Kekompakan tidak berlaku bagi logika orde kedua. Terdapat himpunan
+!!{sentence} orde kedua yang dapat dipenuhi secara berhingga tetapi tidak
+dapat dipenuhi, dan yang memperikutkan suatu~$!A$ tanpa ada himpunan bagian
+berhingga yang memperikutkan~$!A$.
+\end{explain}
+
+
+\begin{thm}
+\ollabel{thm:sol-undecidable}
+Logika orde kedua tidak kompak.
+\end{thm}
+
+\begin{proof}
+Ingat bahwa
+\[
+\fn{Inf} \ident \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)]
+      \lif \eq[x][y])]] \land \lexists[y][\lforall[x][\eq/[y][u(x)]]])]
+\]
+dipenuhi dalam !!a{structure} jika dan hanya jika domainnya tak hingga.
+Misalkan $!A^{\ge n}$ suatu kalimat yang menyatakan bahwa domain mempunyai
+sekurang-kurangnya $n$~!!{element}, misalnya,
+\[
+!A^{\ge n} \ident \lexists[x_1][\dots\lexists[x_n][(\eq/[x_1][x_2]
+    \land \eq/[x_1][x_3] \land \dots \land \eq/[x_{n-1}][x_n])]].
+\]
+Tinjau himpunan !!{sentence}
+\[
+\Gamma = \{\lnot \fn{Inf}, !A^{\ge 1}, !A^{\ge 2}, !A^{\ge 3}, \dots\}.
+\]
+Himpunan ini dapat dipenuhi secara berhingga, sebab untuk setiap himpunan
+bagian berhingga~$\Gamma_0 \subseteq \Gamma$ terdapat suatu $k \ge 1$
+sedemikian sehingga setiap $!A^{\ge n} \in \Gamma_0$ mempunyai $n \le k$.
+Jika $\Domain{M}$ mempunyai $k$~!!{element}, maka
+$\Sat{M}{\Gamma_0}$. Namun,
+$\Gamma$ tidak dapat dipenuhi: jika $\Sat{M}{\lnot \fn{Inf}}$, maka
+$\Domain{M}$ harus berhingga, katakanlah berukuran~$k$. Kemudian
+$\Sat/{M}{!A^{\ge k+1}}$.
+\end{proof}
+
+\begin{prob}
+Berikan contoh suatu himpunan~$\Gamma$ dan !!a{sentence}~$!A$ sedemikian
+sehingga $\Gamma \Entails !A$, tetapi untuk setiap himpunan bagian
+berhingga~$\Gamma_0 \subseteq \Gamma$, berlaku $\Gamma_0 \Entails/ !A$.
+\end{prob}
+
+
+\end{document}

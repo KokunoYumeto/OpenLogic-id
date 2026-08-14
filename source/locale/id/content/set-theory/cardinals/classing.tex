@@ -1,0 +1,198 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{cardinals}{classing}
+\olsection{Hingga, \usetoken{S}{enumerable}, \usetoken{S}{nonenumerable}}
+
+Setelah mengenal kardinal, ada baiknya kita meluangkan sedikit
+waktu untuk membahas berbagai jenis kardinal; khususnya, kardinal hingga,
+!!{enumerable}, dan !!{nonenumerable}.
+
+Dua hasil pertama kita menyiratkan bahwa kardinal hingga tepat merupakan
+ordinal hingga, yang kita definisikan sebagai \emph{bilangan asli} dalam
+\olref[z][infinity-again]{defnomega}:
+
+\begin{prop}\ollabel{finitecardisoequal}
+Misalkan $n, m \in \omega$. Maka $n = m$ jika dan hanya jika
+$\cardeq{n}{m}$.
+\end{prop}
+
+\begin{proof}
+Arah \emph{kiri-ke-kanan} sepele. Untuk membuktikan arah
+\emph{kanan-ke-kiri}, andaikan $\cardeq{n}{m}$ meskipun $n \neq m$.
+Berdasarkan Trikotomi, berlaku $n \in m$ atau $m \in n$; tanpa mengurangi
+keumuman, andaikan $n \in m$. Maka $n \subsetneq m$ dan terdapat
+!!a{bijection} $f \colon m \to n$, sehingga $m$ bersifat tak hingga
+Dedekind, bertentangan dengan
+\olref[z][infinity-again]{naturalnumbersarentinfinite}.
+\end{proof}
+
+\begin{cor}\ollabel{naturalsarecardinals}
+Jika $n \in \omega$, maka $n$ merupakan suatu kardinal.
+\end{cor}
+
+\begin{proof}
+Langsung.
+\end{proof}
+\noindent
+Selain itu, beberapa gagasan yang wajar tentang arti menyebut suatu kardinal
+``hingga'' atau ``tak hingga'' ternyata bertepatan:
+\begin{thm}\ollabel{generalinfinitycharacter}Untuk sebarang himpunan $A$, hal-hal berikut ekuivalen:
+\begin{enumerate}
+	\item\ollabel{card:notinomega} $\card{A} \notin \omega$, yakni
+	$\card{A}$ bukan bilangan asli;
+	\item\ollabel{card:omegaplus} $\omega \leq \card{A}$;
+	\item\ollabel{card:infinite} $A$ bersifat tak hingga Dedekind.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+Dari \olref[ord-arithmetic][using-addition]{ordinfinitycharacter},
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}, dan
+\olref{naturalsarecardinals}.
+\end{proof}
+
+Hal ini membenarkan \emph{definisi} berikut bagi beberapa gagasan yang kita
+gunakan secara agak informal dalam \olref[sfr][][]{part}:
+
+\begin{defn}\ollabel{defnfinite}
+Kita mengatakan bahwa $A$ bersifat \emph{hingga} jika dan hanya jika
+$\card{A}$ merupakan bilangan asli, yakni $\card{A} \in \omega$. Jika tidak,
+kita mengatakan bahwa $A$ bersifat \emph{tak hingga}.
+\end{defn}
+\noindent
+Namun, perhatikan bahwa definisi ini disajikan dengan latar belakang
+$\ZFC$. Bagaimanapun, kita memerlukan Pengurutan Baik untuk menjamin bahwa
+setiap himpunan mempunyai suatu kardinalitas. Bahkan, tanpa Pengurutan Baik,
+dapat terdapat suatu himpunan yang bukan hingga dan bukan pula tak hingga
+Dedekind. Kita akan kembali membahas persoalan semacam ini dalam
+\olref[choice][]{chap}. Untuk sekarang, kita terus mengandalkan Pengurutan
+Baik.
+
+Sekarang mari beralih dari kardinal hingga ke kardinal tak hingga. Berikut
+dua hal mendasar:
+
+\begin{cor}\ollabel{omegaisacardinal}
+$\omega$ merupakan kardinal tak hingga terkecil.
+\end{cor}
+
+\begin{proof}
+$\omega$ merupakan suatu kardinal, sebab $\omega$ bersifat tak hingga
+Dedekind dan, jika $\cardeq{\omega}{n}$ bagi suatu $n \in \omega$, maka $n$
+akan bersifat tak hingga Dedekind, bertentangan dengan
+\olref[z][infinity-again]{naturalnumbersarentinfinite}. Sekarang $\omega$
+merupakan kardinal tak hingga terkecil berdasarkan definisi.
+\end{proof}
+
+\begin{cor}
+Setiap kardinal tak hingga merupakan ordinal limit.
+\end{cor}
+
+\begin{proof}
+Misalkan $\alpha$ suatu ordinal penerus yang tak hingga, sehingga
+$\alpha = \beta \ordplus 1$ bagi suatu $\beta$. Berdasarkan
+\olref{finitecardisoequal}, $\beta$ juga tak hingga, sehingga
+$\cardeq{\beta}{\beta \ordplus 1}$ berdasarkan
+\olref[ord-arithmetic][using-addition]{ordinfinitycharacter}. Sekarang
+$\card{\beta} = \card{\beta\ordplus 1} = \card{\alpha}$ berdasarkan
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}, sehingga
+$\alpha \neq \card{\alpha}$.
+\end{proof}
+
+Sejak \olref[sfr][siz][enm-alt]{defn:enumerable}, kita telah mencatat bahwa
+himpunan tak hingga yang !!{enumerable} dapat dibedakan dari yang
+!!{nonenumerable}. Definisi tersebut secara alami menghasilkan pernyataan
+berikut:
+
+\begin{prop}
+$A$ bersifat !!{enumerable} jika dan hanya jika $\card{A} \leq \omega$, dan
+$A$ bersifat !!{nonenumerable} jika dan hanya jika
+$\omega < \card{A}$.
+\end{prop}
+
+\begin{proof}
+Berdasarkan Trikotomi, kedua klaim ekuivalen, sehingga cukup dibuktikan bahwa
+$A$ bersifat !!{enumerable} jika dan hanya jika
+$\card{A} \leq \omega$. Untuk arah \emph{kanan-ke-kiri}: jika
+$\card{A} \leq \omega$, maka $\cardle{A}{\omega}$ berdasarkan
+\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight} dan
+\olref{omegaisacardinal}. Untuk arah \emph{kiri-ke-kanan}: andaikan $A$
+bersifat !!{enumerable}; berdasarkan
+\olref[sfr][siz][enm-alt]{defn:enumerable}, terdapat tiga kemungkinan:
+\begin{enumerate}
+	\item jika $A = \emptyset$, maka $\card{A} = 0 \in \omega$, berdasarkan
+	\olref{naturalsarecardinals} dan
+	\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}.
+	\item jika $\cardeq{n}{A}$, maka $\card{A} = n \in \omega$, berdasarkan
+	\olref{naturalsarecardinals} dan
+	\olref[cardinals][cardsasords]{lem:CardinalsBehaveRight}.
+	\item jika $\cardeq{\omega}{A}$, maka $\card{A} = \omega$, berdasarkan
+	\olref{omegaisacardinal}.
+\end{enumerate}
+Jadi, dalam semua kasus, $\card{A} \leq \omega$.
+\end{proof}
+\noindent
+Memang, $\omega$ menempati kedudukan khusus. Walaupun terdapat banyak ordinal
+yang terhitung:
+
+\begin{cor}
+$\omega$ merupakan satu-satunya kardinal tak hingga yang !!{enumerable}.
+\end{cor}
+
+\begin{proof}
+Misalkan $\cardfont{a}$ suatu kardinal tak hingga yang !!a{enumerable}.
+Karena $\cardfont{a}$ tak hingga, $\omega \leq \cardfont{a}$. Karena
+$\cardfont{a}$ merupakan kardinal yang !!a{enumerable},
+$\cardfont{a} = \card{\cardfont{a}} \leq \omega$. Jadi
+$\cardfont{a} = \omega$ berdasarkan Trikotomi. \end{proof}
+
+Tentu saja, terdapat tak hingga banyak kardinal. Jadi, kita mungkin bertanya:
+\emph{Ada berapa banyak kardinal?} Hasil-hasil berikut menunjukkan bahwa
+kita mungkin perlu mempertimbangkan kembali pertanyaan itu.
+
+\begin{prop}\ollabel{unioncardinalscardinal}
+Jika setiap anggota $X$ merupakan suatu kardinal, maka $\bigcup X$ merupakan
+suatu kardinal.
+\end{prop}
+
+\begin{proof}
+Mudah diperiksa bahwa $\bigcup X$ merupakan suatu ordinal. Misalkan
+$\alpha \in \bigcup X$ suatu ordinal; maka
+$\alpha \in \cardfont{b} \in X$ bagi suatu kardinal $\cardfont{b}$. Karena
+$\cardfont{b}$ suatu kardinal, $\cardless{\alpha}{\cardfont{b}}$. Karena
+$\cardfont{b} \subseteq \bigcup X$, kita mempunyai
+$\cardle{\cardfont{b}}{\bigcup X}$, sehingga
+$\cardneq{\alpha}{\bigcup X}$. Dengan menggeneralisasi, $\bigcup X$
+merupakan suatu kardinal.
+\end{proof}
+
+\begin{thm}\ollabel{lem:NoLargestCardinal}
+Tidak terdapat kardinal terbesar.
+\end{thm}
+
+\begin{proof}
+Untuk sebarang kardinal $\cardfont{a}$, Teorema Cantor
+(\olref[sfr][siz][car]{thm:cantor}) dan
+\olref[cardinals][cardsasords]{lem:CardinalsExist} menyiratkan bahwa
+$\cardfont{a} < \card{\Pow{\cardfont{a}}}$.
+\end{proof}
+
+\begin{thm}
+Himpunan semua kardinal tidak ada.
+\end{thm}
+
+\begin{proof}
+Untuk memperoleh kontradiksi, andaikan
+$C = \Setabs{\cardfont{a}}{\cardfont{a} \text{ merupakan suatu kardinal}}$.
+Sekarang $\bigcup C$ merupakan suatu kardinal berdasarkan
+\olref{unioncardinalscardinal}, sehingga berdasarkan
+\olref{lem:NoLargestCardinal} terdapat suatu kardinal
+$\cardfont{b} > \bigcup C$. Berdasarkan definisi $\cardfont{b} \in C$,
+sehingga $\cardfont{b} \subseteq \bigcup{C}$, dan dengan demikian
+$\cardfont{b} \leq \bigcup C$, suatu kontradiksi.
+\end{proof}
+
+Anda patut membandingkan hal ini dengan Paradoks Russell dan Burali--Forti.
+
+\end{document}

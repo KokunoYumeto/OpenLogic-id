@@ -1,0 +1,64 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: consistency
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{prf}{con}
+
+\olsection{Konsistensi}
+
+Konsistensi merupakan sifat penting dari himpunan !!{formula}s. Suatu
+himpunan !!{formula}s tidak konsisten jika suatu kontradiksi, seperti
+$\lfalse$, !!{derivable} darinya; jika tidak, himpunan itu konsisten. Jika
+suatu himpunan tidak konsisten, semua !!{formula}s dalam himpunan itu tidak
+mungkin sekaligus benar pada suatu dunia dalam suatu model. Bagi teorema
+kelengkapan, kita membuktikan konversnya: setiap himpunan konsisten benar pada
+suatu dunia dalam suatu model, yakni dalam ``model kanonik.''
+
+\begin{defn}
+  Suatu himpunan~$\Gamma$ \emph{konsisten} relatif terhadap sistem~$\Sigma$,
+  atau, seperti akan kita katakan, \emph{$\Sigma$-konsisten}, jika dan hanya
+  jika $\Gamma\Proves/[\Sigma]\lfalse$.
+\end{defn}
+
+Jadi, misalnya, himpunan
+$\{\Box(p\lif q),\Box p,\lnot\Box q\}$ konsisten relatif terhadap logika
+proposisional, tetapi tidak \Log{K}-konsisten. Dengan cara serupa, himpunan
+$\{\Diamond p,\Box\Diamond p\lif q,\lnot q\}$ tidak
+\Log{K5}-konsisten.
+
+\begin{prop}\ollabel{prop:consistencyfacts}
+  Misalkan $\Gamma$ suatu himpunan !!{formula}s. Maka:
+  \begin{enumerate}
+  \item $\Gamma$ $\Sigma$-konsisten jika dan hanya jika terdapat suatu
+    !!{formula}~$!A$ sedemikian sehingga $\Gamma\Proves/[\Sigma]!A$.
+  \item \ollabel{prop:consistencyfacts-b}%
+    $\Gamma\Proves[\Sigma]!A$ jika dan hanya jika
+    $\Gamma\cup\{\lnot!A\}$ tidak $\Sigma$-konsisten.
+  \item \ollabel{prop:consistencyfacts-c}%
+    Jika $\Gamma$ $\Sigma$-konsisten, maka bagi setiap !!{formula}~$!A$,
+    $\Gamma\cup\{!A\}$ $\Sigma$-konsisten atau
+    $\Gamma\cup\{\lnot!A\}$ $\Sigma$-konsisten.
+  \end{enumerate}
+\end{prop}
+
+\begin{proof}
+  Fakta-fakta ini mudah diperoleh dengan menggunakan logika proposisional
+  klasik. Kita memberikan argumen bagi \olref{prop:consistencyfacts-c}.
+  Berargumenlah secara kontrapositif dan andaikan baik
+  $\Gamma\cup\{!A\}$ maupun $\Gamma\cup\{\lnot!A\}$ tidak
+  $\Sigma$-konsisten. Maka menurut \olref{prop:consistencyfacts-b}, berlaku
+  $\Gamma,!A\Proves[\Sigma]\lfalse$ dan
+  $\Gamma,\lnot!A\Proves[\Sigma]\lfalse$. Menurut teorema deduksi,
+  $\Gamma\Proves[\Sigma]!A\lif\lfalse$ dan
+  $\Gamma\Proves[\Sigma]\lnot!A\lif\lfalse$. Akan tetapi,
+  $(!A\lif\lfalse)\lif((\lnot!A\lif\lfalse)\lif\lfalse)$ merupakan
+  instansiasi tautologis; karena itu, menurut
+  \olref[prp]{prop:derivabilityfacts}\olref[prp]{prop:derivabilityfacts-ruleT},
+  $\Gamma\Proves[\Sigma]\lfalse$.
+\end{proof}
+
+\end{document}

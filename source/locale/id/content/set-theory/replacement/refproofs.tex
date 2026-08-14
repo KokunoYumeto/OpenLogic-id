@@ -1,0 +1,191 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{replacement}{refproofs}
+\olsection{Lampiran: Hasil-Hasil seputar Penggantian}
+
+Dalam bagian ini, kita akan membuktikan Refleksi di dalam~$\ZF$. Kita juga
+akan membuktikan suatu pengertian yang menjadikan Refleksi ekuivalen dengan
+Penggantian. Kemudian kita akan membuktikan suatu konsekuensi menarik dari
+semua ini mengenai kekuatan Refleksi/Penggantian. \emph{Peringatan: bagian ini
+dengan mudah merupakan bagian matematika paling lanjut dalam buku teks ini.}
+
+Kita mulai dengan sebuah lema yang, demi keringkasan, menggunakan perangkat
+notasi berupa \emph{garis atas} untuk menangani barisan variabel atau objek.
+Jadi, ``$\overline{a}_k$'' menyingkat ``$a_{k_1}$, \dots, $a_{k_n}$'',
+dengan $n$ ditentukan oleh konteks.
+
+\begin{lem}\ollabel{lemreflection}
+Untuk setiap $1\leq i\leq k$, misalkan
+$\phi_i(\overline{v}_i,x)$ suatu formula. Maka, untuk setiap $\alpha$,
+terdapat suatu $\beta>\alpha$ sedemikian sehingga, untuk sebarang
+$\overline{a}_1,\ldots,\overline{a}_k\in V_\beta$ dan setiap
+$1\leq i\leq k$:
+\[
+	\exists x\phi_i(\overline{a}_i, x) \rightarrow (\exists x \in V_\beta) \phi_i(\overline{a}_i, x)
+\]
+\end{lem}
+
+\begin{proof}
+Kita mendefinisikan suatu suku~$\mu$ sebagai berikut:
+$\mu(\overline{a}_1,\ldots,\overline{a}_k)$ merupakan tahap paling awal~$V$
+yang memenuhi semua implikasi berikut, untuk $1\leq i\leq k$:
+\[
+\exists x\phi_i(\overline{a}_i, x) \rightarrow (\exists x \in V) \phi_i(\overline{a}_i, x)
+\]
+Mudah dipastikan bahwa $\mu(\overline{a}_1,\ldots,\overline{a}_k)$ ada bagi
+semua $\overline{a}_1,\ldots,\overline{a}_k$. Sekarang, dengan menggunakan
+Penggantian dan teorema rekursi kita, definisikan:
+\begin{align*}
+	S_0 & = V_{\alpha+1}\\
+	S_{n+1} & = S_n \cup \bigcup
+	\Setabs{\mu(\overline{a}_1, \ldots, \overline{a}_k)}
+	{\overline{a}_1, \ldots, \overline{a}_k \in S_n} \\
+	S &= \bigcup_{m < \omega} S_m.
+\end{align*}
+Setiap $S_n$, dan karena itu $S$ sendiri, merupakan suatu tahap sesudah
+$V_\alpha$. Sekarang tetapkan
+$\overline{a}_1,\dots,\overline{a}_k\in S$; maka terdapat suatu
+$n<\omega$ sedemikian sehingga
+$\overline{a}_1,\dots,\overline{a}_k\in S_n$. Tetapkan suatu
+$1\leq i\leq k$, dan andaikan
+$\exists x\phi_i(\overline{a}_i,x)$. Berdasarkan konstruksi,
+$(\exists x\in\mu(\overline{a}_1,\ldots,\overline{a}_k))
+\phi_i(\overline{a}_i,x)$; jadi,
+$(\exists x\in S_{n+1})\phi_i(\overline{a}_i,x)$ dan karena itu
+$(\exists x\in S)\phi_i(\overline{a}_i,x)$. Dengan demikian, $S$ adalah
+$V_\beta$ yang kita cari.
+\end{proof}
+\noindent
+Sekarang kita dapat membuktikan
+\olref[sth][replacement][ref]{reflectionschema} secara cukup langsung:
+
+\begin{proof}[Bukti]
+Tetapkan $\alpha$. Tanpa mengurangi keumuman, kita dapat mengandaikan bahwa
+satu-satunya penghubung dalam~$\phi$ ialah $\exists$, $\lnot$, dan~$\land$
+(karena ketiganya cukup secara ekspresif). Misalkan
+$\psi_1,\ldots,\psi_k$ mengenumerasi setiap subformula~$\phi$ menurut
+kompleksitas, sehingga $\psi_k=\phi$. Berdasarkan \olref{lemreflection},
+terdapat $\beta>\alpha$ sedemikian sehingga, untuk sebarang
+$\overline{a}_i\in V_\beta$ dan setiap $1\leq i\leq k$:
+\begin{align}\label{reflectionnicelybehaved}
+	\exists x\psi_i(\overline{a}_i, x) \rightarrow 
+	(\exists x \in V_\beta) \psi_i(\overline{a}_i, x)\tag{*}
+\end{align}
+Dengan induksi pada kompleksitas~$\psi_i$, kita menunjukkan bahwa
+$\psi_i(\overline{a}_i)\leftrightarrow
+\psi_i^{V_\beta}(\overline{a}_i)$ bagi sebarang
+$\overline{a}_i\in V_\beta$. Jika $\psi_i$ atomik, klaim ini jelas.
+Bikondisional tersebut juga menetapkan bahwa, jika $\psi_i$ merupakan negasi
+atau konjungsi subformula-subformula yang memenuhi sifat ini, maka $\psi_i$
+sendiri memenuhi sifat tersebut. Jadi, satu-satunya kasus yang menarik
+menyangkut kuantifikasi. Tetapkan $\overline{a}_i\in V_\beta$; maka:
+\begin{align*}
+	(\exists x \psi_i(\overline{a}_i, x))^{V_\beta}
+	&\text{ jika dan hanya jika }
+	(\exists x \in V_\beta)\psi_i^{V_\beta}(\overline{a}_i, x)
+	&&\text{berdasarkan definisi}\\
+	&\text{ jika dan hanya jika }
+	(\exists x \in V_\beta)\psi_i(\overline{a}_i, x)
+	&&\text{berdasarkan hipotesis}\\
+	&\text{ jika dan hanya jika }
+	\exists x \psi_i(\overline{a}_i, x)
+	&&\text{berdasarkan \eqref{reflectionnicelybehaved}.}
+\end{align*}
+Ini menyelesaikan induksi; hasilnya mengikuti karena $\psi_k=\phi$.
+\end{proof}
+
+Kita telah membuktikan Refleksi di dalam~$\ZF$. Bukti kita pada dasarnya
+mengikuti \citet{Montague1961}. Sekarang kita hendak membuktikan di
+dalam~$\Z$ bahwa Refleksi mengakibatkan Penggantian. Bukti mengikuti
+\citet{Levy1960}, tetapi dengan suatu penyederhanaan.
+
+Karena kita bekerja di dalam~$\Z$, kita tidak dapat menyajikan Refleksi tepat
+dalam bentuk di atas. Bagaimanapun, kita merumuskan Refleksi dengan notasi
+``$V_\alpha$'', dan notasi itu tidak dapat didefinisikan di dalam~$\Z$
+(lihat \olref[sth][spine][zf]{sec}). Karena itu, sebagai gantinya kita
+menawarkan suatu rumusan Refleksi yang tampak lebih lemah:
+
+\begin{defish}
+\emph{Refleksi-Lemah.} Untuk sebarang formula~$\phi$, terdapat suatu himpunan
+transitif~$S$ sedemikian sehingga $0$, $1$, dan setiap parameter~$\phi$
+merupakan !!{element}s dari~$S$, serta
+$(\forall\overline{x}\in S)(\phi\liff\phi^S)$.
+\end{defish}
+
+Untuk menggunakan prinsip ini dalam membuktikan Penggantian, mula-mula kita
+mengikuti \citet[bagian pertama Teorema 2]{Levy1960} dan menunjukkan bahwa
+kita dapat ``merefleksikan'' dua formula sekaligus:
+
+\begin{lem}[dalam $\Z+\text{Refleksi-Lemah}$.]\ollabel{lem:reflect}
+Untuk sebarang formula $\psi,\chi$, terdapat suatu himpunan transitif~$S$
+sedemikian sehingga $0$ dan $1$ (serta setiap parameter formula-formula itu)
+merupakan !!{element}s dari~$S$, dan
+$(\forall\overline{x}\in S)((\psi\liff\psi^S)\land
+(\chi\liff\chi^S))$.
+\end{lem}
+
+\begin{proof}
+Misalkan $\phi$ formula $(z=0\land\psi)\lor(z=1\land\chi)$.
+
+Di sini kita menggunakan singkatan; ``$z=0$'' seharusnya ditulis lengkap
+sebagai ``$\forall t\,t\notin z$'', dan ``$z=1$'' sebagai
+``$\forall s(s\in z\liff\forall t\,t\notin s)$''. Namun, karena
+$0,1\in S$ dan $S$ transitif, formula-formula ini \emph{absolut} bagi~$S$;
+artinya, keduanya berlaku pada objek yang sama, baik kuantornya dibatasi
+pada~$S$ maupun tidak.\footnote{Secara lebih formal, dengan $\xi$ salah satu
+dari kedua formula ini, $\xi(z)\liff\xi^S(z)$.}
+
+Berdasarkan Refleksi-Lemah, kita mempunyai suatu $S$ yang sesuai sedemikian
+sehingga:
+\begin{align*}
+	(\forall z, \overline{x} \in S)(&\phi \liff \phi^S)\\
+	\text{yakni }(\forall z, \overline{x} \in S)(&((z = 0 \land \psi) \lor (z = 1 \land \chi)) \liff {}\\
+	&\phantom{(}((z = 0 \land \psi) \lor (z = 1 \land \chi))^S)\\
+	\text{yakni }(\forall z, \overline{x} \in S)(&((z = 0 \land \psi) \lor (z = 1 \land \chi))\liff {}\\
+	&\phantom{(}((z = 0 \land \psi^S) \lor (z = 1 \land \chi^S)))\\
+	\text{yakni }(\forall \overline{x} \in S)(&(\psi \liff \psi^S) \land (\chi \liff \chi^S)).
+\end{align*}
+Klaim kedua mengakibatkan klaim ketiga karena ``$z=0$'' dan ``$z=1$''
+absolut bagi~$S$; klaim keempat mengikuti karena $0\neq1$.
+\end{proof}\noindent
+Sekarang kita dapat memperoleh Penggantian hanya dengan mengikuti dan
+menyederhanakan \citet[Teorema 6]{Levy1960}:
+
+\begin{thm}[dalam $\Z$ + Refleksi-Lemah]\label{thm:replacement}
+Untuk sebarang formula $\phi(v,w)$ dan sebarang~$A$, jika
+$(\forall x\in A)\lexists![y][\phi(x,y)]$, maka
+$\Setabs{y}{(\exists x\in A)\phi(x,y)}$ ada.
+\end{thm}
+
+\begin{proof}
+Tetapkan $A$ sedemikian sehingga
+$(\forall x\in A)\lexists![y][\phi(x,y)]$, dan definisikan formula-formula:
+\begin{align*}
+	\psi &\text{ sebagai } (\phi(x, z) \land A = A)\\
+	\chi &\text{ sebagai } \lexists[y][\phi(x, y)].
+\end{align*}
+Dengan menggunakan \olref{lem:reflect}, karena $A$ merupakan parameter
+bagi~$\psi$, terdapat suatu himpunan transitif~$S$ sedemikian sehingga
+$0,1,A\in S$ (bersama setiap parameter lain), dan sedemikian sehingga:
+\[
+	(\forall x,z \in S)((\psi \liff \psi^S) \land (\chi \liff \chi^S))
+\]
+Jadi, secara khusus:
+\begin{align*}
+	(\forall  x, z \in S)(&\phi(x, z) \liff \phi^S(x, z))\\
+	(\forall x \in S)(&\exists y\phi(x, y) \liff (\exists y \in S)\phi^S(x, y)).
+\end{align*}
+Dengan menggabungkan keduanya dan mengamati bahwa $A\subseteq S$ karena
+$A\in S$ dan $S$ transitif:
+\begin{align*}
+	(\forall x \in A)(&\exists y\phi(x, y) \liff (\exists y \in S)\phi(x, y)).
+\end{align*}
+Sekarang $(\forall x\in A)(\lexists![y\in S])\phi(x,y)$, karena
+$(\forall x\in A)\lexists![y][\phi(x,y)]$. Berdasarkan Pemisahan,
+$\Setabs{y\in S}{(\exists x\in A)\phi(x,y)}
+=\Setabs{y}{(\exists x\in A)\phi(x,y)}$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,98 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: unique-readability
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{syn}{unq}
+\olsection{Keterbacaan Unik}
+
+Kita mungkin bertanya-tanya apakah setiap suku hanya dapat dibentuk dengan
+satu cara, dan memang demikian. Setiap suku lambda hanya dapat dibangun dan
+ditafsirkan dengan satu cara. Dalam pembahasan berikut, suatu
+\emph{pembentukan} adalah prosedur membangun sebuah suku dengan menggunakan
+aturan-aturan pembentukan (satu kali atau beberapa kali) dari
+\olref[trm]{defn:term}.
+
+\begin{lem}\ollabel{lem:term-start}
+Suatu suku diawali oleh variabel atau tanda kurung.
+\end{lem}
+
+\begin{proof}
+Sesuatu tergolong suku hanya jika dibangun menurut
+\olref[trm]{defn:term}. Jika sesuatu itu merupakan hasil
+\olref[trm]{defn:term-var}, maka ia pasti sebuah variabel. Jika ia merupakan
+hasil \olref[trm]{defn:term-abs} atau \olref[trm]{defn:term-app}, maka ia
+diawali oleh tanda kurung.
+\end{proof}
+
+\begin{lem}\ollabel{lem:app-start}
+Hasil suatu aplikasi diawali oleh dua tanda kurung atau oleh sebuah tanda
+kurung dan sebuah variabel.
+\end{lem}
+
+\begin{proof}
+Jika $M$ merupakan hasil suatu aplikasi, maka suku itu berbentuk $(PQ)$,
+sehingga diawali oleh tanda kurung. Karena $P$ adalah suku, menurut
+\olref{lem:term-start}, ia diawali oleh tanda kurung atau variabel.
+\end{proof}
+
+\begin{lem}\ollabel{lem:initial}
+Tidak ada bagian awal sejati dari suatu suku yang juga merupakan suku.
+\end{lem}
+
+\begin{prob}
+Buktikan \olref[lam][syn][unq]{lem:initial} dengan induksi pada panjang suku.
+\end{prob}
+
+\begin{prop}[Keterbacaan Unik] \ollabel{prop:unq}
+Setiap suku mempunyai pembentukan yang unik. Dengan kata lain, jika suatu suku
+$M$ dibentuk oleh sebuah pembentukan, maka itulah satu-satunya pembentukan yang
+dapat membentuk suku tersebut.
+\end{prop}
+
+\begin{proof}
+  Kita membuktikan hal ini dengan induksi pada pembentukan suku.
+  \begin{enumerate}
+    \item $M$ berbentuk
+      $x$, dengan $x$ suatu variabel. Karena hasil abstraksi dan aplikasi
+      selalu diawali oleh tanda kurung, keduanya tidak mungkin digunakan untuk
+      membangun $M$. Jadi, pembentukan $M$ pasti merupakan satu langkah
+      \olref[trm]{defn:term}\olref[trm]{defn:term-var}.
+    \item $M$ berbentuk $(\lambd[x][N])$, dengan $x$ suatu variabel dan $N$
+      suatu suku. Suku ini tidak mungkin dibangun menurut
+      \olref[trm]{defn:term}\olref[trm]{defn:term-var}, karena bukan sebuah
+      variabel tunggal. Menurut \olref{lem:app-start}, suku ini juga bukan
+      hasil suatu aplikasi. Jadi, $M$ hanya mungkin merupakan hasil abstraksi
+      pada~$N$. Berdasarkan hipotesis induksi, kita mengetahui bahwa
+      pembentukan $N$ sendiri unik.
+    \item $M$ berbentuk $(PQ)$, dengan $P$ dan $Q$ suku. Karena diawali oleh
+      tanda kurung, suku ini tidak mungkin pula dibangun dengan
+      \olref[trm]{defn:term}\olref[trm]{defn:term-var}. Menurut
+      \olref{lem:term-start}, $P$ tidak mungkin diawali oleh $\lambd$, sehingga
+      $(PQ)$ tidak mungkin merupakan hasil suatu abstraksi. Sekarang andaikan
+      terdapat cara lain untuk membangun $M$ dengan aplikasi, misalnya suku
+      itu juga berbentuk $(P'Q')$. Maka $P$ merupakan segmen awal sejati dari
+      $P'$ (atau sebaliknya), dan hal ini mustahil menurut
+      \olref{lem:initial}.
+      Jadi, $P$ dan $Q$ ditentukan secara unik, dan berdasarkan hipotesis
+      induksi kita mengetahui bahwa pembentukan $P$ dan $Q$ juga unik.
+  \end{enumerate}
+\end{proof}
+
+Parafrasa yang lebih mudah dibaca dari proposisi di atas adalah sebagai
+berikut:
+\begin{prop}
+  Suatu suku $M$ hanya dapat mempunyai salah satu bentuk berikut:
+  \begin{enumerate}
+    \item $x$, dengan $x$ suatu variabel yang ditentukan secara unik oleh $M$.
+    \item $(\lambd[x][N])$, dengan $x$ suatu variabel dan $N$ suku lain;
+      keduanya ditentukan secara unik oleh $M$.
+    \item $(PQ)$, dengan $P$ dan $Q$ dua suku yang ditentukan secara unik
+      oleh $M$.
+  \end{enumerate}
+\end{prop}
+
+\end{document}

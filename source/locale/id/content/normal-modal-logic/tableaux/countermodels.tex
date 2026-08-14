@@ -1,0 +1,313 @@
+% Bagian: normal-modal-logic
+% Bab: tableaux
+% Subbagian: countermodels
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{tab}{cou}
+      
+\olsection{Model Tandingan dari \usetoken{P}{tableau}}
+
+\begin{explain}
+  Pembuktian teorema kelengkapan bukan hanya menunjukkan bahwa jika
+  $\Entails !A$, maka $\Proves !A$; pembuktian tersebut juga memberi kita
+  metode untuk membangun model tandingan bagi~$!A$ jika $\Entails/ !A$.
+  Dalam kasus~$\Log{K}$, metode ini merupakan suatu \emph{prosedur
+  keputusan}. Andaikan $\Entails/ !A$. Pembuktian
+  \olref[cpl]{prop:complete-tableau} memberi suatu metode untuk membangun
+  !!{tableau} lengkap. Metode tersebut bahkan selalu berhenti. Aturan
+  proposisional bagi~$\Log{K}$ hanya menambahkan !!{formula}s berprefiks
+  dengan kompleksitas yang lebih rendah; dengan kata lain, setiap aturan
+  proposisional hanya perlu diterapkan sekali pada suatu cabang bagi setiap
+  formula bertanda $\sFmla{S}{!A}[\sigma]$. Prefiks baru hanya dihasilkan
+  oleh aturan
+  \iftag{prvBox}{$\TRule{\False}{\Box}$}{}\iftag{notprvBox,notprvDiamond}{}{
+    dan }\iftag{prvDiamond}{$\TRule{\True}{\Diamond}$}{}, dan
+  \iftag{notprvBox,notprvDiamond}{aturan itu}{aturan-aturan itu} juga hanya
+  perlu diterapkan sekali (serta menghasilkan satu prefiks baru).
+  \iftag{prvBox}{$\TRule{\True}{\Box}$}{}\iftag{notprvBox,notprvDiamond}{}{
+    dan }\iftag{prvDiamond}{$\TRule{\False}{\Diamond}$}{}
+  \iftag{notprvBox,notprvDiamond}{harus}{harus} mungkin diterapkan beberapa
+  kali, tetapi hanya sekali per prefiks, dan hanya berhingga banyak prefiks
+  baru yang dihasilkan. Jadi, setelah berhingga banyak tahap, konstruksi
+  tersebut menghasilkan cabang tertutup atau cabang lengkap.
+
+  Setelah suatu tableau dengan cabang terbuka yang lengkap dibangun,
+  pembuktian \olref[cpl]{thm:tableau-completeness} memberi kita suatu model
+  eksplisit yang memenuhi himpunan awal !!{formula}s berprefiks. Jadi, bukan
+  hanya benar bahwa jika $\Gamma \Entails !A$, maka terdapat !!{tableau}
+  tertutup dan $\Gamma \Proves !A$; jika kita mencari !!{tableau} tertutup
+  dengan cara yang tepat dan memperoleh !!{tableau} ``lengkap'', kita bukan
+  hanya akan mengetahui bahwa $\Gamma \Entails/ !A$, melainkan juga benar-benar
+  dapat membangun suatu model tandingan.
+\end{explain}
+
+\iftag{prvBox}{
+\begin{ex}
+  Kita mengetahui bahwa $\Proves/ \Box(p \lor q) \lif (\Box p \lor \Box
+  q)$. Konstruksi suatu tableau dimulai dengan:
+  \begin{oltableau}
+    [\pFmla{\False}{\Box(p \lor q) \lif (\Box p \lor \Box q)}{1},
+      just = \TAss, checked
+      [\pFmla{\True}{\Box(p \lor q)}{1},
+        just = {\TRule{\False}{\lif}[1]}, 
+        [\pFmla{\False}{\Box p \lor \Box q}{1},
+          just = {\TRule{\False}{\lif}[1]}, checked
+          [\pFmla{\False}{\Box p}{1},
+            just = {\TRule{\False}{\lor}[3]}, checked
+            [\pFmla{\False}{\Box q}{1},
+              just = {\TRule{\False}{\lor}[3]}, checked
+              [\pFmla{\False}{p}{1.1}, 
+                just = {\TRule{\False}{\Box}[4]}, checked
+                [\pFmla{\False}{q}{1.2}, 
+                  just = {\TRule{\False}{\Box}[5]}, checked
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  Tentu saja !!{tableau} tersebut belum selesai. Pada langkah berikutnya,
+  kita membahas satu-satunya baris tanpa tanda centang, yakni !!{formula}
+  berprefiks $\sFmla{\True}{\Box(p \lor q)}[1]$ pada baris~$2$. Konstruksi
+  tableau lengkap memerintahkan kita untuk menerapkan aturan
+  $\TRule{\True}{\Box}$ bagi setiap prefiks yang sudah digunakan pada cabang,
+  yakni bagi $1.1$ dan $1.2$ sekaligus:
+  \begin{oltableau}
+    [\pFmla{\False}{\Box(p \lor q) \lif (\Box p \lor \Box q)}{1},
+      just = \TAss, checked
+      [\pFmla{\True}{\Box(p \lor q)}{1},
+        just = {\TRule{\False}{\lif}[1]}, 
+        [\pFmla{\False}{\Box p \lor \Box q}{1},
+          just = {\TRule{\False}{\lif}[1]}, checked
+          [\pFmla{\False}{\Box p}{1},
+            just = {\TRule{\False}{\lor}[3]}, checked
+            [\pFmla{\False}{\Box q}{1},
+              just = {\TRule{\False}{\lor}[3]}, checked
+              [\pFmla{\False}{p}{1.1}, 
+                just = {\TRule{\False}{\Box}[4]}, checked
+                [\pFmla{\False}{q}{1.2}, 
+                  just = {\TRule{\False}{\Box}[5]}, checked
+                  [\pFmla{\True}{p \lor q}{1.1}, 
+                    just = {\TRule{\True}{\Box}[2]}
+                    [\pFmla{\True}{p \lor q}{1.2}, 
+                      just = {\TRule{\True}{\Box}[2]}
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  Sekarang baris 2, 8, dan 9 tidak mempunyai tanda centang. Namun, tidak ada
+  prefiks baru yang telah ditambahkan, sehingga kita menerapkan
+  $\TRule{\True}{\lor}$ pada baris~8 dan~9 pada semua cabang yang dihasilkan
+  (selama cabang-cabang itu tidak tertutup):
+  \begin{oltableau}
+    [\pFmla{\False}{\Box(p \lor q) \lif (\Box p \lor \Box q)}{1},
+      just = \TAss, checked
+      [\pFmla{\True}{\Box(p \lor q)}{1},
+        just = {\TRule{\False}{\lif}[1]}, checked
+        [\pFmla{\False}{\Box p \lor \Box q}{1},
+          just = {\TRule{\False}{\lif}[1]}, checked
+          [\pFmla{\False}{\Box p}{1},
+            just = {\TRule{\False}{\lor}[3]}, checked
+            [\pFmla{\False}{\Box q}{1},
+              just = {\TRule{\False}{\lor}[3]}, checked
+              [\pFmla{\False}{p}{1.1}, 
+                just = {\TRule{\False}{\Box}[4]}, checked
+                [\pFmla{\False}{q}{1.2}, 
+                  just = {\TRule{\False}{\Box}[5]}, checked
+                  [\pFmla{\True}{p \lor q}{1.1}, 
+                    just = {\TRule{\True}{\Box}[2]}, checked
+                    [\pFmla{\True}{p \lor q}{1.2}, 
+                      just = {\TRule{\True}{\Box}[2]}, checked
+                      [\pFmla{\True}{p}{1.1},
+                        just = {\TRule{\True}{\lor}[8]}, checked, close
+                      ]
+                      [\pFmla{\True}{q}{1.1},
+                        just = {\TRule{\True}{\lor}[8]}, checked
+                        [\pFmla{\True}{p}{1.2},
+                          just = {\TRule{\True}{\lor}[9]}, checked]
+                        [\pFmla{\True}{q}{1.2},
+                          just = {\TRule{\True}{\lor}[9]}, checked, close]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  Tersisa satu cabang terbuka, dan cabang itu lengkap. Dari cabang tersebut,
+  kita mendefinisikan model dengan dunia $W = \{1, 1.1, 1.2\}$ (satu-satunya
+  prefiks yang muncul pada cabang terbuka), relasi aksesibilitas
+  $R = \{\tuple{1, 1.1}, \tuple{1, 1.2}\}$, serta penetapan
+  $V(p) = \{1.2\}$ (karena baris~11 memuat
+  $\sFmla{\True}{p}[1.2]$) dan $V(q) = \{1.1\}$ (karena baris~10 memuat
+  $\sFmla{\True}{q}[1.1]$). Model itu digambarkan dalam
+  \olref{fig:counter-Box}, dan anda dapat memeriksa bahwa model itu merupakan
+  model tandingan bagi $\Box(p \lor q) \lif (\Box p \lor \Box q)$.
+  \begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={[align=right]right:\mFalse{p}\\ \mFalse{q}}]{$1$}; 
+      \node[world] (w2) [label={[align=right]right:\mFalse{p}\\ \mTrue{q}},
+        above left=of w1]{$1.1$}; 
+      \node[world] (w3) [label={[align=right]right:\mTrue{p}\\ \mFalse{q}},
+        above right=of w1] {$1.2$};
+      \draw[->] (w1) to (w2);
+      \draw[->] (w1) to (w3);
+    \end{tikzpicture}
+  \end{center}
+  \caption{Model tandingan bagi $\Box(p \lor q) \lif (\Box p \lor \Box
+    q)$.}
+  \ollabel{fig:counter-Box}
+\end{figure}
+\end{ex}          
+}
+{
+\begin{ex}
+  Kita mengetahui bahwa $\Proves/ (\Diamond p \land \Diamond q) \lif
+  \Diamond(p \land q)$. Konstruksi suatu tableau dimulai dengan:
+  \begin{oltableau}
+    [\pFmla{\False}{(\Diamond p \land \Diamond q) \lif \Diamond(p \land q)}{1},
+      just = \TAss, checked
+      [\pFmla{\True}{\Diamond p \land \Diamond q}{1},
+        just = {\TRule{\False}{\lif}[1]}, checked
+        [\pFmla{\False}{\Diamond(p \land q)}{1},
+          just = {\TRule{\False}{\lif}[1]}
+          [\pFmla{\True}{\Diamond p}{1},
+            just = {\TRule{\True}{\land}[2]}, checked
+            [\pFmla{\True}{\Diamond q}{1},
+              just = {\TRule{\True}{\land}[2]}, checked
+              [\pFmla{\True}{p}{1.1}, 
+                just = {\TRule{\True}{\Diamond}[4]}, checked
+                [\pFmla{\True}{q}{1.2}, 
+                  just = {\TRule{\True}{\Diamond}[5]}, checked
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  Tentu saja !!{tableau} tersebut belum selesai. Pada langkah berikutnya,
+  kita membahas satu-satunya baris tanpa tanda centang, yakni !!{formula}
+  berprefiks $\sFmla{\False}{\Diamond(p \land q)}[1]$ pada baris~$3$.
+  Konstruksi tableau lengkap memerintahkan kita untuk menerapkan aturan
+  $\TRule{\False}{\Diamond}$ bagi setiap prefiks yang sudah digunakan pada
+  cabang, yakni bagi $1.1$ dan $1.2$ sekaligus:
+  \begin{oltableau}
+    [\pFmla{\False}{(\Diamond p \land \Diamond q) \lif \Diamond(p \land q)}{1},
+      just = \TAss, checked
+      [\pFmla{\True}{\Diamond p \land \Diamond q}{1},
+        just = {\TRule{\False}{\lif}[1]}, checked
+        [\pFmla{\False}{\Diamond (p \land q)}{1},
+          just = {\TRule{\False}{\lif}[1]}
+          [\pFmla{\True}{\Diamond p}{1},
+            just = {\TRule{\True}{\land}[2]}, checked
+            [\pFmla{\True}{\Diamond q}{1},
+              just = {\TRule{\True}{\land}[2]}, checked
+              [\pFmla{\True}{p}{1.1}, 
+                just = {\TRule{\True}{\Diamond}[4]}, checked
+                [\pFmla{\True}{q}{1.2}, 
+                  just = {\TRule{\True}{\Diamond}[5]}, checked
+                  [\pFmla{\False}{p \land q}{1.1}, 
+                    just = {\TRule{\False}{\Diamond}[3]}
+                    [\pFmla{\False}{p \land q}{1.2}, 
+                      just = {\TRule{\False}{\Diamond}[3]}
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  Sekarang baris 3, 8, dan 9 tidak mempunyai tanda centang. Namun, tidak ada
+  prefiks baru yang telah ditambahkan, sehingga kita menerapkan
+  $\TRule{\False}{\land}$ pada baris~8 dan~9 pada semua cabang yang dihasilkan
+  (selama cabang-cabang itu tidak tertutup):
+  \begin{oltableau}
+    [\pFmla{\False}{(\Diamond p \land \Diamond q) \lif \Diamond(p \land q)}{1},
+      just = \TAss, checked
+      [\pFmla{\True}{\Diamond p \land \Diamond q}{1},
+        just = {\TRule{\False}{\lif}[1]}, checked
+        [\pFmla{\False}{\Diamond(p \land q)}{1},
+          just = {\TRule{\False}{\lif}[1]}
+          [\pFmla{\True}{\Diamond p}{1},
+            just = {\TRule{\True}{\land}[2]}, checked
+            [\pFmla{\True}{\Diamond q}{1},
+              just = {\TRule{\True}{\land}[2]}, checked
+              [\pFmla{\True}{p}{1.1}, 
+                just = {\TRule{\True}{\Diamond}[4]}, checked
+                [\pFmla{\True}{q}{1.2}, 
+                  just = {\TRule{\True}{\Diamond}[5]}, checked
+                  [\pFmla{\False}{p \land q}{1.1}, 
+                    just = {\TRule{\False}{\Diamond}[3]}, checked
+                    [\pFmla{\False}{p \land q}{1.2}, 
+                      just = {\TRule{\False}{\Diamond}[3]}, checked
+                      [\pFmla{\False}{p}{1.1},
+                        just = {\TRule{\False}{\land}[8]}, checked, close
+                      ]
+                      [\pFmla{\False}{q}{1.1},
+                        just = {\TRule{\False}{\land}[8]}, checked
+                        [\pFmla{\False}{p}{1.2},
+                          just = {\TRule{\False}{\land}[9]}, checked]
+                        [\pFmla{\False}{q}{1.2},
+                          just = {\TRule{\False}{\land}[9]}, checked, close]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  \end{oltableau}
+  Tersisa satu cabang terbuka, dan cabang itu lengkap. Dari cabang tersebut,
+  kita mendefinisikan model dengan dunia $W = \{1, 1.1, 1.2\}$ (satu-satunya
+  prefiks yang muncul pada cabang terbuka), relasi aksesibilitas
+  $R = \{\tuple{1, 1.1}, \tuple{1, 1.2}\}$, serta penetapan
+  $V(p) = \{1.1\}$ (karena baris~6 memuat
+  $\sFmla{\True}{p}[1.1]$) dan $V(q) = \{1.2\}$ (karena baris~7 memuat
+  $\sFmla{\True}{q}[1.2]$). Model itu digambarkan dalam
+  \olref{fig:counter-Diamond}, dan anda dapat memeriksa bahwa model itu
+  merupakan model tandingan bagi
+  $(\Diamond p \land \Diamond q) \lif \Diamond (p \land q)$.
+  \begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[modal]
+      \node[world] (w1) [label={[align=right]right:\mFalse{p}\\ \mFalse{q}}]{$1$}; 
+      \node[world] (w2) [label={[align=right]right:\mTrue{p}\\ \mFalse{q}},
+        above left=of w1]{$1.1$}; 
+      \node[world] (w3) [label={[align=right]right:\mFalse{p}\\ \mTrue{q}},
+        above right=of w1] {$1.2$};
+      \draw[->] (w1) to (w2);
+      \draw[->] (w1) to (w3);
+    \end{tikzpicture}
+  \end{center}
+  \caption{Model tandingan bagi $(\Diamond p \land \Diamond q) \lif
+    \Diamond (p \land q)$.}
+  \ollabel{fig:counter-Diamond}
+\end{figure}
+\end{ex}          
+}
+
+\end{document}

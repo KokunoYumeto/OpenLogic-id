@@ -1,0 +1,85 @@
+% Part: applied-modal-logics
+% Chapter: epistemic-logic
+% Section: language-epistemic-logic
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{aml}{el}{pal}
+
+\olsection{Logika Pengumuman Publik}
+
+Logika epistemik dinamis memungkinkan kita merepresentasikan cara pengetahuan
+agen berubah dari waktu ke waktu atau ketika agen memperoleh informasi baru.
+Banyak di antaranya merepresentasikan perubahan pengetahuan dengan
+\emph{peristiwa} atau \emph{pembaruan} informasional. Jenis pembaruan paling
+dasar ialah pengumuman publik: suatu formula diumumkan dengan benar dan semua
+agen bersama-sama menyaksikan pengumuman tersebut. Untuk melakukannya, kita
+memperluas bahasa sebagai berikut.
+
+\begin{defn}
+Misalkan $G$ merupakan himpunan simbol agen. Bahasa dasar logika epistemik
+multiagen dengan pengumuman publik memuat
+\begin{enumerate}
+  \tagitem{prvFalse}{Konstanta proposisional untuk !!{falsity}~$\lfalse$.}{}
+  \tagitem{prvTrue}{Konstanta proposisional untuk !!{truth}~$\ltrue$.}{}
+  \item Suatu himpunan yang !!{denumerable}s, yang terdiri atas
+    !!{propositional variable}s: $\Obj p_0$, $\Obj p_1$, $\Obj p_2$, \dots
+  \item Konektif proposisional: \startycommalist
+  \iftag{prvNot}{\ycomma $\lnot$ (negasi)}{}%
+  \iftag{prvAnd}{\ycomma $\land$ (konjungsi)}{}%
+  \iftag{prvOr}{\ycomma $\lor$ (disjungsi)}{}%
+  \iftag{prvIf}{\ycomma $\lif$ (!!{conditional})}{}%
+  \iftag{prvIff}{\ycomma $\liff$ (!!{biconditional})}{}.
+  \item Operator pengetahuan $\Knows_a$ dengan $a\in G$.
+  \item Operator pengumuman publik $[!B]$ dengan $!B$ merupakan !!a{formula}.
+\end{enumerate}
+\end{defn}
+
+Operator pengumuman publik berfungsi sebagai operator kotak; karena itu,
+definisi induktif bahasa kita diberikan sebagai berikut:
+
+\begin{defn}
+  \emph{!!^{formula}s} dalam bahasa epistemik didefinisikan secara induktif
+  sebagai berikut:
+  \begin{enumerate}
+  \tagitem{prvFalse}{$\lfalse$ merupakan !!{formula} atomik.}{}
+
+  \tagitem{prvTrue}{$\ltrue$ merupakan !!{formula} atomik.}{}
+
+  \item Setiap variabel proposisional $\Obj p_i$ merupakan !!{formula}
+    (atomik).
+
+  \tagitem{prvNot}{Jika $!A$ merupakan !!a{formula}, maka $\lnot !A$
+  merupakan !!a{formula}.}{}
+
+  \tagitem{prvAnd}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \land !B)$ merupakan !!a{formula}.}{}
+
+  \tagitem{prvOr}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \lor !B)$ merupakan !!a{formula}.}{}
+
+  \tagitem{prvIf}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \lif !B)$ merupakan !!a{formula}.}{}
+
+  \tagitem{prvIff}{Jika $!A$ dan $!B$ merupakan !!{formula}s, maka
+  $(!A \liff !B)$ merupakan !!a{formula}.}{}
+
+  \item Jika $!A$ merupakan !!a{formula} dan $a\in G$, maka $\Knows_a !A$
+    merupakan !!a{formula}.
+
+  \item Jika $!A$ dan $!B$ merupakan !!{formula}s, maka $[!A] !B$ merupakan
+    !!a{formula}.
+
+  \tagitem{limitClause}{Tidak ada hal lain yang merupakan !!a{formula}.}{}
+\end{enumerate}
+\end{defn}
+
+Pembacaan yang dimaksudkan bagi !!{formula}~$[!A] !B$ ialah ``Setelah $!A$
+diumumkan dengan benar, $!B$ berlaku.'' Terkadang, kita juga akan perlu
+membahas pengetahuan bersama dalam konteks pengumuman publik; karena itu,
+bahasa tersebut dapat pula memuat operator pengetahuan bersama~$\CKnows_G
+!A$.
+
+\end{document}

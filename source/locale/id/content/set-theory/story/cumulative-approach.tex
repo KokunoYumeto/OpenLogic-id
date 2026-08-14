@@ -1,0 +1,92 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{story}{approach}
+\olsection{Pendekatan Kumulatif-Iteratif}
+
+Berikut pernyataan yang sedikit lebih lengkap tentang cara kita akan
+menstratifikasi himpunan ke dalam tahap-tahap:
+\begin{quote}
+	Himpunan dibentuk dalam \emph{tahap-tahap}. Untuk setiap tahap $S$,
+	terdapat tahap-tahap tertentu yang berada \emph{sebelum} $S$. Pada tahap
+	$S$, setiap koleksi yang terdiri atas himpunan yang dibentuk pada tahap
+	sebelum $S$ dibentuk menjadi sebuah himpunan. Tidak ada himpunan selain
+	himpunan yang dibentuk pada tahap-tahap tersebut.
+	\citep[p.~323]{Shoenfield:AST}
+\end{quote}
+Ini merupakan sketsa \emph{konsepsi kumulatif-iteratif tentang himpunan}.
+Konsepsi ini akan mendasari teori himpunan formal yang kita sajikan dalam
+\olref[sth][][]{part}.
+
+Mari kita telaah hal ini dengan sedikit lebih terperinci. Sebagaimana
+Shoenfield menggambarkan prosesnya, pada setiap tahap kita membentuk himpunan
+baru dari {himpunan} yang telah tersedia dari tahap-tahap sebelumnya. Jadi,
+dalam gambaran Shoenfield, pada tahap awal, yaitu tahap $0$, tidak ada tahap
+yang \emph{lebih awal}; karena itu, \emph{a fortiori}, tidak ada himpunan yang
+tersedia bagi kita dari tahap sebelumnya.\footnote{Mengapa kita harus
+mengasumsikan bahwa \emph{ada} tahap pertama? Lihat catatan kaki untuk
+\stagesord{} dalam \olref[z][story]{sec}.} Jadi, kita hanya membentuk satu
+himpunan: himpunan tanpa !!{element}s, $\emptyset$. Pada tahap $1$, tepat satu
+himpunan tersedia dari tahap sebelumnya, sehingga hanya ada satu himpunan
+baru, yaitu $\{\emptyset\}$. Pada tahap $2$, dua himpunan tersedia dari tahap
+sebelumnya, dan kita membentuk dua himpunan baru,
+$\{\{\emptyset\}\}$ dan $\{\emptyset, \{\emptyset\}\}$. Pada tahap $3$,
+empat himpunan tersedia dari tahap sebelumnya, sehingga kita membentuk dua
+belas himpunan baru\ldots. Dengan demikian, gambaran kumulatif-iteratif
+tentang himpunan akan tampak kira-kira seperti ini (angka menunjukkan tahap):
+\begin{center}
+	\begin{tikzpicture}[scale=0.6]
+	\tikzset{cut_here/.style={densely dotted}}
+	\draw (-4,6) -- (-1, 0)-- (2,6);
+	\draw[cut_here] (-5,8)--(-4,6);
+	\draw[cut_here] (2,6)--(3,8);
+	\draw(-1.5, 1)--(-0.5, 1);
+	\draw(-2, 2)--(0, 2);
+	\draw(-2.5, 3)--(0.5,3);
+	\draw(-3, 4)--(1, 4);
+	\draw(-3.5, 5)--(1.5, 5);
+	\draw(-4, 6)--(2, 6);
+	\node[label] at (0, 0) {\small 0};
+	\node[label] at (0.5, 1) {\small 1};
+	\node[label] at (1, 2) {\small 2};
+	\node[label] at (1.5, 3) {\small 3};
+	\node[label] at (2, 4) {\small 4};
+	\node[label] at (2.5, 5) {\small 5};
+	\node[label] at (3, 6) {\small 6};
+	\end{tikzpicture}
+\end{center}
+Jadi, mengapa kita perlu menerima cerita ini?
+
+Salah satu alasannya ialah bahwa cerita ini baik dan mudah dikelola. Setelah
+cerita yang paling jelas, yaitu Komprehensi Naif, tumbang, kita memerlukan
+sesuatu yang baik.
+
+Namun, cerita ini bukan \emph{sekadar} baik. Kita memiliki alasan kuat untuk
+percaya bahwa setiap teori himpunan yang didasarkan pada cerita ini akan
+\emph{konsisten}. Berikut alasannya.
+
+Menurut konsepsi kumulatif-iteratif tentang himpunan, kita membentuk himpunan
+pada tahap-tahap tertentu; dan !!{element}s-nya harus berupa objek yang
+\emph{sudah} tersedia. Jadi, untuk setiap tahap~$S$, kita dapat membentuk
+himpunan
+\[
+	R_S = \Setabs{x}{x \notin x \text{ dan $x$ tersedia sebelum $S$}}
+\]
+Penalaran dalam pembuktian Paradoks Russell kini akan menetapkan bahwa $R_S$
+sendiri tidak tersedia sebelum tahap $S$. Dan itu bukan kontradiksi. Selain
+itu, jika kita menerima konsepsi kumulatif-iteratif tentang himpunan, kita
+bahkan tidak semestinya \emph{mengharapkan} dapat membentuk himpunan Russell
+itu sendiri. Sebab, himpunan itu akan menjadi himpunan semua himpunan yang
+bukan anggota dirinya sendiri dan yang ``kelak akan tersedia''. Singkatnya:
+fakta bahwa kita (secara terbukti) tidak dapat membentuk himpunan Russell
+bukanlah sesuatu yang \emph{mengejutkan} menurut cerita kumulatif-iteratif;
+itulah yang akan kita \emph{prediksi}.
+
+%In one sense, then, the cumulative-iterative conception of set yields a response to Russell's Paradox which is rather like the \emph{predicativist}'s response. After all, the predicativist said that the collection of all non-self-membered sets$_n$ is a set$_{n+1}$, and this set$_n$ will not be self-membered. (Indeed, most predicativists will treat it as \emph{ungrammatical} to try to ask whether a set is self-membered.)
+%
+%But there is an important difference between the cumulative-iterative approach and the predicativist approach: the cumulative-iterative approach treats all of our entities as being \emph{of the same kind}. The predicativist will presumably have an empty set$_0$ (i.e., a set$_0$ with no !!{element}s), and an empty set$_1$ (i.e., a set$_1$ with no !!{element}s), and these will be \emph{different entities}. But on the cumulative-iterative approach, there is just one empty set, $\emptyset$, and it will be available at every stage of the hierarchy.
+
+%Indeed, the Axiom of Extensionality, stated at the start of this chapter, will hold true of the elements in this hierarchy (so that there can be \emph{only one} ``empty'' set). But I do not intend to use the cumulative-iterative conception to justify Extensionality (see \cite{Boolos1971}). Again: I suggest that we should accept Extensionality, just because we are interested in extensional collections.
+
+\end{document}

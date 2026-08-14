@@ -1,0 +1,39 @@
+% Bagian: second-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: semantic-notions
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{syn}{sem}
+\olsection{Gagasan Semantis}
+
+\begin{explain}
+Gagasan logis utama berupa \emph{validitas}, \emph{perikutan}, dan
+\emph{keterpenuhan} didefinisikan dengan cara yang sama bagi logika orde kedua
+seperti bagi logika orde pertama, kecuali bahwa relasi keterpenuhan yang
+mendasarinya sekarang adalah relasi bagi !!{formula}s orde kedua. Tentu saja,
+suatu !!{sentence} orde kedua merupakan !!a{formula} yang semua variabelnya,
+termasuk variabel predikat dan fungsi, terikat.
+\end{explain}
+
+\begin{defn}[Validitas]
+Suatu kalimat $!A$ \emph{valid}, $\Entails !A$, jika dan hanya jika
+$\Sat{M}{!A}$ bagi setiap !!{structure}~$\Struct M$.
+\end{defn}
+
+\begin{defn}[Perikutan]
+Suatu himpunan kalimat~$\Gamma$ \emph{mengakibatkan} suatu kalimat~$!A$,
+$\Gamma \Entails !A$, jika dan hanya jika bagi setiap
+!!{structure}~$\Struct M$ dengan $\Sat{M}{\Gamma}$, berlaku
+$\Sat{M}{!A}$.
+\end{defn}
+
+\begin{defn}[Keterpenuhan]
+Suatu himpunan kalimat~$\Gamma$ \emph{dapat dipenuhi} jika
+$\Sat{M}{\Gamma}$ bagi suatu !!{structure}~$\Struct M$. Jika $\Gamma$ tidak
+dapat dipenuhi, himpunan itu disebut \emph{tak dapat dipenuhi}.
+\end{defn}
+
+\end{document}

@@ -1,0 +1,41 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: lambda-computable
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{int}{cmp}
+\olsection{Fungsi yang \usetoken{S}{lambda definable} Dapat Dihitung}
+
+\begin{thm}
+\ollabel{thm:lambda-computable}
+Jika suatu fungsi parsial~$f$ !!{lambda defined} oleh suatu suku lambda, maka
+fungsi itu dapat dihitung.
+\end{thm}
+
+\begin{proof}
+Andaikan suatu fungsi~$f$ !!{lambda defined} oleh suku lambda~$X$. Mari kita
+uraikan prosedur informal untuk menghitung~$f$. Pada masukan $m_0$,
+\dots,~$m_{n-1}$, tuliskan suku $X \num m_0 \ldots \num m_{n-1}$. Bangun
+sebuah pohon dengan mula-mula menuliskan semua reduksi satu-langkah dari suku
+asal; di bawahnya, tuliskan semua reduksi satu-langkah dari suku-suku tersebut
+(yakni reduksi dua-langkah dari suku asal); lalu teruskan proses ini. Jika suatu
+numeral pernah tercapai, kembalikan numeral itu sebagai jawaban; jika tidak,
+fungsi tersebut tidak terdefinisi.
+
+Dengan menggunakan tesis Church, kita menyimpulkan bahwa fungsi ini dapat
+dihitung. Cara yang lebih baik untuk membuktikan teorema ini ialah memberikan
+deskripsi rekursif bagi prosedur pencarian tersebut. Sebagai contoh, kita dapat
+mendefinisikan suatu barisan fungsi dan relasi rekursif primitif,
+``$\fn{IsASubterm}$,'' ``$\fn{Substitute}$,''
+``$\fn{ReducesToInOneStep}$,'' ``$\fn{ReductionSequence}$,''
+``$\fn{Numeral}$,'' dan seterusnya. Prosedur rekursif parsial untuk menghitung
+$f(m_0, \dots, m_{n-1})$ kemudian mencari barisan reduksi satu-langkah yang
+dimulai dengan $X \num{m_0} \dots \num{m_{n-1}}$ dan berakhir dengan sebuah
+numeral, lalu mengembalikan bilangan yang bersesuaian dengan numeral tersebut.
+Perinciannya panjang dan menjemukan, tetapi selebihnya rutin.
+\end{proof}
+
+\end{document}

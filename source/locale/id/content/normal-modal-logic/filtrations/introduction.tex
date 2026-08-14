@@ -1,0 +1,136 @@
+% Part: normal-modal-logic
+% Chapter: filtrations
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{fil}{int}
+
+\olsection{Pengantar}
+
+Salah satu pertanyaan penting mengenai suatu logika selalu ialah apakah logika
+itu dapat diputuskan, yakni apakah terdapat prosedur efektif yang akan menjawab
+pertanyaan ``apakah !!{formula} ini valid?'' Logika proposisional dapat
+diputuskan: kita dapat menguji secara efektif apakah !!a{formula} merupakan
+tautologi dengan menyusun tabel kebenaran, dan untuk suatu !!{formula} tertentu,
+tabel kebenarannya berhingga. Namun, kita tidak dapat begitu saja menguji apakah
+suatu formula modal bernilai benar dalam semua model, sebab terdapat tak
+berhingga banyak model. Kita dapat mendaftar semua model berhingga yang relevan
+bagi suatu formula tertentu, sebab yang relevan hanyalah penetapan himpunan
+bagian dunia kepada !!{propositional variable}s yang benar-benar muncul dalam
+!!{formula} tersebut. Jika relasi aksesibilitas ditetapkan, berbagai penetapan
+$V(p)$ yang mungkin hanyalah semua himpunan bagian dari~$W$, dan jika
+$\card{W} = n$, terdapat $2^n$ penetapan semacam itu. Jika !!{formula}~$!A$
+memuat $m$ !!{propositional variable}s, terdapat $2^{nm}$ model berbeda
+dengan~$n$ dunia. Untuk setiap model itu, kita dapat menguji apakah~$!A$
+bernilai benar pada semua dunia cukup dengan menghitung nilai kebenaran~$!A$
+pada masing-masing dunia. Tentu saja, kita juga harus memeriksa semua relasi
+aksesibilitas yang mungkin, tetapi pada~$n$ dunia pun hanya terdapat berhingga
+banyak relasi (tepatnya, sebanyak himpunan bagian dari $W \times W$, yakni
+$2^{n^2}$).
+
+Jika yang kita minati bukan logika~\Log{K}, melainkan logika yang didefinisikan
+oleh suatu kelas model (misalnya, model refleksif dan transitif), kita juga
+harus dapat menguji apakah relasi aksesibilitasnya merupakan jenis yang tepat. Kita dapat
+melakukannya apabila kerangka yang kita minati dapat didefinisikan oleh
+!!{formula}s modal (misalnya, dengan menguji apakah \Ax{T} dan \Ax{4} valid
+pada kerangka itu). Jadi, gagasannya ialah menelusuri semua kerangka berhingga,
+menguji setiap kerangka untuk menentukan apakah kerangka itu termasuk dalam
+kelas yang kita minati, lalu mendaftar semua model yang mungkin pada kerangka
+tersebut dan menguji apakah $!A$ bernilai benar dalam masing-masing model. Jika
+tidak, berhentilah: $!A$ tidak valid dalam kelas model yang diminati.
+
+Ada masalah dengan gagasan ini: kita tidak tahu kapan, jika pernah, kita dapat
+berhenti mencari. Jika !!{formula} tersebut mempunyai model tandingan
+berhingga, prosedur kita akan menemukannya. Namun, jika formula itu tidak
+mempunyai model tandingan berhingga, kita tidak akan memperoleh jawaban.
+!!{formula} tersebut mungkin valid (sama sekali tidak mempunyai model
+tandingan), atau mungkin hanya mempunyai model tandingan tak berhingga yang
+tidak akan pernah kita periksa. Masalah ini dapat diatasi jika kita dapat
+menunjukkan bahwa setiap !!{formula} yang mempunyai model tandingan juga
+mempunyai model tandingan berhingga. Jika demikian, kita mengatakan bahwa
+logika tersebut mempunyai \emph{sifat model berhingga}.
+
+Namun, bagaimana kita menunjukkan bahwa suatu logika mempunyai sifat model
+berhingga? Salah satu caranya ialah menemukan cara untuk mengubah suatu model
+(tandingan) tak berhingga bagi~$!A$ menjadi model berhingga. Jika hal itu dapat
+dilakukan, setiap kali terdapat model tempat $!A$ tidak bernilai benar, model
+berhingga yang dihasilkan juga membuat $!A$ tidak bernilai benar. Model
+berhingga itu akan muncul dalam daftar semua model berhingga kita, dan pada
+akhirnya kita akan menentukan, bagi setiap formula yang tidak valid, bahwa
+formula itu memang tidak valid. Prosedur kita tidak akan berhenti jika formula
+tersebut valid. Jika selain itu kita dapat menunjukkan bahwa terdapat suatu
+ukuran maksimum bagi model berhingga yang dihasilkan prosedur kita, dan bahwa
+ukuran maksimum tersebut hanya bergantung pada !!{formula}~$!A$, kita akan
+mempunyai batas ukuran model berhingga yang perlu diuji dalam pencarian model
+tandingan. Jika sampai batas itu kita belum menemukan model tandingan, berarti
+tidak ada model tandingan. Dengan demikian, prosedur kita benar-benar akan
+memutuskan pertanyaan ``apakah $!A$ valid?'' bagi setiap !!{formula}~$!A$.
+
+Strategi yang sering berhasil untuk mengubah struktur tak berhingga menjadi
+struktur berhingga ialah ``mengidentifikasi'' !!{element}s struktur yang
+berperilaku sama dalam segi-segi yang relevan. Jika terdapat tak berhingga
+banyak dunia dalam~$\mModel{M}$ yang berperilaku sama dalam segi-segi yang
+relevan, kita mungkin dapat mengumpulkan \emph{semua} dunia ke dalam berhingga
+banyak ``kelas'' dunia semacam itu (yang mungkin saja tak berhingga). Dengan
+kata lain, kita harus mempartisi himpunan dunia dengan cara yang tepat, yakni
+sedemikian rupa sehingga setiap blok partisi mungkin memuat tak berhingga
+banyak dunia, tetapi hanya terdapat berhingga banyak blok. Kemudian kita
+mendefinisikan model baru~$\mModel{M^*}$ yang dunia-dunianya adalah blok-blok
+partisi tersebut. Berhingga banyak blok partisi dalam model lama memberi kita
+berhingga banyak dunia dalam model baru, yakni suatu model berhingga. Mari
+sebut blok partisi yang memuat dunia~$w$ sebagai $[w]$. Kita menghendaki agar
+$\mSat{M}{!A}[w]$ jika dan hanya jika $\mSat{M^*}{!A}[{[w]}]$, sebab kita
+menghendaki model baru menjadi model tandingan bagi~$!A$ jika model lama
+demikian. Hal ini menuntut kita mendefinisikan partisi dan relasi aksesibilitas
+dari~$\mModel{M^*}$ dengan cara yang tepat.
+
+Untuk melihat bagaimana cara ini berjalan, pertama-tama bayangkan bahwa relasi
+aksesibilitasnya universal. $\mSat{M}{\Box !B}[w]$ jika dan
+hanya jika untuk setiap $v \in W$, $\mSat{M}{!B}[v]$, dan hal yang sama
+berlaku bagi $\mModel{M^*}$, hanya saja dengan $[w]$ dan $[v]$. Sebagai
+gagasan awal, katakanlah bahwa dua dunia $u$ dan $v$ ekuivalen (termasuk dalam
+blok partisi yang sama) jika keduanya bersepakat mengenai semua
+!!{propositional variable}s dalam~$\mModel{M}$, yakni $\mSat{M}{p}[u]$ jika
+dan hanya jika $\mSat{M}{p}[v]$. Misalkan
+$V^*(p) = \Setabs{[w]}{\mSat{M}{p}[w]}$. Tujuan kita ialah menunjukkan bahwa
+$\mSat{M}{!A}[w]$ jika dan hanya jika $\mSat{M^*}{!A}[{[w]}]$. Jelas bahwa
+kita akan membuktikannya melalui induksi: kasus dasarnya ialah $!A \equiv p$.
+Pertama-tama, andaikan $\mSat{M}{p}[w]$. Maka $[w] \in V^*(p)$ menurut
+definisi, sehingga $\mSat{M^*}{p}[{[w]}]$. Sekarang andaikan
+$\mSat{M^*}{p}[{[w]}]$. Ini berarti bahwa $[w] \in V^*(p)$, yakni bagi suatu
+$v$ yang ekuivalen dengan~$w$, $\mSat{M}{p}[v]$. Namun, ``$w$ ekuivalen
+dengan $v$'' berarti ``$w$ dan $v$ membuat !!{propositional variable}s yang
+sama bernilai benar,'' sehingga $\mSat{M}{p}[w]$. Sekarang, untuk langkah
+induktif, misalnya $!A \ident \lnot !B$. Maka
+$\mSat{M}{\lnot !B}[w]$ jika dan hanya jika $\mSat/{M}{!B}[w]$, jika dan
+hanya jika $\mSat/{M^*}{!B}[{[w]}]$ (menurut hipotesis induksi), jika dan
+hanya jika $\mSat{M^*}{\lnot !B}[{[w]}]$. Hal yang sama berlaku bagi operator
+nonmodal lainnya. Cara ini juga berlaku bagi $\Box$: andaikan
+$\mSat{M^*}{\Box !B}[{[w]}]$. Ini berarti bahwa bagi setiap $[u]$,
+$\mSat{M^*}{!B}[{[u]}]$. Menurut hipotesis induksi, bagi setiap $u$,
+$\mSat{M}{!B}[u]$. Akibatnya, $\mSat{M}{\Box !B}[w]$.
+
+Dalam kasus umum, ketika kita juga harus mendefinisikan relasi aksesibilitas
+bagi $\mModel{M^*}$, keadaan menjadi lebih rumit. Kita akan menyebut suatu
+model~$\mModel{M^*}$ sebagai \emph{filtrasi} jika relasi
+aksesibilitasnya~$R^*$ memenuhi syarat-syarat yang diperlukan agar pembuktian
+induktif di atas berjalan. Dengan demikian, setiap filtrasi~$\mModel{M^*}$
+akan membuat $!A$ bernilai benar pada $[w]$ jika dan hanya jika
+$\mModel{M}$ membuat $!A$ bernilai benar pada~$w$. Namun, sekarang kita juga
+harus menunjukkan bahwa filtrasi \emph{memang ada}, yakni bahwa kita dapat
+mendefinisikan~$R^*$ sehingga memenuhi syarat-syarat yang diperlukan. Agar
+hal ini berhasil, kita harus mensyaratkan agar dunia $u$ dan~$v$ dianggap
+ekuivalen bukan hanya ketika keduanya bersepakat mengenai semua
+!!{propositional variable}s, melainkan mengenai semua sub-!!{formula}s
+dari~$!A$. Karena $!A$ hanya mempunyai berhingga banyak sub-!!{formula}s,
+hal ini tetap menjamin bahwa filtrasi tersebut berhingga. Ada lebih dari satu
+cara untuk mendefinisikan filtrasi, dan untuk memastikan bahwa relasi
+aksesibilitas filtrasi mempunyai sifat-sifat yang diperlukan (misalnya
+refleksif, transitif, dan sebagainya), kita harus kreatif dalam mendefinisikan
+$R^*$.
+
+
+\end{document}

@@ -1,0 +1,114 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{replacement}{extrinsic}
+\olsection[Pertimbangan Ekstrinsik]{Pertimbangan Ekstrinsik mengenai Penggantian}
+
+Kita mulai dengan mempertimbangkan upaya \emph{ekstrinsik} untuk membenarkan
+Penggantian. Boolos mengusulkan upaya berikut.
+\begin{quote}
+  [\ldots] alasan untuk mengadopsi aksioma-aksioma penggantian cukup
+  sederhana: aksioma-aksioma itu mempunyai banyak konsekuensi yang
+  dikehendaki dan (tampaknya) tidak mempunyai konsekuensi yang tidak
+  dikehendaki. Selain teorema-teorema mengenai konsepsi iteratif,
+  konsekuensinya mencakup teori bilangan tak hingga yang memuaskan meskipun
+  tidak ideal, dan suatu hasil yang sangat dikehendaki yang membenarkan
+  definisi induktif pada relasi yang berfondasi baik.
+  \citep[229]{Boolos1971}
+\end{quote}
+Inti gagasan Boolos ialah bahwa kita seharusnya membenarkan Penggantian
+berdasarkan buahnya. Buah tertentu yang ia sebutkan merupakan hal-hal yang
+telah kita bahas dalam beberapa bab terakhir. Penggantian memungkinkan kita
+membuktikan bahwa ordinal von Neumann merupakan pengganti yang sangat baik
+bagi gagasan tipe pengurutan baik (inilah ``teori bilangan tak hingga yang
+memuaskan meskipun tidak ideal'' kita). Penggantian juga memungkinkan kita
+mendefinisikan $V_\alpha$, menetapkan gagasan peringkat, dan membuktikan
+Induksi-$\in$ (semua ini merupakan ``teorema-teorema mengenai konsepsi
+iteratif'' kita). Terakhir, Penggantian memungkinkan kita membuktikan Teorema
+Rekursi Transfinit (inilah ``definisi induktif pada relasi yang berfondasi
+baik'').
+
+Semua ini memang konsekuensi yang dikehendaki. Namun, apakah konsekuensi yang
+dikehendaki itu cukup untuk \emph{membenarkan} Penggantian? \emph{Tidak}.
+Atau setidaknya, tidak secara langsung.
+
+Berikut suatu masalah sederhana. Walaupun kita telah menyatakan beberapa
+konsekuensi Penggantian yang dikehendaki, banyak di antaranya dapat kita
+peroleh melalui cara lain. Hal ini tidak dikenal seluas yang semestinya,
+sehingga kita perlu berhenti sejenak untuk menjelaskan keadaannya.
+
+Terdapat teori himpunan sederhana yang disebut Teori Tingkat, atau disingkat
+$\LT$.\footnote{Versi-versi pertama $\LT$ diajukan oleh
+\citet{Montague1965} dan \citet{Scott1974}; teori ini disederhanakan dan
+diberi pembahasan sepanjang buku oleh \citet{Potter2004}; dan
+\citet{ButtonLT1} baru-baru ini menyederhanakan $\LT$ lebih lanjut.}
+Aksioma-aksioma $\LT$ hanyalah Ekstensionalitas, Pemisahan, dan klaim bahwa
+setiap himpunan merupakan himpunan bagian dari suatu \emph{tingkat}; di sini
+``tingkat'' didefinisikan secara cerdik sehingga tingkat-tingkat berperilaku
+seperti sahabat kita, $V_\alpha$. Jadi, $\ZF$ membuktikan $\LT$; tetapi
+$\LT$ \emph{jauh} lebih lemah daripada $\ZF$. Bahkan, $\LT$ tidak memberi
+Anda Pasangan, Himpunan Kuasa, Ketakhinggaan, ataupun Penggantian. Misalkan
+$\Zr$ merupakan hasil penambahan Ketakhinggaan dan Himpunan Kuasa kepada
+$\LT$; ini juga memberikan Pasangan, sehingga $\Zr$ setidaknya sekuat $\Z$.
+Namun, sebenarnya $\Zr$ benar-benar lebih kuat daripada $\Z$, karena teori
+itu menambahkan klaim bahwa setiap himpunan mempunyai peringkat (karena itu
+saya menyarankan agar teori tersebut disebut $\Zr$). Sesungguhnya, $\Zr$
+memberikan: teori ordinal yang sepenuhnya memuaskan; hasil-hasil yang
+menstratifikasi hierarki menjadi tahap-tahap yang terurut baik; bukti
+Induksi-$\in$; dan suatu \emph{versi} Rekursi Transfinit.
+
+Singkatnya: walaupun Boolos tidak mengetahui hal ini, semua konsekuensi yang
+dikehendaki yang ia sebutkan dapat diperoleh \emph{tanpa} Penggantian; ia
+hanya perlu menggunakan $\Zr$, bukan $\Z$.
+
+(Dengan mempertimbangkan semua ini, mengapa kita mengikuti jalur
+konvensional dengan mengajarkan $\ZF$ kepada Anda, alih-alih $\LT$ dan
+$\Zr$? Ada dua alasan. Pertama: semata-mata karena alasan historis, memulai
+dengan $\LT$ cukup tidak baku; kita ingin membekali Anda agar dapat membaca
+pembahasan teori himpunan yang lebih baku. Kedua: ketika Anda siap memahami
+$\LT$ dan $\Zr$, Anda dapat langsung membaca \citealt{Potter2004} dan
+\citealt{ButtonLT1}.)
+
+Tentu saja, karena $\Zr$ benar-benar lebih lemah daripada $\ZF$, terdapat
+hasil-hasil yang dibuktikan $\ZF$ tetapi dibiarkan terbuka oleh $\Zr$. Jadi,
+seseorang dapat mencoba membenarkan Penggantian atas dasar ekstrinsik dengan
+menunjuk salah satu hasil tersebut. Namun, setelah Anda mengetahui cara
+menggunakan $\Zr$, cukup sulit menemukan banyak contoh hal yang (a)
+ditetapkan oleh Penggantian dan bukan oleh cara lain, serta (b) secara
+intuitif benar. (Untuk pembahasan lebih lanjut, lihat
+\citealt[\S13.2]{Potter2004}.)
+
+Kesimpulannya sebagai berikut. Untuk memberikan pembenaran ekstrinsik yang
+meyakinkan bagi Penggantian, kita perlu menemukan suatu hasil yang
+\emph{tidak dapat} dicapai tanpa Penggantian. Dan itu bukan usaha yang mudah.
+
+Mari kita pertimbangkan satu masalah lagi yang timbul bagi setiap upaya untuk
+memberikan pembenaran yang semata-mata ekstrinsik bagi Penggantian. (Masalah
+ini mungkin lebih mendasar daripada yang pertama.) Boolos bukan sekadar
+menunjukkan bahwa Penggantian mempunyai banyak konsekuensi yang dikehendaki.
+Ia juga menyatakan bahwa Penggantian ``(tampaknya) tidak mempunyai''
+konsekuensi yang tidak dikehendaki. Namun, kualifikasi dalam tanda kurung,
+``tampaknya,'' tentu sungguh menentukan.
+
+Ingat bagaimana kita sampai di sini: Komprehensi Naif mengalami
+inkonsistensi, dan kita menanggapi inkonsistensi ini dengan menerima
+konsepsi kumulatif-iteratif tentang himpunan. Konsepsi ini disertai sebuah
+kisah yang, kita harapkan, meyakinkan kita akan konsistensinya. Namun, jika
+kita tidak dapat membenarkan Penggantian dari dalam kisah itu, maka kita
+(sejauh ini) tidak mempunyai alasan untuk percaya bahwa $\ZF$ konsisten.
+Atau lebih tepatnya: kita tidak mempunyai alasan untuk percaya bahwa $\ZF$
+konsisten, selain fakta (yang mungkin sekadar kebetulan) bahwa belum ada
+seorang pun yang menemukan kontradiksi \emph{sampai sekarang}. Tepat dalam
+pengertian itu, komentar Boolos tampaknya dapat diringkas menjadi:
+``(tampaknya) $\ZF$ konsisten''. Kita harus menuntut jaminan konsistensi yang
+lebih kuat daripada ini.
+
+Masalah ini akan memengaruhi setiap upaya yang \emph{murni} ekstrinsik untuk
+membenarkan Penggantian, yakni setiap pembenaran yang dirumuskan semata-mata
+dalam konsekuensi (yang diketahui) dari $\ZF$. Karena itu, kita akan mencari
+pembenaran \emph{intrinsik} bagi Penggantian, yakni pembenaran yang
+menyarankan bahwa kisah yang kita ceritakan mengenai himpunan entah bagaimana
+``sudah'' mengikat kita pada Penggantian.
+
+\end{document}

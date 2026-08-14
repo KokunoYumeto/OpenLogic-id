@@ -1,0 +1,119 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{replacement}{absinf}
+\olsection{Penggantian dan ``Ketakhinggaan Mutlak''}
+
+Sekarang kita akan meninggalkan \limofsize{} dan menjelajahi keluarga upaya
+(intrinsik) lain untuk membenarkan Penggantian, yang benar-benar menganggap
+serius gagasan bahwa himpunan dibentuk dalam tahap-tahap.
+
+Ketika pertama kali menguraikan proses iteratif, kita mengajukan beberapa
+prinsip yang menjelaskan apa yang terjadi pada setiap tahap. Prinsip-prinsip
+ini ialah \stageshier, \stagesord, dan \stagesacc. Kemudian kita menambahkan
+beberapa prinsip yang memberi tahu kita sesuatu mengenai banyaknya tahap:
+\stagessucc{} memberi tahu kita bahwa proses pembentukan himpunan tidak
+pernah berakhir, dan \stagesinf{} memberi tahu kita bahwa proses itu melewati
+suatu tahap yang berindeks tak hingga.
+
+Masuk akal untuk mengusulkan bahwa kedua prinsip terakhir ini mengikuti
+suatu prinsip yang lebih luas, seperti:
+\begin{enumerate}
+	\item[] \stagesinex. Banyaknya tahap bersifat tak hingga secara mutlak;
+	hierarki itu setinggi mungkin.
+\end{enumerate}
+Jelas bahwa ini merupakan prinsip informal. Namun, sekalipun prinsip itu
+tidak langsung \emph{merupakan konsekuensi} dari konsepsi kumulatif-iteratif tentang
+himpunan, prinsip tersebut tentu tampak \emph{selaras} dengannya. Setidaknya,
+dan tidak seperti \limofsize, prinsip ini mempertahankan gagasan bahwa
+himpunan dibentuk tahap demi tahap.
+
+Sekarang harapannya ialah memanfaatkan \stagesinex{} menjadi pembenaran bagi
+Penggantian. Jadi, mari kita lihat bagaimana hal ini dapat dilakukan.
+
+Dalam \olref[ordinals][idea]{sec}, kita melihat bahwa mudah untuk
+mengonstruksi suatu pengurutan baik yang (secara moral) seharusnya isomorfik
+dengan $\omega+\omega$. Dengan kata lain, kita dapat dengan mudah
+membayangkan proses iteratif tahap demi tahap yang tipe urutannya (secara
+moral) ialah $\omega+\omega$. Karena itu, jika kita telah menerima
+\stagesinex, tentu kita juga seharusnya menerima bahwa setidaknya terdapat
+tahap ke-$\omega+\omega$ dalam hierarki, yakni $V_{\omega+\omega}$, sebab
+hierarki itu tentu \emph{dapat} berlanjut sejauh ini.
+
+Gagasan ini dapat diperumum sebagai berikut: untuk setiap pengurutan baik,
+proses pembangunan hierarki iteratif seharusnya berjalan setidaknya sejauh
+pengurutan baik itu. Dan kita dapat menjaminnya hanya dengan memperlakukan
+\olref[ordinals][ordtype]{thmOrdinalRepresentation} sebagai suatu
+\emph{aksioma}. Hal ini akan memberi tahu kita bahwa setiap pengurutan baik
+isomorfik dengan suatu ordinal von Neumann. Karena setiap ordinal von Neumann
+akan sama dengan peringkatnya sendiri,
+\olref[ordinals][ordtype]{thmOrdinalRepresentation} kemudian akan memberi
+tahu kita bahwa, setiap kali kita dapat mendeskripsikan suatu pengurutan baik
+dalam teori himpunan kita, proses iteratif pembangunan himpunan harus
+melampaui pengurutan baik tersebut.
+
+Gagasan ini tentu tampak seperti konsekuensi dari \stagesinex. Sayangnya,
+jika tujuan kita ialah memperoleh Penggantian dari gagasan ini, kita
+menghadapi penghalang teknis yang sederhana: Penggantian benar-benar lebih
+kuat daripada \olref[ordinals][ordtype]{thmOrdinalRepresentation}.
+(Pengamatan ini dibuat oleh \citet[\S13.2]{Potter2004}; kita akan
+membuktikannya dalam
+\olref[sth][replacement][finiteaxiomatizability]{sec}.)
+
+Akibatnya, jika kita hendak memahami \stagesinex{} dengan cara yang
+menghasilkan Penggantian, prinsip itu tidak dapat \emph{sekadar} mengatakan
+bahwa hierarki melampaui setiap pengurutan baik. Prinsip itu harus membuat
+klaim yang lebih kuat. Untuk tujuan ini, \cite{Shoenfield:AST} mengusulkan
+penguatan gagasan yang sangat alami sebagai berikut: hierarki tidak
+\emph{kofinal} dengan himpunan mana pun.\footnote{G\"odel tampaknya telah
+mengusulkan gagasan serupa; lihat \citet[p.~223]{Potter2004}. Untuk
+pembahasan mengenai G\"odel dan \citeauthor{Shoenfield:AST}, lihat
+\citet[90--5]{Incurvati2020}.} Secara sedikit lebih terperinci: jika $\tau$
+merupakan pemetaan yang mengirim himpunan ke tahap-tahap hierarki, citra
+sebarang himpunan $A$ di bawah $\tau$ tidak menghabiskan hierarki. Dengan
+kata lain (secara skematis):
+\begin{enumerate}
+	\item[] \stagescofin. Jika $A$ merupakan himpunan dan $\tau(x)$ merupakan
+	tahap bagi setiap $x \in A$, maka terdapat suatu tahap yang berada sesudah
+	setiap $\tau(x)$ untuk $x \in A$.
+\end{enumerate}
+Jelas bahwa $\ZF$ membuktikan suatu versi \stagescofin{} yang diformalkan
+secara tepat. Sebaliknya, kita dapat berargumen secara informal bahwa
+\stagescofin{} membenarkan Penggantian.\footnote{Akan lebih sulit
+membuktikan Penggantian dengan menggunakan suatu formalisasi
+\stagescofin, karena $\Z$ sendiri tidak cukup kuat untuk mendefinisikan
+tahap-tahap, sehingga tidak jelas bagaimana \stagescofin{} akan
+diformalkan. Meskipun demikian, salah satu pilihannya ialah bekerja dalam
+suatu perluasan $\LT$, sebagaimana dibahas dalam
+\olref[sth][replacement][extrinsic]{sec}.} Andaikan
+$(\forall x \in A)\lexists![y][\phi(x,y)]$. Maka, untuk setiap $x \in A$,
+misalkan $\sigma(x)$ merupakan $y$ sedemikian sehingga $\phi(x,y)$, dan
+misalkan $\tau(x)$ merupakan tahap ketika $\sigma(x)$ pertama kali terbentuk.
+Berdasarkan \stagescofin, terdapat suatu tahap $V$ sedemikian sehingga
+$(\forall x \in A)\tau(x)\in V$. Sekarang, karena setiap
+$\tau(x) \in V$ dan $\sigma(x) \subseteq \tau(x)$, berdasarkan Pemisahan
+kita dapat memperoleh
+$\Setabs{y \in V}{(\exists x \in A)\sigma(x) = y} = \Setabs{y}{(\exists x \in A)\phi(x,y)}$.
+
+\begin{prob}
+	Formalkan \stagescofin{} di dalam $\ZF$.
+\end{prob}
+
+Jadi, \stagescofin{} membenarkan Penggantian. Dan sekurang-kurangnya masuk
+akal bahwa \stagesinex{} membenarkan \stagescofin. Andaikan
+\stagescofin{} gagal. Maka hierarki itu kofinal dengan suatu himpunan~$A$,
+yakni kita mempunyai sebuah pemetaan $\tau$ sedemikian sehingga, untuk setiap
+tahap~$S$, terdapat suatu $x \in A$ sehingga $S \in \tau(x)$. Dalam kasus
+itu, kita mempunyai cara untuk memahami ``ketakhinggaan mutlak'' hierarki
+yang diandaikan: hierarki itu \emph{dihabiskan} oleh jangkauan $\tau$ yang
+diterapkan pada $A$. Dan hal itu melemahkan gagasan bahwa hierarki tersebut
+``tak hingga secara mutlak''. Dengan mengambil kontraposisinya:
+\stagesinex{} mengimplikasikan \stagescofin, yang selanjutnya membenarkan
+Penggantian.
+
+Ini merupakan upaya yang sungguh menjanjikan untuk memberikan pembenaran
+intrinsik bagi Penggantian. Namun, apakah upaya itu akhirnya berhasil atau
+tidak, harus kita serahkan kepada Anda untuk memutuskannya.
+
+\end{document}

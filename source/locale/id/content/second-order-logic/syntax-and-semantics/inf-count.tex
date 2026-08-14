@@ -1,0 +1,141 @@
+% Bagian: second-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: size-of-domain
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sol}{syn}{siz}
+
+\olsection{Mendeskripsikan \usetoken{P}{domain} Tak Hingga dan
+  \usetoken{S}{enumerable}}
+
+Suatu himpunan~$M$ bersifat tak hingga Dedekind jika dan hanya jika
+terdapat fungsi !!a{injective}~$f\colon M \to M$ yang tidak
+!!{surjective}, yakni, dengan $\ran{f} \neq M$. Dalam logika orde pertama,
+kita dapat mempertimbangkan suatu !!{function} beraritas satu~$f$ dan
+menyatakan bahwa fungsi~$\Assign{f}{M}$ yang ditetapkan kepadanya dalam
+!!a{structure}~$\Struct{M}$ bersifat !!{injective} dan
+$\ran{f} \neq \Domain{M}$:
+\[
+\lforall[x][\lforall[y][(\eq[f(x)][f(y)] \to \eq[x][y])]] \land
+\lexists[y][\lforall[x][\eq/[y][f(x)]]].
+\]
+Jika $\Struct{M}$ memenuhi !!{sentence} ini, maka
+$\Assign{f}{M}: \Domain{M} \to \Domain{M}$ bersifat !!{injective},
+sehingga $\Domain{M}$ harus tak hingga. Jika $\Domain{M}$ tak hingga dan
+karena itu terdapat fungsi semacam itu, kita dapat mengambil
+$\Assign{f}{M}$ sebagai fungsi tersebut, dan $\Struct{M}$ akan memenuhi
+!!{sentence} itu. Namun, cara ini mengharuskan bahasa kita memuat simbol
+nonlogis~$f$ yang kita gunakan untuk tujuan tersebut. Dalam logika orde kedua,
+kita cukup menyatakan bahwa fungsi semacam itu \emph{ada}. Hal ini tidak lagi
+memerlukan~$f$, dan kita memperoleh !!{sentence} dalam logika orde kedua murni
+\[
+\fn{Inf} \ident \lexists[u][(\lforall[x][\lforall[y][(\eq[u(x)][u(y)]
+      \lif \eq[x][y])]] \land \lexists[y][\lforall[x][\eq/[y][u(x)]]])].
+\]
+$\Sat{M}{\fn{Inf}}$ jika dan hanya jika $\Domain{M}$ tak hingga. Selanjutnya,
+kita dapat mendefinisikan $\fn{Fin} \ident \lnot \fn{Inf}$;
+$\Sat{M}{\fn{Fin}}$ jika dan hanya jika $\Domain{M}$ berhingga. Tidak ada satu
+!!{sentence} logika orde pertama murni yang dapat mengungkapkan bahwa
+!!{domain} tak hingga, meskipun suatu himpunan tak hingga kalimat semacam itu
+dapat mengungkapkannya. Tidak ada himpunan !!{sentence}s logika orde pertama murni
+yang terpenuhi dalam !!a{structure} jika dan hanya jika domainnya berhingga.
+
+\begin{prop}
+$\Sat{M}{\fn{Inf}}$ jika dan hanya jika $\Domain{M}$ tak hingga.
+\end{prop}
+
+\begin{proof}
+$\Sat{M}{\fn{Inf}}$ jika dan hanya jika
+  $\Sat{M}{\lforall[x][\lforall[y][(\eq[u(x)][u(y)] \lif \eq[x][y])]]
+    \land \lexists[y][\lforall[x][\eq/[y][u(x)]]]}[s]$ bagi suatu~$s$.
+Jika hal itu berlaku, $s(u)$ merupakan fungsi !!a{injective}, dan suatu
+$y \in \Domain{M}$ tidak berada dalam daerah hasil~$s(u)$. Sebaliknya, jika
+terdapat !!a{injective} $f\colon \Domain{M} \to \Domain{M}$ dengan
+$\ran{f} \neq \Domain{M}$, maka suatu penugasan variabel dengan
+$s(u) = f$ menjadi saksi yang diperlukan.
+\end{proof}
+
+Suatu himpunan tak kosong $M$ bersifat !!{enumerable} jika terdapat suatu
+enumerasi
+\[
+m_0, m_1, m_2, \dots
+\]
+atas !!{element}s himpunan tersebut (tanpa pengulangan, tetapi mungkin
+berhingga). Enumerasi
+semacam itu ada jika dan hanya jika terdapat !!a{element}~$z \in M$ dan suatu
+fungsi $f\colon M \to M$ sedemikian sehingga $z$, $f(z)$, $f(f(z))$, \dots,
+mencakup semua !!{element}s dari~$M$. Sebab, jika enumerasi itu ada, ambil
+$z = m_0$ dan $f(m_k) = m_{k+1}$ (atau $f(m_k) = m_k$ jika $m_k$ merupakan
+!!{element} terakhir dari enumerasi); itulah !!{element} dan fungsi yang
+diperlukan. Sebaliknya, jika $z$ dan $f$ semacam itu ada, maka dengan
+menghapus pengulangan dari $z$, $f(z)$, $f(f(z))$, \dots{} diperoleh suatu
+enumerasi atas~$M$, sehingga $M$ bersifat !!{enumerable}. Kita dapat
+mengungkapkan keberadaan $z$ dan~$f$ dalam logika orde kedua untuk menghasilkan
+suatu !!{sentence} yang benar dalam !!a{structure} jika dan hanya jika domain
+!!{structure} tersebut !!{enumerable}:
+\[
+\fn{Count} \ident
+\lexists[z][\lexists[u][\lforall[X][((X(z) \land
+      \lforall[x][(X(x) \lif X(u(x)))]) \lif \lforall[x][X(x)])]]]
+\]
+
+\begin{prop}
+$\Sat{M}{\fn{Count}}$ jika dan hanya jika $\Domain{M}$ !!{enumerable}.
+\end{prop}
+
+\begin{proof}
+Andaikan $\Domain{M}$ !!{enumerable}, dan misalkan $m_0$, $m_1$, \dots,
+merupakan suatu enumerasi. Dengan menghapus pengulangan, kita dapat menjamin
+bahwa tidak ada $m_k$ yang muncul dua kali. Definisikan
+$f(m_k) = m_{k+1}$ bagi setiap anggota yang bukan anggota terakhir; jika
+enumerasinya berhingga, petakan anggota terakhir itu ke dirinya sendiri.
+Lalu, tetapkan $s(z) = m_0$ dan $s(u) = f$. Kita tunjukkan bahwa
+\[
+\Sat{M}{\lforall[X][((X(z) \land \lforall[x][(X(x) \lif X(u(x)))])
+    \lif \lforall[x][X(x)])]}[s]
+\]
+Misalkan $N \subseteq \Domain{M}$ sebarang. Andaikan pula bahwa
+$\Sat{M}{(X(z) \land \lforall[x][(X(x) \lif
+X(u(x)))])}[\Subst{s}{N}{X}]$. Maka $\Subst{s}{N}{X}(z) \in N$, dan setiap
+kali $a \in N$, berlaku pula $(\Subst{s}{N}{X}(u))(a) \in N$. Dengan kata
+lain, karena $\varAssign{\Subst{s}{N}{X}}{s}{X}$, $m_0 \in N$ dan jika
+$a \in N$, maka $f(a) \in N$; jadi $m_0 \in N$,
+$m_1 = f(m_0) \in N$, $m_2 = f(f(m_0)) \in N$, dan seterusnya. Dengan
+demikian, $N = \Domain{M}$, sehingga
+$\Sat{M}{\lforall[x][X(x)]}[\Subst{s}{N}{X}]$. Karena
+$N \subseteq \Domain{M}$ dipilih secara sebarang, kita selesai:
+$\Sat{M}{\fn{Count}}$.
+
+Sekarang andaikan $\Sat{M}{\fn{Count}}$, yakni,
+\[
+\Sat{M}{\lforall[X][((X(z) \land \lforall[x][(X(x) \lif X(u(x)))])
+    \lif \lforall[x][X(x)])]}[s]
+\]
+bagi suatu~$s$. Misalkan $m = s(z)$ dan $f = s(u)$, lalu perhatikan
+$N = \{m, f(m), f(f(m)), \dots\}$. Himpunan $N$ yang didefinisikan demikian
+jelas !!{enumerable}. Berdasarkan asumsi,
+\[
+\Sat{M}{(X(z) \land \lforall[x][(X(x) \lif X(u(x)))])
+    \lif \lforall[x][X(x)]}[\Subst{s}{N}{X}]
+\]
+Selain itu, $\Sat{M}{X(z)}[\Subst{s}{N}{X}]$, karena
+$N \ni m = \Subst{s}{N}{X}(z)$, dan juga
+$\Sat{M}{\lforall[x][(X(x) \lif X(u(x)))]}[\Subst{s}{N}{X}]$, karena setiap
+kali $a \in N$, berlaku pula $f(a) \in N$. Jadi, karena anteseden maupun
+kondisional tersebut terpenuhi, konsekuennya juga harus terpenuhi:
+$\Sat{M}{\lforall[x][X(x)]}[\Subst{s}{N}{X}]$. Namun, ini berarti bahwa
+$N = \Domain{M}$, sehingga $\Domain{M}$ !!{enumerable}, sebab berdasarkan
+definisi $N$ bersifat demikian.
+\end{proof}
+
+\begin{prob}
+!!{sentence} $\fn{Inf} \land \fn{Count}$ benar tepat pada domain yang
+!!{denumerable}. Sesuaikan definisi $\fn{Count}$ agar menjadi
+suatu !!{sentence} lain yang secara langsung mengungkapkan bahwa domain
+!!{denumerable}, dan buktikan bahwa kalimat itu memang demikian.
+\end{prob}
+
+\end{document}

@@ -1,0 +1,166 @@
+% Part: proof-theory
+% Chapter: sequent-calculus
+% Section: quantifiers
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{seq}{qua}
+
+\olsection{Bukti Reguler dan Substitusi}
+
+Aturan-aturan untuk kuantor menimbulkan beberapa kerumitan karena adanya
+``syarat variabel eigen'' yang berlaku bagi aturan \LeftR{\lexists}
+dan~\RightR{\lforall}. Sebagian besar kerumitan ini dapat ditangani dengan
+memastikan bahwa !!{constant}~$a$ dalam inferensi-inferensi tersebut tidak
+pernah digunakan kembali. Mari kita perkenalkan definisi berikut.
+
+\begin{defn}
+!!^a{proof}~$\pi$ dalam \Log{G1c} atau \Log{G3c} disebut \emph{reguler} jika
+\begin{enumerate}
+  \item tidak ada variabel eigen~$a$ yang digunakan sebagai variabel eigen
+  bagi lebih dari satu inferensi \LeftR{\lexists} atau~\RightR{\lforall}, dan
+  \item jika $a$ merupakan variabel eigen bagi suatu inferensi
+  \LeftR{\lexists} atau~\RightR{\lforall}, variabel eigen tersebut hanya muncul di atas
+  inferensi tersebut dalam~$\pi$.
+\end{enumerate}
+\end{defn}
+
+\begin{lem}\ollabel{lem:subst-regular} Jika $\pi$ reguler dan berakhir pada
+$\Gamma \Sequent \Delta$, $c$ adalah !!a{constant} yang tidak digunakan
+sebagai variabel eigen dalam~$\pi$, dan $t$~adalah term yang tidak memuat
+variabel eigen apa pun dari~$\pi$, maka $\Subst{\pi}{t}{c}$ yang dihasilkan
+dari~$\pi$ dengan mengganti setiap kemunculan~$c$ oleh~$t$ merupakan
+!!a{proof} reguler. Sekuen akhir $\Subst{\pi}{t}{c}$ ialah
+$\Subst{\Gamma}{t}{c} \Sequent \Subst{\Delta}{t}{c}$, dengan
+$\Subst{\Gamma}{t}{c} = \Setabs{!A(t)}{!A(c) \in \Gamma}$.
+\end{lem}
+
+\begin{proof}
+  Dengan induksi pada $\pheight{\pi}$. Jika $\pheight{\pi} = 0$, bukti itu
+  hanya terdiri atas sebuah aksioma. Maka $\Subst{\pi}{t}{c}$ juga
+  merupakan aksioma, sebab setiap !!{formula}~$!A(c)$ di dalamnya berubah
+  menjadi $!A(t)$.
+
+  Jika $\pheight{\pi} > 0$, kita membedakan kasus menurut inferensi
+  terakhir dalam~$\pi$. Kasus untuk aturan struktural (dalam \Log{G1c})
+  dan aturan logis bagi penghubung proposisional mudah dan diserahkan
+  sebagai latihan. Kita meninjau kasus-kasus ketika $\pi$ berakhir dengan
+  inferensi kuantor.
+  \begin{enumerate}
+    \item Jika inferensi terakhir adalah $\RightR{\lforall}$, $\pi$
+    berbentuk
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi'$}
+    \Deduce$\Gamma(c) \fCenter \Delta'(c), !A(a,c)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma(c) \fCenter \Delta'(c), \lforall[x][!A(x,c)]$
+    \DisplayProof
+    \]
+    Menurut hipotesis induksi, $\Subst{\pi'}{t}{c}$ merupakan
+    !!a{proof} reguler atas $\Gamma(t) \fCenter \Delta'(t), !A(a,t)$.
+    Karena $a$ merupakan variabel eigen dalam~$\pi$, $a$~tidak muncul dalam~$t$.
+    Oleh karena itu, inferensi terakhir dalam $\Subst{\pi}{t}{c}$,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\pi'}{t}{c}$}
+    \Deduce$\Gamma(t) \fCenter \Delta'(t), !A(a,t)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma(t) \fCenter \Delta'(t), \lforall[x][!A(x,t)]$
+    \DisplayProof
+    \]
+    sah: kesimpulannya tidak memuat~$a$.
+    \item Jika inferensi terakhir adalah $\LeftR{\lforall}$ dalam
+    \Log{G3c}, $\pi$ berbentuk
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi'$}
+    \Deduce$!A(s(c),c), \lforall[x][!A(x,c)], \Gamma(c) \fCenter \Delta'(c)$
+    \RightLabel{\LeftR{\lforall}}
+    \UnaryInf$\lforall[x][!A(x,c)], \Gamma(c) \fCenter \Delta'(c)$
+    \DisplayProof
+    \]
+    Menurut hipotesis induksi, $\Subst{\pi'}{t}{c}$ merupakan
+    !!a{proof} reguler atas $!A(s(t),t), \lforall[x][!A(x,t)], \Gamma(t)
+    \fCenter \Delta'(t)$. Inferensi terakhir dalam
+    $\Subst{\pi}{t}{c}$,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\pi'}{t}{c}$}
+    \Deduce$!A(s(t),t), \lforall[x][!A(x,t)], \Gamma(t) \fCenter \Delta'(t)$
+    \RightLabel{\LeftR{\lforall}}
+    \UnaryInf$\lforall[x][!A(x,t)], \Gamma(t) \fCenter \Delta'(t)$
+    \DisplayProof
+    \]
+    sah. Kasus untuk \LeftR{\lforall} dalam~\Log{G1c} serupa, tetapi
+    sedikit lebih sederhana.
+    \item Inferensi terakhir adalah \RightR{\lexists} atau
+    \LeftR{\lexists}: latihan.
+  \end{enumerate}
+  Dalam setiap kasus, kita menambahkan satu sekuen pada akhir sebuah
+  !!a{proof} reguler (atau dua !!{proof}s reguler dalam kasus aturan
+  berpremis dua). Sekuen baru itu berbeda dari sekuen akhir $\pi$ hanya
+  karena $c$ diganti dengan term~$t$. Selain itu, variabel-variabel eigen
+  dalam~$\pi$ dan $\Subst{\pi}{t}{c}$ sama. Karena $t$ diandaikan tidak memuat
+  variabel eigen dari~$\pi$, sekuen akhir yang baru tidak memuat variabel
+  eigen dari $\Subst{\pi}{t}{c}$. Akibatnya, $\Subst{\pi}{t}{c}$ reguler.
+\end{proof}
+
+\begin{prop}
+Jika $\pi$ merupakan !!a{proof} dalam \Log{G1c} atau \Log{G3c}, maka
+terdapat !!a{proof} reguler~$\pi'$ dengan struktur yang sama (khususnya,
+!!{height} yang sama) yang berbeda dari $\pi$ hanya karena variabel-variabel
+eigennya diganti.
+\end{prop}
+
+\begin{proof}
+Khusus untuk keperluan bukti ini, sebut suatu inferensi dengan variabel eigen
+dalam~$\pi$ \emph{bersih} jika variabel eigennya bukan variabel eigen bagi
+inferensi lain dan tidak muncul di mana pun dalam~$\pi$ kecuali dalam
+sub-!!{proof} langsung dari inferensi tersebut; jika tidak, sebut inferensi
+itu \emph{kotor}. Misalkan $n$ adalah banyaknya inferensi kotor dengan variabel
+eigen dalam~$\pi$. Kita menunjukkan, dengan induksi pada~$n$, bahwa
+$\pi$~dapat diubah menjadi !!{proof} reguler~$\pi'$ yang diperlukan. Jika
+$n=0$, semua inferensi dengan variabel eigen dalam~$\pi$ bersih, sehingga $\pi$
+reguler dan tidak ada lagi yang harus dibuktikan. Jika tidak, pilih suatu
+inferensi kotor dengan variabel eigen yang posisinya paling tinggi, misalnya
+\RightR{\lforall}. Sub-!!{proof}~$\pi_1$ dari~$\pi$ yang berakhir padanya
+berbentuk
+    \[
+    \AxiomC{}
+    \RightLabel{$\pi_2$}
+    \Deduce$\Gamma \fCenter \Delta, !A(c)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+    \DisplayProof
+    \]
+Perhatikan bahwa karena $c$ merupakan variabel eigen, variabel tersebut tidak
+muncul dalam~$\Gamma$, $\Delta$, ataupun $\lforall[x][!A(x)]$. Bukti $\pi_2$
+reguler karena tidak memuat inferensi kotor dengan variabel eigen. Ambil
+!!a{constant}~$a$ yang tidak muncul dalam~$\pi$. Menurut
+\olref{lem:subst-regular}, $\Subst{\pi_2}{a}{c}$ merupakan bukti reguler
+atas $\Gamma \fCenter \Delta, !A(a)$, dan kita dapat menerapkan
+~$\RightR{\lforall}$ padanya. Jika $\pi_1$ dalam~$\pi$ kita ganti dengan
+bukti $\pi_1'$,
+    \[
+    \AxiomC{}
+    \RightLabel{$\Subst{\pi_2}{a}{c}$}
+    \Deduce$\Gamma \fCenter \Delta, !A(a)$
+    \RightLabel{\RightR{\lforall}}
+    \UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!A(x)]$
+    \DisplayProof
+    \]
+kita telah mengganti satu inferensi kotor yang menggunakan variabel eigen dengan inferensi
+bersih, dan satu-satunya perbedaan ialah penggantian variabel eigen $c$
+dengan~$a$. Bukti yang dihasilkan mempunyai $n-1$ inferensi kotor dengan
+variabel eigen, dan hasilnya mengikuti dari hipotesis induksi.
+\end{proof}
+
+Kita tidak akan mengacu secara eksplisit pada proposisi yang baru saja
+dibuktikan, tetapi kita akan mengandaikan bahwa semua !!{proof}s yang
+ditinjau bersifat reguler---jika tidak, kita selalu dapat mengganti
+variabel-variabel eigennya agar bukti itu menjadi reguler.
+
+\end{document}

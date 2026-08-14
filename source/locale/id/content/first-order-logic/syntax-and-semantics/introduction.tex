@@ -1,0 +1,64 @@
+% Bagian: first-order-logic
+% Bab: syntax-and-semantics
+% Subbagian: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{fol}{syn}{int}
+
+\olsection{Pendahuluan}
+
+Untuk mengembangkan teori dan metateori logika orde pertama, mula-mula kita
+harus mendefinisikan sintaks dan semantik ungkapan-ungkapannya. Ungkapan logika
+orde pertama terdiri atas suku dan !!{formula}. Suku dibentuk dari
+!!{variable}, !!{constant}, dan !!{function}. Selanjutnya, !!^{formula}
+dibentuk dari !!{predicate} bersama suku (yang membentuk !!{formula} terkecil,
+atau ``atomik''), lalu dari !!{formula} atomik kita dapat membentuk formula
+yang lebih kompleks dengan menggunakan penghubung logis dan kuantor. Ada
+banyak cara berbeda untuk menetapkan kaidah pembentukan; di sini kita hanya
+memberikan salah satu cara. Sistem lain akan memilih simbol yang berbeda,
+memilih himpunan penghubung primitif yang berbeda, serta menggunakan tanda
+kurung secara berbeda (atau bahkan tidak menggunakannya sama sekali, seperti
+dalam apa yang disebut notasi Polandia). Namun, semua pendekatan mempunyai
+kesamaan bahwa kaidah pembentukan mendefinisikan himpunan suku dan !!{formula}
+secara \emph{induktif}. Jika dilakukan dengan tepat, setiap ungkapan pada
+dasarnya hanya dapat dihasilkan melalui satu cara menurut kaidah pembentukan.
+Definisi induktif yang menghasilkan ungkapan yang \emph{dapat dibaca secara
+unik} memungkinkan kita memberi makna kepada ungkapan-ungkapan tersebut
+dengan metode yang sama---definisi induktif.
+
+Pemberian makna kepada ungkapan merupakan ranah semantik. Konsep utama dalam
+semantik ialah kepuasan dalam !!a{structure}. !!^a{structure} memberi makna
+kepada unsur-unsur dasar bahasa: !!a{domain} ialah himpunan objek yang tak
+kosong. Kuantor ditafsirkan merentang atas domain ini, !!{constant} diberi
+elemen dalam domain, !!{function} diberi fungsi dari !!{domain} ke dirinya
+sendiri, dan !!{predicate} diberi relasi pada !!{domain}. !!{domain} bersama
+penetapan bagi kosakata dasar membentuk !!a{structure}. !!^{variable} dapat
+muncul dalam !!{formula}; untuk memberikan semantiknya, kita juga harus
+menetapkan !!{element} dari !!{domain} kepadanya---inilah penetapan variabel.
+Terakhir, relasi kepuasan memadukan semua hal tersebut. !!^a{formula} dapat
+terpenuhi dalam !!a{structure}~$\Struct{M}$ relatif terhadap penetapan
+variabel~$s$, yang ditulis $\Sat{M}{!A}[s]$. Relasi ini juga didefinisikan
+dengan induksi pada struktur~$!A$, menggunakan tabel kebenaran bagi penghubung
+logis untuk mendefinisikan, misalnya, kepuasan $!A \land !B$ berdasarkan
+terpenuhi atau tidak terpenuhinya $!A$ dan~$!B$. Ternyata penetapan variabel
+tidak relevan jika !!{formula}~$!A$ merupakan !!a{sentence}, yakni tidak
+mempunyai variabel bebas; karena itu kita dapat membicarakan !!{sentence} yang
+terpenuhi (atau tidak) begitu saja dalam !!{structure}.
+
+Berdasarkan relasi kepuasan $\Sat{M}{!A}$ bagi kalimat, selanjutnya kita dapat
+mendefinisikan pengertian semantik dasar berupa validitas, konsekuensi, dan
+keterpenuhan. Suatu kalimat valid, $\Entails !A$, jika setiap struktur
+memenuhinya. Kalimat itu merupakan konsekuensi dari suatu himpunan
+!!{sentence}, $\Gamma \Entails !A$, jika setiap !!{structure} yang memenuhi
+semua !!{sentence} dalam~$\Gamma$ juga memenuhi~$!A$. Suatu himpunan kalimat
+dapat dipenuhi jika terdapat !!{structure} yang memenuhi semua !!{sentence}
+di dalamnya secara bersamaan. Karena !!{formula} didefinisikan secara
+induktif, dan kepuasan pada gilirannya didefinisikan dengan induksi pada
+struktur !!{formula}, kita dapat menggunakan induksi untuk membuktikan
+sifat-sifat semantik kita dan menghubungkan pengertian-pengertian semantik
+yang telah didefinisikan.
+
+\end{document}

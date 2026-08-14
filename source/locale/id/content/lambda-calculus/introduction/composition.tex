@@ -1,0 +1,30 @@
+% Part: lambda-calculus
+% Chapter: introduction
+% Section: composition
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{int}{com}
+\olsection{Fungsi yang \usetoken{S}{lambda definable} Tertutup terhadap Komposisi}
+
+\begin{lem}
+Fungsi-fungsi yang !!{lambda definable} tertutup terhadap komposisi.
+\end{lem}
+
+\begin{proof}
+Andaikan $f$ didefinisikan melalui komposisi dari $h$, $g_0$,
+\dots,~$g_{k-1}$. Dengan mengandaikan bahwa $h$, $g_0$, \dots,~$g_{k-1}$
+masing-masing !!{lambda defined} oleh $H$, $G_0$, \dots,~$G_{k-1}$, kita perlu
+menemukan suatu suku~$F$ yang !!{lambda define}s~$f$. Namun, kita cukup
+mendefinisikan~$F$ dengan
+\[
+F(x_0, \dots, x_{l-1}) = H(G_0(x_0, \dots, x_{l-1}),
+\dots, G_{k-1}(x_0, \dots, x_{l-1})).
+\]
+Dengan kata lain, bahasa kalkulus lambda sangat sesuai untuk merepresentasikan
+komposisi.
+\end{proof}
+
+\end{document}

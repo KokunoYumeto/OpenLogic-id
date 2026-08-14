@@ -1,0 +1,88 @@
+% Part: lambda-calculus
+% Chapter: syntax
+% Section: eta
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{lam}{syn}{eta}
+\olsection{Konversi-$\eta$}
+
+Terdapat relasi lain pada suku-$\lambda$. Dalam \olref[fv]{sec}, kita
+menggunakan contoh $\lambd[x][(fx)]$, yang menerima suatu argumen dan
+menerapkan $f$ padanya. Dengan kata lain, suku itu merupakan fungsi yang sama
+dengan~$f$: $\lambd[x][(fx)]N$ dan $fN$ keduanya tereduksi menjadi~$fN$. Kita
+menggunakan reduksi-$\eta$ (dan perluasan-$\eta$) untuk menangkap gagasan ini.
+
+\begin{defn}[Kontraksi-$\eta$, $\eredone$]
+  \ollabel{defn:beredone}
+  \emph{Kontraksi-$\eta$} ($\eredone$) adalah relasi kompatibel terkecil pada
+  suku-suku yang memenuhi syarat berikut:
+  \[
+    \lambd[x][M x] \eredone M \text{ asalkan } x \notin \FV{M}
+  \]
+\end{defn}
+
+\begin{defn}[Reduksi-$\beta\eta$, $\bered$] \ollabel{defn:bered}
+  \emph{Reduksi-$\beta\eta$} ($\bered$) adalah relasi refleksif dan transitif
+  terkecil pada suku-suku yang memuat $\bredone$ dan $\eredone$, yakni aturan
+  refleksivitas dan transitivitas ditambah dua aturan berikut:
+  \begin{enumerate}
+  \item Jika $M \bredone N$, maka $M \bered N$. \ollabel{defn:bered3}
+  \item Jika $M \eredone N$, maka $M \bered N$. \ollabel{defn:bered4}
+  \end{enumerate}
+
+\end{defn}
+
+\begin{defn}
+  Kita memperluas relasi ekuivalensi $\equal$ dengan aturan konversi-$\eta$:
+  \[
+  \lambd[x][f x] \equal f
+  \]
+  dan menyatakan relasi yang diperluas tersebut sebagai $\equal[\eta]$.
+\end{defn}
+
+Ekuivalensi-$\eta$ penting karena berkaitan dengan ekstensionalitas suku
+lambda:
+
+\begin{defn}[Ekstensionalitas]
+  Kita memperluas relasi ekuivalensi $\equal$ dengan aturan (\ext):
+  \begin{center}
+  Jika $Mx \equal Nx$, maka $M \equal N$, asalkan $x \notin \FV{MN}$.
+  \end{center}
+  Kita menyatakan relasi yang diperluas tersebut sebagai $\equal[\ext]$.
+\end{defn}
+
+Secara garis besar, aturan itu menyatakan bahwa dua suku, jika dipandang
+sebagai fungsi, harus dianggap sama apabila keduanya berperilaku sama untuk
+argumen yang sama.
+
+Sekarang kita membuktikan bahwa aturan $\eta$ memberikan tepat
+ekstensionalitas, dan tidak lebih dari itu.
+
+\begin{thm}
+  $M \equal[\ext] N$ jika dan hanya jika $M \equal[\eta] N$.
+\end{thm}
+
+\begin{proof}
+  Pertama, kita membuktikan bahwa $\equal[\eta]$ tertutup di bawah aturan
+  ekstensionalitas. Artinya, aturan \ext{} tidak menambahkan apa pun pada
+  $\equal[\eta]$. Dengan demikian, $\equal[\eta]$ memuat $\equal[\ext]$, dan
+  jika $M \equal[\ext] N$, maka $M \equal[\eta] N$.
+
+  Untuk membuktikan bahwa $\equal[\eta]$ tertutup di bawah \ext, perhatikan
+  bahwa bagi sebarang $M \equal N$ yang diperoleh dengan aturan \ext{}, kita
+  mempunyai $Mx \equal[\eta] Nx$ sebagai premis. Maka kita memperoleh
+  $\lambd[x][Mx] \equal[\eta] \lambd[x][Nx]$ berdasarkan salah satu aturan
+  $\equal$; dengan menerapkan $\eta$ pada kedua ruas, kita memperoleh
+  $M \equal[\eta] N$.
+
+  Serupa dengan itu, kita membuktikan bahwa aturan $\eta$ termuat dalam
+  $\equal[\ext]$. Bagi sebarang $\lambd[x][Mx]$ dan $M$ dengan
+  $x \notin \FV{M}$, kita mempunyai
+  $(\lambd[x][Mx])x \equal[\ext] Mx$, sehingga kita memperoleh
+  $\lambd[x][Mx] \equal[\ext] M$ berdasarkan aturan \ext{}.
+\end{proof}
+
+\end{document}

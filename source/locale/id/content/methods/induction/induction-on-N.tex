@@ -1,0 +1,139 @@
+% Part: methods
+% Chapter: induction
+% Section: induction-on-N
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mth}{ind}{inN}
+
+\olsection{Induksi pada~$\Nat$}
+
+Dalam bentuknya yang paling sederhana, induksi merupakan teknik untuk
+membuktikan hasil bagi semua bilangan asli. Teknik ini menggunakan fakta
+bahwa, dengan mulai dari $0$ dan berulang kali menambahkan~$1$, kita pada
+akhirnya mencapai setiap bilangan asli. Jadi, untuk membuktikan bahwa
+sesuatu benar bagi setiap bilangan, kita dapat (1)~menetapkan bahwa hal itu
+benar bagi $0$ dan (2)~menunjukkan bahwa setiap kali hal itu benar bagi suatu
+bilangan~$n$, hal itu juga benar bagi bilangan berikutnya~$n+1$. Jika kita
+menyingkat ``bilangan~$n$ memiliki sifat $P$'' menjadi $P(n)$ (dan
+``bilangan~$k$ memiliki sifat $P$'' menjadi $P(k)$, dan seterusnya), maka
+bukti induksi bahwa $P(n)$ bagi semua $n \in \Nat$ terdiri atas:
+\begin{enumerate}
+\item bukti bagi $P(0)$, dan
+\item bukti bahwa, untuk sebarang~$k$, jika $P(k)$ maka $P(k+1)$.
+\end{enumerate}
+Untuk memperjelasnya sepenuhnya, andaikan kita memiliki (1) dan~(2). Maka
+(1) memberi tahu kita bahwa $P(0)$ benar. Jika kita juga memiliki~(2), kita
+khususnya mengetahui bahwa jika $P(0)$ maka $P(0+1)$, yakni $P(1)$. Hal ini
+mengikuti pernyataan umum ``untuk sebarang~$k$, jika $P(k)$ maka $P(k+1)$''
+dengan mengganti~$k$ dengan~$0$. Jadi, melalui modus ponens, kita memperoleh
+$P(1)$. Dari (2) lagi, sekarang dengan mengganti~$k$ dengan~$1$, kita
+memperoleh: jika $P(1)$ maka~$P(2)$. Karena kita baru saja menetapkan
+$P(1)$, melalui modus ponens kita memperoleh~$P(2)$. Demikian seterusnya.
+Untuk sebarang bilangan~$n$, setelah melakukan langkah ini sebanyak
+$n$~kali, kita akhirnya tiba pada~$P(n)$. Jadi, (1) dan~(2) bersama-sama
+menetapkan~$P(n)$ bagi sebarang $n \in \Nat$.
+
+Mari kita lihat sebuah contoh. Andaikan kita ingin mengetahui berapa banyak
+jumlah berbeda yang dapat dihasilkan oleh lemparan $n$ dadu. Walaupun
+mungkin tampak konyol, mari kita mulai dengan $0$ dadu. Jika tidak memiliki
+dadu, hanya ada satu jumlah yang mungkin ``dilempar'': tidak ada mata dadu
+sama sekali, sehingga jumlahnya~$0$. Jadi, banyaknya hasil berbeda yang
+mungkin adalah~$1$. Jika Anda hanya memiliki satu dadu, yakni $n=1$, ada
+enam nilai yang mungkin, dari $1$ sampai~$6$. Dengan dua dadu, kita dapat
+menghasilkan setiap jumlah dari $2$ sampai $12$, yakni $11$ kemungkinan.
+Dengan tiga dadu, kita dapat menghasilkan setiap bilangan dari $3$ sampai
+$18$, yakni $16$ kemungkinan berbeda. $1$, $6$, $11$, $16$: tampak seperti
+suatu pola; mungkinkah jawabannya $5n+1$? Tentu saja, $5n+1$ adalah jumlah
+maksimum kemungkinan, sebab hanya ada $5n+1$ bilangan di antara $n$, nilai
+terendah yang dapat dihasilkan dengan $n$ dadu (semuanya menunjukkan $1$),
+dan $6n$, nilai tertinggi yang dapat dihasilkan (semuanya menunjukkan $6$).
+
+\begin{thm}
+  Dengan $n$ dadu, semua $5n+1$ nilai yang mungkin di antara $n$ dan $6n$
+  dapat dihasilkan.
+\end{thm}
+
+\begin{proof}
+Misalkan $P(n)$ adalah klaim: ``Dengan $n$~dadu, setiap bilangan di antara
+$n$ dan~$6n$ dapat dihasilkan.'' Untuk menggunakan induksi, kita buktikan:
+\begin{enumerate}
+\item \emph{dasar induksi} $P(0)$, yakni dengan tanpa dadu, kita dapat
+  menghasilkan satu-satunya bilangan di antara $0$ dan $0$;
+\item \emph{langkah induksi}: untuk semua $k$, jika $P(k)$ maka~$P(k+1)$.
+\end{enumerate}
+
+(1) benar karena tanpa dadu tidak ada mata dadu yang dijumlahkan, sehingga
+satu-satunya jumlah yang dihasilkan adalah~$0$.
+
+Untuk membuktikan (2), kita mengasumsikan anteseden kondisional tersebut,
+yakni $P(k)$. Asumsi ini disebut \emph{hipotesis induksi}. Kita
+menggunakannya untuk membuktikan~$P(k+1)$. Bagian yang sulit ialah menemukan
+cara memikirkan nilai-nilai yang mungkin dari lemparan $k+1$ dadu berdasarkan
+nilai-nilai yang mungkin dari lemparan $k$~dadu ditambah lemparan dadu
+tambahan yang ke-$(k+1)$---tetapi inilah yang harus dilakukan jika kita
+hendak menggunakan hipotesis induksi.
+
+Hipotesis induksi menyatakan bahwa kita dapat memperoleh setiap bilangan di
+antara $k$ dan~$6k$ dengan menggunakan $k$~dadu. Jika dadu ke-$(k+1)$
+menunjukkan~$1$, hal ini menambahkan $1$ pada jumlah keseluruhan. Jadi, kita
+dapat menghasilkan setiap nilai di antara $k+1$ dan $6k+1$ dengan melempar
+$k$~dadu lalu memperoleh~$1$ pada dadu ke-$(k+1)$. Apa yang tersisa?
+Nilai-nilai $6k+2$ sampai $6k+6$. Kita dapat memperolehnya dengan membuat
+semua $k$ dadu pertama menunjukkan~$6$, lalu memperoleh bilangan antara $2$
+dan $6$ pada dadu ke-$(k+1)$. Secara keseluruhan, ini berarti bahwa dengan
+$k+1$ dadu kita dapat menghasilkan setiap bilangan di antara $k+1$ dan
+$6(k+1)$; jadi, kita telah membuktikan~$P(k+1)$ dengan menggunakan asumsi
+$P(k)$, yaitu hipotesis induksi.
+\end{proof}
+
+Kita sangat sering menggunakan induksi ketika hendak membuktikan sesuatu
+mengenai suatu deret objek (bilangan, himpunan, dan sebagainya) yang dengan
+sendirinya didefinisikan ``secara induktif'', yakni dengan mendefinisikan
+objek ke-$(n+1)$ berdasarkan objek ke-$n$. Misalnya, kita dapat
+mendefinisikan jumlah~$s_n$ dari bilangan-bilangan asli sampai~$n$ dengan
+\begin{align*}
+  s_0 & = 0\\
+  s_{n+1} & = s_n + (n+1)
+\end{align*}
+Definisi ini memberikan:
+\begin{align*}
+  s_0 & = 0,\\
+  s_1 & = s_0 + 1 && = 1,\\
+  s_2 & = s_1 + 2 && = 1 + 2 = 3\\
+  s_3 & = s_2 + 3 && = 1 + 2 + 3 = 6, \text{ dan seterusnya.}
+\end{align*}
+Sekarang kita dapat membuktikan dengan induksi bahwa $s_n = n(n+1)/2$.
+
+\begin{prop}
+  $s_n = n(n+1)/2$.
+\end{prop}
+
+\begin{proof}
+  Kita harus membuktikan (1) bahwa $s_0 = 0\cdot(0 + 1)/2$ dan (2) bahwa
+  jika $s_k = k(k+1)/2$, maka $s_{k+1} = (k+1)(k+2)/2$. (1) sudah jelas.
+  Untuk membuktikan (2), kita mengasumsikan hipotesis induksi: $s_k =
+  k(k+1)/2$. Dengan menggunakannya, kita harus menunjukkan bahwa $s_{k+1}
+  = (k+1)(k+2)/2$.
+
+  Berapakah $s_{k+1}$? Menurut definisi, $s_{k+1} = s_k + (k+1)$. Menurut
+  hipotesis induksi, $s_k = k(k+1)/2$. Kita dapat menyubstitusikannya ke
+  persamaan sebelumnya, lalu hanya memerlukan sedikit aritmetika pecahan:
+  \begin{align*}
+    s_{k+1} & = \frac{k(k+1)}{2} + (k+1) \\
+    & = \frac{k(k+1)}{2} + \frac{2(k+1)}{2} \\
+    & = \frac{k(k+1) + 2(k+1)}{2} \\
+    & = \frac{(k+2)(k+1)}{2}.
+  \end{align*}
+\end{proof}
+
+Pelajaran pentingnya ialah bahwa jika Anda membuktikan sesuatu mengenai
+suatu barisan $a_n$ yang didefinisikan secara induktif, induksi merupakan
+cara yang sudah semestinya dipilih. Bahkan jika tidak demikian (seperti
+dalam kasus berbagai kemungkinan hasil lemparan dadu), Anda dapat
+menggunakan induksi apabila dapat menghubungkan kasus untuk~$k+1$ dengan
+kasus untuk~$k$.
+
+\end{document}

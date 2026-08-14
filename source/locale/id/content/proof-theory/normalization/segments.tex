@@ -1,0 +1,109 @@
+% Part: proof-theory
+% Chapter: normalization
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{nor}{seg}
+
+\olsection{Segmen dan Potongan}
+
+!!^a{introduction} yang diikuti !!a{elimination} merupakan jalan memutar
+dalam !!a{proof}, dan menormalisasi !!a{proof} berarti menghapus jalan
+memutar seperti itu. Namun, aturan \Elim{\lor} dan \Elim{\lexists} bahkan
+membuat definisi ``jalan memutar yang ingin kita hapus'' sedikit rumit.
+Masalahnya sebagai berikut. Karena aturan-aturan tersebut, dalam suatu jalan
+memutar tidak ada jaminan bahwa !!{elimination} \emph{langsung} mengikuti
+!!{introduction}. Di antara keduanya dapat terdapat \Elim{\lor} atau
+\Elim{\lexists}, misalnya,
+\[
+\AxiomC{}
+\DeduceC{$\lexists[x][!C(x)]$}
+\AxiomC{$\Discharge{!A}{x}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\DischargeRule{\Elim{\lexists}}{y}
+\BinaryInfC{$!A \lif !B$}
+\AxiomC{}
+\DeduceC{$!A$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!B$}
+\DisplayProof
+\]
+Bahkan, sejumlah berapa pun \Elim{\lor} atau \Elim{\lexists} dapat
+memisahkan \Intro{\lif} dari \Elim{\lif}, misalnya,
+\[
+\AxiomC{}
+\DeduceC{$\lexists[x][!C(x)]$}
+\AxiomC{}
+\DeduceC{$!D \lor !E$}
+\AxiomC{$\Discharge{!A}{x}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\AxiomC{$\Discharge{!A}{x}$}
+\DeduceC{$!B$}
+\DischargeRule{\Intro{\lif}}{x}
+\UnaryInfC{$!A \lif !B$}
+\RightLabel{\Elim{\lor}}
+\TrinaryInfC{$!A \lif !B$}
+\DischargeRule{\Elim{\lexists}}{y}
+\BinaryInfC{$!A \lif !B$}
+\AxiomC{}
+\DeduceC{$!A$}
+\RightLabel{\Elim{\lif}}
+\BinaryInfC{$!B$}
+\DisplayProof
+\]
+Contoh ini menunjukkan bahwa \Elim{\lif} yang sama bahkan dapat terlibat
+dalam beberapa jalan memutar karena mengikuti lebih dari satu~\Intro{\lif}.
+Untuk mencakup semua kemungkinan tersebut, kita mendefinisikan jalan
+memutar dengan menggunakan jenis tertentu dari barisan kemunculan
+!!{formula} dalam bukti~\Log{N1i}, yang disebut \emph{segmen}. Dalam contoh
+kita, barisan itu terdiri atas kemunculan~$!A \lif !B$, dengan premis minor
+$\Elim{\lor}$ atau $\Elim{\lexists}$ diikuti oleh kesimpulannya. Dalam
+contoh tersebut, terdapat dua segmen seperti itu, dan masing-masing memuat
+tiga kemunculan~$!A \lif !B$. Berikut definisi resminya.
+
+\begin{defn}
+Suatu \emph{segmen} dalam !!{proof}~\Log{N1i}~$\delta$ adalah barisan
+kemunculan $!A_1$, \dots, $!A_n$ dari !!{formula}~$!A$ yang sama dalam
+$\delta$, dengan ketentuan
+\begin{enumerate}
+  \item $!A_1$ bukan kesimpulan \Elim{\lor} atau \Elim{\lexists};
+  \item $!A_n$ bukan premis minor \Elim{\lor} atau \Elim{\lexists};
+  \item Untuk $i = 1$, \dots,~$n-1$, $!A_i$ merupakan premis minor
+  \Elim{\lor} atau \Elim{\lexists}, dan $!A_{i+1}$ merupakan kesimpulan
+  inferensi tersebut.
+\end{enumerate}
+\emph{Panjang} segmen tersebut ialah~$n$.
+\end{defn}
+
+Tidak setiap segmen merupakan sasaran eliminasi (jalan memutar). Segmen yang
+menjadi sasaran disebut \emph{potongan}.
+
+\begin{defn}
+Suatu \emph{potongan} adalah segmen dengan $!A_n$ sebagai premis utama
+!!a{elimination}, dan dengan $n=1$ serta $!A_1 = !A_n$ sebagai kesimpulan
+!!a{introduction} atau~\FalseInt, ataupun dengan~$n>1$.
+\end{defn}
+
+Perhatikan bahwa segmen potongan tidak harus dimulai dengan kesimpulan
+!!a{introduction}. Yang disyaratkan hanyalah bahwa segmen itu berakhir pada
+premis utama !!a{elimination}. Akan tetapi, agar dihitung sebagai potongan,
+segmen berpanjang~$1$ harus merupakan kesimpulan !!a{introduction} atau
+\FalseInt.
+
+\begin{defn}
+\emph{Peringkat} suatu potongan ialah~$\depth{!A}$. \emph{Peringkat
+potongan}~$\cutrank{\delta}$ dari !!a{proof}~$\delta$ adalah peringkat
+maksimum potongan dalam~$\delta$. Suatu potongan \emph{maksimal} dalam
+$\delta$ jika peringkatnya~$\cutrank{\delta}$, yakni jika peringkatnya
+maksimum. \emph{Panjang potongan}~$\delta$ adalah jumlah panjang semua
+potongan maksimalnya.
+\end{defn}
+
+\end{document}

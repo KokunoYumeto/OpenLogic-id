@@ -1,0 +1,114 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{z}{sep}
+\olsection{Pemisahan}
+
+Kita mulai dengan sebuah prinsip untuk menggantikan Komprehensi Naif:
+
+\begin{axiom}[Skema Pemisahan] Untuk setiap formula $\phi(x)$, berikut ini
+merupakan suatu aksioma: untuk setiap $A$, himpunan
+$\Setabs{x \in A}{\phi(x)}$ ada.
+\end{axiom}
+
+Perhatikan bahwa ini bukan satu aksioma tunggal, melainkan suatu
+\emph{skema} aksioma. Terdapat \emph{tak berhingga banyaknya} aksioma
+Pemisahan; satu untuk setiap formula $\phi(x)$. Skema ini juga dapat (dan
+biasanya memang) dituliskan sebagai berikut:
+
+\begin{defish}
+Untuk setiap formula $\phi(x)$ yang tidak memuat ``$S$'', berikut ini
+merupakan suatu aksioma:
+\[
+	\forall A \exists S \forall x(x \in S \liff (\phi(x) \land x \in A)).
+\]
+\end{defish}
+
+Sesuai dengan konvensi yang dicatat pada awal \olref[sth][][]{part},
+formula-formula~$\phi$ dalam aksioma Pemisahan dapat mempunyai
+parameter.\footnote{Untuk penjelasan tentang maknanya, lihat pembahasan tepat
+setelah \olref[sfr][infinite][induction]{natinductionschema}.}
+
+Pemisahan langsung dibenarkan oleh konsepsi kumulatif-iteratif tentang
+himpunan yang telah kita uraikan. Untuk melihat alasannya, misalkan $A$
+suatu himpunan. Jadi, $A$ dibentuk pada suatu tahap~$S$ (menurut
+\stageshier). Karena $A$ dibentuk pada tahap~$S$, semua anggota $A$ dibentuk
+sebelum tahap $S$ (menurut \stagesacc). Sekarang, secara khusus,
+pertimbangkan semua himpunan yang merupakan anggota $A$ dan juga memenuhi
+$\phi$; jelas semua himpunan ini pun dibentuk sebelum tahap~$S$. Jadi, semua
+himpunan itu juga dibentuk menjadi himpunan
+$\Setabs{x \in A}{\phi(x)}$ pada tahap~$S$ (menurut \stagesacc).
+
+Tidak seperti Komprehensi Naif, prinsip ini menghindari Paradoks Russell.
+Kita tidak dapat begitu saja menegaskan keberadaan himpunan
+$\Setabs{x}{x \notin x}$. Sebaliknya, dengan \emph{diberikannya} suatu
+himpunan~$A$, kita dapat menegaskan keberadaan himpunan
+$R_A = \Setabs{x \in A}{x \notin x}$. Namun, semua ini hanya membuktikan
+bahwa $R_A \notin R_A$ dan $R_A \notin A$; tidak satu pun di antaranya
+sangat mengkhawatirkan.
+
+Namun, Pemisahan mempunyai konsekuensi langsung dan mencolok:
+
+\begin{thm}\ollabel{thm:NoUniversalSet}
+Tidak ada himpunan \emph{semesta}; yakni, $\Setabs{x}{x = x}$ tidak ada.
+\end{thm}
+
+\begin{proof}
+Untuk reductio, andaikan $V$ merupakan himpunan semesta. Maka, menurut
+Pemisahan, $R = \Setabs{x \in V}{x \notin x} =
+\Setabs{x}{x \notin x}$ ada, bertentangan dengan Paradoks Russell.
+\end{proof}
+
+Ketiadaan himpunan semesta---bahkan, sifat terbuka hierarki himpunan---adalah
+salah satu gagasan paling mendasar di balik konsepsi kumulatif-iteratif. Jadi,
+patut diperlihatkan bahwa secara intuitif kita dapat mencapainya melalui
+jalur lain. Himpunan semesta harus menjadi !!a{element} dari dirinya sendiri.
+Namun, menurut konsepsi kumulatif-iteratif kita, setiap himpunan muncul (untuk
+pertama kalinya) dalam hierarki pada tahap pertama tepat sesudah semua
+!!{element}s-nya. Akan tetapi, ini menyiratkan bahwa \emph{tidak ada}
+himpunan yang menjadi anggota dirinya sendiri. Sebab, setiap himpunan yang
+menjadi anggota dirinya sendiri harus muncul untuk pertama kalinya tepat
+sesudah tahap tempat himpunan itu pertama kali muncul, dan hal itu mustahil.
+(Dalam \olref[sth][spine][rank]{defnsetrank} kita akan melihat cara membuat
+penjelasan ini lebih ketat dengan menggunakan gagasan ``peringkat'' suatu
+himpunan. Namun, untuk melakukannya, kita perlu terlebih dahulu memiliki
+beberapa aksioma tambahan.)
+
+Berikut beberapa konsekuensi lain dari Pemisahan dan Ekstensionalitas.
+
+\begin{prop}\ollabel{prop:emptyexists}
+Jika ada suatu himpunan, maka $\emptyset$ ada.
+\end{prop}
+
+\begin{proof}
+Jika $A$ suatu himpunan, $\emptyset = \Setabs{x \in A}{x \neq x}$ ada
+menurut Pemisahan.
+\end{proof}
+
+\begin{prop}
+$A \setminus B$ ada untuk setiap himpunan $A$ dan $B$.
+\end{prop}
+
+\begin{proof}
+$A \setminus B = \Setabs{x \in A}{x \notin B}$ ada menurut Pemisahan.
+\end{proof}
+
+Ternyata, irisan yang (hampir) sembarang juga ada:
+
+\begin{prop}\ollabel{prop:intersectionsexist}
+Jika $A \neq \emptyset$, maka
+$\bigcap A = \Setabs{x}{(\forall y \in A)x \in y}$ ada.
+\end{prop}
+
+\begin{proof}
+Misalkan $A \neq \emptyset$, sehingga terdapat suatu $c \in A$. Maka
+$\bigcap A = \Setabs{x}{(\forall y \in A)x \in y} =
+\Setabs{x \in c}{(\forall y \in A)x \in y}$, yang ada menurut Pemisahan.
+\end{proof}
+
+Namun, perhatikan syarat $A \neq \emptyset$; sebab $\bigcap \emptyset$ akan
+menjadi himpunan semesta secara hampa, bertentangan dengan
+\olref{thm:NoUniversalSet}.
+
+\end{document}

@@ -1,0 +1,43 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{cardinals}{cp}
+\olsection{Prinsip Cantor}
+
+Ingat kembali \olref[ordinals][vn]{sec}. Kita sedang membahas himpunan
+terurut baik dan mengusulkan bahwa akan berguna jika terdapat objek yang
+mewakili pengurutan baik. Dengan gagasan ini, kita memperkenalkan ordinal,
+lalu menunjukkan dalam
+\olref[ordinals][ordtype]{ordtypesworklikeyouwant} bahwa ordinal berperilaku
+sebagaimana kita inginkan, yakni:
+\[
+	\ordtype{A, <} = \ordtype{B, \lessdot} 
+	\text{ jika dan hanya jika } \tuple{A, <} \isomorphic \tuple{B, \lessdot}.
+\]
+Ingat lebih jauh lagi, yakni \olref[sfr][siz][equ]{sec}. Di sana, dengan
+bekerja secara naif, kita memperkenalkan gagasan ``ukuran'' suatu himpunan.
+Secara khusus, kita mengatakan bahwa dua himpunan berkardinalitas sama,
+$\cardeq{A}{B}$, tepat jika terdapat !!a{bijection} $f \colon A \to B$.
+Gagasan ini secara intrinsik {lebih sederhana} daripada pengurutan baik:
+kita hanya memperhatikan !!{bijection}s, bukan (seperti pada isomorfisme
+urutan) apakah !!{bijection}s tersebut ``mempertahankan suatu struktur''.
+
+Semua ini memunculkan suatu gagasan yang jelas. Sebagaimana kita
+memperkenalkan objek-objek tertentu, yakni \emph{ordinal}, untuk mengukur
+pengurutan baik, kita dapat memperkenalkan objek-objek tertentu, yakni
+\emph{kardinal}, untuk mengukur ukuran. Itulah tujuan bab ini.
+
+Sebelum mengatakan apa yang akan menjadi kardinal-kardinal tersebut, kita
+perlu menetapkan suatu prinsip yang harus dipenuhinya. Dengan menulis
+$\card{X}$ untuk kardinalitas himpunan $X$, kita ingin agar berlaku:
+\[
+	\card{A} = \card{B} \text{ jika dan hanya jika } \cardeq{A}{B}.
+\]
+Kita akan menyebutnya \emph{Prinsip Cantor}, sebab Cantor mungkin merupakan
+orang pertama yang memahaminya dengan sangat jelas. (Kita akan membahas lebih
+lanjut hubungannya dengan \emph{Prinsip Hume} dalam \olref[hp]{sec}.) Jadi,
+tujuan kita ialah mendefinisikan $\card{X}$, untuk setiap $X$, sedemikian
+sehingga definisi tersebut menghasilkan Prinsip Cantor.
+
+\end{document}

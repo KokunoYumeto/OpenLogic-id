@@ -1,0 +1,198 @@
+% Part: proof-theory
+% Chapter: proof-search
+% Section: tableaux
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{ps}{tab}
+
+\olsection{Tableau}
+
+Sistem tableau adalah sistem !!{proof} yang berkaitan erat dengan
+kalkulus sekuen dan sangat sesuai untuk pencarian bukti, baik dengan
+tangan maupun melalui implementasi perangkat lunak. Alih-alih membangun
+pohon sekuen, dalam tableau !!a{proof} merupakan pohon !!{formula}s.
+Namun, tidak seperti deduksi alami, aturan-aturannya mencerminkan aturan
+kalkulus sekuen. !!{proof} tableau pada dasarnya merupakan pencarian
+eksplisit atas suatu model. Karena itu, sistem ini kadang-kadang disebut
+tableau \emph{semantik} atau juga \emph{pohon kebenaran}.
+
+Tableau \emph{bertanda} adalah pohon !!{formula}s bertanda, yang dapat
+berbentuk $\sFmla{\True}{!A}$ atau $\sFmla{\False}{!A}$. Pohon tumbuh ke
+bawah. Pohon dimulai dengan !!{formula}s yang menentukan apa yang ingin
+kita !!{prove}. Misalnya, untuk !!{prove} sekuen $!A, !B \Sequent !C,
+!D$, tableau dimulai dengan $\sFmla{\True}{!A}, \sFmla{\True}{!B},
+\sFmla{\False}{!C}, \sFmla{\False}{!D}$. !!^a{structure} yang membuat
+$!A$ dan $!B$ benar serta $!C$ dan $!D$ salah adalah !!a{structure} yang
+menunjukkan bahwa $!A, !B \Sequent !C, !D$ tidak sahih.
+
+Simpul daun (paling bawah) suatu tableau dapat diperluas dengan aturan
+perluasan cabang, yang menambahkan simpul lain pada cabang yang sama atau
+menambahkan dua simpul bersaudara di bawahnya sehingga cabang terbelah
+menjadi dua cabang baru. Aturan dapat diterapkan kepada sembarang
+!!{formula} bertanda di atas simpul itu pada cabang yang sama. Aturan
+perluasan cabang bagi sistem tableau klasik \Log{Tc} diberikan dalam
+\olref{tab:Tc}.
+
+\subfile{rules-Tc}
+
+Seperti dapat dilihat, aturan-aturan tersebut hanyalah aturan \Log{G3c}
+yang dibalik, dan tanda $\True$ serta $\False$ masing-masing menunjukkan
+apakah !!a{formula} menjadi formula utama di sisi kiri atau kanan suatu
+sekuen.
+
+Sebuah cabang tableau \emph{tertutup} jika memuat baik
+$\sFmla{\True}{!A}$ maupun $\sFmla{\False}{!A}$. Jika setiap cabang
+tertutup, seluruh tableau disebut tertutup. Misalnya, berikut tableau
+klausul untuk $!A \lor (!B \land !C) \Sequent (!A \lor !B) \land
+(!A \lor !C)$, yakni dimulai dengan $\sFmla{\True}{!A \lor (!B \land
+!C)}$ dan $\sFmla{\False}{(!A \lor !B) \land (!A \lor !C)}$:
+\begin{oltableau}
+  [\sFmla{\True}{\formula{A} \lor (\formula{B} \land \formula{C})},
+    just=\TAss, checked
+    [\sFmla{\False}{(\formula{A} \lor \formula{B}) \land
+        (\formula{A} \lor \formula{C})}, just=\TAss, checked
+      [\sFmla{\True}{\formula{A}}, just={\TRule{\True}{\lor}[1]}
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{B}},
+              just={\TRule{\False}{\lor}[4]}, close]
+          ]
+        ]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\False}{\formula{A}},
+            just={\TRule{\False}{\lor}[4]}
+            [\sFmla{\False}{\formula{C}},
+              just={\TRule{\False}{\lor}[4]}, close]
+          ]
+        ]
+      ]
+      [\sFmla{\True}{\formula{B} \land \formula{C}},
+        just={\TRule{\True}{\lor}[1]}, checked
+        [\sFmla{\False}{\formula{A} \lor \formula{B}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\True}{\formula{B}},
+            just={\TRule{\True}{\land}[3]}, move by=2
+            [\sFmla{\True}{\formula{C}},
+              just={\TRule{\True}{\land}[3]}
+              [\sFmla{\False}{\formula{A}},
+                just={\TRule{\False}{\lor}[4]}
+                [\sFmla{\False}{\formula{B}},
+                  just={\TRule{\False}{\lor}[4]},close
+                ]
+              ]
+            ]
+          ]
+        ]
+        [\sFmla{\False}{\formula{A} \lor \formula{C}},
+          just={\TRule{\False}{\land}[2]}, checked
+          [\sFmla{\True}{\formula{B}},
+            just={\TRule{\True}{\land}[3]}, move by=2
+              [\sFmla{\True}{\formula{C}},
+                just={\TRule{\True}{\land}[3]}
+                [\sFmla{\False}{\formula{A}},
+                  just={\TRule{\False}{\lor}[4]}
+                  [\sFmla{\False}{\formula{C}},
+                  just={\TRule{\False}{\lor}[4]},close
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+\end{oltableau}
+
+Tanda centang menunjukkan bahwa aturan yang bersangkutan telah diterapkan
+kepada !!a{formula} pada semua cabang di bawahnya. Simbol $\otimes$
+menunjukkan bahwa suatu cabang tertutup. Nomor baris setelah aturan
+menunjukkan kepada !!{formula} bertanda mana aturan itu diterapkan (yakni
+!!{formula} pada cabang yang sama di baris yang ditunjukkan).
+
+Pencarian bukti mudah dilakukan dalam tableau. Kita menghasilkan tableau
+secara bertahap. Pada tahap~$0$, tuliskan saja !!{formula}s awal di bagian
+atas. Pada tahap~$n+1$, lakukan hal berikut untuk setiap simpul daun:
+Carilah formula bertanda pertama (paling atas) yang belum dicentang.
+Terapkan aturan perluasan cabang kepada formula tersebut. Setelah aturan
+diterapkan pada setiap cabang yang memuat formula bertanda itu, beri tanda
+centang. (Contoh di atas dihasilkan dengan algoritma ini.)
+
+!!{formula}s bertanda yang berbentuk $\sFmla{\True}{\lforall}$ dan
+$\sFmla{\False}{\lexists}$ tidak pernah dicentang, sehingga harus
+diperlakukan secara khusus. Jika formula-formula itu ada, kita harus
+memastikan bahwa aturan $\TRule{\True}{\forall}$ dan
+$\TRule{\False}{\lexists}$ akhirnya diterapkan untuk semua suku yang
+berlaku. Hal ini dapat dijamin, misalnya, dengan menerapkannya pada setiap
+tahap kepada semua formula semacam itu di setiap cabang (setelah menangani
+!!{formula} bertanda paling atas yang tidak berbentuk demikian). Suku $t$
+yang digunakan ialah suku pertama~$t$ yang dapat dibangun dari !!{constant}s
+yang sudah muncul pada cabang (atau $\Obj c_0$ jika tidak ada
+!!{constant} yang muncul) dan !!{function}s yang muncul dalam
+!!{formula}s awal, sedemikian rupa sehingga !!{formula} bertanda yang
+bersesuaian, $\sFmla{\True}{!B(t)}$ atau~$\sFmla{\False}{!B(t)}$, belum
+muncul pada cabang.
+
+Jika pencarian bukti ini tidak menghasilkan tableau tertutup, tableau itu
+memuat cabang terbuka berhingga tempat semua !!{formula} nonatomiknya telah
+dicentang, atau pencarian menghasilkan pohon takhingga bercabang hingga,
+yang harus memuat suatu cabang takhingga. Sama seperti dalam
+\olref[cpl]{sec}, kita dapat mendefinisikan !!a{structure}~$\Struct{M}$
+sedemikian rupa sehingga jika $\sFmla{\True}{!A}$ muncul pada cabang,
+maka $\Sat{M}{!A}$, dan jika $\sFmla{\False}{!A}$ muncul, maka
+$\Sat/{M}{!A}$. (Ambil $\Theta =
+\Setabs{!A}{\sFmla{\True}{!A} \text{ pada cabang}}$ dan $\Xi =
+\Setabs{!A}{\sFmla{\False}{!A} \text{ pada cabang}}$.)
+
+Tableau yang dihasilkan oleh metode pencarian bukti ini dapat dengan mudah
+diterjemahkan menjadi bukti \Log{G3c} dengan memberikan sebuah sekuen
+kepada setiap simpul. Jika formula-formula awal bersesuaian dengan sekuen
+$\Gamma \Sequent \Delta$, beri setiap formula awal label $\Gamma \Sequent
+\Delta$. Jika suatu cabang diperluas dengan menerapkan aturan perluasan
+cabang kepada !!{formula} bertanda $\sFmla{\True}{!A}$, daun itu diberi
+label $!A, \Pi \Sequent \Lambda$; jika aturan diterapkan kepada
+!!{formula} bertanda $\sFmla{\False}{!A}$, daun itu diberi label
+$\Pi \Sequent \Lambda, !A$. Ketika tableau menerapkan aturan
+\TRule{\True}{\star}, terapkan aturan \LeftR{\star} kepada sekuen (dengan
+$!A$ sebagai formula utama); ketika tableau menerapkan aturan
+\TRule{\False}{\star}, terapkan aturan \RightR{\star}. Premis-premis aturan
+tersebut ialah sekuen yang melabeli simpul-simpul bersesuaian yang
+ditambahkan kepada tableau. Ketika suatu tableau tertutup oleh
+$\sFmla{\True}{!A}$ dan $\sFmla{\False}{!A}$, label simpul daun terakhir
+akan berupa sekuen $!A, \Pi \Sequent \Lambda, !A$. Beberapa simpul
+berturutan dalam tableau akan diberi sekuen yang sama; hapus duplikat.
+Misalnya, tableau di atas diterjemahkan menjadi !!{proof} berikut:
+\[\small
+\Axiom$!A \fCenter !A, !B$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$!A \fCenter !A \lor !B$
+\Axiom$!A \fCenter !A, !C$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$!A \fCenter !A \lor !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!A \fCenter (!A \lor !B) \land (!A \lor !C)$
+\Axiom$!B, !C \fCenter !A, !B$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$!B, !C \fCenter !A \lor !B$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!B \land !C \fCenter !A \lor !B$
+\Axiom$!B, !C \fCenter !A, !C$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$!B, !C \fCenter !A \lor !C$
+\RightLabel{\LeftR{\land}}
+\UnaryInf$!B \land !C \fCenter !A \lor !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$!B \land !C \fCenter (!A \lor !B) \land
+(!A \lor !C)$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$!A \lor (!B \land !C) \fCenter (!A \lor !B) \land
+(!A \lor !C)$
+\DisplayProof
+\]
+
+\end{document}

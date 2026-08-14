@@ -1,0 +1,92 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: introduction
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{axs}{int}
+
+\olsection{Pengantar}
+
+Kita mempunyai semantik bagi bahasa modal dasar dalam pengertian model modal,
+serta pengertian bahwa !!a{formula} valid---benar pada semua dunia dalam semua
+model---atau valid terhadap suatu kelas model atau kerangka---benar pada semua
+dunia dalam semua model yang termasuk dalam kelas itu atau berbasis pada
+kerangka tersebut. Logika biasanya menghubungkan pencirian semantik validitas
+semacam ini dengan pengertian teori-bukti tentang !!{derivability}. Tujuannya
+ialah mendefinisikan pengertian !!{derivability} dalam suatu sistem sedemikian
+sehingga !!a{formula} !!{derivable} jika dan hanya jika formula itu valid.
+
+Sistem !!{derivation} yang paling sederhana dan secara historis paling tua
+ialah sistem !!{derivation} jenis Hilbert atau aksiomatik. Sistem
+!!{derivation} jenis Hilbert bagi banyak logika modal relatif mudah dibangun:
+sistem-sistem ini sederhana sebagai objek kajian metateoretis (misalnya, untuk
+membuktikan kesahihan dan kelengkapan). Akan tetapi, sistem-sistem tersebut
+jauh lebih sulit digunakan untuk membuktikan !!{formula}s daripada, misalnya,
+sistem deduksi alami.
+
+Dalam sistem !!{derivation} jenis Hilbert, !!a{derivation} dari !!a{formula}
+merupakan barisan !!{formula}s yang berawal dari aksioma-aksioma tertentu,
+melalui beberapa aturan inferensi, dan berakhir pada !!{formula} yang
+bersangkutan. Karena kita menginginkan agar sistem !!{derivation} cocok dengan
+semantik, kita harus menjamin bahwa himpunan formula yang !!{derivable} benar
+dalam semua model (atau benar dalam semua model tempat semua aksioma benar).
+Mula-mula kita akan mengisolasi beberapa sifat logika modal yang diperlukan
+untuk tujuan tersebut: logika modal ``normal''. Bagi logika modal normal,
+hanya ada dua aturan inferensi yang perlu diasumsikan: modus ponens dan
+nesesitasi. Sebagai aksioma, kita mengambil semua instansiasi substitusi
+tautologi dan, bergantung pada logika modal yang kita hadapi, sejumlah aksioma
+modal. Bahkan jika kita hanya tertarik pada kelas semua model, kita juga harus
+menghitung semua instansiasi substitusi dari~$\Ax{K}$
+\iftag{notprvDiamond}{}{ dan~$\Ax{Dual}$} sebagai aksioma. Hal ini saja sudah
+menghasilkan logika modal normal minimal~$\Log K$.
+
+\begin{defn}
+Aturan \emph{modus ponens} merupakan skema inferensi
+\begin{prooftree}
+\AxiomC{$!A$}
+\AxiomC{$!A \lif !B$}
+\RightLabel{\MP}
+\BinaryInfC{$!B$}
+\end{prooftree}
+Kita mengatakan bahwa !!a{formula}~$!B$ \emph{mengikuti dari}
+!!{formula}s~$!A$, $!C$ melalui modus ponens jika dan hanya jika
+$!C\ident !A\lif !B$.
+\end{defn}
+
+\begin{defn}
+Aturan \emph{nesesitasi} merupakan skema inferensi
+\begin{prooftree}
+\AxiomC{$!A$}
+\RightLabel{\Nec}
+\UnaryInfC{$\Box !A$}
+\end{prooftree}
+Kita mengatakan bahwa !!{formula}~$!B$ mengikuti dari !!{formula}~$!A$
+melalui nesesitasi jika dan hanya jika $!B\ident\Box !A$.
+\end{defn}
+
+\begin{defn}
+Suatu \emph{!!{derivation}} dari himpunan aksioma~$\Sigma$ merupakan barisan
+!!{formula}s $!B_1$, $!B_2$, \dots, $!B_n$, dengan setiap $!B_i$ merupakan
+salah satu dari yang berikut:
+\begin{enumerate}
+\item suatu instansiasi substitusi dari tautologi;
+\item suatu instansiasi substitusi dari !!a{formula} dalam~$\Sigma$;
+\item mengikuti dari dua !!{formula}s $!B_j$, $!B_k$ dengan $j$, $k<i$ melalui
+  modus ponens; atau
+\item mengikuti dari !!a{formula}~$!B_j$ dengan $j<i$ melalui nesesitasi.
+\end{enumerate}
+Jika terdapat !!a{derivation} demikian dengan $!B_n\ident !A$, kita mengatakan
+bahwa $!A$ \emph{!!{derivable} dari~$\Sigma$}, dengan lambang
+$\Sigma\Proves !A$.
+\end{defn}
+
+Dengan definisi ini, akan ternyata bahwa himpunan formula yang !!{derivable}
+membentuk suatu logika modal normal, dan bahwa setiap !!{formula} yang
+!!{derivable} benar dalam setiap model tempat setiap aksioma benar. Sifat
+!!{derivation}s ini disebut \emph{kesahihan}. Konversnya, yakni
+\emph{kelengkapan}, lebih sulit dibuktikan.
+
+\end{document}

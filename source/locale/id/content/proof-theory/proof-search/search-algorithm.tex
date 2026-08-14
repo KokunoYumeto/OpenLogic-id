@@ -1,0 +1,157 @@
+% Part: proof-theory
+% Chapter: proof-search
+% Section: search-algorithm
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{ps}{sal}
+
+\olsection{Algoritma Pencarian untuk \Log{G3c}}
+
+Kita mendeskripsikan sebuah algoritma pencarian untuk \Log{G3c}.
+Algoritma ini bukan satu-satunya algoritma yang mungkin, bahkan bukan
+yang paling efisien. Namun, algoritma ini benar: jika suatu sekuen
+$\Gamma \Sequent \Delta$ memiliki !!a{proof}, algoritma ini pada akhirnya
+akan berhenti dan menemukan !!a{proof}. Algoritma ini juga menjamin keberhasilan:
+jika ia berhenti tanpa menemukan !!a{proof}, atau tidak pernah berhenti,
+maka sejak awal $\Gamma \Sequent \Delta$ memang tidak sahih.
+
+Salah satu ciri pokok yang diperlukan algoritma ini ialah jaminan bahwa
+setiap !!{formula} dalam $\Gamma \Sequent \Delta$, atau dalam sekuen yang
+dihasilkan selama pencarian bukti, ``direduksi,'' yakni diperlakukan
+sebagai formula utama dari suatu aturan inferensi yang diterapkan secara
+mundur, dan bahwa hal ini dilakukan sesering yang diperlukan. Ciri ini
+kita sebut \emph{keadilan}.
+
+Algoritma bekerja secara bertahap. Keluaran setiap tahap adalah sebuah
+pohon sekuen, dan keluaran tahap berikutnya diperoleh dengan mereduksi
+!!a{formula} dalam setiap sekuen paling atas yang belum merupakan aksioma.
+
+Pada tahap~$0$ kita mulai dengan $\Gamma \Sequent \Delta$. Untuk menjamin
+keadilan, kita memberikan bilangan sebagai indeks kepada !!{formula}s
+dalam $\Gamma$ dan $\Delta$ sedemikian rupa sehingga !!{formula}s yang
+berbeda memperoleh bilangan yang berbeda. Misalnya, bayangkan kita
+menghitung !!{formula}s dari kiri ke kanan. Bilangan tersebut kita tulis
+sebagai superskrip. Sebagai contoh, jika kita mencari !!a{proof} atas
+$!A, !B \Sequent !C$, keluaran tahap~$0$ ialah $!A^1, !B^2 \Sequent
+!C^3$. Bilangan terbesar~$n$ yang muncul sebagai superskrip dalam sekuen
+berindeks semacam itu disebut \emph{indeks maksimalnya} ($3$ dalam contoh
+tersebut).
+
+Jika sekuen memuat kuantor, kita juga perlu mengetahui suku mana yang
+digunakan ketika mereduksi $\lexists[x][!A(x)]$ di kanan atau
+$\lforall[x][!A(x)]$ di kiri. Kita hanya memerlukan suku yang dibangun
+dari !!{constant}s $\Obj c_0$, $\Obj c_1$, $\Obj c_2$, \dots, dengan
+menggunakan sembarang simbol fungsi yang muncul dalam~$\Gamma$ dan
+$\Delta$. Kita mengandaikan bahwa himpunan semua suku ini diberikan dalam
+suatu enumerasi tetap, sehingga kita dapat berbicara, misalnya, tentang
+``!!{constant} pertama yang tidak muncul dalam $\Gamma \Sequent
+\Delta$.'' Setiap sekuen berindeks dalam pohon yang dihasilkan algoritma
+memiliki suatu himpunan !!{constant}s yang terkait dengannya. Himpunan
+!!{constant}s yang diberikan kepada sekuen pada tahap~$0$ ialah himpunan
+semua !!{constant}s yang muncul di dalamnya (jika ada), dan
+$\{\Obj c_0\}$ jika sekuen itu tidak memuat !!{constant}.
+
+Andaikan algoritma telah menghasilkan sebuah pohon sekuen berindeks,
+beserta himpunan !!{constant}s yang terkait, pada tahap~$n$. Pada
+tahap~$n+1$, kita melakukan hal berikut untuk setiap sekuen paling atas.
+
+Jika ada !!a{formula}~$!A$ yang muncul baik di sisi kiri maupun kanan
+sekuen, atau sisi kirinya memuat~$\lfalse$, kita tidak melakukan apa pun:
+sekuen-sekuen demikian memiliki !!{proof}s dalam~\Log{G3c}, dan untuk
+sekuen paling atas tersebut tidak ada lagi yang perlu dilakukan.
+
+Jika sekuen tidak memuat !!{formula} nonatomik, hentikan algoritma dengan
+kegagalan. Tidak ada bukti atas $\Gamma \Sequent \Delta$.
+
+Jika tidak, pilih !!{formula} nonatomik~$!A$ dengan indeks terkecil~$i$.
+Sekuen paling atas yang dimaksud berbentuk $!A^i, \Pi \Sequent \Lambda$
+atau $\Pi \Sequent \Lambda, !A^i$. Misalkan $k$ adalah indeks maksimal
+sekuen itu, dan $C$ himpunan !!{constant}s yang diberikan kepadanya.
+
+Kita ``mereduksi'' $!A^i$, yakni menghasilkan sekuen-sekuen paling
+atas yang baru menurut aturan inferensi yang ditentukan oleh
+!!{main operator} dari~$!A$ serta menurut apakah $!A^i$ muncul di kiri
+atau di kanan.
+
+\begin{enumerate}
+  \item $!A \ident !B \land !C$ dan muncul di kiri: Tambahkan satu sekuen
+  paling atas baru di atas $(!B \land !C)^i, \Pi \Sequent \Lambda$:
+  \[
+  \Axiom$!B^{k+1}, !C^{k+2}, \Pi \fCenter \Lambda$
+  \RightLabel{\LeftR{\land}}
+  \UnaryInf$(!B \land !C)^i, \Pi \fCenter \Lambda$
+  \DisplayProof
+  \]
+  Himpunan !!{constant}s yang diberikan kepada sekuen baru ialah~$C$.
+  \item $!A \ident !B \land !C$ dan muncul di kanan: Tambahkan dua sekuen
+  paling atas baru di atas $\Pi \Sequent \Lambda, (!B \land !C)^i$:
+  \[
+  \Axiom$\Pi \fCenter \Lambda, !B^{k+1}$
+  \Axiom$\Pi \fCenter \Lambda, !C^{k+1}$
+  \RightLabel{\RightR{\land}}
+  \BinaryInf$\Pi \fCenter \Lambda, (!B \land !C)^i$
+  \DisplayProof
+  \]
+  Himpunan !!{constant}s yang diberikan kepada sekuen-sekuen baru
+  ialah~$C$.
+
+  \item Kasus $!A \ident \lnot !B$, $!A \ident !B \lor !C$, dan
+  $!A \ident !B \lif !C$ serupa dan diserahkan sebagai latihan.
+
+  \item $!A \ident \lexists[x][!B(x)]$ dan muncul di kiri: Tambahkan satu
+  sekuen paling atas baru di atas $\lexists[x][!B(x)]^i, \Pi \Sequent
+  \Lambda$:
+  \[
+  \Axiom$!B(c)^{k+1}, \Pi \fCenter \Lambda$
+  \RightLabel{\LeftR{\lexists}}
+  \UnaryInf$\lexists[x][!B(x)]^i, \Pi \fCenter \Lambda$
+  \DisplayProof
+  \]
+  dengan $c$ sebagai !!{constant} pertama yang tidak berada dalam~$C$.
+  Himpunan !!{constant}s yang diberikan kepada sekuen baru ialah
+  $C \cup \{c\}$.
+  \item $!A \ident \lexists[x][!B(x)]$ dan muncul di kanan: Tambahkan satu
+  sekuen paling atas baru di atas $\Pi \Sequent \Lambda,
+  \lexists[x][!B(x)]^i$:
+  \[
+  \Axiom$\Pi \fCenter \Lambda, \lexists[x][!B(x)]^{k+1},
+    !B(t)^{k+2}$
+  \RightLabel{\RightR{\lexists}}
+  \UnaryInf$\Pi \fCenter \Lambda, \lexists[x][!B(x)]^i$
+  \DisplayProof
+  \]
+  dengan $t$ sebagai suku pertama yang hanya memuat !!{constant}s
+  dalam~$C$ dan belum digunakan dalam reduksi
+  $\lexists[x][!B(x)]$ di kanan di bawah sekuen ini (atau $\Obj c_0$
+  jika semua suku tersebut telah digunakan). Himpunan !!{constant}s
+  yang diberikan kepada sekuen baru ialah~$C$.
+  \item Kasus $!A \ident \lforall[x][!B(x)]$ serupa dan diserahkan
+  sebagai latihan.
+\end{enumerate}
+
+Jika pada tahap~$n+1$ kita tidak menambahkan sekuen baru kepada sekuen
+paling atas mana pun, algoritma berhenti dengan berhasil. Dalam hal ini
+kita telah menemukan !!a{proof} atas~$\Gamma \Sequent \Delta$, yang
+diperoleh dari pohon pada tahap~$n+1$ dengan menghapus semua indeks.
+Semua sekuen paling atas berbentuk $!A, \Pi \Sequent \Lambda, !A$ atau
+$\lfalse, \Pi \Sequent \Lambda$. Semua inferensinya merupakan inferensi
+yang benar dalam~\Log{G3c}. Hal ini jelas bagi inferensi proposisional.
+Perhatikan bahwa pada setiap langkah, himpunan~$C$ dari !!{constant}s
+yang diberikan kepada suatu sekuen memuat semua !!{constant}s yang
+muncul dalam sekuen itu.
+Karena itu, dalam reduksi yang menggunakan \LeftR{\lexists} dan
+\RightR{\lforall}, syarat variabel eigen dipenuhi: variabel eigen~$c$
+adalah !!a{constant} yang tidak berada dalam himpunan~$C$ milik
+kesimpulan, sehingga $c$ juga tidak muncul dalam kesimpulan. Kita
+memperoleh:
+
+\begin{prop}
+Algoritma pencarian bukti untuk \Log{G3c} adalah benar: jika algoritma
+berhenti dengan berhasil, sekuen awal~$\Gamma \Sequent \Delta$ memiliki
+!!a{proof}.
+\end{prop}
+
+\end{document}

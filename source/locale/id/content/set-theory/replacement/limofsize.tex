@@ -1,0 +1,67 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{replacement}{limofsize}
+\olsection{Pembatasan Ukuran}
+
+Mungkin upaya yang paling umum untuk memberikan pembenaran ``intrinsik'' bagi
+Penggantian menggunakan gagasan berikut:
+\begin{enumerate}
+	\item[] \limofsize. Sembarang hal membentuk suatu himpunan, asalkan
+	jumlahnya tidak terlalu banyak.
+\end{enumerate}
+Prinsip ini akan langsung membenarkan Penggantian. Bagaimanapun, setiap
+himpunan yang dibentuk melalui Penggantian tidak mungkin lebih besar daripada
+himpunan asal pembentukannya. Dinyatakan secara tepat: andaikan Anda
+membentuk suatu himpunan
+$\funimage{\tau}{A} = \Setabs{\tau(x)}{x \in A}$ dengan menggunakan
+Penggantian; maka $\cardle{\funimage{\tau}{A}}{A}$; jadi, jika !!{element}s
+dari $A$ tidak terlalu banyak untuk membentuk suatu himpunan, citranya juga
+tidak terlalu banyak untuk membentuk $\funimage{\tau}{A}$.
+
+Kesulitan yang jelas dalam menggunakan \limofsize{} untuk membenarkan
+Penggantian ialah bahwa kita \emph{belum} menetapkan prinsip apa pun seperti
+\limofsize. Selain itu, ketika kita menceritakan kisah tentang konsepsi
+kumulatif-iteratif mengenai himpunan dalam
+\crefrange{sth:story::chap}{sth:z::chap}, tidak ada apa pun yang pernah
+\emph{mengisyaratkan} \limofsize. Inilah persis alasan Boolos pernah menulis:
+``Mungkin orang dapat menyimpulkan bahwa terdapat setidaknya dua gagasan
+`di balik' teori himpunan'' \citeyearpar[p.~19]{Boolos1989}. Di satu pihak,
+gagasan-gagasan seputar konsepsi kumulatif-iteratif tentang himpunan
+dimaksudkan untuk membenarkan~$\Z$. Di pihak lain, \limofsize{} dimaksudkan
+untuk membenarkan Penggantian.
+
+Namun, masalahnya bukan sekadar bahwa sejauh ini kita \emph{diam} mengenai
+\limofsize. Alih-alih, masalahnya ialah bahwa \limofsize{} (sebagaimana baru
+saja dirumuskan) tampaknya sangat tidak selaras dengan gagasan
+kumulatif-iteratif tentang himpunan. Bagaimanapun, prinsip itu sama sekali
+tidak menyebut gagasan bahwa himpunan dibentuk dalam \emph{tahap-tahap}.
+
+Hal ini sebenarnya tidak terlalu mengejutkan, mengingat sejarah kedua
+``gagasan'' ini (yakni konsepsi kumulatif-iteratif tentang himpunan dan
+\limofsize). Kedua ``gagasan'' ini pada akhirnya merupakan dua proyek yang
+cukup berbeda untuk menghalangi paradoks-paradoks teori himpunan. Gagasan
+kumulatif-iteratif tentang himpunan menghalangi Paradoks Russell dengan
+mengatakan, secara garis besar: \emph{kita tidak semestinya pernah
+mengharapkan himpunan Russell ada, karena himpunan itu tidak akan
+``terbentuk'' pada tahap mana pun}. Sebaliknya, \limofsize{} dimaksudkan
+untuk menyingkirkan himpunan Russell dengan mengatakan, secara garis besar:
+\emph{kita tidak semestinya pernah mengharapkan himpunan Russell ada, karena
+himpunan itu terlalu besar}.
+
+Jika diungkapkan seperti ini, mari kita berterus terang: sebagai jawaban
+terhadap paradoks-paradoks, \limofsize{} memerlukan \emph{jauh} lebih banyak
+pembenaran. Sebagai contoh, perhatikan versi Paradoks Russell berikut:
+\emph{tidak ada anjing pug yang mengendus tepat anjing-anjing pug yang tidak
+mengendus dirinya sendiri} (lihat \olref[sth][story][rus]{sec}). Jika Anda
+bertanya ``mengapa tidak ada anjing pug semacam itu?'', diberi tahu bahwa
+anjing tersebut harus mengendus terlalu banyak anjing pug bukanlah jawaban
+yang baik. Jadi, mengapa ketiadaan himpunan Russell akan dijelaskan secara
+intuitif dengan baik oleh klaim bahwa himpunan itu akan terlalu ``besar''
+untuk ada?
+
+Singkatnya, dapat dimaklumi jika Anda merasa agak bingung mengenai motivasi
+``intuitif'' bagi \limofsize.
+
+\end{document}

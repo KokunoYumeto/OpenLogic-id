@@ -1,0 +1,99 @@
+% Part: normal-modal-logic
+% Chapter: axioms-systems
+% Section: logics-proofs
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{nml}{prf}{prf}
+
+\olsection{\usetoken{P}{derivation} dan Sistem Modal}
+
+Mula-mula kita mendefinisikan !!a{derivation} bagi logika modal normal. Secara
+kasar, !!a{derivation} merupakan barisan !!{formula}s dengan setiap
+!!{element} merupakan suatu instansiasi substitusi dari salah satu dari
+sejumlah \emph{aksioma}, atau mengikuti dari !!{element}s sebelumnya melalui
+salah satu dari beberapa aturan inferensi. Bagi logika modal normal, semua
+instansiasi tautologi\iftag{prvDiamond}{, \Ax{K}, dan~\Dual{}}{
+dan~\Ax{K}} dihitung sebagai aksioma. Hal ini menghasilkan sistem
+modal~$\Log{K}$, logika modal normal terkecil. Meskipun demikian, kita dapat
+menambahkan aksioma lain untuk memperoleh sistem-sistem lain. Aturannya selalu
+modus ponens~\MP{} dan nesesitasi~\Nec.
+
+\begin{defn}
+  Diberikan sistem modal $\Log{K} !A_1 \dots !A_n$ dan !!a{formula}~$!B$,
+  kita mengatakan bahwa $!B$ \emph{!!{derivable}} dalam
+  $\Log{K} !A_1 \dots !A_n$, ditulis
+  $\Log{K} !A_1 \dots !A_n\Proves !B$, jika dan hanya jika terdapat
+  !!{formula}s $!C_1$, \dots, $!C_k$ sedemikian sehingga $!C_k=!B$ dan setiap
+  $!C_i$ merupakan instansiasi tautologis, instansiasi salah satu dari
+  $\Ax{K}$,\iftag{prvDiamond}{ $\Dual$,}{} $!A_1$, \dots, $!A_n$, atau
+  mengikuti dari !!{formula}s sebelumnya melalui aturan~\MP{} atau~\Nec.
+\end{defn}
+
+Proposisi berikut memungkinkan kita menunjukkan bahwa $!B\in\Sigma$ dengan
+memperlihatkan suatu $\Sigma$-!!{derivation} dari~$!B$.
+
+\begin{prop}
+  $\Log{K} !A_1 \dots !A_n =
+  \Setabs{!B}{\Log{K} !A_1 \dots !A_n \Proves !B}$.
+\end{prop}
+
+\begin{proof}
+  Kita menggunakan induksi pada panjang !!{derivation}s untuk menunjukkan
+  bahwa
+  $\Setabs{!B}{\Log{K} !A_1 \dots !A_n\Proves !B}\subseteq
+  \Log{K} !A_1 \dots !A_n$.
+
+  Jika !!{derivation} dari~$!B$ mempunyai panjang~$1$, derivasi itu memuat satu
+  !!{formula}. !!^{formula} tersebut tidak mungkin mengikuti dari formula
+  sebelumnya melalui~\MP{} atau~\Nec, sehingga harus merupakan instansiasi
+  tautologis, instansiasi~\Ax{K},\iftag{prvDiamond}{ $\Dual$,}{} atau
+  instansiasi salah satu dari $!A_1$, \dots,~$!A_n$. Akan tetapi,
+  $\Log{K}!A_1\dots!A_n$ juga memuat semua formula tersebut, sehingga
+  $!B\in\Log{K}!A_1\dots !A_n$.
+
+  Jika !!{derivation} dari~$!B$ mempunyai panjang~$>1$, $!B$ juga mungkin
+  diperoleh melalui~\MP{} atau~\Nec{} dari !!{formula}s yang tidak muncul
+  sebagai baris terakhir !!{derivation}. Jika $!B$ mengikuti dari $!C$ dan
+  $!C\lif !B$ melalui~\MP, maka menurut hipotesis induksi
+  $!C$ dan $!C\lif !B\in\Log{K}!A_1\dots !A_n$. Akan tetapi, setiap logika
+  modal tertutup di bawah modus ponens, sehingga
+  $!B\in\Log{K}!A_1\dots !A_n$. Jika $!B\equiv\Box !C$ mengikuti dari~$!C$
+  melalui~\Nec, maka menurut hipotesis induksi
+  $!C\in\Log{K}!A_1\dots !A_n$. Akan tetapi, setiap logika modal normal
+  tertutup di bawah~$\Nec$, sehingga $!B\in\Log{K}!A_1\dots!A_n$.
+
+  Inklusi konvers diperoleh dengan menunjukkan bahwa
+  $\Sigma=\Setabs{!B}{\Log{K}!A_1\dots!A_n\Proves !B}$ merupakan logika modal
+  normal yang memuat semua instansiasi $!A_1$, \dots, $!A_n$, lalu menggunakan
+  fakta bahwa menurut definisi $\Log{K}!A_1\dots!A_n$ merupakan logika
+  terkecil semacam itu.
+  \begin{enumerate}
+    \item Setiap tautologi~$!B$ merupakan instansiasi tautologis, sehingga
+      $\Log{K}!A_1\dots!A_n\Proves !B$; jadi, $\Sigma$ memuat semua tautologi.
+    \item Jika $\Log{K}!A_1\dots!A_n\Proves !C$ dan
+      $\Log{K}!A_1\dots!A_n\Proves !C\lif !B$, maka
+      $\Log{K}!A_1\dots!A_n\Proves !B$: gabungkan !!{derivation} dari~$!C$
+      dengan derivasi dari~$!C\lif !B$, lalu tambahkan baris~$!B$. Baris
+      terakhir dijustifikasi oleh~\MP{}. Jadi, $\Sigma$ tertutup di bawah
+      modus ponens.
+    \item Jika $!B$ mempunyai !!a{derivation}, setiap instansiasi substitusi
+      dari~$!B$ juga mempunyai !!a{derivation}: terapkan substitusi tersebut
+      pada setiap !!{formula} dalam !!{derivation}. (Latihan: buktikan melalui
+      induksi pada panjang !!{derivation}s bahwa hasilnya juga merupakan
+      !!a{derivation} yang benar.) Jadi, $\Sigma$ tertutup di bawah substitusi
+      seragam. (Kini kita telah menetapkan bahwa $\Sigma$ memenuhi semua
+      kondisi logika modal.)
+    \item Kita mempunyai $\Log{K}!A_1\dots!A_n\Proves\Ax{K}$, sehingga
+      $\Ax{K}\in\Sigma$.
+    \tagitem{prvDiamond}{Kita mempunyai
+      $\Log{K}!A_1\dots!A_n\Proves\Dual$, sehingga $\Dual\in\Sigma$.}{}
+    \item Jika $\Log{K}!A_1\dots!A_n\Proves !C$, baris tambahan~$\Box !C$
+      dijustifikasi oleh~\Nec. Akibatnya, $\Sigma$ tertutup di bawah~\Nec.
+      Jadi, $\Sigma$ normal.
+  \end{enumerate}
+\end{proof}
+
+\end{document}

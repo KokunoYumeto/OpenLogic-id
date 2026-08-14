@@ -1,0 +1,44 @@
+% Part: many-valued-logic
+% Chapter: syntax-and-semantics
+% Section: formulas
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{mvl}{syn}{fml}
+
+\olsection{\usetoken{P}{formula}}
+
+\begin{defn}[Formula]
+\ollabel{defn:formulas}
+Himpunan~$\Frm[L]$ yang beranggotakan \emph{!!{formula}s} dari suatu bahasa
+proposisional~$\Lang L$ didefinisikan secara induktif sebagai berikut:
+\begin{enumerate}
+\item Setiap !!{propositional variable}~$\Obj p_i$ merupakan !!{formula}
+  atomik.
+\item Setiap konektif $0$-tempat (konstanta proposisional) dari~$\Lang L$
+  merupakan !!{formula} atomik.
+\item Jika $\star$ merupakan konektif $n$-tempat dari~$\Lang L$, dan $!A_1$,
+  \dots, $!A_n$ merupakan !!{formula}s, maka $\star(!A_1,\dots,!A_n)$
+  merupakan !!a{formula}.
+\tagitem{limitClause}{Tidak ada yang lain yang merupakan !!a{formula}.}{}
+\end{enumerate}
+Jika $\star$ merupakan konektif $1$-tempat, maka $\star(!A_1)$ sering ditulis
+sebagai $\star !A_1$. Jika $\star$ merupakan konektif $2$-tempat, maka
+$\star(!A_1,!A_2)$ sering ditulis sebagai $(!A_1\star !A_2)$.
+\end{defn}
+
+Seperti biasa, kita sering menghilangkan secara diam-diam pasangan kurung
+terluar.
+
+\begin{ex}
+  Dalam bahasa baku~$\Lang{L_0}$, $\Obj p_1\lif(\Obj p_1\land\lnot\Obj p_2)$
+  merupakan suatu formula. Dalam bahasa logika produk, formula itu ditulis
+  sebagai $\Obj p_1\lif(\Obj p_1\odot\lnot\Obj p_2)$. Jika kita menambahkan
+  konektif $1$-tempat~$\triangle$ ke dalam bahasa tersebut, kita juga akan
+  memperoleh formula seperti $\triangle(\Obj p_1\land\Obj p_2)\lif
+  (\triangle\Obj p_1\land\triangle\Obj p_2)$.
+\end{ex}
+
+\end{document}

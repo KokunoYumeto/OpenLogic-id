@@ -1,0 +1,77 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{ordinals}{wo}
+\olsection{Pengurutan Baik}
+
+Gagasan dasarnya adalah sebagai berikut:
+
+\begin{defn}
+Relasi~$<$ \emph{mengurutkan $A$ dengan baik} jika dan hanya jika relasi itu
+memenuhi kedua syarat berikut:
+\begin{enumerate}
+	\item $<$ terhubung, yakni untuk semua $a,b\in A$, berlaku $a<b$ atau
+	$a=b$ atau $b<a$;
+	\item setiap himpunan bagian tak kosong dari~$A$ mempunyai suatu
+	!!{element} yang minimal menurut~$<$, yakni jika
+	$\emptyset\neq X\subseteq A$, maka
+	$(\exists m\in X)(\forall z\in X)z\nless m$.
+\end{enumerate}
+\end{defn}
+
+Mudah dilihat bahwa ketiga contoh yang baru saja kita pertimbangkan memang
+merupakan relasi pengurutan baik.
+
+\begin{prob}
+\Olref[sth][ordinals][idea]{sec} menyajikan tiga contoh pengurutan pada
+bilangan asli. Periksa bahwa masing-masing merupakan pengurutan baik.
+\end{prob}
+
+Berikut beberapa pengamatan elementer tetapi sangat penting mengenai
+pengurutan baik.
+
+\begin{prop}\ollabel{wo:strictorder}
+Jika $<$ mengurutkan $A$ dengan baik, maka setiap himpunan bagian tak kosong
+dari~$A$ mempunyai anggota terkecil yang unik menurut~$<$, dan $<$ bersifat
+irefleksif, asimetris, serta transitif.
+\end{prop}
+
+\begin{proof}
+Jika $X$ merupakan himpunan bagian tak kosong dari~$A$, maka $X$ mempunyai
+suatu !!{element}~$m$ yang minimal menurut~$<$, yakni
+$(\forall z\in X)z\nless m$. Karena $<$ terhubung, berlaku
+$(\forall z\in X)m\leq z$. Jadi, $m$ merupakan !!{element} terkecil dari~$X$
+menurut~$<$.
+
+Untuk irefleksivitas, tetapkan $a\in A$; !!^{element} terkecil dari $\{a\}$
+menurut~$<$ ialah $a$, sehingga $a\nless a$. Untuk transitivitas, andaikan
+$a<b<c$. Jika $a\nless c$, keterhubungan memberikan $a=c$ atau $c<a$.
+  Dalam kasus pertama, $\{a,b\}$, dan dalam kasus kedua, $\{a,b,c\}$, tidak
+  mempunyai suatu !!{element} minimal. Keduanya mustahil. Jadi,
+$a<c$. Asimetri mengikuti irefleksivitas dan transitivitas.
+\end{proof}
+
+\begin{prop}\ollabel{propwoinduction}
+Jika $<$ mengurutkan $A$ dengan baik, maka untuk sebarang formula~$\phi(x)$:
+\[
+	\text{jika }(\forall a \in A)((\forall b < a)\phi(b) \lif 
+		\phi(a))\text{, maka }(\forall a \in A)\phi(a).
+\]
+\end{prop}
+
+\begin{proof}
+Kita membuktikan kontraposisinya. Andaikan
+$\lnot(\forall a\in A)\phi(a)$, yakni
+$X=\Setabs{x\in A}{\lnot\phi(x)}\neq\emptyset$. Maka $X$ mempunyai suatu
+!!{element} minimal~$a$ menurut~$<$. Jadi, $(\forall b<a)\phi(b)$, tetapi
+$\lnot\phi(a)$.
+\end{proof}\noindent
+Sifat terakhir ini seharusnya mengingatkan Anda pada prinsip induksi kuat
+pada bilangan asli, yakni: jika
+$(\forall n\in\omega)((\forall m<n)\phi(m)\lif\phi(n))$, maka
+$(\forall n\in\omega)\phi(n)$. Sifat inilah yang menjadikan pengurutan baik
+sebagai gagasan yang sangat \emph{tangguh}.\footnote{Pengingat: semua formula
+dapat mempunyai parameter (kecuali dinyatakan sebaliknya secara eksplisit).}
+
+\end{document}

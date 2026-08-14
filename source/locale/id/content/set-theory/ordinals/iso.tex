@@ -1,0 +1,179 @@
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{sth}{ordinals}{iso}
+\olsection{Isomorfisme Urutan}
+
+Untuk menjelaskan \emph{betapa} tangguhnya pengurutan baik, kita akan mulai
+dengan memperkenalkan suatu cara untuk membandingkan pengurutan-pengurutan
+baik.
+
+\begin{defn}
+Suatu \emph{pengurutan baik} adalah pasangan $\tuple{A, <}$ sedemikian
+sehingga $<$ mengurutkan $A$ dengan baik. Pengurutan baik $\tuple{A, <}$ dan
+$\tuple{B, \lessdot}$ \emph{isomorfik secara urutan} jika dan hanya jika
+terdapat !!a{bijection} $f \colon A \to B$ sedemikian sehingga: $x < y$ jika
+dan hanya jika $f(x) \lessdot f(y)$. Dalam hal ini, kita menulis
+$\ordeq{\tuple{A, <}}{\tuple{B, \lessdot}}$, dan mengatakan bahwa $f$
+merupakan suatu \emph{isomorfisme urutan}.
+\end{defn}
+\noindent
+Dalam pembahasan berikut, demi ringkasnya, kita akan berbicara tentang
+``isomorfisme'' alih-alih ``isomorfisme urutan''. Secara intuitif,
+isomorfisme merupakan !!{bijection}s yang mempertahankan struktur. Berikut
+beberapa fakta sederhana tentang isomorfisme.
+
+\begin{lem}\ollabel{isoscompose}
+Komposisi isomorfisme-isomorfisme merupakan isomorfisme, yakni: jika $f
+\colon A \to B$ dan $g \colon B \to C$ merupakan isomorfisme, maka $(g \circ
+f) \colon A \to C$ merupakan isomorfisme.
+\end{lem}
+\begin{prob}
+	Buktikan \olref[sth][ordinals][iso]{isoscompose}.
+\end{prob}
+\begin{proof}
+Diserahkan sebagai latihan.
+\end{proof}
+\begin{cor}\ollabel{ordisoisequiv}
+	$\ordeq{X}{Y}$ merupakan suatu relasi ekuivalensi.
+\end{cor}
+\begin{prop}\ollabel{ordisounique}
+Jika $\tuple{A, <}$ dan $\tuple{B, \lessdot}$ merupakan pengurutan baik yang
+isomorfik, maka isomorfisme di antara keduanya unik.
+\end{prop}
+
+\begin{proof}
+Misalkan $f$ dan $g$ merupakan isomorfisme $A \to B$. Kita akan membuktikan
+hasil ini dengan induksi, yakni\ menggunakan \olref[wo]{propwoinduction}.
+Tetapkan $a\in A$, dan andaikan (untuk induksi) bahwa $(\forall b < a)f(b) =
+g(b)$. Tetapkan $x \in B$.
+
+Jika $x \lessdot f(a)$, maka $f^{-1}(x) < a$, sehingga
+$g(f^{-1}(x)) \lessdot g(a)$, dengan menggunakan fakta bahwa $f$ dan $g$
+merupakan isomorfisme. Namun, karena $f^{-1}(x) < a$, menurut pengandaian kita
+$x =f(f^{-1}(x)) = g(f^{-1}(x))$. Jadi $x \lessdot g(a)$. Serupa dengan itu,
+jika $x \lessdot g(a)$, maka $x \lessdot f(a)$.
+
+Dengan menggeneralisasi, $(\forall x \in B)(x \lessdot f(a) \liff x
+\lessdot g(a))$. Menurut
+\olref[sfr][rel][ord]{prop:extensionality-strictlinearorders}, dari sini
+mengikuti bahwa $f(a) = g(a)$. Jadi, $(\forall a \in A)f(a) = g(a)$ menurut
+\olref[wo]{propwoinduction}.
+\end{proof}\noindent
+Hal ini memberikan suatu gambaran tentang ketangguhan pengurutan baik. Namun,
+untuk terus menjelaskannya, akan berguna jika kita memperkenalkan beberapa
+notasi lagi.
+
+\begin{defn}
+Jika $\tuple{A, <}$ merupakan pengurutan baik dengan $a \in A$, misalkan $A_a
+= \Setabs{x \in A}{x < a}$. Kita mengatakan bahwa $A_a$ merupakan
+\emph{segmen awal} sejati dari $A$ (dan membolehkan $A$ sendiri sebagai
+segmen awal tak sejati dari $A$). Misalkan $<_a$ adalah pembatasan $<$ pada
+segmen awal tersebut, yakni $\funrestrictionto{\mathord{<}}{A_a^2}$.
+\end{defn}
+\noindent
+Dengan notasi ini, kita dapat menyatakan dan membuktikan bahwa tidak ada
+pengurutan baik yang isomorfik dengan salah satu segmen awal sejatinya.
+
+\begin{lem}\ollabel{wellordnotinitial}
+Jika $\tuple{A, <}$ merupakan pengurutan baik dengan $a \in A$, maka
+$\ordneq{\tuple{A, <}}{\tuple{A_a, <_a}}$.
+\end{lem}
+
+\begin{proof}
+Untuk reductio, andaikan $f \colon A \to A_a$ merupakan suatu isomorfisme.
+Karena $f$ suatu bijeksi dan $A_a \subsetneq A$, dengan menggunakan
+\olref[wo]{wo:strictorder} misalkan $b \in A$ adalah !!{element} terkecil
+menurut $<$ dari $A$ sedemikian sehingga $b \neq f(b)$. Kita akan menunjukkan
+bahwa $(\forall x \in A)(x<b \liff x < f(b))$, sehingga menurut
+\olref[sfr][rel][ord]{prop:extensionality-strictlinearorders} akan mengikuti
+bahwa $b = f(b)$, dan reductio pun selesai.
+
+Andaikan $x < b$. Jadi $x = f(x)$, berdasarkan pemilihan $b$. Selain itu,
+$f(x) < f(b)$, karena $f$ merupakan suatu isomorfisme. Jadi $x < f(b)$.
+
+Andaikan $x < f(b)$. Jadi $f^{-1}(x) < b$, karena $f$ merupakan suatu
+isomorfisme, sehingga $f^{-1}(x) = x$ berdasarkan pemilihan $b$. Jadi $x <
+b$.
+\end{proof}
+
+Hasil berikutnya menunjukkan, secara kasar, bahwa suatu ``segmen awal'' dari
+suatu isomorfisme merupakan suatu isomorfisme:
+
+\begin{lem}\ollabel{wellordinitialsegment}
+Misalkan $\tuple{A, <}$ dan $\tuple{B, \lessdot}$ merupakan pengurutan baik.
+Jika $f \colon A \to B$ merupakan suatu isomorfisme dan $a \in A$, maka
+$\funrestrictionto{f}{A_{a}} : A_a \to B_{f(a)}$ merupakan suatu
+isomorfisme.
+\end{lem}
+
+\begin{proof}
+Karena $f$ merupakan suatu isomorfisme:
+	%Since $f$ is an isomorphism, $b < a$ iff $f(b) \lessdot f(a)$, so that
+\begin{align*}
+	\funimage{f}{A_a} &= \funimage{f}{\Setabs{x \in A}{x < a}}\\
+	&= \funimage{f}{\Setabs{f^{-1}(y) \in A}{f^{-1}(y) < a}} \\
+	&= \Setabs{y \in B}{y \lessdot f(a)} \\
+	&=B_{f(a)}
+\end{align*}
+Selain itu, $\funrestrictionto{f}{A_a}$ mempertahankan urutan karena $f$
+mempertahankannya.
+\end{proof}
+
+Dua hasil berikutnya menetapkan bahwa pengurutan-pengurutan baik selalu dapat
+dibandingkan:
+
+\begin{lem}\ollabel{lemordsegments}
+Misalkan $\tuple{A, <}$ dan $\tuple{B, \lessdot}$ merupakan pengurutan baik.
+Jika
+$\ordeq{\tuple{A_{a_1}, <_{a_1}}}{\tuple{B_{b_1}, \lessdot_{b_1}}}$ dan
+$\ordeq{\tuple{A_{{a_2}}, <_{a_2}}}{\tuple{B_{{b_2}},
+\lessdot_{b_2}}}$, maka ${a_1} < {a_2} \text{ jika dan hanya jika }{b_1}
+\lessdot {b_2}$.
+\end{lem}
+
+\begin{proof}
+Kita akan membuktikan \emph{dari kiri ke kanan}; arah sebaliknya serupa.
+Andaikan berlaku
+$\ordeq{\tuple{A_{a_1}, <_{a_1}}}{\tuple{B_{b_1},
+\lessdot_{b_1}}}$ dan
+$\ordeq{\tuple{A_{{a_2}}, <_{a_2}}}{\tuple{B_{{b_2}},
+\lessdot_{b_2}}}$, dengan $f \colon A_{{a_2}} \to B_{{b_2}}$ sebagai
+isomorfisme kita. Misalkan ${a_1} < {a_2}$; maka
+$\ordeq{\tuple{A_{a_1}, <_{a_1}}}{\tuple{B_{f({a_1})},
+\lessdot_{f({a_1})}}}$ menurut \olref{wellordinitialsegment}. Jadi,
+$\ordeq{\tuple{B_{b_1}, \lessdot_{b_1}}}{\tuple{B_{f({a_1})},
+\lessdot_{f({a_1})}}}$, sehingga ${b_1} = f({a_1})$ menurut
+\olref{wellordnotinitial}. Sekarang ${b_1} \lessdot {b_2}$ karena rentang
+$f$ adalah $B_{{b_2}}$.
+\end{proof}
+
+\begin{thm}\ollabel{thm:woalwayscomparable}
+Untuk sembarang dua pengurutan baik, salah satunya isomorfik dengan suatu
+segmen awal (yang tidak harus sejati) dari yang lain.
+\end{thm}
+
+\begin{proof}
+Misalkan $\tuple{A, <}$ dan $\tuple{B, \lessdot}$ merupakan pengurutan baik.
+Dengan menggunakan Pemisahan, misalkan
+\[
+	f = \Setabs{\tuple{a, b} \in A \times B}{
+		\ordeq{\tuple{A_a, <_a}}{\tuple{B_b, \lessdot_b}}}.
+\]
+Menurut \olref{lemordsegments}, $a_1 < a_2$ jika dan hanya jika $b_1
+\lessdot b_2$ bagi semua $\tuple{a_1, b_1}, \tuple{a_2, b_2} \in f$. Jadi,
+$f \colon \dom{f} \to \ran{f}$ merupakan suatu isomorfisme.
+
+Jika $a_2 \in \dom{f}$ dan $a_1 < a_2$, maka $a_1 \in \dom{f}$ menurut
+\olref{wellordinitialsegment}; jadi $\dom{f}$ merupakan suatu segmen awal
+dari $A$. Serupa dengan itu, $\ran{f}$ merupakan suatu segmen awal dari $B$.
+Untuk reductio, andaikan keduanya merupakan segmen awal \emph{sejati}. Maka,
+misalkan $a$ adalah !!{element} terkecil menurut $<$ dari $A \setminus
+\dom{f}$, sehingga $\dom{f} = A_a$, dan misalkan $b$ adalah !!{element}
+terkecil menurut $\lessdot$ dari $B \setminus \ran{f}$, sehingga $\ran{f} =
+B_b$. Jadi $f \colon A_a \to B_b$ merupakan suatu isomorfisme, dan karena
+itu $\tuple{a, b} \in f$, suatu kontradiksi.
+\end{proof}
+
+\end{document}

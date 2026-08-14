@@ -1,0 +1,651 @@
+% Part: proof-theory
+% Chapter: cut-elimination
+% Section: ce-topmost
+
+\documentclass[../../../include/open-logic-section]{subfiles}
+
+\begin{document}
+
+\olfileid[id]{pt}{cut}{top}
+
+\olsection{Menghapus Potongan Teratas}
+
+\begin{defn}
+Perhatikan !!a{proof}~$\pi$ yang berakhir dengan aturan \CutCS{},
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+dan tidak memuat inferensi \CutCS{} lain. \emph{Tinggi potongan} dari~$\pi$
+adalah $\cheight{\pi} = \pheight{\pi_1} + \pheight{\pi_2}$.
+\emph{Peringkat potongan} dari~$\pi$ adalah $\cutrank{\pi} = \depth{!A}$.
+\end{defn}
+
+\begin{lem}\ollabel{lem:cut-adm-G3c}
+Aturan \CutCS{} dapat diterima dalam~\Log{G3c}. Dengan kata lain, jika
+$\pi$ adalah !!a{proof} yang berakhir dengan satu~\CutCS{} dan selebihnya
+hanya menggunakan aturan-aturan~$\Log{G3c}$, maka terdapat !!a{proof}~$\pi'$
+atas sekuen akhir yang sama dalam~\Log{G3c}.
+\end{lem}
+
+\begin{proof}
+Bukti berjalan melalui induksi ganda pada !!{height} dan peringkat potongan.
+!!{proof}~$\pi$ berakhir dengan:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_2$}
+\Deduce$!A, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+
+Dasar induksi: $\cheight{\pi} = 0$ dan $\cutrank{\pi} = 0$. Karena
+$\cheight{\pi} = \pheight{\pi_1} + \pheight{\pi_2} = 0$, baik $\Gamma
+\Sequent \Delta, !A$ maupun $!A, \Gamma \Sequent \Delta$ merupakan
+aksioma. Ada dua kasus: (a)~$!A$ tidak prinsipal dalam salah satunya, atau
+(b)~$!A$ prinsipal dalam keduanya. Di bawah ini kita akan menunjukkan bahwa
+dalam kedua kasus $\Gamma \Sequent \Delta$ harus merupakan aksioma (dan
+kita tidak memerlukan hipotesis induksi untuk menunjukkannya).
+
+Sekarang kita membedakan sejumlah kemungkinan kasus berdasarkan apakah
+$\pi_1$ dan $\pi_2$ merupakan aksioma atau berakhir dengan inferensi, dan
+apakah $!A$ prinsipal dalam inferensi itu. Kasus A dan~B mencakup dasar
+induksi. Dalam langkah induksi, kita mengasumsikan $\cheight{\pi} > 0$ atau
+$\cutrank{\pi} > 0$ (atau keduanya). Kita dapat menggunakan hipotesis
+induksi, yakni bahwa \CutCS{} terakhir dapat dihapus dari setiap !!{proof}
+yang berakhir dengan satu~\CutCS{} yang mempunyai peringkat potongan
+$= \cutrank{\pi}$ dan !!{height} potongan $< \cheight{\pi}$, atau mempunyai
+peringkat potongan~$< \cutrank{\pi}$. Kasus $\cheight{\pi} = 0$ (kedua
+premis merupakan aksioma) dicakup oleh kasus~A dan~B. Kasus
+$\cheight{\pi} > 0$ dicakup oleh kasus C--E.
+
+\paragraph{Kasus A:}
+Suatu $!B$ muncul baik dalam $\Gamma$ maupun~$\Delta$. Maka $\Gamma
+\Sequent \Delta$ merupakan aksioma (jika $!B$ atomik), atau mempunyai
+!!a{proof}~$\pi'$ dalam \Log{G3c} tanpa \CutCS{} menurut
+\olref[seq][ex]{prop:G3c-axioms}. Ini mencakup kasus~(a) dari dasar induksi,
+sebab jika $!A$ tidak prinsipal dalam $\Gamma \Sequent \Delta, !A$ atau
+tidak prinsipal dalam $!A, \Gamma \Sequent \Delta$, dan sekuen-sekuen itu
+merupakan aksioma, maka suatu $!B$ atomik lain harus muncul dalam $\Gamma$
+maupun~$\Delta$. Ini juga mencakup langkah induksi jika salah satu premis
+merupakan aksioma tempat $!A$ tidak prinsipal (bahkan jika premis lain
+merupakan kesimpulan suatu aturan).
+
+\paragraph{Kasus B:} Kedua premis merupakan aksioma, dan $!A$ prinsipal
+serta karenanya atomik. Perhatikan premis kiri, $\Gamma \Sequent \Delta,
+!A$. Karena $!A$ prinsipal, formula itu harus muncul dalam $\Gamma$ (jika
+tidak, $\Gamma \Sequent \Delta, !A$ bukan aksioma). Demikian pula, $!A$
+harus muncul dalam $\Delta$; jika tidak, $!A, \Gamma \Sequent \Delta$ bukan
+aksioma. Jadi, $!A$ atomik dan muncul baik dalam $\Gamma$ maupun $\Delta$,
+yakni $\Gamma \Sequent \Delta$ merupakan aksioma. Ini mencakup kasus~(b)
+dari dasar induksi.
+
+\begin{center}
+Kasus alternatif A dan B
+\end{center}
+
+\paragraph{Kasus A:} Salah satu premis potongan merupakan aksioma berbentuk
+$!C, \Gamma' \Sequent \Delta', !C$ dengan $!C$ atomik. Jika $!C$ bukan
+!!{formula} potongan~$!A$, maka $!C$ harus muncul baik dalam $\Gamma$ maupun
+$\Delta$. Dalam hal ini, $\Gamma \Sequent \Delta$ merupakan aksioma dan
+dapat kita ambil sebagai~$\pi'$. Jika $!C \ident !A$ adalah !!{formula}
+potongan, maka (jika premis kiri merupakan aksioma) $!A \in \Gamma$ dan
+$\Gamma = \Gamma', !A$, atau (jika premis kanan merupakan aksioma) $!A \in
+\Delta$ dan $\Delta = \Delta', !A$. Dalam kasus pertama, $\pi_2$ merupakan
+!!a{proof} dari $!A, !A, \Gamma' \Sequent \Delta$, dan menurut dapat
+diterimanya \LeftR{\Contraction}
+(\olref[seq][inv]{prop:G3c-cont-adm}) terdapat !!a{proof} dari $\Gamma
+\Sequent \Delta$. Dalam kasus kedua, $\pi_1$ merupakan !!a{proof} dari
+$\Gamma \Sequent \Delta', !A, !A$, dan menurut dapat diterimanya
+\RightR{\Contraction} kita memperoleh !!a{proof} dari $\Gamma \Sequent
+\Delta$.
+
+\paragraph{Kasus B:} Salah satu premis merupakan aksioma berbentuk
+$\lfalse, \Gamma' \Sequent \Delta'$. Jika premis kiri merupakan aksioma
+semacam itu, maka $\lfalse \in \Gamma$ dan $\Gamma \Sequent \Delta$ juga
+merupakan aksioma. Jika premis kanan merupakan aksioma semacam itu, maka
+$\lfalse \in \Gamma$ (dalam hal ini $\Gamma \Sequent \Delta$ kembali
+merupakan aksioma), atau $!A \ident \lfalse$. Dalam kasus terakhir,
+$\pi_1$ merupakan !!a{proof} dari $\Gamma \Sequent \Delta, \lfalse$.
+Kita dapat mengubahnya menjadi !!a{proof} dari~$\Gamma \Sequent \Delta$
+dengan menghapus satu salinan~$\lfalse$ dari konsekuen setiap sekuen
+dalam~$\pi_1$. (Latihan: periksa hal ini melalui induksi pada
+$\pheight{\pi_1}$.)
+
+Sekarang andaikan baik kasus~A maupun kasus~B tidak berlaku. Dalam
+kasus-kasus yang tersisa, $\cheight{\pi} > 0$, yakni setidaknya satu premis
+merupakan kesimpulan suatu inferensi.
+
+\paragraph{Kasus C dan D: Memutasikan potongan.}
+Kemungkinan-kemungkinan dalam kasus~C dan~D semuanya mempunyai pola umum.
+Kita mulai dengan !!a{proof} yang berakhir dengan~\CutCS{}, dengan salah
+satu premis diperoleh melalui aturan~$R$ tempat !!{formula} potongan~$!A$
+tidak prinsipal (suatu !!{formula} lain~$!D$ yang prinsipal). Dalam
+!!{proof} ini, \CutCS{} mengikuti aturan~$R$, dan secara skematis tampak
+sebagai berikut:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', !D, !A$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!A, \Gamma, \Pi \fCenter \Delta', \Lambda$
+\RightLabel{$R$}
+\UnaryInf$!A, \Gamma \fCenter \Delta', !D$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta', !D$
+\DisplayProof
+\]
+Ini hanya mencakup kasus ketika $R$ merupakan aturan kanan dengan satu
+premis, $A$ bukan !!{formula} prinsipal dari~$R$, dan !!{formula}~$!D$ yang
+\emph{prinsipal} muncul dalam sukseden premis kanan dari~\CutCS. Jika $!D$
+muncul dalam anteseden (yakni $R$ merupakan aturan kiri) atau dalam premis
+kiri~\CutCS, gambarnya tentu berbeda. !!{formula}s dalam $\Pi$ dan~$\Lambda$
+mewakili !!{formula}s aktif aturan~$R$.
+
+Kita membalik urutan ini dan memperhatikan !!a{proof} tempat $R$
+mengikuti~\CutCS{}:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma, \Pi \fCenter \Delta', !D, \Lambda, !A$
+\AxiomC{}
+\RightLabel{$\pi_3'$}
+\Deduce$!A, \Gamma, \Pi \fCenter \Delta', !D, \Lambda$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma, \Pi \fCenter \Delta', !D, \Lambda$
+\RightLabel{$R$}
+\UnaryInf$\Gamma \fCenter \Delta', !D, !D$
+\DisplayProof
+\]
+Kita menggunakan pelemahan yang mempertahankan !!{height} untuk memperoleh
+$\pi_1'$ dan $\pi_3'$ masing-masing dari $\pi_1$ dan $\pi_3$.
+
+Karena kita menukar urutan \CutCS{} dan~$R$, langkah ini disebut
+``memutasikan suatu potongan ke atas melewati~$R$.'' Langkah tersebut
+mengurangi tinggi !!{proof} yang berakhir pada premis kanan~\CutCS, dan
+karena itu mengurangi !!{height} potongan. Artinya, sub-!!{proof}s yang
+berakhir pada \CutCS{} baru dapat diasumsikan mempunyai !!{height} tidak
+lebih besar daripada $\pi_1$ dan $\pi_3$, sehingga !!{height} potongan
+berkurang (kita telah menghapus satu inferensi di sebelah kanan). Kini
+hipotesis induksi berlaku dan memberi tahu kita bahwa inferensi \CutCS{}
+dapat dihapus. Terakhir, kita menghapus salinan tambahan~$!D$ menggunakan
+dapat diterimanya~$\RightR{\Contraction}$.
+
+\paragraph{Kasus C:}
+Setidaknya satu dari $\pi_1$ dan $\pi_2$ berakhir dengan aturan satu-premis
+$R$ tempat $!A$ tidak prinsipal. Terdapat total 18 kasus, bergantung pada
+apakah $!A$ tidak prinsipal dalam premis kiri atau kanan dari~\CutCS, dan
+pada aturan mana dari sembilan aturan satu-premis (\LeftR{\lnot},
+\RightR{\lnot}, \RightR{\lor}, \LeftR{\land}, \RightR{\lif}, dan keempat
+aturan kuantor) yang merupakan aturan~$R$. Kita hanya membahas dua contoh:
+ketika $!A$ tidak prinsipal dalam inferensi terakhir~$\pi_2$, yang berakhir
+dengan~$\RightR{\lif}$ atau dengan~\LeftR{\lexists}. Kasus-kasus lain analog
+dan diserahkan sebagai latihan.
+
+Andaikan $\pi$ berakhir dengan:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', !B \lif !C, !A$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!A, !B, \Gamma \fCenter \Delta', !C$
+\RightLabel{$\RightR{\lif}$}
+\UnaryInf$!A, \Gamma \fCenter \Delta', !B \lif !C$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta', !B \lif !C$
+\DisplayProof
+\]
+dengan $\Delta = \Delta', !B \lif !C$. Kita menerapkan pelemahan yang
+mempertahankan !!{height} (\olref[seq][adm]{prop:weak-G3c-adm}) pada $\pi_1$
+untuk memperoleh !!a{proof} $\pi_1'$ dari $!B, \Gamma \fCenter \Delta',
+!B \lif !C, !C, !A$ (kita melemahkan dengan $!B$ di kiri dan $!C$ di
+kanan). Demikian pula, kita menerapkan
+\olref[seq][adm]{prop:weak-G3c-adm} pada~$\pi_3$ untuk memperoleh
+!!a{proof}~$\pi_3'$ dari $!A, !B, \Gamma \fCenter \Delta', !B \lif !C,
+!C$ (dengan melemahkan memakai $!B \lif !C$ di kanan). Hipotesis induksi
+berlaku pada
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta', !B \lif !C, !C, !A$
+\AxiomC{}
+\RightLabel{$\pi_3'$}
+\Deduce$!A, !B, \Gamma \fCenter \Delta', !B \lif !C, !C$
+\RightLabel{\CutCS}
+\BinaryInf$!B, \Gamma \fCenter \Delta', !B \lif !C, !C$
+\DisplayProof
+\]
+dengan !!{formula} potongan~$!A$: !!{proof} ini mempunyai peringkat potongan
+yang sama dan !!{height} potongan yang lebih rendah daripada~$\pi$. Ini
+memberikan !!a{proof}~$\pi_4$ dalam \Log{G3c} tanpa \CutCS{} dari $!B,
+\Gamma \fCenter \Delta', !B \lif !C, !C$. Terapkan $\RightR{\lif}$ untuk
+memperoleh !!a{proof} dari $\Gamma \fCenter \Delta', !B \lif !C, !B \lif
+!C$:
+\[
+\AxiomC{}
+\RightLabel{$\pi_4$}
+\Deduce$!B, \Gamma \fCenter \Delta', !B \lif !C, !C$
+\RightLabel{$\RightR{\lif}$}
+\UnaryInf$\Gamma \fCenter \Delta', !B \lif !C, !B \lif !C$
+\DisplayProof
+\]
+Untuk memperoleh !!a{proof}~$\pi'$ dari $\Gamma \Sequent \Delta$, yakni
+$\Gamma \fCenter \Delta', !B \lif !C$, terapkan
+\olref[seq][inv]{prop:G3c-cont-adm} (dapat diterimanya kontraksi).
+
+Sekarang andaikan $\pi$ berakhir dengan:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\lexists[x][!B(x)], \Gamma' \fCenter \Delta, !A$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!A, !B(c), \Gamma' \fCenter \Delta$
+\RightLabel{$\LeftR{\lexists}$}
+\UnaryInf$!A, \lexists[x][!B(x)], \Gamma' \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma' \fCenter \Delta$
+\DisplayProof
+\]
+Kita kembali menerapkan hipotesis induksi pada
+\[
+\AxiomC{}
+\RightLabel{$\pi_1[!B(c) \Sequent {}]$}
+\Deduce$\lexists[x][!B(x)], !B(c), \Gamma' \fCenter \Delta, !A$
+\AxiomC{}
+\LeftLabel{$\pi_3[\lexists[x][!B(x)] \Sequent {}]$}
+\Deduce$!A, \lexists[x][!B(x)], !B(c), \Gamma' \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\lexists[x][!B(x)], !B(c), \Gamma' \fCenter \Delta$
+\RightLabel{\LeftR{\lexists}}
+\UnaryInf$\lexists[x][!B(x)], \lexists[x][!B(x)], \Gamma' \fCenter \Delta$
+\DisplayProof
+\]
+Perhatikan bahwa syarat eigenvariabel terpenuhi, sebab syarat eigenvariabel
+pada~\LeftR{\lexists} dalam~$\pi_2$ menjamin bahwa $c$ tidak muncul dalam
+$\lexists[x][!B(x)]$, $\Gamma'$, ataupun~$\Delta$. Terakhir, terapkan
+\olref[seq][inv]{prop:G3c-cont-adm}.
+
+
+\paragraph{Kasus D:}
+Setidaknya satu dari $\pi_1$ dan $\pi_2$ berakhir dengan aturan dua-premis
+$R$ tempat $!A$ tidak prinsipal. Ada 6 kasus. Kita membahas kasus ketika
+$!A$ tidak prinsipal dalam inferensi terakhir~$\pi_2$, yang berakhir
+dengan~$\RightR{\land}$; kasus-kasus lain analog.
+
+Andaikan $\pi$ berakhir dengan:
+\[
+\AxiomC{}
+\RightLabel{$\pi_1$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !A$
+\AxiomC{}
+\RightLabel{$\pi_3$}
+\Deduce$!A, \Gamma \fCenter \Delta', !B$
+\AxiomC{}
+\RightLabel{$\pi_4$}
+\Deduce$!A, \Gamma \fCenter \Delta', !C$
+\RightLabel{$\RightR{\land}$}
+\BinaryInf$!A, \Gamma \fCenter \Delta', !B \land !C$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Hipotesis induksi berlaku pada !!{proof}s
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !B, !A$
+\AxiomC{}
+\RightLabel{$\pi_3'$}
+\Deduce$!A, \Gamma \fCenter \Delta', !B \land !C, !B$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !B$
+\DisplayProof
+\]
+dan
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !C, !A$
+\AxiomC{}
+\RightLabel{$\pi_4'$}
+\Deduce$!A, \Gamma \fCenter \Delta', !B \land !C, !C$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !C$
+\DisplayProof
+\]
+Di sini, !!{proof}s \Log{G3c} $\pi_1'$ dan $\pi_1''$ diperoleh dari~$\pi_1$
+melalui pelemahan yang mempertahankan !!{height}
+(\olref[seq][adm]{prop:weak-G3c-adm}), sekali dengan pelemahan di kanan
+  memakai $!B$, dan sekali memakai $!C$. !!{proof}s $\pi_3'$ dan~$\pi_4'$
+  diperoleh dari $\pi_3$ dan~$\pi_4$, juga melalui pelemahan yang
+  mempertahankan !!{height} dari $\pi_3$ dan~$\pi_4$, masing-masing (dengan
+  melemahkan memakai $!B \land !C$ di kanan).
+
+Hipotesis induksi memberi kita !!{proof}s~$\pi_5$ dan~$\pi_6$ dalam
+\Log{G3c} dari $\Gamma \fCenter \Delta', !B \land !C, !B$ dan $\Gamma
+\fCenter \Delta', !B \land !C, !C$. Kita menggabungkan keduanya menjadi
+!!a{proof} dari $\Gamma \Sequent \Delta', !B \land !C, !B \land !C$
+dengan menggunakan aturan~$\RightR{\land}$:
+\[
+\AxiomC{}
+\RightLabel{$\pi_5$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !B$
+\AxiomC{}
+\RightLabel{$\pi_6$}
+\Deduce$\Gamma \fCenter \Delta', !B \land !C, !C$
+\RightLabel{\RightR{\land}}
+\BinaryInf$\Gamma \fCenter \Delta', !B \land !C, !B \land !C$
+\DisplayProof
+\]
+Untuk memperoleh !!a{proof} dari $\Gamma \Sequent \Delta$, yakni $\Gamma
+\fCenter \Delta', !B \land !C$, terapkan
+\olref[seq][inv]{prop:G3c-cont-adm} (dapat diterimanya kontraksi).
+
+\paragraph{Kasus E: Mereduksi potongan.}
+Kasus terakhir menyangkut keadaan ketika $\pi_1$ dan $\pi_2$ sama-sama
+berakhir dengan inferensi tempat $!A$ prinsipal. Ada enam kasus, satu bagi
+setiap kemungkinan !!{main operator} dari~$!A$.
+
+Dalam setiap kasus, kita mengubah suatu \CutCS{} dengan !!{formula} potongan
+$!A$ menjadi satu atau lebih potongan atas sub-!!{formula}s dari~$!A$,
+yakni atas !!{formula}s aktif dari inferensi-inferensi tempat $!A$ menjadi
+!!{formula} prinsipal. Karena itu, kasus-kasus ini sering disebut
+``reduksi'' atau ``konversi'' inferensi potongan.
+
+\begin{enumerate}
+\item Jika $!A \ident \lnot !B$, maka $\pi$ berakhir dengan
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\RightLabel{\RightR{\lnot}}
+\UnaryInf$\Gamma \fCenter \Delta, \lnot !B$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\RightLabel{\LeftR{\lnot}}
+\UnaryInf$\lnot !B, \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Menurut hipotesis induksi, \CutCS{} dapat dieliminasi dari
+\[
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+
+\item Jika $!A \ident (!B \lor !C)$, maka $\pi$ berakhir dengan
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta, !B, !C$
+\RightLabel{\RightR{\lor}}
+\UnaryInf$\Gamma \fCenter \Delta, !B \lor !C$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lor}}
+\BinaryInf$!B \lor !C, \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Perhatikan !!{proof} yang berakhir dengan \CutCS,
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta, !B, !C$
+\AxiomC{}
+\RightLabel{$\pi_2'''$}
+\Deduce$!C, \Gamma \fCenter \Delta, !B$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta, !B$
+\DisplayProof
+\]
+dengan $\pi_2'''$ diperoleh dari $\pi_2''$ melalui pelemahan yang
+mempertahankan !!{height}. Bukti itu mempunyai peringkat potongan
+$< \cutrank{\pi}$ karena $\depth{!C} < \depth{!B \lor !C}$, sehingga
+hipotesis induksi menghasilkan !!a{proof} $\pi_1''$ dalam \Log{G3c} dari
+$\Gamma \fCenter \Delta, !B$. !!{proof} yang berakhir dengan \CutCS,
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+mempunyai peringkat potongan $= \depth{!B} < \depth{!B \lor !C}$, sehingga
+hipotesis induksi kembali berlaku dan menghasilkan !!a{proof} $\pi'$ dari
+$\Gamma \fCenter \Delta$.
+
+\item $!A \ident (!B \land !C)$. Latihan.
+
+\item Jika $!A \ident (!B \lif !C)$, maka $\pi$ berakhir dengan
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\RightLabel{\RightR{\lif}}
+\UnaryInf$\Gamma \fCenter \Delta, !B \lif !C$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lif}}
+\BinaryInf$!B \lif !C, \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+!!{proof} yang berakhir dengan \CutCS,
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B, \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+mempunyai peringkat potongan yang lebih rendah daripada~$\pi$. Hipotesis
+induksi menghasilkan !!a{proof}~$\pi_1''$ dari $!B, \Gamma \fCenter
+\Delta$. Sekarang perhatikan !!{proof} yang berakhir dengan \CutCS,
+\[
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$!B, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Peringkat potongannya juga lebih kecil daripada peringkat potongan~$\pi$,
+sehingga hipotesis induksi menghasilkan !!{proof} \Log{G3c}~$\pi'$ dari
+$\Gamma \fCenter \Delta$.
+\item Jika $!A \ident \lforall[x][!B(x)]$, maka $\pi$ berakhir dengan
+\[
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$\Gamma \fCenter \Delta, !B(c)$
+\RightLabel{\RightR{\lforall}}
+\UnaryInf$\Gamma \fCenter \Delta, \lforall[x][!B(x)]$
+\LeftSubproofLabel{$\pi_1$}
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B(t), \lforall[x][!B(x)], \Gamma \fCenter \Delta$
+\RightLabel{\LeftR{\lforall}}
+\UnaryInf$\lforall[x][!B(x)], \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_2$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Menurut hipotesis induksi, \CutCS{} dapat dieliminasi dari
+\[
+\AxiomC{}
+\RightLabel{$\pi_1''$}
+\Deduce$!B(t), \Gamma \fCenter \Delta, \lforall[x][!B(x)]$
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$!B(t), \lforall[x][!B(x)], \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B(t), \Gamma \fCenter \Delta$
+\DisplayProof
+\]
+dengan $\pi_1''$ diperoleh dari $\pi_1$ (bukan~$\pi_1'$!) melalui pelemahan
+yang mempertahankan !!{height}. (!!{proof} tersebut mempunyai peringkat
+potongan yang sama, tetapi !!{height} potongan lebih rendah.) Ini memberi
+kita !!a{proof}~$\pi_2''$ dari $!B(t), \Gamma \fCenter \Delta$.
+
+!!{proof}~$\pi_1'$ mempunyai sekuen akhir $\Gamma \Sequent \Delta, !B(c)$,
+dengan $c$ sebagai eigenvariabel inferensi~$\RightR{\lforall}$. Jadi, $c$
+tidak muncul dalam~$!B(x)$, $\Gamma$, atau~$\Delta$. Kita mengasumsikan
+!!{proof}~$\pi$ reguler, sehingga $c$ menjadi eigenvariabel hanya bagi
+inferensi~$\RightR{\lforall}$ berikut ini dan hanya muncul di atasnya,
+yakni hanya muncul dalam~$\pi_1'$ dan bukan eigenvariabel suatu inferensi
+dalam~$\pi_1'$. Karena $c$ tidak muncul dalam~$\pi_2$, ia tidak mungkin
+muncul dalam~$t$. Menurut \olref[seq][qua]{lem:subst-regular},
+!!{proof}~$\Subst{\pi_1'}{t}{c}$ adalah !!a{proof} dari $\Gamma \Sequent
+\Delta, !B(t)$. Sekarang kita menerapkan hipotesis induksi pada !!{proof}
+\[
+\AxiomC{}
+\RightLabel{$\Subst{\pi_1'}{t}{c}$}
+\Deduce$\Gamma \fCenter \Delta, !B(t)$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!B(t), \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+(Hipotesis induksi berlaku karena !!{formula} potongannya adalah~$!B(t)$,
+sehingga !!{proof} tersebut mempunyai peringkat potongan lebih rendah
+daripada~$\pi$.)
+\item Kasus $!A \ident \lexists[x][!B(x)]$ kita serahkan sebagai latihan.
+\end{enumerate}
+\end{proof}
+
+\begin{prob}
+Periksa subkasus dari kasus~D dalam bukti \olref{lem:cut-adm-G3c} ketika
+$!A$ tidak prinsipal dalam inferensi terakhir~$\pi_1$, yang berakhir
+dengan~$\LeftR{\lif}$. (Catatan: bagian dari latihan ini ialah menyatakan
+dengan jelas apa yang harus Anda buktikan, yakni bentuk $\pi$ dalam kasus
+ini.)
+\end{prob}
+
+\begin{prob}
+Periksa subkasus dari kasus~D dalam bukti \olref{lem:cut-adm-G3c} ketika
+$!A$ tidak prinsipal dalam inferensi terakhir~$\pi_1$, yang berakhir
+dengan~$\LeftR{\lforall}$.
+\end{prob}
+
+\begin{prob}
+Periksa subkasus dari kasus~E dalam bukti \olref{lem:cut-adm-G3c} ketika
+$!A$ prinsipal dalam inferensi terakhir $\pi_1$ maupun $\pi_2$, dan
+$!A \ident (!B \land !C)$.
+\end{prob}
+
+\begin{prob}
+Periksa subkasus dari kasus~E dalam bukti \olref{lem:cut-adm-G3c} ketika
+$!A$ prinsipal dalam inferensi terakhir $\pi_1$ maupun $\pi_2$, dan
+$!A \ident \lexists[x][!B(x)]$.
+\end{prob}
+
+Perhatikan bahwa dalam kasus~E, !!{height} potongan dari !!{proof} yang
+berakhir dengan \CutCS{} dan menjadi sasaran hipotesis induksi dapat lebih
+besar daripada !!{height} potongan bukti awal. Sebagai contoh, dalam kasus
+$!A \ident (!B \lif !C)$, kita mengubah $\pi$ menjadi !!a{proof} yang
+melibatkan dua inferensi \CutCS{},
+\[
+\AxiomC{}
+\RightLabel{$\pi_2'$}
+\Deduce$\Gamma \fCenter \Delta, !B$
+\AxiomC{}
+\RightLabel{$\pi_1'$}
+\Deduce$!B, \Gamma \fCenter \Delta, !C$
+\AxiomC{}
+\RightLabel{$\pi_2''$}
+\Deduce$!C, \Gamma \fCenter \Delta$
+\RightLabel{\CutCS}
+\BinaryInf$!B, \Gamma \fCenter \Delta$
+\RightSubproofLabel{$\pi_1''$}
+\RightLabel{\CutCS}
+\BinaryInf$\Gamma \fCenter \Delta$
+\DisplayProof
+\]
+Inferensi \CutCS{} atas antara $\pi_1'$ dan $\pi_2''$ mempunyai peringkat
+maupun !!{height} potongan yang lebih rendah daripada~$\pi$. Namun,
+!!{proof}~$\pi_1''$---hasil penerapan hipotesis induksi---tidak lagi
+mempunyai !!{height} potongan yang lebih rendah daripada~$\pi$. Kendati
+demikian, karena !!{formula} potongan dari \CutCS{} bawah adalah $!B$,
+\emph{peringkat} potongannya lebih rendah daripada peringkat potongan~$\pi$.
+
+\olref{lem:cut-adm-G3c} menetapkan bahwa kita dapat mengeliminasi satu
+inferensi \CutCS{} teratas dari !!a{proof}. Kita dapat menunjukkan bahwa
+berapa pun banyaknya inferensi \CutCS{} dapat dieliminasi dari !!a{proof}
+dengan menerapkannya secara berturut-turut pada sub-!!{proof}s teratas yang
+berakhir dengan~\CutCS.
+
+\begin{thm}\ollabel{thm:cut-elim-G3c-topmost}
+Setiap !!{proof} $\pi$ dalam $\Log{G3c} + \CutCS$ dapat ditransformasikan
+menjadi !!a{proof} dalam~\Log{G3c}.
+\end{thm}
+
+\begin{proof}
+  Melalui induksi pada banyaknya inferensi \CutCS{} dalam~$\pi$, yaitu~$n$.
+  Jika $n=0$, tidak ada yang perlu dilakukan: $\pi$ sudah merupakan
+  !!a{proof} dalam~\Log{G3c}. Jika tidak, perhatikan sub-!!{proof}~$\pi'$
+  yang berakhir dengan inferensi \CutCS{} teratas. Subbukti itu memuat satu
+  aturan \CutCS{} sebagai inferensi terakhir. Terapkan
+  \olref{lem:cut-adm-G3c} untuk mentransformasikannya menjadi bukti
+  bebas-\CutCS{}~$\pi''$, lalu ganti sub-!!{proof}~$\pi'$ dengan~$\pi''$.
+  Hasilnya ialah !!a{proof} yang memuat $n-1$ inferensi \CutCS{}, sehingga
+  hipotesis induksi berlaku.
+\end{proof}
+
+\end{document}
