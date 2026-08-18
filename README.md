@@ -5,7 +5,10 @@
 > modul yang dijangkau pembaca kanonik; 80 modul nonpembaca tetap dipertahankan
 > dalam sumber suntingan dan dinyatakan di luar cakupan build/render.
 
-[Buka pembaca lengkap Bahasa Indonesia](reader/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf)
+[Baca pembaca lengkap Bahasa Indonesia](https://zenodo.org/records/21932787/preview/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf)
+
+[Unduh PDF versi OLP-0722](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf)
+· [Lihat salinan PDF di repositori](reader/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf)
 
 Edisi ini adalah **terjemahan Bahasa Indonesia dari** (DataCite:
 `IsTranslationOf`) [Open Logic Project pada sumber beku
