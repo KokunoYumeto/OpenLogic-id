@@ -91,3 +91,16 @@ it **IsTranslationOf** the exact frozen source commit identified above.
 Editable sources and full provenance remain inspectable. Cite the stable
 concept DOI for the Indonesian edition family, or the exact version DOI for
 these immutable release bytes.
+
+<!-- openlogic-id-supplement80:start -->
+## Readable coverage of the remaining 80 source files
+
+The accepted Indonesian sources cover **722 files**. The inherited main reader imports **642**; the separate supplement accounts for the other **80**, including explicitly disclosed fragments and organizational wrappers. The supplement complements, and does not replace, the main reader or existing source archive.
+
+- [Read the 80-file supplement](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/04_OPENLOGIC_id_READER_SUPPLEMENT_80_20260904.pdf)
+- [Download sources, coverage/QA evidence, and SHA-256 checksums](https://github.com/KokunoYumeto/OpenLogic-id/releases/tag/id-olp-0722-20260814)
+- [Public Zenodo version with all eight files](https://zenodo.org/records/22306587)
+- [Stable concept DOI](https://doi.org/10.5281/zenodo.21932786)
+
+All four inherited assets remain available unchanged. New release metadata is open CC-BY-4.0; retain the license and attribution notices accompanying individual sources and inherited media.
+<!-- openlogic-id-supplement80:end -->
