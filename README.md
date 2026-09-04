@@ -1,5 +1,7 @@
 # Open Logic Project — Edisi Lengkap Bahasa Indonesia
 
+> Edisi ini tercantum dalam [katalog pusat terjemahan Open Logic](https://github.com/KokunoYumeto/OpenLogic-translations); katalog membedakan kelengkapan sumber terjemahan dari kelengkapan pembaca mandiri.
+
 > **Edisi lengkap:** semua 722/722 modul isi Open Logic Project pada sumber
 > beku telah diterjemahkan ke Bahasa Indonesia. Pembaca tertaut mencakup 642
 > modul yang dijangkau pembaca kanonik; 80 modul nonpembaca tetap dipertahankan
@@ -76,7 +78,7 @@ daftar penuh dan semua penarikan temuan tetap berada dalam bukti rilis.
   DOI, ledger isu, dan manifest artefak.
 - `build/BUILD.ps1`: build deterministik dari checkout upstream beku.
 
-Pekerjaan dilakukan atas arahan Floris oleh **OpenAI 5.6 Sol, Ultra mode**
+Pekerjaan dilakukan atas arahan penyunting proyek oleh **OpenAI 5.6 Sol, Ultra mode**
 (**model flagship OpenAI saat ini untuk pekerjaan kompleks**). Review manusia
 atau penutur asli bukan gerbang rilis; koreksi setelah publikasi tetap diterima
 sebagai bukti tambahan.
