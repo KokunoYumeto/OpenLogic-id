@@ -1,0 +1,118 @@
+{
+  "schema": "openlogic-id-source-correction-choices/1.0",
+  "id": "OLI-CAUCHY-FIELD-QUOTIENT-CLASSES",
+  "assessed_on": "2026-10-02",
+  "language_tag": "id-ID",
+  "classification": "source_erratum_small",
+  "status_id": "Koreksi sumber terbatas; pembaca terbitan belum diperbarui.",
+  "ai_provenance": "Koreksi, pilihan bahasa, dan pemeriksaan terbatas oleh OpenAI Codex — GPT-6 Astra, Ultra effort; tidak ada klaim penyuntingan atau persetujuan manusia.",
+  "source": {
+    "url": "https://raw.githubusercontent.com/OpenLogicProject/OpenLogic/1e960beff9ed7835bf3e3f1335e21af3439cd107/content/sets-functions-relations/arithmetization/cauchy.tex",
+    "sha256": "35d0a39913340eadcab7fb9d7742b56aef0d0f29868cd65eeca9dc53694e8ac2",
+    "bytes": 10928,
+    "upstream_revision": "1e960beff9ed7835bf3e3f1335e21af3439cd107",
+    "source_path": "content/sets-functions-relations/arithmetization/cauchy.tex",
+    "reading_scope_id": "Definisi relasi ekuivalensi dan operasi pada kelas, teorema thm:cauchyorderedfield, serta latihan yang mengulangnya."
+  },
+  "target": {
+    "path": "source/locale/id/content/sets-functions-relations/arithmetization/cauchy.tex",
+    "base_revision": "724aabea2102d2d7eac0eb5b0a7ed8368c2b0bac",
+    "before_bytes": 12067,
+    "before_sha256": "c83d8ad89dfb297e2a76eb109480da2c3cb5f109d1a177c316447638be8c7465",
+    "after_bytes": 12099,
+    "after_sha256": "7e865d538472d21ce6a797d4767a3eb072c2af263bd1113937d4fa73ca91d958"
+  },
+  "canon": [
+    {
+      "id": "ID-UNY-NOVIANDARI-2009",
+      "title": "PELENGKAPAN RUANG BERNORMA",
+      "author": "Ristina Noviandari",
+      "year": 2009,
+      "url": "https://eprints.uny.ac.id/2431/",
+      "locator_id": "Abstrak, paragraf kedua; juga paragraf keempat.",
+      "passage": "himpunan semua kelas ekuivalensi barisan Cauchy",
+      "retrieved_html_bytes": 23131,
+      "retrieved_html_sha256": "33bc6d981c2f29e99a6abe50dffec1171487176f9dc3fc54671b1a80ad5d43f2",
+      "consulted": true,
+      "relevance_id": "Mendukung susunan istilah kelas ekuivalensi barisan Cauchy dalam prosa matematika akademik bahasa Indonesia.",
+      "limit_id": "Abstrak membahas pelengkapan ruang bernorma; kutipan ini bukan bukti bahwa hasil bagi barisan rasional adalah lapangan terurut."
+    },
+    {
+      "id": "ID-UGM-INAYAH-2002",
+      "title": "Lapangan terurut",
+      "author": "Nur Inayah",
+      "year": 2002,
+      "url": "https://etd.repository.ugm.ac.id/penelitian/detail/20010",
+      "locator_id": "Judul dan kata kunci katalog tesis S2 Matematika.",
+      "passage": "Lapangan terurut",
+      "retrieved_html_bytes": 22223,
+      "retrieved_html_sha256": "bf9a252474034229ac6bfdd138ac4548f41a838115dd555eec5b0d881ee902c0",
+      "consulted": true,
+      "relevance_id": "Mendukung istilah lapangan terurut yang sudah digunakan dalam terjemahan; istilah tersebut tidak diganti.",
+      "limit_id": "Hanya rekaman katalog yang tersedia untuk publik. Isi tesis tidak dibaca dan tidak dipakai sebagai bukti teorema."
+    }
+  ],
+  "choices": [
+    {
+      "segment_id": "id:cauchy:thm:cauchyorderedfield",
+      "before": "Barisan-barisan Cauchy membentuk suatu lapangan terurut.",
+      "after": "Kelas-kelas ekuivalensi barisan Cauchy membentuk suatu lapangan terurut.",
+      "target_line_1based": 162,
+      "source_text": "The Cauchy sequences constitute an ordered field.",
+      "canon_ids": [
+        "ID-UNY-NOVIANDARI-2009",
+        "ID-UGM-INAYAH-2002"
+      ],
+      "rationale_id": "Operasi dan urutan sebelumnya didefinisikan pada kelas ekuivalensi. Menyebut barisan mentah sebagai unsur lapangan mengubah objek matematika. Bentuk kelas-kelas ekuivalensi barisan Cauchy mengikuti pemakaian akademik yang dikonsultasikan dan istilah kelas-kelas ekuivalensi yang sudah ada dalam bab.",
+      "rejected_alternatives_id": [
+        {
+          "wording": "barisan-barisan Cauchy",
+          "reason": "Jika dibaca secara harfiah, himpunan ini bukan lapangan dengan perkalian per suku."
+        },
+        {
+          "wording": "Menambah pembuktian atau paragraf penjelasan baru",
+          "reason": "Tidak diperlukan untuk koreksi dua pernyataan ini; akan memperluas eksposisi sumber."
+        }
+      ],
+      "uncertainty_id": "Hubungan ekuivalensi tetap yang telah didefinisikan tepat sebelumnya. Tidak ditambahkan notasi baru. Bukti terminologi dari abstrak tidak diklaim mencakup seluruh konteks historis atau seluruh terjemahan.",
+      "confidence": {
+        "editorial_score": 0.98,
+        "calibrated_probability": false,
+        "reason_id": "Objek hasil bagi ditentukan oleh definisi setempat; susunan istilah didukung abstrak akademik yang benar-benar dibaca. Skor menyatakan keyakinan editorial terbatas, bukan peluang terkalibrasi."
+      },
+      "consultation_timing_id": "Dikonsultasikan saat koreksi ini dibuat; bukan klaim bahwa pilihan terdahulu telah memiliki bukti kanon."
+    },
+    {
+      "segment_id": "id:cauchy:exercise:cauchyorderedfield",
+      "before": "Buktikan bahwa barisan-barisan Cauchy membentuk suatu lapangan terurut.",
+      "after": "Buktikan bahwa kelas-kelas ekuivalensi barisan Cauchy membentuk suatu lapangan terurut.",
+      "target_line_1based": 170,
+      "source_text": "Prove that the Cauchy sequences constitute an ordered field.",
+      "canon_ids": [
+        "ID-UNY-NOVIANDARI-2009",
+        "ID-UGM-INAYAH-2002"
+      ],
+      "rationale_id": "Operasi dan urutan sebelumnya didefinisikan pada kelas ekuivalensi. Menyebut barisan mentah sebagai unsur lapangan mengubah objek matematika. Bentuk kelas-kelas ekuivalensi barisan Cauchy mengikuti pemakaian akademik yang dikonsultasikan dan istilah kelas-kelas ekuivalensi yang sudah ada dalam bab.",
+      "rejected_alternatives_id": [
+        {
+          "wording": "barisan-barisan Cauchy",
+          "reason": "Jika dibaca secara harfiah, himpunan ini bukan lapangan dengan perkalian per suku."
+        },
+        {
+          "wording": "Menambah pembuktian atau paragraf penjelasan baru",
+          "reason": "Tidak diperlukan untuk koreksi dua pernyataan ini; akan memperluas eksposisi sumber."
+        }
+      ],
+      "uncertainty_id": "Hubungan ekuivalensi tetap yang telah didefinisikan tepat sebelumnya. Tidak ditambahkan notasi baru. Bukti terminologi dari abstrak tidak diklaim mencakup seluruh konteks historis atau seluruh terjemahan.",
+      "confidence": {
+        "editorial_score": 0.98,
+        "calibrated_probability": false,
+        "reason_id": "Objek hasil bagi ditentukan oleh definisi setempat; susunan istilah didukung abstrak akademik yang benar-benar dibaca. Skor menyatakan keyakinan editorial terbatas, bukan peluang terkalibrasi."
+      },
+      "consultation_timing_id": "Dikonsultasikan saat koreksi ini dibuat; bukan klaim bahwa pilihan terdahulu telah memiliki bukti kanon."
+    }
+  ],
+  "mathematical_check_id": "Barisan e=(1,0,0,...) adalah Cauchy dan bukan barisan nol, tetapi perkaliannya dengan barisan mana pun bernilai nol pada suku kedua sehingga tidak mempunyai invers perkalian. Kelas ekuivalensinya justru kelas nol. Maka lapangan yang dimaksud terdiri atas kelas ekuivalensi, bukan barisan mentah.",
+  "publication_scope_id": "Hanya dua kalimat sumber disunting. PDF, EPUB, paket pembaca, DOI, dan rilis terdahulu tidak diubah; koreksi ini belum diklaim hadir di pembaca tersebut.",
+  "upstream_reporting_id": "Tidak membuat isu atau komentar baru di repositori proyek asli; temuan disimpan dalam pengumpulan koreksi terpusat."
+}

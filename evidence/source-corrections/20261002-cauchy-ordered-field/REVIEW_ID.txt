@@ -1,0 +1,32 @@
+Koreksi terbatas: kelas ekuivalensi barisan Cauchy
+2 Oktober 2026
+
+Status: dua kalimat sumber dikoreksi; PDF/EPUB dan rilis pembaca yang sudah diterbitkan belum diperbarui.
+
+Dalam bab konstruksi bilangan real, relasi ekuivalensi diperkenalkan sebelum penjumlahan, perkalian, dan urutan didefinisikan pada kelas-kelasnya. Teorema berlabel thm:cauchyorderedfield dan latihan sesudahnya semula mengatakan bahwa barisan-barisan Cauchy membentuk lapangan terurut. Pernyataan yang tepat dalam konstruksi ini menyebut kelas-kelas ekuivalensi barisan Cauchy.
+
+Perubahan yang tepat
+1. Barisan-barisan Cauchy membentuk suatu lapangan terurut.
+   menjadi:
+   Kelas-kelas ekuivalensi barisan Cauchy membentuk suatu lapangan terurut.
+
+2. Buktikan bahwa barisan-barisan Cauchy membentuk suatu lapangan terurut.
+   menjadi:
+   Buktikan bahwa kelas-kelas ekuivalensi barisan Cauchy membentuk suatu lapangan terurut.
+
+Alasan dan sumber yang benar-benar dibaca
+Barisan e=(1,0,0,...) bukan barisan nol, tetapi tidak mempunyai invers perkalian per suku. Di dalam hasil bagi, kelasnya sama dengan kelas nol. Karena itu, ini koreksi objek matematika, bukan usulan menambah isi atau menulis ulang pembuktian.
+
+Abstrak skripsi Ristina Noviandari, PELENGKAPAN RUANG BERNORMA (UNY, 2009), memakai frasa “himpunan semua kelas ekuivalensi barisan Cauchy” pada paragraf kedua. Frasa tersebut mendukung susunan istilah; abstrak membahas ruang bernorma dan tidak dijadikan bukti teorema lapangan:
+https://eprints.uny.ac.id/2431/
+
+Judul tesis Nur Inayah, Lapangan terurut (UGM, 2002), mendukung istilah yang sudah dipakai. Hanya judul dan rekaman katalog yang dikonsultasikan; teks tesis tidak tersedia untuk publik:
+https://etd.repository.ugm.ac.id/penelitian/detail/20010
+
+Sumber Inggris dan lokasi yang dikoreksi:
+https://github.com/OpenLogicProject/OpenLogic/blob/1e960beff9ed7835bf3e3f1335e21af3439cd107/content/sets-functions-relations/arithmetization/cauchy.tex#L159-L171
+
+Batas pemeriksaan
+Tidak ada perubahan formula, pengenal, rujukan silang, sitasi, latihan lain, atau pembuktian. Mengembalikan dua penggantian ini merekonstruksi tepat bita sumber Indonesia sebelum koreksi. Tidak dilakukan kompilasi TeX atau penilaian ulang seluruh terjemahan. Rekaman CHOICES_ID.json memasangkan kedua lokasi dengan teks lama/baru, kutipan kanon, alasan, alternatif yang ditolak, ketidakpastian, dan keyakinan editorial 0,98 yang bukan probabilitas terkalibrasi.
+
+Koreksi, penyuntingan, dan pemeriksaan terbatas: OpenAI Codex — GPT-6 Astra, Ultra effort. Tidak diklaim ada penyuntingan, persetujuan, atau penelaahan manusia.

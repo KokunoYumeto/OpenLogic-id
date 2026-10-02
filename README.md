@@ -16,6 +16,21 @@ Edisi ini adalah **terjemahan Bahasa Indonesia dari** (DataCite:
 `IsTranslationOf`) [Open Logic Project pada sumber beku
 `9620cc73f…`](https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0).
 
+## Koreksi sumber setelah rilis
+
+Pada 2 Oktober 2026, dua kalimat pada teorema dan latihan konstruksi bilangan real
+dikoreksi menjadi pernyataan tentang **kelas-kelas ekuivalensi barisan Cauchy**,
+bukan barisan mentah. Formula, bukti, dan bagian lain tidak diubah.
+
+Lihat [catatan penelaahan dalam bahasa Indonesia](evidence/source-corrections/20261002-cauchy-ordered-field/REVIEW_ID.txt)
+dan [rekaman pilihan bahasa dan sumber yang dikonsultasikan](evidence/source-corrections/20261002-cauchy-ordered-field/CHOICES_ID.json).
+Koreksi terbatas ini dibuat oleh **OpenAI Codex — GPT-6 Astra, Ultra effort**;
+bukan hasil penelaahan manusia.
+
+**PDF, EPUB, dan paket rilis terdahulu belum memuat koreksi ini.** Angka cakupan,
+hash, serta laporan pemeriksaan rilis di bawah tetap merupakan catatan rilis
+terdahulu, bukan sertifikasi ulang sumber yang kini telah dikoreksi.
+
 ## Identitas rilis
 
 - DOI rilis persis: [10.5281/zenodo.21932787](https://doi.org/10.5281/zenodo.21932787)
