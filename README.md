@@ -1,121 +1,120 @@
-# Open Logic Project — Edisi Lengkap Bahasa Indonesia
+# Open Logic Project — Bahasa Indonesia
 
-> Edisi ini tercantum dalam [katalog pusat terjemahan Open Logic](https://github.com/KokunoYumeto/OpenLogic-translations); katalog membedakan kelengkapan sumber terjemahan dari kelengkapan pembaca mandiri.
+Terjemahan bahasa Indonesia dari Open Logic Project, dengan satu pembaca
+mandiri yang mencakup **722 unit sumber beku dalam 1.255 halaman**. Bagian
+utama berisi 642 unit dan bagian pelengkap berisi 80 unit; keduanya tersedia
+dalam **satu PDF**, sehingga tidak perlu mengunduh dua buku untuk membaca
+seluruh cakupan tersebut.
 
-> **Edisi lengkap:** semua 722/722 modul isi Open Logic Project pada sumber
-> beku telah diterjemahkan ke Bahasa Indonesia. Pembaca tertaut mencakup 642
-> modul yang dijangkau pembaca kanonik; 80 modul nonpembaca tetap dipertahankan
-> dalam sumber suntingan dan dinyatakan di luar cakupan build/render.
+[Baca PDF lengkap 722 unit](https://zenodo.org/records/22347320/preview/08_OPENLOGIC_id_STANDALONE_READER_ALL_722_20260905.pdf)
+· [Unduh PDF lengkap](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/08_OPENLOGIC_id_STANDALONE_READER_ALL_722_20260905.pdf)
 
-[Baca pembaca lengkap Bahasa Indonesia](https://zenodo.org/records/21932787/preview/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf)
-
-[Unduh PDF versi OLP-0722](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf)
-· [Lihat salinan PDF di repositori](reader/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf)
-
-Edisi ini adalah **terjemahan Bahasa Indonesia dari** (DataCite:
-`IsTranslationOf`) [Open Logic Project pada sumber beku
-`9620cc73f…`](https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0).
+Sumber suntingan komponen: [sumber bagian utama dan terjemahan](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/01_OPENLOGIC_id_EDITABLE_SOURCES_OLP-0722.zip)
+· [sumber bagian pelengkap](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/05_OPENLOGIC_id_SUPPLEMENT_SOURCES_80_20260904.zip).
+**Rilis ini belum menyediakan berkas LaTeX kumulatif yang dapat diunduh
+langsung.** Arsip komponen tetap dipertahankan; keberadaannya tidak dinyatakan
+sebagai pemenuhan persyaratan berkas kumulatif tersebut.
 
 ## Koreksi sumber setelah rilis
 
-Pada 2 Oktober 2026, dua kalimat pada teorema dan latihan konstruksi bilangan real
-dikoreksi menjadi pernyataan tentang **kelas-kelas ekuivalensi barisan Cauchy**,
-bukan barisan mentah. Formula, bukti, dan bagian lain tidak diubah.
+Pada 2 Oktober 2026, dua kalimat pada teorema dan latihan konstruksi bilangan
+real dikoreksi menjadi pernyataan tentang **kelas-kelas ekuivalensi barisan
+Cauchy**, bukan barisan mentah. Formula, bukti, dan bagian lain tidak diubah.
 
-Lihat [catatan penelaahan dalam bahasa Indonesia](evidence/source-corrections/20261002-cauchy-ordered-field/REVIEW_ID.txt)
-dan [rekaman pilihan bahasa dan sumber yang dikonsultasikan](evidence/source-corrections/20261002-cauchy-ordered-field/CHOICES_ID.json).
-Koreksi terbatas ini dibuat oleh **OpenAI Codex — GPT-6 Astra, Ultra effort**;
-bukan hasil penelaahan manusia.
+[Catatan penelaahan dalam bahasa Indonesia](evidence/source-corrections/20261002-cauchy-ordered-field/REVIEW_ID.txt)
+· [Rekaman pilihan bahasa dan sumber yang dikonsultasikan](evidence/source-corrections/20261002-cauchy-ordered-field/CHOICES_ID.json).
 
-**PDF, EPUB, dan paket rilis terdahulu belum memuat koreksi ini.** Angka cakupan,
-hash, serta laporan pemeriksaan rilis di bawah tetap merupakan catatan rilis
-terdahulu, bukan sertifikasi ulang sumber yang kini telah dikoreksi.
+**PDF dan paket rilis terdahulu belum memuat koreksi ini.** Pemeriksaan sumber
+yang diperbarui hanya mencakup dua penggantian tersebut; laporan rilis
+terdahulu bukan sertifikasi ulang seluruh terjemahan saat ini. Tidak ada EPUB
+yang tercantum dalam inventaris rilis GitHub dan rekaman Zenodo yang diperiksa
+pada 2 Oktober 2026.
 
-## Identitas rilis
+## Rilis, lisensi, dan asal sumber
 
-- DOI rilis persis: [10.5281/zenodo.21932787](https://doi.org/10.5281/zenodo.21932787)
-- DOI konsep Bahasa Indonesia: [10.5281/zenodo.21932786](https://doi.org/10.5281/zenodo.21932786)
-- Rekaman Zenodo: [zenodo.org/records/21932787](https://zenodo.org/records/21932787)
-- Repositori: [KokunoYumeto/OpenLogic-id](https://github.com/KokunoYumeto/OpenLogic-id)
-- Rilis GitHub: [id-olp-0722-20260814](https://github.com/KokunoYumeto/OpenLogic-id/releases/tag/id-olp-0722-20260814)
-- Tag rilis: `id-olp-0722-20260814`
-- Versi: `OLP-0722-20260814`
-- Bahasa: Bahasa Indonesia (BCP 47 `id`; Zenodo `ind`)
-- Sumber beku: Open Logic Project commit
-  [`9620cc73f9c8e0ad003c514a5d3748f29611c4c0`](https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0),
-  tree `f67757bb9305b173634082ab4cefd5601a707a34`
-- Lisensi: [CC BY 4.0](LICENSE)
+- Rekaman pembaca mandiri: [10.5281/zenodo.22347320](https://doi.org/10.5281/zenodo.22347320).
+- DOI tetap untuk keluarga edisi bahasa Indonesia: [10.5281/zenodo.21932786](https://doi.org/10.5281/zenodo.21932786).
+- [Seluruh berkas rilis GitHub](https://github.com/KokunoYumeto/OpenLogic-id/releases/tag/id-olp-0722-20260814).
+- [Sumber terjemahan yang dapat disunting](source/locale/id/).
+- [Proyek sumber Open Logic](https://openlogicproject.org/).
+- Lisensi: [CC BY 4.0](LICENSE). Pertahankan pula pemberitahuan lisensi dan
+  atribusi yang menyertai sumber serta media warisan.
 
-Ini adalah edisi Bahasa Indonesia yang mandiri, bukan turunan mekanis bahasa
-Melayu Malaysia. Tidak ada dukungan atau pengesahan Open Logic Project yang
-tersirat.
+Edisi ini merupakan terjemahan bahasa Indonesia yang berdiri sendiri, bukan
+alih kata mekanis dari bahasa Melayu Malaysia. Tidak tersirat dukungan atau
+pengesahan dari Open Logic Project.
 
-## Cakupan dan bukti
+<details>
+<summary>Identitas teknis sumber dan berkas pembaca</summary>
 
-- Closure sumber/sasaran: 722/722 berkas, 0 sasaran hilang.
-- Sasaran Bahasa Indonesia: 3.222.301 byte dan 77.789 baris fisik.
-- Pembaca: 1.116 halaman; 5.593.664 byte; SHA-256
-  `BF538D5E1994A7A7600703C9D24616696F77E43E9312FB51078095FF0C963C0A`.
-- Build acuan dari sumber beku: `latexmk` keluar 0; tidak ada galat fatal,
-  referensi/sitasi tak terdefinisi, berkas hilang, atau glif hilang. Commit
-  sumber dipatok, tetapi graf paket MiKTeX belum dipatok sepenuhnya; hash PDF
-  acuan dibekukan, tanpa klaim bahwa setiap mesin akan menghasilkan byte yang
-  identik.
-- Pemeriksaan: inventaris dan replay hash mencakup 722/722 unit. Pemeriksaan
-  model/penulis menyertai produksi seluruh unit; paket bukti publik memuat
-  kuitansi review independen terkonsolidasi sampai OLP-0321. Sebanyak 401 unit
-  sesudahnya tidak diklaim memiliki kuitansi independen setara yang
-  dipertahankan, meskipun tercakup oleh replay closure, build, dan render.
-- Teks: tidak ada `??`, penanda `Undefined`, token semantik mentah, karakter
-  pengganti, placeholder, atau footer Git yang basi.
-- Visual: seluruh 1.116 halaman dirender pada 144 dpi dan diperiksa. Setelah
-  koreksi footer, perubahan raster pada 1.016 halaman berjalan terbatas pada
-  pita footer; 100 halaman tanpa footer identik piksel.
-- Aksesibilitas: 29/29 font tertanam; tiga font matematika Type 3 warisan tidak
-  memiliki ToUnicode, dan PDF belum bertag. Karena itu edisi ini dapat dicari,
-  tetapi tidak diklaim sepenuhnya aksesibel.
+Sumber beku: Open Logic Project, revisi
+[`9620cc73f9c8e0ad003c514a5d3748f29611c4c0`](https://github.com/OpenLogicProject/OpenLogic/commit/9620cc73f9c8e0ad003c514a5d3748f29611c4c0).
+Tag rilis GitHub: `id-olp-0722-20260814`.
 
-Inventaris sumber/sasaran, replay closure, catatan istilah, review independen,
-build, render, keputusan, dan temuan terhadap sumber tersedia di
-[`evidence/`](evidence/). Daftar ringkas temuan yang dapat ditinjau maintainer
-upstream tersedia di
-[`evidence/UPSTREAM_FINDINGS.md`](evidence/UPSTREAM_FINDINGS.md).
-Delapan kandidat paling ringkas telah disampaikan kepada maintainer upstream
-dalam [OpenLogicProject/OpenLogic#432](https://github.com/OpenLogicProject/OpenLogic/issues/432);
-daftar penuh dan semua penarikan temuan tetap berada dalam bukti rilis.
+Pembaca mandiri: `08_OPENLOGIC_id_STANDALONE_READER_ALL_722_20260905.pdf`,
+5.754.676 bita, SHA-256
+`1b763b8b15c9f28a1212d81ee3e3a3f60ee3212fe1ffa4620c947caf43c89930`.
+Salinan GitHub dan Zenodo diperiksa ulang pada 2 Oktober 2026; identitas bita
+tidak berarti ada penelaahan kebahasaan baru atas seluruh buku.
 
-## Struktur publik
+</details>
 
-- `reader/`: pembaca lengkap yang langsung dapat dibuka.
-- `source/locale/id/`: 722 sumber isi Bahasa Indonesia, gaya pelokalan, driver,
-  ledger istilah, dan inventaris hash.
-- `evidence/`: otoritas sumber, coverage 722 baris, status QA, review, relasi
-  DOI, ledger isu, dan manifest artefak.
-- `build/BUILD.ps1`: build deterministik dari checkout upstream beku.
+## Cakupan pemeriksaan dan batasannya
 
-Pekerjaan dilakukan atas arahan penyunting proyek oleh **OpenAI 5.6 Sol, Ultra mode**
-(**model flagship OpenAI saat ini untuk pekerjaan kompleks**). Review manusia
-atau penutur asli bukan gerbang rilis; koreksi setelah publikasi tetap diterima
-sebagai bukti tambahan.
+[Laporan pembaca mandiri](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/STANDALONE_READER_QA.json)
+mencatat cakupan 722 unit, urutan teks dan geometri 1.255 halaman yang sesuai
+dengan kedua komponen, serta 3.359 tautan yang dipertahankan. Pemeriksaan
+visual pembaca gabungan menggunakan tujuh halaman sampel, termasuk batas
+antara bagian utama dan pelengkap; ini bukan klaim pemeriksaan visual baru
+atas setiap halaman.
 
-## English identification
+Kuitansi penelaahan independen yang dipertahankan dalam bukti rilis awal
+mencakup hingga OLP-0321. Sebanyak 401 unit setelahnya tidak diklaim mempunyai
+kuitansi independen setara. Kelengkapan berkas, keberhasilan pembangunan,
+dan kesesuaian hash bukan bukti bahwa semua pilihan terjemahan sudah benar.
+Catatan penelaahan manusia tetap berguna untuk perbaikan selanjutnya, tetapi
+bukan prasyarat untuk meneruskan pekerjaan.
 
-This repository publishes the **complete Indonesian edition of the Open Logic
-Project** for the frozen 722-file content closure. The reader is linked first;
-it **IsTranslationOf** the exact frozen source commit identified above.
-Editable sources and full provenance remain inspectable. Cite the stable
-concept DOI for the Indonesian edition family, or the exact version DOI for
-these immutable release bytes.
+PDF warisan belum dinyatakan memenuhi PDF/UA. Laporan sebelumnya mencatat
+font matematika Type 3 tanpa pemetaan ToUnicode serta PDF yang belum bertag.
+Sumber paket MiKTeX juga belum dipatok sepenuhnya, sehingga tidak diklaim
+bahwa setiap mesin akan menghasilkan PDF dengan bita yang identik.
 
-<!-- openlogic-id-supplement80:start -->
-## Readable coverage of the remaining 80 source files
+## Bukti dan penelaahan pilihan terjemahan
 
-The accepted Indonesian sources cover **722 files**. The inherited main reader imports **642**; the separate supplement accounts for the other **80**, including explicitly disclosed fragments and organizational wrappers. The supplement complements, and does not replace, the main reader or existing source archive.
+- [Indeks bukti, asal sumber, dan laporan pemeriksaan](evidence/).
+- [Catatan pilihan terjemahan lengkap](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/TRANSLATION_DECISIONS_FULL.md).
+- [Daftar pilihan yang diprioritaskan untuk penelaahan](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/PRIORITY_REVIEW.md).
+- [Temuan terhadap sumber asli](evidence/UPSTREAM_FINDINGS.md), termasuk
+  riwayat penarikan temuan. Sebagian kandidat terdahulu dilaporkan melalui
+  [isu #432](https://github.com/OpenLogicProject/OpenLogic/issues/432).
+  Laporan lintas bahasa berikutnya berada dalam
+  [isu #436](https://github.com/OpenLogicProject/OpenLogic/issues/436).
 
-- [Read the 80-file supplement](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/04_OPENLOGIC_id_READER_SUPPLEMENT_80_20260904.pdf)
-- [Download sources, coverage/QA evidence, and SHA-256 checksums](https://github.com/KokunoYumeto/OpenLogic-id/releases/tag/id-olp-0722-20260814)
-- [Public Zenodo version with all eight files](https://zenodo.org/records/22306587)
-- [Stable concept DOI](https://doi.org/10.5281/zenodo.21932786)
+Berkas penelaahan warisan belum diperiksa ulang untuk kelengkapan pelokalan
+bahasanya pada pembaruan halaman ini. Catatan koreksi dua kalimat tertanggal
+2 Oktober 2026 tersedia sepenuhnya dalam bahasa Indonesia.
 
-All four inherited assets remain available unchanged. New release metadata is open CC-BY-4.0; retain the license and attribution notices accompanying individual sources and inherited media.
-<!-- openlogic-id-supplement80:end -->
+## Akses ke berkas terdahulu
+
+Pembaca mandiri di atas mempertahankan isi bagian utama dan pelengkap.
+Kedua komponen serta arsip sebelumnya tetap tersedia untuk keperluan
+perbandingan dan asal-usul terbitan:
+
+- [PDF bagian utama, 642 unit](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf).
+- [PDF bagian pelengkap, 80 unit](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/04_OPENLOGIC_id_READER_SUPPLEMENT_80_20260904.pdf).
+- [Rekaman rilis awal](https://zenodo.org/records/21932787).
+- [Rekaman penambahan bagian pelengkap](https://zenodo.org/records/22306587).
+
+Tidak ada berkas rilis lama yang dihapus atau diganti dalam pembaruan ini.
+
+## Keterangan penggunaan AI
+
+Terjemahan awal dicatat sebagai pekerjaan **OpenAI 5.6 Sol, Ultra mode**.
+Koreksi sumber terbatas dan pembaruan akses pada 2 Oktober 2026 dikerjakan
+oleh **OpenAI Codex — GPT-6 Astra, Ultra effort**. Keterangan ini tidak
+menyatakan bahwa ada penyuntingan, persetujuan, atau penelaahan manusia.
+
+[Kembali ke katalog pusat terjemahan Open Logic](https://github.com/KokunoYumeto/OpenLogic-translations)
+(katalog bersama; pelokalan seluruh antarmukanya ke bahasa Indonesia belum
+dinyatakan lengkap).
