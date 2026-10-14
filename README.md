@@ -9,11 +9,15 @@ seluruh cakupan tersebut.
 [Baca PDF lengkap 722 unit](https://zenodo.org/records/22347320/preview/08_OPENLOGIC_id_STANDALONE_READER_ALL_722_20260905.pdf)
 · [Unduh PDF lengkap](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/08_OPENLOGIC_id_STANDALONE_READER_ALL_722_20260905.pdf)
 
-Sumber suntingan komponen: [sumber bagian utama dan terjemahan](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/01_OPENLOGIC_id_EDITABLE_SOURCES_OLP-0722.zip)
-· [sumber bagian pelengkap](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/05_OPENLOGIC_id_SUPPLEMENT_SOURCES_80_20260904.zip).
-**Rilis ini belum menyediakan berkas LaTeX kumulatif yang dapat diunduh
-langsung.** Arsip komponen tetap dipertahankan; keberadaannya tidak dinyatakan
-sebagai pemenuhan persyaratan berkas kumulatif tersebut.
+[Unduh LaTeX lengkap 722 unit](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/08a_OPENLOGIC_id_ALL_722_CUMULATIVE_SOURCE.tex)
+· [Unduh paket sumber lengkap dan perangkat reproduksi](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/08b_OPENLOGIC_id_ALL_722_EDITABLE_SOURCE_TREE_20261014.zip).
+
+Paket sumber ditambahkan pada 14 Oktober 2026. Seluruh 722 unit, gaya,
+bibliografi, enam aset biner, perangkat pembangunan, pilihan font historis,
+dan resep penggabungan disertakan. Berkas LaTeX kumulatif memuat seluruh teks;
+pulihkan struktur modular dengan perangkat di dalam ZIP sebelum mengompilasi.
+Ini sumber untuk PDF historis di atas, bukan pembaca baru yang sudah memasukkan
+koreksi setelah rilis. Arsip komponen terdahulu tetap tersedia.
 
 ## Koreksi sumber setelah rilis
 
@@ -78,7 +82,12 @@ bukan prasyarat untuk meneruskan pekerjaan.
 PDF warisan belum dinyatakan memenuhi PDF/UA. Laporan sebelumnya mencatat
 font matematika Type 3 tanpa pemetaan ToUnicode serta PDF yang belum bertag.
 Sumber paket MiKTeX juga belum dipatok sepenuhnya, sehingga tidak diklaim
-bahwa setiap mesin akan menghasilkan PDF dengan bita yang identik.
+bahwa setiap mesin akan menghasilkan PDF dengan bita yang identik. Rekonstruksi
+14 Oktober 2026 mempertahankan teks, geometri, navigasi, serta label seluruh
+1.255 halaman. Pemulihan dua font bitmap menghilangkan perbedaan aliran halaman
+utama; lima sampel halaman juga identik secara piksel. Pembulatan koordinat
+tautan pelengkap paling besar 0,00005 point dicatat, bukan disembunyikan.
+Rincian dan batas pemeriksaan tersedia dalam HASIL_REPRODUKSI.json di paket sumber.
 
 ## Bukti dan penelaahan pilihan terjemahan
 
@@ -101,8 +110,8 @@ Pembaca mandiri di atas mempertahankan isi bagian utama dan pelengkap.
 Kedua komponen serta arsip sebelumnya tetap tersedia untuk keperluan
 perbandingan dan asal-usul terbitan:
 
-- [PDF bagian utama, 642 unit](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf).
-- [PDF bagian pelengkap, 80 unit](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/04_OPENLOGIC_id_READER_SUPPLEMENT_80_20260904.pdf).
+- [PDF bagian utama, 642 unit](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf) · [LaTeX lengkap bagian utama](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/00a_OPENLOGIC_id_MAIN_642_CUMULATIVE_SOURCE.tex).
+- [PDF bagian pelengkap, 80 unit](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/04_OPENLOGIC_id_READER_SUPPLEMENT_80_20260904.pdf) · [LaTeX lengkap pelengkap](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/04a_OPENLOGIC_id_SUPPLEMENT_80_CUMULATIVE_SOURCE.tex).
 - [Rekaman rilis awal](https://zenodo.org/records/21932787).
 - [Rekaman penambahan bagian pelengkap](https://zenodo.org/records/22306587).
 
@@ -112,7 +121,9 @@ Tidak ada berkas rilis lama yang dihapus atau diganti dalam pembaruan ini.
 
 Terjemahan awal dicatat sebagai pekerjaan **OpenAI 5.6 Sol, Ultra mode**.
 Koreksi sumber terbatas dan pembaruan akses pada 2 Oktober 2026 dikerjakan
-oleh **OpenAI Codex — GPT-6 Astra, Ultra effort**. Keterangan ini tidak
+oleh **OpenAI Codex — GPT-6 Astra, Ultra effort**. Rekonstruksi dan pengemasan
+sumber pada 14 Oktober 2026 menggunakan model serta tingkat upaya yang sama.
+Keterangan ini tidak
 menyatakan bahwa ada penyuntingan, persetujuan, atau penelaahan manusia.
 
 [Kembali ke katalog pusat terjemahan Open Logic](https://github.com/KokunoYumeto/OpenLogic-translations)
