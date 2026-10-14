@@ -47,7 +47,7 @@ antarpembaca. Kelengkapan ekspor bukan sertifikasi kebahasaan seluruh korpus.
 
 PDF historis dan sumber reproduksinya tetap tersedia tanpa perubahan di bawah.
 HTML/EPUB dan sumber lengkap tersedia pada [rekaman Zenodo baru](https://zenodo.org/records/23375685),
-dalam keluarga DOI yang sama. Pemeriksaan bita unduhan anonim Zenodo masih berlangsung; tidak diklaim selesai.
+dalam keluarga DOI yang sama. Semua 26 berkas Zenodo telah diperiksa melalui unduhan anonim; ukuran dan hash cocok.
 PDF historis tetap tersedia tanpa perubahan.
 
 ## Koreksi sumber setelah rilis
