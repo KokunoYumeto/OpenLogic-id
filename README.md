@@ -19,6 +19,36 @@ pulihkan struktur modular dengan perangkat di dalam ZIP sebelum mengompilasi.
 Ini sumber untuk PDF historis di atas, bukan pembaca baru yang sudah memasukkan
 koreksi setelah rilis. Arsip komponen terdahulu tetap tersedia.
 
+## HTML dan EPUB lengkap — 14 Oktober 2026
+
+Pembaca reflowable memuat **seluruh 722 berkas sumber dalam 774 kemunculan**,
+termasuk dua koreksi Cauchy yang sudah diterbitkan. Teks tidak diringkas.
+Rumus memakai MathML, diagram memakai SVG, dan 792 diagram derivasi dilengkapi
+bentuk terstruktur yang dapat ditelusuri. HTML dibagi menurut bagian dan bab.
+
+1. [LaTeX lengkap untuk edisi HTML/EPUB](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/09a_OPENLOGIC_id_REFLOWABLE_722_SOURCE.tex).
+2. [Seluruh sumber, dependensi dan perangkat reproduksi](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/09b_OPENLOGIC_id_REFLOWABLE_SOURCE_20261014.zip).
+3. [Baca daring dalam bahasa Indonesia](https://kokunoyumeto.github.io/OpenLogic-translations/readers/id-722/index.xhtml).
+4. [Unduh EPUB lengkap 722 unit](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/09c_OPENLOGIC_id_REFLOWABLE_722_20261014.epub).
+5. [Unduh HTML lengkap untuk penggunaan luring](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/09d_OPENLOGIC_id_REFLOWABLE_HTML_20261014.zip).
+
+Ekspor dan pengemasan: **OpenAI Codex — GPT-6 Astra, Ultra**. Ini bukan
+terjemahan ulang atau audit kanon baru atas seluruh pilihan bahasa. Naskah
+utama mencatat terjemahan awal oleh OpenAI 5.6 Sol, Ultra mode; sampul pelengkap
+hanya mencatat OpenAI Codex, sehingga model dan tingkat upaya yang tidak
+tercatat tidak ditebak. Tidak ada klaim penelaahan manusia.
+
+Seluruh 771 berkas sumber, 42.611 objek MathML asli dan 9.135 tautan diperiksa;
+99 pengujian lulus. EPUBCheck 5.4.0 tidak melaporkan kesalahan atau peringatan.
+Reproduksi dari LaTeX asli menghasilkan EPUB dengan bita identik. Catatan
+pilihan ekspor dan hasil pemeriksaan tersedia di direktori review dalam ZIP.
+Ucapan pembaca layar belum diuji secara langsung; dukungan MathML berbeda
+antarpembaca. Kelengkapan ekspor bukan sertifikasi kebahasaan seluruh korpus.
+
+PDF historis dan sumber reproduksinya tetap tersedia tanpa perubahan di bawah.
+HTML/EPUB ini belum dicerminkan ke Zenodo; DOI yang dicantumkan masih merujuk
+ke terbitan historis, bukan klaim bahwa berkas baru sudah ada di sana.
+
 ## Koreksi sumber setelah rilis
 
 Pada 2 Oktober 2026, dua kalimat pada teorema dan latihan konstruksi bilangan
@@ -28,11 +58,9 @@ Cauchy**, bukan barisan mentah. Formula, bukti, dan bagian lain tidak diubah.
 [Catatan penelaahan dalam bahasa Indonesia](evidence/source-corrections/20261002-cauchy-ordered-field/REVIEW_ID.txt)
 · [Rekaman pilihan bahasa dan sumber yang dikonsultasikan](evidence/source-corrections/20261002-cauchy-ordered-field/CHOICES_ID.json).
 
-**PDF dan paket rilis terdahulu belum memuat koreksi ini.** Pemeriksaan sumber
-yang diperbarui hanya mencakup dua penggantian tersebut; laporan rilis
-terdahulu bukan sertifikasi ulang seluruh terjemahan saat ini. Tidak ada EPUB
-yang tercantum dalam inventaris rilis GitHub dan rekaman Zenodo yang diperiksa
-pada 2 Oktober 2026.
+**PDF historis dan sumber reproduksinya belum memuat koreksi ini; HTML/EPUB
+14 Oktober sudah memuatnya.** Pemeriksaan bahasa pada koreksi tersebut hanya
+mencakup dua penggantian, bukan sertifikasi ulang seluruh terjemahan.
 
 ## Rilis, lisensi, dan asal sumber
 
@@ -119,7 +147,8 @@ Tidak ada berkas rilis lama yang dihapus atau diganti dalam pembaruan ini.
 
 ## Keterangan penggunaan AI
 
-Terjemahan awal dicatat sebagai pekerjaan **OpenAI 5.6 Sol, Ultra mode**.
+Terjemahan awal naskah utama dicatat sebagai pekerjaan **OpenAI 5.6 Sol, Ultra mode**.
+Sampul pelengkap hanya menyebut OpenAI Codex; model/upaya tidak tercatat.
 Koreksi sumber terbatas dan pembaruan akses pada 2 Oktober 2026 dikerjakan
 oleh **OpenAI Codex — GPT-6 Astra, Ultra effort**. Rekonstruksi dan pengemasan
 sumber pada 14 Oktober 2026 menggunakan model serta tingkat upaya yang sama.
