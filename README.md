@@ -46,8 +46,9 @@ Ucapan pembaca layar belum diuji secara langsung; dukungan MathML berbeda
 antarpembaca. Kelengkapan ekspor bukan sertifikasi kebahasaan seluruh korpus.
 
 PDF historis dan sumber reproduksinya tetap tersedia tanpa perubahan di bawah.
-HTML/EPUB ini belum dicerminkan ke Zenodo; DOI yang dicantumkan masih merujuk
-ke terbitan historis, bukan klaim bahwa berkas baru sudah ada di sana.
+HTML/EPUB dan sumber lengkap tersedia pada [rekaman Zenodo baru](https://zenodo.org/records/23375685),
+dalam keluarga DOI yang sama. Pemeriksaan bita unduhan anonim Zenodo masih berlangsung; tidak diklaim selesai.
+PDF historis tetap tersedia tanpa perubahan.
 
 ## Koreksi sumber setelah rilis
 
