@@ -2,7 +2,7 @@
 
 Date: 2026-08-13  
 Frozen English authority: `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`  
-Reviewed target: `C:\Users\Floris\Documents\interlanguage\04_mirrors\id\openlogic\locale\id`
+Reviewed target: `C:\Users\user\Documents\interlanguage\04_mirrors\id\openlogic\locale\id`
 
 ## Scope and method
 

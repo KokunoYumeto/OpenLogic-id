@@ -1,7 +1,7 @@
 # Bahasa Indonesia Open Logic Build and QA
 
 Date: 2026-08-14
-Repository: `C:\Users\Floris\Documents\interlanguage\04_mirrors\id\openlogic`  
+Repository: `C:\Users\user\Documents\interlanguage\04_mirrors\id\openlogic`  
 Authority commit: `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`
 
 ## Complete-reader final build (2026-08-14)

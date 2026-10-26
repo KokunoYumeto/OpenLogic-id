@@ -8,7 +8,7 @@
 
 Date: 2026-08-12  
 Frozen English authority: `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`  
-Repository: `C:\Users\Floris\Documents\interlanguage\04_mirrors\id\openlogic`
+Repository: `C:\Users\user\Documents\interlanguage\04_mirrors\id\openlogic`
 
 ## Result
 
@@ -137,7 +137,7 @@ content/intuitionistic-logic/propositions-as-types/terms-to-proofs.tex
 Run from any PowerShell working directory:
 
 ```powershell
-& 'C:\Users\Floris\Documents\interlanguage\04_mirrors\id\_control\generate_openlogic_closure_manifest.ps1'
+& 'C:\Users\user\Documents\interlanguage\04_mirrors\id\_control\generate_openlogic_closure_manifest.ps1'
 ```
 
 The generator hard-fails unless the local authority commit, 722-file source

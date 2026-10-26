@@ -7,7 +7,7 @@ While translating and replaying all 722 content files, we found the bounded
 items below. This is a courtesy report, not a request to merge the Indonesian
 translation. Please accept, reject, or refine any suggestion as appropriate.
 
-The work was performed at the direction of Floris by **OpenAI 5.6 Sol, Ultra
+The work was performed at the direction of user by **OpenAI 5.6 Sol, Ultra
 mode** (**OpenAI's current flagship model for complex work**).
 
 ## High-confidence corrections

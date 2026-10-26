@@ -3,8 +3,8 @@
 Date: 2026-08-13  
 Frozen English authority: `9620cc73f9c8e0ad003c514a5d3748f29611c4c0`  
 Closure: `OLP-0041` through `OLP-0048`, eight content TeX files  
-English root: `C:\Users\Floris\Documents\interlanguage\04_mirrors\id\openlogic\content\sets-functions-relations\arithmetization`  
-Indonesian root: `C:\Users\Floris\Documents\interlanguage\04_mirrors\id\openlogic\locale\id\content\sets-functions-relations\arithmetization`
+English root: `C:\Users\user\Documents\interlanguage\04_mirrors\id\openlogic\content\sets-functions-relations\arithmetization`  
+Indonesian root: `C:\Users\user\Documents\interlanguage\04_mirrors\id\openlogic\locale\id\content\sets-functions-relations\arithmetization`
 
 The frozen commit is an ancestor of the working branch, and each English hash
 below matches `OPENLOGIC_CLOSURE_MANIFEST_20260812.csv`. English is the semantic

@@ -129,7 +129,7 @@ The direct OpenLogic dependencies inspected are present except for the transitiv
 
 Temporary replay root used:
 
-`C:\Users\Floris\AppData\Local\Temp\interlanguage_upstream_replay_20260812_ee34865eabe74f099c3cb7fe0e96badc`
+`C:\Users\user\AppData\Local\Temp\interlanguage_upstream_replay_20260812_ee34865eabe74f099c3cb7fe0e96badc`
 
 ### OpenStax XML well-formedness
 
@@ -138,7 +138,7 @@ Working directory: the separate `openstax` temporary directory. Inputs were abso
 Exact PowerShell command shape executed:
 
 ```powershell
-$repo = 'C:\Users\Floris\Documents\interlanguage\04_mirrors\id\openstax-prealgebra'
+$repo = 'C:\Users\user\Documents\interlanguage\04_mirrors\id\openstax-prealgebra'
 $files = @()
 $files += Get-ChildItem -LiteralPath (Join-Path $repo 'modules') -Recurse -Filter 'index.cnxml' -File
 $files += Get-ChildItem -LiteralPath (Join-Path $repo 'collections') -Filter '*.collection.xml' -File
@@ -257,7 +257,7 @@ Success must mean exit 0 plus an emitted `sets.pdf`. It must then be checked wit
 The current untracked driver declares `\ollangid{id}`, routes `\olimport` to `locale/id/content`, loads Babel Indonesian, and imports the localized `sets` chapter. Once the upstream baseline succeeds, the exact localized command is:
 
 ```powershell
-Set-Location 'C:\Users\Floris\Documents\interlanguage\04_mirrors\id\openlogic\locale\id'
+Set-Location 'C:\Users\user\Documents\interlanguage\04_mirrors\id\openlogic\locale\id'
 $env:MIKTEX_ENABLE_INSTALLER = '0'
 latexmk -pdf -dvi- -ps- -interaction=nonstopmode `
   '-pdflatex=pdflatex -disable-installer %O %S' sets-id.tex

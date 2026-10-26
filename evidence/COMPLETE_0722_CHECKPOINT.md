@@ -16,11 +16,11 @@ content corpus at frozen commit
 `9620cc73f9c8e0ad003c514a5d3748f29611c4c0` into independent Bahasa
 Indonesia (`id-ID`). The controlling closure manifest is:
 
-`C:\Users\Floris\Documents\interlanguage\04_mirrors\id\_control\OPENLOGIC_CLOSURE_MANIFEST_20260812.csv`
+`C:\Users\user\Documents\interlanguage\04_mirrors\id\_control\OPENLOGIC_CLOSURE_MANIFEST_20260812.csv`
 
 The source/translation repository is:
 
-`C:\Users\Floris\Documents\interlanguage\04_mirrors\id\openlogic`
+`C:\Users\user\Documents\interlanguage\04_mirrors\id\openlogic`
 
 The closure has 722 units. All 722 Indonesian target files exist; the
 continuation remainder is zero and there is no next translation cursor for
@@ -34,7 +34,7 @@ delta cycle and must not rewrite this source identity silently.
 - Missing target files: 0.
 - English source-hash mismatches against the manifest: 0.
 - Per-unit source/target inventory:
-  `C:\Users\Floris\Documents\interlanguage\04_mirrors\id\_control\OPENLOGIC_ID_COMPLETE_SOURCE_INVENTORY_20260814.csv`
+  `C:\Users\user\Documents\interlanguage\04_mirrors\id\_control\OPENLOGIC_ID_COMPLETE_SOURCE_INVENTORY_20260814.csv`
   (722 rows; 252,486 bytes; SHA-256
   `964a274b418c06c99130ad33e8326629d5c35bf677d7c9a6166c19a6f91a033b`).
 - Inventory replay: 722/722 target hashes passed; zero missing or mismatched
@@ -46,10 +46,10 @@ delta cycle and must not rewrite this source identity silently.
 
 The final closure replay is:
 
-`C:\Users\Floris\Documents\interlanguage\04_mirrors\id\_control\OPENLOGIC_ID_COMPLETE_CLOSURE_REPLAY_20260814.json`
+`C:\Users\user\Documents\interlanguage\04_mirrors\id\_control\OPENLOGIC_ID_COMPLETE_CLOSURE_REPLAY_20260814.json`
 
 It is 3,169 bytes with SHA-256
-`9a4d4b42140108666db2a50dd26868f6f70d7295e672cf3dc5a51bc2f6fb6d1b`.
+`a55c8a7ffed61531d1d90f606e8ef50ea0e21c41cbddfe5117bd4419bb3cba59`.
 It reports zero missing targets, source-hash mismatches, inventory-hash
 mismatches, control-character files, brace-delta mismatches, or localized
 `\olfileid` policy failures. Its nonempty difference lists are explicit
@@ -63,14 +63,14 @@ fallback; the exact closure IDs remain in the JSON.
 
 Driver:
 
-`C:\Users\Floris\Documents\interlanguage\04_mirrors\id\openlogic\locale\id\open-logic-complete-id.tex`
+`C:\Users\user\Documents\interlanguage\04_mirrors\id\openlogic\locale\id\open-logic-complete-id.tex`
 
 - Bytes: 2,202.
 - SHA-256: `0eed9355caa7b96ffb6a6ad00e50db8aaa955e23fc5e5e98d56f772efa529c0a`.
 
 Reader PDF:
 
-`C:\Users\Floris\Documents\interlanguage\04_mirrors\id\openlogic\locale\id\open-logic-complete-id.pdf`
+`C:\Users\user\Documents\interlanguage\04_mirrors\id\openlogic\locale\id\open-logic-complete-id.pdf`
 
 - Pages: 1,116.
 - Bytes: 5,591,857.
@@ -95,7 +95,7 @@ warnings. These warnings are preserved adverse evidence, not erased.
 
 Final text extraction:
 
-`C:\Users\Floris\Documents\interlanguage\tmp\pdfs\openlogic-id-complete\open-logic-complete-id-footer-fixed.txt`
+`C:\Users\user\Documents\interlanguage\tmp\pdfs\openlogic-id-complete\open-logic-complete-id-footer-fixed.txt`
 
 - Bytes: 2,288,540.
 - Lines: 47,036.
@@ -135,14 +135,14 @@ unclipped.
 - `locale\id\TRANSLATION_STATUS.md`: 45,309 bytes; SHA-256
   `6fe96de25132f811c4aefa7755b8a111f46adf83b60d911eacd25882e33119f6`.
 - `locale\id\BUILD.md`: 68,429 bytes; SHA-256
-  `992a658b42f62901ba07c71a277cdce053d3cc4f4dab22297ee61efb58dc6c18`.
+  `aba51b10eeed81259024d7146a3a471aeabad11b15a4c9e6bd101aef84e957fb`.
 - `locale\id\MAINTENANCE.md`: 3,370 bytes; SHA-256
   `7335a0b108f2a924896f72e14a75578bb9a9b1bc25e4a1c012433a3000ecdb28`.
 - `locale\id\ATTRIBUTION_AND_CHANGES.md`: 9,232 bytes; SHA-256
   `91ec15d9a7a8f9aa5e9f88b3105e4f112a708dbb5461888aae0de7f30e9da47d`.
 - `locale\id\TERMINOLOGY_AND_ADVERSE_LEDGER.csv`: 85,945 bytes;
   SHA-256
-  `041894e1963371569155e5ff0cf953a5f51907a866cd034c337fad648d5dd7df`.
+  `a40d285dc6a3946a981d3eb43d45dd3c54380a05934d1c26582d5910dadfb42c`.
 
 Batch-specific structural replay scripts, independent review receipts,
 correction dispositions, and explicit retractions remain in `locale\id` and
