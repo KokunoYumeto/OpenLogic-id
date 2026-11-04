@@ -6,8 +6,7 @@ utama berisi 642 unit dan bagian pelengkap berisi 80 unit; keduanya tersedia
 dalam **satu PDF**, sehingga tidak perlu mengunduh dua buku untuk membaca
 seluruh cakupan tersebut.
 
-[Baca PDF lengkap 722 unit](https://zenodo.org/records/22347320/preview/08_OPENLOGIC_id_STANDALONE_READER_ALL_722_20260905.pdf)
-· [Unduh PDF lengkap](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/08_OPENLOGIC_id_STANDALONE_READER_ALL_722_20260905.pdf)
+[Baca atau unduh PDF lengkap 722 unit](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/08_OPENLOGIC_id_STANDALONE_READER_ALL_722_20260905.pdf)
 
 [Unduh LaTeX lengkap 722 unit](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/08a_OPENLOGIC_id_ALL_722_CUMULATIVE_SOURCE.tex)
 · [Unduh paket sumber lengkap dan perangkat reproduksi](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/08b_OPENLOGIC_id_ALL_722_EDITABLE_SOURCE_TREE_20261014.zip).
@@ -46,9 +45,6 @@ Ucapan pembaca layar belum diuji secara langsung; dukungan MathML berbeda
 antarpembaca. Kelengkapan ekspor bukan sertifikasi kebahasaan seluruh korpus.
 
 PDF historis dan sumber reproduksinya tetap tersedia tanpa perubahan di bawah.
-HTML/EPUB dan sumber lengkap tersedia pada [rekaman Zenodo baru](https://zenodo.org/records/23375685),
-dalam keluarga DOI yang sama. Semua 26 berkas Zenodo telah diperiksa melalui unduhan anonim; ukuran dan hash cocok.
-PDF historis tetap tersedia tanpa perubahan.
 
 ## Koreksi sumber setelah rilis
 
@@ -65,8 +61,6 @@ mencakup dua penggantian, bukan sertifikasi ulang seluruh terjemahan.
 
 ## Rilis, lisensi, dan asal sumber
 
-- Rekaman pembaca mandiri: [10.5281/zenodo.22347320](https://doi.org/10.5281/zenodo.22347320).
-- DOI tetap untuk keluarga edisi bahasa Indonesia: [10.5281/zenodo.21932786](https://doi.org/10.5281/zenodo.21932786).
 - [Seluruh berkas rilis GitHub](https://github.com/KokunoYumeto/OpenLogic-id/releases/tag/id-olp-0722-20260814).
 - [Sumber terjemahan yang dapat disunting](source/locale/id/).
 - [Proyek sumber Open Logic](https://openlogicproject.org/).
@@ -87,7 +81,7 @@ Tag rilis GitHub: `id-olp-0722-20260814`.
 Pembaca mandiri: `08_OPENLOGIC_id_STANDALONE_READER_ALL_722_20260905.pdf`,
 5.754.676 bita, SHA-256
 `1b763b8b15c9f28a1212d81ee3e3a3f60ee3212fe1ffa4620c947caf43c89930`.
-Salinan GitHub dan Zenodo diperiksa ulang pada 2 Oktober 2026; identitas bita
+Salinan GitHub diperiksa ulang pada 2 Oktober 2026; identitas bita
 tidak berarti ada penelaahan kebahasaan baru atas seluruh buku.
 
 </details>
@@ -136,13 +130,11 @@ bahasanya pada pembaruan halaman ini. Catatan koreksi dua kalimat tertanggal
 ## Akses ke berkas terdahulu
 
 Pembaca mandiri di atas mempertahankan isi bagian utama dan pelengkap.
-Kedua komponen serta arsip sebelumnya tetap tersedia untuk keperluan
+Kedua komponen tetap tersedia untuk keperluan
 perbandingan dan asal-usul terbitan:
 
 - [PDF bagian utama, 642 unit](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf) · [LaTeX lengkap bagian utama](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/00a_OPENLOGIC_id_MAIN_642_CUMULATIVE_SOURCE.tex).
 - [PDF bagian pelengkap, 80 unit](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/04_OPENLOGIC_id_READER_SUPPLEMENT_80_20260904.pdf) · [LaTeX lengkap pelengkap](https://github.com/KokunoYumeto/OpenLogic-id/releases/download/id-olp-0722-20260814/04a_OPENLOGIC_id_SUPPLEMENT_80_CUMULATIVE_SOURCE.tex).
-- [Rekaman rilis awal](https://zenodo.org/records/21932787).
-- [Rekaman penambahan bagian pelengkap](https://zenodo.org/records/22306587).
 
 Tidak ada berkas rilis lama yang dihapus atau diganti dalam pembaruan ini.
 
