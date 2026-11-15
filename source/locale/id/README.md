@@ -15,8 +15,8 @@ Build publik berada di [`../../../build/BUILD.ps1`](../../../build/BUILD.ps1).
 Build itu mengambil checkout upstream persis, menyalin direktori ini ke
 `locale/id`, dan menjalankan `latexmk` pada driver lengkap.
 
-- DOI konsep Bahasa Indonesia: <DOI 10.5281/zenodo.21932786>
-- DOI rilis persis: <DOI 10.5281/zenodo.21932787>
+- DOI konsep Bahasa Indonesia: DOI 10.5281/zenodo.21932786
+- DOI rilis persis: DOI 10.5281/zenodo.21932787
 - Pembaca: [`../../../reader/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf`](../../../reader/00_OPENLOGIC_id_COMPLETE_LINKED_READER_OLP-0722.pdf)
 - Lisensi: CC BY 4.0
 
